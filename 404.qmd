@@ -1,0 +1,13 @@
+---
+title: "Página não encontrada"
+sidebar: false
+toc: false
+---
+
+A página que procuras não existe ou foi movida.
+
+::: {.hero-cta style="margin-top:1.5rem"}
+[Ir para o início](./){.btn .btn-primary}
+[Ler o Quadro](quadro/){.btn .btn-secondary}
+[Abrir o Atlas](atlas/){.btn .btn-secondary}
+:::

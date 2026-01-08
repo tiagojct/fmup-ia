@@ -1,0 +1,134 @@
+---
+other-links:
+  - text: "Guia Estudantes — PDF"
+    href: guias/guia-estudantes.pdf
+  - text: "Guia Docentes — PDF"
+    href: guias/guia-docentes.pdf
+  - text: "Guia Investigadores — PDF"
+    href: guias/guia-investigadores.pdf
+  - text: "Guia Serviços — PDF"
+    href: guias/guia-servicos.pdf
+---
+
+# Guia prático {#sec-anexo-d}
+
+Regras essenciais para a utilização de IA generativa na FMUP, organizadas por audiência. Cada uma das quatro audiências tem um guia PDF de uma página, adequado para impressão e distribuição — disponíveis na barra lateral.
+
+::: {.callout-tip}
+## Plataformas comuns
+
+A primeira opção institucional é a [IAedu](https://iaedu.pt) (FCT/FCCN), com autenticação `@up.pt` e garantia de não-utilização dos dados para treino. Ferramentas comerciais como [ChatGPT](https://chatgpt.com) e [Claude](https://claude.ai) podem ser usadas fora de contextos que envolvam dados sensíveis, preferencialmente em contas com _opt-out_ de treino ou através de API com contrato.
+:::
+
+## Estudantes
+
+Uma versão resumida de uma página está disponível em [PDF](guias/guia-estudantes.pdf).
+
+### Utilizações permitidas
+
+Podes usar GenAI para **estudar e rever conceitos** (explicações, resumos, esquemas), para **melhorar a escrita** (revisão gramatical e estilística de textos da tua autoria), para **clarificar terminologia médica**, e para **explorar cenários clínicos em abstracto** -- casos fictícios, nunca casos reais ou com dados identificáveis.
+
+### Regras essenciais
+
+1. **Verifica tudo.** És responsável por qualquer conteúdo que submetas, independentemente da ferramenta usada.
+2. **Declara o uso.** Em qualquer trabalho académico que envolva GenAI, inclui uma declaração com ferramenta, tipo de assistência, secções onde foi aplicada e _prompts_ utilizados ([Anexo A](A-declaracao.qmd)).
+3. **Consulta o programa da unidade curricular.** Cada UC define o seu regime: permitido, condicionado, ou proibido.
+4. **Não uses em avaliações sem autorização explícita.** Inclui exames, trabalhos de avaliação, apresentações e discussões tutoriais.
+5. **Nunca introduzas dados de doentes.** Nem de processos clínicos, nem de imagens, nem de diários de estágio -- mesmo que os penses anonimizados.
+6. **Em raciocínio clínico, não deleges.** A delegação compromete o desenvolvimento da tua competência clínica.
+7. **Sê capaz de defender o que submetes.** Se não consegues explicar, não o devias ter submetido.
+
+### Ferramentas
+
+- [IAedu](https://iaedu.pt) --- primeira opção institucional.
+- [ChatGPT](https://chatgpt.com), [Claude](https://claude.ai) --- alternativas comerciais, verificando definições de privacidade.
+- [DeepL](https://www.deepl.com) --- tradução técnica.
+- [NotebookLM](https://notebooklm.google.com) --- estudar a partir de materiais próprios.
+
+## Docentes
+
+Uma versão resumida de uma página está disponível em [PDF](guias/guia-docentes.pdf).
+
+### Enquadramento mínimo
+
+A GenAI já é usada pelos estudantes em prevalências de 60% a 80%. A resposta institucional não pode ser a proibição generalizada: tem de ser o redesenho de métodos que valorizem competências que a GenAI não substitui -- raciocínio clínico em tempo real, reflexão crítica fundamentada, apresentação oral com arguição, avaliação prática.
+
+### Regras essenciais
+
+1. **Experimenta antes de regular.** Usa pelo menos uma ferramenta em tarefas concretas do teu trabalho.
+2. **Inclui no programa da UC uma cláusula explícita sobre GenAI.** Permitido, condicionado ou proibido -- e em que termos (ver [Anexo B](B-clausula.qmd) para exemplos trabalhados).
+3. **Redesenha a avaliação onde for necessário.** Privilegia formatos em que a autoria é verificável.
+4. **Se usares GenAI para preparar materiais, revê tudo e declara.** Verifica exactidão clínica e terminológica; explicita aos estudantes o uso e o método de verificação.
+5. **Não submetas trabalhos de estudantes a plataformas comerciais para classificar.** Viola confidencialidade e o RGPD (decisão automatizada sobre avaliação requer intervenção humana substantiva).
+6. **Distingue apoio pedagógico positivo de substituição cognitiva.** GenAI pode tornar o processo de raciocínio _mais_ visível, não menos.
+7. **Participa na formação e na partilha.** O quadro institucional é um documento vivo.
+
+### Ideias de integração
+
+- Trabalhos reflexivos com _shadow AI_: o estudante resolve, depois confronta com um _prompt_ e comenta as diferenças.
+- Vinhetas clínicas co-construídas com GenAI, revistas em par docente, apresentadas em tutorial.
+- _Pools_ de questões socráticas geradas e seleccionadas manualmente.
+- Tradução e adaptação de conteúdos com declaração, como exercício de discussão terminológica.
+
+### Ferramentas e recursos
+
+- [IAedu](https://iaedu.pt), [ChatGPT](https://chatgpt.com), [Claude](https://claude.ai).
+- [NotebookLM](https://notebooklm.google.com) --- criação de "tutores" a partir de materiais curriculares.
+- [Perplexity](https://www.perplexity.ai) --- respostas com citações verificáveis (a verificar sempre).
+- [AAMC Principles](https://www.aamc.org/about-us/mission-areas/medical-education/principles-ai-use).
+- [TEQSA Gen AI Knowledge Hub](https://www.teqsa.gov.au/guides-resources/higher-education-good-practice-hub/gen-ai-knowledge-hub).
+- [HEA Ireland policy framework](https://hea.ie).
+
+## Investigadores
+
+Uma versão resumida de uma página está disponível em [PDF](guias/guia-investigadores.pdf).
+
+### Princípios
+
+A responsabilidade intelectual pelo conteúdo publicado pertence sempre aos autores humanos. GenAI pode apoiar edição e produtividade; não pode substituir a autoria, a interpretação nem a decisão científica. As [Living Guidelines do ERA Forum](https://research-and-innovation.ec.europa.eu/document/download/2b6cf7e5-36ac-41cb-aab5-0d32050143dc_en) e as políticas de [ICMJE](https://www.icmje.org/recommendations), [WAME](https://wame.org) e [COPE](https://publicationethics.org) convergem neste ponto.
+
+### Regras essenciais
+
+1. **Apoio linguístico é aceitável; geração substantiva não é.** Revisão gramatical, melhoria estilística e tradução são usos legítimos com declaração. Formulação de hipóteses, interpretação de resultados ou redacção substantiva da discussão erodem a autoria.
+2. **Declara no manuscrito.** Na secção de métodos ou nos agradecimentos, indica ferramenta, versão, data e natureza da assistência.
+3. **A GenAI não pode ser listada como autora.** A autoria implica responsabilidade e prestação de contas.
+4. **Não uses GenAI na revisão por pares ou na avaliação de candidaturas.**
+5. **Código gerado por GenAI: só submetes o que consegues explicar.**
+6. **Nunca introduzas dados sensíveis em plataformas comerciais.** Usa IAedu ou plataformas com contrato de tratamento de dados.
+7. **Em revisões sistemáticas assistidas por IA, documenta tudo.** Ferramenta, _prompts_, critérios, validação cruzada com revisor humano, taxas de concordância.
+8. **Se desenvolves IA aplicada à clínica, articula com ética e CNPD desde o início.** Pode constituir "alto risco" sob o AI Act.
+
+### Ferramentas e recursos
+
+- [IAedu](https://iaedu.pt), [ChatGPT](https://chatgpt.com), [Claude](https://claude.ai).
+- [DeepL Pro](https://www.deepl.com) --- tradução científica.
+- [Writefull](https://writefull.com) --- revisão linguística académica.
+- [EDPB](https://edpb.europa.eu), [CNPD](https://www.cnpd.pt) --- protecção de dados.
+
+## Serviços e administração
+
+Uma versão resumida de uma página está disponível em [PDF](guias/guia-servicos.pdf).
+
+### Utilizações permitidas
+
+Redigir e rever textos administrativos, traduzir documentos, resumir conteúdos longos, estruturar respostas de rotina, apoiar na formatação de tabelas e listas.
+
+### Regras essenciais
+
+1. **Nunca introduzas dados pessoais em plataformas comerciais.** Nomes, moradas, notas, situação profissional, dados clínicos -- aplicável a estudantes, docentes, funcionários e doentes.
+2. **Prefere a IAedu sempre que possível.**
+3. **Em documentos oficiais com efeito externo ou jurídico, sinaliza ao responsável de serviço.** A decisão sobre a forma final é humana.
+4. **Verifica sempre.** GenAI pode inventar dados, confundir nomes, alterar números.
+5. **Em caso de dúvida, pergunta ao grupo de trabalho para IA generativa da FMUP.**
+
+### Exemplos típicos
+
+- **Apropriado:** traduzir um convite para inglês antes de o enviar; resumir actas a partir das próprias actas; estruturar um FAQ a partir de perguntas frequentes; rever um texto de divulgação.
+- **Inapropriado:** colar uma lista de inscritos para "formatar melhor"; pedir para "analisar" dados de funcionários; enviar excertos de processos disciplinares; pedir avaliações sobre pessoas identificáveis.
+
+### Ferramentas
+
+- [IAedu](https://iaedu.pt) --- institucional, primeira opção.
+- [ChatGPT](https://chatgpt.com), [Claude](https://claude.ai) --- apenas para texto que não contenha dados pessoais.
+- [DeepL](https://www.deepl.com) --- tradução de documentos (sem dados pessoais).
+- [CNPD](https://www.cnpd.pt) --- enquadramento de protecção de dados.

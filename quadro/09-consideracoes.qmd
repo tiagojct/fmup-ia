@@ -1,0 +1,5 @@
+# Considerações finais
+
+Este documento é um ponto de partida. A alternativa a um quadro de referência institucional é a fragmentação: cada docente decide sozinho, cada estudante navega sem orientação, cada investigador interpreta as regras à sua maneira. A evidência mostra que esta é a situação na maioria das escolas médicas estudadas até à data e no ensino superior em geral [@ichikawa2025genai; @jin2025global].
+
+Como escreveu Ursula Franklin nas suas Massey Lectures de 1989, toda a tecnologia tem uma dimensão política e social que antecede a sua dimensão técnica [@franklin1989realworld]. A forma como a FMUP escolher integrar a GenAI nas suas práticas dirá tanto sobre os seus valores institucionais como sobre a sua capacidade de inovação.

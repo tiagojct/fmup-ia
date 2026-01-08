@@ -1,0 +1,44 @@
+---
+title: "Sobre"
+toc: true
+---
+
+## Autoria
+
+**Tiago Jacinto** --- docente e investigador na Faculdade de Medicina da Universidade do Porto. Áreas de actividade: educação médica, informática da saúde, investigação clínica em pneumologia. Contacto institucional via FMUP.
+
+Este Quadro foi redigido em pt-PT (pré-AO90) entre Abril e Maio de 2026, na sequência de um período de observação da adopção generalizada de GenAI por estudantes e docentes da FMUP. A ferramenta operacional **Atlas** acompanha o Quadro desde a sua primeira versão pública.
+
+## Como citar
+
+Sugestão de citação enquanto o DOI Zenodo está pendente:
+
+> Jacinto T. *FMUP · IA — Quadro de referência institucional para a utilização de inteligência artificial generativa na FMUP*. Faculdade de Medicina da Universidade do Porto, 2026. <https://tiagojct.eu/fmup-ia/>
+
+Após o depósito em Zenodo, esta página será actualizada com o DOI correspondente.
+
+## Licença
+
+Texto, código e dados publicados sob **[Creative Commons Attribution 4.0 (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)**. Reutilização permitida com atribuição. As marcas institucionais (logos FMUP e U.Porto) são propriedade das respectivas instituições e a sua utilização externa requer autorização própria.
+
+## Financiamento e conflitos
+
+Este trabalho não foi suportado por financiamento dedicado. Não há conflitos de interesse declaráveis. Quaisquer ferramentas de GenAI utilizadas na produção do Quadro e do Atlas são declaradas explicitamente nos respectivos ficheiros de processo (commits do repositório `tiagojct/fmup-ia`), em coerência com os princípios que o próprio Quadro defende.
+
+## Estado de revisão
+
+| Versão | Data | Notas |
+|---|---|---|
+| 1.0 | 2026-04-21 | Primeira versão pública do Quadro. Atlas v0.3.0. |
+
+Revisões futuras serão registadas neste quadro e no `CHANGELOG.md` do repositório.
+
+## Reportar erros e contribuir
+
+O repositório do projecto é público em [github.com/tiagojct/fmup-ia](https://github.com/tiagojct/fmup-ia). Erros, sugestões e correcções editoriais podem ser submetidas via _issue_; contributos textuais ou de código via _pull request_. Para contactos directos, usar o canal institucional FMUP.
+
+## Recursos relacionados
+
+- [Quadro de referência](quadro/) --- documento principal.
+- [Atlas](atlas/) --- ferramenta operacional.
+- [Recursos](recursos.qmd) --- _frameworks_ externos e leitura adicional.

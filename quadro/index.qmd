@@ -1,0 +1,38 @@
+---
+title: "Quadro de referência"
+toc: true
+---
+
+# Preâmbulo {.unnumbered}
+
+Este Quadro apresenta a proposta de referência institucional sobre a utilização de inteligência artificial generativa (GenAI) na Faculdade de Medicina da Universidade do Porto (FMUP), organizada em três vertentes -- estudantes, docentes e investigadores -- e complementada com orientações sobre infraestrutura, governança, implementação e avaliação. O guia prático ([Anexo D](D-guia.qmd)) estende-se ainda a uma quarta audiência: os serviços e a administração da faculdade.
+
+O documento destina-se à direcção da FMUP, aos conselhos pedagógicos e científicos, aos docentes e investigadores, aos estudantes e aos serviços de apoio. Pode servir de ponto de partida para o debate institucional, para a elaboração de políticas específicas por unidade curricular e para a articulação com os quadros regulatórios nacionais e europeus.
+
+A ferramenta operacional [**Atlas**](../atlas/) acompanha este Quadro: gera declarações estruturadas de uso de GenAI para cada papel (estudante, docente, investigador) e devolve avaliação guidante de risco com base nas regras aqui codificadas.
+
+## Sumário executivo {.unnumbered}
+
+**Problema.** A adopção de GenAI por estudantes, docentes e investigadores é generalizada — inquéritos recentes indicam prevalências de 60% a 80% entre estudantes de medicina. A FMUP não dispõe de quadro de referência institucional: o vazio normativo gera desigualdade de orientação, risco jurídico perante o RGPD e o AI Act, e perda de oportunidade pedagógica.
+
+**Proposta.** Um quadro assente em sete princípios -- agência humana, integridade académica, protecção de dados, transparência, equidade, literacia crítica e revisão contínua -- articulado em três vertentes operacionais (estudantes, docentes, investigadores), complementado por regras para serviços e administração, e enquadrado por orientações sobre infraestrutura, governança e avaliação.
+
+**Recursos necessários.** Um grupo de trabalho institucional com representação multi-vertente; adesão à plataforma IAedu (FCT/FCCN) como infraestrutura de primeira linha; programa regular de formação para docentes; módulos de literacia em IA integrados nos ciclos de estudo; mecanismos de auditoria interna inspirados na _ethics checklist_ de Ning et al. (2024).
+
+**Calendário.**
+
+- **Fase 1 (2026-2027):** discussão e aprovação; formação inicial para docentes; piloto num programa de mestrado.
+- **Fase 2 (2027-2028):** extensão a todos os ciclos de estudo; plataforma institucional; módulos de literacia em IA.
+- **Fase 3 (2028-2029):** avaliação de impacto; revisão do quadro; publicação dos resultados.
+
+Indicadores de monitorização (cobertura curricular, formação docente, declaração de uso, literacia dos estudantes, incidentes de integridade académica, adesão a plataformas institucionais) e revisão anual definidos no [capítulo 7](07-implementacao.qmd).
+
+::: {.callout-note}
+## Versão
+
+Abril de 2026. Quadro concebido como documento vivo, sujeito a revisão anual.
+
+Licença: **CC BY 4.0**. Publicação citável após depósito em Zenodo (DOI a atribuir).
+:::
+
+Autor: Tiago Jacinto.

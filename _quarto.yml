@@ -1,0 +1,149 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - "index.qmd"
+    - "sobre.qmd"
+    - "recursos.qmd"
+    - "404.qmd"
+    - "quadro/index.qmd"
+    - "quadro/0*.qmd"
+    - "quadro/1*.qmd"
+    - "quadro/[A-F]-*.qmd"
+    - "quadro/references.qmd"
+    - "!quadro/guias/**"
+    - "!quadro/full-references.md"
+    - "!atlas/**"
+  resources:
+    - "atlas/**"
+    - "assets/**"
+  preview:
+    port: 4321
+    browser: false
+
+website:
+  title: "FMUP · IA"
+  description: "Quadro de referência institucional para a utilização de inteligência artificial generativa na Faculdade de Medicina da Universidade do Porto."
+  site-url: "https://tiagojct.eu/fmup-ia/"
+  repo-url: "https://github.com/tiagojct/fmup-ia"
+  repo-actions: [edit, issue]
+  favicon: assets/favicon.svg
+  open-graph: true
+  twitter-card: true
+  page-navigation: true
+  back-to-top-navigation: true
+  reader-mode: false
+  search:
+    location: navbar
+    type: overlay
+
+  navbar:
+    background: light
+    pinned: true
+    logo: assets/logos/fmup-geral.png
+    logo-alt: "FMUP — Faculdade de Medicina da Universidade do Porto"
+    title: false
+    left:
+      - href: index.qmd
+        text: "Início"
+      - href: quadro/index.qmd
+        text: "Quadro"
+      - href: atlas/index.html
+        text: "Atlas"
+        target: _self
+      - href: recursos.qmd
+        text: "Recursos"
+      - href: sobre.qmd
+        text: "Sobre"
+    right:
+      - icon: github
+        href: https://github.com/tiagojct/fmup-ia
+        aria-label: "Repositório GitHub"
+
+  sidebar:
+    - id: quadro
+      title: "Quadro"
+      style: "docked"
+      collapse-level: 2
+      align: left
+      contents:
+        - quadro/index.qmd
+        - section: "Parte I — Análise comparativa"
+          contents:
+            - quadro/10-panorama-eua.qmd
+            - quadro/11-panorama-europa.qmd
+            - quadro/12-panorama-iberoamerica.qmd
+            - quadro/13-frameworks-supranacionais.qmd
+            - quadro/14-camada-medica.qmd
+            - quadro/15-lacunas.qmd
+        - section: "Parte II — Proposta institucional"
+          contents:
+            - quadro/01-enquadramento.qmd
+            - quadro/02-principios.qmd
+            - quadro/03-estudantes.qmd
+            - quadro/04-docentes.qmd
+            - quadro/05-investigadores.qmd
+            - quadro/06-infraestrutura.qmd
+            - quadro/07-implementacao.qmd
+            - quadro/08-transversais.qmd
+            - quadro/09-consideracoes.qmd
+        - section: "Anexos"
+          contents:
+            - quadro/A-declaracao.qmd
+            - quadro/B-clausula.qmd
+            - quadro/C-recursos.qmd
+            - quadro/D-guia.qmd
+            - quadro/E-cenarios.qmd
+            - quadro/F-glossario.qmd
+        - quadro/references.qmd
+
+  page-footer:
+    background: light
+    border: true
+    left: |
+      © 2026 Tiago Jacinto · Faculdade de Medicina da Universidade do Porto
+      Conteúdo licenciado sob [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+    right:
+      - text: "Início"
+        href: index.qmd
+      - text: "Quadro"
+        href: quadro/index.qmd
+      - text: "Atlas"
+        href: atlas/index.html
+      - text: "GitHub"
+        href: https://github.com/tiagojct/fmup-ia
+
+format:
+  html:
+    theme:
+      - cosmo
+      - theme.scss
+    toc: true
+    toc-depth: 3
+    toc-location: right
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    code-overflow: wrap
+    smooth-scroll: true
+    link-external-icon: false
+    link-external-newwindow: true
+    anchor-sections: true
+    code-copy: true
+
+bibliography: quadro/references.bib
+csl: quadro/ieee.csl
+lang: pt-PT
+
+language:
+  section-title-appendices: "Anexos"
+  crossref-apx-prefix: "Anexo"
+  crossref-apx-title: "Anexo"
+  crossref-ch-prefix: "Capítulo"
+  crossref-sec-prefix: "Secção"
+
+execute:
+  freeze: false
+
+# License + DOI metadata for citation export.
+license: "CC BY 4.0"
+# doi: "10.5281/zenodo.XXXXXXX"  # preencher após depósito Zenodo

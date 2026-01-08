@@ -1,0 +1,59 @@
+---
+title: "Guia prático: utilização de IA generativa"
+subtitle: "Investigadores da FMUP"
+author: "FMUP --- Grupo de trabalho para IA generativa"
+date: "2026-04-21"
+date-format: "D [de] MMMM [de] YYYY"
+lang: pt-PT
+format:
+  typst:
+    toc: false
+    number-sections: false
+    papersize: a4
+    margin:
+      x: 2cm
+      y: 2cm
+    fontsize: 10.5pt
+    mainfont: "Geist"
+    monofont: "Geist Mono"
+    section-numbering: ""
+---
+
+## Princípios
+
+A responsabilidade intelectual pelo conteúdo publicado pertence sempre aos autores humanos. GenAI pode apoiar edição e produtividade; não pode substituir a autoria, a interpretação nem a decisão científica. As _Living Guidelines_ do ERA Forum e as políticas de ICMJE, WAME e COPE convergem neste ponto.
+
+## Regras essenciais
+
+1. **Apoio linguístico é aceitável; geração substantiva não é.** Revisão gramatical, melhoria estilística e tradução são usos legítimos com declaração. Formulação de hipóteses, interpretação de resultados ou redacção substantiva da discussão erodem a autoria.
+2. **Declara no manuscrito.** Na secção de métodos ou nos agradecimentos, indica ferramenta, versão, data e natureza da assistência. Segue a política da revista quando especificar detalhe adicional.
+3. **A GenAI não pode ser listada como autora.** A autoria implica responsabilidade e prestação de contas, que nenhum sistema de IA pode assumir. Os editores das principais revistas médicas são inequívocos neste ponto.
+4. **Não uses GenAI na revisão por pares ou na avaliação de candidaturas.** Viola confidencialidade do processo e contraria as _Living Guidelines_ do ERA Forum. Recusa o convite se não puderes rever sem apoio de plataformas externas.
+5. **Código gerado por GenAI: só submetes o que consegues explicar.** Lê, testa, compreende. Se não explicas, não é teu. Regra aplicável também a código de análise estatística ou limpeza de dados.
+6. **Nunca introduzas dados sensíveis em plataformas comerciais.** Dados de participantes, registos clínicos, imagens, excertos de entrevistas. Usa IAedu ou plataformas com contrato de tratamento de dados conforme ao RGPD.
+7. **Em revisões sistemáticas ou triagem assistida por IA, documenta tudo.** Ferramenta, _prompts_, critérios, validação cruzada com revisor humano, taxas de concordância. A decisão de inclusão não pode ser exclusivamente automatizada. Consultar _guidelines_ PRISMA-AI quando aplicáveis.
+8. **Se desenvolves IA aplicada à clínica, articula com ética e CNPD desde o início.** Um sistema que venha a ser usado em triagem, diagnóstico ou decisão clínica pode constituir "alto risco" sob o AI Act. Envolve o grupo de trabalho para IA generativa da FMUP cedo.
+
+## Plataformas recomendadas
+
+- **IAedu** — <https://iaedu.pt>. Institucional, conta `@up.pt`. Primeira opção para qualquer utilização que envolva texto académico próprio.
+- **ChatGPT** — <https://chatgpt.com> / **Claude** — <https://claude.ai>. Para apoio linguístico e exploratório. Versões com opt-out de treino ou API com contrato.
+- **DeepL Pro** — <https://deepl.com>. Para tradução científica, com conta institucional.
+- **Writefull** — <https://writefull.com>. Revisão linguística especializada em texto académico, integração com Word/Overleaf.
+
+## Referências editoriais e regulatórias
+
+- **ICMJE Recommendations** — <https://www.icmje.org/recommendations>. Actualização sobre uso de IA em manuscritos submetidos a revistas médicas.
+- **WAME** — <https://wame.org>. Recomendações sobre _chatbots_ e ferramentas de IA em publicação académica.
+- **COPE** — <https://publicationethics.org>. Posição sobre IA em investigação.
+- **_Living Guidelines on Responsible Use of Generative AI in Research_ (ERA Forum)** — <https://research-and-innovation.ec.europa.eu/document/download/2b6cf7e5-36ac-41cb-aab5-0d32050143dc_en>.
+- **EDPB** — <https://edpb.europa.eu>. Incluindo a Opinião 28/2024 sobre modelos de IA e dados pessoais.
+- **CNPD** — <https://www.cnpd.pt>. Autoridade nacional de RGPD.
+
+## Mais informação
+
+- Proposta institucional da FMUP: consultar Vertente Investigadores (capítulo 5), Anexo A (declaração de uso) e Anexo E (cenários 3, 5, 7, 9 e 10).
+
+---
+
+*Documento resumido. Versão de Abril de 2026. Documento vivo, sujeito a revisão anual.*

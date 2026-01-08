@@ -1,0 +1,43 @@
+# Cenários práticos {#sec-anexo-e}
+
+Os seguintes cenários ilustram a aplicação do quadro em situações previsíveis. Não esgotam os casos possíveis e não substituem o juízo do docente ou da direcção; servem de pontos de calibração.
+
+## Cenário 1 --- Trabalho escrito com uso não declarado
+
+Um estudante submete uma revisão narrativa para uma unidade curricular cujo programa permitiu o uso de GenAI _condicionado_ a declaração explícita. O docente identifica sinais de uso (padrões estilísticos, referências inexistentes) mas a declaração não está incluída. A ausência de declaração constitui, por si, violação de integridade académica, independentemente da qualidade do conteúdo: o docente convoca o estudante, discute o caso e acciona o procedimento previsto no regulamento, sem necessidade de provar o uso -- a ausência da declaração é o facto relevante.
+
+## Cenário 2 --- Caso clínico preparado por docente com GenAI
+
+Um docente utiliza GenAI para gerar um caso clínico simulado com base em literatura recente. Antes de usar o material em aula, verifica a exactidão dos dados, corrige inconsistências farmacológicas e, na abertura da sessão, declara que o caso foi co-concebido com uma ferramenta de GenAI. Este uso é conforme. A declaração é pedagógica, não apenas formal: permite ao estudante identificar um caso de uso apropriado e observar o processo de verificação.
+
+## Cenário 3 --- Manuscrito de investigação com apoio linguístico
+
+Um investigador não-nativo utiliza GenAI para revisão linguística de um manuscrito. Na secção de métodos e nos agradecimentos declara a ferramenta e o tipo de assistência. A GenAI não é listada como autora. O conteúdo intelectual -- questão de investigação, desenho, análise, interpretação -- permanece exclusivamente humano. Conforme.
+
+## Cenário 4 --- Introdução de dados clínicos em plataforma comercial
+
+Um estudante, ao preparar um trabalho de raciocínio clínico, cola numa plataforma comercial de GenAI um excerto de processo clínico obtido em estágio, com o objectivo de obter "ideias" sobre diagnósticos diferenciais. Mesmo que os dados tenham sido anonimizados pelo estudante, este uso viola o quadro: a anonimização informal não cumpre os requisitos técnicos exigidos pelo RGPD, e a plataforma pode reter os dados para treino de modelos. A resposta institucional deve ser formativa e preventiva antes de disciplinar, salvo em casos reincidentes ou de dano efectivo.
+
+## Cenário 5 --- Revisão por pares assistida por GenAI
+
+Um investigador é convidado a rever um manuscrito para uma revista internacional e carrega o manuscrito numa plataforma comercial de GenAI para sintetizar a argumentação e redigir comentários. Este uso viola simultaneamente (i) a confidencialidade do processo de revisão, (ii) as _Living Guidelines_ do ERA Forum, e (iii) as políticas de muitas revistas. O investigador deve recusar o convite ou conduzir a revisão sem apoio de plataformas externas.
+
+## Cenário 6 --- Utilização em contexto clínico formativo
+
+Em estágio, um estudante utiliza uma ferramenta de GenAI num momento informal (entre consultas) para tentar consolidar um raciocínio sobre um doente real. Ainda que a intenção seja formativa, a introdução de qualquer informação identificável do doente na plataforma é proibida. O docente de estágio deve discutir o caso com o estudante, clarificando a fronteira entre uso legítimo (revisão de conceitos em abstracto) e uso proibido (discussão de casos concretos em plataformas sem protecção contratual).
+
+## Cenário 7 --- Co-autoria de manuscrito por GenAI
+
+Um grupo de investigação submete um manuscrito em que um dos autores listados é, explicitamente, "ChatGPT". O editor da revista devolve o manuscrito com pedido de correcção, invocando as políticas do ICMJE e a declaração do AI Act. A posição institucional da FMUP é inequívoca: a GenAI não pode ser listada como autora, independentemente do seu grau de contribuição. A contribuição deve ser declarada nos métodos ou nos agradecimentos, conforme aplicável. Este cenário não tolera excepções: a autoria implica responsabilidade e prestação de contas, que nenhum sistema de IA pode assumir.
+
+## Cenário 8 --- Examinador com apoio de GenAI na classificação
+
+Um docente utiliza uma ferramenta de GenAI para classificar respostas abertas de um exame, introduzindo os textos dos estudantes numa plataforma comercial. Esta prática viola três dimensões do quadro: (i) a confidencialidade dos dados académicos dos estudantes; (ii) o RGPD, que proíbe a decisão exclusivamente automatizada sobre avaliações sem intervenção humana substantiva; e (iii) o princípio de agência humana do quadro FMUP. A classificação é responsabilidade do docente. A GenAI pode, no máximo, apoiar a definição de _rubrics_ ou a identificação de padrões linguísticos para posterior análise humana -- e apenas em plataformas com garantias contratuais de protecção de dados.
+
+## Cenário 9 --- GenAI numa revisão sistemática
+
+Uma equipa de investigadores utiliza GenAI para apoiar a fase de _screening_ de títulos e _abstracts_ de uma revisão sistemática. Documenta na secção de métodos a ferramenta, os _prompts_, os critérios de validação cruzada com revisor humano e a taxa de concordância inter-avaliador. Este uso é compatível com o quadro, desde que: (i) a decisão de inclusão não seja exclusivamente automatizada; (ii) nenhum dado sensível de participantes seja submetido (apenas metadados bibliográficos); (iii) o processo seja integralmente declarado e reprodutível. Recomenda-se consulta prévia às _guidelines_ PRISMA-AI, quando disponíveis.
+
+## Cenário 10 --- Estudante de doutoramento a desenvolver GenAI aplicada à clínica
+
+Um estudante de doutoramento da FMUP desenvolve, no âmbito do seu projecto, um modelo de linguagem especializado para triagem. Esta actividade posiciona-o no perfil de _criador_ (na tipologia de Ng et al. [@ng2023aieducation]) e está fora do âmbito das proibições aplicáveis ao uso de ferramentas comerciais: o estudante é responsável pelo modelo que constrói, pelos dados que usa (que devem cumprir os protocolos aprovados pela comissão de ética e pela CNPD) e pela sua validação clínica. O projecto está sujeito ao AI Act na medida em que possa vir a constituir sistema de alto risco; o orientador e o grupo de trabalho para GenAI da FMUP devem ser envolvidos na avaliação de conformidade desde o início.

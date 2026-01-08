@@ -1,0 +1,59 @@
+# Glossário {#sec-anexo-f}
+
+Termos usados neste quadro de referência, organizados alfabeticamente. As entradas em itálico correspondem a anglicismos de uso corrente na literatura, que o documento mantém por ausência de tradução consensual em português europeu médico.
+
+**A3ES** --- Agência de Avaliação e Acreditação do Ensino Superior. Entidade nacional responsável pela avaliação e acreditação de instituições e ciclos de estudo do ensino superior português.
+
+**AAMC** --- _Association of American Medical Colleges_. Associação das faculdades de medicina dos Estados Unidos. Publicou, em 2025, sete princípios para a utilização responsável de IA em educação médica.
+
+**AI Act** --- Regulamento Europeu da Inteligência Artificial (Regulamento UE 2024/1689), adoptado em 2024 e com aplicação escalonada ao longo de 2025-2026. Classifica sistemas de IA por nível de risco, com obrigações diferenciadas, e aplica-se directamente às instituições de ensino superior enquanto utilizadoras.
+
+**AICAI** --- modelo proposto por Peters e Angelov (2025) para redesenho de trabalhos de avaliação académica perante a disponibilidade de GenAI. Articula três eixos: criatividade, autenticidade e integridade.
+
+**_Chatbot_** --- sistema conversacional baseado em IA, acessível por interface de texto ou voz. Em contexto académico, o termo é frequentemente usado como sinónimo aproximado de aplicação de LLM (ChatGPT, Claude, Gemini).
+
+**CNPD** --- Comissão Nacional de Protecção de Dados. Autoridade nacional portuguesa competente para o RGPD.
+
+**_Cognitive offloading_** --- delegação de esforço cognitivo a uma ferramenta externa. Pode ser neutra (calculadora, GPS, agenda) ou problemática quando impede o desenvolvimento de competências subjacentes.
+
+**Confabulação** --- termo preferível a "alucinação" (_hallucination_) para designar o fenómeno em que um modelo de linguagem produz conteúdo plausível mas factualmente incorrecto: referências inexistentes, dados inventados, raciocínios falsos apresentados com a mesma confiança dos correctos.
+
+**COPE** --- _Committee on Publication Ethics_. Organização internacional dedicada à integridade em publicação científica; emitiu posição sobre uso de IA em investigação.
+
+**DGES** --- Direcção-Geral do Ensino Superior (Portugal).
+
+**EDPB** --- _European Data Protection Board_. Órgão europeu que coordena as autoridades nacionais de RGPD.
+
+**ENISA** --- _European Union Agency for Cybersecurity_. Agência da UE para cibersegurança; publica orientações sobre segurança de sistemas de IA.
+
+**ERA Forum** --- _European Research Area Forum_. Órgão que integra estados-membros e actores do sistema europeu de investigação; publicou as _Living Guidelines on Responsible Use of Generative AI in Research_ (2024, revisão 2025).
+
+**GenAI (IA generativa)** --- sistemas capazes de produzir conteúdo novo (texto, código, imagem, som, vídeo) a partir de instruções em linguagem natural. Abrange modelos de linguagem de grande dimensão (LLMs), modelos de difusão (imagem, vídeo) e modelos multimodais.
+
+**IAedu** --- plataforma institucional portuguesa, desenvolvida pela FCCN (serviços digitais da FCT), lançada em 2025. Oferece acesso centralizado a LLMs para o ensino superior e investigação, com autenticação federada institucional e garantia de não-utilização dos dados para treino.
+
+**ICMJE** --- _International Committee of Medical Journal Editors_. Emite recomendações adoptadas pela maioria das revistas médicas internacionais.
+
+**LLM (_Large Language Model_)** --- modelo de linguagem de grande dimensão, treinado em volumes massivos de texto para prever a palavra seguinte e, por extensão, gerar texto coerente a partir de instruções. Exemplos correntes: GPT (OpenAI), Claude (Anthropic), Gemini (Google), Llama (Meta), DeepSeek.
+
+**_Living Guidelines_** --- _Living Guidelines on the Responsible Use of Generative AI in Research_, documento do ERA Forum. "Vivo" porque sujeito a actualizações regulares à medida que a tecnologia evolui.
+
+**_Prompt_** --- instrução em linguagem natural dada ao modelo. **_Prompting_** --- prática de formular _prompts_; componente central da literacia em IA na sua dimensão prática.
+
+**RGPD** --- Regulamento Geral sobre a Protecção de Dados (Regulamento UE 2016/679). Aplica-se a qualquer tratamento de dados pessoais na União Europeia; impõe, entre outras, a proibição de decisão exclusivamente automatizada em matérias com efeito jurídico ou significativo sobre as pessoas, sem intervenção humana substantiva.
+
+**_Scaffolding_** --- estratégia pedagógica em que o apoio ao estudante é progressivamente reduzido à medida que a competência é adquirida. Boman et al. (2025) propõem um modelo de _scaffolding_ específico para integração de GenAI em educação médica.
+
+**_Scoping review_** --- revisão exploratória de literatura, com método sistemático mas âmbito mais amplo do que uma revisão sistemática clássica. Mapeia a natureza e a extensão da evidência disponível sobre um tema.
+
+**SARPS** --- _Six Assessment Redesign Pivotal Strategies_. _Framework_ proposto por Chan e Colloton (2024) para redesenho de avaliação perante a disponibilidade de GenAI.
+
+**_Slop_** --- conteúdo gerado por IA de baixa qualidade, publicado sem curadoria humana, com pouco valor acrescentado. Palavra do Ano 2025 do _Merriam-Webster_. Jones et al. (2025) propuseram a primeira definição académica formal do termo em meios educacionais [@jones2025slop].
+
+**_Sloppypasta_** --- neologismo que junta _slop_ e _copypasta_; o acto específico de copiar-e-colar _output_ bruto de um modelo de linguagem sem leitura, verificação ou edição.
+
+**TEQSA** --- _Tertiary Education Quality and Standards Agency_. Agência reguladora australiana do ensino superior, que coordenou, em 2024, um dos primeiros processos sistemáticos de resposta institucional à GenAI.
+
+**UNESCO** --- _United Nations Educational, Scientific and Cultural Organization_. Publicou, em 2023, o primeiro guia global sobre IA generativa em educação e investigação.
+
+**WAME** --- _World Association of Medical Editors_. Emite recomendações sobre integridade em publicação médica, incluindo sobre uso de IA.

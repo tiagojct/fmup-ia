@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+message: "Se citar este trabalho, utilize os seguintes metadados."
+title: "FMUP · IA — Quadro de referência institucional para a utilização de inteligência artificial generativa na FMUP"
+abstract: >-
+  Quadro de referência institucional para o uso de IA generativa na
+  Faculdade de Medicina da Universidade do Porto, em duas partes:
+  análise comparativa internacional (Estados Unidos, Europa,
+  Ibero-América, frameworks supranacionais, camada médica) e proposta
+  operacional para a FMUP (sete princípios, três vertentes, infraestrutura,
+  governança e calendário de implementação). Acompanhado pela ferramenta
+  Atlas, geradora de declarações estruturadas de uso de IA com avaliação
+  guidante de risco em quatro níveis.
+authors:
+  - family-names: Jacinto
+    given-names: Tiago
+    affiliation: "Faculdade de Medicina da Universidade do Porto"
+    # orcid: "https://orcid.org/0000-0000-0000-0000"  # a preencher
+keywords:
+  - "generative AI"
+  - "medical education"
+  - "AI governance"
+  - "FMUP"
+  - "Faculdade de Medicina da Universidade do Porto"
+  - "AI literacy"
+  - "GDPR"
+  - "EU AI Act"
+license: CC-BY-4.0
+repository-code: "https://github.com/tiagojct/fmup-ia"
+url: "https://tiagojct.eu/fmup-ia/"
+version: "1.0.0"
+date-released: "2026-05-10"
+type: software

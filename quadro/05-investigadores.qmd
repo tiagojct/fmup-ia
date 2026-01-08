@@ -1,0 +1,32 @@
+---
+other-links:
+  - text: "Guia Investigadores — PDF"
+    href: guias/guia-investigadores.pdf
+---
+
+# Vertente Investigadores
+
+## Utilização na escrita científica
+
+A GenAI pode ser utilizada como apoio linguístico na escrita científica: revisão gramatical, melhoria estilística, tradução entre línguas.
+As _Living Guidelines_ da Comissão Europeia distinguem entre uso básico de apoio à escrita e usos com maior impacto, como a interpretação de dados, a revisão de literatura ou a formulação de hipóteses [@ec2024livingguidelines].
+Cheng et al. (2025) sistematizaram recomendações para uso ético em escrita científica, sublinhando a distinção entre edição (aceitável, com declaração) e geração substantiva -- esta última a evitar pela erosão de autoria intelectual que implica [@cheng2025aiwriting].
+A propensão dos modelos de linguagem para a confabulação constitui um risco específico na escrita científica [@alkaissi2023hallucinations]. A responsabilidade intelectual pelo conteúdo publicado pertence sempre aos autores humanos.
+
+## Utilização na análise de dados
+
+A GenAI é hoje utilizada em várias fases da análise de dados: geração de código estatístico, limpeza e transformação de dados, exploração preliminar, interpretação de resultados e produção de figuras. Cada fase suscita questões próprias.
+
+**Geração de código.** O investigador é responsável por verificar a correcção do código antes de o aplicar a dados reais. Recomenda-se validação contra dados sintéticos de teste e leitura linha a linha -- regra derivada do princípio articulado por Simon Willison ([Anexo C](C-recursos.qmd)): código que não se consegue explicar não é código que se deva submeter. Código de limpeza que altera estruturalmente os dados (renomear, filtrar, recodificar) merece atenção redobrada, pela dificuldade de detectar erros depois de aplicados.
+
+**Dados sensíveis.** Dados identificáveis de participantes, registos clínicos ou amostras biológicas não podem ser introduzidos em plataformas comerciais de GenAI. Quando o uso envolver dados, utilizar plataformas institucionais com garantias contratuais (IAedu) ou ferramentas locais (modelos executados em infraestrutura própria do grupo de investigação). Dados pseudonimizados continuam a ser dados pessoais para efeitos do RGPD: a pseudonimização reduz mas não elimina o risco.
+
+**Declaração em publicações.** Na secção de métodos, documentar: ferramenta e versão, natureza da assistência (geração _vs_ edição _vs_ interpretação), se a análise foi replicada sem GenAI para validação, e repositório público do código final. A reprodutibilidade é o contra-peso da opacidade do assistente.
+
+## Revisão por pares e avaliação
+
+As _Living Guidelines_ recomendam que os investigadores se abstenham de utilizar GenAI em actividades sensíveis como a revisão por pares ou a avaliação de candidaturas [@ec2024livingguidelines]. Os primeiros estudos empíricos sobre a utilização de GenAI na revisão por pares sugerem limitações significativas [@lim2025peerreview]. A FMUP deve adoptar esta posição.
+
+## Protecção de dados e declaração em publicações
+
+Dados sensíveis não podem ser introduzidos em plataformas comerciais de GenAI. Qualquer utilização de GenAI na produção de um manuscrito deve ser declarada, em conformidade com as políticas das revistas e com as _Living Guidelines_ do ERA Forum [@ec2024livingguidelines]. A GenAI não pode ser listada como autora.

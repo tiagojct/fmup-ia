@@ -1,0 +1,57 @@
+# Modelo de declaração de uso de IA generativa {#sec-anexo-a}
+
+## Modelo genérico
+
+[Título do trabalho]
+
+Declaro que na elaboração deste trabalho foi utilizada a seguinte ferramenta de inteligência artificial generativa:
+
+- Ferramenta: [ex: ChatGPT (GPT-5), Claude (Opus 4.5), Gemini 2.5 Pro, modelo da plataforma IAedu, etc.]
+- Tipo de assistência: [ex: revisão gramatical, geração de resumo, apoio à análise de dados, tradução, etc.]
+- Secções em que foi aplicada: [indicar]
+- Prompts utilizados: [descrever ou anexar]
+- Data de utilização: [indicar]
+
+O conteúdo intelectual do trabalho, incluindo a sua estrutura, argumentação e conclusões, é da minha responsabilidade. Revi e verifiquei toda a informação gerada pela ferramenta de IA.
+
+Data: _______________
+Assinatura: _______________
+
+## Exemplos preenchidos
+
+Os exemplos abaixo ilustram níveis distintos de assistência e devem ser lidos como referência, não como inventário exaustivo.
+
+### Exemplo 1 --- Revisão linguística de um trabalho escrito
+
+- Ferramenta: Claude Opus 4.5, via IAedu.
+- Tipo de assistência: revisão gramatical, ortográfica e estilística.
+- Secções em que foi aplicada: introdução, discussão e conclusão.
+- Prompts utilizados: _"Revê o texto abaixo, corrigindo erros gramaticais e de pontuação e propondo, em comentário, alternativas estilísticas quando o texto for ambíguo. Não alteres o conteúdo factual nem a argumentação."_
+- Data de utilização: 12 de Março de 2026.
+
+### Exemplo 2 --- Apoio à análise de dados
+
+- Ferramenta: ChatGPT (GPT-5), conta institucional com opt-out de treino.
+- Tipo de assistência: geração de _scripts_ em R para regressão logística multivariável e interpretação de diagnósticos de multicolinearidade.
+- Secções em que foi aplicada: Métodos (desenvolvimento do código) e Resultados (verificação de pressupostos).
+- Prompts utilizados: _"Dado um dataset com as variáveis X, Y e Z, produz um script R que ajuste um modelo logístico multivariável, calcule VIF e produza um gráfico de resíduos. Comenta passo a passo."_ _Prompt_ completo anexado como material suplementar.
+- Data de utilização: 3 a 7 de Fevereiro de 2026.
+- Nota adicional: o código gerado foi lido, testado contra dados sintéticos e interpretado pelo próprio investigador; nenhum dado real de doentes foi submetido à plataforma.
+
+### Exemplo 3 --- Preparação de caso clínico simulado (docente)
+
+- Ferramenta: Claude Opus 4.5, via IAedu.
+- Tipo de assistência: geração de uma vinheta clínica simulada sobre insuficiência cardíaca descompensada para discussão tutorial, com questões para debate.
+- Secções em que foi aplicada: material de apoio à sessão tutorial da unidade curricular [XYZ].
+- Prompts utilizados: _"Constrói uma vinheta clínica fictícia de um doente de 72 anos com insuficiência cardíaca descompensada de etiologia isquémica. Inclui história, exame físico, exames complementares e três questões de discussão adequadas a alunos do 4.º ano de Medicina."_
+- Data de utilização: 18 de Janeiro de 2026.
+- Nota adicional: caso revisto pelo docente quanto a exactidão clínica, terminologia e coerência com o currículo; ajustes manuais em 3 dos exames complementares gerados.
+
+### Exemplo 4 --- Tradução de manuscrito científico
+
+- Ferramenta: DeepL Pro, seguida de revisão manual com apoio pontual de ChatGPT (GPT-5) para clarificação terminológica.
+- Tipo de assistência: tradução inicial EN→PT e posterior revisão de termos técnicos específicos.
+- Secções em que foi aplicada: manuscrito integral submetido ao [X Congresso Nacional].
+- Prompts utilizados (clarificação terminológica): _"Em português europeu médico, como se traduz de forma canónica o termo X no contexto de Y?"_
+- Data de utilização: Abril de 2026.
+- Nota adicional: responsabilidade terminológica e científica final dos autores humanos.

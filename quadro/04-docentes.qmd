@@ -1,0 +1,24 @@
+---
+other-links:
+  - text: "Guia Docentes — PDF"
+    href: guias/guia-docentes.pdf
+---
+
+# Vertente Docentes
+
+## Integração no ensino
+
+Os docentes são encorajados a explorar e experimentar ferramentas de GenAI para compreender o seu funcionamento, as suas capacidades e as suas limitações [@humble2025policies]. Boman et al. (2025) propuseram um modelo de _scaffolding_ que combina a aprendizagem com e sobre GenAI, sugerindo que a integração curricular deve ser progressiva e acompanhada de reflexão metacognitiva [@boman2025scaffolding].
+Os docentes podem utilizar GenAI para apoio à preparação de materiais de ensino (geração de casos clínicos simulados, criação de questões de discussão, tradução e adaptação de conteúdos), desde que revejam criticamente todo o conteúdo gerado. A responsabilidade pela exactidão e pela adequação pedagógica dos materiais permanece do docente.
+
+Para além da preparação de materiais, a literatura recente documenta aplicações pedagógicas positivas e auditáveis. Samuel et al. (2025) propuseram um modelo de redesenho de trabalhos em que o ChatGPT é integrado como instrumento de _reflective practice_, forçando o estudante a comparar criticamente o seu próprio raciocínio com o output da ferramenta [@samuel2025reflective]. Thesen et al. (2025) exploraram a utilização de GenAI como "primeiro doente" -- um simulador conversacional para treino de anamnese em contexto seguro, com _feedback_ estruturado [@thesen2025firstpatient]. Feigerlova (2026), em _The Clinical Teacher_, sintetizou recomendações pragmáticas para a integração progressiva de GenAI nos curricula pré-graduados [@feigerlova2026teaching]. Estas abordagens ilustram que a integração curricular não tem de ser exclusivamente defensiva: pode ser desenhada para tornar visível o processo de raciocínio clínico que a GenAI, por omissão, esconderia.
+
+## Redesenho da avaliação
+
+A disponibilidade de GenAI exige uma revisão das práticas de avaliação. A resposta institucional não deve ser a proibição generalizada, mas o redesenho de métodos que valorizem competências que a GenAI não substitui: raciocínio clínico em tempo real, reflexão crítica fundamentada, apresentação oral com arguição, e avaliação prática de competências. O _framework_ do HEA irlandês identifica a avaliação como a área de maior pressão imediata [@hea2025framework]. Peters e Angelov (2025) propuseram o modelo AICAI, que articula a criatividade, a autenticidade e a integridade como eixos de redesenho [@peters2025aicai]. Chan e Colloton (2024) formularam as Six Assessment Redesign Pivotal Strategies (SARPS) [@chan2024book].
+O _toolkit_ da TEQSA australiana acrescenta uma perspectiva programática: a reforma da avaliação deve ser pensada ao nível do programa de estudos, garantindo coerência progressiva e alinhamento com as competências de saída [@teqsa2024genai]. Os docentes devem explicitar nos programas a política de utilização de GenAI aplicável à avaliação.
+
+## Transparência e formação
+
+Se um docente utilizar GenAI na preparação de materiais ou em qualquer actividade pedagógica, é recomendável que o declare perante os estudantes.
+A FMUP deve criar oportunidades regulares de formação, incluindo _workshops_ práticos, sessões de partilha e acesso a recursos actualizados. Esta formação deve ir além da demonstração de ferramentas e incluir discussão sobre implicações pedagógicas, éticas e epistemológicas. Como observou Neil Postman em _Technopoly_ (1992), o perigo de qualquer nova tecnologia não reside nos seus efeitos óbvios, mas nas formas subtis como altera as nossas práticas sem que nos apercebamos [@postman1992technopoly].

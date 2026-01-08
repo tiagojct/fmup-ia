@@ -1,0 +1,35 @@
+---
+other-links:
+  - text: "Guia Estudantes — PDF"
+    href: guias/guia-estudantes.pdf
+---
+
+# Vertente Estudantes
+
+## Utilizações permitidas
+
+Os estudantes podem utilizar ferramentas de GenAI para apoio ao estudo individual, incluindo a revisão de conceitos, a geração de resumos a partir de material já estudado, a criação de material de estudo e a clarificação de terminologia médica. Podem também utilizar GenAI para revisão gramatical e estilística de textos da sua autoria, desde que o conteúdo intelectual permaneça do estudante. A condição essencial, articulada por Moorhouse et al. (2023) na sua análise das orientações das universidades com melhor posição nos _rankings_ mundiais, é que o utilizador tenha proficiência suficiente na área temática para verificar a exactidão do resultado gerado [@moorhouse2023assessment].
+
+## Utilizações condicionadas
+
+Determinados usos de GenAI ficam dependentes de autorização explícita do docente responsável pela unidade curricular. Isto inclui a utilização de GenAI na preparação de trabalhos de avaliação, na geração de conteúdo para apresentações ou na análise de dados em projectos curriculares. Os programas de cada unidade curricular devem incluir uma secção explícita sobre a política de utilização de GenAI (ver [Anexo B](B-clausula.qmd)).
+
+## Utilizações proibidas
+
+Ficam proibidas as seguintes utilizações:
+
+1. Utilização de GenAI em momentos de avaliação individual sem autorização explícita;
+2. Introdução de dados de doentes, informação clínica identificável ou qualquer informação de saúde protegida em plataformas comerciais de GenAI;
+3. Submissão de trabalho substancialmente gerado por GenAI como trabalho próprio, sem declaração de uso;
+4. Utilização de GenAI para gerar diagnósticos diferenciais ou planos de gestão clínica em contexto de aprendizagem de raciocínio clínico, salvo quando expressamente autorizado pelo docente -- em contextos formativos não estruturados, a delegação do raciocínio clínico em ferramentas de GenAI pode comprometer o seu desenvolvimento [@shin2024impact];
+5. Carregamento de materiais curriculares proprietários em plataformas de GenAI sem protecção contratual de dados.
+
+## Declaração de uso
+
+Todos os trabalhos académicos em que tenha sido utilizada GenAI devem incluir uma declaração de uso que especifique a ferramenta, o tipo de assistência obtida, as secções em que foi aplicada e os _prompts_ utilizados (ver [Anexo A](A-declaracao.qmd)). Todo o conteúdo gerado por GenAI deve ser lido, verificado e editado pelo estudante antes de ser submetido. O estudante deve ser capaz de explicar e defender qualquer conteúdo que submeta.
+
+## Literacia em IA
+
+A integração de GenAI no percurso formativo deve ser acompanhada de formação em literacia em IA. O modelo tripartido de Ng et al. (2023) -- consumidores, tradutores e criadores -- oferece uma base para diferenciar o nível de formação [@ng2023aieducation].
+Ao nível do Mestrado Integrado em Medicina, o objectivo mínimo é formar consumidores críticos. Para os estudantes do Mestrado em Informática da Saúde e de programas doutorais, a formação deve estender-se ao nível de tradutores e, em casos específicos, de criadores. No caso da licenciatura em Saúde Digital e Inovação Biomédica, é imperativa a formação de criadores.
+Esta formação pode ser integrada em unidades curriculares existentes, nomeadamente nas áreas de Informática e de Bioética.

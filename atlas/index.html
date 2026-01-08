@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title></title>
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <noscript>
+    <p style="padding:1rem;font-family:system-ui,sans-serif">
+      JavaScript is required to use this tool. &middot;
+      &Eacute; necess&aacute;rio JavaScript para utilizar esta ferramenta.
+    </p>
+  </noscript>
+
+  <a href="../" class="back-to-quadro" id="back-to-quadro">
+    <span aria-hidden="true">&larr;</span>
+    <span id="back-to-quadro-label">Voltar ao FMUP·IA</span>
+  </a>
+
+  <header class="site-header" role="banner">
+    <a href="#" class="brand" id="brand-link">
+      <span class="brand-mark" aria-hidden="true">
+        <span class="brand-fmup">FM<br>UP</span>
+      </span>
+      <span class="brand-text">
+        <span class="brand-short" id="brand-short"></span>
+        <span class="brand-full" id="brand-full"></span>
+      </span>
+    </a>
+    <div class="header-actions">
+      <button type="button" class="btn-ghost" id="start-over-btn" hidden></button>
+      <button type="button" class="btn-ghost" id="lang-toggle"></button>
+    </div>
+    <div class="title-block">
+      <h1 id="app-title"></h1>
+      <p id="app-subtitle"></p>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1"></main>
+
+  <footer class="site-footer" role="contentinfo">
+    <span id="footer-version"></span>
+    <span class="dot" aria-hidden="true">&middot;</span>
+    <span id="footer-date"></span>
+    <span class="dot framework-dot" id="footer-framework-dot" aria-hidden="true" hidden>&middot;</span>
+    <span id="footer-framework" hidden></span>
+    <span class="dot" aria-hidden="true">&middot;</span>
+    <a href="../quadro/" id="footer-link-quadro">Quadro</a>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="i18n/pt.js"></script>
+  <script src="i18n/en.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

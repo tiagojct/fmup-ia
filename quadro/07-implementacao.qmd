@@ -1,0 +1,24 @@
+# Implementação e avaliação
+
+## Calibração temporal
+
+O calendário de implementação é deliberadamente alinhado com três marcos regulatórios externos. O primeiro é a aplicação plena do Regulamento (UE) 2024/1689 (EU AI Act) em Agosto de 2026, que torna vinculativas as obrigações de _deployer_ aplicáveis à FMUP. O segundo é a aplicação geral do _European Health Data Space_ (EHDS) em Março de 2027, que exige a preparação de _Trusted Research Environments_ compatíveis em articulação com o CHUSJ (ver capítulo [14](14-camada-medica.qmd)). O terceiro é o ciclo da Agenda Nacional de Inteligência Artificial (ANIA), aprovada pela Resolução do Conselho de Ministros n.º 2/2026 [@ania2026], que estabelece o Plano de Acção 2026-2030 e cria o Quadro Nacional de Competências Inteligentes (QNCI), com o qual o programa de literacia em IA da FMUP se deve articular. A coordenação com a Universidade do Porto e com o Deucalion (em alinhamento com EuroHPC) deve ser proactiva.
+
+## Fases
+
+**Fase 1 (2026-2027):** discussão e aprovação do quadro de referência, formação inicial para docentes, piloto num programa de mestrado, e adopção operacional do modelo HEAT-AI de categorização de risco em quatro níveis (capítulo [6](06-infraestrutura.qmd)).
+
+**Fase 2 (2027-2028):** extensão a todos os ciclos de estudo, plataforma institucional (IAedu como primeira linha), módulos de literacia em IA articulados com o QNCI, e operacionalização do _Trusted Research Environment_ em coordenação com o CHUSJ.
+
+**Fase 3 (2028-2029):** avaliação de impacto, revisão do quadro, publicação dos resultados e ponderação de certificação ISO/IEC 42001 [@iso2023aims] como meta organizacional verificável.
+
+O quadro será revisto anualmente, com revisões extraordinárias quando necessário. Para sustentar a avaliação, propõem-se os seguintes indicadores, inspirados nos _frameworks_ da TEQSA e da HEA Irlanda [@teqsa2024genai; @hea2025framework]:
+
+- **Cobertura curricular:** percentagem de unidades curriculares cujos programas incluem cláusula explícita sobre GenAI (meta Fase 2: 100%).
+- **Formação docente:** percentagem de docentes que completaram formação introdutória em GenAI (meta Fase 2: 75%; Fase 3: 90%).
+- **Declaração de uso:** percentagem de trabalhos submetidos nos ciclos de estudo piloto que incluem declaração conforme o [Anexo A](A-declaracao.qmd) (monitorizada, sem meta numérica na Fase 1).
+- **Literacia dos estudantes:** instrumento de autoavaliação calibrado no modelo de Ng et al. (2023), aplicado à entrada e à saída dos ciclos de estudo [@ng2023aieducation].
+- **Incidentes de integridade académica:** número e natureza de casos envolvendo GenAI, comparado com o período pré-2026, com análise qualitativa das decisões tomadas.
+- **Adesão a plataformas institucionais:** proporção de utilizadores activos da IAedu ou equivalente, face à utilização declarada de plataformas comerciais.
+
+Os indicadores devem ser reportados no relatório anual do grupo de trabalho e servir de base à revisão do quadro.

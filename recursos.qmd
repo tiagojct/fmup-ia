@@ -1,0 +1,58 @@
+---
+title: "Recursos"
+toc: true
+---
+
+Lista curada de _frameworks_, regulamentos e documentos institucionais referenciados ao longo do Quadro. As entradas estão organizadas por jurisdição/escala. Para a bibliografia académica completa, ver [Referências](quadro/references.qmd).
+
+## União Europeia
+
+- **[Regulamento (UE) 2024/1689 — EU AI Act](https://eur-lex.europa.eu/eli/reg/2024/1689/oj)** --- Em vigor desde Agosto de 2024; aplicação plena em Agosto de 2026. Anexo III, ponto 3, classifica como de alto risco os sistemas de IA usados em educação para acesso/admissão, avaliação de resultados e detecção de comportamentos proibidos durante avaliações.
+- **[European Health Data Space (EHDS)](https://health.ec.europa.eu/ehealth-digital-health-and-care/european-health-data-space_en)** --- Regulamento em vigor desde Março de 2025; aplicação geral em Março de 2027. Define obrigações para uso primário e secundário de dados de saúde.
+- **[RGPD (Regulamento (UE) 2016/679)](https://eur-lex.europa.eu/eli/reg/2016/679/oj)** --- Base jurídica transversal para protecção de dados pessoais; aplicável a todo o uso de GenAI envolvendo dados identificáveis ou pseudonimizados.
+- **[Regulamento (UE) 2017/745 — MDR](https://eur-lex.europa.eu/eli/reg/2017/745/oj)** e **[(UE) 2017/746 — IVDR](https://eur-lex.europa.eu/eli/reg/2017/746/oj)** --- Aplicáveis a _Software as a Medical Device_ (SaMD/AIaMD) usado em ensino clínico ou investigação translacional.
+- **[Living Guidelines on the Responsible Use of Generative AI in Research](https://research-and-innovation.ec.europa.eu/document/download/2b6cf7e5-36ac-41cb-aab5-0d32050143dc_en)** (Comissão Europeia / ERA Forum, 2024-2025) --- Quatro princípios derivados do European Code of Conduct for Research Integrity.
+
+## Internacional
+
+- **[UNESCO Recommendation on the Ethics of AI (2021)](https://www.unesco.org/en/artificial-intelligence/recommendation-ethics)** + **[Guidance for Generative AI in Education and Research](https://unesdoc.unesco.org/ark:/48223/pf0000386693)** (Miao & Holmes, 2023) + **AI Competency Framework for Students** (2024).
+- **[OECD AI Principles (2019, rev. 2023)](https://oecd.ai/en/ai-principles)** --- Cinco princípios de IA confiável; taxonomia largamente referida em políticas nacionais.
+- **[Council of Europe Framework Convention on AI (CETS 225)](https://www.coe.int/en/web/artificial-intelligence/the-framework-convention-on-artificial-intelligence)** --- Primeiro tratado internacional juridicamente vinculativo sobre IA, aberto para assinatura em Vilnius, 5 de Setembro de 2024.
+- **[NIST AI Risk Management Framework 1.0](https://www.nist.gov/itl/ai-risk-management-framework)** --- Quatro funções: GOVERN, MAP, MEASURE, MANAGE. Companion **Generative AI Profile** (NIST AI 600-1, Julho 2024).
+- **[ISO/IEC 42001:2023](https://www.iso.org/standard/81230.html)** --- Primeiro standard internacional certificável para sistemas de gestão de IA (AIMS), metodologia Plan-Do-Check-Act.
+- **[WHO Ethics and Governance of AI for Health (2021)](https://www.who.int/publications/i/item/9789240029200)** + **Guidance on Large Multi-Modal Models (2024)**.
+
+## Educação médica
+
+- **[AAMC Principles for the Responsible Use of AI in and for Medical Education](https://www.aamc.org/about-us/mission-areas/medical-education/principles-ai-use)** --- Sete eixos. Versão 2.0, Julho de 2025.
+- **AAMC AI Competencies for Medical Educators** (CGEA) e _AI Competencies Across the Continuum_ (com a Josiah Macy Jr. Foundation).
+- **HEAT-AI** (Temper et al., 2025, Frontiers in Education) --- Operacionalização universitária do _risk-based approach_ do EU AI Act em quatro níveis. Adoptado pela St. Pölten University of Applied Sciences.
+- **Russell Group Principles on the Use of Generative AI Tools in Education** (UK, 2023) --- Cinco princípios principlistas, adoptados pelas 24 universidades-membro.
+
+## Integridade da publicação científica
+
+- **[ICMJE Recommendations](https://www.icmje.org/recommendations/)** --- Critérios de autoria; GenAI não pode ser listada como autora.
+- **[WAME](https://wame.org/)** --- _World Association of Medical Editors_, posições sobre uso de GenAI em manuscritos.
+- **[COPE](https://publicationethics.org/)** --- _Committee on Publication Ethics_, recomendações sobre IA na publicação.
+
+## Portugal
+
+- **[Resolução do Conselho de Ministros n.º 2/2026](https://diariodarepublica.pt/)** --- Agenda Nacional de Inteligência Artificial (ANIA) e Plano de Acção 2026-2030. Quatro eixos; Quadro Nacional de Competências Inteligentes (QNCI); reforço do Deucalion.
+- **[IAedu](https://iaedu.pt/)** --- Plataforma da FCT/FCCN para acesso institucional federado a modelos de larga escala, com garantia contratual de não utilização dos dados para treino.
+- **[A3ES](https://www.a3es.pt/)** --- Agência de avaliação e acreditação do ensino superior; em discussão a integração de competências em IA nos referenciais.
+
+## Imagiologia, radiologia e _SaMD_
+
+- Stogiannos N et al. *AI implementation in the UK landscape*. _The British Journal of Radiology_ 2023; **96**: 20221157. DOI: [10.1259/bjr.20221157](https://doi.org/10.1259/bjr.20221157).
+- **European Society of Radiology** --- Recomendações 2025 para implementação efectiva do EU AI Act em radiologia (_Insights into Imaging_ 16:33).
+- **STANDING Together** (Universidade de Birmingham) --- _Data diversity, inclusivity and generalisability_.
+
+## Ferramentas e infraestrutura
+
+- **[Atlas](atlas/)** --- ferramenta operacional do Quadro FMUP · IA. Gera declarações estruturadas para os três papéis institucionais.
+- **[GitHub](https://github.com/tiagojct/fmup-ia)** --- repositório-fonte do Quadro e do Atlas.
+- **[Zenodo](https://zenodo.org/)** --- depósito previsto, para obtenção de DOI persistente.
+
+## Como sugerir adições
+
+Submeter via _pull request_ ou _issue_ no [repositório](https://github.com/tiagojct/fmup-ia). Critério de inclusão: relevância para a governação institucional de GenAI em educação médica, investigação clínica ou administração universitária.

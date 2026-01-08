@@ -1,0 +1,59 @@
+---
+title: "Guia prático: utilização de IA generativa"
+subtitle: "Docentes da FMUP"
+author: "FMUP --- Grupo de trabalho para IA generativa"
+date: "2026-04-21"
+date-format: "D [de] MMMM [de] YYYY"
+lang: pt-PT
+format:
+  typst:
+    toc: false
+    number-sections: false
+    papersize: a4
+    margin:
+      x: 2cm
+      y: 2cm
+    fontsize: 10.5pt
+    mainfont: "Geist"
+    monofont: "Geist Mono"
+    section-numbering: ""
+---
+
+## Enquadramento mínimo
+
+A GenAI já é usada pelos estudantes em prevalências de 60% a 80%. A resposta institucional não pode ser a proibição generalizada: tem de ser o redesenho de métodos que valorizem competências que a GenAI não substitui -- raciocínio clínico em tempo real, reflexão crítica fundamentada, apresentação oral com arguição, avaliação prática.
+
+## Regras essenciais
+
+1. **Experimenta antes de regular.** Usa pelo menos uma ferramenta de GenAI em tarefas concretas do teu trabalho. Sem experiência directa, é muito mais difícil desenhar política, detectar uso e conversar com estudantes.
+2. **Inclui no programa da UC uma cláusula explícita sobre GenAI.** Permitido, condicionado ou proibido -- e em que termos. O modelo do Anexo B tem três exemplos trabalhados.
+3. **Redesenha a avaliação onde for necessário.** Privilegia formatos em que a autoria é verificável: apresentação oral com arguição, raciocínio clínico presencial, reflexão pessoal com dados do próprio percurso, avaliação prática de competências.
+4. **Se usares GenAI para preparar materiais, revê tudo e declara.** Verifica exactidão clínica e terminológica; explicita aos estudantes o uso e o método de verificação -- a declaração é pedagógica, não apenas formal.
+5. **Não submetas trabalhos de estudantes a plataformas comerciais para classificar.** Viola confidencialidade e o RGPD (decisão automatizada sobre avaliação requer intervenção humana substantiva).
+6. **Distingue apoio pedagógico positivo de substituição cognitiva.** GenAI pode ser instrumento de _reflective practice_, simulador de "primeiro doente" para treino de anamnese, gerador de vinhetas clínicas auditadas -- usos que tornam o processo de raciocínio _mais_ visível, não menos.
+7. **Participa na formação e na partilha.** O quadro institucional é um documento vivo: as práticas que funcionam na tua UC podem servir de calibração às outras.
+
+## Ideias concretas de integração
+
+- **Trabalhos reflexivos com _shadow AI_:** o estudante resolve, depois confronta com um _prompt_ à ferramenta e escreve um comentário crítico sobre diferenças e erros.
+- **Vinhetas clínicas co-construídas:** gerar o esqueleto com GenAI, rever com par docente, apresentar em tutorial.
+- **Preparação de questões socráticas:** usar GenAI para gerar _pools_ de perguntas, seleccionar e adaptar manualmente.
+- **Tradução e adaptação de conteúdos:** materiais em inglês traduzidos com declaração, para discussão pedagógica sobre fidelidade terminológica.
+
+## Plataformas recomendadas
+
+- **IAedu** — <https://iaedu.pt>. Institucional, conta `@up.pt`. Primeira opção sempre que possível.
+- **ChatGPT** — <https://chatgpt.com> e **Claude** — <https://claude.ai>. Para testar capacidades e limitações. Usar versões com opt-out de treino ou conta institucional.
+- **NotebookLM** — <https://notebooklm.google.com>. Excelente para criar _tutores_ a partir de materiais curriculares (com as cautelas de protecção de dados).
+- **Perplexity** — <https://www.perplexity.ai>. Útil para respostas com citações verificáveis -- mas verifica sempre as referências.
+
+## Recursos de consulta
+
+- **AAMC Principles for Responsible Use of AI in Medical Education** — <https://www.aamc.org/about-us/mission-areas/medical-education/principles-ai-use>.
+- **TEQSA Gen AI Knowledge Hub (Austrália)** — <https://www.teqsa.gov.au/guides-resources/higher-education-good-practice-hub/gen-ai-knowledge-hub>. Incluindo o _toolkit_ sobre redesenho de avaliação.
+- **HEA Ireland policy framework** — <https://hea.ie>. Abordagem europeia baseada em valores.
+- **Proposta institucional da FMUP:** consultar Vertente Docentes (capítulo 4) e Anexos A, B, E.
+
+---
+
+*Documento resumido. Versão de Abril de 2026. Documento vivo, sujeito a revisão anual.*

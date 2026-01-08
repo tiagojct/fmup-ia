@@ -1,0 +1,21 @@
+# Modelo de cláusula para programas de unidades curriculares {#sec-anexo-b}
+
+## Estrutura genérica
+
+"A utilização de ferramentas de inteligência artificial generativa nesta unidade curricular é [permitida / condicionada / proibida] nos seguintes termos: [especificar]. Em caso de utilização permitida ou condicionada, os estudantes devem declarar o uso de GenAI em todos os trabalhos submetidos, seguindo o modelo institucional disponível em [link]. A submissão de trabalho substancialmente gerado por GenAI sem declaração constitui violação da integridade académica."
+
+## Exemplos de cláusulas por regime
+
+Os exemplos abaixo ilustram os três regimes aplicáveis. Cada docente é livre de adaptar os termos ao desenho pedagógico da sua unidade curricular.
+
+### Exemplo B.1 --- Regime permitido (unidade curricular de escrita académica)
+
+"A utilização de ferramentas de IA generativa nesta unidade curricular é _permitida_ para apoio à revisão linguística, estruturação de notas, pesquisa bibliográfica exploratória e clarificação de conceitos. Os estudantes são encorajados a experimentar diferentes ferramentas e a reflectir sobre as suas limitações. Todos os trabalhos submetidos devem incluir declaração de uso ([Anexo A](A-declaracao.qmd)). A falta de declaração constitui violação da integridade académica, independentemente da qualidade do conteúdo apresentado. O estudante deve ser capaz de explicar e defender qualquer conteúdo submetido."
+
+### Exemplo B.2 --- Regime condicionado (unidade curricular de investigação tutelada)
+
+"A utilização de ferramentas de IA generativa nesta unidade curricular é _condicionada_ a autorização prévia e explícita do orientador para cada trabalho submetido. Os usos tipicamente permitidos incluem: apoio linguístico ao manuscrito final, geração inicial de código de análise (a ser integralmente revisto e explicado pelo estudante) e tradução de literatura. Ficam excluídos: geração de hipóteses, interpretação de resultados, redacção substantiva da discussão e revisão por pares externa. Todos os trabalhos devem incluir declaração de uso, com detalhe adicional sobre o tipo de assistência obtido em cada secção. Em caso de dúvida sobre a conformidade de um uso específico, o estudante deve consultar o orientador antes de avançar."
+
+### Exemplo B.3 --- Regime proibido (unidade curricular de raciocínio clínico)
+
+"Nesta unidade curricular, cujo objectivo central é o desenvolvimento do raciocínio clínico individual, a utilização de ferramentas de IA generativa é _proibida_ em todos os momentos avaliativos -- exames, apresentações de casos, discussões tutoriais e relatórios de estágio. A proibição aplica-se também à preparação destes momentos: não é permitido usar GenAI para elaborar diagnósticos diferenciais, planos de gestão ou justificações de decisão clínica sobre casos discutidos na unidade. A utilização de GenAI para revisão de conceitos teóricos em estudo individual, fora do contexto avaliativo e sem envolvimento de dados clínicos concretos, permanece permitida. A infracção desta cláusula constitui violação da integridade académica."

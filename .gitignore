@@ -1,0 +1,30 @@
+# Quarto build outputs
+_site/
+_book/
+.quarto/
+*.html.bak
+
+# Quarto crossref index
+.crossref-cache/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Node (only if local tooling is added in the future)
+node_modules/
+package-lock.json
+npm-debug.log*
+
+# Atlas — local artefacts (none expected, but defensive)
+atlas/.cache/
+
+# Logs
+*.log
+
+/.quarto/
+**/*.quarto_ipynb

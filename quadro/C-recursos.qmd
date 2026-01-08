@@ -1,0 +1,37 @@
+# Recursos complementares {#sec-anexo-c}
+
+Para além das referências académicas e institucionais citadas no corpo do documento, reúnem-se aqui contributos complementares, organizados por natureza: evidência académica recente sobre o fenómeno do _slop_, orientações de organismos profissionais e editoriais, pontos de consulta regulatória e manifestos de ética pessoal.
+
+## Evidência académica sobre _slop_ e output não editado
+
+Jones et al. (2025), ao analisarem vídeos de educação biomédica em YouTube e TikTok, propuseram a primeira definição formal de _slop_ em meios educacionais e encontraram que 5,3% do conteúdo examinado era _slop_ gerado por IA [@jones2025slop]. O termo _slop_ foi escolhido Palavra do Ano 2025 pelo _Merriam-Webster_.
+
+## Orientações profissionais e editoriais internacionais
+
+O **ICMJE** (_International Committee of Medical Journal Editors_) actualizou em 2023 e revisitou desde então as suas recomendações para a condução, comunicação, edição e publicação de trabalho académico em revistas médicas, com orientações específicas sobre o uso de tecnologias assistidas por IA: os _chatbots_ não podem ser listados como autores; o uso de IA generativa deve ser declarado no manuscrito (<https://www.icmje.org/recommendations>).
+
+A **WAME** (_World Association of Medical Editors_) publicou, em Janeiro de 2023 e com actualizações subsequentes, recomendações sobre _chatbots_, ChatGPT e ferramentas de IA na publicação académica, com foco na atribuição de autoria, responsabilidade editorial e transparência perante os leitores (<https://wame.org>).
+
+O **COPE** (_Committee on Publication Ethics_) emitiu posição sobre o uso de ferramentas de IA na investigação e na submissão de manuscritos, sublinhando a responsabilidade indelegável dos autores humanos pelo conteúdo publicado (<https://publicationethics.org>).
+
+## Referências regulatórias e de consulta
+
+Para questões de protecção de dados, conformidade com o AI Act e enquadramento deontológico, recomenda-se consulta regular a:
+
+- **EDPB** (_European Data Protection Board_): pareceres sobre a utilização de modelos de IA e a sua articulação com o RGPD, nomeadamente a Opinião 28/2024 sobre modelos de IA e dados pessoais (<https://edpb.europa.eu>).
+- **ENISA** (_European Union Agency for Cybersecurity_): orientações sobre segurança de sistemas de IA, incluindo o _Multilayer Framework for Good Cybersecurity Practices for AI_ (<https://enisa.europa.eu>).
+- **CNPD** (Comissão Nacional de Protecção de Dados): autoridade nacional competente para questões de RGPD em Portugal, incluindo o tratamento de dados em contextos de investigação, ensino e saúde (<https://www.cnpd.pt>).
+- **Ordem dos Médicos**: enquadramento deontológico aplicável a médicos docentes e investigadores, incluindo dever de sigilo profissional e responsabilidade clínica em utilizações de IA (<https://ordemdosmedicos.pt>).
+- **A3ES** (<https://www.a3es.pt>) e **DGES** (<https://www.dges.gov.pt>): acompanhamento de orientações futuras sobre integração de GenAI no ensino superior português.
+
+## Manifestos e códigos de ética pessoal
+
+Os seguintes contributos, embora não indexados, articulam preocupações directamente aplicáveis ao contexto académico e podem servir de ponto de partida para discussões éticas em contexto formativo.
+
+O manifesto **Stop Sloppypasta** (<https://stopsloppypasta.ai>) introduz o conceito de "sloppypasta" -- o acto de copiar e colar _output_ bruto de um modelo de linguagem sem leitura, verificação ou edição. O manifesto propõe cinco regras: ler antes de partilhar, verificar os factos, destilar o conteúdo ao essencial, declarar o papel da IA, e partilhar apenas quando solicitado.
+
+**Simon Willison** formulou um conjunto de regras de ética pessoal: não publicar nada que leve mais tempo a ler do que levou a escrever, e não submeter código que não se consiga compreender e explicar linha a linha (<https://simonwillison.net/2023/Aug/27/wordcamp-llms/#personal-ai-ethics>).
+
+O **AI Manifesto** para desenvolvimento e colaboração (<https://ai-manifesto.dev>) propõe cinco princípios: não deixar que um modelo de linguagem fale por nós, pense por nós, se aproprie do nosso trabalho, substitua a nossa curiosidade, ou desencoraje outra pessoa.
+
+**Noëlle van Dijk** publicou um manifesto pessoal (<https://noellevandijk.com/ai-manifesto/>) que sublinha a obrigação de transparência na utilização de IA e a importância de manter o desenvolvimento contínuo de competências na ferramenta.
