@@ -45,7 +45,7 @@ Ferramenta interactiva, sem _login_ e sem servidor: gera declarações estrutura
 ::: {.card-tile}
 ### Recursos
 
-Agregado de _frameworks_ internacionais (EU AI Act, RGPD, MDR/IVDR, EHDS), normativa nacional (ANIA, IAedu), princípios deontológicos (ICMJE, WAME, COPE) e leitura recomendada. Ponto de partida para quem queira aprofundar qualquer ponto do Quadro.
+Lista de _frameworks_ internacionais (EU AI Act, RGPD, MDR/IVDR, EHDS), normativa nacional (ANIA, IAedu), princípios deontológicos (ICMJE, WAME, COPE) e leitura recomendada. Ponto de partida para quem queira ler mais sobre qualquer ponto do Quadro.
 
 [Ver Recursos](recursos.qmd){.card-link}
 :::

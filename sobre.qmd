@@ -23,7 +23,7 @@ Texto, código e dados publicados sob **[Creative Commons Attribution 4.0 (CC BY
 
 ## Financiamento e conflitos
 
-Este trabalho não foi suportado por financiamento dedicado. Não há conflitos de interesse declaráveis. Quaisquer ferramentas de GenAI utilizadas na produção do Quadro e do Atlas são declaradas explicitamente nos respectivos ficheiros de processo (commits do repositório `tiagojct/fmup-ia`), em coerência com os princípios que o próprio Quadro defende.
+Este trabalho não foi suportado por financiamento dedicado. Não há conflitos de interesse declaráveis. Ferramentas de GenAI usadas na produção do Quadro e do Atlas são declaradas explicitamente nos respectivos ficheiros de processo (commits do repositório `tiagojct/fmup-ia`), em coerência com os princípios que o próprio Quadro defende.
 
 ## Estado de revisão
 
