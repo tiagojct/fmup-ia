@@ -37,17 +37,22 @@ notice is shown.
 
 ## Use it
 
-- Hosted: <https://github.com/> (deployed to GitHub Pages on every push to
-  `main`).
+- Hosted: <https://tiagojct.eu/fmup-ia/atlas/> (deployed to GitHub Pages on every
+  push to `main` of the parent monorepo `tiagojct/fmup-ia`).
 - Locally with a server (recommended for full functionality):
   ```sh
-  cd ai-usage-tool
-  python3 -m http.server 8000
+  # from the repo root, after `quarto render`:
+  cd _site && python3 -m http.server 8000
+  # then open http://localhost:8000/atlas/
+  ```
+  Or, to develop only the SPA without a Quarto build:
+  ```sh
+  cd fmup-ia/atlas && python3 -m http.server 8000
   # then open http://localhost:8000
   ```
-- Locally from `file://`: open `index.html` in a browser. Statement generation
-  works; the institutional risk panel may be disabled depending on the
-  browser.
+- Locally from `file://`: open `atlas/index.html` in a browser. Statement
+  generation works; the institutional risk panel is disabled because
+  `policy.json` cannot be fetched cross-origin from `file://`.
 
 ## Adapt for another institution
 

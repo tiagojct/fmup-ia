@@ -11,7 +11,11 @@
 
   // ---- Single source of truth for the tool version. ----
   // Bump this when statement content (any i18n file) changes.
-  const APP_VERSION = '0.3.0';
+  const APP_VERSION = '0.4.0';
+
+  // Schema version for the URL hash payload. Bump when state shape
+  // changes incompatibly. Hashes with a different `v` are rejected.
+  const HASH_V = 1;
 
   const I18N = { pt: window.I18N_PT, en: window.I18N_EN };
   const DEFAULT_LANG = 'pt';
@@ -75,7 +79,7 @@
 
   function encodeState(s) {
     const persisted = {
-      v: 1,
+      v: HASH_V,
       lang: s.lang,
       role: s.role,
       done: s.done,
@@ -99,12 +103,15 @@
     if (!m) return null;
     try {
       const obj = JSON.parse(b64decode(m[1]));
+      if (obj.v !== HASH_V) {
+        return { __invalid: true };
+      }
       const s = freshState();
       Object.assign(s, obj);
       if (!I18N[s.lang]) s.lang = DEFAULT_LANG;
       return s;
     } catch (_e) {
-      return null;
+      return { __invalid: true };
     }
   }
 
@@ -194,6 +201,11 @@
     document.getElementById('brand-full').textContent = i.ui.brandFull;
     document.getElementById('app-title').textContent = i.ui.appTitle;
     document.getElementById('app-subtitle').textContent = i.ui.appSubtitle;
+
+    const backQuadro = document.getElementById('back-link-quadro');
+    if (backQuadro) backQuadro.textContent = i.ui.backToQuadro;
+    const backHome = document.getElementById('back-link-home');
+    if (backHome) backHome.textContent = i.ui.backToHome;
 
     const langBtn = document.getElementById('lang-toggle');
     langBtn.textContent = i.altLabel;
@@ -312,6 +324,18 @@
     return rule['message_' + lang] || rule.message_pt || '';
   }
 
+  // Convert "principio-3-protecao-dados" → "3 — protecção de dados".
+  // Falls back to the raw slug if it cannot be parsed.
+  function humanisePrincipleRef(ref) {
+    if (!ref) return '';
+    const m = String(ref).match(/^principi[oa]-(\d+)-(.+)$/i);
+    if (!m) return ref;
+    const number = m[1];
+    const slug = m[2].replace(/-/g, ' ');
+    // Best-effort: keep accents that exist in the slug; otherwise leave plain.
+    return number + ' — ' + slug;
+  }
+
   function renderRiskPanel(showOnEmpty) {
     const i = t();
     if (!POLICY) {
@@ -343,11 +367,31 @@
     }
     const list = el('ul', { class: 'risk-list' });
     ev.matches.forEach((rule) => {
+      const refs = el('div', { class: 'risk-refs' });
+      const principleText = humanisePrincipleRef(rule.principle_ref);
+      if (principleText) {
+        refs.appendChild(el('span', {
+          class: 'principle-chip',
+          text: i.ui.principleLabel + ': ' + principleText,
+        }));
+      }
+      if (rule.scenario_ref) {
+        refs.appendChild(el('a', {
+          class: 'scenario-link',
+          href: rule.scenario_ref,
+          target: '_blank',
+          rel: 'noopener',
+          text: i.ui.viewScenario,
+        }));
+      }
       list.appendChild(el('li',
         { class: 'risk-item risk-item-' + (rule.risk || 0) },
-        el('span', { class: 'risk-tag', text: i.risk.levelShort + ' ' + rule.risk }),
-        ' ',
-        el('span', { class: 'risk-msg', text: ruleMessage(rule) })
+        el('div', { class: 'risk-line' },
+          el('span', { class: 'risk-tag', text: i.risk.levelShort + ' ' + rule.risk }),
+          ' ',
+          el('span', { class: 'risk-msg', text: ruleMessage(rule) })
+        ),
+        refs.children.length ? refs : null
       ));
     });
     wrap.appendChild(list);
@@ -767,12 +811,14 @@
       type: 'button',
       class: 'btn-secondary',
       text: i.ui.copyPlain,
+      'aria-label': i.ui.copyPlain + ' — ' + b.heading,
       onclick: () => copyText(b.text, i.ui.copied),
     }));
     actions.appendChild(el('button', {
       type: 'button',
       class: 'btn-secondary',
       text: i.ui.copyMarkdown,
+      'aria-label': i.ui.copyMarkdown + ' — ' + b.heading,
       onclick: () => copyText(toMarkdown(b), i.ui.copied),
     }));
     if (state.role === 'teacher') {
@@ -936,6 +982,22 @@
       .catch(() => null);
   }
 
+  function applyRestoredState(restored, withToast) {
+    if (restored && restored.__invalid) {
+      state = freshState();
+      if (withToast) toast(t().ui.linkInvalid);
+      // Strip the bad fragment so a refresh does not re-trigger the toast.
+      if (location.hash) {
+        suppressHashListener = true;
+        history.replaceState(null, '', location.pathname + location.search);
+        setTimeout(() => { suppressHashListener = false; }, 0);
+      }
+      return;
+    }
+    if (restored) state = restored;
+    else state = freshState();
+  }
+
   function init() {
     // Wire up persistent header buttons.
     document.getElementById('lang-toggle').addEventListener('click', toggleLanguage);
@@ -951,15 +1013,25 @@
 
     // Restore from URL hash if present.
     const restored = decodeState(location.hash);
-    if (restored) state = restored;
-    else state.lang = detectLang();
+    if (restored && !restored.__invalid) {
+      state = restored;
+    } else if (restored && restored.__invalid) {
+      // Defer the toast: i18n strings need DOM ready and language detected.
+      state.lang = detectLang();
+      setTimeout(() => toast(t().ui.linkInvalid), 200);
+      // Strip the bad fragment.
+      suppressHashListener = true;
+      history.replaceState(null, '', location.pathname + location.search);
+      setTimeout(() => { suppressHashListener = false; }, 0);
+    } else {
+      state.lang = detectLang();
+    }
 
     // Listen for back/forward.
     window.addEventListener('hashchange', () => {
       if (suppressHashListener) return;
       const next = decodeState(location.hash);
-      if (next) state = next;
-      else state = freshState();
+      applyRestoredState(next, true);
       render();
     });
 
@@ -967,8 +1039,7 @@
     window.addEventListener('popstate', () => {
       if (suppressHashListener) return;
       const next = decodeState(location.hash);
-      if (next) state = next;
-      else state = freshState();
+      applyRestoredState(next, true);
       render();
     });
 

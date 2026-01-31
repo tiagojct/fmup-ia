@@ -1,4 +1,4 @@
-// English strings and statement generators for FMUP AI Usage Tool.
+// Atlas (FMUP · IA) — English strings and statement generators.
 // Edit this file (and pt.js) to update wording. Bump APP_VERSION in app.js
 // whenever you change statement content.
 
@@ -245,6 +245,11 @@
       yourSelections: 'Your selections',
       reviewBeforeCopy: 'Please review the statement before using it. The content should reflect, in good faith, the actual use made of the tools indicated.',
       requiredAsterisk: '*',
+      backToQuadro: '← Framework',
+      backToHome: '← Home',
+      linkInvalid: 'Invalid or outdated link.',
+      viewScenario: 'View scenario in the framework',
+      principleLabel: 'Principle',
     },
     roles: {
       student: 'Student',

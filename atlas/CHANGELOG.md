@@ -21,6 +21,49 @@ This project follows a `MAJOR.MINOR.PATCH` scheme:
 
 ---
 
+## [0.4.0] — 2026-05-10
+
+Bug-hunt sweep across the SPA after the v0.3.0 monorepo migration.
+
+### Added
+- Two-link back bar at the top of the page: **← Quadro** (to the framework
+  sidebar at `../quadro/`) and **← Início** / **← Home** (to the site
+  landing). Replaces the single ambiguous "Voltar ao FMUP·IA" link.
+- Risk panel now exposes the `principle_ref` and `scenario_ref` from
+  `policy.json`. Each matched rule now shows a chip "Princípio: 3 — protecção
+  de dados" (parsed from the slug) and a link "Ver cenário no Quadro" / "View
+  scenario in the framework" that opens the canonical scenario page in a new
+  tab.
+- Distinct `aria-label` on each output's *Copy* and *Copy as Markdown*
+  buttons (now suffixed with the output heading) for clearer screen-reader
+  navigation in multi-output flows (teacher branch).
+- Static `<title>` fallback in `index.html` so browser tabs show a label
+  before JS runs.
+- Mobile breakpoint at `<480 px`: option grids collapse to a single column.
+- Dark-mode support via `prefers-color-scheme: dark`. Yellow accent kept;
+  surfaces darken; risk-panel coloured backgrounds dimmed for the dark
+  theme.
+- Print stylesheet now forces white backgrounds on `.risk-panel`,
+  `.risk-item` and `.review-note` so the teacher PDF has clean black-on-white
+  output.
+
+### Changed
+- URL-hash schema gains an explicit version constant `HASH_V = 1`. Hashes
+  with a different `v` are rejected and the user is shown the toast
+  "Ligação inválida ou de versão antiga." / "Invalid or outdated link.";
+  the bad fragment is stripped to avoid loops.
+- `i18n/{pt,en}.js` headers updated from "FMUP AI Usage Statement Generator"
+  to "Atlas (FMUP · IA)".
+- `APP_VERSION` bumped to **0.4.0**.
+
+### Fixed
+- (BLOCKER from README) `atlas/README.md` "Hosted" URL was truncated to
+  `<https://github.com/>` and dev instructions referenced the legacy
+  `cd ai-usage-tool`. Both now point to `tiagojct.eu/fmup-ia/atlas/` and the
+  monorepo paths.
+
+---
+
 ## [0.3.0] — 2026-05-10
 
 Integration into the unified `tiagojct/fmup-ia` monorepo and rebrand to

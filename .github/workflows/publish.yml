@@ -29,7 +29,6 @@ jobs:
 
       - name: Render standalone guides (PDF)
         run: bash render-guias.sh
-        continue-on-error: true
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4

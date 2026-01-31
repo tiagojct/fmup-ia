@@ -1,4 +1,4 @@
-// European Portuguese strings and statement generators for FMUP AI Usage Tool.
+// Atlas (FMUP · IA) — European Portuguese strings and statement generators.
 // Edit this file (and en.js) to update wording. Bump APP_VERSION in app.js
 // whenever you change statement content.
 
@@ -253,6 +253,11 @@
       yourSelections: 'As suas seleções',
       reviewBeforeCopy: 'Reveja a declaração antes de a utilizar. O conteúdo deve refletir, de boa-fé, a utilização efetivamente feita das ferramentas indicadas.',
       requiredAsterisk: '*',
+      backToQuadro: '← Quadro',
+      backToHome: '← Início',
+      linkInvalid: 'Ligação inválida ou de versão antiga.',
+      viewScenario: 'Ver cenário no Quadro',
+      principleLabel: 'Princípio',
     },
     roles: {
       student: 'Estudante',

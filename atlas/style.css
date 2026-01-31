@@ -63,24 +63,35 @@ a:hover { background: var(--c-fmup-yellow); text-decoration-color: var(--c-text)
   border-radius: var(--radius-sm);
 }
 
-/* ---------- Back-to-Quadro link ---------- */
+/* ---------- Back-bar (two links to parent site) ---------- */
 
-.back-to-quadro {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
+.back-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   background: var(--c-fmup-yellow);
+  border-bottom: 2px solid var(--c-text);
+  padding: 0.5rem 1rem;
+}
+
+.back-bar .back-link {
   color: var(--c-text);
   text-decoration: none;
   font-weight: 700;
-  padding: 0.45rem 0.9rem;
   font-size: 0.9rem;
-  border-bottom: 2px solid var(--c-text);
+  padding: 0.25rem 0.6rem;
+  border: 2px solid transparent;
+  border-radius: var(--radius-sm);
+  transition: background 120ms, color 120ms, border-color 120ms;
 }
-.back-to-quadro:hover {
+
+.back-bar .back-link:hover,
+.back-bar .back-link:focus-visible {
   background: var(--c-text);
   color: var(--c-fmup-yellow);
   text-decoration: none;
+  border-color: var(--c-text);
+  outline: none;
 }
 
 /* ---------- Header ---------- */
@@ -529,6 +540,44 @@ textarea { min-height: 9rem; line-height: 1.6; }
   margin-right: 0.4rem;
 }
 
+.risk-panel .risk-refs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.35rem;
+  align-items: center;
+}
+
+.risk-panel .principle-chip {
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.08);
+  color: var(--c-text);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  letter-spacing: 0.01em;
+}
+
+.risk-panel .scenario-link {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--c-text);
+  text-decoration: underline;
+  text-decoration-color: var(--c-fmup-yellow);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.risk-panel .scenario-link:hover {
+  background: var(--c-fmup-yellow);
+}
+
+.risk-panel .scenario-link::after {
+  content: " ↗";
+  font-size: 0.85em;
+}
+
 .risk-panel .risk-foot {
   margin: 0.4rem 0 0 0;
   font-size: 0.82rem;
@@ -628,7 +677,7 @@ textarea { min-height: 9rem; line-height: 1.6; }
   .review-note,
   .risk-panel,
   .nav-row,
-  .back-to-quadro,
+  .back-bar,
   #start-over-btn,
   #lang-toggle {
     display: none !important;
@@ -675,5 +724,104 @@ textarea { min-height: 9rem; line-height: 1.6; }
     border: 1px solid #999;
     box-shadow: none;
     margin-top: 1.2rem;
+  }
+}
+
+/* ---------- Mobile (very small viewports) ---------- */
+
+@media (max-width: 479px) {
+  .field-group.cols-2,
+  .field-group.cols-3 {
+    grid-template-columns: 1fr;
+  }
+
+  main {
+    padding: 1.25rem 1rem 2rem;
+  }
+
+  .back-bar {
+    padding: 0.4rem 0.75rem;
+  }
+}
+
+/* ---------- Dark mode (mirrors palette, keeps yellow accent) ---------- */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --c-text: #F0F0F0;
+    --c-text-muted: #A8B0BA;
+    --c-bg: #121212;
+    --c-surface: #1E1E1E;
+    --c-border: #2E2E2E;
+    --c-border-strong: #4A4A4A;
+  }
+
+  body { color-scheme: dark; }
+
+  .option:has(input:checked) {
+    background: #2A2200; /* very dark yellow tint */
+  }
+
+  .option input { accent-color: var(--c-fmup-yellow); }
+
+  .review-note {
+    background: #2A2200;
+    color: var(--c-text);
+  }
+
+  .output-block textarea {
+    background: var(--c-surface);
+    color: var(--c-text);
+  }
+
+  /* Risk panels: keep coloured accent borders, darken backgrounds. */
+  .risk-panel.risk-1 { background: #0F2218; }
+  .risk-panel.risk-1 .risk-heading { color: #6FCB97; }
+  .risk-panel.risk-2 { background: #2A2200; }
+  .risk-panel.risk-2 .risk-heading { color: #E6B800; }
+  .risk-panel.risk-3 { background: #2A1A0E; }
+  .risk-panel.risk-3 .risk-heading { color: #F4925A; }
+  .risk-panel.risk-4 { background: #2A1212; }
+  .risk-panel.risk-4 .risk-heading { color: #F87171; }
+
+  .risk-panel .risk-item {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .risk-panel .principle-chip {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .selections-summary,
+  .output-block {
+    background: var(--c-surface);
+  }
+
+  .toast {
+    background: var(--c-fmup-yellow);
+    color: #1A1A1A;
+  }
+}
+
+/* ---------- Print fix for risk panels (override coloured backgrounds) ---------- */
+
+@media print {
+  body.printing-output .risk-panel {
+    background: #fff !important;
+    border: 1px solid #999 !important;
+    border-left: 4px solid #000 !important;
+  }
+  body.printing-output .risk-panel .risk-item {
+    background: #fff !important;
+    border-color: #ccc !important;
+  }
+  body.printing-output .risk-panel .risk-heading {
+    color: #000 !important;
+  }
+  body.printing-output .review-note {
+    background: #fff !important;
+    border-left: 4px solid #000 !important;
+    color: #000 !important;
   }
 }
