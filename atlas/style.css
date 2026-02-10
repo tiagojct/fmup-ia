@@ -294,26 +294,23 @@ main:focus { outline: none; }
 .option {
   display: flex;
   align-items: flex-start;
-  gap: 0.6rem;
-  background: var(--c-bg);
-  border: 1px solid var(--c-border);
+  gap: 0.65rem;
+  background: var(--c-surface);
+  border: none;
   border-radius: var(--radius);
-  padding: 0.7rem 0.85rem;
+  padding: 0.75rem 0.95rem;
   cursor: pointer;
-  transition: border-color 120ms, background 120ms;
+  transition: background 120ms;
 }
 
-.option:hover { border-color: var(--c-border-strong); }
+.option:hover { background: #EFEFEF; }
 
-.option input { margin-top: 0.2rem; accent-color: var(--c-text); }
+.option input { margin-top: 0.2rem; accent-color: var(--c-fmup-yellow); }
 
-.option input:checked ~ .option-label { color: var(--c-text); font-weight: 700; }
+.option input:checked ~ .option-label { font-weight: 700; }
 
 .option:has(input:checked) {
-  border-color: var(--c-text);
-  background: #FFFBEA;
-  border-left: 4px solid var(--c-fmup-yellow);
-  padding-left: calc(0.85rem - 3px);
+  background: #FFF4BF; /* soft yellow tint, derived from #FFCD00 */
 }
 
 .option-label { font-size: 0.95rem; line-height: 1.4; }
@@ -496,12 +493,9 @@ textarea { min-height: 9rem; line-height: 1.6; }
   border-radius: var(--radius);
   padding: 0.85rem 1rem 0.95rem;
   margin: 1.25rem 0;
-  border-left-width: 5px;
+  border-left-width: 4px;
   border-left-style: solid;
   background: var(--c-bg);
-  border-top: 1px solid var(--c-border);
-  border-right: 1px solid var(--c-border);
-  border-bottom: 1px solid var(--c-border);
   font-size: 0.92rem;
 }
 
@@ -525,10 +519,9 @@ textarea { min-height: 9rem; line-height: 1.6; }
 }
 
 .risk-panel .risk-item {
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.55);
   border-radius: var(--radius-sm);
-  padding: 0.45rem 0.6rem;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 0.5rem 0.7rem;
   line-height: 1.45;
 }
 
