@@ -35,7 +35,14 @@ body {
   font-feature-settings: "kern", "liga";
 }
 
-a {
+// Body prose links: yellow underline + yellow background on hover.
+// Scoped tightly to article content so it does NOT cascade into the navbar,
+// the page TOC ("Nesta página"), the sidebar, the footer, or repo-action
+// links such as "Criar uma issue".
+main a,
+.content a,
+article a,
+.quarto-document-content a {
   text-decoration: underline;
   text-decoration-color: #FFCD00;
   text-decoration-thickness: 2px;
@@ -44,6 +51,20 @@ a {
     background: #FFCD00;
     color: #1A1A1A;
     text-decoration-color: #1A1A1A;
+  }
+}
+
+// Navigation contexts: no yellow background, no underline-on-rest.
+.navbar a,
+.sidebar a,
+.toc-actions a,
+nav.toc-active a,
+#TOC a,
+.quarto-secondary-nav a,
+.nav-footer a {
+  text-decoration: none;
+  &:hover {
+    background: transparent;
   }
 }
 
@@ -118,6 +139,78 @@ h1 { font-weight: 800; }
     font-weight: 700;
     border-left: 3px solid #1A1A1A;
     padding-left: calc(0.5rem - 3px);
+  }
+}
+
+// ---- Page TOC ("Nesta página") ----
+// Quarto's default right-rail TOC draws thin vertical lines via
+// `border-left` on each nav-link plus a thicker accent on `.active`.
+// We replace that with a single subtle vertical guide on the column,
+// and use a yellow underline on the active item instead of a coloured bar.
+
+#TOC, nav.toc-active, .quarto-secondary-nav-toc, #quarto-margin-sidebar #toc-title + ul {
+  border-left: 0 !important;
+}
+
+.sidebar.margin-sidebar nav#TOC ul,
+nav#TOC ul,
+nav.toc-active ul {
+  border-left: 1px solid #E0E0E0;
+  padding-left: 0.6rem;
+  list-style: none;
+}
+
+nav#TOC ul li a,
+nav.toc-active ul li a,
+.sidebar.margin-sidebar nav#TOC ul li a {
+  border-left: 0 !important;
+  padding-left: 0.4rem;
+  color: #5B6470;
+  text-decoration: none;
+  font-size: 0.9rem;
+  display: block;
+  line-height: 1.4;
+  padding-top: 0.15rem;
+  padding-bottom: 0.15rem;
+
+  &:hover {
+    color: #1A1A1A;
+    background: transparent;
+    text-decoration: underline;
+    text-decoration-color: #FFCD00;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+}
+
+nav#TOC ul li a.active,
+nav.toc-active ul li a.active,
+.sidebar.margin-sidebar nav#TOC ul li a.active {
+  color: #1A1A1A;
+  font-weight: 700;
+  background: transparent;
+  border-left: 0 !important;
+}
+
+// "Criar uma issue" / "Editar esta página" repo-action block.
+.toc-actions {
+  border-top: 1px solid #E0E0E0;
+  margin-top: 0.85rem;
+  padding-top: 0.6rem;
+
+  a {
+    color: #5B6470;
+    font-size: 0.85rem;
+    text-decoration: none;
+    background: transparent;
+
+    &:hover {
+      color: #1A1A1A;
+      background: transparent;
+      text-decoration: underline;
+      text-decoration-color: #FFCD00;
+      text-decoration-thickness: 2px;
+    }
   }
 }
 

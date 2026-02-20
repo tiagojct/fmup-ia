@@ -296,7 +296,8 @@ main:focus { outline: none; }
   align-items: flex-start;
   gap: 0.65rem;
   background: var(--c-surface);
-  border: none;
+  border: 0;
+  border-left: 0;
   border-radius: var(--radius);
   padding: 0.75rem 0.95rem;
   cursor: pointer;
@@ -310,7 +311,9 @@ main:focus { outline: none; }
 .option input:checked ~ .option-label { font-weight: 700; }
 
 .option:has(input:checked) {
-  background: #FFF4BF; /* soft yellow tint, derived from #FFCD00 */
+  background: #FFF4BF;
+  border: 0;
+  border-left: 0;
 }
 
 .option-label { font-size: 0.95rem; line-height: 1.4; }
@@ -493,8 +496,7 @@ textarea { min-height: 9rem; line-height: 1.6; }
   border-radius: var(--radius);
   padding: 0.85rem 1rem 0.95rem;
   margin: 1.25rem 0;
-  border-left-width: 4px;
-  border-left-style: solid;
+  border: 0;
   background: var(--c-bg);
   font-size: 0.92rem;
 }
@@ -580,33 +582,20 @@ textarea { min-height: 9rem; line-height: 1.6; }
 
 /* Risk levels — palette tuned for WCAG AA contrast on light backgrounds. */
 
-.risk-panel.risk-1 {
-  background: #F1F7F3;
-  border-left-color: #146C43;
-}
+.risk-panel.risk-1 { background: #F1F7F3; }
 .risk-panel.risk-1 .risk-heading { color: #0E5532; }
 
-.risk-panel.risk-2 {
-  background: #FFFBEA;
-  border-left-color: #B78300;
-}
+.risk-panel.risk-2 { background: #FFFBEA; }
 .risk-panel.risk-2 .risk-heading { color: #6E4F00; }
 
-.risk-panel.risk-3 {
-  background: #FDE7D7;
-  border-left-color: #B3531C;
-}
+.risk-panel.risk-3 { background: #FDE7D7; }
 .risk-panel.risk-3 .risk-heading { color: #7A3812; }
 
-.risk-panel.risk-4 {
-  background: #FDE2E2;
-  border-left-color: #B91C1C;
-}
+.risk-panel.risk-4 { background: #FDE2E2; }
 .risk-panel.risk-4 .risk-heading { color: #7C1212; }
 
 .risk-panel.risk-na {
   background: var(--c-surface);
-  border-left-color: var(--c-border-strong);
   color: var(--c-text-muted);
 }
 .risk-panel.risk-na .risk-heading { color: var(--c-text-muted); }
@@ -803,7 +792,6 @@ textarea { min-height: 9rem; line-height: 1.6; }
   body.printing-output .risk-panel {
     background: #fff !important;
     border: 1px solid #999 !important;
-    border-left: 4px solid #000 !important;
   }
   body.printing-output .risk-panel .risk-item {
     background: #fff !important;
@@ -814,7 +802,7 @@ textarea { min-height: 9rem; line-height: 1.6; }
   }
   body.printing-output .review-note {
     background: #fff !important;
-    border-left: 4px solid #000 !important;
+    border-left: 0 !important;
     color: #000 !important;
   }
 }

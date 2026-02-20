@@ -21,6 +21,22 @@ This project follows a `MAJOR.MINOR.PATCH` scheme:
 
 ---
 
+## [0.4.1] — 2026-05-10
+
+Visual cleanup pass — minimalist option/risk-panel chrome.
+
+### Changed
+- `.option` (selected): no `border-left` accent; selection is conveyed only
+  by the soft yellow tint (`#FFF4BF`) and the bolded label.
+- `.risk-panel`: removed the coloured `border-left` (green / amber / orange /
+  red) for risk levels 1–4. Level is now conveyed only by the tinted
+  background and heading colour.
+- Print stylesheet adjusted to drop the explicit black left border on the
+  risk panel and review note (consistent with the new minimal chrome).
+- `APP_VERSION` bumped to **0.4.1**.
+
+---
+
 ## [0.4.0] — 2026-05-10
 
 Bug-hunt sweep across the SPA after the v0.3.0 monorepo migration.
