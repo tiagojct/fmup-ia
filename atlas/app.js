@@ -11,7 +11,7 @@
 
   // ---- Single source of truth for the tool version. ----
   // Bump this when statement content (any i18n file) changes.
-  const APP_VERSION = '0.4.1';
+  const APP_VERSION = '0.5.0';
 
   // Schema version for the URL hash payload. Bump when state shape
   // changes incompatibly. Hashes with a different `v` are rejected.
@@ -324,20 +324,34 @@
     return rule['message_' + lang] || rule.message_pt || '';
   }
 
-  // Convert "principio-3-protecao-dados" → "3 — protecção de dados".
-  // Falls back to the raw slug if it cannot be parsed.
-  function humanisePrincipleRef(ref) {
-    if (!ref) return '';
-    const m = String(ref).match(/^principi[oa]-(\d+)-(.+)$/i);
-    if (!m) return ref;
+  // Canonical principle names (pré-AO90, with accents) keyed by the slug
+  // used in policy.json. Mirrors the H2 anchors in quadro/02-principios.qmd.
+  const PRINCIPLE_NAMES = {
+    'principio-1-agencia-humana':   { pt: 'Agência humana', en: 'Human agency' },
+    'principio-2-integridade':      { pt: 'Integridade académica e científica', en: 'Academic and scientific integrity' },
+    'principio-3-protecao-dados':   { pt: 'Protecção de dados', en: 'Data protection' },
+    'principio-4-transparencia':    { pt: 'Transparência', en: 'Transparency' },
+    'principio-5-equidade':         { pt: 'Equidade de acesso', en: 'Equity of access' },
+    'principio-6-literacia':        { pt: 'Literacia crítica', en: 'Critical literacy' },
+    'principio-7-revisao':          { pt: 'Revisão contínua', en: 'Continuous revision' },
+  };
+
+  // Returns { number, name, href } for a principle_ref, or null if it cannot
+  // be parsed. `href` points to the anchor in the rendered Quadro chapter.
+  function principleInfo(ref, lang) {
+    if (!ref) return null;
+    const m = String(ref).match(/^principi[oa]-(\d+)-/i);
+    if (!m) return null;
     const number = m[1];
-    const slug = m[2].replace(/-/g, ' ');
-    // Best-effort: keep accents that exist in the slug; otherwise leave plain.
-    return number + ' — ' + slug;
+    const entry = PRINCIPLE_NAMES[ref];
+    const name = entry ? (entry[lang] || entry.pt) : '';
+    const href = '../quadro/02-principios.html#' + ref;
+    return { number: number, name: name, href: href };
   }
 
   function renderRiskPanel(showOnEmpty) {
     const i = t();
+    const lang = state.lang || DEFAULT_LANG;
     if (!POLICY) {
       if (!showOnEmpty) return null;
       return el('div',
@@ -368,11 +382,14 @@
     const list = el('ul', { class: 'risk-list' });
     ev.matches.forEach((rule) => {
       const refs = el('div', { class: 'risk-refs' });
-      const principleText = humanisePrincipleRef(rule.principle_ref);
-      if (principleText) {
-        refs.appendChild(el('span', {
+      const info = principleInfo(rule.principle_ref, lang);
+      if (info && info.name) {
+        refs.appendChild(el('a', {
           class: 'principle-chip',
-          text: i.ui.principleLabel + ': ' + principleText,
+          href: info.href,
+          target: '_blank',
+          rel: 'noopener',
+          text: i.ui.principleLabel + ' ' + info.number + ' — ' + info.name,
         }));
       }
       if (rule.scenario_ref) {

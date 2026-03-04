@@ -552,6 +552,17 @@ textarea { min-height: 9rem; line-height: 1.6; }
   padding: 0.15rem 0.5rem;
   border-radius: 999px;
   letter-spacing: 0.01em;
+  text-decoration: none;
+}
+
+.risk-panel a.principle-chip:hover {
+  background: var(--c-fmup-yellow);
+  color: var(--c-text);
+}
+
+.risk-panel a.principle-chip::after {
+  content: " ↗";
+  font-size: 0.85em;
 }
 
 .risk-panel .scenario-link {

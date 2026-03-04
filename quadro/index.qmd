@@ -30,7 +30,7 @@ Indicadores de monitorização (cobertura curricular, formação docente, declar
 ::: {.callout-note}
 ## Versão
 
-Abril de 2026. Quadro concebido como documento vivo, sujeito a revisão anual.
+**FMUP Quadro de Referência v1.0 (2026-04-21).** Quadro concebido como documento vivo, sujeito a revisão anual.
 
 Licença: **CC BY 4.0**. Publicação citável após depósito em Zenodo (DOI a atribuir).
 :::

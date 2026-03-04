@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "framework_version": "FMUP Quadro de Referência v1.0 (2026-04-21)",
   "framework_short_pt": "Quadro FMUP v1.0",
   "framework_short_en": "FMUP Framework v1.0",
@@ -37,7 +37,7 @@
       "trigger": { "tools_regex": "(chatgpt|gpt-|gemini|claude|copilot|perplexity|deepseek|grok|mistral|openai|anthropic)" },
       "risk": 2,
       "principle_ref": "principio-3-protecao-dados",
-      "scenario_ref": "https://tiagojct.eu/fmup-ia/quadro/E-cenarios.html",
+      "scenario_ref": "https://tiagojct.eu/fmup-ia/quadro/E-cenarios.html#cenario-4",
       "message_pt": "Identificou ferramentas comerciais públicas. Confirme que não introduziu dados pessoais, dados clínicos identificáveis ou material inédito sob acordo de confidencialidade. Para esses contextos, prefira a IAedu (FCT/FCCN) ou outra plataforma com garantias contratuais RGPD.",
       "message_en": "You named commercial public tools. Confirm that you did not enter personal data, identifiable clinical data, or unpublished material under confidentiality. For those contexts, prefer IAedu (FCT/FCCN) or another platform with contractual GDPR guarantees."
     },
@@ -46,7 +46,7 @@
       "trigger": { "role": "student", "tasks_any": ["data_analysis"] },
       "risk": 3,
       "principle_ref": "principio-3-protecao-dados",
-      "scenario_ref": "https://tiagojct.eu/fmup-ia/quadro/E-cenarios.html",
+      "scenario_ref": "https://tiagojct.eu/fmup-ia/quadro/E-cenarios.html#cenario-4",
       "message_pt": "Análise de dados com GenAI: se os dados envolvem doentes, processos clínicos ou informação identificável, NÃO os introduza em plataformas comerciais. O cenário 4 do Anexo E ilustra a violação típica. A anonimização informal não cumpre os requisitos do RGPD.",
       "message_en": "Data analysis with GenAI: if the data involve patients, clinical records or identifiable information, do NOT enter them in commercial platforms. Scenario 4 of Appendix E illustrates the typical violation. Informal anonymisation does not meet GDPR requirements."
     },
@@ -55,7 +55,7 @@
       "trigger": { "role": "student", "modification": "as_is" },
       "risk": 3,
       "principle_ref": "principio-2-integridade",
-      "scenario_ref": "https://tiagojct.eu/fmup-ia/quadro/E-cenarios.html",
+      "scenario_ref": "https://tiagojct.eu/fmup-ia/quadro/E-cenarios.html#cenario-1",
       "message_pt": "Integração de conteúdo gerado sem alterações substanciais. Em trabalhos avaliativos individuais, esta opção aproxima-se do limite da integridade académica: confirme que a unidade curricular permite explicitamente este modo de uso e que a sua declaração reflecte fielmente o trabalho efectivo.",
       "message_en": "Integration of generated content without substantial changes. In individual graded assignments, this option borders on the limits of academic integrity: confirm that the course unit explicitly allows this mode of use and that your disclosure accurately reflects the work actually done."
     },
@@ -64,7 +64,7 @@
       "trigger": { "role": "student", "tasks_any": ["ideation"], "assignment_any": ["essay", "report", "other"] },
       "risk": 2,
       "principle_ref": "principio-1-agencia-humana",
-      "scenario_ref": "https://tiagojct.eu/fmup-ia/quadro/E-cenarios.html",
+      "scenario_ref": "https://tiagojct.eu/fmup-ia/quadro/E-cenarios.html#cenario-6",
       "message_pt": "Exploração de ideias com GenAI em trabalho académico individual. Em contexto clínico, a delegação substantiva do raciocínio clínico compromete a competência avaliada (cenário 6 do Anexo E). Use a GenAI como ponto de partida, não como substituto da reflexão.",
       "message_en": "Idea exploration with GenAI in an individual academic assignment. In clinical contexts, substantively delegating clinical reasoning compromises the competence being assessed (scenario 6 of Appendix E). Use GenAI as a starting point, not as a replacement for reflection."
     },
@@ -73,7 +73,7 @@
       "trigger": { "role": "student", "tasks_any": ["coding"] },
       "risk": 2,
       "principle_ref": "principio-2-integridade",
-      "scenario_ref": "https://tiagojct.eu/fmup-ia/quadro/E-cenarios.html",
+      "scenario_ref": "https://tiagojct.eu/fmup-ia/quadro/03-estudantes.html",
       "message_pt": "Auxílio na escrita de código: o estudante deve ser capaz de explicar todas as linhas que submete, e o código gerado deve ser revisto e testado. Documente, sempre que aplicável, o prompt e a versão da ferramenta.",
       "message_en": "Coding assistance: the student must be able to explain every line submitted, and generated code must be reviewed and tested. Document, when applicable, the prompt and tool version."
     },
@@ -100,7 +100,7 @@
       "trigger": { "role": "teacher" },
       "risk": 1,
       "principle_ref": "principio-1-agencia-humana",
-      "scenario_ref": "https://tiagojct.eu/fmup-ia/quadro/E-cenarios.html",
+      "scenario_ref": "https://tiagojct.eu/fmup-ia/quadro/E-cenarios.html#cenario-8",
       "message_pt": "Lembrete: a classificação de respostas de estudantes em plataformas comerciais é proibida (cenário 8 do Anexo E e art. 22.º do RGPD). A GenAI pode apoiar a definição de critérios de avaliação, mas a classificação é sempre da responsabilidade do docente, com revisão humana substantiva.",
       "message_en": "Reminder: grading of student responses on commercial platforms is prohibited (scenario 8 of Appendix E and Article 22 of the GDPR). GenAI may support the design of rubrics, but grading is always the teacher's responsibility, with substantive human review."
     },
@@ -118,7 +118,7 @@
       "trigger": { "role": "researcher" },
       "risk": 1,
       "principle_ref": "principio-2-integridade",
-      "scenario_ref": "https://tiagojct.eu/fmup-ia/quadro/E-cenarios.html",
+      "scenario_ref": "https://tiagojct.eu/fmup-ia/quadro/E-cenarios.html#cenario-7",
       "message_pt": "A GenAI não pode ser listada como autora — princípio inequívoco do ICMJE, da WAME, da COPE e do quadro FMUP (cenário 7 do Anexo E). A contribuição da ferramenta declara-se em métodos ou em agradecimentos.",
       "message_en": "GenAI cannot be listed as an author — an unequivocal principle of ICMJE, WAME, COPE and the FMUP framework (scenario 7 of Appendix E). The tool's contribution must be disclosed in methods or acknowledgements."
     },
@@ -127,7 +127,7 @@
       "trigger": { "role": "researcher", "activity": "review" },
       "risk": 3,
       "principle_ref": "principio-3-protecao-dados",
-      "scenario_ref": "https://tiagojct.eu/fmup-ia/quadro/E-cenarios.html",
+      "scenario_ref": "https://tiagojct.eu/fmup-ia/quadro/E-cenarios.html#cenario-5",
       "message_pt": "Se a actividade é revisão por pares de manuscritos confiados pela revista, NÃO use plataformas comerciais de GenAI: viola a confidencialidade do processo, as Living Guidelines do ERA Forum e as políticas da maioria das revistas (cenário 5). Se é revisão sistemática (literatura pública), o uso é permitido com declaração e validação humana (cenário 9).",
       "message_en": "If the activity is peer review of manuscripts entrusted by the journal, do NOT use commercial GenAI platforms: it breaches review confidentiality, the ERA Forum Living Guidelines and most journal policies (scenario 5). If it is a systematic review (public literature), use is permitted with disclosure and human validation (scenario 9)."
     },
@@ -145,7 +145,7 @@
       "trigger": { "role": "researcher", "activity": "manuscript", "tasks_any": ["editing", "translation"] },
       "risk": 1,
       "principle_ref": "principio-4-transparencia",
-      "scenario_ref": "https://tiagojct.eu/fmup-ia/quadro/E-cenarios.html",
+      "scenario_ref": "https://tiagojct.eu/fmup-ia/quadro/E-cenarios.html#cenario-3",
       "message_pt": "Apoio linguístico (revisão, tradução) em manuscrito: uso amplamente compatível com o quadro, desde que declarado em métodos ou agradecimentos (cenário 3 do Anexo E). A responsabilidade pelo conteúdo intelectual mantém-se exclusivamente humana.",
       "message_en": "Language support (editing, translation) in a manuscript: use is broadly compatible with the framework, provided it is declared in methods or acknowledgements (scenario 3 of Appendix E). Intellectual responsibility remains exclusively human."
     },

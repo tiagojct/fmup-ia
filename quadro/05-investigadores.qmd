@@ -30,3 +30,15 @@ As _Living Guidelines_ recomendam que os investigadores se abstenham de utilizar
 ## Protecção de dados e declaração em publicações
 
 Dados sensíveis não podem ser introduzidos em plataformas comerciais de GenAI. Qualquer utilização de GenAI na produção de um manuscrito deve ser declarada, em conformidade com as políticas das revistas e com as _Living Guidelines_ do ERA Forum [@ec2024livingguidelines]. A GenAI não pode ser listada como autora.
+
+## Destinatários da declaração
+
+A obrigação de declaração varia em forma e detalhe consoante o destinatário do manuscrito, da candidatura ou do relatório. O quadro adopta, sem prejuízo de exigências mais restritivas que cada destinatário possa formular, as seguintes referências:
+
+- **Submissão a revista científica.** Em linha com as recomendações do ICMJE -- adoptadas pela maioria das revistas médicas internacionais --, a contribuição da GenAI declara-se na secção de Métodos ou de Agradecimentos, e a ferramenta nunca é listada como co-autora. As políticas da WAME e da COPE convergem neste ponto. As referências práticas estão coligidas no [Anexo C](C-recursos.qmd).
+- **Candidatura à Fundação para a Ciência e a Tecnologia (FCT).** A FCT, enquanto agência nacional de financiamento, é signatária do espírito das _Living Guidelines_ europeias e mantém a IAedu como infraestrutura institucional de referência [@iaedu2025]. A declaração de uso de GenAI em candidaturas e em relatórios de execução acompanha os elementos formais dos respectivos formulários, com o detalhe exigido pela tipologia do instrumento de financiamento.
+- **Projectos do Horizonte Europa.** As _Living Guidelines on the Responsible Use of Generative AI in Research_ da Comissão Europeia e do ERA Forum fornecem a referência operacional [@ec2024livingguidelines; @bockting2023living], com obrigações específicas para investigadores, organizações de investigação e entidades financiadoras.
+- **Wellcome Trust.** A política do Wellcome Trust sobre o uso de IA generativa em projectos por si financiados aplica-se a todo o ciclo, da candidatura à publicação dos resultados, e exige declaração explícita das ferramentas e tarefas envolvidas.
+- **Resumos de conferência e relatórios institucionais.** Aplica-se um regime análogo ao das revistas, adaptado ao formato curto do resumo ou ao âmbito interno do relatório.
+
+A ferramenta [**Atlas**](../atlas/) gera, para cada um destes destinatários, uma declaração estruturada coerente com o regime aplicável.

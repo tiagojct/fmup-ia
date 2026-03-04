@@ -21,6 +21,40 @@ This project follows a `MAJOR.MINOR.PATCH` scheme:
 
 ---
 
+## [0.5.0] — 2026-05-10
+
+Quadro ↔ Atlas alignment pass.
+
+### Added
+- Each rule's `scenario_ref` now points to a specific cenário inside Anexo E
+  (e.g. `E-cenarios.html#cenario-4`) instead of the page root, so "Ver
+  cenário no Quadro" jumps straight to the matching scenario. Stable
+  ASCII-only anchors `{#cenario-1}`–`{#cenario-10}` were added to the book.
+- `PRINCIPLE_NAMES` map in `app.js` keyed by the seven `principle_ref`
+  slugs. The risk-panel chip now displays the canonical principle name in
+  pré-AO90 with diacritics (e.g. "Princípio 3 — Protecção de dados") and
+  is rendered as a link to the corresponding `quadro/02-principios.html`
+  anchor in a new tab.
+
+### Changed
+- pré-AO90 orthography sweep across `i18n/pt.js`: `redação` → `redacção`,
+  `seleção` → `selecção`, `exatidão` → `exactidão` (×3), `objetivos` →
+  `objectivos`, `atividade` → `actividade`. Brings Atlas into line with the
+  load-bearing pré-AO90 convention used throughout the Quadro.
+- `policy.version` bumped to **1.1.0** (rule scenario anchors).
+- `APP_VERSION` bumped to **0.5.0**.
+
+### Notes
+- The Quadro side received parallel changes: principles 1–7 are now H2
+  sections with explicit `{#principio-N-…}` anchors; framework version is
+  now the canonical `FMUP Quadro de Referência v1.0 (2026-04-21)` in the
+  preface; risk-level labels (Mínimo/Limitado/Alto/Inaceitável) are now
+  defined in chapter 6; FCT, Horizonte Europa, Wellcome Trust and ICMJE
+  disclosure regimes are substantiated in chapter 5; Anexo A points to
+  Atlas as the prose-form generator.
+
+---
+
 ## [0.4.1] — 2026-05-10
 
 Visual cleanup pass — minimalist option/risk-panel chrome.

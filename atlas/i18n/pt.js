@@ -53,9 +53,9 @@
   const SKILL_PHRASES = {
     critical_thinking: 'pensamento crítico e argumentação',
     clinical_reasoning: 'raciocínio clínico',
-    original_writing: 'redação original',
+    original_writing: 'redacção original',
     data_interpretation: 'interpretação de resultados',
-    bibliography: 'seleção e síntese bibliográfica',
+    bibliography: 'selecção e síntese bibliográfica',
     oral_presentation: 'apresentação oral',
   };
 
@@ -111,8 +111,8 @@
     }[s.modification] || '';
 
     const responsibility = s.submission === 'group'
-      ? 'Os autores assumem plena responsabilidade pelo conteúdo apresentado, pela sua exatidão e pela sua conformidade com as normas académicas da FMUP.'
-      : 'Assumo plena responsabilidade pelo conteúdo apresentado, pela sua exatidão e pela sua conformidade com as normas académicas da FMUP.';
+      ? 'Os autores assumem plena responsabilidade pelo conteúdo apresentado, pela sua exactidão e pela sua conformidade com as normas académicas da FMUP.'
+      : 'Assumo plena responsabilidade pelo conteúdo apresentado, pela sua exactidão e pela sua conformidade com as normas académicas da FMUP.';
 
     const intro = subj + ' à utilização de ferramentas de inteligência artificial generativa ' + aPrep +
       ' (' + aNoun + (s.submission === 'group' ? ' submetido em grupo' : ' de autoria individual') + '). ' +
@@ -153,7 +153,7 @@
     const policyText = {
       not_permitted: ' não é permitida a utilização de ferramentas de inteligência artificial generativa na produção do trabalho submetido. Os trabalhos avaliativos devem refletir exclusivamente a produção intelectual ' + subj.possPlural + ', sendo qualquer recurso a estas ferramentas considerado uma falta à integridade académica.',
       with_disclosure: ' é permitida a utilização de ferramentas de inteligência artificial generativa, sob condição de divulgação integral. ' + subj.capPlural + ' ' + subj.verbDevem + ' declarar de forma transparente as ferramentas empregues, as tarefas para as quais recorreram a essas ferramentas e o grau de modificação dos contributos gerados, mantendo plena responsabilidade pelo conteúdo submetido.',
-      without_restrictions: ' é permitida a utilização de ferramentas de inteligência artificial generativa sem restrições específicas. ' + subj.capPlural + ' ' + subj.verbMantem + ', contudo, plena responsabilidade pelo conteúdo submetido e pela sua adequação aos objetivos pedagógicos da unidade curricular.',
+      without_restrictions: ' é permitida a utilização de ferramentas de inteligência artificial generativa sem restrições específicas. ' + subj.capPlural + ' ' + subj.verbMantem + ', contudo, plena responsabilidade pelo conteúdo submetido e pela sua adequação aos objectivos pedagógicos da unidade curricular.',
     }[s.policy] || '';
 
     return lead + policyText + footer(version, policy);
@@ -187,7 +187,7 @@
     const tasksClause = tasks.length ? ' nas seguintes tarefas: ' + list(tasks) : ' em tarefas auxiliares de preparação';
 
     let body = lead + ' declara-se que, ' + activity + ', foram utilizadas as seguintes ferramentas de inteligência artificial generativa — ' + tools +
-      ' —' + tasksClause + '. Os contributos gerados foram revistos criticamente ' + (s.activity === 'manuscript' ? 'pelos autores' : 'pelo(s) investigador(es)') + ', que assumem responsabilidade integral pelo conteúdo final, pela sua exatidão e pela sua integridade científica. As ferramentas de inteligência artificial não são listadas como autoras, na medida em que não preenchem os critérios de autoria aplicáveis (designadamente, a capacidade de assumir responsabilidade pública pelo conteúdo).';
+      ' —' + tasksClause + '. Os contributos gerados foram revistos criticamente ' + (s.activity === 'manuscript' ? 'pelos autores' : 'pelo(s) investigador(es)') + ', que assumem responsabilidade integral pelo conteúdo final, pela sua exactidão e pela sua integridade científica. As ferramentas de inteligência artificial não são listadas como autoras, na medida em que não preenchem os critérios de autoria aplicáveis (designadamente, a capacidade de assumir responsabilidade pública pelo conteúdo).';
 
     if (s.target === 'journal') {
       body += ' Esta declaração destina-se a ser incluída na secção de Métodos ou de Agradecimentos do manuscrito, em conformidade com as recomendações do ICMJE relativas ao uso de chatbots e modelos de linguagem na produção científica.';
@@ -337,7 +337,7 @@
       skillsOther: 'Outras (especifique)',
     },
     researcher: {
-      step1: 'Tipo de atividade',
+      step1: 'Tipo de actividade',
       activity: {
         manuscript: 'Redação de manuscrito',
         grant: 'Candidatura a financiamento',

@@ -1,5 +1,11 @@
 # Modelo de declaração de uso de IA generativa {#sec-anexo-a}
 
+::: {.callout-note}
+## Geração automatizada da declaração
+
+A ferramenta institucional [**Atlas**](../atlas/) gera uma versão em prosa equivalente à deste modelo, automaticamente formatada para cada papel (estudante, docente, investigador) e para cada destinatário ([ICMJE](https://www.icmje.org/), FCT, Horizonte Europa, Wellcome Trust, conferência ou relatório institucional). Cada declaração gerada é selada com a versão do quadro vigente, garantindo a sua rastreabilidade no tempo. O modelo abaixo permanece útil para preenchimento manual e como referência canónica do conteúdo mínimo exigido.
+:::
+
 ## Modelo genérico
 
 [Título do trabalho]
