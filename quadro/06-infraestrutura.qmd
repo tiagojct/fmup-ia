@@ -19,7 +19,7 @@ A operacionalização da governança beneficia da adopção de uma taxonomia de 
 - **Nível 3 — Alto:** uso com impacto formativo, clínico ou administrativo (avaliação, materiais pedagógicos, comunicação institucional). Exige declaração explícita, registo central e, em casos limítrofes, parecer do grupo de trabalho.
 - **Nível 4 — Inaceitável:** uso proibido pelo quadro -- dados clínicos identificáveis em ferramentas comerciais, raciocínio clínico delegado em contexto de cuidados, classificação automatizada exclusivamente por IA, GenAI listada como co-autora, revisão por pares assistida por plataformas comerciais.
 
-A ferramenta institucional de declaração [**Atlas**](../atlas/) (descrita em [Anexo D](D-guia.qmd)) reflecte automaticamente esta categorização, devolvendo, para cada combinação de papel, tarefa e ferramenta, o nível de risco aplicável e a referência ao princípio e ao cenário do [Anexo E](E-cenarios.qmd) que o sustenta.
+A ferramenta institucional de declaração [**Atlas**](../atlas/), descrita em [Anexo D](D-guia.qmd), aplica directamente esta categorização: para cada combinação de papel, tarefa e ferramenta, devolve o nível de risco e remete para o princípio e o cenário do [Anexo E](E-cenarios.qmd) que o sustentam.
 
 Em paralelo, o grupo de trabalho deve manter alinhamento explícito com dois standards transversais. O NIST AI Risk Management Framework [@nist2023airmf], na sua versão 1.0 e no _Generative AI Profile_, fornece quatro funções nucleares (GOVERN, MAP, MEASURE, MANAGE) que ordenam o trabalho do grupo. A norma ISO/IEC 42001 [@iso2023aims] fornece a metodologia _Plan-Do-Check-Act_ para um sistema de gestão de IA (AIMS), com vista à eventual certificação na Fase 3 (ver capítulo [7](07-implementacao.qmd)).
 

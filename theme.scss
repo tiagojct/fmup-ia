@@ -142,36 +142,54 @@ h1 { font-weight: 800; }
   }
 }
 
-// ---- Page TOC ("Nesta página") ----
-// Quarto's default right-rail TOC draws thin vertical lines via
-// `border-left` on each nav-link plus a thicker accent on `.active`.
-// We replace that with a single subtle vertical guide on the column,
-// and use a yellow underline on the active item instead of a coloured bar.
+// ---- Page TOC ("Nesta página") + repo actions ----
+// Quarto's right-rail margin sidebar has two parts: the page TOC ("Nesta
+// página") and the repo-actions block ("Editar esta página", "Criar uma
+// issue"). Both share the same column.
 
-#TOC, nav.toc-active, .quarto-secondary-nav-toc, #quarto-margin-sidebar #toc-title + ul {
+#quarto-margin-sidebar {
+  padding: 1rem 1rem 1rem 1.25rem;
+}
+
+#TOC,
+nav.toc-active,
+.quarto-secondary-nav-toc,
+#quarto-margin-sidebar #toc-title + ul {
   border-left: 0 !important;
+}
+
+#TOC > #toc-title,
+#quarto-margin-sidebar #toc-title {
+  font-weight: 700;
+  color: #1A1A1A;
+  margin-bottom: 0.65rem;
+  padding-left: 0;
 }
 
 .sidebar.margin-sidebar nav#TOC ul,
 nav#TOC ul,
 nav.toc-active ul {
-  border-left: 1px solid #E0E0E0;
-  padding-left: 0.6rem;
+  border-left: 0;
+  padding-left: 0.5rem;
+  margin: 0;
   list-style: none;
+}
+
+nav#TOC ul li,
+nav.toc-active ul li {
+  margin: 0.15rem 0;
 }
 
 nav#TOC ul li a,
 nav.toc-active ul li a,
 .sidebar.margin-sidebar nav#TOC ul li a {
   border-left: 0 !important;
-  padding-left: 0.4rem;
+  padding: 0.2rem 0 0.2rem 0.4rem;
   color: #5B6470;
   text-decoration: none;
   font-size: 0.9rem;
   display: block;
-  line-height: 1.4;
-  padding-top: 0.15rem;
-  padding-bottom: 0.15rem;
+  line-height: 1.45;
 
   &:hover {
     color: #1A1A1A;
@@ -195,14 +213,24 @@ nav.toc-active ul li a.active,
 // "Criar uma issue" / "Editar esta página" repo-action block.
 .toc-actions {
   border-top: 1px solid #E0E0E0;
-  margin-top: 0.85rem;
-  padding-top: 0.6rem;
+  margin-top: 1.1rem;
+  padding: 0.85rem 0 0 0.5rem;
+  list-style: none;
+
+  li {
+    margin: 0.3rem 0;
+  }
 
   a {
     color: #5B6470;
     font-size: 0.85rem;
     text-decoration: none;
     background: transparent;
+    padding: 0.15rem 0;
+    line-height: 1.45;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
 
     &:hover {
       color: #1A1A1A;
@@ -210,6 +238,7 @@ nav.toc-active ul li a.active,
       text-decoration: underline;
       text-decoration-color: #FFCD00;
       text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
     }
   }
 }
