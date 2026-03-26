@@ -1,329 +1,13 @@
-/*-- scss:defaults --*/
-
-// FMUP institutional palette
-$primary:           #FFCD00 !default;  // amarelo FMUP (accent only)
-$body-bg:           #FFFFFF !default;
-$body-color:        #1A1A1A !default;
-$link-color:        #1A1A1A !default;
-
-// Typography: Atkinson Hyperlegible Next (Braille Institute) for body and
-// headings; Geist Mono for code. Loaded from Google Fonts via web-fonts import.
-$font-family-sans-serif: "Atkinson Hyperlegible Next", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !default;
-$font-family-monospace:  "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace !default;
-$headings-font-family:   $font-family-sans-serif !default;
-$headings-font-weight:   700 !default;
-$headings-color:         #1A1A1A !default;
-
-$font-size-base:    1rem !default;
-$line-height-base:  1.6 !default;
-
-$border-radius:     6px !default;
-$border-radius-sm:  4px !default;
-
-// Surfaces
-$gray-100: #F7F7F7 !default;
-$gray-200: #E0E0E0 !default;
-$gray-600: #5B6470 !default;
-
 /*-- scss:rules --*/
 
-@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,300..900;1,300..900&family=Geist+Mono:wght@400;500&display=swap');
+// Project-specific overrides on top of the `quarto-fmup` extension theme.
+// The extension covers the institutional palette, typography, navbar,
+// sidebar, page TOC, callouts, code, tables, and footer. This file only
+// holds components that are specific to the `tiagojct/fmup-ia` landing
+// page (the hero block and the three-card grid). Everything else lives
+// in `_extensions/fmup/fmup.scss`.
 
-// ---- Global tweaks ----
-
-body {
-  font-feature-settings: "kern", "liga";
-}
-
-// Body prose links: yellow underline + yellow background on hover.
-// Scoped tightly to article content so it does NOT cascade into the navbar,
-// the page TOC ("Nesta página"), the sidebar, the footer, or repo-action
-// links such as "Criar uma issue".
-main a,
-.content a,
-article a,
-.quarto-document-content a {
-  text-decoration: underline;
-  text-decoration-color: #FFCD00;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 3px;
-  &:hover {
-    background: #FFCD00;
-    color: #1A1A1A;
-    text-decoration-color: #1A1A1A;
-  }
-}
-
-// Navigation contexts: no yellow background, no underline-on-rest.
-.navbar a,
-.sidebar a,
-.toc-actions a,
-nav.toc-active a,
-#TOC a,
-.quarto-secondary-nav a,
-.nav-footer a {
-  text-decoration: none;
-  &:hover {
-    background: transparent;
-  }
-}
-
-:focus-visible {
-  outline: 3px solid #FFCD00;
-  outline-offset: 2px;
-}
-
-// ---- Headings ----
-
-h1, h2, h3, h4, h5, h6 {
-  letter-spacing: -0.005em;
-}
-
-h1 { font-weight: 800; }
-
-// ---- Navbar ----
-
-.navbar {
-  background: #FFFFFF !important;
-  border-bottom: 4px solid #FFCD00;
-  padding: 0.6rem 1rem;
-
-  .navbar-brand {
-    img {
-      max-height: 36px;
-      width: auto;
-    }
-  }
-
-  .navbar-nav .nav-link {
-    color: #1A1A1A !important;
-    font-weight: 600;
-    padding: 0.4rem 0.85rem;
-    text-decoration: none;
-    &:hover, &.active {
-      background: #FFCD00;
-      color: #1A1A1A !important;
-    }
-  }
-
-  .navbar-toggler {
-    border-color: #1A1A1A;
-    color: #1A1A1A;
-  }
-}
-
-// ---- Sidebar ----
-
-.sidebar {
-  background: #F7F7F7;
-
-  .sidebar-title {
-    font-weight: 800;
-    color: #1A1A1A;
-  }
-
-  .sidebar-section .sidebar-section-item {
-    font-weight: 700;
-    color: #1A1A1A;
-  }
-
-  .sidebar-item-text {
-    color: #1A1A1A;
-    text-decoration: none;
-  }
-
-  .sidebar-item.active > .sidebar-item-container .sidebar-item-text,
-  .sidebar-link.active {
-    background: #FFCD00;
-    color: #1A1A1A;
-    font-weight: 700;
-    border-left: 3px solid #1A1A1A;
-    padding-left: calc(0.5rem - 3px);
-  }
-}
-
-// ---- Page TOC ("Nesta página") + repo actions ----
-// Quarto's right-rail margin sidebar has two parts: the page TOC ("Nesta
-// página") and the repo-actions block ("Editar esta página", "Criar uma
-// issue"). Both share the same column.
-
-#quarto-margin-sidebar {
-  padding: 1rem 1rem 1rem 1.25rem;
-}
-
-#TOC,
-nav.toc-active,
-.quarto-secondary-nav-toc,
-#quarto-margin-sidebar #toc-title + ul {
-  border-left: 0 !important;
-}
-
-#TOC > #toc-title,
-#quarto-margin-sidebar #toc-title {
-  font-weight: 700;
-  color: #1A1A1A;
-  margin-bottom: 0.65rem;
-  padding-left: 0;
-}
-
-.sidebar.margin-sidebar nav#TOC ul,
-nav#TOC ul,
-nav.toc-active ul {
-  border-left: 0;
-  padding-left: 0.5rem;
-  margin: 0;
-  list-style: none;
-}
-
-nav#TOC ul li,
-nav.toc-active ul li {
-  margin: 0.15rem 0;
-}
-
-nav#TOC ul li a,
-nav.toc-active ul li a,
-.sidebar.margin-sidebar nav#TOC ul li a {
-  border-left: 0 !important;
-  padding: 0.2rem 0 0.2rem 0.4rem;
-  color: #5B6470;
-  text-decoration: none;
-  font-size: 0.9rem;
-  display: block;
-  line-height: 1.45;
-
-  &:hover {
-    color: #1A1A1A;
-    background: transparent;
-    text-decoration: underline;
-    text-decoration-color: #FFCD00;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 3px;
-  }
-}
-
-nav#TOC ul li a.active,
-nav.toc-active ul li a.active,
-.sidebar.margin-sidebar nav#TOC ul li a.active {
-  color: #1A1A1A;
-  font-weight: 700;
-  background: transparent;
-  border-left: 0 !important;
-}
-
-// "Criar uma issue" / "Editar esta página" repo-action block.
-.toc-actions {
-  border-top: 1px solid #E0E0E0;
-  margin-top: 1.1rem;
-  padding: 0.85rem 0 0 0.5rem;
-  list-style: none;
-
-  li {
-    margin: 0.3rem 0;
-  }
-
-  a {
-    color: #5B6470;
-    font-size: 0.85rem;
-    text-decoration: none;
-    background: transparent;
-    padding: 0.15rem 0;
-    line-height: 1.45;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-
-    &:hover {
-      color: #1A1A1A;
-      background: transparent;
-      text-decoration: underline;
-      text-decoration-color: #FFCD00;
-      text-decoration-thickness: 2px;
-      text-underline-offset: 3px;
-    }
-  }
-}
-
-// ---- Buttons (Bootstrap overrides) ----
-
-.btn-primary {
-  background-color: #FFCD00 !important;
-  border-color: #1A1A1A !important;
-  color: #1A1A1A !important;
-  font-weight: 700;
-  &:hover, &:focus, &:active {
-    background-color: #1A1A1A !important;
-    border-color: #1A1A1A !important;
-    color: #FFCD00 !important;
-  }
-}
-
-.btn-secondary {
-  background-color: #FFFFFF !important;
-  border-color: #1A1A1A !important;
-  color: #1A1A1A !important;
-  font-weight: 700;
-  &:hover {
-    background-color: #FFCD00 !important;
-    color: #1A1A1A !important;
-  }
-}
-
-// ---- Code ----
-
-code, pre, kbd, samp {
-  font-family: "Geist Mono", ui-monospace, monospace;
-  font-size: 0.92em;
-}
-
-pre {
-  background: #F7F7F7 !important;
-  border: 1px solid #E0E0E0;
-  border-radius: 6px;
-  padding: 0.85rem 1rem;
-}
-
-// ---- Tables ----
-
-table.table {
-  thead th {
-    background: #1A1A1A;
-    color: #FFCD00;
-    border-bottom: none;
-    font-weight: 700;
-  }
-  tbody tr:nth-of-type(odd) {
-    background: #FAFAFA;
-  }
-}
-
-// ---- Quarto callouts ----
-
-.callout {
-  border-radius: 6px;
-
-  &.callout-style-default {
-    border-left-width: 4px;
-  }
-
-  &.callout-note      { border-left-color: #FFCD00; }
-  &.callout-tip       { border-left-color: #146C43; }
-  &.callout-important { border-left-color: #B91C1C; }
-  &.callout-warning   { border-left-color: #B78300; }
-  &.callout-caution   { border-left-color: #B3531C; }
-}
-
-// ---- Footer ----
-
-.nav-footer {
-  background: #F7F7F7;
-  border-top: 1px solid #E0E0E0;
-  font-size: 0.88rem;
-  color: #5B6470;
-
-  a { color: #1A1A1A; }
-}
-
-// ---- Custom landing components (used in index.qmd) ----
+// ---- Hero block (used in index.qmd) ----
 
 .hero {
   padding: 3rem 0 2.5rem;
@@ -360,6 +44,8 @@ table.table {
   }
 }
 
+// ---- Three-card grid (used in index.qmd) ----
+
 .cards-3 {
   display: grid;
   gap: 1rem;
@@ -384,7 +70,7 @@ table.table {
     &:hover {
       border-color: #1A1A1A;
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
       background: #FFFFFF;
     }
 
@@ -393,6 +79,7 @@ table.table {
       font-size: 1.2rem;
       font-weight: 800;
       color: #1A1A1A;
+
       &::before {
         content: "";
         display: inline-block;
@@ -415,6 +102,7 @@ table.table {
       margin-top: auto;
       font-weight: 700;
       color: #1A1A1A;
+
       &::after {
         content: " →";
       }
