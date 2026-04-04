@@ -751,11 +751,55 @@ textarea { min-height: 9rem; line-height: 1.6; }
 
   body { color-scheme: dark; }
 
+  .option:hover {
+    background: #2A2A2A;
+  }
+
   .option:has(input:checked) {
     background: #2A2200; /* very dark yellow tint */
   }
 
+  .option:has(input:checked):hover {
+    background: #3A2E00;
+  }
+
   .option input { accent-color: var(--c-fmup-yellow); }
+
+  /* Yellow surfaces always carry dark text — yellow has no readable
+     pairing with light text regardless of the surrounding theme. */
+  .back-bar {
+    border-bottom-color: #1A1A1A;
+  }
+  .back-bar .back-link {
+    color: #1A1A1A;
+    border-color: transparent;
+  }
+  .back-bar .back-link:hover,
+  .back-bar .back-link:focus-visible {
+    background: #1A1A1A;
+    color: var(--c-fmup-yellow);
+    border-color: #1A1A1A;
+  }
+
+  .brand-mark {
+    color: #1A1A1A;
+  }
+
+  .site-header {
+    border-bottom-color: var(--c-fmup-yellow);
+  }
+
+  .btn-primary {
+    color: #1A1A1A;
+    border-color: #1A1A1A;
+  }
+  .btn-primary:hover:not(:disabled) {
+    background: #1A1A1A;
+    color: var(--c-fmup-yellow);
+    border-color: #1A1A1A;
+  }
+  .btn-secondary:hover { color: #1A1A1A; }
+  .btn-ghost:hover { color: #1A1A1A; }
 
   .review-note {
     background: #2A2200;

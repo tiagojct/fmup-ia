@@ -11,7 +11,7 @@
 
   // ---- Single source of truth for the tool version. ----
   // Bump this when statement content (any i18n file) changes.
-  const APP_VERSION = '0.5.0';
+  const APP_VERSION = '0.5.1';
 
   // Schema version for the URL hash payload. Bump when state shape
   // changes incompatibly. Hashes with a different `v` are rejected.

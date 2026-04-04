@@ -21,6 +21,25 @@ This project follows a `MAJOR.MINOR.PATCH` scheme:
 
 ---
 
+## [0.5.1] — 2026-05-10
+
+Dark-mode contrast fixes.
+
+### Fixed
+- `.option:hover` was using a hard-coded light grey (`#EFEFEF`) that
+  flashed bright when an unselected option was hovered in dark mode.
+  Added a dark-mode-specific hover (`#2A2A2A`) and a checked+hover
+  variant (`#3A2E00`).
+- Yellow-background surfaces — the `.back-bar`, the `.brand-mark`
+  yellow tile, the primary button — were inheriting the dark-mode
+  light text from `--c-text`, producing white-on-yellow with poor
+  contrast. Pinned dark text (`#1A1A1A`) on every yellow surface so
+  the institutional yellow always carries readable black.
+- `APP_VERSION` bumped to **0.5.1** and cache-bust query strings on
+  the stylesheet and scripts updated to `?v=0.5.1`.
+
+---
+
 ## [0.5.0] — 2026-05-10
 
 Quadro ↔ Atlas alignment pass.
