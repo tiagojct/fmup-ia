@@ -14,6 +14,14 @@ A **WAME** (_World Association of Medical Editors_) publicou, em Janeiro de 2023
 
 O **COPE** (_Committee on Publication Ethics_) emitiu posição sobre o uso de ferramentas de IA na investigação e na submissão de manuscritos, sublinhando a responsabilidade indelegável dos autores humanos pelo conteúdo publicado (<https://publicationethics.org>).
 
+## Referenciais nacionais portugueses (2026)
+
+Dois documentos institucionais portugueses publicados em Abril de 2026, ambos contemporâneos da redacção do presente Quadro:
+
+- **CNIPES** -- *Inteligência Artificial no Ensino Superior em Portugal: Diagnóstico nacional para governação institucional*. Conselho Nacional para a Inovação Pedagógica no Ensino Superior, Grupo de Trabalho Digital e IA na Educação (Despacho n.º 10945/2025). Coordenação: Nelson Zagalo. DOI: [10.5281/zenodo.19555760](https://doi.org/10.5281/zenodo.19555760). Diagnóstico baseado em inquérito a 68 IES portuguesas. Documento estrutural para o ensino superior português. Articulado com o presente Quadro no [capítulo 12b](12b-panorama-portugal.qmd) e no [Anexo G](G-maturidade-cnipes.qmd).
+
+- **CNE** -- *Inteligência Artificial em Contexto Educativo*. Conselho Nacional de Educação, Colecção Estudos e Relatórios, edição electrónica Abril de 2026 (ISSN 2967-0259). Autoria: António Lopes, António Correia, Ricardo Oliveira. Direcção: Domingos Fernandes. Documento mais amplo, com ênfase no sistema educativo geral (pré-escolar a secundário), de natureza consultiva. Disponível em <https://www.cnedu.pt>.
+
 ## Referências regulatórias e de consulta
 
 Para questões de protecção de dados, conformidade com o AI Act e enquadramento deontológico, recomenda-se consulta regular a:

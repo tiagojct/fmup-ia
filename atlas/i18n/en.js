@@ -250,6 +250,7 @@
       linkInvalid: 'Invalid or outdated link.',
       viewScenario: 'View scenario in the framework',
       principleLabel: 'Principle',
+      footerNationalPlatform: 'Articulated with the National Platform for AI Pedagogical Practices',
     },
     roles: {
       student: 'Student',

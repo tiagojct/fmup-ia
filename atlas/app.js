@@ -11,7 +11,7 @@
 
   // ---- Single source of truth for the tool version. ----
   // Bump this when statement content (any i18n file) changes.
-  const APP_VERSION = '0.5.1';
+  const APP_VERSION = '0.6.0';
 
   // Schema version for the URL hash payload. Bump when state shape
   // changes incompatibly. Hashes with a different `v` are rejected.
@@ -231,6 +231,25 @@
       } else {
         fw.hidden = true;
         if (fwDot) fwDot.hidden = true;
+      }
+    }
+
+    // National platform articulation (CNIPES). Renders only if the
+    // current policy.json declares a `national_platform` block; the
+    // text is linked to the platform reference URL.
+    const np = document.getElementById('footer-national-platform');
+    const npDot = document.getElementById('footer-national-platform-dot');
+    if (np) {
+      if (POLICY && POLICY.national_platform && i.ui.footerNationalPlatform) {
+        np.textContent = i.ui.footerNationalPlatform;
+        if (POLICY.national_platform.url) {
+          np.href = POLICY.national_platform.url;
+        }
+        np.hidden = false;
+        if (npDot) npDot.hidden = false;
+      } else {
+        np.hidden = true;
+        if (npDot) npDot.hidden = true;
       }
     }
   }

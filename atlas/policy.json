@@ -1,10 +1,19 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
   "framework_version": "FMUP Quadro de Referência v1.0 (2026-04-21)",
   "framework_short_pt": "Quadro FMUP v1.0",
   "framework_short_en": "FMUP Framework v1.0",
   "framework_url": "https://tiagojct.eu/fmup-ia/quadro/",
   "issued": "2026-04-21",
+  "national_platform": {
+    "name_pt": "Plataforma Nacional de Práticas Pedagógicas de IA no Ensino Superior",
+    "name_en": "National Platform for AI Pedagogical Practices in Higher Education",
+    "issuer": "CNIPES",
+    "status": "proposta",
+    "reference_pt": "CNIPES, Abril 2026 (em desenvolvimento na Fase 2)",
+    "reference_en": "CNIPES, April 2026 (in development in Phase 2)",
+    "url": "https://doi.org/10.5281/zenodo.19555760"
+  },
   "risk_levels": {
     "1": {
       "label_pt": "Mínimo",

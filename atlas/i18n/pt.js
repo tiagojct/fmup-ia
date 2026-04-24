@@ -258,6 +258,7 @@
       linkInvalid: 'Ligação inválida ou de versão antiga.',
       viewScenario: 'Ver cenário no Quadro',
       principleLabel: 'Princípio',
+      footerNationalPlatform: 'Articula-se com a Plataforma Nacional de Práticas Pedagógicas de IA',
     },
     roles: {
       student: 'Estudante',

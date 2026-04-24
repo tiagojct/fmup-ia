@@ -1,0 +1,103 @@
+# Panorama nacional --- Portugal
+
+O contexto português apresenta, em 2026, uma particularidade analítica relevante: pela primeira vez existem dois documentos institucionais nacionais, ambos publicados em Abril, que diagnosticam a presença de IA na educação e propõem grelhas de leitura -- o relatório do **CNIPES** sobre o ensino superior [@cnipes2026] e o estudo do **Conselho Nacional de Educação** sobre IA em contexto educativo em geral [@cne2026ia]. Pela primeira vez, também, está disponível um inquérito empírico nacional às instituições de ensino superior portuguesas. O presente capítulo articula essas duas camadas -- a normativa e a empírica -- antes de mapear o respectivo alinhamento com o quadro proposto pela FMUP.
+
+## Enquadramento institucional
+
+O CNIPES -- Conselho Nacional para a Inovação Pedagógica no Ensino Superior -- foi mobilizado pelo Despacho n.º 10945/2025 para constituir um Grupo de Trabalho Digital e IA na Educação, financiado pelo Plano de Recuperação e Resiliência. O grupo, coordenado por Nelson Zagalo, publicou em Abril de 2026 o diagnóstico intitulado *Inteligência Artificial no Ensino Superior em Portugal: Diagnóstico nacional para governação institucional*, que integra quatro blocos de evidência: revisão de 30 documentos políticos internacionais, revisão sistemática PRISMA de 191 estudos empíricos, análise da cobertura mediática 2023-2025, e um inquérito institucional consolidado em 68 IES portuguesas [@cnipes2026].
+
+Em paralelo, o CNE -- Conselho Nacional de Educação -- publica, no mesmo mês, o estudo *Inteligência Artificial em Contexto Educativo* (autoria de António Lopes, António Correia e Ricardo Oliveira; direcção de Domingos Fernandes). Diferente do diagnóstico do CNIPES em três aspectos: âmbito mais amplo (sistema educativo, com ênfase do pré-escolar ao ensino secundário); função consultiva sobre política educativa em geral, e não diagnóstico estatístico nacional; estatuto formal de parecer institucional. Convergente, contudo, no diagnóstico-base: "embora exista uma Agenda Nacional de IA e regulamentação geral sobre cibersegurança e proteção de dados, não existe ainda uma visão ética operacional e específica para ambientes educativos, para além de referenciais esporádicos a diretrizes internacionais" [@cne2026ia, p. 22]. É precisamente esse vazio que a proposta da FMUP pretende cobrir ao nível de uma faculdade.
+
+## Diagnóstico empírico nacional (CNIPES, 68 IES)
+
+O inquérito institucional do CNIPES revela um sistema universitário português em três velocidades distintas conforme o domínio considerado. No ensino, 52,9% das IES reportam adopção já existente e 25,0% indicam situações em desenvolvimento. Na investigação, os valores correspondentes são 42,6% e 25,0%. Na gestão académica, apenas 26,5% reportam adopção e 29,4% iniciativas em desenvolvimento -- o domínio menos consolidado, com 44,2% de respostas "Não" ou "N/A" [@cnipes2026, p. 30, Tabela 6].
+
+Cruzando os três domínios, 39,7% das IES reportam actividade nas três áreas, 32,4% em duas, 17,6% em apenas uma e 10,3% em nenhuma. Contudo, quando se restringe a leitura a instituições com adopção plena nos três domínios, esse universo reduz-se a apenas 19,1% das IES. "Há movimento, mas ainda não consolidação transversal" [@cnipes2026, p. 30].
+
+O dado que melhor caracteriza o estado actual respeita à **maturidade das políticas institucionais**: apenas **14,7% das IES portuguesas reportam políticas, regulamentos ou orientações institucionais sobre o uso de IA já em prática**. 42,6% indicam políticas em elaboração, e 42,6% afirmam não dispor ainda de tal enquadramento [@cnipes2026, p. 31, Tabela 7]. O contraste por tipo de instituição é também informativo: nas IES privadas, 69,0% reportam políticas em prática ou em elaboração; nas públicas, esse valor desce para 38,5% -- considerando apenas políticas já em prática, os valores são 16,7% nas privadas e 11,5% nas públicas [@cnipes2026, p. 31].
+
+A interpretação é menos a de um sistema parado e mais a de um sistema em desfasamento. O CNIPES nomeia-o explicitamente: "O sistema está, assim, a avançar mais depressa do que a governação que o deveria enquadrar" [@cnipes2026, p. 31]. É a propósito desta tensão que a presente proposta para a FMUP se inscreve --- um esforço institucional de ajustar a velocidade da governação à velocidade da adopção, sem cair na alternativa redutora entre permissão genérica e proibição arbitrária.
+
+## Quatro desequilíbrios estruturais
+
+A leitura interpretativa que o CNIPES extrai do cruzamento entre os quatro blocos de evidência organiza-se em torno de **quatro desequilíbrios estruturais** que o ensino superior português partilha com a maioria dos sistemas internacionais [@cnipes2026, pp. 34-37]:
+
+1. **Princípios amadurecidos vs procedimentos inconsistentes.** O vocabulário ético (equidade, transparência, responsabilidade, centralidade humana) está estabilizado, mas a sua tradução operacional permanece desigual. Em Portugal, a tradução manifesta-se através de "obrigações de declaração do uso, muitas vezes distribuídas por unidades curriculares ou regulamentos locais" [@cnipes2026, p. 38] --- uma regulação fragmentada, com múltiplas portas e enquadramentos parciais.
+
+2. **Uso crescente vs verificação insuficiente.** A literatura empírica revista mostra ganhos pedagógicos reais, mas dependentes de mediação humana; a análise mediática torna visíveis falhas de interpretação, automação sem verificação e confiança excessiva em resultados plausíveis mas não fiáveis. No caso português, a contenção em torno do uso de IA como apoio directo à avaliação é o sinal mais nítido deste desequilíbrio -- "as instituições reconhecem implicitamente que, quando a IA entra em processos de avaliação, aconselhamento, decisão ou produção de evidência, o problema deixa de ser apenas o uso e passa a ser a validação do resultado e a identificação de responsabilidade" [@cnipes2026, p. 36].
+
+3. **Projectos-piloto abundantes vs evidência longitudinal frágil.** Múltiplas experiências locais; pouca acumulação organizada de evidência comparável. O risco não é a inexistência de inovação, mas a sua dispersão sem síntese institucional reaproveitável.
+
+4. **Aceleração operacional vs risco de erosão do julgamento.** O ganho de eficiência da IA pode coexistir com a delegação silenciosa de responsabilidade interpretativa. "A velocidade com que a IA entrou em rotinas de trabalho académico cria a tentação de deslocar para a máquina aquilo que antes exigia fricção cognitiva, comparação, justificação e demora interpretativa" [@cnipes2026, p. 37]. Este é o desequilíbrio em que princípio 1 do Quadro FMUP -- agência humana, na formulação do capítulo [2](02-principios.qmd) -- se cruza com o risco epistémico que o CNIPES nomeia.
+
+## Risco epistémico dos LLMs
+
+Um contributo conceptual relevante do diagnóstico CNIPES é a distinção entre camadas técnicas da IA por **natureza do risco** [@cnipes2026, p. 12, Tabela 1]:
+
+| Camada de IA | Tipo de erros | Natureza do risco |
+|---|---|---|
+| Machine Learning | Computacional ou lógico | Optimização defeituosa, erros de codificação |
+| Deep Learning | Interpretativo | Classificação incorrecta ou viés no reconhecimento de padrões |
+| Large Language Models | Epistémico | Afirmações plausíveis, mas não verificáveis ("alucinações") |
+
+Esta grelha é complementar -- não substituta -- da taxonomia HEAT-AI em quatro níveis adoptada pelo Quadro FMUP (capítulo [6](06-infraestrutura.qmd)). Enquanto o HEAT-AI categoriza o **uso** institucional pelo risco que cada combinação papel-tarefa-ferramenta gera, a taxonomia CNIPES caracteriza o **tipo** de erro intrínseco a cada camada técnica. A leitura conjunta clarifica porque é que as ferramentas com base em LLMs (a esmagadora maioria das que estão presentes em contexto académico em 2026) exigem rotinas de verificação humana qualitativamente diferentes das que se aplicariam a sistemas anteriores: "Os LLMs automatizam linguagem, não conhecimento; simulam raciocínio sem garantir verdade" [@cnipes2026, p. 12].
+
+## Cinco critérios mínimos de maturidade institucional
+
+A partir destes desequilíbrios, o CNIPES propõe uma grelha mínima de cinco critérios de maturidade institucional [@cnipes2026, pp. 37-38]:
+
+1. **Mediação humana** -- cada uso de IA em processos críticos inclui interpretação humana explícita e responsabilização clara.
+2. **Verificação** -- resultados gerados por IA são tratados como objectos de auditoria, validação e contextualização.
+3. **Transparência** -- declaração proporcional, contextual e inteligível do uso de IA, evitando opacidade e burocratização.
+4. **Literacia afectiva** -- reconhecimento dos efeitos da IA sobre autonomia, dependência, ansiedade e autoeficácia, para além da literacia técnica.
+5. **Decisão baseada em evidências** -- estratégias institucionais ancoradas em dados sobre práticas, impactos, limites e resultados.
+
+O detalhe operacional destes cinco critérios, em formato accionável para auto-avaliação institucional, está desenvolvido no [Anexo G](G-maturidade-cnipes.qmd).
+
+## Três Pilares (Saber sobre IA / Fazer com IA / Ser sem IA)
+
+A grelha de maturidade é, por sua vez, reenquadrada na estrutura dos **Três Pilares da integração da IA no ensino superior** [@cnipes2026, pp. 38-41, citando Zagalo & Couvaneiro 2025]:
+
+- **I. Saber sobre IA** --- literacias conceptuais, éticas e epistémicas. Compreender a lógica da IA, os seus limites, os seus enviesamentos e os seus efeitos humanos.
+- **II. Fazer com IA** --- aplicação pedagógica e criativa. Incorporar a IA de forma crítica e transparente no ensino e na aprendizagem.
+- **III. Ser sem IA** --- restrição crítica e autorregulação afectiva. Desenvolver a sabedoria para reconhecer quando não usar IA.
+
+O terceiro pilar, em particular, articula-se directamente com o princípio 1 da agência humana do Quadro FMUP. "Trata-se de cultivar julgamento, presença e capacidade de decidir quando não usar IA, ou quando limitar o seu papel" [@cnipes2026, p. 41]. O CNE 2026 sublinha a mesma exigência num registo deontológico mais alto: "A autonomia cognitiva afirma-se, assim, como um imperativo ético e o pilar da agência epistemológica" [@cne2026ia, p. 20]. A subsecção dedicada do capítulo [2](02-principios.qmd#tres-pilares) integra esta estrutura na arquitectura do Quadro FMUP como leitura transversal dos sete princípios.
+
+## Alinhamento Quadro FMUP × CNIPES × CNE
+
+A tabela seguinte mapeia o cruzamento entre os sete princípios do Quadro FMUP, os cinco critérios de maturidade do CNIPES e os Três Pilares.
+
+| Princípio FMUP | Critério CNIPES | Pilar |
+|---|---|---|
+| 1. Agência humana | Mediação humana | III. Ser sem IA |
+| 2. Integridade académica | Verificação | II. Fazer com IA |
+| 3. Protecção de dados | Verificação + Transparência | (transversal) |
+| 4. Transparência | Transparência | I. Saber sobre IA |
+| 5. Equidade de acesso | Decisão baseada em evidências | (transversal) |
+| 6. Literacia crítica | Literacia afectiva | I. Saber sobre IA |
+| 7. Revisão contínua | Decisão baseada em evidências | (transversal) |
+
+O alinhamento é forte mas não trivial. A "literacia afectiva" do CNIPES estende a definição de literacia para além do conhecimento técnico e ético, integrando os efeitos da IA sobre motivação, atenção e sentido de autoria -- dimensão que o princípio 6 do Quadro FMUP deve incorporar explicitamente na implementação (ver capítulo [7](07-implementacao.qmd)). Inversamente, a articulação entre integridade académica e verificação clarifica que a integridade não se mede pela ausência de uso, mas pela presença de rotinas validadas de auditoria do output.
+
+## Posição CNE 2026: complementos para o sistema educativo
+
+O documento do CNE adopta um registo deliberadamente mais amplo. As suas seis secções organizam-se em torno do ecossistema da IA na educação --- infraestrutura digital, aplicação de ferramentas e literacia específica, formação docente, proficiência e currículo, ética e responsabilidade, considerações finais [@cne2026ia]. Para o âmbito específico da FMUP, três contributos do CNE merecem registo:
+
+Primeiro, a **noção de tarefas IA-resilientes**: o foco do desenvolvimento profissional docente "deve incidir no desenho de tarefas robustas face à IA ('IA-resilientes'), nas metodologias de avaliação e na utilização de ferramentas generativas, garantindo sempre a reflexão crítica com os alunos" [@cne2026ia, p. 19]. Esta formulação operacional reforça a [vertente docente](04-docentes.qmd) do Quadro FMUP e a cláusula tipo do [Anexo B](B-clausula.qmd).
+
+Segundo, a **insistência na infraestrutura nacional soberana**: o CNE recomenda "o uso de dispositivos adequados ao ensino, cujo código seja aberto e que, garantidamente, não rastreiem dados" [@cne2026ia, p. 21]. Em Portugal, esta recomendação é operacionalizada pela plataforma IAedu da FCT/FCCN [@iaedu2025] já adoptada pelo Quadro FMUP como infraestrutura institucional de primeira linha (capítulo [6](06-infraestrutura.qmd)).
+
+Terceiro, a **dimensão da literacia em quatro eixos** -- técnico, avaliativo, ético-regulatório e prático -- que o CNE articula com a integração progressiva de "alfabetização algorítmica e de IA" desde os primeiros ciclos do ensino básico [@cne2026ia, pp. 20-21]. Esta articulação curricular vertical é menos relevante para o âmbito FMUP, mas serve de enquadramento para a preparação prévia que os estudantes hoje trazem para os ciclos de estudos da Faculdade.
+
+## Plataforma Nacional de Práticas Pedagógicas de IA (proposta CNIPES)
+
+O relatório CNIPES não se encerra no diagnóstico. Propõe a criação de uma **Plataforma Nacional de Práticas Pedagógicas de IA no Ensino Superior** como estrutura leve de articulação, apoio à capacitação e circulação de evidência útil entre instituições, em desenvolvimento na Fase 2 do projecto [@cnipes2026, secção 8]. A ferramenta institucional [**Atlas**](../atlas/), descrita no [Anexo D](D-guia.qmd), articula-se naturalmente com esta proposta: as declarações estruturadas geradas pela Atlas, e a avaliação guidante de risco que as acompanha, constituem precisamente o tipo de prática institucional registável e federável que a Plataforma CNIPES procura agregar. Quando -- e se -- a Plataforma se concretizar, a Atlas estará em condições de contribuir o referencial FMUP como nó da rede nacional.
+
+## Síntese para o Quadro FMUP
+
+Três conclusões emergem para a proposta institucional da FMUP. A primeira é que o vazio normativo identificado pelo CNE -- "não existe ainda uma visão ética operacional e específica para ambientes educativos" [@cne2026ia, p. 22] -- e o desfasamento entre adopção e governação medido empiricamente pelo CNIPES -- apenas 14,7% das IES com políticas em prática -- legitimam directamente a presente proposta. O Quadro FMUP não está a antecipar um problema hipotético: está a responder a uma lacuna observável e mensurável ao nível do sistema.
+
+A segunda é que o diagnóstico nacional valida a arquitectura adoptada pelo Quadro -- sete princípios, três vertentes, infraestrutura institucional, declaração obrigatória, taxonomia de risco em quatro níveis -- e enriquece-a com três contributos: a grelha de maturidade em cinco critérios (Anexo G), a taxonomia de risco por camadas técnicas (capítulo 6), e a estrutura dos Três Pilares como leitura transversal (capítulo 2). Nenhum destes três contributos exige reescrever o Quadro; todos o reforçam.
+
+A terceira é que a Atlas, enquanto ferramenta institucional, deixa de ser apenas o "gerador de declarações" da FMUP e passa a ser uma prática registável -- com versão, com framework subjacente e com avaliação guidante -- candidata a contribuir para a Plataforma nacional proposta pelo CNIPES. A articulação não é apenas conceptual: é uma proposta operacional do Quadro FMUP para o sistema português de ensino superior.

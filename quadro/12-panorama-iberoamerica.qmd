@@ -2,6 +2,10 @@
 
 O espaço ibero-americano caracteriza-se por uma trajectória recente de formalização institucional de políticas de GenAI, com aceleração marcada em 2025-2026 e por uma convergência crescente em torno de instrumentos nacionais (em Portugal e em Itália), supranacionais (CRUE-TIC, CRUI) ou regionais (Red CLARA). A análise é pertinente para a FMUP por duas razões. A primeira é geográfica e linguística: a tradução institucional dos requisitos europeus para o português europeu --- e, mais latamente, para o universo lusófono --- é uma tarefa em que a FMUP pode contribuir directamente. A segunda é estratégica: o ritmo nacional português, codificado na Agenda Nacional de Inteligência Artificial (ANIA), define o horizonte de financiamento, infraestrutura e conformidade em que qualquer proposta institucional terá de operar.
 
+::: {.callout-note}
+O retrato específico do ensino superior português em 2026 -- com o diagnóstico empírico CNIPES (68 IES inquiridas), os Três Pilares e os cinco critérios de maturidade institucional -- está desenvolvido no [capítulo seguinte](12b-panorama-portugal.qmd).
+:::
+
 ## Portugal: contexto nacional e ANIA
 
 A Resolução do Conselho de Ministros n.º 2/2026, de 8 de Janeiro de 2026, aprovou a Agenda Nacional de Inteligência Artificial (ANIA) e o respectivo Plano de Acção 2026-2030, mobilizando mais de 400 milhões de euros, maioritariamente de origem europeia [@ania2026]. Os quatro eixos são (I) Infraestrutura e Dados, (II) Inovação e Adopção, (III) Talento e Competências, e (IV) Governação e conformidade com o Regulamento Europeu da IA. O plano prevê o reforço do supercomputador Deucalion e o alinhamento com o consórcio EuroHPC, e cria o Quadro Nacional de Competências Inteligentes (QNCI), com expansão de microcredenciais. A monitorização da execução cabe ao Conselho para o Digital na Administração Pública. Para a FMUP, a ANIA é simultaneamente uma fonte de oportunidade (financiamento, infraestrutura nacional, alinhamento com QNCI) e uma fonte de obrigação (a conformidade com o EU AI Act é eixo formal do Plano).

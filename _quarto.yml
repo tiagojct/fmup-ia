@@ -9,7 +9,7 @@ project:
     - "quadro/index.qmd"
     - "quadro/0*.qmd"
     - "quadro/1*.qmd"
-    - "quadro/[A-F]-*.qmd"
+    - "quadro/[A-G]-*.qmd"
     - "quadro/references.qmd"
     - "!quadro/guias/**"
     - "!quadro/full-references.md"
@@ -73,6 +73,7 @@ website:
             - quadro/10-panorama-eua.qmd
             - quadro/11-panorama-europa.qmd
             - quadro/12-panorama-iberoamerica.qmd
+            - quadro/12b-panorama-portugal.qmd
             - quadro/13-frameworks-supranacionais.qmd
             - quadro/14-camada-medica.qmd
             - quadro/15-lacunas.qmd
@@ -95,6 +96,7 @@ website:
             - quadro/D-guia.qmd
             - quadro/E-cenarios.qmd
             - quadro/F-glossario.qmd
+            - quadro/G-maturidade-cnipes.qmd
         - quadro/references.qmd
 
   page-footer:

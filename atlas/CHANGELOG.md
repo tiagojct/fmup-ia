@@ -21,6 +21,38 @@ This project follows a `MAJOR.MINOR.PATCH` scheme:
 
 ---
 
+## [0.6.0] — 2026-05-11
+
+National articulation with the CNIPES diagnosis.
+
+### Added
+- `policy.json` ships a new top-level `national_platform` block
+  declaring the Plataforma Nacional de Práticas Pedagógicas de IA no
+  Ensino Superior proposed by the CNIPES (Conselho Nacional para a
+  Inovação Pedagógica no Ensino Superior) in its April 2026 report
+  (DOI 10.5281/zenodo.19555760). The block carries pt/en names, issuer,
+  status (`proposta`), and the reference URL.
+- Footer now renders, when `policy.national_platform` is present, a
+  short articulated link "Articula-se com a Plataforma Nacional de
+  Práticas Pedagógicas de IA" / "Articulated with the National
+  Platform for AI Pedagogical Practices" pointing to the platform's
+  reference URL.
+- New i18n string `footerNationalPlatform` (pt/en).
+
+### Changed
+- `policy.version` bumped to **1.2.0** (new field added; backwards
+  compatible — earlier policies without `national_platform` continue
+  to work, the footer line stays hidden).
+- `APP_VERSION` bumped to **0.6.0**; `index.html` cache-bust query
+  strings updated to `?v=0.6.0`.
+
+### Notes
+- The CNIPES Plataforma is still a proposal in the report's Phase 2;
+  the Atlas declares articulation, not integration. When and if the
+  Platform is published, this block becomes a federation pointer.
+
+---
+
 ## [0.5.1] — 2026-05-10
 
 Dark-mode contrast fixes.

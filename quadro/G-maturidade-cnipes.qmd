@@ -1,0 +1,89 @@
+# Grelha de maturidade institucional (CNIPES) {#sec-anexo-g}
+
+Este anexo operacionaliza, para uso da FMUP, os **cinco critérios mínimos de maturidade institucional** propostos pelo CNIPES no seu diagnóstico nacional [@cnipes2026, secção 6.3]. Cada critério é articulado com os sete princípios do Quadro FMUP (capítulo [2](02-principios.qmd)), com as três vertentes (estudantes / docentes / investigadores), e com 2-3 indicadores observáveis em auto-avaliação institucional anual. O objectivo é fornecer, ao Grupo de Trabalho para GenAI da FMUP, uma grelha que possa ser preenchida ano após ano e comparada longitudinalmente.
+
+A grelha não substitui os procedimentos definidos nos capítulos [6](06-infraestrutura.qmd) e [7](07-implementacao.qmd); complementa-os com uma leitura de prontidão institucional alinhada com o referencial nacional.
+
+## 1. Mediação humana
+
+**Definição.** Cada utilização institucional de IA em processos críticos -- avaliação, classificação, recrutamento, decisão clínica, revisão por pares -- inclui interpretação humana explícita, identificável e responsabilizável.
+
+**Princípios FMUP associados:** 1 (agência humana), 2 (integridade).
+
+**Vertentes afectadas:** docentes (avaliação), investigadores (revisão por pares).
+
+**Indicadores anuais:**
+
+- Percentagem de unidades curriculares da FMUP que declaram regime explícito de uso/proibição de IA na sua cláusula tipo do programa ([Anexo B](B-clausula.qmd)). _Meta na Fase 2 (2027-2028): 100%._
+- Número de casos de classificação assistida por IA registados no ano lectivo em que a decisão final é, por regra, validada manualmente pelo docente responsável. _Critério: validação humana substantiva em 100% dos casos._
+- Existência de uma cláusula expressa em todos os contratos com fornecedores de IA institucional que reserve à instituição a decisão final em processos avaliativos ou clínicos.
+
+## 2. Verificação
+
+**Definição.** Resultados gerados por IA são tratados como objectos de auditoria, validação e contextualização -- não como evidência aceite por defeito. A verificação deixa de ser prática individual de cautela e passa a constituir princípio organizador de ensino, avaliação, investigação e gestão.
+
+**Princípios FMUP associados:** 2 (integridade), 3 (protecção de dados), 4 (transparência).
+
+**Vertentes afectadas:** estudantes (autoria), docentes (avaliação), investigadores (output científico).
+
+**Indicadores anuais:**
+
+- Percentagem de trabalhos avaliativos com declaração de uso de IA submetidos no ano lectivo, sobre o universo de trabalhos em regimes "permitido com divulgação" ou "permitido sem restrições". _Meta: ≥ 90% até final da Fase 2._
+- Número de auditorias internas de uso institucional de IA realizadas no ano (e.g. amostras de declarações de uso, amostras de cláusulas de UC, amostras de outputs científicos com IA declarada).
+- Existência de procedimento documentado para verificação de outputs de IA em contexto de revisão sistemática ou meta-análise, em coordenação com a vertente investigadores.
+
+## 3. Transparência
+
+**Definição.** Declaração proporcional, contextual e inteligível do uso de IA. Nem opacidade (uso não declarado) nem burocratização (formalismo sem informação útil).
+
+**Princípios FMUP associados:** 4 (transparência), 2 (integridade).
+
+**Vertentes afectadas:** transversal a todas.
+
+**Indicadores anuais:**
+
+- Adopção institucional da declaração-padrão do [Anexo A](A-declaracao.qmd) (ou versão gerada pela [Atlas](../atlas/)). _Meta: declaração obrigatória em todos os trabalhos avaliativos a partir da Fase 1._
+- Existência de uma página institucional pública que lista as ferramentas de IA usadas com cobertura contratual pela FMUP e os respectivos regimes de protecção de dados (suficiente para que docentes possam decidir em conformidade).
+- Inclusão da versão do Quadro de Referência em cada declaração gerada (já assegurado pela [Atlas](../atlas/) versão 0.5.0 ou superior).
+
+## 4. Literacia afectiva
+
+**Definição.** Reconhecimento dos efeitos da IA sobre autonomia, dependência, ansiedade e autoeficácia. A literacia institucional não se limita aos eixos técnico-ético-prático: integra também o impacto emocional e cultural do uso continuado de IA.
+
+**Princípios FMUP associados:** 6 (literacia crítica), 1 (agência humana).
+
+**Vertentes afectadas:** estudantes (motivação e sentido de autoria), docentes (formação para reconhecer sinais), serviços (apoio psicopedagógico).
+
+**Indicadores anuais:**
+
+- Inclusão de módulo sobre efeitos cognitivos e afectivos do uso de IA -- citando explicitamente Shin et al. 2024 [@shin2024impact] e León-Domínguez 2024 [@leondominguez2024cognitive] -- no plano de formação institucional.
+- Realização de pelo menos uma sessão anual sobre IA e bem-estar dirigida a estudantes, em coordenação com o gabinete de apoio psicopedagógico.
+- Pelo menos uma unidade curricular com momento avaliativo explicitamente sem IA ("ser sem IA", na formulação do CNIPES) -- presencial, oral ou de processo --, articulada com a competência avaliada.
+
+## 5. Decisão baseada em evidências
+
+**Definição.** Estratégias institucionais ancoradas em dados sobre práticas, impactos, limites e resultados. Não se reage à pressão da novidade tecnológica nem se multiplicam regras por antecipação abstracta.
+
+**Princípios FMUP associados:** 7 (revisão contínua), 5 (equidade de acesso).
+
+**Vertentes afectadas:** Grupo de Trabalho para GenAI da FMUP; serviços de informática; conselho pedagógico.
+
+**Indicadores anuais:**
+
+- Publicação do relatório anual do Grupo de Trabalho (definido no capítulo [6](06-infraestrutura.qmd)) com os dados quantitativos e qualitativos do ano lectivo.
+- Número de incidentes de integridade académica relacionados com IA, com análise comparativa face ao ano anterior.
+- Participação anual da FMUP no inquérito CNIPES (ou seu sucessor) e na Plataforma Nacional de Práticas Pedagógicas de IA, quando esta estiver operacional.
+
+## Grelha-resumo
+
+A tabela seguinte resume a articulação entre os cinco critérios, os princípios e os Três Pilares (capítulo [2](02-principios.qmd#tres-pilares)):
+
+| # | Critério (CNIPES) | Princípios FMUP | Pilar | Indicadores |
+|---|---|---|---|---|
+| 1 | Mediação humana | 1, 2 | III. Ser sem IA | UC com cláusula explícita; validação manual em decisões avaliativas |
+| 2 | Verificação | 2, 3, 4 | II. Fazer com IA | % trabalhos com declaração; auditorias internas; procedimento revisão sistemática |
+| 3 | Transparência | 4, 2 | I. Saber sobre IA | Adopção declaração-padrão; página pública de ferramentas; versionamento |
+| 4 | Literacia afectiva | 6, 1 | I. Saber sobre IA | Módulo afectivo na formação; sessão anual estudantes; UC com momento sem-IA |
+| 5 | Decisão baseada em evidências | 7, 5 | transversal | Relatório anual GT; análise incidentes; participação na Plataforma CNIPES |
+
+A grelha é proposta como instrumento operacional de auto-avaliação anual pelo Grupo de Trabalho para GenAI da FMUP (definido em capítulo [6](06-infraestrutura.qmd)), com primeira aplicação prevista no fecho da Fase 1 (2027) e revisão anual.

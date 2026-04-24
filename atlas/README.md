@@ -35,6 +35,29 @@ If `policy.json` cannot be loaded (e.g. opening `index.html` directly via
 works; only the institutional risk panel is disabled and a corresponding
 notice is shown.
 
+## Articulation with the CNIPES National Platform
+
+From v0.6.0 (April 2026), the `policy.json` carries a `national_platform`
+block declaring articulation with the **Plataforma Nacional de Práticas
+Pedagógicas de IA no Ensino Superior** proposed by the **CNIPES**
+(Conselho Nacional para a Inovação Pedagógica no Ensino Superior) in
+its April 2026 diagnostic report (DOI
+[10.5281/zenodo.19555760](https://doi.org/10.5281/zenodo.19555760)).
+The footer now renders a short articulated link to the platform's
+reference URL, when present.
+
+The CNIPES platform is, at the time of writing, a proposal under
+development in Phase 2 of the CNIPES project. Atlas declares
+articulation, not integration: when and if the Platform is published,
+the Atlas-generated declarations and the framework-versioned risk
+evaluations can contribute as registrable institutional practice.
+
+The detailed mapping between Atlas / the FMUP framework and the
+CNIPES diagnosis is in
+[Chapter 12b — Panorama nacional — Portugal](https://tiagojct.eu/fmup-ia/quadro/12b-panorama-portugal.html)
+and in [Annex G — Grelha de maturidade](https://tiagojct.eu/fmup-ia/quadro/G-maturidade-cnipes.html)
+of the FMUP framework.
+
 ## Use it
 
 - Hosted: <https://tiagojct.eu/fmup-ia/atlas/> (deployed to GitHub Pages on every

@@ -22,3 +22,5 @@ O quadro será revisto anualmente, com revisões extraordinárias quando necess�
 - **Adesão a plataformas institucionais:** proporção de utilizadores activos da IAedu ou equivalente, face à utilização declarada de plataformas comerciais.
 
 Os indicadores devem ser reportados no relatório anual do grupo de trabalho e servir de base à revisão do quadro.
+
+A este painel quantitativo acrescenta-se uma leitura por **critérios de maturidade institucional**, adoptada do diagnóstico nacional CNIPES [@cnipes2026, secção 6.3]: mediação humana, verificação, transparência, literacia afectiva, e decisão baseada em evidências. Esta grelha permite uma auto-avaliação qualitativa anual da prontidão institucional da FMUP, distinta -- mas complementar -- dos indicadores quantitativos acima. O detalhe operacional, com 2-3 indicadores específicos para cada critério articulados com os sete princípios e as três vertentes, está desenvolvido no [Anexo G](G-maturidade-cnipes.qmd).
