@@ -20,7 +20,7 @@ A grelha não substitui os procedimentos definidos nos capítulos [6](06-infraes
 
 ## 2. Verificação
 
-**Definição.** Resultados gerados por IA são tratados como objectos de auditoria, validação e contextualização -- não como evidência aceite por defeito. A verificação deixa de ser prática individual de cautela e passa a constituir princípio organizador de ensino, avaliação, investigação e gestão.
+**Definição.** Resultados gerados por IA são tratados como objectos de auditoria, validação e contextualização, em vez de evidência aceite por defeito. A verificação institucionaliza-se: passa de prática individual de cautela a princípio organizador de ensino, avaliação, investigação e gestão.
 
 **Princípios FMUP associados:** 2 (integridade), 3 (protecção de dados), 4 (transparência).
 
@@ -34,7 +34,7 @@ A grelha não substitui os procedimentos definidos nos capítulos [6](06-infraes
 
 ## 3. Transparência
 
-**Definição.** Declaração proporcional, contextual e inteligível do uso de IA. Nem opacidade (uso não declarado) nem burocratização (formalismo sem informação útil).
+**Definição.** Declaração proporcional, contextual e inteligível do uso de IA, sem opacidade (uso não declarado) nem burocratização (formalismo sem informação útil).
 
 **Princípios FMUP associados:** 4 (transparência), 2 (integridade).
 
