@@ -80,13 +80,15 @@
       font-weight: 800;
       color: #1A1A1A;
 
+      // Yellow ::before square removed for a calmer card header.
+      // Kept the rule placeholder commented out for fast re-enable.
       &::before {
-        content: "";
-        display: inline-block;
-        width: 12px;
-        height: 12px;
-        background: #FFCD00;
-        margin-right: 0.55rem;
+        content: none;
+        display: none;
+        width: 0;
+        height: 0;
+        background: transparent;
+        margin-right: 0;
         vertical-align: middle;
       }
     }

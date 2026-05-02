@@ -17,10 +17,11 @@ $body-color:         $fmup-text !default;
 $link-color:         $fmup-text !default;
 
 // Typography: Atkinson Hyperlegible Next (Braille Institute) for body and
-// headings; Geist Mono for code. Loaded via the include-in-header <link>
-// tag declared in _extension.yml; SCSS only sets the font-family stack.
+// headings; Atkinson Hyperlegible Mono for code. Loaded via the
+// include-in-header <link> tag declared in _extension.yml; SCSS only sets
+// the font-family stack.
 $font-family-sans-serif: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !default;
-$font-family-monospace:  "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace !default;
+$font-family-monospace:  "Atkinson Hyperlegible Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace !default;
 $headings-font-family:   $font-family-sans-serif !default;
 $headings-font-weight:   700 !default;
 $headings-color:         $fmup-text !default;
@@ -70,14 +71,79 @@ article a:not(.citation):not(.no-underline),
   }
 }
 
-// Citation / cross-reference numbers (e.g. [1], [Anexo A], anchor icons
-// next to headings) — no yellow underline.
-main a.citation,
+// Citation / cross-reference numbers (e.g. [1], [Anexo A]).
+// Rendered by Pandoc citeproc as <span class="citation"><a ...>[N]</a></span>.
+// Render as a soft grey "chip" — neutral, scannable, distinct from the
+// yellow prose-link treatment. Hover state goes slightly darker grey.
+main span.citation,
+.content span.citation,
+article span.citation,
+.quarto-document-content span.citation {
+  background: $fmup-surface;
+  padding: 0.04em 0.4em;
+  border-radius: 3px;
+  font-size: 0.88em;
+  transition: background 120ms ease-out;
+  white-space: nowrap;
+
+  &:hover {
+    background: $fmup-border;
+  }
+
+  a, a:hover {
+    background: transparent !important;
+    text-decoration: none !important;
+    color: $fmup-text !important;
+    font-weight: 500;
+  }
+}
+
+// Footnote markers (superscript numbers) get the same chip treatment,
+// at a smaller scale because they sit inline as superscript.
+main sup a.footnote-ref {
+  background: $fmup-surface;
+  padding: 0.04em 0.3em;
+  border-radius: 3px;
+  text-decoration: none !important;
+  color: $fmup-text !important;
+  font-weight: 500;
+
+  &:hover {
+    background: $fmup-border;
+  }
+}
+
+// Internal cross-references (links to other chapters / anexos / pages
+// of the same site). Pandoc renders these from markdown like
+// `[capítulo 6](06-infraestrutura.qmd)` as `<a href="06-…html">`.
+// Style as a soft yellow chip so they stand apart from the yellow
+// underline of generic prose links AND from the grey chip of
+// citations — three distinct affordances:
+//   • prose link → yellow underline (external/in-context reading)
+//   • citation [N] → grey chip (academic reference)
+//   • internal xref → yellow chip (jump to another chapter)
+main a[href*=".html"]:not([href^="http"]):not([href^="//"]):not(.citation):not(.no-underline),
+.content a[href*=".html"]:not([href^="http"]):not([href^="//"]):not(.citation):not(.no-underline),
+article a[href*=".html"]:not([href^="http"]):not([href^="//"]):not(.citation):not(.no-underline),
+.quarto-document-content a[href*=".html"]:not([href^="http"]):not([href^="//"]):not(.citation):not(.no-underline) {
+  background: rgba($fmup-yellow, 0.22);
+  padding: 0.04em 0.4em;
+  border-radius: 3px;
+  text-decoration: none !important;
+  color: $fmup-text !important;
+  font-weight: 500;
+  transition: background 120ms ease-out;
+
+  &:hover {
+    background: $fmup-yellow !important;
+    text-decoration: none !important;
+  }
+}
+
+// Other quiet anchors (cross-references, anchor-link icons next to
+// headings) keep no decoration and no background.
 main a.quarto-xref,
 main a.anchorjs-link,
-main .citation a,
-main sup a,
-main .footnote-ref a,
 main .header-anchor {
   text-decoration: none;
   background: transparent;
@@ -173,16 +239,25 @@ h1 { font-weight: 800; }
     color: $fmup-text;
   }
 
+  // Part-heading rows ("Parte I — …", "Parte II — …"). Sit slightly
+  // separated from the surrounding chapter list with a bit of space
+  // above and a thin top border.
+  .sidebar-item-section > .sidebar-item-container > .sidebar-item-text,
   .sidebar-section .sidebar-section-item {
-    font-weight: 700;
+    font-weight: 800;
     color: $fmup-text;
+    padding-top: 0.55rem;
+    padding-bottom: 0.25rem;
+    margin-top: 0.4rem;
+    letter-spacing: -0.005em;
   }
 
+  // Chapter rows: tighter vertical padding, consistent left edge.
   .sidebar-item-text {
     color: $fmup-text;
     text-decoration: none;
-    padding: 0.45rem 0.6rem;
-    line-height: 1.45;
+    padding: 0.3rem 0.6rem;
+    line-height: 1.32;
     display: block;
   }
 
@@ -192,8 +267,25 @@ h1 { font-weight: 800; }
     color: $fmup-text;
     font-weight: 700;
     border-left: 3px solid $fmup-text;
-    padding: 0.55rem 0.6rem 0.55rem calc(0.6rem - 3px);
+    padding: 0.3rem 0.6rem 0.3rem calc(0.6rem - 3px);
   }
+
+  // ---- Chapter numbering via CSS counters ----
+  // Reset the counter at the sidebar root; increment once per chapter
+  // row (i.e. .sidebar-item that is NOT a section heading). Part
+  // headings ("Parte I —", "Parte II —", "Anexos") therefore do not
+  // increment the counter and do not show a number. The result: a
+  // running 1, 2, 3, … across the whole book, matching the chapter
+  // file-prefix order in `quadro/`.
+  counter-reset: fmup-chapter;
+}
+
+.sidebar .sidebar-item:not(.sidebar-item-section) > .sidebar-item-container > .sidebar-item-text::before {
+  counter-increment: fmup-chapter;
+  content: counter(fmup-chapter) ". ";
+  color: $fmup-text-muted;
+  font-weight: 500;
+  margin-right: 0.15em;
 }
 
 // ---- Page TOC ("Nesta página") + repo actions ----
@@ -375,8 +467,8 @@ div.callout.callout-note,
 div.callout-note.callout {
   border-left-color: $fmup-yellow !important;
 }
-div.callout.callout-note .callout-header,
-div.callout-note.callout-style-default > .callout-header {
+div.callout.callout-note .callout-title,
+div.callout-note .callout-title {
   background-color: rgba($fmup-yellow, 0.15) !important;
 }
 div.callout-note .callout-icon::before {
@@ -388,8 +480,8 @@ div.callout.callout-tip,
 div.callout-tip.callout {
   border-left-color: $fmup-text !important;
 }
-div.callout.callout-tip .callout-header,
-div.callout-tip.callout-style-default > .callout-header {
+div.callout.callout-tip .callout-title,
+div.callout-tip .callout-title {
   background-color: $fmup-surface !important;
 }
 
@@ -398,8 +490,8 @@ div.callout.callout-warning,
 div.callout-warning.callout {
   border-left-color: $fmup-border-strong !important;
 }
-div.callout.callout-warning .callout-header,
-div.callout-warning.callout-style-default > .callout-header {
+div.callout.callout-warning .callout-title,
+div.callout-warning .callout-title {
   background-color: $fmup-surface !important;
 }
 
@@ -408,8 +500,8 @@ div.callout.callout-caution,
 div.callout-caution.callout {
   border-left-color: $fmup-text-muted !important;
 }
-div.callout.callout-caution .callout-header,
-div.callout-caution.callout-style-default > .callout-header {
+div.callout.callout-caution .callout-title,
+div.callout-caution .callout-title {
   background-color: $fmup-surface !important;
 }
 
@@ -418,8 +510,8 @@ div.callout.callout-important,
 div.callout-important.callout {
   border-left-color: #B91C1C !important;
 }
-div.callout.callout-important .callout-header,
-div.callout-important.callout-style-default > .callout-header {
+div.callout.callout-important .callout-title,
+div.callout-important .callout-title {
   background-color: rgba(#B91C1C, 0.08) !important;
 }
 
