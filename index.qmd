@@ -14,7 +14,7 @@ Faculdade de Medicina da Universidade do Porto
 # Inteligência artificial generativa na FMUP
 
 ::: {.hero-subtitle}
-Um quadro de referência institucional para o uso de IA generativa na educação médica, na investigação clínica e na administração da faculdade --- complementado por uma ferramenta interactiva que ajuda estudantes, docentes e investigadores a redigir declarações de uso conformes.
+Um quadro de referência institucional e uma ferramenta para gerar declarações de uso de IA generativa na FMUP.
 :::
 
 ::: {.hero-cta}
@@ -23,13 +23,11 @@ Um quadro de referência institucional para o uso de IA generativa na educação
 :::
 :::
 
-## O que vais encontrar aqui {.unnumbered}
-
 ::: {.cards-3}
 ::: {.card-tile}
 ### Quadro
 
-Proposta institucional para a FMUP, em duas partes formais. **Parte I** examina os modelos de governação de IA em universidades dos Estados Unidos, da Europa e do espaço ibero-americano, os _frameworks_ supranacionais (UNESCO, OCDE, Conselho da Europa, ISO/IEC 42001, NIST AI RMF, OMS) e a camada específica das faculdades de medicina. **Parte II** apresenta os sete princípios orientadores, as três vertentes operacionais e o calendário de implementação. Seguem seis anexos com modelos, guias, cenários e glossário.
+Proposta institucional em duas partes: análise comparativa internacional e proposta operacional FMUP com sete princípios, três vertentes e calendário de implementação.
 
 [Ler o Quadro](quadro/){.card-link}
 :::
@@ -37,7 +35,7 @@ Proposta institucional para a FMUP, em duas partes formais. **Parte I** examina 
 ::: {.card-tile}
 ### Atlas
 
-Ferramenta interactiva, sem _login_ e sem servidor: gera declarações estruturadas de uso de IA para três papéis (estudante, docente, investigador), com avaliação guidante de risco em quatro níveis baseada nas regras do Quadro. As declarações geradas referenciam a versão do Quadro contra a qual foram avaliadas, garantindo rastreabilidade.
+Ferramenta web que gera declarações estruturadas de uso de IA com avaliação guidante de risco em quatro níveis.
 
 [Abrir o Atlas](atlas/){.card-link}
 :::
@@ -45,19 +43,8 @@ Ferramenta interactiva, sem _login_ e sem servidor: gera declarações estrutura
 ::: {.card-tile}
 ### Recursos
 
-Lista de _frameworks_ internacionais (EU AI Act, RGPD, MDR/IVDR, EHDS), normativa nacional (ANIA, IAedu), princípios deontológicos (ICMJE, WAME, COPE) e leitura recomendada. Ponto de partida para quem queira ler mais sobre qualquer ponto do Quadro.
+*Frameworks* internacionais, normativa nacional e princípios deontológicos --- leitura adicional sobre qualquer ponto do Quadro.
 
 [Ver Recursos](recursos.qmd){.card-link}
 :::
-:::
-
-## Como navegar {.unnumbered}
-
-Para **decisores** que pretendam apenas a proposta operacional, ir directamente à [Parte II do Quadro](quadro/01-enquadramento.qmd). Para **leitores académicos**, a leitura sequencial (Parte I → Parte II → Anexos) oferece a fundamentação comparativa antes da prescrição. Para **utilizadores quotidianos** que precisam de ajuda imediata na redacção de uma declaração, o [Atlas](atlas/) é o ponto de entrada — também os guias de uma página em [Anexo D](quadro/D-guia.qmd) servem essa função.
-
-::: {.callout-note}
-## Versão
-
-Maio de 2026. Quadro v1.0; Atlas v0.3.0. Documento vivo, sujeito a revisão anual.
-Licença: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). DOI a atribuir após depósito em Zenodo.
 :::
