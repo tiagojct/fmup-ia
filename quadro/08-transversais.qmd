@@ -1,46 +1,34 @@
 # Questões transversais
 
-As secções seguintes abordam questões que atravessam as três vertentes do quadro -- estudantes, docentes e investigadores -- e que, pela sua natureza estrutural, merecem tratamento autónomo. Não substituem as regras estabelecidas nas vertentes: afinam a sua leitura em dimensões que o debate institucional tende a subvalorizar.
+As secções seguintes abordam questões transversais às três vertentes, com tratamento autónomo pela sua natureza estrutural.
 
 ## Viés algorítmico em contextos clínicos
 
-Os modelos de GenAI usados em contexto médico herdam os vieses dos corpora em que foram treinados. A literatura documenta sub-representação de populações não-brancas em datasets de imagiologia dermatológica e radiológica, sub-representação histórica do sexo feminino em estudos clínicos de referência, e escassez de dados para condições que afectam populações minoritárias ou geograficamente específicas. Quando aplicada em contexto formativo ou de investigação, a GenAI pode reproduzir ou amplificar estes vieses: diferenciais de performance em imagiologia dermatológica por tom de pele, raciocínios diferenciais que assumem o doente-tipo (homem, adulto, caucasiano), recomendações farmacológicas que ignoram variação farmacogenómica. A _ethics checklist_ de Ning et al. (2024) inclui este domínio como obrigatório em qualquer implementação institucional [@ning2024checklist].
+Os modelos de GenAI herdam os vieses dos *corpora* em que foram treinados. A literatura documenta sub-representação de populações não-brancas em *datasets* de imagiologia, sub-representação histórica do sexo feminino em estudos clínicos de referência, e escassez de dados para condições que afectam populações minoritárias. Em contexto formativo ou de investigação, isto traduz-se em diferenciais de *performance* por tom de pele, raciocínios diferenciais que assumem o doente-tipo (homem, adulto, caucasiano), recomendações farmacológicas que ignoram variação farmacogenómica. A *ethics checklist* de Ning et al. [@ning2024checklist] inclui este domínio como obrigatório.
 
-Implicações para a FMUP:
-
-- Os docentes devem explicitar este viés em sessões formativas e exercitar a sua detecção em discussões tutoriais.
-- Os estudantes devem ser treinados a reconhecer e questionar sugestões enviesadas, em particular em raciocínio diferencial.
-- Os investigadores que utilizem GenAI em análise de dados clínicos devem documentar, na secção de limitações, os limites conhecidos da ferramenta em matéria de representação demográfica.
+Implicações para a FMUP: docentes explicitam o viés em sessões formativas e exercitam a detecção em tutoriais; estudantes são treinados a reconhecer e questionar sugestões enviesadas em raciocínio diferencial; investigadores que usem GenAI em análise de dados clínicos documentam, na secção de limitações, os limites de representação demográfica.
 
 ## Diversidade linguística: GenAI em português
 
-Os principais modelos de linguagem são treinados maioritariamente em inglês; o corpus em português europeu é comparativamente reduzido, com diluição adicional pela variante brasileira. A performance em português europeu especializado -- nomeadamente em terminologia médica -- é inferior, com sintomas recorrentes: tradução literal de conceitos sem equivalente cultural (_primary care_ → "cuidados primários" sem atender à distinção entre medicina geral e familiar), uso inadvertido de conjugações brasileiras, confusão na acentuação (especialmente em pré-AO90), perda de nuances clínicas entre sinónimos.
+Os principais modelos são treinados maioritariamente em inglês; o corpus em português europeu é reduzido, com diluição pela variante brasileira. A *performance* em português europeu especializado --- e em terminologia médica --- é inferior, com sintomas recorrentes: tradução literal (*primary care* → "cuidados primários" sem atender à distinção entre medicina geral e familiar), conjugações brasileiras inadvertidas, falhas de acentuação em pré-AO90.
 
-Implicações para a FMUP:
+Implicações para a FMUP: a verificação humana especializada é exigida (não recomendada) quando GenAI gera ou traduz conteúdo clínico em português; guias e materiais pedagógicos passam por docente com competência terminológica antes de chegarem a estudantes; investigadores consideram afinações específicas para pt-PT sempre que viável.
 
-- Quando GenAI é usada para gerar ou traduzir conteúdo clínico em português, a verificação humana especializada é exigida, não apenas recomendada.
-- Os guias e materiais pedagógicos gerados com apoio de GenAI devem ser revistos por docente com competência terminológica, antes de serem usados com estudantes.
-- Investigadores que publiquem em português devem considerar, quando possível, a utilização de modelos ou afinações específicas para o português europeu.
+## Propriedade intelectual e autoria de *outputs*
 
-## Propriedade intelectual e autoria de outputs
+O regime jurídico da propriedade de conteúdo gerado com GenAI permanece em aberto. O *US Copyright Office* tem rejeitado registos sem "contribuição humana significativa"; na UE, o AI Act configura um quadro distinto mas ainda por sedimentar. Enquanto a jurisprudência estabiliza:
 
-O regime jurídico da propriedade de conteúdo gerado com GenAI permanece em aberto, com doutrina ainda em formação em Portugal e na União Europeia. O _US Copyright Office_ tem rejeitado registos de obras sem "contribuição humana significativa"; na UE, o AI Act e as discussões sobre _transparency obligations_ configuram um quadro distinto mas também ainda por sedimentar. Enquanto a jurisprudência estabiliza, propõem-se as seguintes orientações operacionais para a FMUP:
+- **Trabalhos académicos:** a autoria é do estudante; o uso declarado de GenAI não altera autoria nem confere direitos à plataforma.
+- **Manuscritos de investigação:** autoria humana; GenAI não pode ser co-autora (ICMJE, WAME, COPE). A contribuição declara-se em métodos ou agradecimentos.
+- **Materiais pedagógicos:** autoria do docente, desde que a revisão crítica tenha sido efectiva.
+- **Condições de serviço:** antes de introduzir material inédito (protocolo, manuscrito em preparação), verificar termos da plataforma. A IAedu oferece garantias mais previsíveis do que plataformas comerciais.
 
-- **Em trabalhos académicos de estudantes:** a autoria é do estudante; o uso declarado de GenAI não altera essa autoria nem confere direitos à plataforma utilizada. O estudante permanece responsável por todo o conteúdo submetido.
-- **Em manuscritos de investigação:** a autoria pertence aos autores humanos listados; a GenAI não pode ser co-autora (princípio já estabelecido pelo ICMJE, pela WAME e pelo COPE). A contribuição da ferramenta é declarada em métodos ou em agradecimentos.
-- **Em materiais pedagógicos:** a autoria é do docente, desde que a revisão crítica tenha sido efectiva; o acto de apropriação intelectual através da revisão é o que justifica a autoria, não a geração inicial.
-- **Quanto aos _prompts_ e _outputs_:** as condições de serviço de cada plataforma determinam o regime de uso dos conteúdos introduzidos e gerados. Antes de usar GenAI em contexto que envolva material inédito ou estratégico (protocolo de investigação, manuscrito em preparação), o utilizador deve verificar as condições específicas -- a IAedu, por ser institucional, oferece garantias mais previsíveis do que plataformas comerciais genéricas.
+## *Procurement* e dependência de fornecedores
 
-## _Procurement_ e dependência de fornecedores
-
-A escolha das plataformas que servem de infraestrutura à utilização de GenAI tem consequências que excedem o critério funcional: cria uma relação contratual com o fornecedor que pode comprometer soberania de dados, continuidade de serviço e capacidade de negociação. A análise comparativa internacional (capítulo [15](15-lacunas.qmd)) identifica dois pólos institucionais. Num extremo, a Arizona State University, com parceria integral com a OpenAI para acesso _enterprise_ a toda a comunidade académica --- modelo que maximiza a fluidez de adopção mas instala dependência tecnológica e contratual difícil de inverter. No outro, a Cornell e a Harvard, que mantêm _sandboxes_ negociadas, requisitos de _Statement of Need_ prévios à aquisição e revisão sistemática pelos serviços de informação e segurança --- modelo que sacrifica fluidez por defensabilidade institucional. Para a FMUP, a recomendação é deliberadamente próxima do segundo pólo, mitigada pelo aproveitamento de infraestrutura nacional: a IAedu (FCT/FCCN) [@iaedu2025] como primeira linha, complementada pelo Deucalion enquanto recurso de computação científica nacional, e pela articulação com a futura _Gigafactory_ prevista pela ANIA [@ania2026]. A utilização de plataformas comerciais (OpenAI, Anthropic, Google, Microsoft) deve sempre ser ponderada em função do regime contratual aplicável, dos termos de retenção de dados e da existência (ou não) de cláusulas que excluam a utilização dos dados para treino de modelos.
+A escolha das plataformas tem consequências que excedem o critério funcional: cria relação contratual que pode comprometer soberania de dados, continuidade de serviço e capacidade de negociação. A análise internacional (capítulo [15](15-lacunas.qmd)) identifica dois pólos: a ASU com parceria integral OpenAI (máxima fluidez, dependência difícil de inverter) e a Cornell/Harvard com *sandboxes* negociadas + *Statement of Need* prévio (defensabilidade institucional). A recomendação para a FMUP aproxima-se do segundo pólo, mitigada por infraestrutura nacional: IAedu (FCT/FCCN) [@iaedu2025] como primeira linha, complementada pelo Deucalion e pela futura *Gigafactory* prevista na ANIA [@ania2026]. Plataformas comerciais (OpenAI, Anthropic, Google, Microsoft) usam-se com ponderação do regime contratual, dos termos de retenção e da exclusão de uso para treino.
 
 ## Acessibilidade e equidade cognitiva
 
-A GenAI pode reduzir barreiras para estudantes e docentes com dislexia, perturbações do neurodesenvolvimento (ADHD, espectro do autismo), deficiência visual ou condições crónicas que afectam concentração e leitura. Usos típicos incluem: apoio à organização textual, simplificação linguística, conversão entre formatos (texto/áudio/esquema visual), geração de resumos estruturados, reescrita para tornar conteúdo denso mais acessível. Nesta dimensão, a GenAI funciona como tecnologia assistiva.
+A GenAI reduz barreiras para estudantes e docentes com dislexia, ADHD, espectro do autismo, deficiência visual ou condições que afectam concentração. Usos típicos: apoio à organização textual, simplificação linguística, conversão entre formatos, geração de resumos, reescrita acessível. Nesta dimensão, a GenAI é tecnologia assistiva.
 
-Implicações para a FMUP:
-
-- As regras de declaração de uso e verificação, estabelecidas nas vertentes anteriores, não devem desencorajar o uso da GenAI como apoio de acessibilidade -- a declaração protege a integridade, não constitui obstáculo.
-- O princípio de equidade (Princípio 5) estende-se a equidade cognitiva, não apenas financeira: a gratuidade da IAedu torna-a tecnologia assistiva acessível a todos os membros da comunidade académica, eliminando uma barreira de custo historicamente associada a ferramentas assistivas especializadas.
-- O Serviço de Apoio ao Estudante e o grupo de trabalho para IA generativa devem articular-se para apoiar estudantes que beneficiem de utilização intensiva de GenAI como acomodação razoável, com orientação específica e sem agravar o ónus de declaração.
+Implicações para a FMUP: as regras de declaração não desencorajam o uso como apoio de acessibilidade; o princípio 5 (equidade) estende-se a equidade cognitiva e não apenas financeira --- a gratuidade da IAedu torna-a acessível a todos; o Serviço de Apoio ao Estudante e o grupo de trabalho articulam-se para apoiar quem beneficie de utilização intensiva como acomodação razoável, sem agravar o ónus de declaração.
