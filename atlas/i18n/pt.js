@@ -44,6 +44,27 @@
     other: 'neste trabalho',
   };
 
+  // Normalize state.assignment which can be either a string (legacy URL
+  // hash) or an array (current state). Always returns a non-empty array
+  // — defaults to ['other'] if empty.
+  const assignmentArr = (a) => {
+    if (Array.isArray(a)) return a.length ? a : ['other'];
+    if (typeof a === 'string' && a) return [a];
+    return ['other'];
+  };
+
+  const fmtAssignmentNoun = (a) => {
+    const arr = assignmentArr(a);
+    if (arr.length === 1) return ASSIGNMENT_NOUN[arr[0]] || ASSIGNMENT_NOUN.other;
+    return list(arr.map((k) => ASSIGNMENT_NOUN[k] || ASSIGNMENT_NOUN.other));
+  };
+
+  const fmtAssignmentPrep = (a) => {
+    const arr = assignmentArr(a);
+    if (arr.length === 1) return ASSIGNMENT_PREP[arr[0]] || ASSIGNMENT_PREP.other;
+    return 'neste trabalho (' + fmtAssignmentNoun(a) + ')';
+  };
+
   const LEVEL_LABEL = {
     undergraduate: 'unidade curricular de licenciatura',
     postgraduate: 'unidade curricular de mestrado',
@@ -96,8 +117,8 @@
     const subj = s.submission === 'group'
       ? 'Os autores deste trabalho declaram que recorreram'
       : 'Declaro que recorri';
-    const aPrep = ASSIGNMENT_PREP[s.assignment] || ASSIGNMENT_PREP.other;
-    const aNoun = ASSIGNMENT_NOUN[s.assignment] || ASSIGNMENT_NOUN.other;
+    const aPrep = fmtAssignmentPrep(s.assignment);
+    const aNoun = fmtAssignmentNoun(s.assignment);
     const tools = trim(s.tools) || 'ferramentas de inteligência artificial generativa não especificadas';
     const tasks = (s.tasks || []).map((k) => TASK_PHRASES[k]).filter(Boolean);
     const tasksClause = tasks.length
@@ -146,7 +167,7 @@
 
   const teacherSyllabus = (s, version, policy) => {
     const lvl = LEVEL_LABEL[s.level] || LEVEL_LABEL.undergraduate;
-    const aNoun = ASSIGNMENT_NOUN[s.assignment] || ASSIGNMENT_NOUN.other;
+    const aNoun = fmtAssignmentNoun(s.assignment);
     const subj = teacherSubjects(s.level);
     const lead = 'No âmbito desta ' + lvl + ', e relativamente ao trabalho avaliativo do tipo ' + aNoun + ',';
 
@@ -271,9 +292,10 @@
       researcher: 'Declarar o uso de IA num manuscrito, candidatura ou comunicação',
     },
     student: {
-      step1: 'Tipo de submissão',
+      step1: 'O trabalho é individual ou em grupo?',
       submission: { individual: 'Individual', group: 'Em grupo' },
-      step2: 'Tipo de trabalho',
+      step2: 'Que tipo de trabalho é?',
+      step2Help: 'Selecione todos os tipos aplicáveis (um trabalho pode combinar vários).',
       assignment: {
         essay: 'Ensaio',
         report: 'Relatório',
@@ -282,7 +304,7 @@
         presentation: 'Apresentação',
         other: 'Outro',
       },
-      step3: 'Tarefas para as quais recorreu a IA',
+      step3: 'Para que tarefas recorreu à IA?',
       step3Help: 'Selecione todas as tarefas aplicáveis.',
       tasks: {
         ideation: 'Exploração de ideias',
@@ -293,24 +315,25 @@
         data_analysis: 'Análise de dados',
         literature_search: 'Pesquisa bibliográfica',
       },
-      step4: 'Ferramentas utilizadas',
+      step4: 'Que ferramentas usou?',
       step4Help: 'Indique o nome e, sempre que possível, a versão das ferramentas (por exemplo: ChatGPT 4o, Claude Sonnet 4.6, GitHub Copilot).',
       step4Placeholder: 'Por exemplo: ChatGPT 4o; DeepL',
-      step5: 'Grau de modificação dos contributos gerados',
+      step5: 'Como integrou os contributos da IA?',
       modification: {
-        as_is: 'Utilizados sem alterações substanciais',
+        reference: 'Apenas como referência',
         edited: 'Substancialmente editados',
-        reference: 'Utilizados apenas como referência',
+        as_is: 'Sem alterações substanciais',
       },
     },
     teacher: {
-      step1: 'Nível da unidade curricular',
+      step1: 'Qual é o nível da unidade curricular?',
       level: {
         undergraduate: 'Licenciatura',
         postgraduate: 'Mestrado',
         doctoral: 'Doutoramento',
       },
-      step2: 'Tipo de trabalho avaliativo',
+      step2: 'Que tipo de trabalho será avaliado?',
+      step2Help: 'Selecione todos os tipos aplicáveis (uma UC pode combinar vários).',
       assignment: {
         essay: 'Ensaio',
         report: 'Relatório',
@@ -319,13 +342,13 @@
         presentation: 'Apresentação',
         other: 'Outro',
       },
-      step3: 'Política de uso de IA',
+      step3: 'Qual será a política de uso de IA?',
       policy: {
         not_permitted: 'Não permitido',
         with_disclosure: 'Permitido com divulgação integral',
         without_restrictions: 'Permitido sem restrições específicas',
       },
-      step4: 'Competências que devem ser produzidas pelo(s) estudante(s)',
+      step4: 'Que competências têm de ser do(s) estudante(s)?',
       step4Help: 'Selecione e/ou acrescente as competências que devem ser, obrigatoriamente, da autoria do(s) estudante(s).',
       skills: {
         critical_thinking: 'Pensamento crítico e argumentação',
@@ -338,7 +361,7 @@
       skillsOther: 'Outras (especifique)',
     },
     researcher: {
-      step1: 'Tipo de actividade',
+      step1: 'Que tipo de actividade?',
       activity: {
         manuscript: 'Redação de manuscrito',
         grant: 'Candidatura a financiamento',
@@ -347,7 +370,7 @@
         abstract: 'Resumo para conferência',
         other: 'Outra',
       },
-      step2: 'Tarefas para as quais recorreu a IA',
+      step2: 'Para que tarefas recorreu à IA?',
       step2Help: 'Selecione todas as tarefas aplicáveis.',
       tasks: {
         literature_search: 'Pesquisa bibliográfica',
@@ -359,10 +382,10 @@
         figures: 'Preparação de imagens / figuras',
         other: 'Outra',
       },
-      step3: 'Ferramentas utilizadas',
+      step3: 'Que ferramentas usou?',
       step3Help: 'Indique o nome e, sempre que possível, a versão das ferramentas.',
       step3Placeholder: 'Por exemplo: ChatGPT 4o; Elicit; R copilot',
-      step4: 'Destinatário da divulgação',
+      step4: 'A quem se destina a divulgação?',
       target: {
         journal: 'Submissão a revista científica (ICMJE)',
         fct: 'FCT — Fundação para a Ciência e a Tecnologia',

@@ -44,6 +44,27 @@
     other: 'in this piece of work',
   };
 
+  // Normalize state.assignment which can be either a string (legacy URL
+  // hash) or an array (current state). Always returns a non-empty array
+  // — defaults to ['other'] if empty.
+  const assignmentArr = (a) => {
+    if (Array.isArray(a)) return a.length ? a : ['other'];
+    if (typeof a === 'string' && a) return [a];
+    return ['other'];
+  };
+
+  const fmtAssignmentNoun = (a) => {
+    const arr = assignmentArr(a);
+    if (arr.length === 1) return ASSIGNMENT_NOUN[arr[0]] || ASSIGNMENT_NOUN.other;
+    return list(arr.map((k) => ASSIGNMENT_NOUN[k] || ASSIGNMENT_NOUN.other));
+  };
+
+  const fmtAssignmentPrep = (a) => {
+    const arr = assignmentArr(a);
+    if (arr.length === 1) return ASSIGNMENT_PREP[arr[0]] || ASSIGNMENT_PREP.other;
+    return 'in this piece of work (' + fmtAssignmentNoun(a) + ')';
+  };
+
   const LEVEL_LABEL = {
     undergraduate: 'undergraduate course unit',
     postgraduate: 'postgraduate (master’s) course unit',
@@ -108,8 +129,8 @@
     const subj = s.submission === 'group'
       ? 'The authors of this work declare that they made use of'
       : 'I declare that I made use of';
-    const aPrep = ASSIGNMENT_PREP[s.assignment] || ASSIGNMENT_PREP.other;
-    const aNoun = ASSIGNMENT_NOUN[s.assignment] || ASSIGNMENT_NOUN.other;
+    const aPrep = fmtAssignmentPrep(s.assignment);
+    const aNoun = fmtAssignmentNoun(s.assignment);
     const tools = trim(s.tools) || 'unspecified generative artificial intelligence tools';
     const tasks = (s.tasks || []).map((k) => TASK_PHRASES[k]).filter(Boolean);
     const tasksClause = tasks.length
@@ -135,7 +156,7 @@
 
   const teacherSyllabus = (s, version, policy) => {
     const lvl = LEVEL_LABEL[s.level] || LEVEL_LABEL.undergraduate;
-    const aNoun = ASSIGNMENT_NOUN[s.assignment] || ASSIGNMENT_NOUN.other;
+    const aNoun = fmtAssignmentNoun(s.assignment);
     const subjPlural = LEVEL_STUDENT[s.level] || 'students';
     const lead = 'In this ' + lvl + ', and with respect to the ' + aNoun + '(s) used for assessment,';
 
@@ -263,9 +284,10 @@
       researcher: 'Disclose the use of AI in a manuscript, application, or communication',
     },
     student: {
-      step1: 'Submission type',
+      step1: 'Is this individual or group work?',
       submission: { individual: 'Individual', group: 'Group' },
-      step2: 'Assignment type',
+      step2: 'What type of assignment is it?',
+      step2Help: 'Select all that apply (an assignment can combine several).',
       assignment: {
         essay: 'Essay',
         report: 'Report',
@@ -274,7 +296,7 @@
         presentation: 'Presentation',
         other: 'Other',
       },
-      step3: 'Tasks for which AI was used',
+      step3: 'For which tasks did you use AI?',
       step3Help: 'Select all that apply.',
       tasks: {
         ideation: 'Idea exploration',
@@ -285,24 +307,25 @@
         data_analysis: 'Data analysis',
         literature_search: 'Literature searching',
       },
-      step4: 'Tools used',
+      step4: 'Which tools did you use?',
       step4Help: 'Indicate the name and, where possible, the version of the tools (e.g. ChatGPT 4o, Claude Sonnet 4.6, GitHub Copilot).',
       step4Placeholder: 'For example: ChatGPT 4o; DeepL',
-      step5: 'Degree of modification of the generated contributions',
+      step5: 'How did you integrate the AI contributions?',
       modification: {
-        as_is: 'Used without substantial changes',
+        reference: 'Reference only',
         edited: 'Substantially edited',
-        reference: 'Used only as reference',
+        as_is: 'Without substantial changes',
       },
     },
     teacher: {
-      step1: 'Course-unit level',
+      step1: 'What is the course-unit level?',
       level: {
         undergraduate: 'Undergraduate',
         postgraduate: 'Master’s',
         doctoral: 'Doctoral',
       },
-      step2: 'Type of assessed work',
+      step2: 'What type of work will be assessed?',
+      step2Help: 'Select all that apply (a course-unit can combine several).',
       assignment: {
         essay: 'Essay',
         report: 'Report',
@@ -311,13 +334,13 @@
         presentation: 'Presentation',
         other: 'Other',
       },
-      step3: 'AI-use policy',
+      step3: 'What will the AI-use policy be?',
       policy: {
         not_permitted: 'Not permitted',
         with_disclosure: 'Permitted with full disclosure',
         without_restrictions: 'Permitted without specific restrictions',
       },
-      step4: 'Skills that must be student-generated',
+      step4: 'Which skills must be student-generated?',
       step4Help: 'Select and/or add the skills that must be the work of the student(s).',
       skills: {
         critical_thinking: 'Critical thinking and argumentation',
@@ -330,7 +353,7 @@
       skillsOther: 'Other (please specify)',
     },
     researcher: {
-      step1: 'Activity type',
+      step1: 'What type of activity?',
       activity: {
         manuscript: 'Manuscript writing',
         grant: 'Grant application',
@@ -339,7 +362,7 @@
         abstract: 'Conference abstract',
         other: 'Other',
       },
-      step2: 'Tasks for which AI was used',
+      step2: 'For which tasks did you use AI?',
       step2Help: 'Select all that apply.',
       tasks: {
         literature_search: 'Literature searching',
@@ -351,10 +374,10 @@
         figures: 'Image / figure preparation',
         other: 'Other',
       },
-      step3: 'Tools used',
+      step3: 'Which tools did you use?',
       step3Help: 'Indicate the name and, where possible, the version of the tools.',
       step3Placeholder: 'For example: ChatGPT 4o; Elicit; R copilot',
-      step4: 'Disclosure target',
+      step4: 'Who is the disclosure for?',
       target: {
         journal: 'Journal submission (ICMJE)',
         fct: 'FCT — Fundação para a Ciência e a Tecnologia',

@@ -11,7 +11,7 @@
 
   // ---- Single source of truth for the tool version. ----
   // Bump this when statement content (any i18n file) changes.
-  const APP_VERSION = '0.6.0';
+  const APP_VERSION = '0.6.4';
 
   // Schema version for the URL hash payload. Bump when state shape
   // changes incompatibly. Hashes with a different `v` are rejected.
@@ -37,7 +37,7 @@
       done: false,
       // student
       submission: null,
-      assignment: null,
+      assignment: [],
       tasks: [],
       tools: '',
       modification: null,
@@ -290,8 +290,11 @@
     if (trigger.level && trigger.level !== s.level) return false;
     if (trigger.activity && trigger.activity !== s.activity) return false;
     if (trigger.target && trigger.target !== s.target) return false;
-    if (trigger.assignment && trigger.assignment !== s.assignment) return false;
-    if (trigger.assignment_any && trigger.assignment_any.indexOf(s.assignment) === -1) return false;
+    if (trigger.assignment_any) {
+      const aList = Array.isArray(s.assignment) ? s.assignment : (s.assignment ? [s.assignment] : []);
+      const hit = trigger.assignment_any.some((a) => aList.indexOf(a) !== -1);
+      if (!hit) return false;
+    }
     if (trigger.activity_any && trigger.activity_any.indexOf(s.activity) === -1) return false;
     if (trigger.target_any && trigger.target_any.indexOf(s.target) === -1) return false;
     if (trigger.tasks_any) {
@@ -585,8 +588,8 @@
       (v) => { state.submission = v; syncHash(true); refreshGenerate(screen); }
     ));
 
-    screen.appendChild(stepHeader(2, total, i.student.step2));
-    screen.appendChild(radioGroup(
+    screen.appendChild(stepHeader(2, total, i.student.step2, i.student.step2Help));
+    screen.appendChild(checkboxGroup(
       'assignment',
       asOptions(i.student.assignment),
       state.assignment,
@@ -624,7 +627,7 @@
   }
 
   function canGenerateStudent() {
-    return !!(state.submission && state.assignment && state.modification);
+    return !!(state.submission && (state.assignment || []).length && state.modification);
   }
 
   // ---- Teacher form ----
@@ -642,8 +645,8 @@
       (v) => { state.level = v; syncHash(true); refreshGenerate(screen); }
     ));
 
-    screen.appendChild(stepHeader(2, total, i.teacher.step2));
-    screen.appendChild(radioGroup(
+    screen.appendChild(stepHeader(2, total, i.teacher.step2, i.teacher.step2Help));
+    screen.appendChild(checkboxGroup(
       'assignment',
       asOptions(i.teacher.assignment),
       state.assignment,
@@ -680,7 +683,7 @@
   }
 
   function canGenerateTeacher() {
-    return !!(state.level && state.assignment && state.policy);
+    return !!(state.level && (state.assignment || []).length && state.policy);
   }
 
   // ---- Researcher form ----
@@ -892,13 +895,13 @@
 
     if (state.role === 'student') {
       pushRow(rows, i.student.step1, i.student.submission[state.submission]);
-      pushRow(rows, i.student.step2, i.student.assignment[state.assignment]);
+      pushRow(rows, i.student.step2, (state.assignment || []).map((k) => i.student.assignment[k]).filter(Boolean).join(', '));
       pushRow(rows, i.student.step3, (state.tasks || []).map((k) => i.student.tasks[k]).join(', '));
       pushRow(rows, i.student.step4, state.tools);
       pushRow(rows, i.student.step5, i.student.modification[state.modification]);
     } else if (state.role === 'teacher') {
       pushRow(rows, i.teacher.step1, i.teacher.level[state.level]);
-      pushRow(rows, i.teacher.step2, i.teacher.assignment[state.assignment]);
+      pushRow(rows, i.teacher.step2, (state.assignment || []).map((k) => i.teacher.assignment[k]).filter(Boolean).join(', '));
       pushRow(rows, i.teacher.step3, i.teacher.policy[state.policy]);
       const skills = (state.skills || []).map((k) => i.teacher.skills[k]).filter(Boolean);
       if ((state.skillsOther || '').trim()) skills.push(state.skillsOther.trim());
