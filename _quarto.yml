@@ -11,6 +11,7 @@ project:
     - "quadro/1*.qmd"
     - "quadro/[A-G]-*.qmd"
     - "quadro/references.qmd"
+    - "apresentacoes/*.qmd"
     - "!quadro/guias/**"
     - "!quadro/full-references.md"
     - "!atlas/**"
@@ -103,7 +104,7 @@ website:
     background: light
     border: true
     left: |
-      © 2026 Tiago Jacinto · Faculdade de Medicina da Universidade do Porto
+      © 2026 Tiago Jacinto · Faculdade de Medicina da Universidade do Porto · Quadro v1.0 · Maio 2026
       Conteúdo licenciado sob [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
     right:
       - text: "Início"
@@ -141,7 +142,7 @@ format:
           <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Geist+Mono:wght@400;500&display=swap">
 
 bibliography: quadro/references.bib
-csl: quadro/ieee.csl
+csl: quadro/chicago-author-date.csl
 lang: pt-PT
 
 language:
@@ -150,6 +151,8 @@ language:
   crossref-apx-title: "Anexo"
   crossref-ch-prefix: "Capítulo"
   crossref-sec-prefix: "Secção"
+  repo-action-links-edit: "Editar"
+  repo-action-links-issue: "Reportar"
 
 execute:
   freeze: false
