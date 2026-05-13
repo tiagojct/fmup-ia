@@ -2,13 +2,13 @@
 
 ## Calibração temporal
 
-O calendário de implementação é deliberadamente alinhado com três marcos regulatórios externos. O primeiro é a aplicação plena do Regulamento (UE) 2024/1689 (EU AI Act) em Agosto de 2026, que torna vinculativas as obrigações de _deployer_ aplicáveis à FMUP. O segundo é a aplicação geral do _European Health Data Space_ (EHDS) em Março de 2027, que exige a preparação de _Trusted Research Environments_ compatíveis em articulação com o CHUSJ (ver capítulo [14](14-camada-medica.qmd)). O terceiro é o ciclo da Agenda Nacional de Inteligência Artificial (ANIA), aprovada pela Resolução do Conselho de Ministros n.º 2/2026 [@ania2026], que estabelece o Plano de Acção 2026-2030 e cria o Quadro Nacional de Competências Inteligentes (QNCI), com o qual o programa de literacia em IA da FMUP se deve articular. A coordenação com a Universidade do Porto e com o Deucalion (em alinhamento com EuroHPC) deve começar cedo no calendário, e não em reacção a marcos regulatórios.
+O calendário de implementação é deliberadamente alinhado com três marcos regulatórios externos. O primeiro é a aplicação plena do Regulamento (UE) 2024/1689 (EU AI Act) em Agosto de 2026, que torna vinculativas as obrigações de _deployer_ aplicáveis à FMUP. O segundo é a aplicação geral do _European Health Data Space_ (EHDS) em Março de 2027, que exige a preparação de _Trusted Research Environments_ compatíveis, em articulação a estabelecer com a unidade hospitalar afiliada (ver capítulo [14](14-camada-medica.qmd)). O terceiro é o ciclo da Agenda Nacional de Inteligência Artificial (ANIA), aprovada pela Resolução do Conselho de Ministros n.º 2/2026 [@ania2026], que estabelece o Plano de Acção 2026-2030 e cria o Quadro Nacional de Competências Inteligentes (QNCI), com o qual o programa de literacia em IA da FMUP se deve articular. A coordenação com a Universidade do Porto e com o Deucalion (em alinhamento com EuroHPC) deve começar cedo no calendário, e não em reacção a marcos regulatórios.
 
 ## Fases
 
 **Fase 1 (2026-2027):** discussão e aprovação do quadro de referência, formação inicial para docentes, piloto num programa de mestrado, e adopção operacional do modelo HEAT-AI de categorização de risco em quatro níveis (capítulo [6](06-infraestrutura.qmd)).
 
-**Fase 2 (2027-2028):** extensão a todos os ciclos de estudo, plataforma institucional (IAedu como primeira linha), módulos de literacia em IA articulados com o QNCI, e operacionalização do _Trusted Research Environment_ em coordenação com o CHUSJ.
+**Fase 2 (2027-2028):** extensão a todos os ciclos de estudo, plataforma institucional (IAedu como primeira linha), módulos de literacia em IA articulados com o QNCI, e operacionalização do _Trusted Research Environment_, com horizonte de coordenação a abrir com a unidade hospitalar afiliada.
 
 **Fase 3 (2028-2029):** avaliação de impacto, revisão do quadro, publicação dos resultados e ponderação de certificação ISO/IEC 42001 [@iso2023aims] como meta organizacional verificável.
 
