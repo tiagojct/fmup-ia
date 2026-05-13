@@ -1,6 +1,6 @@
 ---
 title: "Quadro de Referência para a Utilização de IA Generativa na FMUP"
-subtitle: "Proposta para discussão no MEDCIDS"
+subtitle: "Proposta para discussão"
 author: "Tiago Jacinto"
 institute: "MEDCIDS · Faculdade de Medicina da Universidade do Porto"
 date: 2026-05-13
@@ -13,8 +13,8 @@ format:
 
 ## Porquê este Quadro, e porquê agora
 
-- Apenas **14,7%** das instituições de ensino superior portuguesas reportam políticas institucionais sobre IA já em prática (CNIPES, Abril 2026).
-- 42,6% indicam políticas em elaboração; 42,6% não dispõem ainda de qualquer enquadramento formal.
+- Apenas **15%** das instituições de ensino superior portuguesas reportam políticas institucionais sobre IA já em prática (CNIPES, Abril 2026).
+- 42% indicam políticas em elaboração; 42% não dispõem ainda de qualquer enquadramento formal.
 - O **EU AI Act** entra em aplicação faseada até Agosto de 2026.
 - A FMUP, com programas avançados em Informática da Saúde e em Saúde Digital e Inovação Biomédica, e com articulação clínica ao CHUSJ, reúne as condições para publicar um referencial institucional próprio.
 
@@ -136,12 +136,11 @@ Para auto-avaliação institucional anual, adoptados do diagnóstico CNIPES e op
 - **ANIA** — Agenda Nacional de Inteligência Artificial (RCM 2/2026); 400 M€ alocados; reforço do supercomputador Deucalion.
 - **Plataforma CNIPES** — articulação prevista. A Atlas posiciona-se como nó da rede; o Quadro FMUP como referencial institucional registável.
 
-## Próximos passos para o MEDCIDS
+## Próximos passos
 
-- Apresentação ao Conselho Pedagógico da FMUP.
+- Eventual apresentação ao Conselho Pedagógico da FMUP.
 - Constituição do Grupo de Trabalho permanente para GenAI (capítulo 6 do Quadro).
-- Primeira aplicação da cláusula tipo nas UCs do MEDCIDS, no segundo semestre de 2026-2027.
-- Inscrição da FMUP na próxima ronda do inquérito CNIPES (2027).
+- Primeira aplicação da cláusula tipo nas UCs do MEDCIDS, evenrtualmente no primeiro semestre de 2026-2027.
 
 ## Recursos
 
@@ -151,4 +150,3 @@ Para auto-avaliação institucional anual, adoptados do diagnóstico CNIPES e op
 - **Anexo G — Grelha de maturidade**: [tiagojct.eu/fmup-ia/quadro/G-maturidade-cnipes.html](https://tiagojct.eu/fmup-ia/quadro/G-maturidade-cnipes.html)
 - **Repositório**: [github.com/tiagojct/fmup-ia](https://github.com/tiagojct/fmup-ia)
 
-Contacto: Tiago Jacinto · MEDCIDS · FMUP
