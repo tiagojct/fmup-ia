@@ -13,41 +13,44 @@ format:
 
 ## Porquê este Quadro, e porquê agora
 
-- Apenas **15%** das instituições de ensino superior portuguesas reportam políticas institucionais sobre IA já em prática (CNIPES, Abril 2026).
-- 42% indicam políticas em elaboração; 42% não dispõem ainda de qualquer enquadramento formal.
+- **14,7%** das IES portuguesas reportam políticas sobre IA em prática (CNIPES, Abril 2026). 42,6% em elaboração; 42,6% sem qualquer enquadramento.
 - O **EU AI Act** entra em aplicação faseada até Agosto de 2026.
-- A FMUP, com programas avançados em Informática da Saúde e em Saúde Digital e Inovação Biomédica, e com articulação clínica ao CHUSJ, reúne as condições para publicar um referencial institucional próprio.
+- A FMUP — MIM, Saúde Digital e Inovação Biomédica, nova Licenciatura em Ciências da Saúde Pública (2026/27, MEDCIDS), mestrados e doutoramentos em Bioética, Saúde Pública, Informática da Saúde e Ciência de Dados de Saúde — reúne condições para um referencial institucional próprio.
 
-[Quadro completo →](https://tiagojct.eu/fmup-ia/quadro/)
+[Quadro →](https://tiagojct.eu/fmup-ia/quadro/) · [Cap. 12b — Portugal →](https://tiagojct.eu/fmup-ia/quadro/12b-panorama-portugal.html)
 
 ## Quadro nacional português, 2026
 
-Dois documentos institucionais publicados em Abril:
+Dois documentos novos, ambos de Abril:
 
-- **CNIPES** — *Inteligência Artificial no Ensino Superior em Portugal: Diagnóstico nacional para governação institucional*. Inquérito a 68 IES. Coordenação Nelson Zagalo. [DOI 10.5281/zenodo.19555760](https://doi.org/10.5281/zenodo.19555760).
-- **CNE** — *Inteligência Artificial em Contexto Educativo*. Estudo consultivo do Conselho Nacional de Educação. [cnedu.pt](https://www.cnedu.pt).
+- **CNIPES** — diagnóstico nacional, 68 IES, coord. Nelson Zagalo. [DOI 10.5281/zenodo.19555760](https://doi.org/10.5281/zenodo.19555760).
+- **CNE** — *Inteligência Artificial em Contexto Educativo*. [cnedu.pt](https://www.cnedu.pt).
 
-> "Embora exista uma Agenda Nacional de IA e regulamentação geral sobre cibersegurança e proteção de dados, não existe ainda uma visão ética operacional e específica para ambientes educativos."
+> "Não existe ainda uma visão ética operacional e específica para ambientes educativos."
 >
 > — CNE 2026, p. 22
 
+[Cap. 12b →](https://tiagojct.eu/fmup-ia/quadro/12b-panorama-portugal.html)
+
 ## A proposta FMUP, em cinco elementos
 
-1. **Sete princípios orientadores** — derivados das *Living Guidelines* do ERA Forum, do _framework_ tridimensional de Chan e dos princípios da AAMC para educação médica.
-2. **Três vertentes operacionais** — estudantes, docentes, investigadores.
-3. **Infraestrutura e governança** — Grupo de Trabalho permanente; articulação académica-clínica com o CHUSJ.
-4. **Declaração obrigatória de uso** — modelo institucional padronizado, suportado por ferramenta web.
+1. **Sete princípios orientadores** — ERA Forum, Chan, AAMC. [Cap. 2 →](https://tiagojct.eu/fmup-ia/quadro/02-principios.html)
+2. **Três vertentes** — estudantes, docentes, investigadores. [Caps. 3–5 →](https://tiagojct.eu/fmup-ia/quadro/03-estudantes.html)
+3. **Infraestrutura e governança** — Grupo de Trabalho permanente; articulação clínica-hospitalar como horizonte futuro. [Cap. 6 →](https://tiagojct.eu/fmup-ia/quadro/06-infraestrutura.html)
+4. **Declaração obrigatória de uso** — modelo padrão, suportado pela Atlas. [Anexo A →](https://tiagojct.eu/fmup-ia/quadro/A-declaracao.html)
 5. **Taxonomia de risco em quatro níveis** — adaptada da grelha HEAT-AI.
 
 ## Sete princípios orientadores
 
 1. Agência humana
 2. Integridade académica e científica
-3. Protecção de dados e confidencialidade (RGPD, AI Act)
+3. Protecção de dados (RGPD, AI Act)
 4. Transparência
 5. Equidade de acesso
-6. Literacia crítica — quatro dimensões: técnica, avaliativa, ético-regulatória e prática
+6. Literacia crítica — técnica, avaliativa, ético-regulatória, prática
 7. Revisão contínua
+
+[Cap. 2 — princípios →](https://tiagojct.eu/fmup-ia/quadro/02-principios.html)
 
 ## Três vertentes operacionais
 
@@ -56,97 +59,124 @@ Dois documentos institucionais publicados em Abril:
 ::: {.column width="33%"}
 **Estudantes**
 
-Declaração de uso por trabalho. Quatro regimes de utilização consoante a competência avaliada (proibido, permitido com declaração, recomendado, exigido).
+Declaração por trabalho. Quatro regimes consoante a competência avaliada: proibido, permitido com declaração, recomendado, exigido.
+
+[Cap. 3 →](https://tiagojct.eu/fmup-ia/quadro/03-estudantes.html)
 :::
 
 ::: {.column width="33%"}
 **Docentes**
 
-Cláusula tipo nos programas das UCs ([Anexo B](https://tiagojct.eu/fmup-ia/quadro/B-clausula.html)). Desenho de tarefas IA-resilientes (CNE 2026). Formação para reconhecer e calibrar.
+Cláusula tipo no programa da UC. Desenho de tarefas IA-resilientes (CNE 2026).
+
+[Cap. 4 →](https://tiagojct.eu/fmup-ia/quadro/04-docentes.html) · [Anexo B →](https://tiagojct.eu/fmup-ia/quadro/B-clausula.html)
 :::
 
 ::: {.column width="33%"}
 **Investigadores**
 
-Declaração metodológica no manuscrito. Sem atribuição de autoria a GenAI. Cumprimento das *Living Guidelines* do ERA Forum.
+Declaração metodológica. Sem autoria a GenAI. *Living Guidelines* do ERA Forum.
+
+[Cap. 5 →](https://tiagojct.eu/fmup-ia/quadro/05-investigadores.html)
 :::
 
 :::
 
 ## Três Pilares (CNIPES 2026)
 
-Leitura transversal dos sete princípios, sem os reescrever.
+Leitura transversal dos sete princípios.
 
 | Pilar | Conteúdo | Princípios FMUP |
 |---|---|---|
 | **I. Saber sobre IA** | Literacia conceptual, ética e epistémica | 6, 4, 3 |
-| **II. Fazer com IA** | Aplicação pedagógica, clínica e de investigação | 2, 1 |
+| **II. Fazer com IA** | Aplicação pedagógica, clínica, investigação | 2, 1 |
 | **III. Ser sem IA** | Disciplina pedagógica do limite | 1 |
 
-> "A autonomia cognitiva afirma-se, assim, como um imperativo ético e o pilar da agência epistemológica."
+> "A autonomia cognitiva afirma-se como um imperativo ético e o pilar da agência epistemológica."
 >
 > — CNE 2026, p. 20
 
-## Taxonomia de risco — uso e camada técnica
+## Taxonomia de risco
 
-**Por uso (HEAT-AI, 4 níveis):**
+**Por uso (HEAT-AI):**
 
-| Nível | Característica | Resposta institucional |
+| Nível | Característica | Resposta |
 |---|---|---|
-| 1. Mínimo | Tarefa de baixo impacto | Permitido com transparência |
-| 2. Limitado | Risco identificável e mitigável | Declaração + supervisão |
-| 3. Alto | Decisão clínica, avaliação | Restrições; auditoria humana |
+| 1. Mínimo | Baixo impacto | Permitido com transparência |
+| 2. Limitado | Risco mitigável | Declaração + supervisão |
+| 3. Alto | Decisão clínica ou avaliativa | Restrições; auditoria humana |
 | 4. Inaceitável | Substituição de raciocínio crítico | Proibido |
 
-**Por camada técnica (CNIPES):** erro computacional (ML), interpretativo (DL), epistémico (LLM).
+**Por camada técnica (CNIPES):** ML → erro computacional · DL → interpretativo · **LLM → epistémico**.
+
+[Cap. 6 →](https://tiagojct.eu/fmup-ia/quadro/06-infraestrutura.html) · [Anexo E — cenários →](https://tiagojct.eu/fmup-ia/quadro/E-cenarios.html)
 
 ## Atlas — ferramenta institucional
 
-Aplicação web que gera declarações estruturadas adaptadas ao papel (estudante, docente, investigador) e ao contexto, com avaliação guidante de risco.
+Gera declarações estruturadas por papel (estudante, docente, investigador) e contexto, com avaliação guidante de risco.
 
-- Cliente-side; sem cookies; sem envio de dados para servidor.
-- Versionada em paralelo com o Quadro (`policy.version` separa as regras institucionais do _wording_ da aplicação).
-- Desde a versão **0.6.0**: articulação com a Plataforma Nacional de Práticas Pedagógicas de IA (proposta CNIPES, em desenvolvimento na Fase 2).
+- Cliente-side; sem cookies; sem servidor.
+- Versionada em paralelo com o Quadro (`policy.version` separa regras de *wording*).
+- Articulação prevista com a Plataforma Nacional de Práticas Pedagógicas (CNIPES, em desenvolvimento).
 
 [**Abrir Atlas →**](https://tiagojct.eu/fmup-ia/atlas/)
 
-## Cinco critérios de maturidade (Anexo G)
+## Cinco critérios de maturidade
 
-Para auto-avaliação institucional anual, adoptados do diagnóstico CNIPES e operacionalizados com 2-3 indicadores observáveis cada:
+Auto-avaliação institucional anual, adoptados do CNIPES, operacionalizados com 2-3 indicadores observáveis cada:
 
-1. **Mediação humana**
-2. **Verificação**
-3. **Transparência**
-4. **Literacia afectiva**
-5. **Decisão baseada em evidências**
+1. Mediação humana
+2. Verificação
+3. Transparência
+4. Literacia afectiva
+5. Decisão baseada em evidências
 
-[Anexo G — grelha completa →](https://tiagojct.eu/fmup-ia/quadro/G-maturidade-cnipes.html)
+[Anexo G — grelha →](https://tiagojct.eu/fmup-ia/quadro/G-maturidade-cnipes.html)
 
 ## Implementação faseada
 
-| Fase | Período | Foco principal |
+| Fase | Período | Foco |
 |---|---|---|
-| **Fase 1** | 2026–2027 | Adopção institucional; cláusula tipo nas UCs; primeira ronda de formação; Atlas em produção. |
-| **Fase 2** | 2027–2028 | Auditorias internas; auto-avaliação anual pela grelha do Anexo G; articulação com Plataforma CNIPES. |
-| **Fase 3** | 2028–2030 | Consolidação; eventual certificação ISO/IEC 42001 (sistema de gestão de IA). |
+| **Fase 1** | 2026–2027 | Adopção institucional; cláusula tipo nas UCs; formação; Atlas em produção. |
+| **Fase 2** | 2027–2028 | Auditorias internas; grelha de maturidade; articulação CNIPES. |
+| **Fase 3** | 2028–2030 | Consolidação; eventual certificação ISO/IEC 42001. |
+
+[Cap. 7 →](https://tiagojct.eu/fmup-ia/quadro/07-implementacao.qmd)
 
 ## Articulação nacional
 
-- **IAedu** (FCT/FCCN) — acesso institucional federado a LLMs, com garantia contratual de que os dados não são usados para treino. Adoptado como infraestrutura de primeira linha.
-- **ANIA** — Agenda Nacional de Inteligência Artificial (RCM 2/2026); 400 M€ alocados; reforço do supercomputador Deucalion.
-- **Plataforma CNIPES** — articulação prevista. A Atlas posiciona-se como nó da rede; o Quadro FMUP como referencial institucional registável.
+- **IAedu** (FCT/FCCN) — acesso institucional federado a LLMs, sem treino sobre dados. Infraestrutura de primeira linha.
+- **ANIA** (RCM 2/2026) — 400 M€ até 2030; reforço do Deucalion.
+- **Plataforma CNIPES** — articulação prevista. Atlas posiciona-se como nó da rede.
+
+[Cap. 12b →](https://tiagojct.eu/fmup-ia/quadro/12b-panorama-portugal.html)
+
+## Objecções conhecidas
+
+O Quadro publica as suas próprias fragilidades. Cinco objecções, cinco respostas explícitas:
+
+1. Pressuposição da inevitabilidade
+2. Operacionalização como evasão crítica
+3. Verificação como teatro
+4. Diluição deontológica médica
+5. Soberania ilusória da IAedu
+
+[Cap. 9b — Objecções →](https://tiagojct.eu/fmup-ia/quadro/09b-objeccoes.html)
 
 ## Próximos passos
 
-- Eventual apresentação ao Conselho Pedagógico da FMUP.
-- Constituição do Grupo de Trabalho permanente para GenAI (capítulo 6 do Quadro).
-- Primeira aplicação da cláusula tipo nas UCs do MEDCIDS, evenrtualmente no primeiro semestre de 2026-2027.
+1. Eventual apresentação ao Conselho Pedagógico da FMUP.
+2. Constituição do Grupo de Trabalho permanente para GenAI ([cap. 6](https://tiagojct.eu/fmup-ia/quadro/06-infraestrutura.html)).
+3. Primeira aplicação da cláusula tipo nas UCs do MEDCIDS, eventualmente no primeiro semestre de 2026/2027.
+4. Inscrição da FMUP no inquérito CNIPES de 2027.
 
 ## Recursos
 
-- **Quadro completo**: [tiagojct.eu/fmup-ia/quadro/](https://tiagojct.eu/fmup-ia/quadro/)
-- **Atlas (gerador de declarações)**: [tiagojct.eu/fmup-ia/atlas/](https://tiagojct.eu/fmup-ia/atlas/)
-- **Cap. 12b — Panorama nacional**: [tiagojct.eu/fmup-ia/quadro/12b-panorama-portugal.html](https://tiagojct.eu/fmup-ia/quadro/12b-panorama-portugal.html)
-- **Anexo G — Grelha de maturidade**: [tiagojct.eu/fmup-ia/quadro/G-maturidade-cnipes.html](https://tiagojct.eu/fmup-ia/quadro/G-maturidade-cnipes.html)
-- **Repositório**: [github.com/tiagojct/fmup-ia](https://github.com/tiagojct/fmup-ia)
+- **Quadro** — [tiagojct.eu/fmup-ia/quadro/](https://tiagojct.eu/fmup-ia/quadro/)
+- **Atlas** — [tiagojct.eu/fmup-ia/atlas/](https://tiagojct.eu/fmup-ia/atlas/)
+- **Cap. 12b — Portugal** — [12b-panorama-portugal](https://tiagojct.eu/fmup-ia/quadro/12b-panorama-portugal.html)
+- **Cap. 9b — Objecções** — [09b-objeccoes](https://tiagojct.eu/fmup-ia/quadro/09b-objeccoes.html)
+- **Anexo G — Maturidade** — [G-maturidade-cnipes](https://tiagojct.eu/fmup-ia/quadro/G-maturidade-cnipes.html)
+- **Repositório** — [github.com/tiagojct/fmup-ia](https://github.com/tiagojct/fmup-ia)
 
+Licença CC BY 4.0.
