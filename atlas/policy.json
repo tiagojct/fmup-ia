@@ -1,5 +1,5 @@
 {
-  "version": "1.2.0",
+  "version": "1.2.1",
   "framework_version": "FMUP Quadro de Referência v1.0 (2026-04-21)",
   "framework_short_pt": "Quadro FMUP v1.0",
   "framework_short_en": "FMUP Framework v1.0",
@@ -146,8 +146,8 @@
       "risk": 3,
       "principle_ref": "principio-3-protecao-dados",
       "scenario_ref": "https://tiagojct.eu/fmup-ia/quadro/06-infraestrutura.html",
-      "message_pt": "Análise de dados de investigação com GenAI: confirme (i) o regime contratual da plataforma quanto a retenção e treino com os seus dados; (ii) que dados sensíveis (incluindo dados clínicos pseudonimizados) só são processados em ambiente compatível com RGPD e MDR/IVDR; (iii) que o código gerado é revisto e validado.",
-      "message_en": "Research data analysis with GenAI: confirm (i) the platform's contractual regime regarding retention and training with your data; (ii) that sensitive data (including pseudonymised clinical data) are processed only in a GDPR- and MDR/IVDR-compatible environment; (iii) that generated code is reviewed and validated."
+      "message_pt": "Análise de dados de investigação com GenAI: confirme (i) o regime contratual da plataforma quanto a retenção e treino com os seus dados; (ii) que dados sensíveis só são processados em ambiente compatível com o RGPD e, quando aplicável (dados clínicos pseudonimizados, dispositivos médicos), com a MDR/IVDR; (iii) que o código gerado é revisto e validado.",
+      "message_en": "Research data analysis with GenAI: confirm (i) the platform's contractual regime regarding retention and training with your data; (ii) that sensitive data are processed only in a GDPR-compatible environment and, where applicable (pseudonymised clinical data, medical devices), an MDR/IVDR-compatible one; (iii) that generated code is reviewed and validated."
     },
     {
       "id": "R-RESEARCHER-MANUSCRIPT-LANG",

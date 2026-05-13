@@ -89,6 +89,7 @@ website:
             - quadro/07-implementacao.qmd
             - quadro/08-transversais.qmd
             - quadro/09-consideracoes.qmd
+            - quadro/09b-objeccoes.qmd
         - section: "Anexos"
           contents:
             - quadro/A-declaracao.qmd

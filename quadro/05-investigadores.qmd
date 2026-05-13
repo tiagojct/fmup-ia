@@ -6,6 +6,8 @@ other-links:
 
 # Vertente Investigadores
 
+Esta vertente cobre toda a investigação produzida na FMUP --- biomédica, clínica, epidemiológica, em ciência de dados de saúde, e em bioética. As regras nucleares (declaração de uso, não-autoria de GenAI, proibição de dados sensíveis em plataformas comerciais) aplicam-se transversalmente; os contextos disciplinares introduzem ênfases próprias. Na Ciência de Dados de Saúde, a GenAI é objecto científico e parte do desenho metodológico, com obrigações de declaração que se cruzam com a transparência exigida ao próprio modelo em estudo. Na Bioética, a publicação sobre IA em educação ou em investigação é, ela própria, o objecto académico, e este Quadro pode servir de corpus de análise.
+
 ## Utilização na escrita científica
 
 A GenAI pode ser utilizada como apoio linguístico na escrita científica: revisão gramatical, melhoria estilística, tradução entre línguas.

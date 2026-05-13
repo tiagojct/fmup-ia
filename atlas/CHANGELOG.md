@@ -21,6 +21,27 @@ This project follows a `MAJOR.MINOR.PATCH` scheme:
 
 ---
 
+## [0.6.5] — 2026-05-13
+
+Clarification of MDR/IVDR applicability in `R-RESEARCHER-DATA`.
+
+### Changed
+- `R-RESEARCHER-DATA` message reworded to qualify MDR/IVDR as
+  conditional ("quando aplicável / where applicable"). The previous
+  wording read "RGPD e MDR/IVDR" as a flat conjunction, which
+  overstated the scope for non-clinical research (epidemiological
+  studies in Saúde Pública, methodological AI research in the
+  Doutoramento em Ciência de Dados de Saúde, ethics studies in the
+  Doutoramento em Bioética). The RGPD always applies; MDR/IVDR
+  applies only when clinical data or medical-device software is
+  involved. This aligns the rule with the broadened scope made
+  explicit in capítulo 1 of the Quadro.
+- `policy.version` bumped to **1.2.1** (wording-only patch).
+- `APP_VERSION` bumped to **0.6.5**; `index.html` cache-bust query
+  strings updated to `?v=0.6.5`.
+
+---
+
 ## [0.6.0] — 2026-05-11
 
 National articulation with the CNIPES diagnosis.

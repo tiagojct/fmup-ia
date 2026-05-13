@@ -43,10 +43,16 @@ Pontos de fala:
 - O **EU AI Act** entra em aplicação faseada até Agosto de 2026. As
   regras europeias chegam de qualquer forma; a escolha é responder
   com ou sem quadro próprio.
-- A FMUP reúne condições — Informática da Saúde, Saúde Digital e
-  Inovação Biomédica, articulação clínica com o CHUSJ, pessoal técnico
-  e académico — para ser das primeiras faculdades de medicina
-  portuguesas com referencial próprio.
+- A FMUP reúne condições — Mestrado Integrado em Medicina, Licenciatura
+  em Saúde Digital e Inovação Biomédica, nova Licenciatura em Ciências
+  da Saúde Pública (arranque em 2026/2027 na MEDCIDS), mestrados e
+  doutoramentos em Bioética, Saúde Pública, Informática da Saúde e
+  Ciência de Dados de Saúde, articulação clínica com o CHUSJ — para ser
+  das primeiras faculdades de ciências da saúde portuguesas com
+  referencial próprio.
+- A primeira coorte da Licenciatura em Ciências da Saúde Pública, em
+  arranque na MEDCIDS, começa o curso já dentro do regime regulatório
+  que o Quadro institucionaliza.
 
 **Tom:** factual, sem alarmismo. O dado dos 14,7% legitima por si só.
 
@@ -392,7 +398,15 @@ a Computação Científica Nacional. A FCCN é o braço da FCT que opera
 infraestrutura digital nacional; entre outros serviços, gere a
 plataforma **IAedu**.
 
-**FMUP** — Faculdade de Medicina da Universidade do Porto. Contexto
+**FMUP** — Faculdade de Medicina da Universidade do Porto. Apesar do
+nome herdado, oferece hoje um catálogo amplo de ciclos de estudo:
+Mestrado Integrado em Medicina, Licenciatura em Saúde Digital e
+Inovação Biomédica (em parceria com a FCUP e a FFUP), Licenciatura em
+Ciências da Saúde Pública (arranque em 2026/2027, lecionada na
+MEDCIDS), mais de vinte Mestrados (entre eles Bioética, Saúde Pública,
+Cuidados de Saúde Primários, Informática da Saúde, Ciências Forenses)
+e mais de vinte Doutoramentos (Medicina, Bioética, Ciência de Dados
+de Saúde, Saúde Pública, Biomedicina, Neurociências). Contexto
 institucional do Quadro.
 
 **ICMJE** — *International Committee of Medical Journal Editors*.

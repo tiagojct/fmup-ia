@@ -30,4 +30,16 @@ Dois documentos institucionais nacionais publicados em Abril de 2026 redefinem o
 
 A nível de infraestrutura, a plataforma IAedu (FCT/FCCN, Maio 2025) oferece acesso institucional federado a LLMs com garantia contratual de não-treino sobre os dados [@iaedu2025]. Não substitui quadros institucionais. Algumas universidades portuguesas têm iniciativas pontuais (formação docente em Coimbra, partilha de boas práticas na Portucalense, integração curricular na Nova SBE), mas nenhuma instituição publicou ainda um quadro abrangente que cubra estudantes, docentes e investigadores.
 
-A FMUP, com programas em Informática da Saúde e Saúde Digital e Inovação Biomédica, investigação activa e experiência prática em contextos formativos e clínicos, reúne as condições para produzir esse quadro. A ausência de referenciais nacionais é, ao mesmo tempo, oportunidade e responsabilidade.
+## Aplicação aos ciclos de estudos da FMUP
+
+O catálogo de ciclos de estudo da FMUP é amplo: para além do Mestrado Integrado em Medicina, núcleo histórico, a Faculdade oferece a Licenciatura em Saúde Digital e Inovação Biomédica (em parceria com a FCUP e a FFUP) e, a partir de 2026/2027, a Licenciatura em Ciências da Saúde Pública; mais de vinte Mestrados, com Bioética, Saúde Pública, Cuidados de Saúde Primários, Informática da Saúde, Ciências Forenses e Educação Académica e Clínica entre os mais directamente afectados pela GenAI; e mais de vinte Doutoramentos, incluindo os de Ciência de Dados de Saúde, Bioética, Saúde Pública e Neurociências. O presente Quadro aplica-se transversalmente, com diferenciação por nível e por contexto disciplinar.
+
+Nas licenciaturas, a SDIB e a Ciências da Saúde Pública têm perfis epistémicos distintos. Na primeira, a GenAI é simultaneamente ferramenta de trabalho e objecto de estudo formal; na segunda, é ferramenta para análise populacional, vigilância e comunicação em saúde, com riscos próprios em torno de coortes, anonimização e viés representacional.
+
+O Mestrado Integrado em Medicina é o ponto de aplicação primário da vertente clínica do Quadro (capítulos [5](05-investigadores.qmd) e [14](14-camada-medica.qmd)): dados de doentes, raciocínio clínico supervisionado no CHUSJ, regulação de *Software as a Medical Device*.
+
+Os mestrados não-integrados pedem vincos próprios. A Bioética acentua a dimensão deontológica plural; a Saúde Pública, a dimensão populacional; os Cuidados de Saúde Primários, o uso em contexto comunitário; a Informática da Saúde, a dupla condição da GenAI como ferramenta e como objecto.
+
+Todos os doutoramentos operam no regime mais exigente do Quadro --- declaração metodológica, conformidade com COPE/ICMJE/WAME e com as *Living Guidelines* do ERA Forum ---, com nota especial para o Doutoramento em Ciência de Dados de Saúde, onde a GenAI é objecto científico, e para o Doutoramento em Bioética, onde a investigação sobre o próprio Quadro é trabalho académico legítimo.
+
+A FMUP, com este catálogo amplo, investigação activa e experiência prática em contextos formativos e clínicos, reúne as condições para produzir esse quadro. A ausência de referenciais nacionais é, ao mesmo tempo, oportunidade e responsabilidade.
