@@ -51,7 +51,6 @@ Lista de _frameworks_, regulamentos e documentos institucionais referenciados ao
 
 - **[Atlas](atlas/)** --- ferramenta operacional do Quadro FMUP · IA. Gera declarações estruturadas para os três papéis institucionais.
 - **[GitHub](https://github.com/tiagojct/fmup-ia)** --- repositório-fonte do Quadro e do Atlas.
-- **[Zenodo](https://zenodo.org/)** --- depósito previsto, para obtenção de DOI persistente.
 
 ## Como sugerir adições
 

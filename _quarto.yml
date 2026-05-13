@@ -158,6 +158,5 @@ language:
 execute:
   freeze: false
 
-# License + DOI metadata for citation export.
+# License metadata for citation export.
 license: "CC BY 4.0"
-# doi: "10.5281/zenodo.XXXXXXX"  # preencher após depósito Zenodo

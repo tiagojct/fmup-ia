@@ -77,7 +77,7 @@ GitHub Pages está configurado para servir do branch `gh-pages`. URL custom: `ti
 
 ## Citação
 
-Sugestão (DOI a atribuir após depósito Zenodo — ver [CITATION.cff](CITATION.cff)):
+Metadados estruturados em [CITATION.cff](CITATION.cff). Sugestão de citação livre:
 
 > Jacinto T. *FMUP · IA — Quadro de referência institucional para a utilização de inteligência artificial generativa na FMUP*. Faculdade de Medicina da Universidade do Porto, 2026. <https://tiagojct.eu/fmup-ia/>
 

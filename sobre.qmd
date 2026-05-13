@@ -5,17 +5,17 @@ toc: true
 
 ## Autoria
 
-**Tiago Jacinto** --- docente e investigador na Faculdade de Medicina da Universidade do Porto. Áreas de actividade: educação médica, informática da saúde, investigação clínica em pneumologia. Contacto institucional via FMUP.
+**Tiago Jacinto** --- Professor Auxiliar no MEDCIDS (Medicina da Comunidade, Informação e Decisão em Saúde), Faculdade de Medicina da Universidade do Porto, em programa FCT-Tenure desde Dezembro de 2025. Lecciona na FMUP desde 2008. Investigador no [RISE-Health](https://rise-health.pt/), com trabalho em suporte à decisão clínica baseado em IA, *mobile health* e ciência de dados de saúde.
 
-Este Quadro foi redigido em pt-PT (pré-AO90) entre Abril e Maio de 2026, na sequência de um período de observação da adopção generalizada de GenAI por estudantes e docentes da FMUP. A ferramenta operacional **Atlas** acompanha o Quadro desde a sua primeira versão pública.
+Co-director do Mestrado em Informática da Saúde da FMUP; coordena unidades curriculares na Licenciatura em Saúde Digital e Inovação Biomédica. Associate Editor no *RISE Health Research Journal* (Lippincott/Wolters Kluwer) e no *Scientific Reports* (Nature Portfolio).
+
+Página pessoal: [tiagojct.eu](https://tiagojct.eu).
+
+Este Quadro foi redigido em pt-PT (pré-AO90) entre Abril e Maio de 2026, na sequência de um período de observação da adopção generalizada de GenAI por estudantes e docentes da FMUP. A ferramenta operacional [**Atlas**](atlas/) acompanha o Quadro desde a sua primeira versão pública.
 
 ## Como citar
 
-Sugestão de citação enquanto o DOI Zenodo está pendente:
-
 > Jacinto T. *FMUP · IA — Quadro de referência institucional para a utilização de inteligência artificial generativa na FMUP*. Faculdade de Medicina da Universidade do Porto, 2026. <https://tiagojct.eu/fmup-ia/>
-
-Após o depósito em Zenodo, esta página será actualizada com o DOI correspondente.
 
 ## Licença
 
@@ -23,7 +23,7 @@ Texto, código e dados publicados sob **[Creative Commons Attribution 4.0 (CC BY
 
 ## Financiamento e conflitos
 
-Este trabalho não foi suportado por financiamento dedicado. Não há conflitos de interesse declaráveis. Ferramentas de GenAI usadas na produção do Quadro e do Atlas são declaradas explicitamente nos respectivos ficheiros de processo (commits do repositório `tiagojct/fmup-ia`), em coerência com os princípios que o próprio Quadro defende.
+Este trabalho não foi suportado por financiamento dedicado. Não há conflitos de interesse declaráveis. Ferramentas de GenAI usadas na produção do Quadro e do Atlas são declaradas no histórico do repositório `tiagojct/fmup-ia`, em coerência com os princípios que o próprio Quadro defende.
 
 ## Estado de revisão
 
@@ -35,10 +35,10 @@ Revisões futuras serão registadas neste quadro e no `CHANGELOG.md` do reposit�
 
 ## Reportar erros e contribuir
 
-O repositório do projecto é público em [github.com/tiagojct/fmup-ia](https://github.com/tiagojct/fmup-ia). Erros, sugestões e correcções editoriais podem ser submetidas via _issue_; contributos textuais ou de código via _pull request_. Para contactos directos, usar o canal institucional FMUP.
+O repositório do projecto é público em [github.com/tiagojct/fmup-ia](https://github.com/tiagojct/fmup-ia). Erros, sugestões e correcções editoriais podem ser submetidos via *issue*; contributos textuais ou de código via *pull request*. Para contactos directos, usar o canal institucional FMUP.
 
 ## Recursos relacionados
 
 - [Quadro de referência](quadro/) --- documento principal.
 - [Atlas](atlas/) --- ferramenta operacional.
-- [Recursos](recursos.qmd) --- _frameworks_ externos e leitura adicional.
+- [Recursos](recursos.qmd) --- *frameworks* externos e leitura adicional.
