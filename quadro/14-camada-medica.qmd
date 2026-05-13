@@ -1,6 +1,6 @@
 # A camada médica: educação, prática clínica e regulação de _SaMD_ {#sec-camada-medica}
 
-Este capítulo cobre a camada clínica-académica específica, com foco primário no Mestrado Integrado em Medicina. Questões regulatórias e éticas que afectam a Saúde Digital e Inovação Biomédica enquanto programa de engenharia são tratadas no [capítulo 6](06-infraestrutura.qmd); a investigação epidemiológica em Saúde Pública, no [capítulo 5](05-investigadores.qmd). A aplicação diferenciada por ciclo de estudos está sintetizada no [capítulo 1](01-enquadramento.qmd). O Quadro é construído para vigorar como instrumento da FMUP; a articulação formal com hospitais universitários afiliados (em particular o Centro Hospitalar Universitário de São João, CHUSJ) é horizonte de integração futura, não pressuposto operacional.
+Este capítulo cobre a camada clínica-académica específica, com foco primário no Mestrado Integrado em Medicina. Questões regulatórias e éticas específicas da licenciatura em Saúde Digital e Inovação Biomédica são tratadas no [capítulo 6](06-infraestrutura.qmd); a investigação epidemiológica em Saúde Pública, no [capítulo 5](05-investigadores.qmd). A aplicação diferenciada por ciclo de estudos está sintetizada no [capítulo 1](01-enquadramento.qmd). O Quadro é construído para vigorar como instrumento da FMUP; a articulação formal com hospitais universitários afiliados (em particular o Centro Hospitalar Universitário de São João, CHUSJ) é horizonte de integração futura, não pressuposto operacional.
 
 A integração de GenAI no Mestrado Integrado em Medicina opera sobre três camadas que se sobrepõem mas não coincidem: a educacional (regime do ensino superior, RGPD, EU AI Act), a clínica-académica (faculdade-hospital sob regime de cuidados de saúde) e a de *Software as a Medical Device* (SaMD/AIaMD, sob MDR/IVDR e o EU AI Act enquanto produto regulado). A articulação destas três camadas requer mecanismos institucionais específicos. A tripartição académica genérica está em [Parte II](02-principios.qmd); aqui detalha-se a camada clínica.
 
@@ -20,9 +20,9 @@ A separação entre governação académica genérica e governação clínica es
 
 A FMUP está em situação análoga; o [capítulo 6](06-infraestrutura.qmd) propõe a arquitectura institucional correspondente, em que a camada clínica é desenhada como ponto de articulação futura com a unidade hospitalar afiliada.
 
-## Stogiannos: governação de IA em imagiologia
+## Governação de IA em imagiologia e especialidades de imagem
 
-Stogiannos et al. [@stogiannos2023imaging] fornecem o *framework* mais sólido para aquisição e adopção de IA em imagiologia e radioterapia: validação multi-fase, monitorização contínua, conformidade com organismos de acreditação, princípios éticos (equidade, transparência, fiabilidade, explicabilidade), formação adequada, liderança. A *European Society of Radiology* emitiu em 2025 recomendações específicas para a implementação do EU AI Act em radiologia (*Insights into Imaging* 16:33). Qualquer ferramenta de IA usada em ensino clínico de imagiologia, patologia digital ou outras especialidades baseadas em imagem articula-se com este *framework* e, no momento em que a integração formal venha a operacionalizar-se, com as estruturas hospitalares parceiras.
+As especialidades com uso intensivo de imagem (imagiologia, radioterapia, patologia digital) exigem um modelo de governação específico: validação multi-fase, monitorização contínua, conformidade com organismos de acreditação, e princípios éticos de equidade, transparência e explicabilidade [@stogiannos2023imaging]. A *European Society of Radiology* emitiu em 2025 recomendações específicas para a implementação do EU AI Act em radiologia (*Insights into Imaging* 16:33). Qualquer ferramenta de IA usada em ensino clínico nestas áreas segue este modelo e, no momento em que a integração formal venha a operacionalizar-se, articula-se com as estruturas hospitalares parceiras.
 
 ## NHS, MHRA, NICE: pilar regulatório britânico
 
@@ -47,4 +47,4 @@ Os comités de ética adquirem competências adicionais quando a investigação 
 
 ## Síntese
 
-Três obrigações operacionais que a Parte II do livro absorve. A articulação académica-clínica é desenhada como ponto de integração futura com a unidade hospitalar afiliada --- naturalmente o CHUSJ ---, sem que o Quadro dela dependa para vigorar dentro da FMUP. A governação de IA em imagiologia e especialidades intensivas em dados adopta o *framework* Stogiannos. A preparação para o EHDS e a coordenação TEHDAS2 são obrigações estruturais até Março de 2027.
+Três obrigações operacionais que a Parte II absorve. A articulação académica-clínica é desenhada como ponto de integração futura com a unidade hospitalar afiliada --- naturalmente o CHUSJ ---, sem que o Quadro dela dependa para vigorar dentro da FMUP. A governação de IA em especialidades com uso intensivo de imagem e dados estruturados segue um modelo de validação faseada e supervisão contínua. A preparação para o EHDS e a coordenação TEHDAS2 são obrigações estruturais até Março de 2027.
