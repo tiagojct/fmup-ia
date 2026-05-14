@@ -21,6 +21,8 @@ A GenAI é hoje utilizada em várias fases da análise de dados: geração de c�
 
 **Geração de código.** O investigador é responsável por verificar a correcção do código antes de o aplicar a dados reais. Recomenda-se validação contra dados sintéticos de teste e leitura linha a linha -- regra derivada do princípio articulado por Simon Willison ([Anexo C](C-recursos.qmd)): código que não se consegue explicar não é código que se deva submeter. Código de limpeza que altera estruturalmente os dados (renomear, filtrar, recodificar) merece atenção redobrada, pela dificuldade de detectar erros depois de aplicados.
 
+**Interpretação estatística.** A geração de código e a interpretação dos seus resultados são riscos distintos. Os modelos de linguagem produzem prosa estatística plausível --- escolha de testes, leitura de _p-values_, comentário de intervalos de confiança --- que pode ser factualmente errada. Um investigador sem formação estatística sólida pode não detectar o erro; um inspector regulatório que audite um ensaio clínico, pode. Este é o risco silencioso da GenAI em análise: a plausibilidade da linguagem não implica correcção do raciocínio [@alkaissi2023hallucinations]. A interpretação estatística de um estudo permanece responsabilidade do investigador ou de colaborador com competência formal nessa área.
+
 **Dados sensíveis.** Dados identificáveis de participantes, registos clínicos ou amostras biológicas não podem ser introduzidos em plataformas comerciais de GenAI. Quando o uso envolver dados, utilizar plataformas institucionais com garantias contratuais (IAedu) ou ferramentas locais (modelos executados em infraestrutura própria do grupo de investigação). Dados pseudonimizados continuam a ser dados pessoais para efeitos do RGPD: a pseudonimização reduz mas não elimina o risco.
 
 **Declaração em publicações.** Na secção de métodos, documentar: ferramenta e versão, natureza da assistência (geração _vs_ edição _vs_ interpretação), se a análise foi replicada sem GenAI para validação, e repositório público do código final. A reprodutibilidade é o contra-peso da opacidade do assistente.
@@ -28,6 +30,20 @@ A GenAI é hoje utilizada em várias fases da análise de dados: geração de c�
 ## Revisão por pares e avaliação
 
 As _Living Guidelines_ recomendam que os investigadores se abstenham de utilizar GenAI em actividades sensíveis como a revisão por pares ou a avaliação de candidaturas [@ec2024livingguidelines]. Os primeiros estudos empíricos sobre a utilização de GenAI na revisão por pares sugerem limitações significativas [@lim2025peerreview]. A FMUP deve adoptar esta posição.
+
+## Revisão sistemática e síntese de evidências {#sec-revisao-sistematica}
+
+A GenAI pode apoiar revisões sistemáticas em várias fases: pesquisa inicial de literatura, _screening_ de títulos e _abstracts_, extracção preliminar de dados e síntese narrativa assistida. O [cenário 9 do Anexo E](E-cenarios.qmd#cenario-9) descreve o enquadramento operacional: o _screening_ assistido por GenAI é compatível com o quadro desde que a decisão de inclusão seja validada por revisor humano, os critérios e _prompts_ sejam documentados na secção de métodos, e o processo seja reprodutível. Recomenda-se alinhamento com o PRISMA 2020 nos relatórios correntes e consulta às _guidelines_ PRISMA-AI quando publicadas.
+
+O registo prévio do protocolo --- em PROSPERO, OSF ou plataforma equivalente --- é prática que documenta o desenho da revisão antes de qualquer _screening_ assistido. Este registo cumpre duas funções: demonstra que as decisões metodológicas não foram influenciadas pelo resultado da pesquisa assistida, e torna o protocolo auditável.
+
+## Documentação de ensaios clínicos (GCP) {#sec-gcp}
+
+A investigação com intervenção humana regulada --- ensaios clínicos, estudos de fase I a IV, estudos de dispositivos --- está sujeita a _Good Clinical Practice_ (GCP, ICH E6(R3)). A documentação essencial de um ensaio inclui o protocolo, os formulários de consentimento informado, o _Statistical Analysis Plan_ (SAP) e o _Clinical Study Report_ (CSR). O uso de GenAI nestes documentos levanta questões regulatórias específicas que não se aplicam à investigação observacional.
+
+**O que é compatível com declaração.** O apoio linguístico (revisão gramatical, melhoria estilística, tradução) e o apoio estrutural (gerar uma estrutura-tipo de protocolo ou SAP a partir de modelos publicados) são compatíveis com o quadro, desde que declarados na documentação do ensaio, coerentes com os registos de controlo de versão do documento, e verificáveis por auditor ou inspector. O [cenário 11 do Anexo E](E-cenarios.qmd#cenario-11) ilustra este uso.
+
+**O que exige cautela regulatória.** A génese de decisões analíticas substantivas --- definição de _endpoints_ primários e secundários, escolha de testes estatísticos, regras de descontinuação, análise intermédia --- deve permanecer sob controlo humano com rastreabilidade explícita. O ICH E6(R3) exige que qualquer alteração à documentação essencial seja identificável no histórico de versões, como qualquer outra alteração; contribuições de GenAI não são excepção. Dados de doentes --- em qualquer fase do ensaio --- só podem ser processados em ambiente com garantias contratuais RGPD e, quando aplicável, MDR/IVDR.
 
 ## Protecção de dados e declaração em publicações
 
@@ -39,7 +55,7 @@ A obrigação de declaração varia em forma e detalhe consoante o destinatário
 
 Para submissão a revista científica, vale a recomendação do ICMJE -- adoptada pela maioria das revistas médicas internacionais --: a contribuição da GenAI declara-se em Métodos ou em Agradecimentos, e a ferramenta nunca é listada como co-autora. As políticas da WAME e da COPE coincidem neste ponto. As referências práticas estão no [Anexo C](C-recursos.qmd).
 
-Para candidatura à Fundação para a Ciência e a Tecnologia (FCT), a declaração de uso de GenAI em candidaturas e em relatórios de execução acompanha os elementos formais dos respectivos formulários, com o detalhe exigido pela tipologia do instrumento de financiamento; a FCT mantém ainda a IAedu como infraestrutura institucional de referência [@iaedu2025].
+Para candidatura à Fundação para a Ciência e a Tecnologia (FCT), distingue-se o apoio linguístico (revisão e tradução da candidatura) --- regime análogo ao cenário 3 para manuscritos, com declaração em campo adequado --- da contribuição substantiva (formulação de hipóteses, secção de inovação, síntese do estado da arte). No segundo caso, a declaração é obrigatória e a responsabilidade intelectual pelos conteúdos permanece exclusivamente humana. À data de redacção deste Quadro, a FCT não publicou directrizes formais sobre GenAI em candidaturas; o investigador deve verificar os termos da chamada específica antes de submeter. A FCT mantém a IAedu como infraestrutura institucional de referência [@iaedu2025]. O [cenário 12 do Anexo E](E-cenarios.qmd#cenario-12) ilustra ambos os casos.
 
 Para projectos do Horizonte Europa, a referência são as _Living Guidelines on the Responsible Use of Generative AI in Research_ da Comissão Europeia e do ERA Forum [@ec2024livingguidelines; @bockting2023living], com obrigações específicas para investigadores, organizações de investigação e entidades financiadoras.
 

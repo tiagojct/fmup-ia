@@ -36,14 +36,26 @@ Para faculdades de medicina europeias, o quadro regulatório clínico combina:
 |---|---|
 | Reg. (UE) 2017/745 (MDR) | Em vigor |
 | Reg. (UE) 2017/746 (IVDR) | Em vigor |
-| Reg. (UE) 2024/1689 (AI Act) | Faseada até Agosto 2026 |
-| EHDS | Geral em Março 2027 |
+| Reg. (UE) 2024/1689 (AI Act) — modelos GPAI | Agosto 2025 |
+| Reg. (UE) 2024/1689 (AI Act) — sistemas de alto risco (incl. educação e saúde) | Agosto 2026 |
+| EHDS | Março 2027 |
 
 A *TEHDAS2 Joint Action* (Maio 2024 -- Dezembro 2026), coordenada pela Sitra com 29 países, prepara o uso secundário de dados. Hospitais universitários precisam de *Trusted Research Environments* (TREs) compatíveis com EHDS, com pseudonimização integrada. Sete projectos europeus (IDERHA, EUCAIM, ASCAPE, iHelp, Bigpicture, HealthData@EU pilot, INCISIVE) definem a interoperabilidade prática. A FMUP prepara-se para esta arquitectura em horizonte de 18-24 meses --- coincidente com o [capítulo 7](07-implementacao.qmd) ---, com articulação hospitalar a desenhar-se em diálogo posterior.
 
 ## Comités de ética e investigação clínica com IA
 
 Os comités de ética adquirem competências adicionais quando a investigação envolve componentes de IA: devem avaliar simultaneamente o MDR e o EU AI Act em SaMD com IA, e aplicar os princípios de IA confiável mesmo em estudos onde o EU AI Act não seja directamente aplicável. Para a FMUP: (i) a Comissão de Ética recebe formação específica nestas duas dimensões; (ii) os protocolos com modelos generativos documentam o regime jurídico aplicável; (iii) sempre que a investigação envolva execução clínica em unidade hospitalar parceira, essa articulação é explicitada em submissão.
+
+## Investigação clínica: usos e limites
+
+Para o investigador clínico da FMUP, a GenAI é ferramenta de trabalho tanto em investigação observacional como experimental. O que varia é o enquadramento regulatório. Em investigação observacional sem intervenção (registos electrónicos de saúde, bases de dados administrativas, coortes retrospectivas), aplicam-se as regras gerais da [vertente investigadores](05-investigadores.qmd), com atenção especial ao regime de dados, à pseudonimização e à declaração metodológica. Em investigação com intervenção, acresce o enquadramento GCP (ICH E6(R3)), tratado no [capítulo 5](05-investigadores.qmd#sec-gcp).
+
+Quatro usos frequentes e o seu enquadramento:
+
+- **Formulação de hipóteses e revisão de literatura** --- compatível com o quadro, desde que as referências sejam verificadas contra fontes primárias e o processo seja declarado em métodos.
+- **Análise de dados de saúde electrónicos** --- compatível em ambiente com garantias RGPD (IAedu ou equivalente); dados pseudonimizados só em plataforma institucional; dados identificáveis: proibido em plataformas comerciais.
+- **Escrita e revisão de protocolos e SAPs** --- compatível para apoio linguístico e estrutural; génese de decisões analíticas requer controlo humano rastreável nos termos do ICH E6(R3).
+- **Interpretação de biomarcadores e dados de imagem** --- a GenAI não substitui análise especializada; o risco de confabulação em terminologia técnica específica é documentado [@alkaissi2023hallucinations].
 
 ## Síntese
 

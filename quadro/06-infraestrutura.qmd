@@ -35,8 +35,9 @@ A articulação académica-clínica exige conformidade simultânea com os seguin
 |---|---|---|
 | Reg. (UE) 2017/745 (MDR) | Dispositivos médicos | Em vigor |
 | Reg. (UE) 2017/746 (IVDR) | Diagnóstico *in vitro* | Em vigor |
-| Reg. (UE) 2024/1689 (AI Act) | Sistemas de IA | Aplicação faseada até Agosto 2026 |
-| EHDS | Espaço europeu de dados de saúde | Aplicação geral em Março 2027 |
+| Reg. (UE) 2024/1689 (AI Act) — modelos GPAI | Modelos de IA de uso geral | Agosto 2025 |
+| Reg. (UE) 2024/1689 (AI Act) — sistemas de alto risco (incl. educação e saúde) | Sistemas de IA | Agosto 2026 |
+| EHDS | Espaço europeu de dados de saúde | Março 2027 |
 
 A preparação para o EHDS exige *Trusted Research Environments* compatíveis e coordenação com a *TEHDAS2 Joint Action* --- detalhe no capítulo [14](14-camada-medica.qmd).
 

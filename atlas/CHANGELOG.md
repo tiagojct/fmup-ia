@@ -21,6 +21,21 @@ This project follows a `MAJOR.MINOR.PATCH` scheme:
 
 ---
 
+## [0.6.5] — 2026-05-14 (policy.version 1.2.2)
+
+Clinical researcher review: GCP guidance and statistical interpretation warning.
+
+### Added
+- New rule `R-RESEARCHER-STATISTICS` (risk 2): fires when a researcher
+  selects statistical analysis as a task. Warns that language models produce
+  plausible but potentially incorrect statistical prose; reminds that in
+  clinical trial contexts, GenAI contributions to the SAP must be recorded
+  in the document version history per ICH E6(R3). Links to scenario 11.
+- `policy.version` bumped to **1.2.2** (new rule; no APP_VERSION bump since
+  statement wording is unchanged).
+
+---
+
 ## [0.6.5] — 2026-05-13
 
 Clarification of MDR/IVDR applicability in `R-RESEARCHER-DATA`.
