@@ -5,6 +5,7 @@ project:
     - "index.qmd"
     - "sobre.qmd"
     - "recursos.qmd"
+    - "convencoes.qmd"
     - "404.qmd"
     - "quadro/index.qmd"
     - "quadro/0*.qmd"
@@ -54,6 +55,8 @@ website:
         target: _self
       - href: recursos.qmd
         text: "Recursos"
+      - href: convencoes.qmd
+        text: "Convenções"
       - href: sobre.qmd
         text: "Sobre"
     right:

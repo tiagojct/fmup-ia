@@ -4,7 +4,7 @@ O quadro assenta em sete princípios derivados das referências europeias e inte
 
 ## 1. Agência humana {#principio-1-agencia-humana}
 
-A GenAI é ferramenta de apoio, não substituto do pensamento, do raciocínio clínico ou da criação intelectual. O utilizador é sempre responsável pelo conteúdo que produz, revê ou submete. A investigação sobre os efeitos cognitivos é sugestiva mas não unívoca: León-Domínguez [@leondominguez2024cognitive] argumenta que a utilização rotineira pode erodir funções executivas; Shin et al. [@shin2024impact] encontraram desempenho superior em raciocínio ético no grupo sem ChatGPT; Iqbal et al. [@iqbal2025metacog] mostraram melhorias quando a GenAI é articulada com metacognição partilhada. O efeito depende do desenho pedagógico, não da ferramenta.
+A GenAI é ferramenta de apoio, não substituto do pensamento, do raciocínio clínico ou da criação intelectual. O utilizador é sempre responsável pelo conteúdo que produz, revê ou submete. A investigação sobre os efeitos cognitivos é sugestiva mas mista: León-Domínguez [@leondominguez2024cognitive] argumenta que a utilização rotineira pode erodir funções executivas; Shin et al. [@shin2024impact] encontraram desempenho superior em raciocínio ético no grupo sem ChatGPT; Iqbal et al. [@iqbal2025metacog] mostraram melhorias quando a GenAI é articulada com metacognição partilhada. O efeito depende do desenho pedagógico, não da ferramenta.
 
 Este quadro adopta também a rejeição do _AI exceptionalism_ proposta pelo _AI at Stanford Advisory Committee_ (2025): obrigações que se aplicam a um colega que assiste, a um auxiliar de redacção ou a uma ferramenta estatística aplicam-se também à GenAI. A novidade não dispensa o regime (ver capítulo [10](10-panorama-eua.qmd)).
 
@@ -18,7 +18,7 @@ Nenhum dado pessoal, clínico ou de saúde protegida pode ser introduzido em pla
 
 ## 4. Transparência {#principio-4-transparencia}
 
-O uso de GenAI é documentado e declarável --- em trabalhos académicos, materiais de ensino, escrita científica e análise de dados. Transparência não implica proibição; implica que o uso seja explícito e rastreável. McDonald et al. [@mcdonald2025policies] mostram que apenas 38% das 116 universidades R1 americanas exigem citação das ferramentas; a transparência é o elo mais frágil das políticas em vigor. O princípio articula-se com a _AI golden rule_ de Stanford: usar a GenAI com os outros como gostaríamos que os outros a usassem connosco.
+O uso de GenAI é documentado e declarável --- em trabalhos académicos, materiais de ensino, escrita científica e análise de dados. Transparência não implica proibição; implica que o uso seja explícito e rastreável. McDonald et al. [@mcdonald2025policies] mostram que apenas 38% das 116 universidades R1 americanas exigem citação das ferramentas; a transparência é o ponto mais fraco das políticas em vigor. O princípio alinha com a _AI golden rule_ de Stanford: usar a GenAI com os outros como gostaríamos que os outros a usassem connosco.
 
 ## 5. Equidade de acesso {#principio-5-equidade}
 
