@@ -32,3 +32,13 @@ A escolha das plataformas tem consequências que excedem o critério funcional: 
 A GenAI reduz barreiras para estudantes e docentes com dislexia, ADHD, espectro do autismo, deficiência visual ou condições que afectam concentração. Usos típicos: apoio à organização textual, simplificação linguística, conversão entre formatos, geração de resumos, reescrita acessível. Nesta dimensão, a GenAI é tecnologia assistiva.
 
 Implicações para a FMUP: as regras de declaração não desencorajam o uso como apoio de acessibilidade; o princípio 5 (equidade) estende-se a equidade cognitiva e não apenas financeira --- a gratuidade da IAedu torna-a acessível a todos; o Serviço de Apoio ao Estudante e o grupo de trabalho articulam-se para apoiar quem beneficie de utilização intensiva como acomodação razoável, sem agravar o ónus de declaração.
+
+## Modalidades emergentes de IA
+
+O presente Quadro foi elaborado tendo como referência primária os LLMs de texto --- a modalidade dominante nas interacções académicas em 2026. Duas categorias emergentes exigem atenção específica e serão abordadas na primeira revisão anual do Quadro:
+
+**IA multimodal.** Ferramentas de geração de imagem (DALL-E, Midjourney, Stable Diffusion), síntese e transcrição de voz, e geração de vídeo apresentam riscos de autoria, representação e viés diferentes dos LLMs de texto. Em educação médica, a simulação de consultas com voz sintética e a geração de imagens de patologia ou imagiologia para fins pedagógicos requerem enquadramento específico --- nomeadamente, verificação de exactidão clínica e declaração do processo de geração nos materiais pedagógicos.
+
+**IA agêntica.** Sistemas que combinam LLMs com execução autónoma de código, acesso à web, memória persistente e encadeamento de tarefas (agentes de investigação, assistentes com acesso a bases de dados) excedem o perfil de risco dos LLMs de texto: uma acção autónoma sobre dados clínicos ou sobre sistemas institucionais pode ter consequências irreversíveis sem intervenção humana directa em cada passo. A taxonomia HEAT-AI em quatro níveis não foi desenhada para este perfil; o grupo de trabalho avaliará, na Fase 1, se a categoria "Inaceitável" deve ser expandida para cobrir o uso agêntico em contextos com dados sensíveis.
+
+Até à revisão, o critério operacional é conservador: toda a IA que tome acções autónomas sobre dados, sistemas ou comunicações institucionais é tratada como nível 3 ou 4 da taxonomia vigente, exigindo supervisão humana explícita em cada etapa consequente.

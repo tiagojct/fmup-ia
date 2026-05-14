@@ -39,6 +39,20 @@ Boscardin et al. [@boscardin2024chatgpt] propõem um quadro de competências par
 
 Qualquer política sobre GenAI é documento vivo. A velocidade tecnológica exige revisão periódica e mecanismos de monitorização.
 
+## Operacionalização pelos princípios
+
+A ferramenta [**Atlas**](../atlas/) operacionaliza os princípios 1 a 4 através de regras avaliadas em tempo real contra cada selecção do utilizador. Os princípios 5 a 7 requerem mecanismos institucionais além da declaração individual. A tabela seguinte sintetiza a correspondência:
+
+| Princípio | Regras Atlas (`policy.json`) | Mecanismo institucional |
+|-----------|------------------------------|------------------------|
+| 1 — Agência humana | R-STUDENT-CLINICAL-IDEATION, R-STUDENT-AS-IS, R-TEACHER-CLASSIFICATION-WARNING, R-RESEARCHER-AUTHORSHIP | — |
+| 2 — Integridade académica | R-STUDENT-AS-IS, R-STUDENT-CODE, R-TEACHER-NOT-PERMITTED, R-RESEARCHER-AUTHORSHIP, R-RESEARCHER-DRAFTING-SUBSTANTIVE, R-RESEARCHER-STATISTICS | — |
+| 3 — Protecção de dados | R-COMMON-COMMERCIAL-DATA, R-STUDENT-DATA-ANALYSIS, R-TEACHER-DATA-ANALYSIS, R-RESEARCHER-PEER-REVIEW, R-RESEARCHER-DATA | — |
+| 4 — Transparência | R-TEACHER-OPEN, R-RESEARCHER-MANUSCRIPT-LANG | — |
+| 5 — Equidade de acesso | — | IAedu gratuita; cap. 6 |
+| 6 — Literacia crítica | — | Formação obrigatória; cap. 7 |
+| 7 — Revisão contínua | — | Grupo de trabalho; relatório anual; cap. 6-7 |
+
 ## Três Pilares: Saber sobre IA / Fazer com IA / Ser sem IA {#tres-pilares}
 
 O CNIPES propõe uma leitura transversal em três pilares [@cnipes2026, secção 6.4, citando Zagalo & Couvaneiro 2025]: *Saber sobre IA* (literacia conceptual, ética e epistémica --- princípios 3, 4, 6), *Fazer com IA* (aplicação pedagógica, clínica e de investigação --- princípios 1, 2, vertentes 3-5), *Ser sem IA* (disciplina do limite --- princípio 1).
