@@ -23,7 +23,7 @@
     literature_search: 'pesquisa bibliográfica',
     statistics: 'análise estatística',
     figures: 'preparação de imagens ou figuras',
-    other: 'outras tarefas auxiliares',
+    other: 'outras tarefas auxiliares', // replaced by tasksOther when provided
   };
 
   const ASSIGNMENT_NOUN = {
@@ -120,7 +120,10 @@
     const aPrep = fmtAssignmentPrep(s.assignment);
     const aNoun = fmtAssignmentNoun(s.assignment);
     const tools = trim(s.tools) || 'ferramentas de inteligência artificial generativa não especificadas';
-    const tasks = (s.tasks || []).map((k) => TASK_PHRASES[k]).filter(Boolean);
+    const tasks = (s.tasks || []).map((k) => {
+      if (k === 'other' && trim(s.tasksOther)) return trim(s.tasksOther);
+      return TASK_PHRASES[k];
+    }).filter(Boolean);
     const tasksClause = tasks.length
       ? ' especificamente para ' + list(tasks)
       : '';
@@ -224,6 +227,11 @@
       body += ' A presente declaração integra o relatório institucional correspondente.';
     }
 
+    const replicabilityTargets = ['journal', 'fct', 'horizon', 'wellcome'];
+    if (trim(s.promptsRef) && replicabilityTargets.indexOf(s.target) !== -1) {
+      body += ' Os prompts utilizados e a interacção completa com as ferramentas encontram-se disponíveis em / no ' + trim(s.promptsRef) + '.';
+    }
+
     return body + footer(version, policy);
   };
 
@@ -282,6 +290,7 @@
       footerNationalPlatform: 'Articula-se com a Plataforma Nacional de Práticas Pedagógicas de IA',
       studentUCPolicyReminder: 'Antes de submeter esta declaração, verifique a política da sua unidade curricular — o programa da UC ou o <a href="../quadro/B-clausula.html" target="_blank">Anexo B</a> indicam o regime aplicável (permitido, condicionado ou proibido). Esta declaração reflecte o Quadro institucional, não necessariamente o regime específico da UC.',
       teacherAdaptReminder: 'Este texto é um modelo. Adapte-o ao desenho pedagógico concreto da sua unidade curricular antes de o incluir no programa — nomeadamente, especificando o nome da UC, o semestre e quaisquer condições específicas. O <a href="../quadro/B-clausula.html" target="_blank">Anexo B</a> contém exemplos adicionais por regime.',
+      landingPrivacyNote: 'Esta ferramenta corre inteiramente no seu navegador — sem servidor, sem cookies, sem registo de dados. Não introduza informação pessoal, clínica ou identificável nos campos de texto livre. A avaliação de risco é orientadora; a decisão final pertence sempre ao utilizador.',
     },
     roles: {
       student: 'Estudante',
@@ -316,7 +325,9 @@
         coding: 'Programação',
         data_analysis: 'Análise de dados',
         literature_search: 'Pesquisa bibliográfica',
+        other: 'Outra tarefa',
       },
+      tasksOtherLabel: 'Especifique (ex.: graphical abstract, poster, análise de imagem…)',
       step4: 'Que ferramentas usou?',
       step4Help: 'Indique o nome e, sempre que possível, a versão das ferramentas (por exemplo: ChatGPT 4o, Claude Sonnet 4.6, GitHub Copilot).',
       step4Placeholder: 'Por exemplo: ChatGPT 4o; DeepL',
@@ -388,6 +399,8 @@
       step3Help: 'Indique o nome e, sempre que possível, a versão das ferramentas.',
       step3Placeholder: 'Por exemplo: ChatGPT 4o; Elicit; R copilot',
       step4: 'A quem se destina a divulgação?',
+      promptsRefLabel: 'URL ou referência do anexo de prompts e interacções (opcional)',
+      promptsRefPlaceholder: 'Ex.: https://… ou "Anexo 1 — Registo de interacções"',
       target: {
         journal: 'Submissão a revista científica (ICMJE)',
         fct: 'FCT — Fundação para a Ciência e a Tecnologia',

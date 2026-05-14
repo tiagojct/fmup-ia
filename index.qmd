@@ -15,29 +15,35 @@ Faculdade de Medicina da Universidade do Porto
 
 ::: {.hero-subtitle}
 Um quadro de referência institucional e uma ferramenta para gerar declarações de uso de IA generativa na FMUP.
+
+Para compreender a política, comece pelo Quadro. Para declarar um uso concreto de IA, use o Atlas.
 :::
 
 ::: {.hero-cta}
-[Ler o Quadro](quadro/){.btn .btn-primary .btn-lg}
-[Abrir o Atlas](atlas/){.btn .btn-secondary .btn-lg}
+[Abrir o Atlas](atlas/){.btn .btn-primary .btn-lg}
+[Ler o Quadro](quadro/){.btn .btn-secondary .btn-lg}
+:::
+
+::: {.hero-status}
+Estado: proposta institucional em desenvolvimento — v1.0 (2026). Não substitui regulamentos pedagógicos nem constitui política formalmente aprovada da FMUP.
 :::
 :::
 
 ::: {.cards-3}
-::: {.card-tile}
-### Quadro
-
-Proposta institucional em duas partes: análise comparativa internacional e proposta operacional FMUP com sete princípios, três vertentes e calendário de implementação.
-
-[Ler o Quadro](quadro/){.card-link}
-:::
-
 ::: {.card-tile}
 ### Atlas
 
 Ferramenta web que gera declarações estruturadas de uso de IA com avaliação guidante de risco em quatro níveis.
 
 [Abrir o Atlas](atlas/){.card-link}
+:::
+
+::: {.card-tile}
+### Quadro
+
+Proposta institucional em duas partes: análise comparativa internacional e proposta operacional FMUP com sete princípios, três vertentes e calendário de implementação.
+
+[Ler o Quadro](quadro/){.card-link}
 :::
 
 ::: {.card-tile}

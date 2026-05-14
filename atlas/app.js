@@ -11,7 +11,7 @@
 
   // ---- Single source of truth for the tool version. ----
   // Bump this when statement content (any i18n file) changes.
-  const APP_VERSION = '0.8.0';
+  const APP_VERSION = '0.9.0';
 
   // Schema version for the URL hash payload. Bump when state shape
   // changes incompatibly. Hashes with a different `v` are rejected.
@@ -39,6 +39,7 @@
       submission: null,
       assignment: [],
       tasks: [],
+      tasksOther: '',
       tools: '',
       modification: null,
       // teacher
@@ -49,6 +50,7 @@
       // researcher
       activity: null,
       target: null,
+      promptsRef: '',
     };
   }
 
@@ -86,6 +88,7 @@
       submission: s.submission,
       assignment: s.assignment,
       tasks: s.tasks,
+      tasksOther: s.tasksOther,
       tools: s.tools,
       modification: s.modification,
       level: s.level,
@@ -94,6 +97,7 @@
       skillsOther: s.skillsOther,
       activity: s.activity,
       target: s.target,
+      promptsRef: s.promptsRef,
     };
     return b64encode(JSON.stringify(persisted));
   }
@@ -444,6 +448,9 @@
     const screen = el('section', { class: 'screen', 'aria-labelledby': 'landing-prompt' });
     screen.appendChild(el('p', { class: 'landing-help', text: i.ui.landingHelp }));
     screen.appendChild(el('h2', { class: 'landing-prompt', id: 'landing-prompt', text: i.ui.landingPrompt }));
+    if (i.ui.landingPrivacyNote) {
+      screen.appendChild(el('p', { class: 'review-note', html: i.ui.landingPrivacyNote }));
+    }
 
     const grid = el('div', { class: 'role-grid', role: 'group', 'aria-labelledby': 'landing-prompt' });
     ['student', 'teacher', 'researcher'].forEach((role) => {
@@ -598,12 +605,26 @@
     ));
 
     screen.appendChild(stepHeader(3, total, i.student.step3, i.student.step3Help));
+    const tasksOtherWrap = el('div', { id: 'tasks-other-wrap', hidden: state.tasks.indexOf('other') === -1 });
+    tasksOtherWrap.appendChild(textInputRow(
+      'tasks-other-input',
+      i.student.tasksOtherLabel,
+      state.tasksOther || '',
+      (v) => { state.tasksOther = v; syncHash(true); },
+      i.student.tasksOtherLabel
+    ));
     screen.appendChild(checkboxGroup(
       'tasks',
       asOptions(i.student.tasks),
       state.tasks,
-      (v) => { state.tasks = v; syncHash(true); refreshGenerate(screen); }
+      (v) => {
+        state.tasks = v;
+        tasksOtherWrap.hidden = v.indexOf('other') === -1;
+        syncHash(true);
+        refreshGenerate(screen);
+      }
     ));
+    screen.appendChild(tasksOtherWrap);
 
     screen.appendChild(stepHeader(4, total, i.student.step4, i.student.step4Help));
     screen.appendChild(textInputRow(
@@ -725,6 +746,15 @@
       state.target,
       (v) => { state.target = v; syncHash(true); refreshGenerate(screen); }
     ));
+    if (i.researcher.promptsRefLabel) {
+      screen.appendChild(textInputRow(
+        'prompts-ref-input',
+        i.researcher.promptsRefPlaceholder,
+        state.promptsRef || '',
+        (v) => { state.promptsRef = v; syncHash(true); },
+        i.researcher.promptsRefLabel
+      ));
+    }
 
     const panel = renderRiskPanel(false);
     if (panel) screen.appendChild(panel);
@@ -904,7 +934,10 @@
     if (state.role === 'student') {
       pushRow(rows, i.student.step1, i.student.submission[state.submission]);
       pushRow(rows, i.student.step2, (state.assignment || []).map((k) => i.student.assignment[k]).filter(Boolean).join(', '));
-      pushRow(rows, i.student.step3, (state.tasks || []).map((k) => i.student.tasks[k]).join(', '));
+      pushRow(rows, i.student.step3, (state.tasks || []).map((k) => {
+        if (k === 'other' && (state.tasksOther || '').trim()) return state.tasksOther.trim();
+        return i.student.tasks[k];
+      }).filter(Boolean).join(', '));
       pushRow(rows, i.student.step4, state.tools);
       pushRow(rows, i.student.step5, i.student.modification[state.modification]);
     } else if (state.role === 'teacher') {
@@ -919,6 +952,9 @@
       pushRow(rows, i.researcher.step2, (state.tasks || []).map((k) => i.researcher.tasks[k]).filter(Boolean).join(', '));
       pushRow(rows, i.researcher.step3, state.tools);
       pushRow(rows, i.researcher.step4, i.researcher.target[state.target]);
+      if ((state.promptsRef || '').trim() && i.researcher.promptsRefLabel) {
+        pushRow(rows, i.researcher.promptsRefLabel, state.promptsRef.trim());
+      }
     }
 
     rows.forEach(([k, v]) => {

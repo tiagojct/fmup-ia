@@ -132,7 +132,10 @@
     const aPrep = fmtAssignmentPrep(s.assignment);
     const aNoun = fmtAssignmentNoun(s.assignment);
     const tools = trim(s.tools) || 'unspecified generative artificial intelligence tools';
-    const tasks = (s.tasks || []).map((k) => TASK_PHRASES[k]).filter(Boolean);
+    const tasks = (s.tasks || []).map((k) => {
+      if (k === 'other' && trim(s.tasksOther)) return trim(s.tasksOther);
+      return TASK_PHRASES[k];
+    }).filter(Boolean);
     const tasksClause = tasks.length
       ? ', specifically for ' + list(tasks)
       : '';
@@ -216,6 +219,11 @@
       body += ' This statement is included in the corresponding institutional report.';
     }
 
+    const replicabilityTargets = ['journal', 'fct', 'horizon', 'wellcome'];
+    if (trim(s.promptsRef) && replicabilityTargets.indexOf(s.target) !== -1) {
+      body += ' The prompts used and the complete interaction log are available at / in ' + trim(s.promptsRef) + '.';
+    }
+
     return body + footer(version, policy);
   };
 
@@ -274,6 +282,7 @@
       footerNationalPlatform: 'Articulated with the National Platform for AI Pedagogical Practices',
       studentUCPolicyReminder: 'Before submitting this declaration, check your course unit\'s policy — the course syllabus or <a href="../quadro/B-clausula.html" target="_blank">Appendix B</a> specify the applicable regime (permitted, conditioned or prohibited). This declaration reflects the institutional framework, not necessarily the specific course unit policy.',
       teacherAdaptReminder: 'This text is a template. Adapt it to the specific pedagogical design of your course unit before including it in the syllabus — in particular, specify the course name, semester, and any specific conditions. <a href="../quadro/B-clausula.html" target="_blank">Appendix B</a> contains additional examples by regime.',
+      landingPrivacyNote: 'This tool runs entirely in your browser — no server, no cookies, no data logging. Do not enter personal, clinical or identifiable information in any free-text field. The risk assessment is advisory; the final decision always belongs to the user.',
     },
     roles: {
       student: 'Student',
@@ -308,7 +317,9 @@
         coding: 'Coding',
         data_analysis: 'Data analysis',
         literature_search: 'Literature searching',
+        other: 'Other task',
       },
+      tasksOtherLabel: 'Specify (e.g., graphical abstract, poster, image analysis…)',
       step4: 'Which tools did you use?',
       step4Help: 'Indicate the name and, where possible, the version of the tools (e.g. ChatGPT 4o, Claude Sonnet 4.6, GitHub Copilot).',
       step4Placeholder: 'For example: ChatGPT 4o; DeepL',
@@ -380,6 +391,8 @@
       step3Help: 'Indicate the name and, where possible, the version of the tools.',
       step3Placeholder: 'For example: ChatGPT 4o; Elicit; R copilot',
       step4: 'Who is the disclosure for?',
+      promptsRefLabel: 'URL or reference of prompts and interaction log (optional)',
+      promptsRefPlaceholder: 'E.g., https://… or "Appendix 1 — Interaction log"',
       target: {
         journal: 'Journal submission (ICMJE)',
         fct: 'FCT — Fundação para a Ciência e a Tecnologia',

@@ -21,6 +21,21 @@ This project follows a `MAJOR.MINOR.PATCH` scheme:
 
 ---
 
+## [0.9.0] — 2026-05-14
+
+External feedback pass: landing page hierarchy, Atlas privacy framing, student task free-text, researcher replicability field.
+
+### Added
+- `landingPrivacyNote` i18n string (pt/en): renders as a `.review-note` on the Atlas landing screen, before the role cards. States that the tool runs entirely in-browser (no server, no cookies, no data logging) and warns against entering personal or clinical data in free-text fields. Also states that risk assessment is advisory.
+- Student tasks now include an `other` option with a conditional free-text field (`tasksOther`). When "Outra tarefa / Other task" is checked, a text input appears ("Especifique / Specify…"). If filled, the literal value replaces "outras tarefas auxiliares / other ancillary tasks" in the generated declaration. Requested by Ricardo Correia (graphical abstract example).
+- Researcher form: optional `promptsRef` text field added after the target step ("URL ou referência do anexo de prompts e interacções / URL or reference of prompts and interaction log"). If filled, the researcher full statement (targets: journal, FCT, Horizon, Wellcome) appends a replicability sentence pointing to the provided reference. Requested by Ricardo Correia.
+
+### Changed
+- `APP_VERSION` bumped to **0.9.0**; `index.html` cache-bust query strings updated to `?v=0.9.0`.
+- `freshState()` and `encodeState()` extended with `tasksOther` and `promptsRef` fields; both serialised in the URL hash for round-trip fidelity.
+
+---
+
 ## [0.8.0] — 2026-05-14
 
 Teacher SWOT review: template reminder on teacher output screen; classification warning scoped to permissive policies.
