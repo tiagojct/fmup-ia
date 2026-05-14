@@ -21,6 +21,47 @@ This project follows a `MAJOR.MINOR.PATCH` scheme:
 
 ---
 
+## [0.8.0] — 2026-05-14
+
+Teacher SWOT review: template reminder on teacher output screen; classification warning scoped to permissive policies.
+
+### Added
+- New i18n string `teacherAdaptReminder` (pt/en): renders as a `.review-note`
+  on the teacher output screen, after the risk panel and before the output
+  blocks. Reminds the teacher that the generated text is a template to be
+  adapted to the specific course unit (name, semester, conditions) before
+  inclusion in the syllabus. Links to Appendix B for worked examples.
+- `policy_any` trigger field added to `matchesTrigger()` in `app.js`: works
+  analogously to `tasks_any` and `target_any` — fires the rule only when
+  `state.policy` is in the specified array.
+
+### Changed
+- `R-TEACHER-CLASSIFICATION-WARNING` trigger narrowed from `{ "role": "teacher" }`
+  to `{ "role": "teacher", "policy_any": ["with_disclosure", "without_restrictions"] }`.
+  The warning is now suppressed when the teacher selects "not_permitted", where
+  GenAI-assisted grading is already a non-issue by definition.
+- `policy.version` bumped to **1.2.3** (rule trigger change).
+- `APP_VERSION` bumped to **0.8.0**; `index.html` cache-bust query strings
+  updated to `?v=0.8.0`.
+
+---
+
+## [0.7.0] — 2026-05-14
+
+Student SWOT review: UC policy reminder on student output screen.
+
+### Added
+- New i18n string `studentUCPolicyReminder` (pt/en): renders as a `.review-note`
+  on the student output screen, after the risk panel and before the output
+  blocks. Reminds the student to verify their course unit's GenAI policy
+  (syllabus or Appendix B) before submitting the declaration. Addresses the gap
+  where a student in a "not_permitted" course unit could generate an Atlas
+  declaration and mistakenly believe it validated their use.
+- `APP_VERSION` bumped to **0.7.0**; `index.html` cache-bust query strings
+  updated to `?v=0.7.0`.
+
+---
+
 ## [0.6.5] — 2026-05-14 (policy.version 1.2.2)
 
 Clinical researcher review: GCP guidance and statistical interpretation warning.

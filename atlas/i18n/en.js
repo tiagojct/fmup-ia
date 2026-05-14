@@ -272,6 +272,8 @@
       viewScenario: 'View scenario in the framework',
       principleLabel: 'Principle',
       footerNationalPlatform: 'Articulated with the National Platform for AI Pedagogical Practices',
+      studentUCPolicyReminder: 'Before submitting this declaration, check your course unit\'s policy — the course syllabus or <a href="../quadro/B-clausula.html" target="_blank">Appendix B</a> specify the applicable regime (permitted, conditioned or prohibited). This declaration reflects the institutional framework, not necessarily the specific course unit policy.',
+      teacherAdaptReminder: 'This text is a template. Adapt it to the specific pedagogical design of your course unit before including it in the syllabus — in particular, specify the course name, semester, and any specific conditions. <a href="../quadro/B-clausula.html" target="_blank">Appendix B</a> contains additional examples by regime.',
     },
     roles: {
       student: 'Student',

@@ -1,5 +1,5 @@
 {
-  "version": "1.2.2",
+  "version": "1.2.3",
   "framework_version": "FMUP Quadro de Referência v1.0 (2026-04-21)",
   "framework_short_pt": "Quadro FMUP v1.0",
   "framework_short_en": "FMUP Framework v1.0",
@@ -106,7 +106,7 @@
     },
     {
       "id": "R-TEACHER-CLASSIFICATION-WARNING",
-      "trigger": { "role": "teacher" },
+      "trigger": { "role": "teacher", "policy_any": ["with_disclosure", "without_restrictions"] },
       "risk": 1,
       "principle_ref": "principio-1-agencia-humana",
       "scenario_ref": "https://tiagojct.eu/fmup-ia/quadro/E-cenarios.html#cenario-8",

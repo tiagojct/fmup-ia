@@ -24,9 +24,15 @@ Ficam proibidas as seguintes utilizações:
 4. Utilização de GenAI para gerar diagnósticos diferenciais ou planos de gestão clínica em contexto de aprendizagem de raciocínio clínico, salvo quando expressamente autorizado pelo docente -- em contextos formativos não estruturados, a delegação do raciocínio clínico em ferramentas de GenAI pode comprometer o seu desenvolvimento [@shin2024impact];
 5. Carregamento de materiais curriculares proprietários em plataformas de GenAI sem protecção contratual de dados.
 
+::: {.callout-warning}
+## O que conta como "dado identificável"
+
+Conta como informação identificável — e está proibida em plataformas comerciais — qualquer dado que, isolado ou combinado, permita identificar um doente: nome, número de processo, data de nascimento associada a diagnóstico, imagens com rosto ou código de barras, excertos de anamnese com detalhes únicos (local de residência, profissão, datas de admissão). A anonimização informal (substituir o nome por "X") não cumpre os requisitos técnicos do RGPD. Em caso de dúvida, não introduza esses dados. Para discussão de casos clínicos com apoio de GenAI, utilize a IAedu ou apresente o cenário de forma completamente fictícia.
+:::
+
 ## Declaração de uso
 
-Todos os trabalhos académicos em que tenha sido utilizada GenAI devem incluir uma declaração de uso que especifique a ferramenta, o tipo de assistência obtida, as secções em que foi aplicada e os _prompts_ utilizados (ver [Anexo A](A-declaracao.qmd)). Todo o conteúdo gerado por GenAI deve ser lido, verificado e editado pelo estudante antes de ser submetido. O estudante deve ser capaz de explicar e defender qualquer conteúdo que submeta.
+Todos os trabalhos académicos em que tenha sido utilizada GenAI devem incluir uma declaração de uso que especifique a ferramenta, o tipo de assistência obtida, as secções em que foi aplicada e os _prompts_ utilizados (ver [Anexo A](A-declaracao.qmd)). Todo o conteúdo gerado por GenAI deve ser lido, verificado e editado pelo estudante antes de ser submetido. O estudante deve ser capaz de explicar e defender qualquer conteúdo que submeta. Para gerar uma declaração conforme o presente Quadro, utilize a ferramenta [**Atlas**](../atlas/).
 
 ## Literacia em IA
 

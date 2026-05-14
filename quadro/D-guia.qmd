@@ -28,6 +28,14 @@ Uma versão resumida de uma página está disponível em [PDF](guias/guia-estuda
 
 Podes usar GenAI para **estudar e rever conceitos** (explicações, resumos, esquemas), para **melhorar a escrita** (revisão gramatical e estilística de textos da tua autoria), para **clarificar terminologia médica**, e para **explorar cenários clínicos em abstracto** -- casos fictícios, nunca casos reais ou com dados identificáveis.
 
+### Sequência prática
+
+Antes de usares GenAI num trabalho académico:
+
+1. **Verifica a política da UC.** Consulta o programa da unidade curricular — deve incluir uma cláusula sobre GenAI (ver [Anexo B](B-clausula.qmd)). Se não houver cláusula, o uso fica condicionado a pedido de esclarecimento ao docente.
+2. **Usa dentro do que o regime permite.** Guarda os _prompts_ que usaste e uma nota sobre o tipo de assistência obtida.
+3. **Gera a tua declaração com [Atlas](../atlas/) e inclui-a no trabalho.** A declaração deve preceder o texto principal ou constar num anexo identificado.
+
 ### Regras essenciais
 
 1. **Verifica tudo.** És responsável por qualquer conteúdo que submetas, independentemente da ferramenta usada.
@@ -40,7 +48,7 @@ Podes usar GenAI para **estudar e rever conceitos** (explicações, resumos, esq
 
 ### Ferramentas
 
-- [IAedu](https://iaedu.pt) --- primeira opção institucional.
+- [IAedu](https://iaedu.pt) --- primeira opção institucional. Acede com o teu email `@up.pt` em [iaedu.pt](https://iaedu.pt); não retém dados para treino de modelos.
 - [ChatGPT](https://chatgpt.com), [Claude](https://claude.ai) --- alternativas comerciais, verificando definições de privacidade.
 - [DeepL](https://www.deepl.com) --- tradução técnica.
 - [NotebookLM](https://notebooklm.google.com) --- estudar a partir de materiais próprios.

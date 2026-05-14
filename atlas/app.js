@@ -11,7 +11,7 @@
 
   // ---- Single source of truth for the tool version. ----
   // Bump this when statement content (any i18n file) changes.
-  const APP_VERSION = '0.6.5';
+  const APP_VERSION = '0.8.0';
 
   // Schema version for the URL hash payload. Bump when state shape
   // changes incompatibly. Hashes with a different `v` are rejected.
@@ -287,6 +287,7 @@
     if (trigger.submission && trigger.submission !== s.submission) return false;
     if (trigger.modification && trigger.modification !== s.modification) return false;
     if (trigger.policy && trigger.policy !== s.policy) return false;
+    if (trigger.policy_any && trigger.policy_any.indexOf(s.policy) === -1) return false;
     if (trigger.level && trigger.level !== s.level) return false;
     if (trigger.activity && trigger.activity !== s.activity) return false;
     if (trigger.target && trigger.target !== s.target) return false;
@@ -775,6 +776,13 @@
 
     const panel = renderRiskPanel(true);
     if (panel) screen.appendChild(panel);
+
+    if (state.role === 'student' && i.ui.studentUCPolicyReminder) {
+      screen.appendChild(el('p', { class: 'review-note', html: i.ui.studentUCPolicyReminder }));
+    }
+    if (state.role === 'teacher' && i.ui.teacherAdaptReminder) {
+      screen.appendChild(el('p', { class: 'review-note', html: i.ui.teacherAdaptReminder }));
+    }
 
     const blocks = computeOutputs();
     blocks.forEach((b) => screen.appendChild(makeOutputBlock(b)));
