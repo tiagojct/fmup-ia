@@ -45,6 +45,18 @@ O [**Atlas**](atlas/) é uma ferramenta web que acompanha o Quadro e gera declar
 
 **Para citar o Atlas num trabalho académico:** o Atlas gera automaticamente a linha de citação adequada ao destinatário no final de cada declaração.
 
+## Infraestrutura técnica
+
+O Quadro e o Atlas são publicados como um único sítio web estático, construído com [Quarto](https://quarto.org/) e alojado no GitHub Pages. O repositório fonte é público em [github.com/tiagojct/fmup-ia](https://github.com/tiagojct/fmup-ia).
+
+**Quadro — website Quarto.** Os capítulos e anexos são ficheiros `.qmd` (Quarto Markdown) que o Quarto converte em HTML com navegação lateral, referências bibliográficas automáticas (formato Chicago Author-Date, via Pandoc/CSL) e tabela de conteúdos por página. A estrutura é de *website* (não de *book*): cada página é autónoma e os links cruzados são explícitos.
+
+**Atlas — aplicação web sem dependências.** A ferramenta operacional é uma aplicação de página única escrita em JavaScript, HTML e CSS sem dependências externas ou passo de compilação. O Quarto copia-a como recurso estático. Corre inteiramente no browser do utilizador.
+
+**Guias PDF.** Quatro guias práticos de uma página (estudantes, docentes, investigadores, Grupo de Trabalho) são gerados pelo script `render-guias.sh`, que invoca o Quarto em modo Typst após a construção principal do site.
+
+**Publicação contínua.** Um *workflow* de GitHub Actions (`publish.yml`) constrói o site e os guias a cada *push* para o ramo principal e publica o resultado no GitHub Pages.
+
 ## Como citar
 
 > Jacinto T. *FMUP · IA — Quadro de referência institucional para a utilização de inteligência artificial generativa na FMUP*. Faculdade de Medicina da Universidade do Porto, 2026. <https://tiagojct.eu/fmup-ia/>
