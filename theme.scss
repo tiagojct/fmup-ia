@@ -5,13 +5,17 @@
 // sidebar, page TOC, callouts, code, tables, and footer. This file only
 // holds components that are specific to the `tiagojct/fmup-ia` landing
 // page (the hero block and the three-card grid). Everything else lives
-// in `_extensions/fmup/fmup.scss`.
+// in `_extensions/tiagojct/fmup/fmup.scss`.
+//
+// All colours reference the `$fmup-*` design tokens defined in
+// `fmup-variables.scss` (light) and `fmup-variables-dark.scss` (dark),
+// so this file works automatically under both Bootstrap colour modes.
 
 // ---- Hero block (used in index.qmd) ----
 
 .hero {
   padding: 3rem 0 2.5rem;
-  border-bottom: 4px solid #FFCD00;
+  border-bottom: 4px solid $fmup-yellow;
   margin-bottom: 2.5rem;
 
   .hero-eyebrow {
@@ -19,7 +23,7 @@
     letter-spacing: 0.1em;
     font-size: 0.85rem;
     font-weight: 700;
-    color: #5B6470;
+    color: $fmup-text-muted;
     margin-bottom: 0.5rem;
   }
 
@@ -28,12 +32,13 @@
     font-weight: 800;
     margin: 0 0 1rem;
     letter-spacing: -0.02em;
+    color: $fmup-text;
   }
 
   .hero-subtitle {
     font-size: 1.2rem;
     max-width: 60ch;
-    color: #1A1A1A;
+    color: $fmup-text;
     margin: 0 0 1.5rem;
   }
 
@@ -46,7 +51,7 @@
   .hero-status {
     margin-top: 0.75rem;
     font-size: 0.8rem;
-    color: #5B6470;
+    color: $fmup-text-muted;
   }
 }
 
@@ -62,9 +67,9 @@
   }
 
   .card-tile {
-    background: #FFFFFF;
-    border: 1px solid #E0E0E0;
-    border-radius: 6px;
+    background: $fmup-surface;
+    border: 1px solid $fmup-border;
+    border-radius: $fmup-radius;
     padding: 1.5rem 1.25rem;
     text-decoration: none;
     color: inherit;
@@ -74,34 +79,27 @@
     transition: border-color 120ms, transform 120ms, box-shadow 120ms;
 
     &:hover {
-      border-color: #1A1A1A;
+      border-color: $fmup-text;
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      background: #FFFFFF;
+      box-shadow: 0 4px 12px rgba($fmup-text, 0.12);
+      background: $fmup-surface-strong;
     }
 
     h3 {
       margin: 0;
       font-size: 1.2rem;
       font-weight: 800;
-      color: #1A1A1A;
+      color: $fmup-text;
 
       // Yellow ::before square removed for a calmer card header.
-      // Kept the rule placeholder commented out for fast re-enable.
       &::before {
         content: none;
-        display: none;
-        width: 0;
-        height: 0;
-        background: transparent;
-        margin-right: 0;
-        vertical-align: middle;
       }
     }
 
     p {
       margin: 0;
-      color: #5B6470;
+      color: $fmup-text-muted;
       font-size: 0.95rem;
       line-height: 1.5;
     }
@@ -109,7 +107,7 @@
     .card-link {
       margin-top: auto;
       font-weight: 700;
-      color: #1A1A1A;
+      color: $fmup-text;
 
       &::after {
         content: " →";

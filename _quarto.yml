@@ -13,7 +13,7 @@ project:
     - "quadro/[A-G]-*.qmd"
     - "quadro/references.qmd"
     - "apresentacoes/*.qmd"
-    - "!quadro/guias/**"
+    - "quadro/guias/*.qmd"
     - "!quadro/full-references.md"
     - "!atlas/**"
   resources:
@@ -121,29 +121,20 @@ website:
         href: https://github.com/tiagojct/fmup-ia
 
 format:
-  html:
-    theme:
-      - cosmo
-      - _extensions/fmup/fmup.scss
-      - theme.scss
-    toc: true
+  fmup-html:
     toc-depth: 3
     toc-location: right
-    fig-cap-location: bottom
-    tbl-cap-location: top
-    code-overflow: wrap
-    smooth-scroll: true
-    link-external-icon: false
-    link-external-newwindow: true
-    anchor-sections: true
-    code-copy: true
-    mainfont: "Atkinson Hyperlegible Next, Atkinson Hyperlegible, system-ui, sans-serif"
-    monofont: "Geist Mono, ui-monospace, Menlo, monospace"
-    include-in-header:
-      - text: |
-          <link rel="preconnect" href="https://fonts.googleapis.com">
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Geist+Mono:wght@400;500&display=swap">
+    theme:
+      light:
+        - default
+        - _extensions/tiagojct/fmup/fmup.scss
+        - _extensions/tiagojct/fmup/fmup-variables.scss
+        - theme.scss
+      dark:
+        - default
+        - _extensions/tiagojct/fmup/fmup.scss
+        - _extensions/tiagojct/fmup/fmup-variables-dark.scss
+        - theme.scss
 
 bibliography: quadro/references.bib
 csl: quadro/chicago-author-date.csl

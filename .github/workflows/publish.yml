@@ -27,9 +27,6 @@ jobs:
       - name: Render Quarto site
         run: quarto render
 
-      - name: Render standalone guides (PDF)
-        run: bash render-guias.sh
-
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:

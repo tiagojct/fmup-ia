@@ -6,16 +6,13 @@ date: "2026-04-21"
 date-format: "D [de] MMMM [de] YYYY"
 lang: pt-PT
 format:
-  typst:
+  fmup-typst:
     toc: false
     number-sections: false
-    papersize: a4
     margin:
       x: 2cm
       y: 2cm
     fontsize: 10.5pt
-    mainfont: "Geist"
-    monofont: "Geist Mono"
     section-numbering: ""
 ---
 
