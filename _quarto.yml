@@ -127,13 +127,13 @@ format:
     theme:
       light:
         - default
-        - _extensions/tiagojct/fmup/fmup.scss
-        - _extensions/tiagojct/fmup/fmup-variables.scss
+        - _extensions/fmup/fmup.scss
+        - _extensions/fmup/fmup-variables.scss
         - theme.scss
       dark:
         - default
-        - _extensions/tiagojct/fmup/fmup.scss
-        - _extensions/tiagojct/fmup/fmup-variables-dark.scss
+        - _extensions/fmup/fmup.scss
+        - _extensions/fmup/fmup-variables-dark.scss
         - theme.scss
 
 bibliography: quadro/references.bib
