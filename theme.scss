@@ -1,10 +1,3 @@
-/*-- scss:defaults --*/
-
-// Ink colour used on top of the FMUP yellow background. Yellow is the
-// same in both colour modes, so the text on it must always be near-black
-// regardless of light or dark theme.
-$fmup-ink-on-yellow: #1A1A1A !default;
-
 /*-- scss:rules --*/
 
 // Project-specific overrides on top of the `quarto-fmup` extension theme.
@@ -17,29 +10,6 @@ $fmup-ink-on-yellow: #1A1A1A !default;
 // All colours reference the `$fmup-*` design tokens defined in
 // `fmup-variables.scss` (light) and `fmup-variables-dark.scss` (dark),
 // so this file works automatically under both Bootstrap colour modes.
-
-// ---- Primary button (yellow background, near-black text) ----
-//
-// Overrides the extension's `.btn-primary` rule, which sets
-// `color: $fmup-text`. In dark mode that resolves to near-white text on
-// the FMUP yellow background — illegible. The yellow background is
-// constant across both colour modes, so the ink must also be constant.
-
-.btn-primary {
-  color: $fmup-ink-on-yellow !important;
-
-  &:hover, &:focus, &:active {
-    background-color: $fmup-ink-on-yellow !important;
-    border-color: $fmup-ink-on-yellow !important;
-    color: $fmup-yellow !important;
-  }
-}
-
-.btn-secondary {
-  &:hover {
-    color: $fmup-ink-on-yellow !important;
-  }
-}
 
 // ---- Hero block (used in index.qmd) ----
 
