@@ -81,9 +81,9 @@ Detalhe completo, indicadores quantitativos e grelha de maturidade no capítulo 
 - **Defensibilidade jurídica.** Cláusulas-tipo e processo disciplinar reduzem o risco de litigância em torno de casos de uso indevido.
 - **Acreditação ISO/IEC 42001** como meta de Fase 3.
 
-## O que se pede à direcção
+## Decisões
 
-A proposta requer da direcção decisões em três planos:
+A proposta requer decisões em três planos:
 
 1. **Endosso institucional.** Reconhecimento do Quadro como documento de referência institucional e mandato para o grupo de trabalho iniciar a Fase 1.
 2. **Alocação de recursos.** Tempo de docentes para formação (Fase 1), articulação com a Universidade do Porto e com o Deucalion (EuroHPC), e ligação à unidade hospitalar afiliada para o _Trusted Research Environment_ (Fase 2).
@@ -100,6 +100,3 @@ A proposta **não pede** alteração de regulamentos pedagógicos no imediato �
 - [**Convenções editoriais**](convencoes.qmd) — terminologia, ortografia, citações.
 - [**Sobre**](sobre.qmd) — autoria, infraestrutura técnica, licença, contactos.
 
----
-
-*Esta página é um resumo executivo. O documento de referência é o [Quadro completo](quadro/). Erros, omissões ou divergências entre síntese e Quadro devem favorecer este último.*
