@@ -85,7 +85,7 @@ A GenAI já é usada pelos estudantes em prevalências de 60% a 80%. A resposta 
 - [Perplexity](https://www.perplexity.ai) --- respostas com citações verificáveis (a verificar sempre).
 - [AAMC Principles](https://www.aamc.org/about-us/mission-areas/medical-education/principles-ai-use).
 - [TEQSA Gen AI Knowledge Hub](https://www.teqsa.gov.au/guides-resources/higher-education-good-practice-hub/gen-ai-knowledge-hub).
-- [HEA Ireland policy framework](https://hea.ie).
+- [HEA Ireland _policy framework_](https://hea.ie).
 
 ## Investigadores
 

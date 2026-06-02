@@ -26,7 +26,7 @@ Se a instituição recomenda ou exige a utilização de GenAI, garante acesso eq
 
 ## 6. Literacia crítica {#principio-6-literacia}
 
-Todos os utilizadores devem compreender as limitações dos modelos, avaliar criticamente os _outputs_ e usar as ferramentas de forma informada. A literacia articula quatro dimensões:
+Todos os utilizadores devem compreender as limitações dos modelos, avaliar criticamente os _outputs_ e usar as ferramentas de forma informada. Os termos técnicos utilizados ao longo do documento estão definidos no [Anexo F](F-glossario.qmd). A literacia articula quatro dimensões:
 
 - **Técnica** --- funcionamento dos modelos, fontes de treino, janela de contexto, natureza probabilística, causas de confabulação.
 - **Avaliativa** --- identificar erros factuais, referências fabricadas, inconsistências, viés; verificar contra fontes primárias.

@@ -48,7 +48,7 @@ A GenAI já é usada pelos estudantes em prevalências de 60% a 80%. A resposta 
 
 - **AAMC Principles for Responsible Use of AI in Medical Education** — <https://www.aamc.org/about-us/mission-areas/medical-education/principles-ai-use>.
 - **TEQSA Gen AI Knowledge Hub (Austrália)** — <https://www.teqsa.gov.au/guides-resources/higher-education-good-practice-hub/gen-ai-knowledge-hub>. Incluindo o _toolkit_ sobre redesenho de avaliação.
-- **HEA Ireland policy framework** — <https://hea.ie>. Abordagem europeia baseada em valores.
+- **HEA Ireland _policy framework_** — <https://hea.ie>. Abordagem europeia baseada em valores.
 - **Proposta institucional da FMUP:** consultar Vertente Docentes (capítulo 4) e Anexos A, B, E.
 
 ---

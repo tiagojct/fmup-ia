@@ -21,6 +21,27 @@ This project follows a `MAJOR.MINOR.PATCH` scheme:
 
 ---
 
+## [0.9.1] — 2026-05-23
+
+Internal audit pass: language-preservation bug in `backToLanding()` and policy
+sanity check at startup. No statement-wording changes; bumped strictly for
+behavioural fidelity (so that a 0.9.0 declaration remains distinguishable from
+a 0.9.1 one in archived URL hashes).
+
+### Fixed
+- `backToLanding()` previously called `freshState()` which re-ran
+  `detectLang()` from scratch, reverting the user's `lang` selection back
+  to the browser default on every "Back" click. Now preserves
+  `state.lang` across the reset.
+
+### Added
+- `validatePolicy()` runs once at startup against both the inline and
+  fetched `POLICY` object. Logs a `console.warn` if any rule references a
+  `risk` level that is not declared in `policy.risk_levels`. Non-blocking;
+  intended as a sentinel for future `policy.json` edits.
+
+---
+
 ## [0.9.0] — 2026-05-14
 
 External feedback pass: landing page hierarchy, Atlas privacy framing, student task free-text, researcher replicability field.
@@ -77,26 +98,18 @@ Student SWOT review: UC policy reminder on student output screen.
 
 ---
 
-## [0.6.5] — 2026-05-14 (policy.version 1.2.2)
+## [0.6.5] — 2026-05-13 → 2026-05-14
 
-Clinical researcher review: GCP guidance and statistical interpretation warning.
+Initial 2026-05-13 release bumped `APP_VERSION` to 0.6.5 and `policy.version` to 1.2.1 (MDR/IVDR wording fix). A follow-up patch on 2026-05-14 added a new rule and bumped `policy.version` to 1.2.2 without re-bumping `APP_VERSION` (statement wording unchanged).
 
-### Added
+### Added (policy.version 1.2.2, 2026-05-14)
 - New rule `R-RESEARCHER-STATISTICS` (risk 2): fires when a researcher
   selects statistical analysis as a task. Warns that language models produce
   plausible but potentially incorrect statistical prose; reminds that in
   clinical trial contexts, GenAI contributions to the SAP must be recorded
   in the document version history per ICH E6(R3). Links to scenario 11.
-- `policy.version` bumped to **1.2.2** (new rule; no APP_VERSION bump since
-  statement wording is unchanged).
 
----
-
-## [0.6.5] — 2026-05-13
-
-Clarification of MDR/IVDR applicability in `R-RESEARCHER-DATA`.
-
-### Changed
+### Changed (policy.version 1.2.1, 2026-05-13)
 - `R-RESEARCHER-DATA` message reworded to qualify MDR/IVDR as
   conditional ("quando aplicável / where applicable"). The previous
   wording read "RGPD e MDR/IVDR" as a flat conjunction, which

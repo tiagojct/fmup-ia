@@ -24,18 +24,17 @@ fmup-ia/
 ├── theme.scss           # paleta amarelo FMUP + Atkinson Hyperlegible Next
 ├── index.qmd            # landing
 ├── sobre.qmd, recursos.qmd, 404.qmd
-├── quadro/              # o livro (16 capítulos + 6 anexos + bibliografia)
+├── quadro/              # o livro (16+ capítulos + 7 anexos + bibliografia)
 │   ├── index.qmd
 │   ├── 10-…15-          # Parte I (análise comparativa)
-│   ├── 01-…09-          # Parte II (proposta FMUP)
-│   ├── A-…F-            # Anexos
-│   ├── references.bib, ieee.csl
-│   └── guias/           # 4 PDFs (handouts) renderizados por render-guias.sh
+│   ├── 01-…09b-         # Parte II (proposta FMUP)
+│   ├── A-…G-            # Anexos
+│   ├── references.bib, chicago-author-date.csl
+│   └── guias/           # 4 handouts em format: fmup-typst (PDF)
 ├── atlas/               # SPA: index.html, app.js, style.css, policy.json, i18n/
 ├── assets/
 │   ├── logos/           # logos institucionais FMUP / U.Porto
 │   └── favicon.svg
-├── render-guias.sh      # post-render: renderiza os 4 guias PDF
 └── .github/workflows/
     └── publish.yml      # CI: build Quarto + deploy gh-pages
 ```
@@ -46,8 +45,7 @@ Requer **Quarto 1.9+** instalado.
 
 ```bash
 quarto preview          # dev server com live reload
-quarto render           # build completo para _site/
-bash render-guias.sh    # opcional: renderizar os 4 guias PDF
+quarto render           # build completo para _site/ (HTML + 4 PDFs dos guias)
 ```
 
 Para testar o Atlas juntamente com o site renderizado:
@@ -62,9 +60,8 @@ cd _site && python3 -m http.server 8000
 Push para `main` dispara o workflow `publish.yml` (`.github/workflows/`), que:
 
 1. instala Quarto;
-2. corre `quarto render` (build do site);
-3. corre `render-guias.sh` (build dos 4 PDFs);
-4. publica `_site/` no branch `gh-pages` via `peaceiris/actions-gh-pages`.
+2. corre `quarto render` (build do site + 4 PDFs dos guias);
+3. publica `_site/` no branch `gh-pages` via `peaceiris/actions-gh-pages`.
 
 GitHub Pages está configurado para servir do branch `gh-pages`. URL custom: `tiagojct.eu/fmup-ia/` (herdado do CNAME de `tiagojct.github.io`).
 

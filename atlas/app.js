@@ -11,7 +11,7 @@
 
   // ---- Single source of truth for the tool version. ----
   // Bump this when statement content (any i18n file) changes.
-  const APP_VERSION = '0.9.0';
+  const APP_VERSION = '0.9.1';
 
   // Schema version for the URL hash payload. Bump when state shape
   // changes incompatibly. Hashes with a different `v` are rejected.
@@ -24,6 +24,23 @@
   // (e.g. file:// without a server) — the app still works, with the
   // institutional risk panel disabled.
   let POLICY = null;
+
+  // Sanity check: every risk level referenced by a rule must exist in
+  // policy.risk_levels, otherwise the risk panel renders the numeric
+  // level without a label. Console-only — never blocks the user.
+  function validatePolicy(p) {
+    if (!p || !p.rules || !p.risk_levels) return;
+    const known = new Set(Object.keys(p.risk_levels).map(String));
+    const orphans = new Set();
+    for (const r of p.rules) {
+      if (r.risk == null) continue;
+      const k = String(r.risk);
+      if (!known.has(k)) orphans.add(`${r.id || '<anon>'}→risk=${k}`);
+    }
+    if (orphans.size) {
+      console.warn('[atlas] rules with risk level not declared in policy.risk_levels:', [...orphans]);
+    }
+  }
 
   // -------- State --------
 
@@ -575,8 +592,9 @@
   }
 
   function backToLanding() {
+    const lang = state.lang;
     state = freshState();
-    state.lang = state.lang || detectLang();
+    state.lang = lang;
     syncHash(false);
     render();
   }
@@ -1092,7 +1110,10 @@
 
     // Inline policy from a <script>-injected global wins over fetch (lets
     // the page work from file:// when the file has been pre-bundled).
-    if (window.POLICY_DATA) POLICY = window.POLICY_DATA;
+    if (window.POLICY_DATA) {
+      POLICY = window.POLICY_DATA;
+      validatePolicy(POLICY);
+    }
 
     // Restore from URL hash if present.
     const restored = decodeState(location.hash);
@@ -1133,6 +1154,7 @@
       loadPolicy().then((p) => {
         if (p) {
           POLICY = p;
+          validatePolicy(POLICY);
           render();
         }
       });
