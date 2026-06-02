@@ -19,27 +19,27 @@ format:
 ## Utilizações permitidas
 
 - **Estudar e rever conceitos:** pedir explicações, resumos, esquemas, clarificação de terminologia médica.
-- **Melhorar a escrita:** revisão gramatical e estilística de textos da tua autoria, desde que o conteúdo intelectual permaneça teu.
+- **Melhorar a escrita:** revisão gramatical e estilística de textos da sua autoria, desde que o conteúdo intelectual permaneça seu.
 - **Preparar material de estudo:** a partir de material já estudado, pedir organização, mapas conceptuais, _flashcards_.
 - **Explorar cenários clínicos em abstracto:** casos fictícios, nunca casos reais ou com dados identificáveis.
 
 ## Regras essenciais
 
-1. **Verifica tudo.** És responsável por qualquer conteúdo que submetas, independentemente da ferramenta usada. Erros factuais, referências inexistentes ou raciocínios errados que escaparem ao teu controlo são teus.
-2. **Declara o uso.** Em qualquer trabalho académico que envolva GenAI, inclui uma declaração com ferramenta, tipo de assistência, secções onde foi aplicada e _prompts_ utilizados (Anexo A da proposta institucional).
-3. **Consulta o programa da unidade curricular.** Cada UC define o seu regime: permitido, condicionado, ou proibido. Em caso de dúvida, pergunta ao docente antes.
-4. **Não uses em avaliações sem autorização explícita.** Isto inclui exames, trabalhos de avaliação, apresentações orais e discussões tutoriais.
-5. **Nunca introduzas dados de doentes.** Nem de processos clínicos, nem de imagens, nem de diários de estágio -- mesmo que os penses anonimizados. A anonimização informal não cumpre o RGPD.
-6. **Em raciocínio clínico, não deleges.** A utilização de GenAI para gerar diagnósticos diferenciais ou planos de gestão sobre casos discutidos em aula compromete o desenvolvimento da tua competência clínica.
-7. **Sê capaz de defender o que submetes.** O docente pode pedir-te para explicar linha a linha o que entregaste. Se não consegues, não o devias ter submetido.
+1. **Verifique tudo.** É responsável por qualquer conteúdo que submeta, independentemente da ferramenta usada. Erros factuais, referências inexistentes ou raciocínios errados que escaparem ao seu controlo são seus.
+2. **Declare o uso.** Em qualquer trabalho académico que envolva GenAI, inclua uma declaração com ferramenta, tipo de assistência, secções onde foi aplicada e _prompts_ utilizados (Anexo A da proposta institucional).
+3. **Consulte o programa da unidade curricular.** Cada UC define o seu regime: permitido, condicionado, ou proibido. Em caso de dúvida, pergunte ao docente antes.
+4. **Não use em avaliações sem autorização explícita.** Isto inclui exames, trabalhos de avaliação, apresentações orais e discussões tutoriais.
+5. **Nunca introduza dados de doentes.** Nem de processos clínicos, nem de imagens, nem de diários de estágio -- mesmo que os pense anonimizados. A anonimização informal não cumpre o RGPD.
+6. **Em raciocínio clínico, não delegue.** A utilização de GenAI para gerar diagnósticos diferenciais ou planos de gestão sobre casos discutidos em aula compromete o desenvolvimento da sua competência clínica.
+7. **Seja capaz de defender o que submete.** O docente pode pedir-lhe para explicar linha a linha o que entregou. Se não consegue, não o devia ter submetido.
 
 ## Plataformas recomendadas
 
 - **IAedu** — <https://iaedu.pt>. Plataforma institucional portuguesa (FCT/FCCN), autenticação federada com conta `@up.pt`. Gratuita, com garantia de não-utilização dos dados para treino.
-- **ChatGPT** — <https://chatgpt.com>. Verifica as definições de privacidade; se usares a versão gratuita, os dados podem ser utilizados para treino.
+- **ChatGPT** — <https://chatgpt.com>. Verifique as definições de privacidade; se usar a versão gratuita, os dados podem ser utilizados para treino.
 - **Claude** — <https://claude.ai>. Alternativa frequentemente mais conservadora em matéria de confabulação.
 - **DeepL** — <https://www.deepl.com>. Para traduções técnicas de alta qualidade.
-- **NotebookLM** — <https://notebooklm.google.com>. Útil para estudar a partir de materiais que tu próprio forneces (apontamentos, PDFs de livros), mantendo o âmbito controlado.
+- **NotebookLM** — <https://notebooklm.google.com>. Útil para estudar a partir de materiais que você próprio fornece (apontamentos, PDFs de livros), mantendo o âmbito controlado.
 
 ## Mais informação
 
@@ -47,8 +47,8 @@ format:
 - Modelo de declaração de uso: Anexo A.
 - Modelo de cláusula para programas de UC: Anexo B.
 - Cenários práticos de aplicação: Anexo E.
-- Para questões não cobertas por este guia, contacta o grupo de trabalho para IA generativa da FMUP.
+- Para questões não cobertas por este guia, contacte o grupo de trabalho para IA generativa da FMUP.
 
 ---
 
-*Documento resumido. Versão de Abril de 2026. Documento vivo, sujeito a revisão anual.*
+*Documento resumido. Versão de Abril de 2026. Documento vivo, sujeito a revisão anual. Para o tratamento integral das questões aqui resumidas, consulte o Quadro institucional [@jacinto2026quadro] e a ferramenta Atlas [@jacinto2026atlas].*

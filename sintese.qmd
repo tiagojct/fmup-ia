@@ -1,11 +1,8 @@
 ---
 title: "Síntese"
-subtitle: "Apresentação do projecto à direcção da FMUP"
 toc: true
 toc-depth: 2
 ---
-
-Documento de apoio à apresentação do projecto **FMUP · IA** à direcção da Faculdade de Medicina da Universidade do Porto. Síntese estruturada por questões, com ligações directas às secções relevantes do Quadro e do Atlas.
 
 ## O que é
 

@@ -26,11 +26,11 @@ format:
 
 ## Regras essenciais
 
-1. **Nunca introduzas dados pessoais em plataformas comerciais.** Nomes, moradas, números de telefone, notas, situação profissional, dados clínicos -- nada disto pode passar por ChatGPT ou equivalentes. Esta regra aplica-se a dados de estudantes, docentes, funcionários e, sobretudo, de doentes.
-2. **Prefere a IAedu sempre que possível.** Plataforma institucional portuguesa com autenticação federada e garantia de não-utilização dos dados para treino.
-3. **Em documentos oficiais com efeito externo ou jurídico, sinaliza.** Se usaste GenAI para redigir ou rever uma comunicação oficial, informa o responsável de serviço antes de enviar. A decisão sobre a forma final é humana.
-4. **Verifica sempre.** GenAI pode inventar dados, confundir nomes, alterar números. Lê com atenção antes de enviar, assinar ou publicar.
-5. **Em caso de dúvida, pergunta.** O grupo de trabalho para IA generativa da FMUP está disponível para clarificar casos específicos.
+1. **Nunca introduza dados pessoais em plataformas comerciais.** Nomes, moradas, números de telefone, notas, situação profissional, dados clínicos -- nada disto pode passar por ChatGPT ou equivalentes. Esta regra aplica-se a dados de estudantes, docentes, funcionários e, sobretudo, de doentes.
+2. **Prefira a IAedu sempre que possível.** Plataforma institucional portuguesa com autenticação federada e garantia de não-utilização dos dados para treino.
+3. **Em documentos oficiais com efeito externo ou jurídico, sinalize.** Se usou GenAI para redigir ou rever uma comunicação oficial, informe o responsável de serviço antes de enviar. A decisão sobre a forma final é humana.
+4. **Verifique sempre.** GenAI pode inventar dados, confundir nomes, alterar números. Leia com atenção antes de enviar, assinar ou publicar.
+5. **Em caso de dúvida, pergunte.** O grupo de trabalho para IA generativa da FMUP está disponível para clarificar casos específicos.
 
 ## Exemplos típicos
 
@@ -50,4 +50,4 @@ format:
 
 ---
 
-*Documento resumido. Versão de Abril de 2026. Documento vivo, sujeito a revisão anual.*
+*Documento resumido. Versão de Abril de 2026. Documento vivo, sujeito a revisão anual. Para o tratamento integral das questões aqui resumidas, consulte o Quadro institucional [@jacinto2026quadro] e a ferramenta Atlas [@jacinto2026atlas].*

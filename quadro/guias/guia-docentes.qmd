@@ -22,13 +22,13 @@ A GenAI já é usada pelos estudantes em prevalências de 60% a 80%. A resposta 
 
 ## Regras essenciais
 
-1. **Experimenta antes de regular.** Usa pelo menos uma ferramenta de GenAI em tarefas concretas do teu trabalho. Sem experiência directa, é muito mais difícil desenhar política, detectar uso e conversar com estudantes.
-2. **Inclui no programa da UC uma cláusula explícita sobre GenAI.** Permitido, condicionado ou proibido -- e em que termos. O modelo do Anexo B tem três exemplos trabalhados.
-3. **Redesenha a avaliação onde for necessário.** Privilegia formatos em que a autoria é verificável: apresentação oral com arguição, raciocínio clínico presencial, reflexão pessoal com dados do próprio percurso, avaliação prática de competências.
-4. **Se usares GenAI para preparar materiais, revê tudo e declara.** Verifica exactidão clínica e terminológica; explicita aos estudantes o uso e o método de verificação -- a declaração é pedagógica, não apenas formal.
-5. **Não submetas trabalhos de estudantes a plataformas comerciais para classificar.** Viola confidencialidade e o RGPD (decisão automatizada sobre avaliação requer intervenção humana substantiva).
-6. **Distingue apoio pedagógico positivo de substituição cognitiva.** GenAI pode ser instrumento de _reflective practice_, simulador de "primeiro doente" para treino de anamnese, gerador de vinhetas clínicas auditadas -- usos que tornam o processo de raciocínio _mais_ visível, não menos.
-7. **Participa na formação e na partilha.** O quadro institucional é um documento vivo: as práticas que funcionam na tua UC podem servir de calibração às outras.
+1. **Experimente antes de regular.** Use pelo menos uma ferramenta de GenAI em tarefas concretas do seu trabalho. Sem experiência directa, é muito mais difícil desenhar política, detectar uso e conversar com estudantes.
+2. **Inclua no programa da UC uma cláusula explícita sobre GenAI.** Permitido, condicionado ou proibido -- e em que termos. O modelo do Anexo B tem três exemplos trabalhados.
+3. **Redesenhe a avaliação onde for necessário.** Privilegie formatos em que a autoria é verificável: apresentação oral com arguição, raciocínio clínico presencial, reflexão pessoal com dados do próprio percurso, avaliação prática de competências.
+4. **Se usar GenAI para preparar materiais, reveja tudo e declare.** Verifique exactidão clínica e terminológica; explicite aos estudantes o uso e o método de verificação -- a declaração é pedagógica, não apenas formal.
+5. **Não submeta trabalhos de estudantes a plataformas comerciais para classificar.** Viola confidencialidade e o RGPD (decisão automatizada sobre avaliação requer intervenção humana substantiva).
+6. **Distinga apoio pedagógico positivo de substituição cognitiva.** GenAI pode ser instrumento de _reflective practice_, simulador de "primeiro doente" para treino de anamnese, gerador de vinhetas clínicas auditadas -- usos que tornam o processo de raciocínio _mais_ visível, não menos.
+7. **Participe na formação e na partilha.** O quadro institucional é um documento vivo: as práticas que funcionam na sua UC podem servir de calibração às outras.
 
 ## Ideias concretas de integração
 
@@ -42,7 +42,7 @@ A GenAI já é usada pelos estudantes em prevalências de 60% a 80%. A resposta 
 - **IAedu** — <https://iaedu.pt>. Institucional, conta `@up.pt`. Primeira opção sempre que possível.
 - **ChatGPT** — <https://chatgpt.com> e **Claude** — <https://claude.ai>. Para testar capacidades e limitações. Usar versões com opt-out de treino ou conta institucional.
 - **NotebookLM** — <https://notebooklm.google.com>. Excelente para criar _tutores_ a partir de materiais curriculares (com as cautelas de protecção de dados).
-- **Perplexity** — <https://www.perplexity.ai>. Útil para respostas com citações verificáveis -- mas verifica sempre as referências.
+- **Perplexity** — <https://www.perplexity.ai>. Útil para respostas com citações verificáveis -- mas verifique sempre as referências.
 
 ## Recursos de consulta
 
@@ -53,4 +53,4 @@ A GenAI já é usada pelos estudantes em prevalências de 60% a 80%. A resposta 
 
 ---
 
-*Documento resumido. Versão de Abril de 2026. Documento vivo, sujeito a revisão anual.*
+*Documento resumido. Versão de Abril de 2026. Documento vivo, sujeito a revisão anual. Para o tratamento integral das questões aqui resumidas, consulte o Quadro institucional [@jacinto2026quadro] e a ferramenta Atlas [@jacinto2026atlas].*

@@ -26,29 +26,29 @@ Uma versão resumida de uma página está disponível em [PDF](guias/guia-estuda
 
 ### Utilizações permitidas
 
-Podes usar GenAI para **estudar e rever conceitos** (explicações, resumos, esquemas), para **melhorar a escrita** (revisão gramatical e estilística de textos da tua autoria), para **clarificar terminologia médica**, e para **explorar cenários clínicos em abstracto** -- casos fictícios, nunca casos reais ou com dados identificáveis.
+Pode usar GenAI para **estudar e rever conceitos** (explicações, resumos, esquemas), para **melhorar a escrita** (revisão gramatical e estilística de textos da sua autoria), para **clarificar terminologia médica**, e para **explorar cenários clínicos em abstracto** -- casos fictícios, nunca casos reais ou com dados identificáveis.
 
 ### Sequência prática
 
-Antes de usares GenAI num trabalho académico:
+Antes de usar GenAI num trabalho académico:
 
-1. **Verifica a política da UC.** Consulta o programa da unidade curricular — deve incluir uma cláusula sobre GenAI (ver [Anexo B](B-clausula.qmd)). Se não houver cláusula, o uso fica condicionado a pedido de esclarecimento ao docente.
-2. **Usa dentro do que o regime permite.** Guarda os _prompts_ que usaste e uma nota sobre o tipo de assistência obtida.
-3. **Gera a tua declaração com [Atlas](../atlas/) e inclui-a no trabalho.** A declaração deve preceder o texto principal ou constar num anexo identificado.
+1. **Verifique a política da UC.** Consulte o programa da unidade curricular — deve incluir uma cláusula sobre GenAI (ver [Anexo B](B-clausula.qmd)). Se não houver cláusula, o uso fica condicionado a pedido de esclarecimento ao docente.
+2. **Use dentro do que o regime permite.** Guarde os _prompts_ que usou e uma nota sobre o tipo de assistência obtida.
+3. **Gere a sua declaração com [Atlas](../atlas/) e inclua-a no trabalho.** A declaração deve preceder o texto principal ou constar num anexo identificado.
 
 ### Regras essenciais
 
-1. **Verifica tudo.** És responsável por qualquer conteúdo que submetas, independentemente da ferramenta usada.
-2. **Declara o uso.** Em qualquer trabalho académico que envolva GenAI, inclui uma declaração com ferramenta, tipo de assistência, secções onde foi aplicada e _prompts_ utilizados ([Anexo A](A-declaracao.qmd)).
-3. **Consulta o programa da unidade curricular.** Cada UC define o seu regime: permitido, condicionado, ou proibido.
-4. **Não uses em avaliações sem autorização explícita.** Inclui exames, trabalhos de avaliação, apresentações e discussões tutoriais.
-5. **Nunca introduzas dados de doentes.** Nem de processos clínicos, nem de imagens, nem de diários de estágio -- mesmo que os penses anonimizados.
-6. **Em raciocínio clínico, não deleges.** A delegação compromete o desenvolvimento da tua competência clínica.
-7. **Sê capaz de defender o que submetes.** Se não consegues explicar, não o devias ter submetido.
+1. **Verifique tudo.** É responsável por qualquer conteúdo que submeta, independentemente da ferramenta usada.
+2. **Declare o uso.** Em qualquer trabalho académico que envolva GenAI, inclua uma declaração com ferramenta, tipo de assistência, secções onde foi aplicada e _prompts_ utilizados ([Anexo A](A-declaracao.qmd)).
+3. **Consulte o programa da unidade curricular.** Cada UC define o seu regime: permitido, condicionado, ou proibido.
+4. **Não use em avaliações sem autorização explícita.** Inclui exames, trabalhos de avaliação, apresentações e discussões tutoriais.
+5. **Nunca introduza dados de doentes.** Nem de processos clínicos, nem de imagens, nem de diários de estágio -- mesmo que os pense anonimizados.
+6. **Em raciocínio clínico, não delegue.** A delegação compromete o desenvolvimento da sua competência clínica.
+7. **Seja capaz de defender o que submete.** Se não consegue explicar, não o devia ter submetido.
 
 ### Ferramentas
 
-- [IAedu](https://iaedu.pt) --- primeira opção institucional. Acede com o teu email `@up.pt` em [iaedu.pt](https://iaedu.pt); não retém dados para treino de modelos.
+- [IAedu](https://iaedu.pt) --- primeira opção institucional. Aceda com o seu email `@up.pt` em [iaedu.pt](https://iaedu.pt); não retém dados para treino de modelos.
 - [ChatGPT](https://chatgpt.com), [Claude](https://claude.ai) --- alternativas comerciais, verificando definições de privacidade.
 - [DeepL](https://www.deepl.com) --- tradução técnica.
 - [NotebookLM](https://notebooklm.google.com) --- estudar a partir de materiais próprios.
@@ -63,13 +63,13 @@ A GenAI já é usada pelos estudantes em prevalências de 60% a 80%. A resposta 
 
 ### Regras essenciais
 
-1. **Experimenta antes de regular.** Usa pelo menos uma ferramenta em tarefas concretas do teu trabalho.
-2. **Inclui no programa da UC uma cláusula explícita sobre GenAI.** Permitido, condicionado ou proibido -- e em que termos (ver [Anexo B](B-clausula.qmd) para exemplos trabalhados).
-3. **Redesenha a avaliação onde for necessário.** Privilegia formatos em que a autoria é verificável.
-4. **Se usares GenAI para preparar materiais, revê tudo e declara.** Verifica exactidão clínica e terminológica; explicita aos estudantes o uso e o método de verificação.
-5. **Não submetas trabalhos de estudantes a plataformas comerciais para classificar.** Viola confidencialidade e o RGPD (decisão automatizada sobre avaliação requer intervenção humana substantiva).
-6. **Distingue apoio pedagógico positivo de substituição cognitiva.** GenAI pode tornar o processo de raciocínio _mais_ visível, não menos.
-7. **Participa na formação e na partilha.** O quadro institucional é um documento vivo.
+1. **Experimente antes de regular.** Use pelo menos uma ferramenta em tarefas concretas do seu trabalho.
+2. **Inclua no programa da UC uma cláusula explícita sobre GenAI.** Permitido, condicionado ou proibido -- e em que termos (ver [Anexo B](B-clausula.qmd) para exemplos trabalhados).
+3. **Redesenhe a avaliação onde for necessário.** Privilegie formatos em que a autoria é verificável.
+4. **Se usar GenAI para preparar materiais, reveja tudo e declare.** Verifique exactidão clínica e terminológica; explicite aos estudantes o uso e o método de verificação.
+5. **Não submeta trabalhos de estudantes a plataformas comerciais para classificar.** Viola confidencialidade e o RGPD (decisão automatizada sobre avaliação requer intervenção humana substantiva).
+6. **Distinga apoio pedagógico positivo de substituição cognitiva.** GenAI pode tornar o processo de raciocínio _mais_ visível, não menos.
+7. **Participe na formação e na partilha.** O quadro institucional é um documento vivo.
 
 ### Ideias de integração
 
@@ -98,13 +98,13 @@ A responsabilidade intelectual pelo conteúdo publicado pertence sempre aos auto
 ### Regras essenciais
 
 1. **Apoio linguístico é aceitável; geração substantiva não é.** Revisão gramatical, melhoria estilística e tradução são usos legítimos com declaração. Formulação de hipóteses, interpretação de resultados ou redacção substantiva da discussão erodem a autoria.
-2. **Declara no manuscrito.** Na secção de métodos ou nos agradecimentos, indica ferramenta, versão, data e natureza da assistência.
+2. **Declare no manuscrito.** Na secção de métodos ou nos agradecimentos, indique ferramenta, versão, data e natureza da assistência.
 3. **A GenAI não pode ser listada como autora.** A autoria implica responsabilidade e prestação de contas.
-4. **Não uses GenAI na revisão por pares ou na avaliação de candidaturas.**
-5. **Código gerado por GenAI: só submetes o que consegues explicar.**
-6. **Nunca introduzas dados sensíveis em plataformas comerciais.** Usa IAedu ou plataformas com contrato de tratamento de dados.
-7. **Em revisões sistemáticas assistidas por IA, documenta tudo.** Ferramenta, _prompts_, critérios, validação cruzada com revisor humano, taxas de concordância.
-8. **Se desenvolves IA aplicada à clínica, articula com ética e CNPD desde o início.** Pode constituir "alto risco" sob o AI Act.
+4. **Não use GenAI na revisão por pares ou na avaliação de candidaturas.**
+5. **Código gerado por GenAI: só submeta o que consegue explicar.**
+6. **Nunca introduza dados sensíveis em plataformas comerciais.** Use IAedu ou plataformas com contrato de tratamento de dados.
+7. **Em revisões sistemáticas assistidas por IA, documente tudo.** Ferramenta, _prompts_, critérios, validação cruzada com revisor humano, taxas de concordância.
+8. **Se desenvolve IA aplicada à clínica, articule com ética e CNPD desde o início.** Pode constituir "alto risco" sob o AI Act.
 
 ### Ferramentas e recursos
 
@@ -123,11 +123,11 @@ Redigir e rever textos administrativos, traduzir documentos, resumir conteúdos 
 
 ### Regras essenciais
 
-1. **Nunca introduzas dados pessoais em plataformas comerciais.** Nomes, moradas, notas, situação profissional, dados clínicos -- aplicável a estudantes, docentes, funcionários e doentes.
-2. **Prefere a IAedu sempre que possível.**
-3. **Em documentos oficiais com efeito externo ou jurídico, sinaliza ao responsável de serviço.** A decisão sobre a forma final é humana.
-4. **Verifica sempre.** GenAI pode inventar dados, confundir nomes, alterar números.
-5. **Em caso de dúvida, pergunta ao grupo de trabalho para IA generativa da FMUP.**
+1. **Nunca introduza dados pessoais em plataformas comerciais.** Nomes, moradas, notas, situação profissional, dados clínicos -- aplicável a estudantes, docentes, funcionários e doentes.
+2. **Prefira a IAedu sempre que possível.**
+3. **Em documentos oficiais com efeito externo ou jurídico, sinalize ao responsável de serviço.** A decisão sobre a forma final é humana.
+4. **Verifique sempre.** GenAI pode inventar dados, confundir nomes, alterar números.
+5. **Em caso de dúvida, pergunte ao grupo de trabalho para IA generativa da FMUP.**
 
 ### Exemplos típicos
 
