@@ -37,7 +37,7 @@ O [**Atlas**](atlas/) é uma ferramenta web que acompanha o Quadro e gera declar
 
 **O que faz:** a partir de um conjunto de perguntas sobre o papel do utilizador (estudante, docente ou investigador), a ferramenta utilizada e o tipo de assistência obtida, o Atlas produz um texto de declaração formatado para o destinatário pretendido — trabalho académico, manuscrito científico, candidatura FCT, Horizonte Europa ou Wellcome Trust.
 
-**Como se relaciona com o Quadro:** cada declaração gerada referencia a versão do Quadro em vigor no momento da geração (`policy.version: 1.2.1`; `APP_VERSION: 0.6.5`), tornando-a rastreável no tempo. Quando a proposta for revista, as versões actualizadas ficam registadas no `CHANGELOG.md` do repositório.
+**Como se relaciona com o Quadro:** cada declaração gerada referencia a versão do Quadro em vigor no momento da geração (`framework_version: FMUP Quadro de Referência v1.0 (2026-04-21)`; `policy.version`: ver `atlas/policy.json`; `APP_VERSION`: ver rodapé do Atlas), tornando-a rastreável no tempo. Quando a proposta for revista, as versões actualizadas ficam registadas no `CHANGELOG.md` do repositório.
 
 **Avaliação de risco:** o Atlas integra uma grelha de risco em quatro níveis (baseada no modelo HEAT-AI de Temper et al., 2025) que orienta o utilizador sobre a compatibilidade do uso com o Quadro. Esta avaliação é **sempre guiante — nunca bloqueante**: o utilizador mantém o controlo e pode gerar a declaração independentemente do nível de risco assinalado.
 
@@ -53,7 +53,7 @@ O Quadro e o Atlas são publicados como um único sítio web estático, constru�
 
 **Atlas — aplicação web sem dependências.** A ferramenta operacional é uma aplicação de página única escrita em JavaScript, HTML e CSS sem dependências externas ou passo de compilação. O Quarto copia-a como recurso estático. Corre inteiramente no browser do utilizador.
 
-**Guias PDF.** Quatro guias práticos de uma página (estudantes, docentes, investigadores, Grupo de Trabalho) são gerados pelo script `render-guias.sh`, que invoca o Quarto em modo Typst após a construção principal do site.
+**Guias PDF.** Quatro guias práticos de uma página (estudantes, docentes, investigadores, serviços) são gerados directamente pelo `quarto render` via `format: fmup-typst` declarado em cada `.qmd` de guia, partilhando a tipografia e a paleta institucional do resto do site.
 
 **Publicação contínua.** Um *workflow* de GitHub Actions (`publish.yml`) constrói o site e os guias a cada *push* para o ramo principal e publica o resultado no GitHub Pages.
 
@@ -71,11 +71,14 @@ Este trabalho não foi suportado por financiamento dedicado. Não há conflitos 
 
 ## Estado de revisão
 
-| Versão | Data | Notas |
-|---|---|---|
-| 1.0 | 2026-04-21 | Primeira versão pública do Quadro. Atlas v0.3.0. |
+O Quadro segue um esquema de versão própria (`v1.0`, `v1.1`, …), distinto do esquema do Atlas (`APP_VERSION`) e da `policy.version` do conjunto de regras. As três versões são todas declaradas no rodapé de cada declaração emitida pelo Atlas.
 
-Revisões futuras serão registadas neste quadro e no `CHANGELOG.md` do repositório.
+| Quadro | Data | Notas |
+|---|---|---|
+| 1.0 | 2026-04-21 | Primeira versão pública do Quadro. Atlas correspondente: `v0.3.0`. |
+| 1.0 (rev.) | 2026-05-23 | Iterações editoriais sem alteração à estrutura ou aos princípios. Atlas correspondente: `v0.9.1`. `policy.version`: `1.2.2`. |
+
+Revisões futuras (`v1.1`, `v2.0`, …) serão registadas neste quadro e no `CHANGELOG.md` do repositório, com correspondência explícita às versões do Atlas e da `policy.json` que as acompanham.
 
 ## Reportar erros e contribuir
 

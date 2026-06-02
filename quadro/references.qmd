@@ -1,4 +1,11 @@
+---
+nocite: |
+  @*
+---
+
 # Referências {.unnumbered}
+
+Lista consolidada das referências citadas ao longo do Quadro, agregada a partir de `references.bib`. Cada capítulo mostra também, no rodapé respectivo, apenas as referências aí citadas.
 
 ::: {#refs}
 :::

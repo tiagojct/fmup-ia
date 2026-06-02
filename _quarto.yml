@@ -6,6 +6,7 @@ project:
     - "sobre.qmd"
     - "recursos.qmd"
     - "convencoes.qmd"
+    - "sintese.qmd"
     - "404.qmd"
     - "quadro/index.qmd"
     - "quadro/0*.qmd"
@@ -111,6 +112,8 @@ website:
       © 2026 Tiago Jacinto · Faculdade de Medicina da Universidade do Porto · Quadro v1.0 · Maio 2026
       Conteúdo licenciado sob [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
     right:
+      - text: "Síntese"
+        href: sintese.qmd
       - text: "Início"
         href: index.qmd
       - text: "Quadro"

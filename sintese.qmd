@@ -1,0 +1,108 @@
+---
+title: "Síntese"
+subtitle: "Apresentação do projecto à direcção da FMUP"
+toc: true
+toc-depth: 2
+---
+
+Documento de apoio à apresentação do projecto **FMUP · IA** à direcção da Faculdade de Medicina da Universidade do Porto. Síntese estruturada por questões, com ligações directas às secções relevantes do Quadro e do Atlas.
+
+## O que é
+
+- Uma **proposta institucional** para o uso responsável de inteligência artificial generativa (GenAI) na FMUP, em duas peças articuladas: o [**Quadro**](quadro/) (documento de referência) e o [**Atlas**](atlas/) (ferramenta operacional).
+- Cobre as três populações da FMUP: [estudantes](quadro/03-estudantes.qmd), [docentes](quadro/04-docentes.qmd) e [investigadores](quadro/05-investigadores.qmd).
+- Pré-AO90, formal, baseado em evidência e em literatura comparada internacional.
+- Estado: proposta em desenvolvimento (v1.0, 2026). **Não substitui regulamentos pedagógicos** — é input para deliberação institucional.
+
+## Porque agora
+
+- A GenAI já é usada por **60 a 80% dos estudantes** de medicina em prevalências documentadas internacionalmente; a ausência de quadro institucional empurra docentes e investigadores para decisões _ad hoc_ e cria assimetrias entre UCs.
+- Três marcos regulatórios externos convergem no horizonte 2026-2027 e tornam a inacção mais cara que a acção:
+  - **EU AI Act (Regulamento UE 2024/1689)** — aplicação plena em Agosto de 2026, obrigações de _deployer_ aplicáveis à FMUP.
+  - **European Health Data Space (EHDS)** — aplicação geral em Março de 2027.
+  - **Agenda Nacional de IA (ANIA, RCM 2/2026)** — Plano de Acção 2026-2030 e Quadro Nacional de Competências Inteligentes (QNCI).
+- O [diagnóstico CNIPES 2026](quadro/12b-panorama-portugal.qmd) sobre o ensino superior português coloca a maioria das instituições em estado de prontidão "emergente" — janela de oportunidade para a FMUP liderar.
+
+## O que tem
+
+A proposta tem **duas partes** e **sete anexos**.
+
+**Parte I — Análise comparativa** (capítulos 10 a 15): mapeia o panorama internacional sem importar acriticamente.
+
+- [Panorama EUA](quadro/10-panorama-eua.qmd), [Europa](quadro/11-panorama-europa.qmd), [Ibero-América](quadro/12-panorama-iberoamerica.qmd), [Portugal](quadro/12b-panorama-portugal.qmd).
+- [Frameworks supranacionais](quadro/13-frameworks-supranacionais.qmd) (UNESCO, ERA Forum, Conselho da Europa).
+- [Camada médica](quadro/14-camada-medica.qmd) — especificidades da educação médica.
+- [Lacunas](quadro/15-lacunas.qmd) que os _frameworks_ existentes não cobrem.
+
+**Parte II — Proposta operacional** (capítulos 1 a 9): a proposta para a FMUP.
+
+- [Sete princípios orientadores](quadro/02-principios.qmd): autonomia humana, integridade académica e científica, transparência e declaração, protecção de dados, equidade, literacia crítica, revisão contínua.
+- Três vertentes: [estudantes](quadro/03-estudantes.qmd), [docentes](quadro/04-docentes.qmd), [investigadores](quadro/05-investigadores.qmd).
+- [Infraestrutura e governança](quadro/06-infraestrutura.qmd), incluindo processo disciplinar e plataforma institucional (IAedu como primeira linha).
+- [Implementação faseada 2026-2029](quadro/07-implementacao.qmd) com indicadores.
+- [Questões transversais](quadro/08-transversais.qmd) (ambiente, propriedade intelectual, conflitos de interesse).
+- [Considerações finais](quadro/09-consideracoes.qmd) e [objecções antecipadas](quadro/09b-objeccoes.qmd).
+
+**Anexos** (A a G): instrumentos prontos a usar.
+
+- [Anexo A](quadro/A-declaracao.qmd) — Modelo de declaração de uso.
+- [Anexo B](quadro/B-clausula.qmd) — Cláusula-tipo para programas de UC.
+- [Anexo C](quadro/C-recursos.qmd) — Recursos externos.
+- [Anexo D](quadro/D-guia.qmd) — Guia prático condensado.
+- [Anexo E](quadro/E-cenarios.qmd) — Cenários com casos-limite resolvidos.
+- [Anexo F](quadro/F-glossario.qmd) — Glossário.
+- [Anexo G](quadro/G-maturidade-cnipes.qmd) — Grelha de maturidade institucional alinhada com o CNIPES.
+
+## Como se usa no dia-a-dia
+
+O [**Atlas**](atlas/) é uma ferramenta web que **gera declarações padronizadas de uso de GenAI** para qualquer das três vertentes e avalia o risco institucional com base nas regras do Quadro.
+
+- Corre **inteiramente no _browser_** — não envia dados a servidor algum, não usa _cookies_.
+- A avaliação de risco é **sempre guiante, nunca bloqueante**: o utilizador mantém o controlo.
+- Cada declaração emitida traz rastreabilidade total à versão do _framework_ que a produziu.
+- Disponível em **PT (pré-AO90) e EN**.
+
+Quatro **guias práticos** de uma página (PDF) acompanham o Quadro como _handouts_ distribuíveis:
+
+- [Estudantes](quadro/guias/guia-estudantes.pdf), [Docentes](quadro/guias/guia-docentes.pdf), [Investigadores](quadro/guias/guia-investigadores.pdf), [Serviços](quadro/guias/guia-servicos.pdf).
+
+## Calendário de implementação
+
+Alinhamento com os marcos regulatórios externos (EU AI Act, EHDS, ANIA):
+
+- **Fase 1 (2026-2027)** — discussão e aprovação do Quadro, formação inicial para docentes, piloto num programa de mestrado, adopção do modelo HEAT-AI de categorização de risco em quatro níveis.
+- **Fase 2 (2027-2028)** — extensão a todos os ciclos de estudo, plataforma institucional IAedu, módulos de literacia em IA articulados com o QNCI, operacionalização de _Trusted Research Environment_.
+- **Fase 3 (2028-2029)** — avaliação de impacto, revisão do Quadro, publicação de resultados, ponderação de certificação ISO/IEC 42001 como meta organizacional verificável.
+
+Detalhe completo, indicadores quantitativos e grelha de maturidade no capítulo de [Implementação](quadro/07-implementacao.qmd).
+
+## O que está em jogo
+
+- **Liderança regional.** Nenhuma faculdade de medicina nacional tem um quadro publicado nesta amplitude; a FMUP pode tornar-se referência ibérica.
+- **Conformidade antecipada.** Em vez de reagir ao EU AI Act / EHDS / ANIA quando entrarem em vigor, a FMUP chega-lhes preparada.
+- **Equidade entre UCs.** Eliminação das assimetrias actuais entre docentes que permitem e docentes que proíbem GenAI sem critério partilhado.
+- **Defensibilidade jurídica.** Cláusulas-tipo e processo disciplinar reduzem o risco de litigância em torno de casos de uso indevido.
+- **Acreditação ISO/IEC 42001** como meta de Fase 3.
+
+## O que se pede à direcção
+
+A proposta requer da direcção decisões em três planos:
+
+1. **Endosso institucional.** Reconhecimento do Quadro como documento de referência institucional e mandato para o grupo de trabalho iniciar a Fase 1.
+2. **Alocação de recursos.** Tempo de docentes para formação (Fase 1), articulação com a Universidade do Porto e com o Deucalion (EuroHPC), e ligação à unidade hospitalar afiliada para o _Trusted Research Environment_ (Fase 2).
+3. **Governança.** Constituição (ou ratificação) de um Grupo de Trabalho com mandato para revisão anual e revisões extraordinárias quando necessário.
+
+A proposta **não pede** alteração de regulamentos pedagógicos no imediato — pede deliberação política sobre o sentido da resposta institucional.
+
+## Materiais de apoio
+
+- [**Quadro completo**](quadro/) — todos os capítulos e anexos (~600 referências).
+- [**Atlas**](atlas/) — ferramenta operacional, demonstrável ao vivo.
+- [**Guias PDF**](quadro/guias/guia-docentes.pdf) — _handouts_ de uma página por vertente.
+- [**Recursos externos**](recursos.qmd) — _frameworks_ supranacionais e leitura adicional.
+- [**Convenções editoriais**](convencoes.qmd) — terminologia, ortografia, citações.
+- [**Sobre**](sobre.qmd) — autoria, infraestrutura técnica, licença, contactos.
+
+---
+
+*Esta página é um resumo executivo. O documento de referência é o [Quadro completo](quadro/). Erros, omissões ou divergências entre síntese e Quadro devem favorecer este último.*
