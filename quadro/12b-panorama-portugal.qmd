@@ -1,6 +1,6 @@
 # Panorama nacional --- Portugal
 
-Em Abril de 2026 publicaram-se em Portugal dois documentos institucionais nacionais sobre IA na educação: o relatório do **CNIPES** sobre o ensino superior [@cnipes2026] e o estudo do **CNE** sobre IA em contexto educativo em geral [@cne2026ia]. O primeiro consolida ainda o primeiro inquérito empírico nacional às IES portuguesas. Este capítulo articula essas duas camadas e mapeia o alinhamento com o Quadro FMUP.
+Em Abril e Maio de 2026 publicaram-se em Portugal três documentos institucionais nacionais sobre IA na educação. Em Abril, o relatório do **CNIPES** sobre o ensino superior [@cnipes2026] e o estudo do **CNE** sobre IA em contexto educativo em geral [@cne2026ia]. Em Maio, o CNE publica em Diário da República a **Recomendação n.º 4/2026** [@cne2026recomendacao], que converte o diagnóstico do estudo de Abril em recomendações formais ao Estado português, com 31 medidas distribuídas por três eixos (Infraestrutura e Soberania Digital; Pedagogia, Currículo, Literacia e Formação; Ética, Responsabilidade, Governança e Monitorização). Este capítulo articula as três camadas e mapeia o alinhamento com o Quadro FMUP.
 
 ## Enquadramento institucional
 
@@ -73,6 +73,57 @@ Para o âmbito da FMUP, três contributos do CNE são directamente operacionais.
 
 **Literacia em quatro eixos** --- técnico, avaliativo, ético-regulatório e prático [@cne2026ia, pp. 20-21]. Articulada no CNE com a integração progressiva de "alfabetização algorítmica e de IA" desde o ensino básico, enquadra a preparação prévia que os estudantes trazem para os ciclos da FMUP.
 
+## Recomendação 4/2026 do CNE --- operacionalização em Diário da República
+
+A 21 de Maio de 2026, o CNE publica em Diário da República (2.ª série, n.º 98) a **Recomendação n.º 4/2026, "Integração da Inteligência Artificial no sistema educativo português"** [@cne2026recomendacao]. O documento converte o diagnóstico do estudo de Abril em 31 recomendações endereçadas ao Estado, com calendarização explícita (medidas urgentes, de médio prazo e de longo prazo) e organizadas em três eixos. O preâmbulo invoca expressamente o Regulamento (UE) 2024/1689 (AI Act), o RGPD, o Conselho da Europa (Framework Convention on AI 2024, _Draft Recommendation on AI Literacy_ 2025), os referenciais europeus DigComp 3.0 e DigCompEdu, as orientações da UNESCO e da OCDE, a Estratégia Nacional para a Inteligência Artificial (ENIA 2030) e o Plano de Acção para a Transição Digital. Tem estatuto consultivo --- o CNE é órgão consultivo nos termos da Lei n.º 31/87 --- mas a publicação em DR e a invocação directa do AI Act como instrumento vinculativo conferem-lhe peso de _soft law_ relevante para A3ES, tutela e fornecedores.
+
+O âmbito predominante é o ensino básico e secundário; a aplicação à FMUP faz-se por três vias: (i) **menções directas ao ensino superior**, (ii) **princípios transversais** que se aplicam a todo o sistema educativo público e (iii) **efeitos sobre a formação inicial de docentes**, na qual a FMUP participa por via dos seus ciclos de estudo na área da Saúde Digital e da Informática da Saúde.
+
+### Menções directas ao ensino superior
+
+Três recomendações nomeiam explicitamente o ensino superior:
+
+- **Recomendação 1.6** (médio prazo): _edge computing_ "em articulação com instituições de ensino superior e centros de investigação", aliando "modernização tecnológica ao reforço das parcerias entre o sistema educativo e a comunidade científica" [@cne2026recomendacao].
+- **Recomendação 2.13** (médio prazo): "A implementação de sistemas de _Retrieval-Augmented Generation_ (RAG) no ensino superior, baseados em fontes validadas por profissionais qualificados --- bibliotecários, editores científicos --- no sentido de colocar a IA genuinamente ao serviço do pensamento crítico e da investigação, sem comprometer a integridade académica que é o alicerce da confiança no conhecimento científico" [@cne2026recomendacao]. A FMUP pode operacionalizar esta recomendação através da articulação entre IAedu, biblioteca FMUP e o Centro de Documentação.
+- **Recomendação 3.5** (médio prazo): "Estabelecer uma governança nacional para a IA em educação, envolvendo o Ministério da Educação, universidades, instituições de ensino superior e outros _stakeholders_ relevantes, com o mandato de definir padrões, prioridades e mecanismos de avaliação" [@cne2026recomendacao]. A FMUP deve afirmar a sua disponibilidade para integrar este órgão.
+
+### Princípios transversais com aplicação directa à FMUP
+
+Quatro recomendações têm efeito imediato sobre a FMUP enquanto instituição pública do sistema educativo:
+
+- **Recomendação 1.4** (urgente, _open source_ e auditabilidade): "adopção preferencial de aplicações em código aberto e auditáveis ... com rastreabilidade e explicabilidade dos modelos de IA integrados e com capacidade de configuração pelos docentes" [@cne2026recomendacao]. Reforça a adopção do IAedu já feita pelo Quadro (capítulo [6](06-infraestrutura.qmd)) e introduz uma exigência adicional de auditabilidade que deve constar das opções por ferramentas comerciais (ChatGPT, Claude, DeepL): preferir versões institucionais com _opt-out_ de treino ou API com contrato.
+- **Recomendação 3.1** (urgente, códigos de conduta): "implementação de orientações e códigos de conduta escolar para o uso de IA em todos os estabelecimentos de ensino, definindo usos aceitáveis e não aceitáveis, mecanismos de reporte de incidentes e responsabilidades claras de docentes, alunos e direções" [@cne2026recomendacao]. **O presente Quadro é precisamente esse instituto institucional**, antecipando ao nível de uma faculdade aquilo que a recomendação procura ao nível do sistema.
+- **Recomendação 3.2** (urgente, transparência contratual): "exigir transparência algorítmica nos contratos celebrados com fornecedores de tecnologia para o sistema educativo --- nomeadamente a divulgação dos dados de treino utilizados, da lógica de funcionamento dos modelos e da conformidade com o AI Act e com o RGPD" [@cne2026recomendacao]. Tem efeito sobre as compras institucionais da FMUP: cláusula-tipo a integrar em todo o procurement com componente de IA (ver [6. Infraestrutura](06-infraestrutura.qmd)).
+- **Recomendação 3.3** (urgente, decisão automatizada): "assegurar que nenhuma decisão com impacto significativo na vida dos alunos --- retenção, colocação, encaminhamento, avaliação sumativa --- possa ser tomada com base exclusiva em sistemas automatizados de IA, garantindo sempre a validação humana qualificada e o direito de recurso" [@cne2026recomendacao]. Alinha-se directamente com o **Princípio 1 (Agência humana)** do Quadro e com o processo disciplinar previsto no capítulo [6](06-infraestrutura.qmd).
+
+### Efeitos sobre a formação inicial e contínua de docentes
+
+O Eixo II contém um pacote sobre formação que tem efeito directo nos ciclos de estudo da FMUP que preparam docentes (Licenciatura em Saúde Digital e Inovação Biomédica; Mestrado em Informática da Saúde):
+
+- **Recomendação 2.1** (urgente): "iniciar a revisão dos programas de formação inicial de professores e outros profissionais de educação, tornando obrigatória a integração de módulos de literacia em IA que abranjam quatro eixos fundamentais --- literacia digital, pensamento computacional, literacia crítica de dados e ética em IA" [@cne2026recomendacao]. O Quadro já articula uma literacia em quatro dimensões (técnica, avaliativa, ético-regulatória, prática) em [Princípio 6](02-principios.qmd#principio-6-literacia); o mapeamento é directo.
+- **Recomendação 2.2** (urgente): "programas de desenvolvimento profissional contínuo ... centrados no desenho de tarefas 'IA-resilientes', na avaliação em contexto de IA e na reflexão crítica com alunos" [@cne2026recomendacao]. A Fase 1 do Quadro (formação inicial para docentes da FMUP, ver capítulo [7](07-implementacao.qmd)) responde directamente a esta recomendação.
+- **Recomendação 2.7** (médio prazo): "oficinas formativas e microcredenciais específicas para IA em educação, com reconhecimento efectivo na carreira docente" [@cne2026recomendacao]. A FMUP, enquanto unidade orgânica da U.Porto, pode oferecer microcredenciais articuladas com o Centro de Inovação Pedagógica da U.Porto.
+
+### Tabela de alinhamento Recomendação 4/2026 ↔ Quadro FMUP
+
+| Recomendação CNE 4/2026 | Princípio FMUP | Local no Quadro |
+|---|---|---|
+| 1.4 (open source, auditabilidade) | 4. Transparência | Cap. [6](06-infraestrutura.qmd) |
+| 1.6 (parcerias ES, edge computing) | 7. Revisão contínua | Cap. [6](06-infraestrutura.qmd) |
+| 2.1 (formação inicial obrigatória, 4 eixos) | 6. Literacia crítica | Cap. [2](02-principios.qmd#principio-6-literacia), [4](04-docentes.qmd) |
+| 2.2 (formação contínua, tarefas IA-resilientes) | 6. Literacia crítica | Cap. [4](04-docentes.qmd), [7](07-implementacao.qmd) |
+| 2.13 (RAG no ensino superior) | 2. Integridade académica | Cap. [5](05-investigadores.qmd) |
+| 3.1 (códigos de conduta) | (todo o Quadro) | Quadro completo |
+| 3.2 (transparência contratual) | 4. Transparência | Cap. [6](06-infraestrutura.qmd) |
+| 3.3 (decisão automatizada com validação humana e recurso) | 1. Agência humana | Cap. [2](02-principios.qmd), [6](06-infraestrutura.qmd) (processo disciplinar) |
+| 3.4 (RGPD, não rastreio) | 3. Protecção de dados | Cap. [2](02-principios.qmd), Anexo A |
+| 3.5 (governança nacional envolvendo IES) | 7. Revisão contínua | Cap. [6](06-infraestrutura.qmd), [7](07-implementacao.qmd) |
+| 3.7 (painéis de monitorização, relatórios públicos) | 7. Revisão contínua | Cap. [7](07-implementacao.qmd), Anexo G |
+
+### Nota sobre ENIA 2030 vs ANIA
+
+A Recomendação 4/2026 invoca a **ENIA 2030 (Estratégia Nacional para a Inteligência Artificial)**, instrumento distinto da **ANIA (Agenda Nacional de Inteligência Artificial)** aprovada pela Resolução do Conselho de Ministros n.º 2/2026 [@ania2026] e citada no capítulo [7](07-implementacao.qmd). A ENIA é a estratégia de horizonte longo (até 2030) que orienta o investimento estatal em IA; a ANIA é o instrumento operacional 2026-2030 que dela emerge, com Plano de Acção e Quadro Nacional de Competências Inteligentes. O Quadro FMUP articula-se com a ANIA no calendário de implementação e adopta os referenciais europeus (DigComp 3.0, DigCompEdu) que tanto a ENIA como a Recomendação 4/2026 reconhecem.
+
 ## Plataforma Nacional de Práticas Pedagógicas de IA
 
 O CNIPES propõe a criação de uma **Plataforma Nacional de Práticas Pedagógicas de IA no Ensino Superior** como estrutura leve de articulação, capacitação e circulação de evidência, em desenvolvimento na Fase 2 [@cnipes2026, secção 8]. A ferramenta institucional [**Atlas**](../atlas/) (descrita no [Anexo D](D-guia.qmd)) gera declarações estruturadas com avaliação guidante de risco --- exactamente o tipo de prática registável que a Plataforma procura agregar. Caso a Plataforma se concretize, a Atlas pode contribuir o referencial FMUP como nó da rede.
@@ -80,3 +131,5 @@ O CNIPES propõe a criação de uma **Plataforma Nacional de Práticas Pedagógi
 ## Síntese para o Quadro FMUP
 
 O vazio normativo do CNE e o desfasamento empírico do CNIPES (apenas 14,7% das IES com políticas em prática) legitimam directamente a presente proposta. O diagnóstico nacional valida a arquitectura do Quadro (sete princípios, três vertentes, infraestrutura, declaração obrigatória, taxonomia em quatro níveis) e enriquece-a com três contributos que se acomodam sem reescrita: a grelha de maturidade (Anexo G), a taxonomia por camadas técnicas (capítulo 6) e a estrutura dos Três Pilares ([Parte II](02-principios.qmd)). A Atlas, enquanto prática institucional versionada e registável, é candidata a contribuir para a futura Plataforma nacional.
+
+A Recomendação n.º 4/2026 do CNE, publicada em Diário da República a 21 de Maio de 2026, soma-se às âncoras regulatórias do Quadro (AI Act, EHDS, ANIA), funcionando como **âncora nacional consultiva** com peso de _soft law_. O alinhamento estrutural é elevado: a Recomendação 3.1 ("códigos de conduta escolar") descreve em termos sistémicos exactamente o tipo de instrumento que a FMUP aqui propõe, e as recomendações sobre validação humana (3.3), transparência contratual (3.2), e formação inicial e contínua de docentes (2.1, 2.2, 2.7) traduzem-se em mudanças concretas que o Quadro já incorpora ou incorporará em revisão menor.

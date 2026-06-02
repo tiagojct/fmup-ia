@@ -4,11 +4,22 @@
 
 A FMUP deve avaliar a viabilidade de uma solução institucional: plataforma _open-source_, acordo com fornecedor comercial com garantias RGPD, ou integração com soluções da Universidade do Porto. A adesão à plataforma IAedu da FCT/FCCN é uma opção imediata [@iaedu2025]. Estas opções não são mutuamente exclusivas.
 
+A Recomendação n.º 4/2026 do CNE reforça esta hierarquia ao recomendar, como medida urgente, "a adopção preferencial de aplicações em código aberto e auditáveis na infraestrutura digital educativa, com rastreabilidade e explicabilidade dos modelos de IA integrados e com capacidade de configuração pelos docentes" [@cne2026recomendacao, Recomendação 1.4]. A médio prazo, a Recomendação aponta para a criação de uma _cloud_ nacional educativa [@cne2026recomendacao, Recomendação 1.5], trajectória com a qual a IAedu se articula, e para modelos de _edge computing_ "em articulação com instituições de ensino superior e centros de investigação" [@cne2026recomendacao, Recomendação 1.6] --- vector em que a FMUP, no âmbito da Universidade do Porto e do Deucalion, pode contribuir.
+
 ## Governança
 
 Propõe-se a criação de um grupo de trabalho para GenAI na FMUP, com representação de docentes, investigadores, estudantes e serviços de informática. O grupo reportaria à direcção e publicaria um relatório anual que inclua, no mínimo: (i) um levantamento do uso declarado em trabalhos académicos, manuscritos e materiais pedagógicos; (ii) a actualização do mapeamento de riscos por vertente; (iii) a revisão das plataformas institucionais disponíveis; (iv) um balanço da formação ministrada; (v) dados agregados sobre a utilização da ferramenta Atlas: estimativa do número de declarações geradas por papel institucional, distribuição pelos níveis de risco e ferramentas mais declaradas — com metodologia de recolha voluntária ou amostral a definir pelo grupo de trabalho na Fase 1, garantindo não-identificação dos utilizadores.
 
 Ning et al. (2024), no _The Lancet Digital Health_, propuseram uma _ethics checklist_ especificamente desenhada para instituições de saúde que integram sistemas de GenAI, estruturada em domínios que incluem propósito, dados, modelos, intervenção humana, responsabilidade e supervisão contínua [@ning2024checklist]. Recomenda-se a sua adopção como instrumento operacional de auditoria interna pelo grupo de trabalho. O quadro de referência deve manter-se alinhado com a legislação europeia (RGPD e AI Act), as políticas da Universidade do Porto e as recomendações nacionais, com especial atenção às obrigações aplicáveis a sistemas de IA classificados como de alto risco pelo AI Act -- nomeadamente, sistemas que participem em decisões de avaliação ou admissão de estudantes [@maerz2024legal].
+
+### Cláusula institucional de transparência algorítmica em contratos
+
+A Recomendação n.º 4/2026 do CNE impõe, como medida urgente, "exigir transparência algorítmica nos contratos celebrados com fornecedores de tecnologia para o sistema educativo --- nomeadamente a divulgação dos dados de treino utilizados, da lógica de funcionamento dos modelos e da conformidade com o AI Act e com o RGPD" [@cne2026recomendacao, Recomendação 3.2]. A FMUP integra esta exigência no procurement de qualquer software com componente de IA, através de uma cláusula institucional que cubra quatro pontos mínimos:
+
+1. **Conformidade regulatória declarada** --- conformidade explícita com o Regulamento (UE) 2024/1689 (AI Act) e com o Regulamento (UE) 2016/679 (RGPD), incluindo identificação do estatuto do sistema (uso geral, alto risco, ou outro).
+2. **Origem dos dados de treino** --- descrição agregada das fontes utilizadas, com indicação de licenças, salvaguardas de propriedade intelectual e tratamento de dados pessoais.
+3. **Lógica de funcionamento** --- documentação acessível sobre a arquitectura e os mecanismos de decisão, com nível de detalhe proporcional à criticidade do uso (cf. taxonomia HEAT-AI infra).
+4. **Auditabilidade** --- direito da instituição a auditar o sistema ou a obter relatórios de auditoria independente, em particular em casos de incidente.
 
 ## Categorização de risco e standards de alinhamento
 
@@ -43,7 +54,7 @@ A preparação para o EHDS exige *Trusted Research Environments* compatíveis e 
 
 ## Processo disciplinar e direito de defesa
 
-A detecção de violações às regras estabelecidas neste quadro deve seguir, na sua forma de apuramento, os procedimentos regulares da FMUP em matéria de integridade académica. Pela especificidade técnica das questões envolvendo GenAI, acrescentam-se quatro princípios operacionais:
+A detecção de violações às regras estabelecidas neste quadro deve seguir, na sua forma de apuramento, os procedimentos regulares da FMUP em matéria de integridade académica. Pela especificidade técnica das questões envolvendo GenAI, acrescentam-se quatro princípios operacionais que estão em pleno alinhamento com a Recomendação n.º 4/2026 do CNE, segundo a qual "nenhuma decisão com impacto significativo na vida dos alunos --- retenção, colocação, encaminhamento, avaliação sumativa --- possa ser tomada com base exclusiva em sistemas automatizados de IA, garantindo sempre a validação humana qualificada e o direito de recurso" [@cne2026recomendacao, Recomendação 3.3]:
 
 - **Proporcionalidade pedagógica antes de sancionatória.** Em casos de primeira infracção ou de uso inadvertido, a resposta deve ser primeiro formativa -- conversa com o estudante ou docente, clarificação das regras, refazer o trabalho com declaração adequada. Reserva-se a via disciplinar para casos de reincidência, má-fé manifesta ou dano efectivo (clínico, de protecção de dados, ou de integridade).
 - **Direito de defesa e contraditório.** Quem seja acusado de violação tem direito a explicar o seu fluxo de trabalho, apresentar prova do uso (ou da sua ausência) e ser ouvido em contraditório. A ausência de declaração é um facto observável e, por si, é violação; a prova positiva do uso indevido pode ser difícil e não deve assentar exclusivamente em ferramentas de detecção automática, cujos falsos positivos estão documentados.

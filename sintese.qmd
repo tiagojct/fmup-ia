@@ -14,10 +14,11 @@ toc-depth: 2
 ## Porque agora
 
 - A GenAI já é usada por **60 a 80% dos estudantes** de medicina em prevalências documentadas internacionalmente; a ausência de quadro institucional empurra docentes e investigadores para decisões _ad hoc_ e cria assimetrias entre UCs.
-- Três marcos regulatórios externos convergem no horizonte 2026-2027 e tornam a inacção mais cara que a acção:
+- Quatro marcos regulatórios externos convergem no horizonte 2026-2027 e tornam a inacção mais cara que a acção:
   - **EU AI Act (Regulamento UE 2024/1689)** — aplicação plena em Agosto de 2026, obrigações de _deployer_ aplicáveis à FMUP.
   - **European Health Data Space (EHDS)** — aplicação geral em Março de 2027.
   - **Agenda Nacional de IA (ANIA, RCM 2/2026)** — Plano de Acção 2026-2030 e Quadro Nacional de Competências Inteligentes (QNCI).
+  - **Recomendação n.º 4/2026 do CNE** (DR, Maio de 2026) — 31 recomendações ao sistema educativo, com aplicação directa ao ensino superior em três pontos (parcerias _edge computing_, RAG no ES, governança nacional) e exigências transversais sobre formação de docentes, transparência contratual e validação humana de decisões.
 - O [diagnóstico CNIPES 2026](quadro/12b-panorama-portugal.qmd) sobre o ensino superior português coloca a maioria das instituições em estado de prontidão "emergente" — janela de oportunidade para a FMUP liderar.
 
 ## O que tem

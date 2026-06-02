@@ -37,6 +37,7 @@ Lista de _frameworks_, regulamentos e documentos institucionais referenciados ao
 
 ## Portugal
 
+- **[Recomendação n.º 4/2026 do CNE](https://diariodarepublica.pt/dr/detalhe/recomendacao/4-2026-1124911989)** --- Conselho Nacional de Educação, _Integração da Inteligência Artificial no sistema educativo português_, publicada em DR 2.ª série, n.º 98, 21 de Maio de 2026. 31 recomendações em três eixos (Infraestrutura e Soberania Digital; Pedagogia, Currículo, Literacia e Formação; Ética, Responsabilidade, Governança e Monitorização), com calendarização (medidas urgentes / médio prazo / longo prazo). Aplicação ao ensino superior em três recomendações específicas (1.6 _edge computing_, 2.13 _RAG_, 3.5 governança nacional); princípios transversais aplicáveis a todo o sistema educativo público.
 - **[Resolução do Conselho de Ministros n.º 2/2026](https://diariodarepublica.pt/)** --- Agenda Nacional de Inteligência Artificial (ANIA) e Plano de Acção 2026-2030. Quatro eixos; Quadro Nacional de Competências Inteligentes (QNCI); reforço do Deucalion.
 - **[IAedu](https://iaedu.pt/)** --- Plataforma da FCT/FCCN para acesso institucional federado a modelos de larga escala, com garantia contratual de que os dados dos utilizadores não são usados para treino.
 - **[A3ES](https://www.a3es.pt/)** --- Agência de avaliação e acreditação do ensino superior; em discussão a integração de competências em IA nos referenciais.

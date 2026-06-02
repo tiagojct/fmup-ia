@@ -24,3 +24,9 @@ O _toolkit_ da TEQSA australiana acrescenta uma perspectiva programática: a ref
 
 Se um docente utilizar GenAI na preparação de materiais ou em qualquer actividade pedagógica, é recomendável que o declare perante os estudantes.
 A FMUP deve criar oportunidades regulares de formação, incluindo _workshops_ práticos, sessões de partilha e acesso a recursos actualizados. Esta formação deve ir além da demonstração de ferramentas e incluir discussão sobre implicações pedagógicas, éticas e epistemológicas. Como observou Neil Postman em _Technopoly_ (1992), o perigo de qualquer nova tecnologia não reside nos seus efeitos óbvios, mas nas formas subtis como altera as nossas práticas sem que nos apercebamos [@postman1992technopoly]. Para elaborar a cláusula da unidade curricular e o requisito de divulgação a comunicar aos estudantes, utilize a ferramenta [**Atlas**](../atlas/).
+
+A Recomendação n.º 4/2026 do CNE [@cne2026recomendacao] traduz estas exigências em três medidas explicitamente endereçadas à formação de docentes que a FMUP integra:
+
+- **Recomendação 2.1** (urgente) --- revisão da formação inicial com módulos obrigatórios de literacia em IA em quatro eixos (literacia digital, pensamento computacional, literacia crítica de dados, ética em IA). Aplica-se aos ciclos de estudo da FMUP que preparam profissionais de educação, designadamente a Licenciatura em Saúde Digital e Inovação Biomédica e o Mestrado em Informática da Saúde.
+- **Recomendação 2.2** (urgente) --- formação contínua centrada no desenho de tarefas IA-resilientes, na avaliação em contexto de IA e na reflexão crítica com alunos, a integrar no plano de formação Fase 1 (ver capítulo [7](07-implementacao.qmd)).
+- **Recomendação 2.7** (médio prazo) --- microcredenciais específicas para IA em educação, com reconhecimento na carreira docente, candidatas a ser oferecidas pela FMUP em articulação com o Centro de Inovação Pedagógica da Universidade do Porto.

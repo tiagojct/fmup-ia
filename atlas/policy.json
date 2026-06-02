@@ -1,10 +1,36 @@
 {
-  "version": "1.2.3",
+  "version": "1.2.4",
   "framework_version": "FMUP Quadro de Referência v1.0 (2026-04-21)",
   "framework_short_pt": "Quadro FMUP v1.0",
   "framework_short_en": "FMUP Framework v1.0",
   "framework_url": "https://tiagojct.eu/fmup-ia/quadro/",
   "issued": "2026-04-21",
+  "legal_references": [
+    {
+      "key": "ai_act",
+      "name_pt": "Regulamento (UE) 2024/1689 (AI Act)",
+      "name_en": "Regulation (EU) 2024/1689 (AI Act)",
+      "url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj"
+    },
+    {
+      "key": "rgpd",
+      "name_pt": "Regulamento (UE) 2016/679 (RGPD)",
+      "name_en": "Regulation (EU) 2016/679 (GDPR)",
+      "url": "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+    },
+    {
+      "key": "cne_recomendacao_4_2026",
+      "name_pt": "Recomendação n.º 4/2026 do CNE (DR, 21 de Maio de 2026)",
+      "name_en": "CNE Recommendation 4/2026 (DR, 21 May 2026)",
+      "url": "https://diariodarepublica.pt/dr/detalhe/recomendacao/4-2026-1124911989"
+    },
+    {
+      "key": "ania_rcm_2_2026",
+      "name_pt": "RCM n.º 2/2026 (ANIA — Agenda Nacional de IA 2026-2030)",
+      "name_en": "RCM 2/2026 (ANIA — National AI Agenda 2026-2030)",
+      "url": "https://diariodarepublica.pt/"
+    }
+  ],
   "national_platform": {
     "name_pt": "Plataforma Nacional de Práticas Pedagógicas de IA no Ensino Superior",
     "name_en": "National Platform for AI Pedagogical Practices in Higher Education",

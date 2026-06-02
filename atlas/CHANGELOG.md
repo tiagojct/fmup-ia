@@ -21,6 +21,19 @@ This project follows a `MAJOR.MINOR.PATCH` scheme:
 
 ---
 
+## [0.9.1] — 2026-06-02
+
+`policy.version` bump to **1.2.4**: integration of the CNE Recomendação
+n.º 4/2026 (DR, 21 May 2026) as an additional legal reference. New
+top-level `legal_references` array in `policy.json` listing AI Act,
+RGPD, CNE Rec 4/2026, and RCM 2/2026 (ANIA). No rules added — the
+Recommendation's transversal exigencies (human validation, algorithmic
+transparency, teacher training literacy in four axes) are already
+covered by the seven principles. No statement wording changed in
+`i18n/*.js`, so `APP_VERSION` remains `0.9.1`.
+
+---
+
 ## [0.9.1] — 2026-05-23
 
 Internal audit pass: language-preservation bug in `backToLanding()` and policy
