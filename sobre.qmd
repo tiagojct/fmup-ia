@@ -3,6 +3,41 @@ title: "Sobre"
 toc: true
 ---
 
+## Estatuto editorial {#estatuto-editorial}
+
+Este documento é um **contributo individual** de Tiago Jacinto à reflexão sobre o uso responsável de inteligência artificial generativa na Faculdade de Medicina da Universidade do Porto. Não é, no presente estado, política institucional aprovada pelos órgãos competentes da FMUP, não foi mandatado por despacho ou deliberação, e não vincula a Faculdade.
+
+As formulações do tipo "A FMUP define...", "A FMUP adopta..." que pontuam o Quadro devem ser lidas como propostas redigidas em registo institucional para facilitar a sua eventual adopção formal --- não como descrição do estado actual do regime aplicável à Faculdade. O regime em vigor é o que consta dos regulamentos pedagógicos, despachos da Direcção, deliberações do Conselho Científico, e demais instrumentos institucionais publicados pelos canais próprios da Faculdade e da Universidade do Porto.
+
+O documento é submetido aos órgãos competentes da FMUP para apreciação, no entendimento de que qualquer adopção formal exigirá processo deliberativo próprio, ajustamentos editoriais resultantes da apreciação institucional, e --- nas secções que tratam de matérias jurídicas, designadamente o procedimento disciplinar e as cláusulas de procurement --- parecer prévio da Direcção Jurídica da Universidade do Porto.
+
+A publicação online no domínio pessoal [tiagojct.eu/fmup-ia](https://tiagojct.eu/fmup-ia/) corresponde a publicação académica em nome individual, sob licença [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), para discussão pública. Não constitui presença institucional da FMUP nem dispensa os processos próprios para o efeito.
+
+## Declaração de conflitos de interesse {#declaracao-de-conflitos-de-interesse}
+
+Por aplicação dos princípios de transparência que o próprio Quadro propõe, o autor declara os seguintes interesses materiais e profissionais com potencial relevância para o conteúdo:
+
+- **Direcção do Mestrado em Informática da Saúde** da FMUP. O Quadro propõe módulos de literacia em IA cuja implementação na licenciatura e em mestrados da FMUP é matéria curricular susceptível de envolver coordenação por docentes com perfil em informática da saúde.
+- **Docência em UCs da Licenciatura em Saúde Digital e Inovação Biomédica** da FMUP. As propostas de articulação curricular com a Recomendação 4/2026 do CNE incidem em conteúdos próximos das UCs leccionadas pelo autor.
+- **Investigação no [RISE-Health](https://rise-health.pt/)**, com linhas em IA aplicada ao suporte à decisão clínica, _mobile health_ e ciência de dados de saúde. Qualquer trabalho institucional sobre infraestrutura ou governança de IA na FMUP toca em domínios que se sobrepõem aos interesses do laboratório.
+- **Editor associado** no _RISE Health Research Journal_ (Lippincott/Wolters Kluwer) e no _Scientific Reports_ (Nature Portfolio). Os princípios sobre uso de GenAI em publicação académica reflectem normas editoriais ICMJE/WAME/COPE com as quais o autor está editorialmente envolvido.
+- **Autoria do Atlas** e da extensão Quarto `tiagojct/quarto-fmup` (CC BY 4.0). Qualquer transição para aplicação institucional certificada irá requerer a transferência ou abertura do desenvolvimento a terceiros, em condições a definir pela FMUP.
+
+O autor **não recebeu financiamento dedicado** para a redacção do Quadro ou do Atlas. Não há acordos comerciais, consultadoria, _equity_ ou outras relações financeiras com fornecedores de plataformas de IA generativa, e em particular com qualquer das ferramentas referenciadas no documento (IAedu, ChatGPT, Claude, NotebookLM, Perplexity, DeepL, Writefull). O uso pessoal das ferramentas comerciais é declarado em conta individual sem privilégios institucionais.
+
+Esta declaração será actualizada se alguma das condições materiais ou profissionais aqui descritas se alterar.
+
+## Continuidade e plano de transição {#continuidade}
+
+O Quadro e o Atlas são, no presente estado, mantidos no espaço pessoal do autor. Reconhecendo as limitações que esta circunstância impõe a qualquer aspiração institucional, prevêem-se quatro medidas de continuidade:
+
+- **Licença permissiva.** Todo o conteúdo está publicado sob [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) e todo o código (Atlas, extensão Quarto, _scripts_ de _build_) sob a mesma licença. Qualquer pessoa ou instituição pode legalmente _forkar_, adaptar e manter cópias derivadas.
+- **Repositório público.** O código-fonte completo está em [github.com/tiagojct/fmup-ia](https://github.com/tiagojct/fmup-ia). A história editorial é integralmente reconstruível a partir do histórico `git`.
+- **Caminho de migração institucional.** Em caso de adopção formal pela FMUP, propõe-se a transferência do repositório para um _namespace_ institucional (`github.com/u-porto/...` ou equivalente), a migração da publicação para domínio institucional (`fmup.up.pt/...`), e a transição da manutenção para uma equipa designada pela direcção, com mandato e recursos próprios.
+- **Padrões abertos.** A _stack_ técnica (Quarto, Typst, Pandoc/CSL, JavaScript sem dependências para o Atlas, BibTeX) é integralmente baseada em padrões abertos e ferramentas de código aberto, o que reduz o custo de migração entre infraestruturas.
+
+A presente arquitectura não pretende ser a arquitectura institucional final --- pretende mostrar que **uma arquitectura institucional é tecnicamente exequível** com a infraestrutura disponível em Portugal e na União Europeia.
+
 ## Autoria
 
 **Tiago Jacinto** --- Professor Auxiliar no MEDCIDS (Medicina da Comunidade, Informação e Decisão em Saúde), Faculdade de Medicina da Universidade do Porto. Lecciona na FMUP desde 2008. Investigador no [RISE-Health](https://rise-health.pt/), com trabalho em suporte à decisão clínica baseado em IA, *mobile health* e ciência de dados de saúde.
@@ -51,7 +86,7 @@ O Quadro e o Atlas são publicados como um único sítio web estático, constru�
 
 **Quadro — website Quarto.** Os capítulos e anexos são ficheiros `.qmd` (Quarto Markdown) que o Quarto converte em HTML com navegação lateral, referências bibliográficas automáticas (formato Chicago Author-Date, via Pandoc/CSL) e tabela de conteúdos por página. A estrutura é de *website* (não de *book*): cada página é autónoma e os links cruzados são explícitos.
 
-**Atlas — aplicação web sem dependências.** A ferramenta operacional é uma aplicação de página única escrita em JavaScript, HTML e CSS sem dependências externas ou passo de compilação. O Quarto copia-a como recurso estático. Corre inteiramente no browser do utilizador.
+**Atlas — demonstrador prototípico sem dependências.** O demonstrador é uma aplicação de página única escrita em JavaScript, HTML e CSS sem dependências externas ou passo de compilação. O Quarto copia-a como recurso estático. Corre inteiramente no browser do utilizador.
 
 **Guias PDF.** Quatro guias práticos de uma página (estudantes, docentes, investigadores, serviços) são gerados directamente pelo `quarto render` via `format: fmup-typst` declarado em cada `.qmd` de guia, partilhando a tipografia e a paleta institucional do resto do site.
 
@@ -87,5 +122,5 @@ O repositório do projecto é público em [github.com/tiagojct/fmup-ia](https://
 ## Recursos relacionados
 
 - [Quadro de referência](quadro/) --- documento principal.
-- [Atlas](atlas/) --- ferramenta operacional.
+- [Atlas](atlas/) --- demonstrador prototípico.
 - [Recursos](recursos.qmd) --- *frameworks* externos e leitura adicional.

@@ -248,6 +248,7 @@
       appTitle: 'Atlas — AI Usage Statements',
       appSubtitle: 'A tool to help draft statements on the use of artificial intelligence in academic and research contexts at FMUP',
       switchLanguage: 'Mudar para Português',
+      footerPrototype: 'Prototype demonstrator',
       footerVersion: 'Version',
       footerDate: 'Date',
       footerFramework: 'Framework:',

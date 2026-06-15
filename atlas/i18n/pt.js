@@ -256,6 +256,7 @@
       appTitle: 'Atlas — Declarações de uso de IA',
       appSubtitle: 'Apoio à elaboração de declarações de utilização de inteligência artificial em contexto académico e de investigação na FMUP',
       switchLanguage: 'Mudar para English',
+      footerPrototype: 'Demonstrador prototípico',
       footerVersion: 'Versão',
       footerDate: 'Data',
       footerFramework: 'Quadro:',

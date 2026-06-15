@@ -25,7 +25,7 @@ Para compreender a política, comece pelo Quadro. Para declarar um uso concreto 
 :::
 
 ::: {.hero-status}
-Estado: proposta institucional em desenvolvimento — v1.0 (2026). Não substitui regulamentos pedagógicos nem constitui política formalmente aprovada da FMUP.
+Estado: **contributo individual** de Tiago Jacinto para apreciação institucional --- v1.0 (2026). Não é documento aprovado pelos órgãos da FMUP, não substitui regulamentos pedagógicos em vigor, e não vincula a Faculdade. Ver [Estatuto editorial](sobre.qmd#estatuto-editorial).
 :::
 :::
 
@@ -33,7 +33,7 @@ Estado: proposta institucional em desenvolvimento — v1.0 (2026). Não substitu
 ::: {.card-tile}
 ### Atlas
 
-Ferramenta web que gera declarações estruturadas de uso de IA com avaliação guidante de risco em quatro níveis.
+Demonstrador prototípico que gera declarações estruturadas de uso de IA com avaliação guidante de risco em quatro níveis. Não é aplicação institucional certificada.
 
 [Abrir o Atlas](atlas/){.card-link}
 :::

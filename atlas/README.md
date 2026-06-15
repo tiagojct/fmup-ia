@@ -1,9 +1,19 @@
 # Atlas — AI Usage Statement Generator
 
-**Atlas** is the operational companion of the FMUP · IA framework. It is a
+**Atlas** is the **prototype demonstrator** of the FMUP · IA framework. It is a
 self-contained, dependency-free web tool that generates standardised AI-usage
 declarations for academic and research contexts at the **Faculty of Medicine of
-the University of Porto (FMUP)**. Three branches:
+the University of Porto (FMUP)**.
+
+Status: this is a prototype demonstrator, **not a certified institutional
+application**. The accompanying framework is an individual contribution
+submitted for institutional appraisal — see the [Editorial status
+note](../sobre.qmd#estatuto-editorial) on the project site. Any transition
+to a certified institutional tool will require an independent security
+review, a DPIA, registration in the University of Porto application
+inventory, and a designated technical owner.
+
+Three branches:
 
 - **Student** — declaration to accompany a submitted assignment.
 - **Teacher** — course-unit syllabus policy text + disclosure requirement to

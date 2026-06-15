@@ -3,7 +3,7 @@
 ::: {.callout-note}
 ## Geração automatizada da declaração
 
-A ferramenta institucional [**Atlas**](../atlas/) gera uma versão em prosa equivalente à deste modelo, formatada para cada papel (estudante, docente, investigador) e para cada destinatário ([ICMJE](https://www.icmje.org/), FCT, Horizonte Europa, Wellcome Trust, conferência ou relatório institucional). Cada declaração gerada inclui a versão do quadro vigente, o que permite rastreá-la no tempo. O modelo abaixo permanece útil para preenchimento manual e como referência do conteúdo mínimo exigido.
+O demonstrador prototípico [**Atlas**](../atlas/) gera uma versão em prosa equivalente à deste modelo, formatada para cada papel (estudante, docente, investigador) e para cada destinatário ([ICMJE](https://www.icmje.org/), FCT, Horizonte Europa, Wellcome Trust, conferência ou relatório institucional). Cada declaração gerada inclui a versão do quadro vigente, o que permite rastreá-la no tempo. O Atlas, no presente estado, é demonstrador prototípico (não aplicação institucional certificada): qualquer utilização para gerar declarações vinculativas presume aceitação dos termos descritos em [Sobre · Estatuto editorial](../sobre.qmd#estatuto-editorial). O modelo abaixo permanece útil para preenchimento manual e como referência do conteúdo mínimo exigido.
 :::
 
 ## Modelo genérico

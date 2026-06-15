@@ -4,9 +4,13 @@ toc: true
 toc-depth: 2
 ---
 
+::: {.callout-important appearance="simple"}
+Este documento é um **contributo individual** de Tiago Jacinto submetido à apreciação dos órgãos competentes da FMUP. Não é política institucional aprovada, não vincula a Faculdade e não substitui regulamentos pedagógicos em vigor. Ver [Estatuto editorial](sobre.qmd#estatuto-editorial) e [Declaração de conflitos de interesse](sobre.qmd#declaracao-de-conflitos-de-interesse).
+:::
+
 ## O que é
 
-- Uma **proposta institucional** para o uso responsável de inteligência artificial generativa (GenAI) na FMUP, em duas peças articuladas: o [**Quadro**](quadro/) (documento de referência) e o [**Atlas**](atlas/) (ferramenta operacional).
+- Uma **proposta de quadro institucional** para o uso responsável de inteligência artificial generativa (GenAI) na FMUP, em duas peças articuladas: o [**Quadro**](quadro/) (documento de referência, em prosa) e o [**Atlas**](atlas/) (demonstrador prototípico).
 - Cobre as três populações da FMUP: [estudantes](quadro/03-estudantes.qmd), [docentes](quadro/04-docentes.qmd) e [investigadores](quadro/05-investigadores.qmd).
 - Pré-AO90, formal, baseado em evidência e em literatura comparada internacional.
 - Estado: proposta em desenvolvimento (v1.0, 2026). **Não substitui regulamentos pedagógicos** — é input para deliberação institucional.
@@ -76,21 +80,22 @@ Detalhe completo, indicadores quantitativos e grelha de maturidade no capítulo 
 
 ## O que está em jogo
 
-- **Liderança regional.** Nenhuma faculdade de medicina nacional tem um quadro publicado nesta amplitude; a FMUP pode tornar-se referência ibérica.
-- **Conformidade antecipada.** Em vez de reagir ao EU AI Act / EHDS / ANIA quando entrarem em vigor, a FMUP chega-lhes preparada.
-- **Equidade entre UCs.** Eliminação das assimetrias actuais entre docentes que permitem e docentes que proíbem GenAI sem critério partilhado.
-- **Defensibilidade jurídica.** Cláusulas-tipo e processo disciplinar reduzem o risco de litigância em torno de casos de uso indevido.
-- **Acreditação ISO/IEC 42001** como meta de Fase 3.
+- **Janela de oportunidade nacional.** A maioria das instituições portuguesas está em estado de prontidão "emergente" (CNIPES, 2026). A FMUP pode constituir-se como caso de boas práticas, no espaço de partilha europeia em formação.
+- **Conformidade antecipada.** Em vez de reagir ao EU AI Act, ao EHDS, à ANIA e à Recomendação 4/2026 do CNE quando produzirem efeitos, a FMUP chega-lhes preparada.
+- **Equidade entre UCs.** Mitigação das assimetrias actuais entre docentes que permitem e docentes que proíbem GenAI sem critério partilhado.
+- **Defensibilidade jurídica.** Cláusulas-tipo e procedimento disciplinar (a apreciar pela Direcção Jurídica da U.Porto antes de adopção) reduzem o risco de litigância em casos de uso indevido.
+- **Articulação ISO/IEC 42001** como horizonte de Fase 3, em articulação com a Universidade do Porto.
 
-## Decisões
+## O que se pede aos órgãos competentes da FMUP
 
-A proposta requer decisões em três planos:
+A proposta é, no presente estado, **contributo individual sujeito a apreciação**. Não pede endosso institucional imediato. Solicita:
 
-1. **Endosso institucional.** Reconhecimento do Quadro como documento de referência institucional e mandato para o grupo de trabalho iniciar a Fase 1.
-2. **Alocação de recursos.** Tempo de docentes para formação (Fase 1), articulação com a Universidade do Porto e com o Deucalion (EuroHPC), e ligação à unidade hospitalar afiliada para o _Trusted Research Environment_ (Fase 2).
-3. **Governança.** Constituição (ou ratificação) de um Grupo de Trabalho com mandato para revisão anual e revisões extraordinárias quando necessário.
+1. **Apreciação.** Encaminhamento da proposta para o(s) órgão(s) competente(s) --- Conselho Pedagógico, Conselho Científico, Direcção, Comissão de Ética --- para apreciação no âmbito das suas atribuições.
+2. **Mandato.** Se a apreciação for favorável, formalização (por despacho da Direcção ou deliberação do Conselho Científico) de um Grupo de Trabalho com mandato explícito para rever, ajustar e propor a adopção institucional do quadro, com calendário de trabalho próprio.
+3. **Articulação técnica.** Para os pontos que ultrapassam a competência técnica do autor --- nomeadamente a secção sobre [procedimento disciplinar](quadro/06-infraestrutura.qmd#processo-disciplinar-e-direito-de-defesa) e as [cláusulas institucionais de transparência algorítmica em contratos](quadro/06-infraestrutura.qmd) ---, encaminhamento para parecer da Direcção Jurídica da Universidade do Porto e (no que respeita à camada clínica) coordenação com a unidade hospitalar afiliada.
+4. **Reconhecimento da [Atlas](atlas/) como demonstrador prototípico**, não como aplicação institucional. A passagem a aplicação institucional carecerá de avaliação de segurança, DPIA, inscrição no inventário de aplicações institucionais e termo de responsabilidade técnico.
 
-A proposta **não pede** alteração de regulamentos pedagógicos no imediato — pede deliberação política sobre o sentido da resposta institucional.
+A proposta **não pede** alteração de regulamentos pedagógicos no imediato. Não pede endosso da Faculdade ao texto tal como está. Pede acolhimento institucional do contributo e a sua submissão ao processo deliberativo próprio.
 
 ## Materiais de apoio
 

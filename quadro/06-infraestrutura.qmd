@@ -14,6 +14,10 @@ Ning et al. (2024), no _The Lancet Digital Health_, propuseram uma _ethics check
 
 ### Cláusula institucional de transparência algorítmica em contratos
 
+::: {.callout-important appearance="simple"}
+A presente secção é redacção proposta, não regulamento adoptado. Por se tratar de matéria contratual com implicações jurídicas e procedimentais, a redacção que aqui se sugere deve ser objecto de **parecer prévio da Direcção Jurídica da Universidade do Porto** e de articulação com os serviços da Faculdade competentes em matéria de aquisição de bens e serviços antes de qualquer adopção institucional.
+:::
+
 A Recomendação n.º 4/2026 do CNE impõe, como medida urgente, "exigir transparência algorítmica nos contratos celebrados com fornecedores de tecnologia para o sistema educativo --- nomeadamente a divulgação dos dados de treino utilizados, da lógica de funcionamento dos modelos e da conformidade com o AI Act e com o RGPD" [@cne2026recomendacao, Recomendação 3.2]. A FMUP integra esta exigência no procurement de qualquer software com componente de IA, através de uma cláusula institucional que cubra quatro pontos mínimos:
 
 1. **Conformidade regulatória declarada** --- conformidade explícita com o Regulamento (UE) 2024/1689 (AI Act) e com o Regulamento (UE) 2016/679 (RGPD), incluindo identificação do estatuto do sistema (uso geral, alto risco, ou outro).
@@ -30,7 +34,7 @@ A operacionalização da governança beneficia da adopção de uma taxonomia de 
 - **Nível 3 — Alto:** uso com impacto formativo, clínico ou administrativo (avaliação, materiais pedagógicos, comunicação institucional). Exige declaração explícita, registo central e, em casos limítrofes, parecer do grupo de trabalho.
 - **Nível 4 — Inaceitável:** uso proibido pelo quadro -- dados clínicos identificáveis em ferramentas comerciais, raciocínio clínico delegado em contexto de cuidados, classificação automatizada exclusivamente por IA, GenAI listada como co-autora, revisão por pares assistida por plataformas comerciais.
 
-A ferramenta institucional de declaração [**Atlas**](../atlas/), descrita em [Anexo D](D-guia.qmd), aplica directamente esta categorização: para cada combinação de papel, tarefa e ferramenta, devolve o nível de risco e remete para o princípio e o cenário do [Anexo E](E-cenarios.qmd) que o sustentam.
+O demonstrador prototípico de declaração [**Atlas**](../atlas/), descrito em[Anexo D](D-guia.qmd), aplica directamente esta categorização: para cada combinação de papel, tarefa e ferramenta, devolve o nível de risco e remete para o princípio e o cenário do [Anexo E](E-cenarios.qmd) que o sustentam.
 
 Esta categorização por uso é complementada, sem ser substituída, por uma leitura por **camada técnica** proposta pelo CNIPES no seu diagnóstico nacional [@cnipes2026, p. 12]. A leitura é simples mas analiticamente útil: o Machine Learning gera erros computacionais (optimização defeituosa, erros de codificação); o Deep Learning gera erros interpretativos (classificação incorrecta, viés no reconhecimento de padrões); os Large Language Models geram um **risco epistémico** específico -- afirmações plausíveis mas não verificáveis, popularizadas como "alucinações". As ferramentas com base em LLMs, presentes na esmagadora maioria das interacções académicas em 2026, exigem por isso rotinas de verificação humana qualitativamente diferentes das que se aplicariam a sistemas anteriores. "Os LLMs automatizam linguagem, não conhecimento; simulam raciocínio sem garantir verdade" [@cnipes2026, p. 12]. A taxonomia por camada técnica reforça a centralidade do princípio 2 (integridade) e do critério de verificação descrito no [Anexo G](G-maturidade-cnipes.qmd).
 
@@ -52,7 +56,11 @@ A articulação académica-clínica exige conformidade simultânea com os seguin
 
 A preparação para o EHDS exige *Trusted Research Environments* compatíveis e coordenação com a *TEHDAS2 Joint Action* --- detalhe no capítulo [14](14-camada-medica.qmd).
 
-## Processo disciplinar e direito de defesa
+## Processo disciplinar e direito de defesa {#processo-disciplinar-e-direito-de-defesa}
+
+::: {.callout-important appearance="simple"}
+A presente secção propõe princípios operacionais e não se substitui ao regime disciplinar aplicável aos estudantes e aos docentes da Universidade do Porto, definido em legislação geral, no Regulamento Disciplinar dos Estudantes da U.Porto, no Estatuto da Carreira Docente Universitária (ECDU) e em demais instrumentos legais. Qualquer adopção institucional desta secção carece de **parecer prévio da Direcção Jurídica da Universidade do Porto** e de articulação com a Direcção da FMUP e o Conselho Pedagógico.
+:::
 
 A detecção de violações às regras estabelecidas neste quadro deve seguir, na sua forma de apuramento, os procedimentos regulares da FMUP em matéria de integridade académica. Pela especificidade técnica das questões envolvendo GenAI, acrescentam-se quatro princípios operacionais que estão em pleno alinhamento com a Recomendação n.º 4/2026 do CNE, segundo a qual "nenhuma decisão com impacto significativo na vida dos alunos --- retenção, colocação, encaminhamento, avaliação sumativa --- possa ser tomada com base exclusiva em sistemas automatizados de IA, garantindo sempre a validação humana qualificada e o direito de recurso" [@cne2026recomendacao, Recomendação 3.3]:
 

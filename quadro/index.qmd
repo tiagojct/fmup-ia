@@ -5,11 +5,19 @@ toc: true
 
 # Preâmbulo {.unnumbered}
 
-Este Quadro apresenta a proposta de referência institucional sobre a utilização de inteligência artificial generativa (GenAI) na Faculdade de Medicina da Universidade do Porto (FMUP), organizada em três vertentes -- estudantes, docentes e investigadores -- e complementada com orientações sobre infraestrutura, governança, implementação e avaliação. O guia prático ([Anexo D](D-guia.qmd)) estende-se ainda a uma quarta audiência: os serviços e a administração da faculdade.
+Este Quadro apresenta uma proposta de referência institucional sobre a utilização de inteligência artificial generativa (GenAI) na Faculdade de Medicina da Universidade do Porto (FMUP), organizada em três vertentes -- estudantes, docentes e investigadores -- e complementada com orientações sobre infraestrutura, governança, implementação e avaliação. O guia prático ([Anexo D](D-guia.qmd)) estende-se ainda a uma quarta audiência: os serviços e a administração da faculdade.
+
+::: {.callout-important appearance="simple"}
+Esta é uma **proposta de contributo individual** do autor, submetida à apreciação dos órgãos competentes da FMUP. Não é, no presente estado, política institucional aprovada nem vincula a Faculdade. Ver [Estatuto editorial](../sobre.qmd#estatuto-editorial) e [Declaração de conflitos de interesse](../sobre.qmd#declaracao-de-conflitos-de-interesse).
+:::
 
 O documento destina-se à direcção da FMUP, aos conselhos pedagógicos e científicos, aos docentes e investigadores, aos estudantes e aos serviços de apoio. Pode servir de ponto de partida para o debate institucional, para a elaboração de políticas específicas por unidade curricular e para a articulação com os quadros regulatórios nacionais e europeus.
 
-A ferramenta operacional [**Atlas**](../atlas/) acompanha este Quadro: gera declarações estruturadas de uso de GenAI para cada papel (estudante, docente, investigador) e devolve avaliação guidante de risco com base nas regras aqui codificadas.
+O demonstrador prototípico [**Atlas**](../atlas/) acompanha este Quadro: gera declarações estruturadas de uso de GenAI para cada papel (estudante, docente, investigador) e devolve avaliação guidante de risco com base nas regras aqui codificadas. O Atlas é um demonstrador prototípico que mostra a operacionalização do Quadro --- não é, no presente estado, aplicação institucional certificada (ver [Estatuto editorial](../sobre.qmd#estatuto-editorial)).
+
+::: {.callout-note appearance="simple"}
+**Sobre a sequência da Parte I.** A análise comparativa percorre o panorama internacional do mais distante ao mais próximo (EUA → Europa → Ibero-América → Frameworks supranacionais → camada médica → diagnóstico de lacunas) por razão expositiva, não normativa. A sequência espelha a ordem em que a literatura institucional dos quadros existentes se acumulou (Cornell e Stanford publicaram primeiro, em 2023-2024), permitindo discutir cada eixo contra a referência mais documentada e desbravada. **A construção do Quadro FMUP é deliberadamente de baixo para cima**: a proposta operacional (Parte II) parte do contexto institucional da FMUP e do diagnóstico nacional (CNIPES, CNE), não dos modelos importados. A Parte I lê-se como mapa de cuidados a evitar, não como ordem de prioridades.
+:::
 
 ## Sumário executivo {.unnumbered}
 

@@ -43,6 +43,10 @@ Esta página documenta as convenções tipográficas, terminológicas e de cita�
 
 O Quadro é redigido em **português europeu pré-AO90**: *adopção*, *protecção*, *actualização*, *objectivo*, *utilização*, *faculdade*. Qualquer contributo deve manter esta convenção.
 
+::: {.callout-note appearance="simple"}
+A escolha pelo pré-AO90 é editorial do autor e não constitui posição institucional da FMUP. A administração pública portuguesa adopta o Acordo Ortográfico de 1990 (Resolução do Conselho de Ministros n.º 8/2011); qualquer eventual adopção institucional deste Quadro pela Faculdade implicará, naturalmente, a transição para a norma em vigor. As declarações geradas pelo Atlas seguem a mesma convenção pré-AO90 nos elementos pré-formatados em PT, e em AO90 ou outra norma quando o destinatário (revista, agência financiadora) tenha exigências próprias.
+:::
+
 ## Versões e rastreabilidade
 
 O Atlas mantém dois números de versão independentes:

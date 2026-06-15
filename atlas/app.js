@@ -11,7 +11,7 @@
 
   // ---- Single source of truth for the tool version. ----
   // Bump this when statement content (any i18n file) changes.
-  const APP_VERSION = '0.9.1';
+  const APP_VERSION = '0.9.2';
 
   // Schema version for the URL hash payload. Bump when state shape
   // changes incompatibly. Hashes with a different `v` are rejected.
@@ -237,6 +237,8 @@
     startOver.textContent = i.ui.startOver;
     startOver.hidden = !state.role;
 
+    const proto = document.getElementById('footer-prototype');
+    if (proto) proto.textContent = i.ui.footerPrototype || 'Prototype demonstrator';
     document.getElementById('footer-version').textContent =
       i.ui.footerVersion + ' ' + APP_VERSION;
     document.getElementById('footer-date').textContent =

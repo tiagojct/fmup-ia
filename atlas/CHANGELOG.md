@@ -21,6 +21,21 @@ This project follows a `MAJOR.MINOR.PATCH` scheme:
 
 ---
 
+## [0.9.2] — 2026-06-15
+
+Status reframing pass. The README, the in-app footer, and the
+companion site now explicitly describe Atlas as a **prototype
+demonstrator** rather than an "operational" or "institutional" tool,
+in line with the broader editorial-status clarification on the
+project site. New `ui.footerPrototype` i18n key (PT and EN) renders a
+short clickable note in the footer pointing at the editorial-status
+section on the companion site.
+
+No rule changes; `policy.version` unchanged (1.2.4). `APP_VERSION`
+bumped to 0.9.2 because i18n strings changed.
+
+---
+
 ## [0.9.1] — 2026-06-02
 
 `policy.version` bump to **1.2.4**: integration of the CNE Recomendação
