@@ -1,10 +1,10 @@
-# Panorama europeu {#sec-panorama-europa}
+# Europa {#sec-panorama-europa}
 
 A Europa é regulada e heterogénea: o EU AI Act, o RGPD e os instrumentos sectoriais (MDR/IVDR, EHDS, NIS2) fixam um perímetro legal comum, mas a tradução em política institucional varia entre Estados, entre regiões e entre faculdades.
 
-## O EU AI Act como _driver_ primário
+## O EU AI Act como factor regulatório principal
 
-O Regulamento (UE) 2024/1689, em aplicação plena a partir de Agosto de 2026, classifica como alto risco (Anexo III, ponto 3) os sistemas que determinam acesso e admissão, avaliam resultados de aprendizagem ou detectam comportamentos durante avaliações (_proctoring_). Para as universidades, o papel jurídico é o de _deployer_ (artigos 26.º e 14.º): utilização conforme as instruções do fornecedor, supervisão humana por pessoal formado, controlo dos dados, monitorização operacional, notificação de incidentes graves. März e colaboradores [@maerz2024legal] sublinham que a classificação automática sem revisão humana é incompatível com o RGPD --- ponto com implicações directas para o princípio 3 (protecção de dados) no capítulo [2](02-principios.qmd). O detalhe do regulamento é tratado no capítulo [13](13-frameworks-supranacionais.qmd).
+O Regulamento (UE) 2024/1689, com aplicação faseada entre 2024 e 2027, classifica como alto risco (Anexo III, ponto 3) os sistemas que determinam acesso e admissão, avaliam resultados de aprendizagem ou detectam comportamentos durante avaliações (_proctoring_). Para as universidades, o papel jurídico mais relevante é o de _deployer_ (artigos 26.º e 14.º): utilização conforme as instruções do fornecedor, supervisão humana por pessoal formado, controlo dos dados, monitorização operacional, notificação de incidentes graves. März e colaboradores [@maerz2024legal] sublinham que a classificação automática sem revisão humana é incompatível com o RGPD --- ponto com implicações directas para o princípio 3 (protecção de dados) no capítulo [2](02-principios.qmd). O detalhe do regulamento é tratado no capítulo [13](13-frameworks-supranacionais.qmd).
 
 ## Russell Group: cinco princípios e a tradução britânica
 

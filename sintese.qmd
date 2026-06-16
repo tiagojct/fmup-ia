@@ -15,26 +15,32 @@ Este documento é um **contributo individual** de Tiago Jacinto submetido à apr
 - Pré-AO90, formal, baseado em evidência e em literatura comparada internacional.
 - Estado: proposta em desenvolvimento (v1.0, 2026). **Não substitui regulamentos pedagógicos** — é input para deliberação institucional.
 
+::: {.callout-note appearance="simple"}
+## Decisão proposta
+
+No presente estado, a decisão institucional pedida não é a adopção imediata do texto como política vinculativa. É uma decisão de processo: tomar conhecimento do contributo, encaminhá-lo para apreciação dos órgãos competentes, constituir um Grupo de Trabalho se a apreciação for favorável, pedir parecer jurídico nas secções sensíveis, e autorizar um piloto limitado antes de qualquer generalização.
+:::
+
 ## Porque agora
 
 - A GenAI já é usada por **60 a 80% dos estudantes** de medicina em prevalências documentadas internacionalmente; a ausência de quadro institucional empurra docentes e investigadores para decisões _ad hoc_ e cria assimetrias entre UCs.
-- Quatro marcos regulatórios externos convergem no horizonte 2026-2027 e tornam a inacção mais cara que a acção:
-  - **EU AI Act (Regulamento UE 2024/1689)** — aplicação plena em Agosto de 2026, obrigações de _deployer_ aplicáveis à FMUP.
-  - **European Health Data Space (EHDS)** — aplicação geral em Março de 2027.
+- Quatro marcos externos previstos para 2026-2027 tornam necessária uma resposta institucional antecipada:
+  - **EU AI Act (Regulamento UE 2024/1689)** — calendário faseado de aplicação, com marcos relevantes para sistemas de alto risco e para o papel de _deployer_ no ensino superior.
+  - **European Health Data Space (EHDS)** — entrada em aplicação faseada a partir de Março de 2027, relevante para preparação de ambientes seguros de investigação em saúde.
   - **Agenda Nacional de IA (ANIA, RCM 2/2026)** — Plano de Acção 2026-2030 e Quadro Nacional de Competências Inteligentes (QNCI).
-  - **Recomendação n.º 4/2026 do CNE** (DR, Maio de 2026) — 31 recomendações ao sistema educativo, com aplicação directa ao ensino superior em três pontos (parcerias _edge computing_, RAG no ES, governança nacional) e exigências transversais sobre formação de docentes, transparência contratual e validação humana de decisões.
-- O [diagnóstico CNIPES 2026](quadro/12b-panorama-portugal.qmd) sobre o ensino superior português coloca a maioria das instituições em estado de prontidão "emergente" — janela de oportunidade para a FMUP liderar.
+  - **Recomendação n.º 4/2026 do CNE** (DR, Maio de 2026) — 31 recomendações ao sistema educativo, com relevância directa para o ensino superior em três pontos (parcerias _edge computing_, RAG no ES, governança nacional) e orientação transversal sobre formação de docentes, transparência contratual e validação humana de decisões.
+- O [diagnóstico CNIPES 2026](quadro/12b-panorama-portugal.qmd) sobre o ensino superior português coloca a maioria das instituições em estado de prontidão "emergente"; a FMUP pode diferenciar-se pela adopção precoce de um referencial próprio.
 
 ## O que tem
 
 A proposta tem **duas partes** e **sete anexos**.
 
-**Parte I — Análise comparativa** (capítulos 10 a 15): mapeia o panorama internacional sem importar acriticamente.
+**Parte I — Comparação** (capítulos 10 a 15): compara referenciais externos sem os importar acriticamente.
 
-- [Panorama EUA](quadro/10-panorama-eua.qmd), [Europa](quadro/11-panorama-europa.qmd), [Ibero-América](quadro/12-panorama-iberoamerica.qmd), [Portugal](quadro/12b-panorama-portugal.qmd).
-- [Frameworks supranacionais](quadro/13-frameworks-supranacionais.qmd) (UNESCO, ERA Forum, Conselho da Europa).
-- [Camada médica](quadro/14-camada-medica.qmd) — especificidades da educação médica.
-- [Lacunas](quadro/15-lacunas.qmd) que os _frameworks_ existentes não cobrem.
+- [Estados Unidos](quadro/10-panorama-eua.qmd), [Europa](quadro/11-panorama-europa.qmd), [Ibero-América](quadro/12-panorama-iberoamerica.qmd), [Enquadramento nacional](quadro/12b-panorama-portugal.qmd).
+- [Referenciais supranacionais](quadro/13-frameworks-supranacionais.qmd) (UNESCO, ERA Forum, Conselho da Europa).
+- [Enquadramento médico](quadro/14-camada-medica.qmd) — especificidades da educação médica.
+- [Lacunas e desafios](quadro/15-lacunas.qmd) que os referenciais existentes não cobrem.
 
 **Parte II — Proposta operacional** (capítulos 1 a 9): a proposta para a FMUP.
 
@@ -68,9 +74,21 @@ Quatro **guias práticos** de uma página (PDF) acompanham o Quadro como _handou
 
 - [Estudantes](quadro/guias/guia-estudantes.pdf), [Docentes](quadro/guias/guia-docentes.pdf), [Investigadores](quadro/guias/guia-investigadores.pdf), [Serviços](quadro/guias/guia-servicos.pdf).
 
+## Versão mínima adoptável
+
+Se os órgãos competentes entenderem que a adopção integral exige mais maturação, o Quadro permite uma adopção mínima, reversível e avaliável, centrada em cinco medidas de baixo risco:
+
+1. **Cláusula GenAI em todos os programas de UC**, escolhendo entre regime permitido, condicionado ou proibido, com base nos modelos do [Anexo B](quadro/B-clausula.qmd).
+2. **Declaração de uso obrigatória quando a GenAI influencie trabalho submetido**, usando o [Anexo A](quadro/A-declaracao.qmd) ou o [Atlas](atlas/), sem criar ainda sanções automáticas.
+3. **Proibição de dados pessoais, clínicos ou de saúde em plataformas comerciais**, salvo contrato institucional adequado.
+4. **Validação humana obrigatória em avaliação, classificação, decisão pedagógica, investigação com participantes e comunicação institucional sensível**.
+5. **Piloto de formação e recolha de evidência**, com relatório anual simples: UCs cobertas, declarações recolhidas, incidentes, necessidades de formação e dúvidas jurídicas.
+
+Esta versão mínima não substitui a revisão jurídica, a discussão curricular ou a avaliação técnica do Atlas. Serve para reduzir diferenças imediatas entre práticas de unidades curriculares enquanto o processo institucional completo decorre.
+
 ## Calendário de implementação
 
-Alinhamento com os marcos regulatórios externos (EU AI Act, EHDS, ANIA):
+Alinhamento com os marcos externos actualmente previstos (EU AI Act, EHDS, ANIA, CNE), sujeito à evolução da orientação europeia e nacional:
 
 - **Fase 1 (2026-2027)** — discussão e aprovação do Quadro, formação inicial para docentes, piloto num programa de mestrado, adopção do modelo HEAT-AI de categorização de risco em quatro níveis.
 - **Fase 2 (2027-2028)** — extensão a todos os ciclos de estudo, plataforma institucional IAedu, módulos de literacia em IA articulados com o QNCI, operacionalização de _Trusted Research Environment_.
@@ -80,11 +98,11 @@ Detalhe completo, indicadores quantitativos e grelha de maturidade no capítulo 
 
 ## O que está em jogo
 
-- **Janela de oportunidade nacional.** A maioria das instituições portuguesas está em estado de prontidão "emergente" (CNIPES, 2026). A FMUP pode constituir-se como caso de boas práticas, no espaço de partilha europeia em formação.
-- **Conformidade antecipada.** Em vez de reagir ao EU AI Act, ao EHDS, à ANIA e à Recomendação 4/2026 do CNE quando produzirem efeitos, a FMUP chega-lhes preparada.
+- **Posicionamento nacional.** A maioria das instituições portuguesas está em estado de prontidão "emergente" (CNIPES, 2026). A FMUP pode apresentar um caso estruturado de boas práticas.
+- **Preparação regulatória.** A FMUP pode preparar-se antes da produção de efeitos dos principais marcos externos (EU AI Act, EHDS, ANIA e Recomendação 4/2026 do CNE).
 - **Equidade entre UCs.** Mitigação das assimetrias actuais entre docentes que permitem e docentes que proíbem GenAI sem critério partilhado.
 - **Defensibilidade jurídica.** Cláusulas-tipo e procedimento disciplinar (a apreciar pela Direcção Jurídica da U.Porto antes de adopção) reduzem o risco de litigância em casos de uso indevido.
-- **Articulação ISO/IEC 42001** como horizonte de Fase 3, em articulação com a Universidade do Porto.
+- **Articulação ISO/IEC 42001** como objectivo a avaliar na Fase 3, em articulação com a Universidade do Porto.
 
 ## O que se pede aos órgãos competentes da FMUP
 
@@ -92,7 +110,7 @@ A proposta é, no presente estado, **contributo individual sujeito a apreciaçã
 
 1. **Apreciação.** Encaminhamento da proposta para o(s) órgão(s) competente(s) --- Conselho Pedagógico, Conselho Científico, Direcção, Comissão de Ética --- para apreciação no âmbito das suas atribuições.
 2. **Mandato.** Se a apreciação for favorável, formalização (por despacho da Direcção ou deliberação do Conselho Científico) de um Grupo de Trabalho com mandato explícito para rever, ajustar e propor a adopção institucional do quadro, com calendário de trabalho próprio.
-3. **Articulação técnica.** Para os pontos que ultrapassam a competência técnica do autor --- nomeadamente a secção sobre [procedimento disciplinar](quadro/06-infraestrutura.qmd#processo-disciplinar-e-direito-de-defesa) e as [cláusulas institucionais de transparência algorítmica em contratos](quadro/06-infraestrutura.qmd) ---, encaminhamento para parecer da Direcção Jurídica da Universidade do Porto e (no que respeita à camada clínica) coordenação com a unidade hospitalar afiliada.
+3. **Articulação técnica.** Para os pontos que ultrapassam a competência técnica do autor --- nomeadamente a secção sobre [procedimento disciplinar](quadro/06-infraestrutura.qmd#processo-disciplinar-e-direito-de-defesa) e as [cláusulas institucionais de transparência algorítmica em contratos](quadro/06-infraestrutura.qmd) ---, encaminhamento para parecer da Direcção Jurídica da Universidade do Porto e, no enquadramento clínico, coordenação com a unidade hospitalar afiliada.
 4. **Reconhecimento da [Atlas](atlas/) como demonstrador prototípico**, não como aplicação institucional. A passagem a aplicação institucional carecerá de avaliação de segurança, DPIA, inscrição no inventário de aplicações institucionais e termo de responsabilidade técnico.
 
 A proposta **não pede** alteração de regulamentos pedagógicos no imediato. Não pede endosso da Faculdade ao texto tal como está. Pede acolhimento institucional do contributo e a sua submissão ao processo deliberativo próprio.
@@ -105,4 +123,3 @@ A proposta **não pede** alteração de regulamentos pedagógicos no imediato. N
 - [**Recursos externos**](recursos.qmd) — _frameworks_ supranacionais e leitura adicional.
 - [**Convenções editoriais**](convencoes.qmd) — terminologia, ortografia, citações.
 - [**Sobre**](sobre.qmd) — autoria, infraestrutura técnica, licença, contactos.
-

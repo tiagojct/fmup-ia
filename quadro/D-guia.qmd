@@ -14,6 +14,12 @@ other-links:
 
 Regras essenciais para a utilização de IA generativa na FMUP, organizadas por audiência. Cada uma das quatro audiências tem um guia PDF de uma página, adequado para impressão e distribuição — disponíveis na barra lateral.
 
+::: {.callout-note}
+## Regra mínima comum
+
+Independentemente da audiência, cinco regras atravessam todo o Quadro: não introduzir dados pessoais ou clínicos em plataformas comerciais sem garantias contratuais; declarar o uso quando a GenAI influencia trabalho submetido ou documento institucional; verificar todo o _output_; manter decisão humana em avaliação, investigação e actos com impacto sobre pessoas; e respeitar o regime definido pela unidade curricular, projecto ou serviço.
+:::
+
 ::: {.callout-tip}
 ## Plataformas comuns
 
@@ -97,7 +103,7 @@ A responsabilidade intelectual pelo conteúdo publicado pertence sempre aos auto
 
 ### Regras essenciais
 
-1. **Apoio linguístico é aceitável; geração substantiva não é.** Revisão gramatical, melhoria estilística e tradução são usos legítimos com declaração. Formulação de hipóteses, interpretação de resultados ou redacção substantiva da discussão erodem a autoria.
+1. **Apoio linguístico é aceitável; geração substantiva não é.** Revisão gramatical, melhoria estilística e tradução são usos legítimos com declaração. Formulação de hipóteses, interpretação de resultados ou redacção substantiva da discussão reduzem a autoria intelectual.
 2. **Declare no manuscrito.** Na secção de métodos ou nos agradecimentos, indique ferramenta, versão, data e natureza da assistência.
 3. **A GenAI não pode ser listada como autora.** A autoria implica responsabilidade e prestação de contas.
 4. **Não use GenAI na revisão por pares ou na avaliação de candidaturas.**

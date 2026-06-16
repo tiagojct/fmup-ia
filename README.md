@@ -11,7 +11,7 @@
 
 Um repositório que reúne, num único site Quarto:
 
-1. **Quadro** (`/quadro/`) — proposta institucional sobre uso de GenAI na FMUP, em duas partes: análise comparativa internacional (Parte I) e proposta operacional para a FMUP (Parte II), seguidas de seis anexos.
+1. **Quadro** (`/quadro/`) — proposta institucional sobre uso de GenAI na FMUP, em duas partes: comparação externa (Parte I) e proposta operacional para a FMUP (Parte II), seguidas de seis anexos.
 2. **Atlas** (`/atlas/`) — SPA cliente em vanilla JS sem _build_ que gera declarações estruturadas de uso de IA para três papéis (estudante, docente, investigador) e devolve avaliação guidante de risco em quatro níveis (HEAT-AI), com base nas regras codificadas em `atlas/policy.json`. A ferramenta é guidante, não bloqueante.
 
 Tudo está cruzadamente ligado: o site liga ao Atlas (navbar, _landing_, anexos); o Atlas liga ao Quadro (header "voltar", _footer_, e via `framework_url` em `policy.json`).
@@ -21,12 +21,12 @@ Tudo está cruzadamente ligado: o site liga ao Atlas (navbar, _landing_, anexos)
 ```
 fmup-ia/
 ├── _quarto.yml          # Quarto website config
-├── theme.scss           # paleta amarelo FMUP + Atkinson Hyperlegible Next
+├── theme.scss           # overrides locais sobre o tema FMUP
 ├── index.qmd            # landing
 ├── sobre.qmd, recursos.qmd, 404.qmd
 ├── quadro/              # o livro (16+ capítulos + 7 anexos + bibliografia)
 │   ├── index.qmd
-│   ├── 10-…15-          # Parte I (análise comparativa)
+│   ├── 10-…15-          # Parte I (comparação)
 │   ├── 01-…09b-         # Parte II (proposta FMUP)
 │   ├── A-…G-            # Anexos
 │   ├── references.bib, chicago-author-date.csl
@@ -69,7 +69,7 @@ GitHub Pages está configurado para servir do branch `gh-pages`. URL custom: `ti
 
 - Cor primária: amarelo FMUP `#FFCD00`.
 - Texto: preto `#1A1A1A`.
-- Tipografia: [Atkinson Hyperlegible Next](https://www.brailleinstitute.org/freefont) (Braille Institute, OFL) + Geist Mono para código.
+- Tipografia: [Inter](https://rsms.me/inter/) por omissão + Geist Mono para código; Atkinson Hyperlegible Next continua disponível como opção de alta legibilidade no tema FMUP.
 - Logos institucionais em `assets/logos/`.
 
 ## Citação

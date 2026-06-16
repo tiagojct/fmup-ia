@@ -73,7 +73,7 @@ website:
       align: left
       contents:
         - quadro/index.qmd
-        - section: "Parte I — Análise comparativa"
+        - section: "Parte I — Comparação"
           contents:
             - quadro/10-panorama-eua.qmd
             - quadro/11-panorama-europa.qmd

@@ -62,7 +62,7 @@ A grelha não substitui os procedimentos definidos nos capítulos [6](06-infraes
 
 ## 5. Decisão baseada em evidências
 
-**Definição.** Estratégias institucionais ancoradas em dados sobre práticas, impactos, limites e resultados. Não se reage à pressão da novidade tecnológica nem se multiplicam regras por antecipação abstracta.
+**Definição.** Estratégias institucionais baseadas em dados sobre práticas, impactos, limites e resultados. Não se reage à pressão da novidade tecnológica nem se multiplicam regras por antecipação abstracta.
 
 **Princípios FMUP associados:** 7 (revisão contínua), 5 (equidade de acesso).
 

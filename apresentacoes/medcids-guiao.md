@@ -33,7 +33,7 @@ do MEDCIDS**.
 **Mensagem central:** o Quadro responde a uma lacuna empiricamente
 medida no sistema português.
 
-- **14,7%** — dado-âncora. % de IES portuguesas que reportam
+- **14,7%** — indicador central. % de IES portuguesas que reportam
   políticas sobre IA já em prática (CNIPES 2026, p. 31). 42,6% em
   elaboração; 42,6% sem qualquer enquadramento.
 - **EU AI Act** entra em aplicação faseada até Agosto de 2026. As
@@ -43,7 +43,7 @@ medida no sistema português.
   nova Licenciatura em Ciências da Saúde Pública (2026/27, MEDCIDS),
   mestrados e doutoramentos em Bioética, Saúde Pública, Informática
   da Saúde, Ciência de Dados de Saúde. O Quadro é instrumento da
-  Faculdade; a articulação com o CHUSJ é horizonte futuro de
+  Faculdade; a articulação com o CHUSJ é etapa futura de
   integração, não pressuposto operacional.
 
 **Links no slide:** [Quadro](https://tiagojct.eu/fmup-ia/quadro/) ·
@@ -83,7 +83,7 @@ o CNE diz não existir.
 ### Slide 4 — A proposta, em cinco elementos
 
 **Mensagem central:** arquitectura institucional com cinco peças
-interligadas. ~10 segundos cada, com link âncora a cada uma.
+interligadas. ~10 segundos cada, com ligação directa a cada uma.
 
 1. **Sete princípios orientadores** — ERA Forum *Living Guidelines*,
    _framework_ de Chan (2023), princípios AAMC.
@@ -92,7 +92,7 @@ interligadas. ~10 segundos cada, com link âncora a cada uma.
    investigadores. Cada uma com regras próprias.
    [Caps. 3–5 →](https://tiagojct.eu/fmup-ia/quadro/03-estudantes.html)
 3. **Infraestrutura e governança** — Grupo de Trabalho permanente;
-   articulação clínica-hospitalar como horizonte futuro.
+   articulação clínica-hospitalar como etapa futura.
    [Cap. 6 →](https://tiagojct.eu/fmup-ia/quadro/06-infraestrutura.html)
 4. **Declaração obrigatória de uso** — modelo institucional padrão,
    suportado pela Atlas.
@@ -160,7 +160,7 @@ Evidência para o terceiro pilar:
 - **Shin et al. (2024)** — estudo quasi-experimental: grupo com
   métodos tradicionais superou grupo assistido por ChatGPT em
   raciocínio ético.
-- **León-Domínguez (2024)** — risco de erosão das funções executivas
+- **León-Domínguez (2024)** — risco de redução das funções executivas
   pela rotinização do *cognitive offloading*.
 
 **Citação verbatim:**
@@ -173,13 +173,13 @@ Evidência para o terceiro pilar:
 ### Slide 8 — Taxonomia de risco
 
 **Mensagem central:** duas leituras complementares — por uso
-(HEAT-AI) e por camada técnica (CNIPES).
+(HEAT-AI) e por categoria técnica (CNIPES).
 
 **HEAT-AI, 4 níveis:** mínimo · limitado · alto · inaceitável.
 
-**CNIPES, 3 camadas:**
+**CNIPES, 3 categorias:**
 
-| Camada | Tipo de erro |
+| Categoria | Tipo de erro |
 |---|---|
 | Machine Learning | computacional / lógico |
 | Deep Learning | interpretativo |
@@ -224,7 +224,7 @@ critérios adoptados directamente do CNIPES; operacionalizados com
 4. **Literacia afectiva** — reconhecimento dos efeitos da IA sobre
    motivação, atenção, autonomia. *Pode ser o ponto de discussão mais
    novo para o departamento.*
-5. **Decisão baseada em evidências** — estratégias ancoradas em
+5. **Decisão baseada em evidências** — estratégias baseadas em
    dados.
 
 **Link no slide:** [Anexo G](https://tiagojct.eu/fmup-ia/quadro/G-maturidade-cnipes.html).
@@ -241,7 +241,7 @@ institucional da FMUP.
 - **Fase 2 (2027–2028).** Auditorias internas; grelha de maturidade;
   articulação com a Plataforma CNIPES.
 - **Fase 3 (2028–2030).** Consolidação. Eventual certificação
-  **ISO/IEC 42001** — sistema de gestão de IA. Horizonte, não
+  **ISO/IEC 42001** — sistema de gestão de IA. Objectivo possível, não
   obrigação.
 
 **Link no slide:** [Cap. 7](https://tiagojct.eu/fmup-ia/quadro/07-implementacao.html).
@@ -260,7 +260,7 @@ estar familiarizado.
 - **ANIA** — Agenda Nacional de IA (RCM 2/2026). 400 M€ até 2030;
   reforço do Deucalion.
 - **Plataforma CNIPES** — em desenvolvimento na Fase 2 do projecto.
-  A Atlas posiciona-se para articular quando estiver operacional.
+  A Atlas pode articular-se com a Plataforma quando estiver operacional.
 
 **Link no slide:** [Cap. 12b](https://tiagojct.eu/fmup-ia/quadro/12b-panorama-portugal.html).
 
@@ -316,7 +316,7 @@ Não ler os links. Indicar onde está o quê:
 
 - **Quadro** — [tiagojct.eu/fmup-ia/quadro/](https://tiagojct.eu/fmup-ia/quadro/)
 - **Atlas** — [tiagojct.eu/fmup-ia/atlas/](https://tiagojct.eu/fmup-ia/atlas/)
-- **Cap. 12b** — panorama nacional
+- **Cap. 12b** — enquadramento nacional
 - **Cap. 9b** — objecções
 - **Anexo G** — maturidade
 - **Repositório** — [github.com/tiagojct/fmup-ia](https://github.com/tiagojct/fmup-ia)
@@ -340,7 +340,7 @@ Portugal, valida ciclos de estudos. Ainda não emitiu orientações
 formais sobre IA.
 
 **CHUSJ** — Centro Hospitalar Universitário de São João. Parceiro
-clínico natural da FMUP no Porto. O Quadro reconhece-o como horizonte
+clínico natural da FMUP no Porto. O Quadro reconhece-o como parceiro
 de integração futura para questões que envolvam dados clínicos, SaMD
 ou prática supervisionada, sem dele depender enquanto instrumento da
 Faculdade.
@@ -409,8 +409,8 @@ Committee (Janeiro 2025) e pelo Quadro FMUP.
 **AI golden rule** — Stanford: usar IA com os outros como
 gostaríamos que os outros a usassem connosco.
 
-**AIMS** — *AI Management System*, ISO/IEC 42001 (2023). Horizonte
-da Fase 3.
+**AIMS** — *AI Management System*, ISO/IEC 42001 (2023). Objectivo
+possível da Fase 3.
 
 **ANIA** — Agenda Nacional de IA. RCM 2/2026. 400 M€ até 2030.
 Quatro eixos: Infraestrutura e Dados, Inovação e Adopção, Talento e
@@ -485,7 +485,7 @@ IA*. Estrutura de **Zagalo & Couvaneiro (2025)**.
 - **Cecilia Ka Yuk Chan** — *framework* tridimensional para GenAI em
   educação (2023).
 - **Domingos Fernandes** — Presidente do CNE.
-- **José León-Domínguez** — risco de erosão de funções executivas
+- **José León-Domínguez** — risco de redução de funções executivas
   pela assistência generativa (2024).
 - **António Lopes, António Correia, Ricardo Oliveira** — autores do
   estudo do CNE 2026.
@@ -515,7 +515,7 @@ trabalho. Pode ser gerado pela Atlas.
 
 **GenAI** — *Generative AI*. Equivalente português: *IA generativa*.
 
-**LLM** — *Large Language Model*. Camada técnica onde reside o
+**LLM** — *Large Language Model*. Categoria técnica onde reside o
 **risco epistémico**.
 
 **Literacia afectiva** — Quarto critério CNIPES. Excede o
@@ -544,13 +544,13 @@ próprias: estudantes, docentes, investigadores.
     ambientes educativos" (CNE 2026, p. 22).
   - "A autonomia cognitiva afirma-se como um imperativo ético e o
     pilar da agência epistemológica" (CNE 2026, p. 20).
-- **Dado-âncora:** 14,7% das IES com políticas em prática (CNIPES,
+- **Indicador central:** 14,7% das IES com políticas em prática (CNIPES,
   p. 31).
 - **Se perguntarem o custo:** Quadro e Atlas são CC BY 4.0, sem custo
   de licença; o custo é de adopção institucional.
 - **Se perguntarem "porque agora":** EU AI Act até Agosto de 2026;
-  CNIPES e CNE acabaram de publicar — a janela conceptual está
-  aberta.
+  CNIPES e CNE acabaram de publicar — há condições para uma decisão
+  institucional.
 - **Se perguntarem sobre limitações:** três caveats — evidência
   longitudinal sobre efeitos cognitivos ainda frágil; Plataforma
   CNIPES ainda não existe; AI Act exige acompanhamento. Mais detalhe

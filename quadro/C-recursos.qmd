@@ -34,12 +34,12 @@ Para questões de protecção de dados, conformidade com o AI Act e enquadrament
 
 ## Manifestos e códigos de ética pessoal
 
-Os seguintes contributos, embora não indexados, articulam preocupações directamente aplicáveis ao contexto académico e podem servir de ponto de partida para discussões éticas em contexto formativo.
+Os seguintes contributos, embora não indexados, articulam preocupações directamente aplicáveis ao contexto académico e podem apoiar discussões éticas em contexto formativo.
 
-O manifesto **Stop Sloppypasta** (<https://stopsloppypasta.ai>) introduz o conceito de "sloppypasta" -- o acto de copiar e colar _output_ bruto de um modelo de linguagem sem leitura, verificação ou edição. O manifesto propõe cinco regras: ler antes de partilhar, verificar os factos, destilar o conteúdo ao essencial, declarar o papel da IA, e partilhar apenas quando solicitado.
+O projecto **Stop Sloppypasta** (<https://stopsloppypasta.ai>) introduz o conceito de "sloppypasta" -- o acto de copiar e colar _output_ bruto de um modelo de linguagem sem leitura, verificação ou edição. O texto propõe cinco regras: ler antes de partilhar, verificar os factos, destilar o conteúdo ao essencial, declarar o papel da IA, e partilhar apenas quando solicitado.
 
 **Simon Willison** formulou um conjunto de regras de ética pessoal: não publicar nada que leve mais tempo a ler do que levou a escrever, e não submeter código que não se consiga compreender e explicar linha a linha (<https://simonwillison.net/2023/Aug/27/wordcamp-llms/#personal-ai-ethics>).
 
 O **AI Manifesto** para desenvolvimento e colaboração (<https://ai-manifesto.dev>) propõe cinco princípios: não deixar que um modelo de linguagem fale por nós, pense por nós, se aproprie do nosso trabalho, substitua a nossa curiosidade, ou desencoraje outra pessoa.
 
-**Noëlle van Dijk** publicou um manifesto pessoal (<https://noellevandijk.com/ai-manifesto/>) que sublinha a obrigação de transparência na utilização de IA e a importância de manter o desenvolvimento contínuo de competências na ferramenta.
+**Noëlle van Dijk** publicou um texto pessoal (<https://noellevandijk.com/ai-manifesto/>) que sublinha a obrigação de transparência na utilização de IA e a importância de manter o desenvolvimento contínuo de competências na ferramenta.

@@ -12,7 +12,7 @@ Esta vertente cobre toda a investigação produzida na FMUP --- biomédica, clí
 
 A GenAI pode ser utilizada como apoio linguístico na escrita científica: revisão gramatical, melhoria estilística, tradução entre línguas.
 As _Living Guidelines_ da Comissão Europeia distinguem entre uso básico de apoio à escrita e usos com maior impacto, como a interpretação de dados, a revisão de literatura ou a formulação de hipóteses [@ec2024livingguidelines].
-Cheng et al. (2025) sistematizaram recomendações para uso ético em escrita científica, sublinhando a distinção entre edição (aceitável, com declaração) e geração substantiva -- esta última a evitar pela erosão de autoria intelectual que implica [@cheng2025aiwriting].
+Cheng et al. (2025) sistematizaram recomendações para uso ético em escrita científica, sublinhando a distinção entre edição (aceitável, com declaração) e geração substantiva -- esta última a evitar pela redução de autoria intelectual que implica [@cheng2025aiwriting].
 A propensão dos modelos de linguagem para a confabulação constitui um risco específico na escrita científica [@alkaissi2023hallucinations]. A responsabilidade intelectual pelo conteúdo publicado pertence sempre aos autores humanos.
 
 ## Utilização na análise de dados
@@ -25,7 +25,7 @@ A GenAI é hoje utilizada em várias fases da análise de dados: geração de c�
 
 **Dados sensíveis.** Dados identificáveis de participantes, registos clínicos ou amostras biológicas não podem ser introduzidos em plataformas comerciais de GenAI. Quando o uso envolver dados, utilizar plataformas institucionais com garantias contratuais (IAedu) ou ferramentas locais (modelos executados em infraestrutura própria do grupo de investigação). Dados pseudonimizados continuam a ser dados pessoais para efeitos do RGPD: a pseudonimização reduz mas não elimina o risco.
 
-**Declaração em publicações.** Na secção de métodos, documentar: ferramenta e versão, natureza da assistência (geração _vs_ edição _vs_ interpretação), se a análise foi replicada sem GenAI para validação, e repositório público do código final. A reprodutibilidade é o contra-peso da opacidade do assistente.
+**Declaração em publicações.** Na secção de métodos, documentar: ferramenta e versão, natureza da assistência (geração _vs_ edição _vs_ interpretação), se a análise foi replicada sem GenAI para validação, e repositório público do código final. A reprodutibilidade compensa parcialmente a opacidade do assistente.
 
 ## Revisão por pares e avaliação
 

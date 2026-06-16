@@ -64,7 +64,7 @@ evaluations can contribute as registrable institutional practice.
 
 The detailed mapping between Atlas / the FMUP framework and the
 CNIPES diagnosis is in
-[Chapter 12b — Panorama nacional — Portugal](https://tiagojct.eu/fmup-ia/quadro/12b-panorama-portugal.html)
+[Chapter 12b — Enquadramento nacional](https://tiagojct.eu/fmup-ia/quadro/12b-panorama-portugal.html)
 and in [Annex G — Grelha de maturidade](https://tiagojct.eu/fmup-ia/quadro/G-maturidade-cnipes.html)
 of the FMUP framework.
 

@@ -1,10 +1,10 @@
-# Panorama dos Estados Unidos {#sec-panorama-eua}
+# Estados Unidos {#sec-panorama-eua}
 
 O modelo norte-americano organiza-se em três traços: separação por domínio de aplicação (ensino, investigação, administração, prática clínica), autonomia do docente ao nível de cada UC, e integração em estruturas de TI, privacidade e integridade já existentes. McDonald et al. [@mcdonald2025policies], em 116 universidades R1, mostram que 63% encorajam o uso mas só 38% exigem citação; Jin et al. [@jin2025global], em 40 instituições em seis regiões, posicionam a América do Norte como mais madura na formalização. Orfanidis [@orfanidis2025moral] descreve o registo como "consistência moral" --- herança liberal, centralidade do *Honor Code*.
 
 ## Cornell: o caso paradigmático
 
-A Cornell produziu três relatórios sequenciais entre 2023 e 2024 --- ensino e pedagogia (Junho 2023), investigação académica (Dezembro 2023), administração (Janeiro 2024). A tripartição é hoje referência. O relatório de administração articula-se com o NIST AI RMF [@nist2023airmf] e com o Regulamento (UE) 2024/1689, e estabelece um repositório central + um formulário *Statement of Need* que vincula qualquer aquisição de TI a aprovação prévia com avaliação de risco. Há também um Conselho Consultivo de IA permanente e governação própria para a Weill Cornell Medicine, porque a camada clínica tem obrigações adicionais.
+A Cornell produziu três relatórios sequenciais entre 2023 e 2024 --- ensino e pedagogia (Junho 2023), investigação académica (Dezembro 2023), administração (Janeiro 2024). A tripartição é hoje referência. O relatório de administração articula-se com o NIST AI RMF [@nist2023airmf] e com o Regulamento (UE) 2024/1689, e estabelece um repositório central + um formulário *Statement of Need* que vincula qualquer aquisição de TI a aprovação prévia com avaliação de risco. Há também um Conselho Consultivo de IA permanente e governação própria para a Weill Cornell Medicine, porque o contexto clínico tem obrigações adicionais.
 
 ## Stanford: princípios e _human-centeredness_
 
@@ -23,7 +23,7 @@ A Harvard publicou em 2023 as *Initial Guidelines* assinadas pelo Office of the 
 
 ## Conformidade FERPA, ADA, vector contratual
 
-Nos EUA, a privacidade ancora-se no **FERPA** (limita dados identificáveis de estudantes em sistemas externos) e no **ADA** (exige que ferramentas de IA usadas como tecnologia assistiva sejam coordenadas com gabinetes de apoio). Esta camada molda a aceitação ou rejeição de fornecedores. A diferença estrutural face à UE: enquanto o RGPD e o AI Act são *drivers* regulatórios primários na Europa, nos EUA o vector dominante é contratual --- o que cabe nos termos do contrato de fornecimento, no acordo de processamento de dados e na política de retenção do fornecedor.
+Nos EUA, a privacidade assenta no **FERPA** (limita dados identificáveis de estudantes em sistemas externos) e no **ADA** (exige que ferramentas de IA usadas como tecnologia assistiva sejam coordenadas com gabinetes de apoio). Este enquadramento condiciona a aceitação ou rejeição de fornecedores. A diferença estrutural face à UE: enquanto o RGPD e o AI Act são factores regulatórios primários na Europa, nos EUA o vector dominante é contratual --- o que cabe nos termos do contrato de fornecimento, no acordo de processamento de dados e na política de retenção do fornecedor.
 
 ## Síntese para o contexto FMUP
 

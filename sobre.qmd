@@ -52,7 +52,7 @@ Este Quadro foi redigido em pt-PT (pré-AO90) entre Abril e Maio de 2026, na seq
 
 O Quadro divide-se em dois momentos distintos.
 
-A **Parte I — Análise comparativa** (capítulos 10 a 15) percorre o panorama internacional: modelos anglo-americanos, europeus, ibero-americanos e frameworks supranacionais (UNESCO, ERA Forum, AI Act, Conselho da Europa), culminando numa camada clínica específica para faculdades de medicina e num diagnóstico das lacunas que os quadros existentes não cobrem.
+A **Parte I — Comparação** (capítulos 10 a 15) percorre referenciais externos: modelos anglo-americanos, europeus, ibero-americanos e supranacionais (UNESCO, ERA Forum, AI Act, Conselho da Europa), incluindo um enquadramento clínico específico para faculdades de medicina e um diagnóstico das lacunas que os quadros existentes não cobrem.
 
 A **Parte II — Proposta operacional** (capítulos 1 a 9) é a proposta para a FMUP. Assenta em sete princípios orientadores e organiza-se em três vertentes:
 

@@ -1,4 +1,4 @@
-# Lacunas, desafios e leitura comparativa multi-dimensional {#sec-lacunas}
+# Lacunas e desafios {#sec-lacunas}
 
 A literatura sobre governação institucional de GenAI é jovem mas convergente num ponto: existe um conjunto consistente de lacunas que atravessa as diferentes regiões e limita a eficácia das políticas mesmo em instituições maduras. O reconhecimento destas lacunas é parte essencial da proposta para a FMUP.
 
@@ -20,11 +20,11 @@ A literatura sobre governação institucional de GenAI é jovem mas convergente 
 
 8. **_Equity gap_.** Interno (entre estudantes com diferentes capacidades de pagamento) e externo (entre instituições e jurisdições). A literatura sobre *digital divide* específico de GenAI confirma que a equidade tem dimensão material que excede o discurso.
 
-## Análise comparativa multi-dimensional
+## Comparação
 
 | Dimensão | EUA | Europa | Ibero-América |
 |---|---|---|---|
-| *Driver* primário | Autonomia docente, gestão de risco, *peer collaboration* | EU AI Act, RGPD, Russell Group | ANIA, UNESCO, CRUE-TIC, fragmentação nacional |
+| Factor principal | Autonomia docente, gestão de risco, *peer collaboration* | EU AI Act, RGPD, Russell Group | ANIA, UNESCO, CRUE-TIC, heterogeneidade nacional |
 | Modelo de governação | Multi-domínio com comités delegados | *Risk-based*, conformidade regulatória, *deployer obligations* | Heterogéneo, emergente, *top-down* quando existe |
 | Mecanismos típicos | *Task forces*, AI Advisory Council, *Statement of Need* | DPIAs, ALTAI, comités éticos, princípios sectoriais | Comités coordenadores, centros de referência, GTs |
 | Ênfase regulatória | FERPA, ADA, contratual | EU AI Act Anexo III, MDR/IVDR, RGPD, NIS2 | LGPD (BR), RGPD (PT/ES), regulações sectoriais |

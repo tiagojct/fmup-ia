@@ -22,7 +22,7 @@ A responsabilidade intelectual pelo conteúdo publicado pertence sempre aos auto
 
 ## Regras essenciais
 
-1. **Apoio linguístico é aceitável; geração substantiva não é.** Revisão gramatical, melhoria estilística e tradução são usos legítimos com declaração. Formulação de hipóteses, interpretação de resultados ou redacção substantiva da discussão erodem a autoria.
+1. **Apoio linguístico é aceitável; geração substantiva não é.** Revisão gramatical, melhoria estilística e tradução são usos legítimos com declaração. Formulação de hipóteses, interpretação de resultados ou redacção substantiva da discussão reduzem a autoria intelectual.
 2. **Declare no manuscrito.** Na secção de métodos ou nos agradecimentos, indique ferramenta, versão, data e natureza da assistência. Siga a política da revista quando especificar detalhe adicional.
 3. **A GenAI não pode ser listada como autora.** A autoria implica responsabilidade e prestação de contas, que nenhum sistema de IA pode assumir. Os editores das principais revistas médicas são inequívocos neste ponto.
 4. **Não use GenAI na revisão por pares ou na avaliação de candidaturas.** Viola confidencialidade do processo e contraria as _Living Guidelines_ do ERA Forum. Recuse o convite se não puder rever sem apoio de plataformas externas.

@@ -25,14 +25,14 @@
 
 // ---- Headings ----
 #show heading.where(level: 1): set block(below: 0.8em, above: 1.4em)
-#show heading.where(level: 1): set text(size: 1.6em, weight: 800)
+#show heading.where(level: 1): set text(size: 1.6em, weight: 700)
 #show heading.where(level: 1): it => block[
   #it
   #v(-0.45em)
   #line(length: 100%, stroke: 3pt + fmup-yellow)
 ]
 
-#show heading.where(level: 2): set text(weight: 800)
+#show heading.where(level: 2): set text(weight: 700)
 #show heading.where(level: 3): set text(weight: 700, fill: fmup-text-muted)
 
 // ---- Links ----

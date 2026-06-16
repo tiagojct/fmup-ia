@@ -17,9 +17,9 @@ format:
 - O **EU AI Act** entra em aplicação faseada até Agosto de 2026.
 - A FMUP — MIM, Saúde Digital e Inovação Biomédica, nova Licenciatura em Ciências da Saúde Pública (2026/27, MEDCIDS), mestrados e doutoramentos em Bioética, Saúde Pública, Informática da Saúde e Ciência de Dados de Saúde — reúne condições para um referencial institucional próprio.
 
-[Quadro →](https://tiagojct.eu/fmup-ia/quadro/) · [Cap. 12b — Portugal →](https://tiagojct.eu/fmup-ia/quadro/12b-panorama-portugal.html)
+[Quadro →](https://tiagojct.eu/fmup-ia/quadro/) · [Cap. 12b — Enquadramento nacional →](https://tiagojct.eu/fmup-ia/quadro/12b-panorama-portugal.html)
 
-## Quadro nacional português, 2026
+## Enquadramento nacional, 2026
 
 Dois documentos novos, ambos de Abril:
 
@@ -36,7 +36,7 @@ Dois documentos novos, ambos de Abril:
 
 1. **Sete princípios orientadores** — ERA Forum, Chan, AAMC. [Cap. 2 →](https://tiagojct.eu/fmup-ia/quadro/02-principios.html)
 2. **Três vertentes** — estudantes, docentes, investigadores. [Caps. 3–5 →](https://tiagojct.eu/fmup-ia/quadro/03-estudantes.html)
-3. **Infraestrutura e governança** — Grupo de Trabalho permanente; articulação clínica-hospitalar como horizonte futuro. [Cap. 6 →](https://tiagojct.eu/fmup-ia/quadro/06-infraestrutura.html)
+3. **Infraestrutura e governança** — Grupo de Trabalho permanente; articulação clínica-hospitalar como etapa futura. [Cap. 6 →](https://tiagojct.eu/fmup-ia/quadro/06-infraestrutura.html)
 4. **Declaração obrigatória de uso** — modelo padrão, suportado pela Atlas. [Anexo A →](https://tiagojct.eu/fmup-ia/quadro/A-declaracao.html)
 5. **Taxonomia de risco em quatro níveis** — adaptada da grelha HEAT-AI.
 
@@ -107,7 +107,7 @@ Leitura transversal dos sete princípios.
 | 3. Alto | Decisão clínica ou avaliativa | Restrições; auditoria humana |
 | 4. Inaceitável | Substituição de raciocínio crítico | Proibido |
 
-**Por camada técnica (CNIPES):** ML → erro computacional · DL → interpretativo · **LLM → epistémico**.
+**Por categoria técnica (CNIPES):** ML → erro computacional · DL → interpretativo · **LLM → epistémico**.
 
 [Cap. 6 →](https://tiagojct.eu/fmup-ia/quadro/06-infraestrutura.html) · [Anexo E — cenários →](https://tiagojct.eu/fmup-ia/quadro/E-cenarios.html)
 
@@ -147,7 +147,7 @@ Auto-avaliação institucional anual, adoptados do CNIPES, operacionalizados com
 
 - **IAedu** (FCT/FCCN) — acesso institucional federado a LLMs, sem treino sobre dados. Infraestrutura de primeira linha.
 - **ANIA** (RCM 2/2026) — 400 M€ até 2030; reforço do Deucalion.
-- **Plataforma CNIPES** — articulação prevista. Atlas posiciona-se como nó da rede.
+- **Plataforma CNIPES** — articulação prevista. Atlas pode contribuir com o referencial FMUP.
 
 [Cap. 12b →](https://tiagojct.eu/fmup-ia/quadro/12b-panorama-portugal.html)
 
@@ -174,7 +174,7 @@ O Quadro publica as suas próprias fragilidades. Cinco objecções, cinco respos
 
 - **Quadro** — [tiagojct.eu/fmup-ia/quadro/](https://tiagojct.eu/fmup-ia/quadro/)
 - **Atlas** — [tiagojct.eu/fmup-ia/atlas/](https://tiagojct.eu/fmup-ia/atlas/)
-- **Cap. 12b — Portugal** — [12b-panorama-portugal](https://tiagojct.eu/fmup-ia/quadro/12b-panorama-portugal.html)
+- **Cap. 12b — Enquadramento nacional** — [12b-panorama-portugal](https://tiagojct.eu/fmup-ia/quadro/12b-panorama-portugal.html)
 - **Cap. 9b — Objecções** — [09b-objeccoes](https://tiagojct.eu/fmup-ia/quadro/09b-objeccoes.html)
 - **Anexo G — Maturidade** — [G-maturidade-cnipes](https://tiagojct.eu/fmup-ia/quadro/G-maturidade-cnipes.html)
 - **Repositório** — [github.com/tiagojct/fmup-ia](https://github.com/tiagojct/fmup-ia)

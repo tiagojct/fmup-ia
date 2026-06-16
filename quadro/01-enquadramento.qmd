@@ -10,7 +10,7 @@ O uso existe onde falta o enquadramento institucional. Inquéritos recentes apon
 
 Este documento propõe um quadro de referência para a FMUP organizado em três vertentes --- estudantes, docentes, investigadores --- com infraestrutura, governança e avaliação. A premissa é a de Ivan Illich em *Tools for Conviviality* (1973): as ferramentas devem servir as pessoas, não o contrário [@illich1973tools]. A GenAI tem potencial para amplificar capacidades, mas só com princípios claros e cultura institucional que valorize o pensamento crítico acima da produtividade.
 
-## Panorama internacional: abordagens comparadas
+## Comparação internacional
 
 Três modelos predominantes, com diferenças estruturais relevantes para o desenho de uma política na FMUP.
 
@@ -36,7 +36,7 @@ O catálogo de ciclos de estudo da FMUP é amplo: para além do Mestrado Integra
 
 Nas licenciaturas, a SauD InoB e a LCSP têm perfis epistémicos distintos. Na primeira, a GenAI é simultaneamente ferramenta de trabalho e objecto de estudo formal; na segunda, é ferramenta para análise populacional, vigilância e comunicação em saúde, com riscos próprios em torno de coortes, anonimização e viés representacional.
 
-O Mestrado Integrado em Medicina é o ponto de aplicação primário da vertente clínica do Quadro (capítulos [5](05-investigadores.qmd) e [14](14-camada-medica.qmd)): dados de doentes, raciocínio clínico supervisionado, regulação de *Software as a Medical Device*.
+O Mestrado Integrado em Medicina é o contexto de aplicação primário da vertente clínica do Quadro (capítulos [5](05-investigadores.qmd) e [14](14-camada-medica.qmd)): dados de doentes, raciocínio clínico supervisionado, regulação de *Software as a Medical Device*.
 
 Os mestrados não-integrados pedem vincos próprios. A Bioética acentua a dimensão deontológica plural; a Saúde Pública, a dimensão populacional; os Cuidados de Saúde Primários, o uso em contexto comunitário; a Informática da Saúde, a dupla condição da GenAI como ferramenta e como objecto.
 

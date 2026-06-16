@@ -12,7 +12,7 @@ Esta página documenta as convenções tipográficas, terminológicas e de cita�
 | **Quadro** | O presente documento de política institucional: *FMUP · IA — Quadro de referência institucional para a utilização de IA generativa na FMUP*. Escrito sempre com maiúscula quando se refere a este documento. |
 | **Atlas** | A ferramenta web que gera declarações de uso de IA padronizadas, disponível em [tiagojct.eu/fmup-ia/atlas/](atlas/). Escrito com maiúscula por ser nome próprio. |
 | **Vertente** | Uma das três aplicações operacionais da Parte II: Estudantes, Docentes ou Investigadores. Cada vertente tem o seu capítulo próprio e o seu ramo no Atlas. |
-| **Parte I** | Análise comparativa internacional (capítulos 10 a 15). |
+| **Parte I** | Comparação externa e diagnóstico de lacunas (capítulos 10 a 15). |
 | **Parte II** | Proposta operacional para a FMUP (capítulos 1 a 9). |
 | **capítulo X** | Referência a um capítulo numerado do Quadro. Escrito com minúscula, seguido do número. |
 | **Anexo X** | Instrumento prático numerado por letra (A a G), no final do Quadro. Escrito com maiúscula quando seguido da letra de identificação. |
@@ -27,7 +27,7 @@ Esta página documenta as convenções tipográficas, terminológicas e de cita�
 | **IA generativa** | Forma por extenso, usada no título do documento e em passagens de prosa formal. Equivalente a GenAI. |
 | **LLM** | *Large Language Model* — modelo de linguagem de larga escala. Sempre em maiúsculas; usado sem tradução fixa por ser o termo técnico dominante. |
 | **HEAT-AI** | Taxonomia de risco em quatro níveis proposta por Temper et al. (2025) na St. Pölten University. Usada na grelha de avaliação do Atlas e no capítulo 6. |
-| **SaMD / AIaMD** | *Software as a Medical Device* / *AI as a Medical Device*. Usados no capítulo 14 (camada clínica) para designar sistemas de IA com estatuto regulado de dispositivo médico. |
+| **SaMD / AIaMD** | *Software as a Medical Device* / *AI as a Medical Device*. Usados no capítulo 14 (enquadramento clínico) para designar sistemas de IA com estatuto regulado de dispositivo médico. |
 | **SauD InoB** | Licenciatura em Saúde Digital e Inovação Biomédica da FMUP. Abreviatura de uso corrente; nunca "SDB" ou "SDIB". |
 | **LCSP** | Licenciatura em Ciências da Saúde Pública da FMUP. |
 

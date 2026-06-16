@@ -1,6 +1,6 @@
-# Panorama nacional --- Portugal
+# Enquadramento nacional
 
-Em Abril e Maio de 2026 publicaram-se em Portugal três documentos institucionais nacionais sobre IA na educação. Em Abril, o relatório do **CNIPES** sobre o ensino superior [@cnipes2026] e o estudo do **CNE** sobre IA em contexto educativo em geral [@cne2026ia]. Em Maio, o CNE publica em Diário da República a **Recomendação n.º 4/2026** [@cne2026recomendacao], que converte o diagnóstico do estudo de Abril em recomendações formais ao Estado português, com 31 medidas distribuídas por três eixos (Infraestrutura e Soberania Digital; Pedagogia, Currículo, Literacia e Formação; Ética, Responsabilidade, Governança e Monitorização). Este capítulo articula as três camadas e mapeia o alinhamento com o Quadro FMUP.
+Em Abril e Maio de 2026 publicaram-se em Portugal três documentos institucionais nacionais sobre IA na educação. Em Abril, o relatório do **CNIPES** sobre o ensino superior [@cnipes2026] e o estudo do **CNE** sobre IA em contexto educativo em geral [@cne2026ia]. Em Maio, o CNE publica em Diário da República a **Recomendação n.º 4/2026** [@cne2026recomendacao], que converte o diagnóstico do estudo de Abril em recomendações formais ao Estado português, com 31 medidas distribuídas por três eixos (Infraestrutura e Soberania Digital; Pedagogia, Currículo, Literacia e Formação; Ética, Responsabilidade, Governança e Monitorização). Este capítulo articula os três documentos e mapeia o alinhamento com o Quadro FMUP.
 
 ## Enquadramento institucional
 
@@ -12,7 +12,7 @@ O CNE (Conselho Nacional de Educação) publica no mesmo mês o estudo *Intelig�
 
 O inquérito do CNIPES revela três velocidades distintas. No ensino, 52,9% das IES reportam adopção; na investigação, 42,6%; na gestão académica, apenas 26,5% [@cnipes2026, p. 30]. Apenas 19,1% das IES têm adopção plena nas três áreas.
 
-O dado-âncora é a **maturidade das políticas institucionais**: **14,7% das IES** têm políticas sobre IA em prática, 42,6% em elaboração, 42,6% sem qualquer enquadramento formal [@cnipes2026, p. 31]. As IES privadas estão à frente (16,7% em prática) das públicas (11,5%). O CNIPES nomeia o resultado: "o sistema está, assim, a avançar mais depressa do que a governação que o deveria enquadrar" [@cnipes2026, p. 31].
+O indicador central é a **maturidade das políticas institucionais**: **14,7% das IES** têm políticas sobre IA em prática, 42,6% em elaboração, 42,6% sem qualquer enquadramento formal [@cnipes2026, p. 31]. As IES privadas estão à frente (16,7% em prática) das públicas (11,5%). O CNIPES nomeia o resultado: "o sistema está, assim, a avançar mais depressa do que a governação que o deveria enquadrar" [@cnipes2026, p. 31].
 
 ## Quatro desequilíbrios estruturais
 
@@ -21,19 +21,19 @@ O CNIPES extrai do cruzamento das quatro fontes de evidência **quatro desequil�
 1. **Princípios amadurecidos vs procedimentos inconsistentes.** O vocabulário ético está estabilizado; a tradução operacional permanece desigual e fragmentada por unidade curricular.
 2. **Uso crescente vs verificação insuficiente.** Há ganhos pedagógicos, mas a verificação humana dos *outputs* ainda não é rotina --- sobretudo em processos avaliativos.
 3. **Projectos-piloto abundantes vs evidência longitudinal frágil.** Múltiplas experiências locais sem acumulação organizada de evidência comparável.
-4. **Aceleração operacional vs erosão do julgamento.** "A velocidade com que a IA entrou em rotinas de trabalho académico cria a tentação de deslocar para a máquina aquilo que antes exigia fricção cognitiva, comparação, justificação e demora interpretativa" [@cnipes2026, p. 37].
+4. **Aceleração operacional vs redução do julgamento.** "A velocidade com que a IA entrou em rotinas de trabalho académico cria a tentação de deslocar para a máquina aquilo que antes exigia fricção cognitiva, comparação, justificação e demora interpretativa" [@cnipes2026, p. 37].
 
 ## Risco epistémico dos LLMs
 
-O CNIPES distingue três camadas técnicas por **natureza do risco** [@cnipes2026, p. 12]:
+O CNIPES distingue três categorias técnicas por **natureza do risco** [@cnipes2026, p. 12]:
 
-| Camada | Tipo de erros | Natureza do risco |
+| Categoria | Tipo de erros | Natureza do risco |
 |---|---|---|
 | Machine Learning | Computacional | Optimização defeituosa, erros de codificação |
 | Deep Learning | Interpretativo | Classificação incorrecta, viés no reconhecimento |
 | Large Language Models | Epistémico | Afirmações plausíveis, não verificáveis ("alucinações") |
 
-A grelha complementa, sem substituir, a taxonomia HEAT-AI (capítulo [6](06-infraestrutura.qmd)). Esta categoriza o **uso** institucional pelo risco da combinação papel-tarefa-ferramenta; aquela caracteriza o **tipo** de erro intrínseco à camada técnica. A leitura conjunta explica porque é que LLMs exigem rotinas de verificação humana qualitativamente diferentes: "os LLMs automatizam linguagem, não conhecimento; simulam raciocínio sem garantir verdade" [@cnipes2026, p. 12].
+A grelha complementa, sem substituir, a taxonomia HEAT-AI (capítulo [6](06-infraestrutura.qmd)). Esta categoriza o **uso** institucional pelo risco da combinação papel-tarefa-ferramenta; aquela caracteriza o **tipo** de erro intrínseco à categoria técnica. A leitura conjunta explica porque é que LLMs exigem rotinas de verificação humana qualitativamente diferentes: "os LLMs automatizam linguagem, não conhecimento; simulam raciocínio sem garantir verdade" [@cnipes2026, p. 12].
 
 ## Cinco critérios de maturidade institucional
 
@@ -43,13 +43,13 @@ O CNIPES propõe cinco critérios mínimos [@cnipes2026, pp. 37-38]:
 2. **Verificação** --- resultados de IA tratados como objectos de auditoria.
 3. **Transparência** --- declaração proporcional, contextual e inteligível.
 4. **Literacia afectiva** --- reconhecimento dos efeitos da IA sobre autonomia, dependência, ansiedade e autoeficácia.
-5. **Decisão baseada em evidências** --- estratégias institucionais ancoradas em dados.
+5. **Decisão baseada em evidências** --- estratégias institucionais baseadas em dados.
 
 O detalhe operacional, com indicadores para auto-avaliação anual, está no [Anexo G](G-maturidade-cnipes.qmd).
 
 ## Três Pilares e alinhamento com o Quadro FMUP
 
-A grelha de maturidade é reenquadrada na estrutura dos **Três Pilares** (Saber sobre IA / Fazer com IA / Ser sem IA) [@cnipes2026, pp. 38-41, citando Zagalo & Couvaneiro 2025]. O detalhe vive no capítulo [2](02-principios.qmd#tres-pilares); para o presente capítulo basta o mapeamento entre os sete princípios FMUP, os cinco critérios CNIPES e os Três Pilares:
+A grelha de maturidade é organizada em relação com a estrutura dos **Três Pilares** (Saber sobre IA / Fazer com IA / Ser sem IA) [@cnipes2026, pp. 38-41, citando Zagalo & Couvaneiro 2025]. O detalhe está no capítulo [2](02-principios.qmd#tres-pilares); para o presente capítulo basta o mapeamento entre os sete princípios FMUP, os cinco critérios CNIPES e os Três Pilares:
 
 | Princípio FMUP | Critério CNIPES | Pilar |
 |---|---|---|
@@ -87,7 +87,7 @@ Três recomendações nomeiam explicitamente o ensino superior:
 - **Recomendação 2.13** (médio prazo): "A implementação de sistemas de _Retrieval-Augmented Generation_ (RAG) no ensino superior, baseados em fontes validadas por profissionais qualificados --- bibliotecários, editores científicos --- no sentido de colocar a IA genuinamente ao serviço do pensamento crítico e da investigação, sem comprometer a integridade académica que é o alicerce da confiança no conhecimento científico" [@cne2026recomendacao]. A FMUP pode operacionalizar esta recomendação através da articulação entre IAedu, biblioteca FMUP e o Centro de Documentação.
 - **Recomendação 3.5** (médio prazo): "Estabelecer uma governança nacional para a IA em educação, envolvendo o Ministério da Educação, universidades, instituições de ensino superior e outros _stakeholders_ relevantes, com o mandato de definir padrões, prioridades e mecanismos de avaliação" [@cne2026recomendacao]. A FMUP deve afirmar a sua disponibilidade para integrar este órgão.
 
-### Princípios transversais com aplicação directa à FMUP
+### Princípios transversais com relevância directa para a FMUP
 
 Quatro recomendações têm efeito imediato sobre a FMUP enquanto instituição pública do sistema educativo:
 
@@ -110,7 +110,7 @@ O Eixo II contém um pacote sobre formação que tem efeito directo nos ciclos d
 |---|---|---|
 | 1.4 (open source, auditabilidade) | 4. Transparência | Cap. [6](06-infraestrutura.qmd) |
 | 1.6 (parcerias ES, edge computing) | 7. Revisão contínua | Cap. [6](06-infraestrutura.qmd) |
-| 2.1 (formação inicial obrigatória, 4 eixos) | 6. Literacia crítica | Cap. [2](02-principios.qmd#principio-6-literacia), [4](04-docentes.qmd) |
+| 2.1 (formação inicial, 4 eixos) | 6. Literacia crítica | Cap. [2](02-principios.qmd#principio-6-literacia), [4](04-docentes.qmd) |
 | 2.2 (formação contínua, tarefas IA-resilientes) | 6. Literacia crítica | Cap. [4](04-docentes.qmd), [7](07-implementacao.qmd) |
 | 2.13 (RAG no ensino superior) | 2. Integridade académica | Cap. [5](05-investigadores.qmd) |
 | 3.1 (códigos de conduta) | (todo o Quadro) | Quadro completo |
@@ -122,14 +122,14 @@ O Eixo II contém um pacote sobre formação que tem efeito directo nos ciclos d
 
 ### Nota sobre ENIA 2030 vs ANIA
 
-A Recomendação 4/2026 invoca a **ENIA 2030 (Estratégia Nacional para a Inteligência Artificial)**, instrumento distinto da **ANIA (Agenda Nacional de Inteligência Artificial)** aprovada pela Resolução do Conselho de Ministros n.º 2/2026 [@ania2026] e citada no capítulo [7](07-implementacao.qmd). A ENIA é a estratégia de horizonte longo (até 2030) que orienta o investimento estatal em IA; a ANIA é o instrumento operacional 2026-2030 que dela emerge, com Plano de Acção e Quadro Nacional de Competências Inteligentes. O Quadro FMUP articula-se com a ANIA no calendário de implementação e adopta os referenciais europeus (DigComp 3.0, DigCompEdu) que tanto a ENIA como a Recomendação 4/2026 reconhecem.
+A Recomendação 4/2026 invoca a **ENIA 2030 (Estratégia Nacional para a Inteligência Artificial)**, instrumento distinto da **ANIA (Agenda Nacional de Inteligência Artificial)** aprovada pela Resolução do Conselho de Ministros n.º 2/2026 [@ania2026] e citada no capítulo [7](07-implementacao.qmd). A ENIA é a estratégia de longo prazo (até 2030) que orienta o investimento estatal em IA; a ANIA é o instrumento operacional 2026-2030 que dela emerge, com Plano de Acção e Quadro Nacional de Competências Inteligentes. O Quadro FMUP articula-se com a ANIA no calendário de implementação e adopta os referenciais europeus (DigComp 3.0, DigCompEdu) que tanto a ENIA como a Recomendação 4/2026 reconhecem.
 
 ## Plataforma Nacional de Práticas Pedagógicas de IA
 
-O CNIPES propõe a criação de uma **Plataforma Nacional de Práticas Pedagógicas de IA no Ensino Superior** como estrutura leve de articulação, capacitação e circulação de evidência, em desenvolvimento na Fase 2 [@cnipes2026, secção 8]. A ferramenta institucional [**Atlas**](../atlas/) (descrita no [Anexo D](D-guia.qmd)) gera declarações estruturadas com avaliação guidante de risco --- exactamente o tipo de prática registável que a Plataforma procura agregar. Caso a Plataforma se concretize, a Atlas pode contribuir o referencial FMUP como nó da rede.
+O CNIPES propõe a criação de uma **Plataforma Nacional de Práticas Pedagógicas de IA no Ensino Superior** como estrutura leve de articulação, capacitação e circulação de evidência, em desenvolvimento na Fase 2 [@cnipes2026, secção 8]. A ferramenta institucional [**Atlas**](../atlas/) (descrita no [Anexo D](D-guia.qmd)) gera declarações estruturadas com avaliação guidante de risco, um tipo de prática registável compatível com os objectivos da Plataforma. Caso a Plataforma se concretize, o Atlas pode contribuir com o referencial FMUP.
 
 ## Síntese para o Quadro FMUP
 
-O vazio normativo do CNE e o desfasamento empírico do CNIPES (apenas 14,7% das IES com políticas em prática) legitimam directamente a presente proposta. O diagnóstico nacional valida a arquitectura do Quadro (sete princípios, três vertentes, infraestrutura, declaração obrigatória, taxonomia em quatro níveis) e enriquece-a com três contributos que se acomodam sem reescrita: a grelha de maturidade (Anexo G), a taxonomia por camadas técnicas (capítulo 6) e a estrutura dos Três Pilares ([Parte II](02-principios.qmd)). A Atlas, enquanto prática institucional versionada e registável, é candidata a contribuir para a futura Plataforma nacional.
+A ausência de orientação operacional identificada pelo CNE e o desfasamento empírico identificado pelo CNIPES (apenas 14,7% das IES com políticas em prática) reforçam a pertinência da presente proposta. O diagnóstico nacional sustenta a arquitectura do Quadro (sete princípios, três vertentes, infraestrutura, declaração obrigatória, taxonomia em quatro níveis) e acrescenta três contributos compatíveis com a estrutura existente: a grelha de maturidade (Anexo G), a taxonomia por categorias técnicas (capítulo 6) e a estrutura dos Três Pilares ([Parte II](02-principios.qmd)). O Atlas, enquanto prática institucional versionada e registável, é candidato a contribuir para a futura Plataforma nacional.
 
-A Recomendação n.º 4/2026 do CNE, publicada em Diário da República a 21 de Maio de 2026, soma-se às âncoras regulatórias do Quadro (AI Act, EHDS, ANIA), funcionando como **âncora nacional consultiva** com peso de _soft law_. O alinhamento estrutural é elevado: a Recomendação 3.1 ("códigos de conduta escolar") descreve em termos sistémicos exactamente o tipo de instrumento que a FMUP aqui propõe, e as recomendações sobre validação humana (3.3), transparência contratual (3.2), e formação inicial e contínua de docentes (2.1, 2.2, 2.7) traduzem-se em mudanças concretas que o Quadro já incorpora ou incorporará em revisão menor.
+A Recomendação n.º 4/2026 do CNE, publicada em Diário da República a 21 de Maio de 2026, acrescenta uma referência nacional consultiva aos referenciais já usados pelo Quadro (AI Act, EHDS, ANIA). O alinhamento estrutural é elevado: a Recomendação 3.1 ("códigos de conduta escolar") descreve, ao nível do sistema educativo, o tipo de instrumento que a FMUP aqui propõe, e as recomendações sobre validação humana (3.3), transparência contratual (3.2), e formação inicial e contínua de docentes (2.1, 2.2, 2.7) traduzem-se em mudanças concretas que o Quadro já incorpora ou incorporará em revisão menor.

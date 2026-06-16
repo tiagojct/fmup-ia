@@ -1,8 +1,8 @@
-# A camada médica: educação, prática clínica e regulação de _SaMD_ {#sec-camada-medica}
+# Enquadramento médico {#sec-camada-medica}
 
-Este capítulo cobre a camada clínica-académica específica, com foco primário no Mestrado Integrado em Medicina. O perfil específico da licenciatura em Saúde Digital e Inovação Biomédica --- onde a GenAI é simultaneamente ferramenta de trabalho e objecto de estudo --- está desenvolvido no [capítulo 1](01-enquadramento.qmd); a investigação epidemiológica em Saúde Pública, no [capítulo 5](05-investigadores.qmd). A aplicação diferenciada por ciclo de estudos está sintetizada no [capítulo 1](01-enquadramento.qmd). O Quadro é construído para vigorar como instrumento da FMUP; a articulação formal com hospitais universitários afiliados (em particular o Centro Hospitalar Universitário de São João, CHUSJ) é horizonte de integração futura, não pressuposto operacional.
+Este capítulo cobre o enquadramento clínico-académico específico, com foco primário no Mestrado Integrado em Medicina. O perfil específico da licenciatura em Saúde Digital e Inovação Biomédica --- onde a GenAI é simultaneamente ferramenta de trabalho e objecto de estudo --- está desenvolvido no [capítulo 1](01-enquadramento.qmd); a investigação epidemiológica em Saúde Pública, no [capítulo 5](05-investigadores.qmd). A aplicação diferenciada por ciclo de estudos está sintetizada no [capítulo 1](01-enquadramento.qmd). O Quadro é construído para vigorar como instrumento da FMUP; a articulação formal com hospitais universitários afiliados (em particular o Centro Hospitalar Universitário de São João, CHUSJ) é objectivo de integração futura, não pressuposto operacional.
 
-A integração de GenAI no Mestrado Integrado em Medicina opera sobre três camadas que se sobrepõem mas não coincidem: a educacional (regime do ensino superior, RGPD, EU AI Act), a clínica-académica (faculdade-hospital sob regime de cuidados de saúde) e a de *Software as a Medical Device* (SaMD/AIaMD, sob MDR/IVDR e o EU AI Act enquanto produto regulado). A articulação destas três camadas requer mecanismos institucionais específicos. A tripartição académica genérica está em [Parte II](02-principios.qmd); aqui detalha-se a camada clínica.
+A integração de GenAI no Mestrado Integrado em Medicina envolve três domínios parcialmente distintos: o educacional (regime do ensino superior, RGPD, EU AI Act), o clínico-académico (faculdade-hospital sob regime de cuidados de saúde) e o de *Software as a Medical Device* (SaMD/AIaMD, sob MDR/IVDR e o EU AI Act enquanto produto regulado). A articulação destes três domínios requer mecanismos institucionais específicos. A tripartição académica genérica está em [Parte II](02-principios.qmd); aqui detalha-se o enquadramento clínico.
 
 ## Princípios da AAMC
 
@@ -14,11 +14,11 @@ A separação entre governação académica genérica e governação clínica es
 
 - **Stanford Medicine** --- AIMI Center (2018) e iniciativa RAISE Health, com publicação do *FURM Assessment Model* para integração responsável em ensino médico.
 - **Mayo Clinic** --- estratégia de *AI enablement* com vice-*chair* próprio, consultoria interna, programa de formação e grau próprio de IA médico.
-- **Harvard Medical School** --- orientações HUIT alargadas, com camada adicional para citação (COPE, WAME) e protecção de dados genómicos (NIH NOT-OD-25-081).
+- **Harvard Medical School** --- orientações HUIT alargadas, com regras adicionais para citação (COPE, WAME) e protecção de dados genómicos (NIH NOT-OD-25-081).
 - **Johns Hopkins** --- *responsible-use guideline* alargada (Maio 2025).
 - **Duke Institute for Health Innovation (DIHI)** --- referência para validação clínica.
 
-A FMUP está em situação análoga; o [capítulo 6](06-infraestrutura.qmd) propõe a arquitectura institucional correspondente, em que a camada clínica é desenhada como ponto de articulação futura com a unidade hospitalar afiliada.
+A FMUP está em situação análoga; o [capítulo 6](06-infraestrutura.qmd) propõe a arquitectura institucional correspondente, em que o enquadramento clínico é definido para articulação futura com a unidade hospitalar afiliada.
 
 ## Governação de IA em imagiologia e especialidades de imagem
 
@@ -40,7 +40,7 @@ Para faculdades de medicina europeias, o quadro regulatório clínico combina:
 | Reg. (UE) 2024/1689 (AI Act) — sistemas de alto risco (incl. educação e saúde) | Agosto 2026 |
 | EHDS | Março 2027 |
 
-A *TEHDAS2 Joint Action* (Maio 2024 -- Dezembro 2026), coordenada pela Sitra com 29 países, prepara o uso secundário de dados. Hospitais universitários precisam de *Trusted Research Environments* (TREs) compatíveis com EHDS, com pseudonimização integrada. Sete projectos europeus (IDERHA, EUCAIM, ASCAPE, iHelp, Bigpicture, HealthData@EU pilot, INCISIVE) definem a interoperabilidade prática. A FMUP prepara-se para esta arquitectura em horizonte de 18-24 meses --- coincidente com o [capítulo 7](07-implementacao.qmd) ---, com articulação hospitalar a desenhar-se em diálogo posterior.
+A *TEHDAS2 Joint Action* (Maio 2024 -- Dezembro 2026), coordenada pela Sitra com 29 países, prepara o uso secundário de dados. Hospitais universitários precisam de *Trusted Research Environments* (TREs) compatíveis com EHDS, com pseudonimização integrada. Sete projectos europeus (IDERHA, EUCAIM, ASCAPE, iHelp, Bigpicture, HealthData@EU pilot, INCISIVE) definem a interoperabilidade prática. A FMUP prepara-se para esta arquitectura num prazo estimado de 18-24 meses --- coincidente com o [capítulo 7](07-implementacao.qmd) ---, com articulação hospitalar a definir em diálogo posterior.
 
 ## Comités de ética e investigação clínica com IA
 
@@ -59,4 +59,4 @@ Quatro usos frequentes e o seu enquadramento:
 
 ## Síntese
 
-Três obrigações operacionais que a Parte II absorve. A articulação académica-clínica é desenhada como ponto de integração futura com a unidade hospitalar afiliada --- naturalmente o CHUSJ ---, sem que o Quadro dela dependa para vigorar dentro da FMUP. A governação de IA em especialidades com uso intensivo de imagem e dados estruturados segue um modelo de validação faseada e supervisão contínua. A preparação para o EHDS e a coordenação TEHDAS2 são obrigações estruturais até Março de 2027.
+Três obrigações operacionais que a Parte II incorpora. A articulação académica-clínica é definida como integração futura com a unidade hospitalar afiliada --- naturalmente o CHUSJ ---, sem que o Quadro dela dependa para vigorar dentro da FMUP. A governação de IA em especialidades com uso intensivo de imagem e dados estruturados segue um modelo de validação faseada e supervisão contínua. A preparação para o EHDS e a coordenação TEHDAS2 são obrigações estruturais até Março de 2027.
