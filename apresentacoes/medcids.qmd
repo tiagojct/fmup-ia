@@ -15,7 +15,7 @@ format:
 
 - **14,7%** das IES portuguesas reportam políticas sobre IA em prática (CNIPES, Abril 2026). 42,6% em elaboração; 42,6% sem qualquer enquadramento.
 - O **EU AI Act** entra em aplicação faseada até Agosto de 2026.
-- A FMUP — MIM, Saúde Digital e Inovação Biomédica, nova Licenciatura em Ciências da Saúde Pública (2026/27, MEDCIDS), mestrados e doutoramentos em Bioética, Saúde Pública, Informática da Saúde e Ciência de Dados de Saúde — reúne condições para um referencial institucional próprio.
+- A FMUP — MIMED, Saúde Digital e Inovação Biomédica, nova Licenciatura em Ciências da Saúde Pública, mestrados e doutoramentos em Bioética, Cuidados Paliativos, Informática da Saúde e Ciência de Dados de Saúde — reúne condições para um referencial institucional próprio.
 
 [Quadro →](https://tiagojct.eu/fmup-ia/quadro/) · [Cap. 12b — Enquadramento nacional →](https://tiagojct.eu/fmup-ia/quadro/12b-panorama-portugal.html)
 
