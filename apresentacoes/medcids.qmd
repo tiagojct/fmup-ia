@@ -3,12 +3,12 @@ title: "Quadro de Referência para a Utilização de IA Generativa na FMUP"
 subtitle: "Proposta para discussão"
 author: "Tiago Jacinto"
 institute: "MEDCIDS · Faculdade de Medicina da Universidade do Porto"
-date: 2026-05-13
+date: 2026-06-17
 date-format: "D [de] MMMM [de] YYYY"
 lang: pt-PT
 format:
   fmup-revealjs:
-    footer: "Quadro FMUP · IA — MEDCIDS — 13 Maio 2026"
+    footer: "Quadro FMUP · IA — MEDCIDS — 17 Junho 2026"
 ---
 
 ## Porquê este Quadro, e porquê agora
@@ -21,10 +21,11 @@ format:
 
 ## Enquadramento nacional, 2026
 
-Dois documentos novos, ambos de Abril:
+Três documentos recentes:
 
 - **CNIPES** — diagnóstico nacional, 68 IES, coord. Nelson Zagalo. [DOI 10.5281/zenodo.19555760](https://doi.org/10.5281/zenodo.19555760).
 - **CNE** — *Inteligência Artificial em Contexto Educativo*. [cnedu.pt](https://www.cnedu.pt).
+- **CNE, Recomendação n.º 4/2026** — recomendações formais publicadas em Diário da República a 21 de Maio.
 
 > "Não existe ainda uma visão ética operacional e específica para ambientes educativos."
 >
@@ -111,11 +112,11 @@ Leitura transversal dos sete princípios.
 
 [Cap. 6 →](https://tiagojct.eu/fmup-ia/quadro/06-infraestrutura.html) · [Anexo E — cenários →](https://tiagojct.eu/fmup-ia/quadro/E-cenarios.html)
 
-## Atlas — ferramenta institucional
+## Atlas — ferramenta de apoio
 
 Gera declarações estruturadas por papel (estudante, docente, investigador) e contexto, com avaliação guidante de risco.
 
-- Cliente-side; sem cookies; sem servidor.
+- Demonstrador prototípico; cliente-side; sem cookies; sem servidor.
 - Versionada em paralelo com o Quadro (`policy.version` separa regras de *wording*).
 - Articulação prevista com a Plataforma Nacional de Práticas Pedagógicas (CNIPES, em desenvolvimento).
 
@@ -137,11 +138,11 @@ Auto-avaliação institucional anual, adoptados do CNIPES, operacionalizados com
 
 | Fase | Período | Foco |
 |---|---|---|
-| **Fase 1** | 2026–2027 | Adopção institucional; cláusula tipo nas UCs; formação; Atlas em produção. |
+| **Fase 1** | 2026–2027 | Adopção institucional; cláusula tipo nas UCs; formação; Atlas disponível como demonstrador. |
 | **Fase 2** | 2027–2028 | Auditorias internas; grelha de maturidade; articulação CNIPES. |
 | **Fase 3** | 2028–2030 | Consolidação; eventual certificação ISO/IEC 42001. |
 
-[Cap. 7 →](https://tiagojct.eu/fmup-ia/quadro/07-implementacao.qmd)
+[Cap. 7 →](https://tiagojct.eu/fmup-ia/quadro/07-implementacao.html)
 
 ## Articulação nacional
 
@@ -163,12 +164,12 @@ O Quadro publica as suas próprias fragilidades. Cinco objecções, cinco respos
 
 [Cap. 9b — Objecções →](https://tiagojct.eu/fmup-ia/quadro/09b-objeccoes.html)
 
-## Próximos passos
+## Pedido ao MEDCIDS
 
-1. Eventual apresentação ao Conselho Pedagógico da FMUP.
-2. Constituição do Grupo de Trabalho permanente para GenAI ([cap. 6](https://tiagojct.eu/fmup-ia/quadro/06-infraestrutura.html)).
-3. Primeira aplicação da cláusula tipo nas UCs do MEDCIDS, eventualmente no primeiro semestre de 2026/2027.
-4. Inscrição da FMUP no inquérito CNIPES de 2027.
+1. Validar a proposta como contributo do departamento para discussão institucional.
+2. Apoiar a apresentação ao Conselho Pedagógico e à Direcção da FMUP.
+3. Testar a cláusula tipo em UCs do MEDCIDS no primeiro semestre de 2026/2027.
+4. Identificar representantes para um futuro Grupo de Trabalho sobre GenAI.
 
 ## Recursos
 

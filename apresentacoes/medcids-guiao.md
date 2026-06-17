@@ -1,6 +1,6 @@
 # Guião — Apresentação MEDCIDS
 
-**Data:** 13 de Maio de 2026
+**Data:** 17 de Junho de 2026
 **Duração-alvo:** ~15 minutos + perguntas
 **Apresentação:** `apresentacoes/medcids.qmd` → [`/apresentacoes/medcids.html`](https://tiagojct.eu/fmup-ia/apresentacoes/medcids.html)
 **Quadro:** [tiagojct.eu/fmup-ia/quadro/](https://tiagojct.eu/fmup-ia/quadro/)
@@ -53,10 +53,10 @@ medida no sistema português.
 
 ---
 
-### Slide 3 — Quadro nacional português, 2026
+### Slide 3 — Enquadramento nacional, 2026
 
-**Mensagem central:** dois documentos nacionais novos, ambos de Abril
-de 2026, redefinem o terreno em que o Quadro se inscreve.
+**Mensagem central:** três documentos nacionais recentes redefinem o
+terreno em que o Quadro se inscreve.
 
 - **CNIPES** — *Inteligência Artificial no Ensino Superior em
   Portugal: Diagnóstico nacional*. Coord. **Nelson Zagalo**. Quatro
@@ -67,6 +67,10 @@ de 2026, redefinem o terreno em que o Quadro se inscreve.
   António Lopes, António Correia, Ricardo Oliveira; direcção de
   **Domingos Fernandes**. Documento consultivo, sem força legislativa;
   peso de referencial.
+- **CNE, Recomendação n.º 4/2026** — publicada em Diário da
+  República a 21 de Maio de 2026; organiza recomendações formais em
+  infraestrutura, pedagogia, literacia, ética, governança e
+  monitorização.
 
 **Citação verbatim:**
 
@@ -194,10 +198,10 @@ A combinação informa a Atlas.
 
 ### Slide 9 — Atlas
 
-**Mensagem central:** o Quadro tem uma ferramenta operacional que
-torna as regras imediatamente aplicáveis.
+**Mensagem central:** o Quadro tem um demonstrador operacional que
+torna as regras testáveis de imediato.
 
-- Cliente-side, sem cookies, sem servidor.
+- Demonstrador prototípico; cliente-side, sem cookies, sem servidor.
 - **Versionada**: `policy.version` separa as regras do *wording*.
   Cada declaração inclui a versão a que se reporta — auditável.
 - **Articulação prevista** com a Plataforma Nacional de Práticas
@@ -237,7 +241,8 @@ critérios adoptados directamente do CNIPES; operacionalizados com
 institucional da FMUP.
 
 - **Fase 1 (2026–2027).** Adopção; cláusula tipo nas UCs; primeira
-  ronda de formação; Atlas em produção. **Esta é a fase do MEDCIDS.**
+  ronda de formação; Atlas disponível como demonstrador. **Esta é a
+  fase do MEDCIDS.**
 - **Fase 2 (2027–2028).** Auditorias internas; grelha de maturidade;
   articulação com a Plataforma CNIPES.
 - **Fase 3 (2028–2030).** Consolidação. Eventual certificação
@@ -254,9 +259,9 @@ institucional da FMUP.
 estar familiarizado.
 
 - **IAedu** (FCT/FCCN) — plataforma de acesso institucional federado
-  a LLMs, sem treino sobre dados. Adoptamo-la como primeira linha —
-  fim do problema "estudante mete dados clínicos no ChatGPT
-  comercial".
+  a LLMs, sem treino sobre dados. O Quadro propõe a IAedu como
+  primeira linha para reduzir o risco de uso de plataformas
+  comerciais com dados pessoais ou clínicos.
 - **ANIA** — Agenda Nacional de IA (RCM 2/2026). 400 M€ até 2030;
   reforço do Deucalion.
 - **Plataforma CNIPES** — em desenvolvimento na Fase 2 do projecto.
@@ -287,24 +292,25 @@ capítulo."
 
 ---
 
-### Slide 14 — Próximos passos para o MEDCIDS
+### Slide 14 — Pedido ao MEDCIDS
 
-**Mensagem central:** quatro acções concretas.
+**Mensagem central:** pedir um mandato claro para levar a proposta a
+discussão institucional.
 
-1. **Apresentação ao Conselho Pedagógico da FMUP.** Preciso do apoio
-   formal do MEDCIDS.
-2. **Constituição do Grupo de Trabalho permanente para GenAI**
-   (cap. 6). MEDCIDS representado.
-3. **Primeira aplicação da cláusula tipo nas UCs do MEDCIDS** no
-   primeiro semestre de 2026/2027.
-4. **Inscrição da FMUP no inquérito CNIPES de 2027** — para sermos
-   parte da fotografia nacional.
+1. **Validar a proposta como contributo do departamento.** Não como
+   regulamento aprovado, mas como base de discussão institucional.
+2. **Apoiar a apresentação ao Conselho Pedagógico e à Direcção da
+   FMUP.**
+3. **Testar a cláusula tipo em UCs do MEDCIDS** no primeiro semestre
+   de 2026/2027.
+4. **Identificar representantes para um futuro Grupo de Trabalho
+   sobre GenAI**, caso a FMUP decida avançar.
 
 **Fechamento natural:**
 
-> "Estas quatro acções definem o que o departamento decide hoje sobre
-> o tema. O documento e a ferramenta existem; precisam de adopção
-> institucional para terem força."
+> "O que peço hoje não é a aprovação de uma política fechada. É apoio
+> para levar uma proposta trabalhada, aberta e verificável aos órgãos
+> próprios da Faculdade."
 
 ---
 
@@ -548,9 +554,9 @@ próprias: estudantes, docentes, investigadores.
   p. 31).
 - **Se perguntarem o custo:** Quadro e Atlas são CC BY 4.0, sem custo
   de licença; o custo é de adopção institucional.
-- **Se perguntarem "porque agora":** EU AI Act até Agosto de 2026;
-  CNIPES e CNE acabaram de publicar — há condições para uma decisão
-  institucional.
+- **Se perguntarem "porque agora":** EU AI Act em aplicação faseada;
+  CNIPES e CNE publicaram diagnóstico e recomendação em 2026; há
+  condições para uma decisão institucional informada.
 - **Se perguntarem sobre limitações:** três caveats — evidência
   longitudinal sobre efeitos cognitivos ainda frágil; Plataforma
   CNIPES ainda não existe; AI Act exige acompanhamento. Mais detalhe
@@ -558,5 +564,5 @@ próprias: estudantes, docentes, investigadores.
 
 ---
 
-*Documento preparado para a apresentação ao MEDCIDS · 13 de Maio de
+*Documento preparado para a apresentação ao MEDCIDS · 17 de Junho de
 2026.*
