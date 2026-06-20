@@ -1,10 +1,85 @@
 {
-  "version": "1.2.4",
-  "framework_version": "FMUP Quadro de Referência v1.0 (2026-04-21)",
-  "framework_short_pt": "Quadro FMUP v1.0",
-  "framework_short_en": "FMUP Framework v1.0",
+  "version": "1.3.0",
+  "framework_version": "FMUP Quadro de Referência v1.1 (2026-06-XX)",
+  "framework_short_pt": "Quadro FMUP v1.1",
+  "framework_short_en": "FMUP Framework v1.1",
   "framework_url": "https://tiagojct.eu/fmup-ia/quadro/",
   "issued": "2026-04-21",
+  "revised": "2026-06-XX",
+  "recommended_tools": [
+    {
+      "key": "iaedu",
+      "name": "IAedu",
+      "url": "https://iaedu.pt/",
+      "tier": "institutional",
+      "privacy_pt": "Plataforma institucional FCT/FCCN. Autenticação federada @up.pt. Não usa dados para treino.",
+      "privacy_en": "FCT/FCCN institutional platform. Federated @up.pt authentication. Does not use data for training."
+    },
+    {
+      "key": "chatgpt_enterprise",
+      "name": "ChatGPT Enterprise / Team",
+      "url": "https://openai.com/chatgpt/enterprise/",
+      "tier": "enterprise_optout",
+      "privacy_pt": "Versão empresarial com contrato e opt-out de treino. Conta institucional.",
+      "privacy_en": "Enterprise tier with contract and training opt-out. Institutional account."
+    },
+    {
+      "key": "claude_team",
+      "name": "Claude Team / Enterprise",
+      "url": "https://www.anthropic.com/enterprise",
+      "tier": "enterprise_optout",
+      "privacy_pt": "Versão empresarial com contrato e opt-out de treino. Conta institucional.",
+      "privacy_en": "Enterprise tier with contract and training opt-out. Institutional account."
+    },
+    {
+      "key": "deepl",
+      "name": "DeepL Pro",
+      "url": "https://www.deepl.com/pro",
+      "tier": "specialised",
+      "privacy_pt": "Tradução automática. Versão Pro com garantias de privacidade contratuais.",
+      "privacy_en": "Machine translation. Pro tier with contractual privacy guarantees."
+    },
+    {
+      "key": "writefull",
+      "name": "Writefull",
+      "url": "https://writefull.com/",
+      "tier": "specialised",
+      "privacy_pt": "Revisão linguística académica especializada. Integração com Word/Overleaf.",
+      "privacy_en": "Specialised academic language revision. Word/Overleaf integration."
+    },
+    {
+      "key": "notebooklm",
+      "name": "NotebookLM",
+      "url": "https://notebooklm.google.com/",
+      "tier": "specialised",
+      "privacy_pt": "Estudo a partir de materiais próprios. Verificar política de dados por região.",
+      "privacy_en": "Study from personal materials. Verify regional data policy."
+    },
+    {
+      "key": "perplexity",
+      "name": "Perplexity",
+      "url": "https://www.perplexity.ai/",
+      "tier": "specialised",
+      "privacy_pt": "Respostas com citações. Versão paga oferece controlo adicional sobre dados.",
+      "privacy_en": "Responses with citations. Paid tier offers additional data control."
+    },
+    {
+      "key": "chatgpt_free",
+      "name": "ChatGPT (grátis)",
+      "url": "https://chatgpt.com/",
+      "tier": "consumer_warning",
+      "privacy_pt": "Versão pública. Por defeito, os dados podem ser usados para treino — desactive nas definições.",
+      "privacy_en": "Consumer version. By default data may be used for training — disable in settings."
+    },
+    {
+      "key": "claude_free",
+      "name": "Claude (grátis)",
+      "url": "https://claude.ai/",
+      "tier": "consumer_warning",
+      "privacy_pt": "Versão pública. Reveja a política de retenção de conversas e desactive treino quando disponível.",
+      "privacy_en": "Consumer version. Review conversation retention policy and disable training when available."
+    }
+  ],
   "legal_references": [
     {
       "key": "ai_act",

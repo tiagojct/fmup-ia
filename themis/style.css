@@ -838,6 +838,84 @@ textarea { min-height: 9rem; line-height: 1.6; }
   }
 }
 
+/* ---------- Tool suggestion chips ---------- */
+
+.tool-chips-wrap {
+  margin: 0.5rem 0 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid #E0E0E0;
+  border-radius: 6px;
+  background: #FAFAFA;
+}
+
+.tool-chips-header {
+  margin: 0 0 0.25rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.tool-chips-help {
+  margin: 0 0 0.75rem;
+  font-size: 0.8rem;
+  color: #555;
+}
+
+.tool-chips-tier + .tool-chips-tier {
+  margin-top: 0.6rem;
+}
+
+.tool-chips-tier-label {
+  margin: 0 0 0.3rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #555;
+  font-weight: 600;
+}
+
+.tool-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tool-chip {
+  display: inline-block;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid #B3BBC4;
+  border-radius: 999px;
+  background: #FFFFFF;
+  color: #1A1A1A;
+  font-size: 0.85rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.tool-chip:hover, .tool-chip:focus-visible {
+  border-color: #1A1A1A;
+  background: #F0F0F0;
+  outline: none;
+}
+
+.tool-chip-institutional {
+  border-color: #FFCD00;
+  background: #FFF8DA;
+}
+
+.tool-chip-institutional:hover, .tool-chip-institutional:focus-visible {
+  background: #FFCD00;
+}
+
+.tool-chip-consumer-warning {
+  border-color: #D55E00;
+  color: #B43E00;
+}
+
+.tool-chip-consumer-warning:hover, .tool-chip-consumer-warning:focus-visible {
+  background: #FFEEDD;
+}
+
 /* ---------- Print fix for risk panels (override coloured backgrounds) ---------- */
 
 @media print {

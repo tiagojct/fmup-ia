@@ -23,6 +23,12 @@
     literature_search: 'pesquisa bibliográfica',
     statistics: 'análise estatística',
     figures: 'preparação de imagens ou figuras',
+    poster_design: 'preparação de poster',
+    presentation_prep: 'preparação de apresentação oral',
+    reflective_journal: 'apoio à escrita de diário reflexivo',
+    portfolio: 'organização de portefólio',
+    case_report: 'preparação de relatório de caso clínico',
+    study_summary: 'resumos, mapas conceptuais e materiais de estudo',
     other: 'outras tarefas auxiliares', // replaced by tasksOther when provided
   };
 
@@ -32,6 +38,11 @@
     data_analysis: 'análise de dados',
     code: 'trabalho de programação',
     presentation: 'apresentação',
+    case_discussion: 'discussão de caso clínico',
+    clinical_simulation: 'simulação clínica',
+    portfolio: 'portefólio',
+    poster: 'poster',
+    reflective_journal: 'diário reflexivo',
     other: 'trabalho',
   };
 
@@ -41,6 +52,11 @@
     data_analysis: 'nesta análise de dados',
     code: 'neste trabalho de programação',
     presentation: 'nesta apresentação',
+    case_discussion: 'nesta discussão de caso clínico',
+    clinical_simulation: 'nesta simulação clínica',
+    portfolio: 'neste portefólio',
+    poster: 'neste poster',
+    reflective_journal: 'neste diário reflexivo',
     other: 'neste trabalho',
   };
 
@@ -78,6 +94,10 @@
     data_interpretation: 'interpretação de resultados',
     bibliography: 'selecção e síntese bibliográfica',
     oral_presentation: 'apresentação oral',
+    metacognition: 'reflexão metacognitiva sobre o próprio percurso',
+    inter_professional_communication: 'comunicação interprofissional',
+    patient_communication: 'comunicação com a pessoa doente',
+    ethics_reasoning: 'raciocínio ético',
   };
 
   const ACTIVITY_PHRASE = {
@@ -86,6 +106,13 @@
     review: 'na realização desta revisão sistemática e pesquisa bibliográfica',
     data_analysis: 'na análise de dados e desenvolvimento de código associado',
     abstract: 'na preparação deste resumo para conferência',
+    protocol: 'na elaboração deste protocolo de investigação',
+    thesis_chapter: 'na preparação deste capítulo de tese ou dissertação',
+    book_chapter: 'na preparação deste capítulo de livro',
+    software: 'no desenvolvimento de software ou código de análise associado',
+    dataset_documentation: 'na documentação deste conjunto de dados',
+    poster_scientific: 'na preparação deste poster científico',
+    presentation_scientific: 'na preparação desta comunicação oral científica',
     other: 'na preparação deste trabalho de investigação',
   };
 
@@ -96,6 +123,10 @@
     wellcome: 'Para efeitos de divulgação ao Wellcome Trust, em conformidade com a sua política sobre o uso de IA generativa,',
     institutional: 'Para efeitos de relatório institucional,',
     conference: 'Para efeitos de submissão a uma conferência,',
+    book: 'Para efeitos de submissão a uma editora de livro,',
+    repository: 'Para efeitos de depósito em repositório institucional ou repositório de dados aberto (Zenodo, OSF, ou equivalente),',
+    phd_jury: 'Para efeitos de apreciação pelo júri de doutoramento,',
+    master_jury: 'Para efeitos de apreciação pelo júri de mestrado,',
   };
 
   const fmtDate = (d) => {
@@ -142,7 +173,9 @@
       ' (' + aNoun + (s.submission === 'group' ? ' submetido em grupo' : ' de autoria individual') + '). ' +
       'A(s) ferramenta(s) utilizada(s) foi(foram): ' + tools + tasksClause + '.';
 
-    return intro + ' ' + modification + ' ' + responsibility + footer(version, policy);
+    const useDateClause = trim(s.useDate) ? ' A utilização principal ocorreu em ' + trim(s.useDate) + '.' : '';
+
+    return intro + ' ' + modification + useDateClause + ' ' + responsibility + footer(version, policy);
   };
 
   const teacherSubjects = (level) => {
@@ -172,7 +205,16 @@
     const lvl = LEVEL_LABEL[s.level] || LEVEL_LABEL.undergraduate;
     const aNoun = fmtAssignmentNoun(s.assignment);
     const subj = teacherSubjects(s.level);
-    const lead = 'No âmbito desta ' + lvl + ', e relativamente ao trabalho avaliativo do tipo ' + aNoun + ',';
+    const COURSE_LEAD_PT = {
+      uc_undergrad: 'No âmbito desta UC de licenciatura',
+      uc_master: 'No âmbito desta UC de mestrado',
+      uc_phd: 'No âmbito desta UC de doutoramento',
+      cpd: 'No âmbito deste Curso de Formação Contínua',
+      microcredential: 'No âmbito desta microcredencial',
+      other: 'No âmbito desta oferta formativa',
+    };
+    const courseLead = COURSE_LEAD_PT[s.courseType] || ('No âmbito desta ' + lvl);
+    const lead = courseLead + ', e relativamente ao trabalho avaliativo do tipo ' + aNoun + ',';
 
     const policyText = {
       not_permitted: ' não é permitida a utilização de ferramentas de inteligência artificial generativa na produção do trabalho submetido. Os trabalhos avaliativos devem refletir exclusivamente a produção intelectual ' + subj.possPlural + ', sendo qualquer recurso a estas ferramentas considerado uma falta à integridade académica.',
@@ -232,6 +274,10 @@
       body += ' Os prompts utilizados e a interacção completa com as ferramentas encontram-se disponíveis em / no ' + trim(s.promptsRef) + '.';
     }
 
+    if (trim(s.useDate)) {
+      body += ' A utilização principal das ferramentas ocorreu em ' + trim(s.useDate) + '.';
+    }
+
     return body + footer(version, policy);
   };
 
@@ -240,8 +286,9 @@
     const tasks = (s.tasks || []).map((k) => TASK_PHRASES[k]).filter(Boolean);
     const tasksFrag = tasks.length ? list(tasks) : 'tarefas auxiliares';
     const fw = policy && policy.framework_version ? '; em conformidade com ' + policy.framework_version : '';
+    const useDate = trim(s.useDate) ? '; utilização em ' + trim(s.useDate) : '';
     return 'Os autores declaram a utilização de ' + tools + ' para ' + tasksFrag +
-      ', tendo revisto criticamente os respetivos contributos e assumindo responsabilidade integral pelo conteúdo (gerado pela Themis (FMUP · IA), v' + version + fw + ').';
+      ', tendo revisto criticamente os respetivos contributos e assumindo responsabilidade integral pelo conteúdo (gerado pela Themis (FMUP · IA), v' + version + useDate + fw + ').';
   };
 
   window.I18N_PT = {
@@ -289,6 +336,12 @@
       viewScenario: 'Ver cenário no Quadro',
       principleLabel: 'Princípio',
       footerNationalPlatform: 'Articula-se com a Plataforma Nacional de Práticas Pedagógicas de IA',
+      toolsSuggestedHeader: 'Sugestões institucionais (clique para adicionar)',
+      toolsSuggestedHelp: 'Em primeiro a plataforma institucional (IAedu); depois plataformas com contrato e opt-out de treino; depois ferramentas especializadas; por fim, versões grátis que requerem cautela com os dados.',
+      toolsTierInstitutional: 'Plataforma institucional',
+      toolsTierEnterprise: 'Versões empresariais (contrato + opt-out de treino)',
+      toolsTierSpecialised: 'Ferramentas especializadas',
+      toolsTierConsumerWarning: 'Versões públicas — atenção aos dados',
       studentUCPolicyReminder: 'Antes de submeter esta declaração, verifique a política da sua unidade curricular — o programa da UC ou o <a href="../quadro/B-clausula.html" target="_blank">Anexo B</a> indicam o regime aplicável (permitido, condicionado ou proibido). Esta declaração reflecte o Quadro institucional, não necessariamente o regime específico da UC.',
       teacherAdaptReminder: 'Este texto é um modelo. Adapte-o ao desenho pedagógico concreto da sua unidade curricular antes de o incluir no programa — nomeadamente, especificando o nome da UC, o semestre e quaisquer condições específicas. O <a href="../quadro/B-clausula.html" target="_blank">Anexo B</a> contém exemplos adicionais por regime.',
       landingPrivacyNote: 'Esta ferramenta corre inteiramente no seu navegador — sem servidor, sem cookies, sem registo de dados. Não introduza informação pessoal, clínica ou identificável nos campos de texto livre. A avaliação de risco é orientadora; a decisão final pertence sempre ao utilizador.',
@@ -305,7 +358,12 @@
     },
     student: {
       step1: 'O trabalho é individual ou em grupo?',
-      submission: { individual: 'Individual', group: 'Em grupo' },
+      submission: {
+        individual: 'Trabalho individual',
+        group: 'Trabalho em grupo',
+        cpd_individual: 'Curso de Formação Contínua (individual)',
+        cpd_group: 'Curso de Formação Contínua (em grupo)'
+      },
       step2: 'Que tipo de trabalho é?',
       step2Help: 'Selecione todos os tipos aplicáveis (um trabalho pode combinar vários).',
       assignment: {
@@ -314,6 +372,11 @@
         data_analysis: 'Análise de dados',
         code: 'Programação / código',
         presentation: 'Apresentação',
+        case_discussion: 'Discussão de caso clínico',
+        clinical_simulation: 'Simulação clínica',
+        portfolio: 'Portefólio',
+        poster: 'Poster',
+        reflective_journal: 'Diário reflexivo',
         other: 'Outro',
       },
       step3: 'Para que tarefas recorreu à IA?',
@@ -326,6 +389,12 @@
         coding: 'Programação',
         data_analysis: 'Análise de dados',
         literature_search: 'Pesquisa bibliográfica',
+        poster_design: 'Preparação de poster',
+        presentation_prep: 'Preparação de apresentação oral',
+        reflective_journal: 'Diário reflexivo',
+        portfolio: 'Portefólio',
+        case_report: 'Relatório de caso clínico',
+        study_summary: 'Resumos / materiais de estudo',
         other: 'Outra tarefa',
       },
       tasksOtherLabel: 'Especifique (ex.: graphical abstract, poster, análise de imagem…)',
@@ -338,8 +407,21 @@
         edited: 'Substancialmente editados',
         as_is: 'Sem alterações substanciais',
       },
+      step6UseDate: 'Quando ocorreu a utilização principal?',
+      step6UseDateHelp: 'Opcional. Se a utilização ocorreu em data anterior à geração desta declaração (por exemplo, tese ou trabalho elaborado ao longo de meses), indique-a aqui. Se deixar em branco, a data de utilização será considerada a mesma da geração.',
+      step6UseDateLabel: 'Data de utilização (opcional)',
     },
     teacher: {
+      step0CourseType: 'Que tipo de oferta formativa é?',
+      step0CourseTypeHelp: 'Selecione o enquadramento da oferta formativa para que a cláusula gerada use a terminologia adequada.',
+      courseType: {
+        uc_undergrad: 'UC de licenciatura',
+        uc_master: 'UC de mestrado',
+        uc_phd: 'UC de doutoramento',
+        cpd: 'Curso de Formação Contínua',
+        microcredential: 'Microcredencial',
+        other: 'Outra',
+      },
       step1: 'Qual é o nível da unidade curricular?',
       level: {
         undergraduate: 'Licenciatura',
@@ -354,6 +436,11 @@
         data_analysis: 'Análise de dados',
         code: 'Programação / código',
         presentation: 'Apresentação',
+        case_discussion: 'Discussão de caso clínico',
+        clinical_simulation: 'Simulação clínica',
+        portfolio: 'Portefólio',
+        poster: 'Poster',
+        reflective_journal: 'Diário reflexivo',
         other: 'Outro',
       },
       step3: 'Qual será a política de uso de IA?',
@@ -371,6 +458,10 @@
         data_interpretation: 'Interpretação de resultados',
         bibliography: 'Seleção e síntese bibliográfica',
         oral_presentation: 'Apresentação oral',
+        metacognition: 'Reflexão metacognitiva',
+        inter_professional_communication: 'Comunicação interprofissional',
+        patient_communication: 'Comunicação com a pessoa doente',
+        ethics_reasoning: 'Raciocínio ético',
       },
       skillsOther: 'Outras (especifique)',
     },
@@ -382,6 +473,13 @@
         review: 'Revisão sistemática / pesquisa bibliográfica',
         data_analysis: 'Análise de dados / programação',
         abstract: 'Resumo para conferência',
+        protocol: 'Protocolo de investigação',
+        thesis_chapter: 'Capítulo de tese / dissertação',
+        book_chapter: 'Capítulo de livro',
+        software: 'Software / código de análise',
+        dataset_documentation: 'Documentação de dataset',
+        poster_scientific: 'Poster científico',
+        presentation_scientific: 'Comunicação oral científica',
         other: 'Outra',
       },
       step2: 'Para que tarefas recorreu à IA?',
@@ -409,7 +507,14 @@
         wellcome: 'Wellcome Trust',
         institutional: 'Relatório institucional',
         conference: 'Submissão a conferência',
+        book: 'Submissão a editora de livro',
+        repository: 'Depósito em repositório (Zenodo, OSF, …)',
+        phd_jury: 'Júri de doutoramento',
+        master_jury: 'Júri de mestrado',
       },
+      step5UseDate: 'Quando ocorreu a utilização principal?',
+      step5UseDateHelp: 'Opcional. Indique a data em que a utilização principal das ferramentas ocorreu (por exemplo, durante a redacção de um manuscrito ao longo de meses). Se deixar em branco, a data de utilização será considerada a mesma da geração desta declaração.',
+      step5UseDateLabel: 'Data de utilização (opcional)',
     },
     risk: {
       heading: 'Avaliação institucional — Nível',

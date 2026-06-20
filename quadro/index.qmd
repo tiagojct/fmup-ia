@@ -37,4 +37,4 @@ Indicadores de monitorização (cobertura curricular, formação docente, declar
 
 ---
 
-**FMUP Quadro de Referência v1.0** (2026-04-21) · Autor: Tiago Jacinto · Licença [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+**FMUP Quadro de Referência v1.1** (revisão de Junho de 2026; edição original 2026-04-21) · Autor: Tiago Jacinto · Licença [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).

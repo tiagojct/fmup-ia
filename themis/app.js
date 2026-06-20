@@ -11,7 +11,7 @@
 
   // ---- Single source of truth for the tool version. ----
   // Bump this when statement content (any i18n file) changes.
-  const APP_VERSION = '1.0.0';
+  const APP_VERSION = '1.0.1';
 
   // Schema version for the URL hash payload. Bump when state shape
   // changes incompatibly. Hashes with a different `v` are rejected.
@@ -59,11 +59,13 @@
       tasksOther: '',
       tools: '',
       modification: null,
+      useDate: '',
       // teacher
       level: null,
       policy: null,
       skills: [],
       skillsOther: '',
+      courseType: null,
       // researcher
       activity: null,
       target: null,
@@ -108,10 +110,12 @@
       tasksOther: s.tasksOther,
       tools: s.tools,
       modification: s.modification,
+      useDate: s.useDate,
       level: s.level,
       policy: s.policy,
       skills: s.skills,
       skillsOther: s.skillsOther,
+      courseType: s.courseType,
       activity: s.activity,
       target: s.target,
       promptsRef: s.promptsRef,
@@ -605,7 +609,7 @@
 
   function renderStudentForm() {
     const i = t();
-    const total = 5;
+    const total = 6;
     const screen = el('section', { class: 'screen' });
 
     screen.appendChild(stepHeader(1, total, i.student.step1));
@@ -647,6 +651,8 @@
     screen.appendChild(tasksOtherWrap);
 
     screen.appendChild(stepHeader(4, total, i.student.step4, i.student.step4Help));
+    const studentChips = renderToolChips('tools-input');
+    if (studentChips) screen.appendChild(studentChips);
     screen.appendChild(textInputRow(
       'tools-input',
       i.student.step4Placeholder,
@@ -660,6 +666,14 @@
       asOptions(i.student.modification),
       state.modification,
       (v) => { state.modification = v; syncHash(true); refreshGenerate(screen); }
+    ));
+
+    screen.appendChild(stepHeader(6, total, i.student.step6UseDate, i.student.step6UseDateHelp));
+    screen.appendChild(dateInputRow(
+      'use-date-input',
+      state.useDate,
+      (v) => { state.useDate = v; syncHash(true); refreshGenerate(screen); },
+      i.student.step6UseDateLabel
     ));
 
     const panel = renderRiskPanel(false);
@@ -676,10 +690,18 @@
 
   function renderTeacherForm() {
     const i = t();
-    const total = 4;
+    const total = 5;
     const screen = el('section', { class: 'screen' });
 
-    screen.appendChild(stepHeader(1, total, i.teacher.step1));
+    screen.appendChild(stepHeader(1, total, i.teacher.step0CourseType, i.teacher.step0CourseTypeHelp));
+    screen.appendChild(radioGroup(
+      'courseType',
+      asOptions(i.teacher.courseType),
+      state.courseType,
+      (v) => { state.courseType = v; syncHash(true); refreshGenerate(screen); }
+    ));
+
+    screen.appendChild(stepHeader(2, total, i.teacher.step1));
     screen.appendChild(radioGroup(
       'level',
       asOptions(i.teacher.level),
@@ -687,7 +709,7 @@
       (v) => { state.level = v; syncHash(true); refreshGenerate(screen); }
     ));
 
-    screen.appendChild(stepHeader(2, total, i.teacher.step2, i.teacher.step2Help));
+    screen.appendChild(stepHeader(3, total, i.teacher.step2, i.teacher.step2Help));
     screen.appendChild(checkboxGroup(
       'assignment',
       asOptions(i.teacher.assignment),
@@ -695,7 +717,7 @@
       (v) => { state.assignment = v; syncHash(true); refreshGenerate(screen); }
     ));
 
-    screen.appendChild(stepHeader(3, total, i.teacher.step3));
+    screen.appendChild(stepHeader(4, total, i.teacher.step3));
     screen.appendChild(radioGroup(
       'policy',
       asOptions(i.teacher.policy),
@@ -703,7 +725,7 @@
       (v) => { state.policy = v; syncHash(true); refreshGenerate(screen); }
     ));
 
-    screen.appendChild(stepHeader(4, total, i.teacher.step4, i.teacher.step4Help));
+    screen.appendChild(stepHeader(5, total, i.teacher.step4, i.teacher.step4Help));
     screen.appendChild(checkboxGroup(
       'skills',
       asOptions(i.teacher.skills),
@@ -732,7 +754,7 @@
 
   function renderResearcherForm() {
     const i = t();
-    const total = 4;
+    const total = 5;
     const screen = el('section', { class: 'screen' });
 
     screen.appendChild(stepHeader(1, total, i.researcher.step1));
@@ -752,6 +774,8 @@
     ));
 
     screen.appendChild(stepHeader(3, total, i.researcher.step3, i.researcher.step3Help));
+    const researcherChips = renderToolChips('tools-input');
+    if (researcherChips) screen.appendChild(researcherChips);
     screen.appendChild(textInputRow(
       'tools-input',
       i.researcher.step3Placeholder,
@@ -776,6 +800,14 @@
       ));
     }
 
+    screen.appendChild(stepHeader(5, total, i.researcher.step5UseDate, i.researcher.step5UseDateHelp));
+    screen.appendChild(dateInputRow(
+      'use-date-input',
+      state.useDate,
+      (v) => { state.useDate = v; syncHash(true); refreshGenerate(screen); },
+      i.researcher.step5UseDateLabel
+    ));
+
     const panel = renderRiskPanel(false);
     if (panel) screen.appendChild(panel);
     screen.appendChild(navRow(canGenerateResearcher()));
@@ -798,6 +830,74 @@
     });
     input.addEventListener('input', () => oninput(input.value));
     wrap.appendChild(input);
+    return wrap;
+  }
+
+  function dateInputRow(id, value, oninput, label) {
+    const wrap = el('div', { class: 'field-row' });
+    if (label) wrap.appendChild(el('label', { for: id, text: label }));
+    const input = el('input', {
+      type: 'date',
+      id: id,
+      class: 'text-input date-input',
+      value: value || '',
+    });
+    input.addEventListener('input', () => oninput(input.value));
+    wrap.appendChild(input);
+    return wrap;
+  }
+
+  function renderToolChips(toolsInputId) {
+    if (!POLICY || !Array.isArray(POLICY.recommended_tools) || !POLICY.recommended_tools.length) {
+      return null;
+    }
+    const i = t();
+    const isPt = state.lang === 'pt';
+    const tierLabels = {
+      institutional: i.ui.toolsTierInstitutional,
+      enterprise_optout: i.ui.toolsTierEnterprise,
+      specialised: i.ui.toolsTierSpecialised,
+      consumer_warning: i.ui.toolsTierConsumerWarning,
+    };
+    const wrap = el('div', { class: 'tool-chips-wrap' });
+    if (i.ui.toolsSuggestedHeader) {
+      wrap.appendChild(el('p', { class: 'tool-chips-header', text: i.ui.toolsSuggestedHeader }));
+    }
+    if (i.ui.toolsSuggestedHelp) {
+      wrap.appendChild(el('p', { class: 'tool-chips-help', text: i.ui.toolsSuggestedHelp }));
+    }
+    const tiers = ['institutional', 'enterprise_optout', 'specialised', 'consumer_warning'];
+    tiers.forEach((tier) => {
+      const tools = POLICY.recommended_tools.filter((tool) => tool.tier === tier);
+      if (!tools.length) return;
+      const tierBlock = el('div', { class: 'tool-chips-tier tool-chips-tier-' + tier.replace('_', '-') });
+      if (tierLabels[tier]) {
+        tierBlock.appendChild(el('h5', { class: 'tool-chips-tier-label', text: tierLabels[tier] }));
+      }
+      const row = el('div', { class: 'tool-chips' });
+      tools.forEach((tool) => {
+        const chip = el('button', {
+          type: 'button',
+          class: 'tool-chip tool-chip-' + tier.replace('_', '-'),
+          'aria-label': tool.name + ' — ' + (isPt ? tool.privacy_pt : tool.privacy_en),
+          title: (isPt ? tool.privacy_pt : tool.privacy_en),
+          text: tool.name,
+        });
+        chip.addEventListener('click', () => {
+          const input = document.getElementById(toolsInputId);
+          if (!input) return;
+          const current = input.value.trim();
+          if (current && current.indexOf(tool.name) !== -1) return;
+          const next = current ? (current.replace(/[;,]\s*$/, '') + '; ' + tool.name) : tool.name;
+          input.value = next;
+          state.tools = next;
+          syncHash(true);
+        });
+        row.appendChild(chip);
+      });
+      tierBlock.appendChild(row);
+      wrap.appendChild(tierBlock);
+    });
     return wrap;
   }
 

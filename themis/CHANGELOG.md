@@ -26,6 +26,75 @@ This project follows a `MAJOR.MINOR.PATCH` scheme:
 
 ---
 
+## [1.0.1] — 2026-06-XX — Post-meeting feature pass
+
+Feature pass following the apresentação à direcção. Bumps
+`policy.version` to **1.3.0** and `framework_version` to **v1.1**
+(harmonisation of the Quadro with the CE-FMUP White Paper on
+research integrity, plus the additions described below).
+
+### Added
+- **Date of use** (`state.useDate`, optional). Students and
+  researchers may now indicate the date on which the main use of the
+  tools occurred, separately from the date on which the statement is
+  generated. The statement renderers append a conditional clause "A
+  utilização principal ocorreu em DATE" / "The main use took place on
+  DATE" when the date is set and differs from the generation date.
+  New step 6 for students, new step 5 for researchers.
+- **Continuing Professional Development** as a submission type for
+  students (`cpd_individual`, `cpd_group`).
+- **Course type** field for teachers (`state.courseType`), with
+  options for undergraduate, master’s, doctoral, CPD,
+  microcredential, and other. The teacher syllabus statement now
+  opens with "Neste Curso de Formação Contínua…", "Nesta
+  microcredencial…" etc. as appropriate.
+- **Recommended-tools chip strip** above the free-text `tools` field
+  (student step 4 and researcher step 3). Driven by a new
+  `recommended_tools` array in `policy.json` with four tiers:
+  `institutional` (IAedu, always first), `enterprise_optout`
+  (ChatGPT Enterprise/Team, Claude Team), `specialised` (DeepL Pro,
+  Writefull, NotebookLM, Perplexity), and `consumer_warning` (free
+  consumer ChatGPT and Claude with explicit data-handling caveats).
+  Clicking a chip appends the tool name to the free-text field.
+  New `ui.toolsSuggested*` and `ui.toolsTier*` i18n strings (PT/EN).
+- **More work typologies** across the board:
+  - Student tasks: added `poster_design`, `presentation_prep`,
+    `reflective_journal`, `portfolio`, `case_report`,
+    `study_summary` (10 → 16 options).
+  - Teacher and student assignments: added `case_discussion`,
+    `clinical_simulation`, `portfolio`, `poster`, `reflective_journal`
+    (6 → 11 options). OSCE intentionally not added: it is a
+    real-time presential assessment with no GenAI-relevant design
+    space.
+  - Teacher skills: added `metacognition`,
+    `inter_professional_communication`, `patient_communication`,
+    `ethics_reasoning` (6 → 10 options).
+  - Researcher activities: added `protocol`, `thesis_chapter`,
+    `book_chapter`, `software`, `dataset_documentation`,
+    `poster_scientific`, `presentation_scientific` (6 → 13 options).
+  - Researcher targets: added `book`, `repository`, `phd_jury`,
+    `master_jury` (6 → 10 options).
+
+### Changed
+- `policy.version`: 1.2.4 → **1.3.0**.
+- `framework_version`: "FMUP Quadro de Referência v1.0 (2026-04-21)"
+  → "FMUP Quadro de Referência v1.1 (2026-06-XX)". The bump reflects
+  the addition of the CE-FMUP White Paper articulation in chapter 5
+  of the Quadro and the cross-refs in chapters 2, 6 and 14.
+- `APP_VERSION`: 1.0.0 → **1.0.1** (i18n strings changed; new state
+  keys added).
+
+### Compatibility
+- New state keys (`useDate`, `courseType`) are optional and default
+  to empty/null in `freshState()`. Old shared URL hashes from
+  pre-1.0.1 continue to decode without error — the new fields are
+  simply rendered as the empty state.
+- The CPD options in `submission` are additions; existing
+  `individual` / `group` values continue to decode and render
+  unchanged.
+
+---
+
 ## [1.0.0] — 2026-06-XX — Rebrand to Themis
 
 The tool is renamed from **Atlas** to **Themis** to avoid collision with
