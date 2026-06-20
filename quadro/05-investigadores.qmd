@@ -45,6 +45,37 @@ A investigação com intervenção humana regulada --- ensaios clínicos, estudo
 
 **O que exige cautela regulatória.** A génese de decisões analíticas substantivas --- definição de _endpoints_ primários e secundários, escolha de testes estatísticos, regras de descontinuação, análise intermédia --- deve permanecer sob controlo humano com rastreabilidade explícita. O ICH E6(R3) exige que qualquer alteração à documentação essencial seja identificável no histórico de versões, como qualquer outra alteração; contribuições de GenAI não são excepção. Dados de doentes --- em qualquer fase do ensaio --- só podem ser processados em ambiente com garantias contratuais RGPD e, quando aplicável, MDR/IVDR.
 
+## Articulação com a Comissão de Ética da FMUP {#sec-articulacao-ce-fmup}
+
+A Comissão de Ética da FMUP (CE-FMUP) publicou em Agosto de 2023 o *White Paper* **Integridade Científica** [@cefmup2023integridade], com a autoria das Conselheiras Inês Falcão-Pires, Ivone Duarte, Natália Oliva Teles, Patrícia Ribeiro, Rita Negrão e Rosário Monteiro, sob a presidência de Rui Nunes e a vice-presidência de Guilhermina Rêgo. Este documento constitui a **referência ética institucional** da FMUP em matéria de integridade científica e cobre as três fases da investigação (planeamento, desenvolvimento, divulgação) e as quatro formas canónicas de má conduta tipificadas (enviesamento, fabrico, falsificação, plágio). O presente Quadro **articula-se** com o *White Paper* sem o substituir nem com ele conflituar.
+
+### Mapeamento Quadro ↔ White Paper CE-FMUP
+
+| Quadro FMUP·IA | White Paper CE-FMUP | Articulação |
+|---|---|---|
+| Princípio 2 (Integridade académica e científica) | §5.a (Autoria, critérios ICMJE); §5.d (Plágio) | O Quadro acolhe os critérios ICMJE e amplia-os à declaração obrigatória do uso de GenAI; não cria regras de autoria paralelas. |
+| Princípio 3 (Protecção de dados e confidencialidade) | §3.a (RGPD, DPO, Lei 58/2019) | Sem divergência; o Quadro acrescenta a proibição de introdução de dados sensíveis em plataformas comerciais. |
+| Princípio 4 (Transparência) | §6 (Conflitos de interesse, Anexo III) | O modelo CE-FMUP de declaração de conflitos é integralmente acolhido; o Quadro recomenda extensão para conflitos relativos a ferramentas de GenAI (consultoria, _equity_, _grants_). |
+| Cap. 5 — Documentação de ensaios clínicos (GCP) | §3.b, §5.a (responsabilidades dos orientadores e orientandos) | A relação orientador-orientando segue o instrumento formal CE-FMUP (Anexo II, *Formulário de Aferição de Expectativas*) e deve incluir, quando relevante, o uso previsto de GenAI. |
+| Cap. 14 — Camada médica (MDR/IVDR/AI Act/EHDS) | (Não coberto pelo *White Paper*) | O Quadro **estende** a baseline ética com matéria que o *White Paper* não trata: GenAI em SaMD/AIaMD, deveres de _deployer_ no âmbito do AI Act, articulação com EHDS. |
+
+### Posição explícita
+
+- **Autoria e GenAI.** A autoria continua governada pelos critérios ICMJE como acolhidos pelo *White Paper* (CE-FMUP §5.a). A GenAI **não pode** ser listada como autora. Qualquer contribuição substantiva de GenAI à redacção, à interpretação ou às decisões analíticas exige declaração explícita em conformidade com o Anexo A do presente Quadro e em coerência com o sistema de versionamento da documentação do estudo (cf. ICH E6(R3) em ensaios clínicos).
+- **Plágio.** Mantém a definição operacional da CE-FMUP (§5.d). O Quadro acrescenta que a apresentação como original de _output_ de GenAI sem declaração constitui violação de integridade académica autónoma --- independentemente da qualidade ou veracidade do conteúdo.
+- **Conflitos de interesse.** Recomenda-se a extensão do modelo de declaração CE-FMUP (Anexo III) para identificar relações materiais com plataformas, fornecedores ou _start-ups_ de IA generativa: consultoria remunerada, _equity_, contratos de licenciamento, _grants_ de fornecedores comerciais.
+- **Relação orientador-orientando.** O Anexo II do *White Paper* (Formulário de Aferição de Expectativas) é o instrumento de eleição para formalizar, no início de cada projecto de mestrado, doutoramento ou pós-doutoramento, **o que se espera quanto ao uso de GenAI**: ferramentas permitidas, regimes de declaração interna, formato dos registos de _prompts_ e regras de revisão por par.
+- **Procedimento perante incidente.** Casos suspeitos de má conduta envolvendo GenAI (manuscritos com texto não declarado de GenAI, _datasets_ duvidosos, código não verificável) devem ser encaminhados para a CE-FMUP, que articula com o orientador e com a Direcção da FMUP segundo o regime previsto. O presente Quadro não substitui o procedimento ético-disciplinar.
+
+### Recomendação de formação para a CE-FMUP
+
+A CE-FMUP cobre integralmente a baseline ética da investigação na FMUP. Para que a Comissão possa avaliar protocolos contendo componente de GenAI ao nível de profundidade que a sua função exige, recomenda-se:
+
+- Sessão de formação dedicada ao **EU AI Act** com ênfase em sistemas de alto risco aplicáveis a contexto clínico e educativo, em articulação com o capítulo [14](14-camada-medica.qmd).
+- Sessão de formação sobre **MDR/IVDR**, **SaMD**/AIaMD e **EHDS**, em articulação com o Centro Hospitalar parceiro.
+- Inclusão na agenda de revisão de protocolos de uma rubrica específica: "Uso previsto de GenAI no estudo (sim/não); se sim, ferramenta, função e plano de declaração."
+- Acompanhamento da articulação com a CNPD e a Direcção Jurídica da U.Porto em casos limítrofes.
+
 ## Protecção de dados e declaração em publicações
 
 Dados sensíveis não podem ser introduzidos em plataformas comerciais de GenAI. Qualquer utilização de GenAI na produção de um manuscrito deve ser declarada, em conformidade com as políticas das revistas e com as _Living Guidelines_ do ERA Forum [@ec2024livingguidelines]. A GenAI não pode ser listada como autora.

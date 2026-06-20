@@ -44,7 +44,7 @@ A *TEHDAS2 Joint Action* (Maio 2024 -- Dezembro 2026), coordenada pela Sitra com
 
 ## Comités de ética e investigação clínica com IA
 
-Os comités de ética adquirem competências adicionais quando a investigação envolve componentes de IA: devem avaliar simultaneamente o MDR e o EU AI Act em SaMD com IA, e aplicar os princípios de IA confiável mesmo em estudos onde o EU AI Act não seja directamente aplicável. Para a FMUP: (i) a Comissão de Ética recebe formação específica nestas duas dimensões; (ii) os protocolos com modelos generativos documentam o regime jurídico aplicável; (iii) sempre que a investigação envolva execução clínica em unidade hospitalar parceira, essa articulação é explicitada em submissão.
+Os comités de ética adquirem competências adicionais quando a investigação envolve componentes de IA: devem avaliar simultaneamente o MDR e o EU AI Act em SaMD com IA, e aplicar os princípios de IA confiável mesmo em estudos onde o EU AI Act não seja directamente aplicável. Para a FMUP: (i) a Comissão de Ética [@cefmup2023integridade] recebe formação específica nestas duas dimensões, em articulação detalhada na subsecção [Articulação com a Comissão de Ética da FMUP](05-investigadores.qmd#sec-articulacao-ce-fmup) do capítulo 5; (ii) os protocolos com modelos generativos documentam o regime jurídico aplicável; (iii) sempre que a investigação envolva execução clínica em unidade hospitalar parceira, essa articulação é explicitada em submissão.
 
 ## Investigação clínica: usos e limites
 

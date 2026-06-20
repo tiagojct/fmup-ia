@@ -12,7 +12,7 @@ Este quadro adopta também a rejeição do _AI exceptionalism_ proposta pelo _AI
 
 ## 2. Integridade académica e científica {#principio-2-integridade}
 
-A GenAI respeita os mesmos padrões de honestidade que qualquer outra forma de assistência: declaração transparente do uso, verificação do conteúdo gerado, recusa de apresentar trabalho de IA como próprio sem atribuição.
+A GenAI respeita os mesmos padrões de honestidade que qualquer outra forma de assistência: declaração transparente do uso, verificação do conteúdo gerado, recusa de apresentar trabalho de IA como próprio sem atribuição. A baseline ética institucional na FMUP em matéria de integridade científica é o *White Paper* da Comissão de Ética da FMUP [@cefmup2023integridade]; o presente Quadro articula-se com ele, sem o substituir (ver [capítulo 5](05-investigadores.qmd#sec-articulacao-ce-fmup)).
 
 ## 3. Protecção de dados e confidencialidade {#principio-3-protecao-dados}
 
