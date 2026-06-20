@@ -94,4 +94,4 @@ Para o Wellcome Trust, a política sobre o uso de IA generativa em projectos por
 
 Para resumos de conferência e para relatórios institucionais, aplica-se um regime análogo ao das revistas, adaptado ao formato curto do resumo ou ao âmbito interno do relatório.
 
-A ferramenta [**Atlas**](../atlas/) gera, para cada um destes destinatários, uma declaração coerente com o regime aplicável.
+A ferramenta [**Themis**](../themis/) gera, para cada um destes destinatários, uma declaração coerente com o regime aplicável.

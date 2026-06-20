@@ -14,7 +14,7 @@ O calendário de implementação é deliberadamente alinhado com quatro marcos e
 
 ## Adopção mínima viável
 
-Antes da adopção integral, a FMUP pode aprovar um conjunto mínimo de medidas para reduzir a heterogeneidade entre unidades curriculares e criar evidência local. Este conjunto não altera regulamentos pedagógicos, não transforma o Atlas em aplicação institucional e não substitui parecer jurídico nas matérias sensíveis; funciona como piloto governado.
+Antes da adopção integral, a FMUP pode aprovar um conjunto mínimo de medidas para reduzir a heterogeneidade entre unidades curriculares e criar evidência local. Este conjunto não altera regulamentos pedagógicos, não transforma a Themis em aplicação institucional e não substitui parecer jurídico nas matérias sensíveis; funciona como piloto governado.
 
 | Medida mínima | Objectivo | Responsável proposto | Evidência recolhida |
 |---|---|---|---|

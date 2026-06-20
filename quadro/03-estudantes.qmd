@@ -32,7 +32,7 @@ Conta como informação identificável — e está proibida em plataformas comer
 
 ## Declaração de uso
 
-Todos os trabalhos académicos em que tenha sido utilizada GenAI devem incluir uma declaração de uso que especifique a ferramenta, o tipo de assistência obtida, as secções em que foi aplicada e os _prompts_ utilizados (ver [Anexo A](A-declaracao.qmd)). Todo o conteúdo gerado por GenAI deve ser lido, verificado e editado pelo estudante antes de ser submetido. O estudante deve ser capaz de explicar e defender qualquer conteúdo que submeta. Para gerar uma declaração conforme o presente Quadro, utilize a ferramenta [**Atlas**](../atlas/).
+Todos os trabalhos académicos em que tenha sido utilizada GenAI devem incluir uma declaração de uso que especifique a ferramenta, o tipo de assistência obtida, as secções em que foi aplicada e os _prompts_ utilizados (ver [Anexo A](A-declaracao.qmd)). Todo o conteúdo gerado por GenAI deve ser lido, verificado e editado pelo estudante antes de ser submetido. O estudante deve ser capaz de explicar e defender qualquer conteúdo que submeta. Para gerar uma declaração conforme o presente Quadro, utilize a ferramenta [**Themis**](../themis/).
 
 ## Literacia em IA
 

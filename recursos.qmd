@@ -50,7 +50,7 @@ Lista de _frameworks_, regulamentos e documentos institucionais referenciados ao
 
 ## Ferramentas e infraestrutura
 
-- **[Atlas](atlas/)** --- ferramenta operacional do Quadro FMUP · IA. Gera declarações estruturadas para os três papéis institucionais.
+- **[Themis](themis/)** --- demonstrador prototípico do Quadro FMUP · IA. Gera declarações estruturadas para os três papéis institucionais. (Anteriormente conhecida como *Atlas*, renomeada em Junho de 2026 para evitar colisão com o portal **Atlas U.Porto**.)
 - **[GitHub](https://github.com/tiagojct/fmup-ia)** --- repositório-fonte do Quadro e do Atlas.
 
 ## Como sugerir adições

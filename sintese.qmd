@@ -10,7 +10,7 @@ Este documento é um **contributo individual** de Tiago Jacinto submetido à apr
 
 ## O que é
 
-- Uma **proposta de quadro institucional** para o uso responsável de inteligência artificial generativa (GenAI) na FMUP, em duas peças articuladas: o [**Quadro**](quadro/) (documento de referência, em prosa) e o [**Atlas**](atlas/) (demonstrador prototípico).
+- Uma **proposta de quadro institucional** para o uso responsável de inteligência artificial generativa (GenAI) na FMUP, em duas peças articuladas: o [**Quadro**](quadro/) (documento de referência, em prosa) e o [**Themis**](themis/) (demonstrador prototípico).
 - Cobre as três populações da FMUP: [estudantes](quadro/03-estudantes.qmd), [docentes](quadro/04-docentes.qmd) e [investigadores](quadro/05-investigadores.qmd).
 - Pré-AO90, formal, baseado em evidência e em literatura comparada internacional.
 - Estado: proposta em desenvolvimento (v1.0, 2026). **Não substitui regulamentos pedagógicos** — é input para deliberação institucional.
@@ -63,7 +63,7 @@ A proposta tem **duas partes** e **sete anexos**.
 
 ## Como se usa no dia-a-dia
 
-O [**Atlas**](atlas/) é uma ferramenta web que **gera declarações padronizadas de uso de GenAI** para qualquer das três vertentes e avalia o risco institucional com base nas regras do Quadro.
+O [**Themis**](themis/) é uma ferramenta web que **gera declarações padronizadas de uso de GenAI** para qualquer das três vertentes e avalia o risco institucional com base nas regras do Quadro.
 
 - Corre **inteiramente no _browser_** — não envia dados a servidor algum, não usa _cookies_.
 - A avaliação de risco é **sempre guiante, nunca bloqueante**: o utilizador mantém o controlo.
@@ -79,12 +79,12 @@ Quatro **guias práticos** de uma página (PDF) acompanham o Quadro como _handou
 Se os órgãos competentes entenderem que a adopção integral exige mais maturação, o Quadro permite uma adopção mínima, reversível e avaliável, centrada em cinco medidas de baixo risco:
 
 1. **Cláusula GenAI em todos os programas de UC**, escolhendo entre regime permitido, condicionado ou proibido, com base nos modelos do [Anexo B](quadro/B-clausula.qmd).
-2. **Declaração de uso obrigatória quando a GenAI influencie trabalho submetido**, usando o [Anexo A](quadro/A-declaracao.qmd) ou o [Atlas](atlas/), sem criar ainda sanções automáticas.
+2. **Declaração de uso obrigatória quando a GenAI influencie trabalho submetido**, usando o [Anexo A](quadro/A-declaracao.qmd) ou a [Themis](themis/), sem criar ainda sanções automáticas.
 3. **Proibição de dados pessoais, clínicos ou de saúde em plataformas comerciais**, salvo contrato institucional adequado.
 4. **Validação humana obrigatória em avaliação, classificação, decisão pedagógica, investigação com participantes e comunicação institucional sensível**.
 5. **Piloto de formação e recolha de evidência**, com relatório anual simples: UCs cobertas, declarações recolhidas, incidentes, necessidades de formação e dúvidas jurídicas.
 
-Esta versão mínima não substitui a revisão jurídica, a discussão curricular ou a avaliação técnica do Atlas. Serve para reduzir diferenças imediatas entre práticas de unidades curriculares enquanto o processo institucional completo decorre.
+Esta versão mínima não substitui a revisão jurídica, a discussão curricular ou a avaliação técnica da Themis. Serve para reduzir diferenças imediatas entre práticas de unidades curriculares enquanto o processo institucional completo decorre.
 
 ## Calendário de implementação
 
@@ -111,14 +111,14 @@ A proposta é, no presente estado, **contributo individual sujeito a apreciaçã
 1. **Apreciação.** Encaminhamento da proposta para o(s) órgão(s) competente(s) --- Conselho Pedagógico, Conselho Científico, Direcção, Comissão de Ética --- para apreciação no âmbito das suas atribuições.
 2. **Mandato.** Se a apreciação for favorável, formalização (por despacho da Direcção ou deliberação do Conselho Científico) de um Grupo de Trabalho com mandato explícito para rever, ajustar e propor a adopção institucional do quadro, com calendário de trabalho próprio.
 3. **Articulação técnica.** Para os pontos que ultrapassam a competência técnica do autor --- nomeadamente a secção sobre [procedimento disciplinar](quadro/06-infraestrutura.qmd#processo-disciplinar-e-direito-de-defesa) e as [cláusulas institucionais de transparência algorítmica em contratos](quadro/06-infraestrutura.qmd) ---, encaminhamento para parecer da Direcção Jurídica da Universidade do Porto e, no enquadramento clínico, coordenação com a unidade hospitalar afiliada.
-4. **Reconhecimento da [Atlas](atlas/) como demonstrador prototípico**, não como aplicação institucional. A passagem a aplicação institucional carecerá de avaliação de segurança, DPIA, inscrição no inventário de aplicações institucionais e termo de responsabilidade técnico.
+4. **Reconhecimento da [Themis](themis/) como demonstrador prototípico**, não como aplicação institucional. A passagem a aplicação institucional carecerá de avaliação de segurança, DPIA, inscrição no inventário de aplicações institucionais e termo de responsabilidade técnico.
 
 A proposta **não pede** alteração de regulamentos pedagógicos no imediato. Não pede endosso da Faculdade ao texto tal como está. Pede acolhimento institucional do contributo e a sua submissão ao processo deliberativo próprio.
 
 ## Materiais de apoio
 
 - [**Quadro completo**](quadro/) — todos os capítulos e anexos (~600 referências).
-- [**Atlas**](atlas/) — ferramenta operacional, demonstrável ao vivo.
+- [**Themis**](themis/) — ferramenta operacional, demonstrável ao vivo.
 - [**Guias PDF**](quadro/guias/guia-docentes.pdf) — _handouts_ de uma página por vertente.
 - [**Recursos externos**](recursos.qmd) — _frameworks_ supranacionais e leitura adicional.
 - [**Convenções editoriais**](convencoes.qmd) — terminologia, ortografia, citações.

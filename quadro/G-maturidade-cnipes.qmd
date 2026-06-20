@@ -42,9 +42,9 @@ A grelha não substitui os procedimentos definidos nos capítulos [6](06-infraes
 
 **Indicadores anuais:**
 
-- Adopção institucional da declaração-padrão do [Anexo A](A-declaracao.qmd) (ou versão gerada pela [Atlas](../atlas/)). _Meta: declaração obrigatória em todos os trabalhos avaliativos a partir da Fase 1._
+- Adopção institucional da declaração-padrão do [Anexo A](A-declaracao.qmd) (ou versão gerada pela [Themis](../themis/)). _Meta: declaração obrigatória em todos os trabalhos avaliativos a partir da Fase 1._
 - Existência de uma página institucional pública que lista as ferramentas de IA usadas com cobertura contratual pela FMUP e os respectivos regimes de protecção de dados (suficiente para que docentes possam decidir em conformidade).
-- Inclusão da versão do Quadro de Referência em cada declaração gerada (já assegurado pela [Atlas](../atlas/) versão 0.5.0 ou superior).
+- Inclusão da versão do Quadro de Referência em cada declaração gerada (já assegurado pela [Themis](../themis/) versão 0.5.0 ou superior).
 
 ## 4. Literacia afectiva
 

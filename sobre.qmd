@@ -21,15 +21,15 @@ Por aplicação dos princípios de transparência que o próprio Quadro propõe,
 - **Docência em UCs da Licenciatura em Saúde Digital e Inovação Biomédica** da FMUP. As propostas de articulação curricular com a Recomendação 4/2026 do CNE incidem em conteúdos próximos das UCs leccionadas pelo autor.
 - **Investigação no [RISE-Health](https://rise-health.pt/)**, com linhas em IA aplicada ao suporte à decisão clínica, _mobile health_ e ciência de dados de saúde. Qualquer trabalho institucional sobre infraestrutura ou governança de IA na FMUP toca em domínios que se sobrepõem aos interesses do laboratório.
 - **Editor associado** no _RISE Health Research Journal_ (Lippincott/Wolters Kluwer) e no _Scientific Reports_ (Nature Portfolio). Os princípios sobre uso de GenAI em publicação académica reflectem normas editoriais ICMJE/WAME/COPE com as quais o autor está editorialmente envolvido.
-- **Autoria do Atlas** e da extensão Quarto `tiagojct/quarto-fmup` (CC BY 4.0). Qualquer transição para aplicação institucional certificada irá requerer a transferência ou abertura do desenvolvimento a terceiros, em condições a definir pela FMUP.
+- **Autoria da Themis** (anteriormente *Atlas*) e da extensão Quarto `tiagojct/quarto-fmup` (CC BY 4.0). Qualquer transição para aplicação institucional certificada irá requerer a transferência ou abertura do desenvolvimento a terceiros, em condições a definir pela FMUP.
 
-O autor **não recebeu financiamento dedicado** para a redacção do Quadro ou do Atlas. Não há acordos comerciais, consultadoria, _equity_ ou outras relações financeiras com fornecedores de plataformas de IA generativa, e em particular com qualquer das ferramentas referenciadas no documento (IAedu, ChatGPT, Claude, NotebookLM, Perplexity, DeepL, Writefull). O uso pessoal das ferramentas comerciais é declarado em conta individual sem privilégios institucionais.
+O autor **não recebeu financiamento dedicado** para a redacção do Quadro ou da Themis. Não há acordos comerciais, consultadoria, _equity_ ou outras relações financeiras com fornecedores de plataformas de IA generativa, e em particular com qualquer das ferramentas referenciadas no documento (IAedu, ChatGPT, Claude, NotebookLM, Perplexity, DeepL, Writefull). O uso pessoal das ferramentas comerciais é declarado em conta individual sem privilégios institucionais.
 
 Esta declaração será actualizada se alguma das condições materiais ou profissionais aqui descritas se alterar.
 
 ## Continuidade e plano de transição {#continuidade}
 
-O Quadro e o Atlas são, no presente estado, mantidos no espaço pessoal do autor. Reconhecendo as limitações que esta circunstância impõe a qualquer aspiração institucional, prevêem-se quatro medidas de continuidade:
+O Quadro e a Themis são, no presente estado, mantidos no espaço pessoal do autor. Reconhecendo as limitações que esta circunstância impõe a qualquer aspiração institucional, prevêem-se quatro medidas de continuidade:
 
 - **Licença permissiva.** Todo o conteúdo está publicado sob [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) e todo o código (Atlas, extensão Quarto, _scripts_ de _build_) sob a mesma licença. Qualquer pessoa ou instituição pode legalmente _forkar_, adaptar e manter cópias derivadas.
 - **Repositório público.** O código-fonte completo está em [github.com/tiagojct/fmup-ia](https://github.com/tiagojct/fmup-ia). A história editorial é integralmente reconstruível a partir do histórico `git`.
@@ -46,7 +46,7 @@ Director do Mestrado em Informática da Saúde da FMUP; coordena unidades curric
 
 Página pessoal: [tiagojct.eu](https://tiagojct.eu).
 
-Este Quadro foi redigido em pt-PT (pré-AO90) entre Abril e Maio de 2026, na sequência de um período de observação da adopção generalizada de GenAI por estudantes e docentes da FMUP. A ferramenta operacional [**Atlas**](atlas/) acompanha o Quadro desde a sua primeira versão pública.
+Este Quadro foi redigido em pt-PT (pré-AO90) entre Abril e Maio de 2026, na sequência de um período de observação da adopção generalizada de GenAI por estudantes e docentes da FMUP. A ferramenta operacional [**Themis**](themis/) acompanha o Quadro desde a sua primeira versão pública.
 
 ## Como está organizado o Quadro
 
@@ -64,29 +64,29 @@ A Parte II inclui ainda capítulos sobre infraestrutura e governança (incluindo
 
 Sete **Anexos** (A–G) acompanham a proposta com instrumentos prontos a usar: modelo de declaração de uso, cláusula-tipo para programas de unidades curriculares, recursos externos, guia prático, cenários com casos-limite resolvidos, glossário e grelha de maturidade institucional.
 
-Uma convenção tipográfica: o documento chama-se sempre **Quadro** (maiúscula), a ferramenta operacional chama-se **Atlas**. As convenções completas de terminologia estão na página [Convenções](convencoes.qmd).
+Uma convenção tipográfica: o documento chama-se sempre **Quadro** (maiúscula), a ferramenta chama-se **Themis** (anteriormente *Atlas*, renomeada em Junho de 2026 para evitar colisão com o portal *Atlas U.Porto*). As convenções completas de terminologia estão na página [Convenções](convencoes.qmd).
 
-## Como funciona o Atlas
+## Como funciona a Themis
 
-O [**Atlas**](atlas/) é uma ferramenta web que acompanha o Quadro e gera declarações de uso de IA generativa padronizadas. Corre inteiramente no browser — não instala nada, não envia dados para nenhum servidor, não guarda cookies.
+A [**Themis**](themis/) é uma ferramenta web que acompanha o Quadro e gera declarações de uso de IA generativa padronizadas. Corre inteiramente no browser — não instala nada, não envia dados para nenhum servidor, não guarda cookies.
 
-**O que faz:** a partir de um conjunto de perguntas sobre o papel do utilizador (estudante, docente ou investigador), a ferramenta utilizada e o tipo de assistência obtida, o Atlas produz um texto de declaração formatado para o destinatário pretendido — trabalho académico, manuscrito científico, candidatura FCT, Horizonte Europa ou Wellcome Trust.
+**O que faz:** a partir de um conjunto de perguntas sobre o papel do utilizador (estudante, docente ou investigador), a ferramenta utilizada e o tipo de assistência obtida, a Themis produz um texto de declaração formatado para o destinatário pretendido — trabalho académico, manuscrito científico, candidatura FCT, Horizonte Europa ou Wellcome Trust.
 
-**Como se relaciona com o Quadro:** cada declaração gerada referencia a versão do Quadro em vigor no momento da geração (`framework_version: FMUP Quadro de Referência v1.0 (2026-04-21)`; `policy.version`: ver `atlas/policy.json`; `APP_VERSION`: ver rodapé do Atlas), tornando-a rastreável no tempo. Quando a proposta for revista, as versões actualizadas ficam registadas no `CHANGELOG.md` do repositório.
+**Como se relaciona com o Quadro:** cada declaração gerada referencia a versão do Quadro em vigor no momento da geração (`framework_version`: ver rodapé da Themis; `policy.version`: ver `themis/policy.json`; `APP_VERSION`: ver rodapé da Themis), tornando-a rastreável no tempo. Quando a proposta for revista, as versões actualizadas ficam registadas no `CHANGELOG.md` do repositório.
 
-**Avaliação de risco:** o Atlas integra uma grelha de risco em quatro níveis (baseada no modelo HEAT-AI de Temper et al., 2025) que orienta o utilizador sobre a compatibilidade do uso com o Quadro. Esta avaliação é **sempre guiante — nunca bloqueante**: o utilizador mantém o controlo e pode gerar a declaração independentemente do nível de risco assinalado.
+**Avaliação de risco:** a Themis integra uma grelha de risco em quatro níveis (baseada no modelo HEAT-AI de Temper et al., 2025) que orienta o utilizador sobre a compatibilidade do uso com o Quadro. Esta avaliação é **sempre guiante — nunca bloqueante**: o utilizador mantém o controlo e pode gerar a declaração independentemente do nível de risco assinalado.
 
 **Ligações partilháveis:** o estado de cada formulário é codificado no URL (fragmento `#`), permitindo partilhar ou arquivar uma declaração específica sem enviar dados para qualquer servidor.
 
-**Para citar o Atlas num trabalho académico:** o Atlas gera automaticamente a linha de citação adequada ao destinatário no final de cada declaração.
+**Para citar a Themis num trabalho académico:** a Themis gera automaticamente a linha de citação adequada ao destinatário no final de cada declaração.
 
 ## Infraestrutura técnica
 
-O Quadro e o Atlas são publicados como um único sítio web estático, construído com [Quarto](https://quarto.org/) e alojado no GitHub Pages. O repositório fonte é público em [github.com/tiagojct/fmup-ia](https://github.com/tiagojct/fmup-ia).
+O Quadro e a Themis são publicados como um único sítio web estático, construído com [Quarto](https://quarto.org/) e alojado no GitHub Pages. O repositório fonte é público em [github.com/tiagojct/fmup-ia](https://github.com/tiagojct/fmup-ia).
 
 **Quadro — website Quarto.** Os capítulos e anexos são ficheiros `.qmd` (Quarto Markdown) que o Quarto converte em HTML com navegação lateral, referências bibliográficas automáticas (formato Chicago Author-Date, via Pandoc/CSL) e tabela de conteúdos por página. A estrutura é de *website* (não de *book*): cada página é autónoma e os links cruzados são explícitos.
 
-**Atlas — demonstrador prototípico sem dependências.** O demonstrador é uma aplicação de página única escrita em JavaScript, HTML e CSS sem dependências externas ou passo de compilação. O Quarto copia-a como recurso estático. Corre inteiramente no browser do utilizador.
+**Themis — demonstrador prototípico sem dependências.** O demonstrador é uma aplicação de página única escrita em JavaScript, HTML e CSS sem dependências externas ou passo de compilação. O Quarto copia-a como recurso estático. Corre inteiramente no browser do utilizador.
 
 **Guias PDF.** Quatro guias práticos de uma página (estudantes, docentes, investigadores, serviços) são gerados directamente pelo `quarto render` via `format: fmup-typst` declarado em cada `.qmd` de guia, partilhando a tipografia e a paleta institucional do resto do site.
 
@@ -106,14 +106,15 @@ Este trabalho não foi suportado por financiamento dedicado. Não há conflitos 
 
 ## Estado de revisão
 
-O Quadro segue um esquema de versão própria (`v1.0`, `v1.1`, …), distinto do esquema do Atlas (`APP_VERSION`) e da `policy.version` do conjunto de regras. As três versões são todas declaradas no rodapé de cada declaração emitida pelo Atlas.
+O Quadro segue um esquema de versão própria (`v1.0`, `v1.1`, …), distinto do esquema da Themis (`APP_VERSION`) e da `policy.version` do conjunto de regras. As três versões são todas declaradas no rodapé de cada declaração emitida pela Themis.
 
 | Quadro | Data | Notas |
 |---|---|---|
-| 1.0 | 2026-04-21 | Primeira versão pública do Quadro. Atlas correspondente: `v0.3.0`. |
-| 1.0 (rev.) | 2026-05-23 | Iterações editoriais sem alteração à estrutura ou aos princípios. Atlas correspondente: `v0.9.1`. `policy.version`: `1.2.2`. |
+| 1.0 | 2026-04-21 | Primeira versão pública do Quadro. Ferramenta correspondente: *Atlas* `v0.3.0`. |
+| 1.0 (rev.) | 2026-05-23 | Iterações editoriais sem alteração à estrutura ou aos princípios. Ferramenta correspondente: *Atlas* `v0.9.1`. `policy.version`: `1.2.2`. |
+| 1.1 | 2026-06-XX | Harmonização com o *White Paper* da Comissão de Ética da FMUP (Falcão-Pires et al., 2023): nova subsecção "Articulação com a Comissão de Ética da FMUP" em capítulo 5, _cross-refs_ em capítulos 2, 6, 14. **Rebranding da ferramenta** de *Atlas* para **Themis** (colisão com portal *Atlas U.Porto*) --- `v1.0.0`. `policy.version`: `1.3.0` (`recommended_tools`, `submission` CPD, `courseType` docente, novas tipologias). |
 
-Revisões futuras (`v1.1`, `v2.0`, …) serão registadas neste quadro e no `CHANGELOG.md` do repositório, com correspondência explícita às versões do Atlas e da `policy.json` que as acompanham.
+Revisões futuras (`v1.2`, `v2.0`, …) serão registadas neste quadro e no `CHANGELOG.md` do repositório, com correspondência explícita às versões da Themis e da `policy.json` que as acompanham.
 
 ## Reportar erros e contribuir
 
@@ -122,5 +123,5 @@ O repositório do projecto é público em [github.com/tiagojct/fmup-ia](https://
 ## Recursos relacionados
 
 - [Quadro de referência](quadro/) --- documento principal.
-- [Atlas](atlas/) --- demonstrador prototípico.
+- [Themis](themis/) --- demonstrador prototípico (anteriormente *Atlas*).
 - [Recursos](recursos.qmd) --- *frameworks* externos e leitura adicional.

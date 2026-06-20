@@ -40,7 +40,7 @@ Antes de usar GenAI num trabalho académico:
 
 1. **Verifique a política da UC.** Consulte o programa da unidade curricular — deve incluir uma cláusula sobre GenAI (ver [Anexo B](B-clausula.qmd)). Se não houver cláusula, o uso fica condicionado a pedido de esclarecimento ao docente.
 2. **Use dentro do que o regime permite.** Guarde os _prompts_ que usou e uma nota sobre o tipo de assistência obtida.
-3. **Gere a sua declaração com [Atlas](../atlas/) e inclua-a no trabalho.** A declaração deve preceder o texto principal ou constar num anexo identificado.
+3. **Gere a sua declaração com [Themis](../themis/) e inclua-a no trabalho.** A declaração deve preceder o texto principal ou constar num anexo identificado.
 
 ### Regras essenciais
 

@@ -6,7 +6,7 @@ O quadro assenta em sete princípios derivados das referências europeias e inte
 
 A GenAI é ferramenta de apoio, não substituto do pensamento, do raciocínio clínico ou da criação intelectual. O utilizador é sempre responsável pelo conteúdo que produz, revê ou submete. A investigação sobre os efeitos cognitivos é sugestiva mas mista: León-Domínguez [@leondominguez2024cognitive] argumenta que a utilização rotineira pode erodir funções executivas; Shin et al. [@shin2024impact] encontraram desempenho superior em raciocínio ético no grupo sem ChatGPT; Iqbal et al. [@iqbal2025metacog] mostraram melhorias quando a GenAI é articulada com metacognição partilhada. O efeito depende do desenho pedagógico, não da ferramenta.
 
-A Recomendação n.º 4/2026 do CNE formula este princípio em termos claros para o sistema educativo público: "nenhuma decisão com impacto significativo na vida dos alunos --- retenção, colocação, encaminhamento, avaliação sumativa --- possa ser tomada com base exclusiva em sistemas automatizados de IA, garantindo sempre a validação humana qualificada e o direito de recurso" [@cne2026recomendacao, Recomendação 3.3]. Embora tenha natureza consultiva, a Recomendação tem peso de _soft law_ relevante para a governação institucional. A FMUP transpõe esse princípio, como proposta, para o processo disciplinar previsto no capítulo [6](06-infraestrutura.qmd) e para a arquitectura do [Atlas](../atlas/), onde a avaliação de risco é sempre guiante e nunca bloqueante.
+A Recomendação n.º 4/2026 do CNE formula este princípio em termos claros para o sistema educativo público: "nenhuma decisão com impacto significativo na vida dos alunos --- retenção, colocação, encaminhamento, avaliação sumativa --- possa ser tomada com base exclusiva em sistemas automatizados de IA, garantindo sempre a validação humana qualificada e o direito de recurso" [@cne2026recomendacao, Recomendação 3.3]. Embora tenha natureza consultiva, a Recomendação tem peso de _soft law_ relevante para a governação institucional. A FMUP transpõe esse princípio, como proposta, para o processo disciplinar previsto no capítulo [6](06-infraestrutura.qmd) e para a arquitectura da [Themis](../themis/), onde a avaliação de risco é sempre guiante e nunca bloqueante.
 
 Este quadro adopta também a rejeição do _AI exceptionalism_ proposta pelo _AI at Stanford Advisory Committee_ (2025): obrigações que se aplicam a um colega que assiste, a um auxiliar de redacção ou a uma ferramenta estatística aplicam-se também à GenAI. A novidade não dispensa o regime (ver capítulo [10](10-panorama-eua.qmd)).
 
@@ -47,9 +47,9 @@ Qualquer política sobre GenAI é documento vivo. A velocidade tecnológica exig
 
 ## Operacionalização pelos princípios
 
-A ferramenta [**Atlas**](../atlas/) operacionaliza os princípios 1 a 4 através de regras avaliadas em tempo real contra cada selecção do utilizador. Os princípios 5 a 7 requerem mecanismos institucionais além da declaração individual. A tabela seguinte sintetiza a correspondência:
+A ferramenta [**Themis**](../themis/) operacionaliza os princípios 1 a 4 através de regras avaliadas em tempo real contra cada selecção do utilizador. Os princípios 5 a 7 requerem mecanismos institucionais além da declaração individual. A tabela seguinte sintetiza a correspondência:
 
-| Princípio | Regras Atlas (`policy.json`) | Mecanismo institucional |
+| Princípio | Regras Themis (`policy.json`) | Mecanismo institucional |
 |-----------|------------------------------|------------------------|
 | 1 — Agência humana | R-STUDENT-CLINICAL-IDEATION, R-STUDENT-AS-IS, R-TEACHER-CLASSIFICATION-WARNING, R-RESEARCHER-AUTHORSHIP | — |
 | 2 — Integridade académica | R-STUDENT-AS-IS, R-STUDENT-CODE, R-TEACHER-NOT-PERMITTED, R-RESEARCHER-AUTHORSHIP, R-RESEARCHER-DRAFTING-SUBSTANTIVE, R-RESEARCHER-STATISTICS | — |

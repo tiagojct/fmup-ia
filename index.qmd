@@ -1,6 +1,6 @@
 ---
 title: "FMUP · IA"
-description: "Quadro de referência institucional + ferramenta Atlas"
+description: "Quadro de referência institucional + ferramenta Themis"
 page-layout: full
 toc: false
 sidebar: false
@@ -20,7 +20,7 @@ Para compreender a política, comece pelo Quadro. Para declarar um uso concreto 
 :::
 
 ::: {.hero-cta}
-[Abrir o Atlas](atlas/){.btn .btn-primary .btn-lg}
+[Abrir a Themis](themis/){.btn .btn-primary .btn-lg}
 [Ler o Quadro](quadro/){.btn .btn-secondary .btn-lg}
 :::
 
@@ -31,11 +31,11 @@ Estado: **contributo individual** de Tiago Jacinto para apreciação institucion
 
 ::: {.cards-3}
 ::: {.card-tile}
-### Atlas
+### Themis
 
 Demonstrador prototípico que gera declarações estruturadas de uso de IA com avaliação guidante de risco em quatro níveis. Não é aplicação institucional certificada.
 
-[Abrir o Atlas](atlas/){.card-link}
+[Abrir a Themis](themis/){.card-link}
 :::
 
 ::: {.card-tile}

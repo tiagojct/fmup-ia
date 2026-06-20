@@ -1,9 +1,15 @@
-# Atlas — AI Usage Statement Generator
+# Themis — AI Usage Statement Generator
 
-**Atlas** is the **prototype demonstrator** of the FMUP · IA framework. It is a
-self-contained, dependency-free web tool that generates standardised AI-usage
-declarations for academic and research contexts at the **Faculty of Medicine of
-the University of Porto (FMUP)**.
+**Themis** (Greek goddess of divine order, custom and law) is the **prototype
+demonstrator** of the FMUP · IA framework. It is a self-contained,
+dependency-free web tool that generates standardised AI-usage declarations
+for academic and research contexts at the **Faculty of Medicine of the
+University of Porto (FMUP)**.
+
+> The tool was previously named *Atlas*. It was renamed in June 2026 to
+> avoid collision with the existing **Atlas U.Porto** institutional
+> application portal at `atlas.up.pt`. URL changes accordingly: the live
+> location is now `tiagojct.eu/fmup-ia/themis/`.
 
 Status: this is a prototype demonstrator, **not a certified institutional
 application**. The accompanying framework is an individual contribution
@@ -57,12 +63,12 @@ The footer now renders a short articulated link to the platform's
 reference URL, when present.
 
 The CNIPES platform is, at the time of writing, a proposal under
-development in Phase 2 of the CNIPES project. Atlas declares
+development in Phase 2 of the CNIPES project. Themis declares
 articulation, not integration: when and if the Platform is published,
-the Atlas-generated declarations and the framework-versioned risk
+the Themis-generated declarations and the framework-versioned risk
 evaluations can contribute as registrable institutional practice.
 
-The detailed mapping between Atlas / the FMUP framework and the
+The detailed mapping between Themis / the FMUP framework and the
 CNIPES diagnosis is in
 [Chapter 12b — Enquadramento nacional](https://tiagojct.eu/fmup-ia/quadro/12b-panorama-portugal.html)
 and in [Annex G — Grelha de maturidade](https://tiagojct.eu/fmup-ia/quadro/G-maturidade-cnipes.html)
@@ -70,20 +76,20 @@ of the FMUP framework.
 
 ## Use it
 
-- Hosted: <https://tiagojct.eu/fmup-ia/atlas/> (deployed to GitHub Pages on every
+- Hosted: <https://tiagojct.eu/fmup-ia/themis/> (deployed to GitHub Pages on every
   push to `main` of the parent monorepo `tiagojct/fmup-ia`).
 - Locally with a server (recommended for full functionality):
   ```sh
   # from the repo root, after `quarto render`:
   cd _site && python3 -m http.server 8000
-  # then open http://localhost:8000/atlas/
+  # then open http://localhost:8000/themis/
   ```
   Or, to develop only the SPA without a Quarto build:
   ```sh
-  cd fmup-ia/atlas && python3 -m http.server 8000
+  cd fmup-ia/themis && python3 -m http.server 8000
   # then open http://localhost:8000
   ```
-- Locally from `file://`: open `atlas/index.html` in a browser. Statement
+- Locally from `file://`: open `themis/index.html` in a browser. Statement
   generation works; the institutional risk panel is disabled because
   `policy.json` cannot be fetched cross-origin from `file://`.
 

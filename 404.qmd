@@ -4,10 +4,10 @@ sidebar: false
 toc: false
 ---
 
-A página que procuras não existe ou foi movida.
+A página que procura não existe ou foi movida. Se chegou aqui através de uma ligação para `/atlas/...`, a ferramenta foi renomeada em Junho de 2026 para **Themis** e a URL canónica é agora `/themis/`.
 
 ::: {.hero-cta style="margin-top:1.5rem"}
 [Ir para o início](./){.btn .btn-primary}
 [Ler o Quadro](quadro/){.btn .btn-secondary}
-[Abrir o Atlas](atlas/){.btn .btn-secondary}
+[Abrir a Themis](themis/){.btn .btn-secondary}
 :::

@@ -16,9 +16,9 @@ project:
     - "apresentacoes/*.qmd"
     - "quadro/guias/*.qmd"
     - "!quadro/full-references.md"
-    - "!atlas/**"
+    - "!themis/**"
   resources:
-    - "atlas/**"
+    - "themis/**"
     - "assets/**"
   preview:
     port: 4321
@@ -51,8 +51,8 @@ website:
         text: "Início"
       - href: quadro/index.qmd
         text: "Quadro"
-      - href: atlas/index.html
-        text: "Atlas"
+      - href: themis/index.html
+        text: "Themis"
         target: _self
       - href: recursos.qmd
         text: "Recursos"
@@ -118,8 +118,8 @@ website:
         href: index.qmd
       - text: "Quadro"
         href: quadro/index.qmd
-      - text: "Atlas"
-        href: atlas/index.html
+      - text: "Themis"
+        href: themis/index.html
       - text: "GitHub"
         href: https://github.com/tiagojct/fmup-ia
 

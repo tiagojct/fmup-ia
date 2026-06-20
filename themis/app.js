@@ -11,7 +11,7 @@
 
   // ---- Single source of truth for the tool version. ----
   // Bump this when statement content (any i18n file) changes.
-  const APP_VERSION = '0.9.2';
+  const APP_VERSION = '1.0.0';
 
   // Schema version for the URL hash payload. Bump when state shape
   // changes incompatibly. Hashes with a different `v` are rejected.
@@ -38,7 +38,7 @@
       if (!known.has(k)) orphans.add(`${r.id || '<anon>'}→risk=${k}`);
     }
     if (orphans.size) {
-      console.warn('[atlas] rules with risk level not declared in policy.risk_levels:', [...orphans]);
+      console.warn('[themis] rules with risk level not declared in policy.risk_levels:', [...orphans]);
     }
   }
 

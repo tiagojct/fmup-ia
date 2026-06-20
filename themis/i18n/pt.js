@@ -1,4 +1,4 @@
-// Atlas (FMUP · IA) — European Portuguese strings and statement generators.
+// Themis (FMUP · IA) — European Portuguese strings and statement generators.
 // Edit this file (and en.js) to update wording. Bump APP_VERSION in app.js
 // whenever you change statement content.
 
@@ -106,7 +106,7 @@
 
   const footer = (version, policy) => {
     const d = fmtDate(new Date());
-    let s = ' Declaração gerada a ' + d + ' através da Atlas (FMUP · IA), versão ' + version + '.';
+    let s = ' Declaração gerada a ' + d + ' através da Themis (FMUP · IA), versão ' + version + '.';
     if (policy && policy.framework_version) {
       s += ' Em conformidade com ' + policy.framework_version + '.';
     }
@@ -241,7 +241,7 @@
     const tasksFrag = tasks.length ? list(tasks) : 'tarefas auxiliares';
     const fw = policy && policy.framework_version ? '; em conformidade com ' + policy.framework_version : '';
     return 'Os autores declaram a utilização de ' + tools + ' para ' + tasksFrag +
-      ', tendo revisto criticamente os respetivos contributos e assumindo responsabilidade integral pelo conteúdo (gerado pela Atlas (FMUP · IA), v' + version + fw + ').';
+      ', tendo revisto criticamente os respetivos contributos e assumindo responsabilidade integral pelo conteúdo (gerado pela Themis (FMUP · IA), v' + version + fw + ').';
   };
 
   window.I18N_PT = {
@@ -253,7 +253,7 @@
     ui: {
       brand: 'FMUP',
       brandFull: 'Faculdade de Medicina da Universidade do Porto',
-      appTitle: 'Atlas — Declarações de uso de IA',
+      appTitle: 'Themis — Declarações de uso de IA',
       appSubtitle: 'Apoio à elaboração de declarações de utilização de inteligência artificial em contexto académico e de investigação na FMUP',
       switchLanguage: 'Mudar para English',
       footerPrototype: 'Demonstrador prototípico',

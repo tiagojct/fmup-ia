@@ -10,8 +10,8 @@ Esta página documenta as convenções tipográficas, terminológicas e de cita�
 | Termo | Definição |
 |---|---|
 | **Quadro** | O presente documento de política institucional: *FMUP · IA — Quadro de referência institucional para a utilização de IA generativa na FMUP*. Escrito sempre com maiúscula quando se refere a este documento. |
-| **Atlas** | A ferramenta web que gera declarações de uso de IA padronizadas, disponível em [tiagojct.eu/fmup-ia/atlas/](atlas/). Escrito com maiúscula por ser nome próprio. |
-| **Vertente** | Uma das três aplicações operacionais da Parte II: Estudantes, Docentes ou Investigadores. Cada vertente tem o seu capítulo próprio e o seu ramo no Atlas. |
+| **Themis** | A ferramenta web que gera declarações de uso de IA padronizadas, disponível em [tiagojct.eu/fmup-ia/themis/](themis/). Escrita com maiúscula por ser nome próprio. **Era** *Atlas* até Junho de 2026 (rebranding para evitar colisão com o portal *Atlas U.Porto*). |
+| **Vertente** | Uma das três aplicações operacionais da Parte II: Estudantes, Docentes ou Investigadores. Cada vertente tem o seu capítulo próprio e o seu ramo na Themis. |
 | **Parte I** | Comparação externa e diagnóstico de lacunas (capítulos 10 a 15). |
 | **Parte II** | Proposta operacional para a FMUP (capítulos 1 a 9). |
 | **capítulo X** | Referência a um capítulo numerado do Quadro. Escrito com minúscula, seguido do número. |
@@ -49,14 +49,14 @@ A escolha pelo pré-AO90 é editorial do autor e não constitui posição instit
 
 ## Versões e rastreabilidade
 
-O Atlas mantém dois números de versão independentes:
+A Themis mantém dois números de versão independentes:
 
 | Versão | O que cobre | Como interpretar |
 |---|---|---|
 | `APP_VERSION` | Interface, textos das declarações, ficheiros `i18n/` | Muda quando o texto gerado muda |
 | `policy.version` | Regras institucionais em `policy.json` | Muda quando as regras ou os níveis de risco mudam |
 
-Cada declaração gerada pelo Atlas inclui ambos os números, permitindo rastrear exactamente qual a versão do Quadro e da ferramenta que produziu aquela declaração.
+Cada declaração gerada pela Themis inclui ambos os números, permitindo rastrear exactamente qual a versão do Quadro e da ferramenta que produziu aquela declaração.
 
 ## Como citar o Quadro
 
@@ -66,8 +66,8 @@ Para referenciar um capítulo específico, acrescentar o URL do capítulo:
 
 > Jacinto T. *FMUP · IA — Quadro*, capítulo 3 (Vertente Estudantes). <https://tiagojct.eu/fmup-ia/quadro/03-estudantes.html>
 
-## Como citar o Atlas
+## Como citar a Themis
 
-O Atlas gera automaticamente a linha de citação adequada ao destinatário no final de cada declaração produzida. Para uma referência genérica à ferramenta:
+A Themis gera automaticamente a linha de citação adequada ao destinatário no final de cada declaração produzida. Para uma referência genérica à ferramenta:
 
-> Jacinto T. Atlas — FMUP AI Usage Statement Generator, v0.6.5. Faculdade de Medicina da Universidade do Porto, 2026. <https://tiagojct.eu/fmup-ia/atlas/>
+> Jacinto T. Themis — FMUP AI Usage Statement Generator (anteriormente *Atlas*), v1.0.0. Faculdade de Medicina da Universidade do Porto, 2026. <https://tiagojct.eu/fmup-ia/themis/>
