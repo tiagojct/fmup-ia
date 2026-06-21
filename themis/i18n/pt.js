@@ -410,10 +410,20 @@
       step4Help: 'Indique o nome e, sempre que possível, a versão das ferramentas (por exemplo: ChatGPT 4o, Claude Sonnet 4.6, GitHub Copilot).',
       step4Placeholder: 'Por exemplo: ChatGPT 4o; DeepL',
       step5: 'Como integrou os contributos da IA?',
+      step5Help: 'Pense no que fez com o que a ferramenta produziu. Se usou só para confirmar uma ideia ou explorar abordagens, escolha "Apenas como referência". Se pegou no texto/código gerado, reescreveu partes substanciais, verificou e refez raciocínios, escolha "Substancialmente editados". Se copiou tal-e-qual ou fez ajustes pontuais (vírgulas, sinónimos), escolha "Sem alterações substanciais". Esta escolha condiciona a frase final da declaração e tem implicações sobre o seu nível de autoria.',
       modification: {
-        reference: 'Apenas como referência',
-        edited: 'Substancialmente editados',
-        as_is: 'Sem alterações substanciais',
+        reference: {
+          label: 'Apenas como referência',
+          description: 'O output da ferramenta serviu como inspiração ou termo de comparação. Não foi incorporado no trabalho submetido.',
+        },
+        edited: {
+          label: 'Substancialmente editados',
+          description: 'Reescreveu partes significativas, verificou factos e fontes, e o resultado final reflecte o seu juízo crítico. Mantém autoria plena.',
+        },
+        as_is: {
+          label: 'Sem alterações substanciais',
+          description: 'O conteúdo permanece em larga medida como foi gerado, com edição apenas superficial (formatação, pequenas correcções). Implica menor grau de autoria pessoal --- declarar com transparência.',
+        },
       },
       step6UseDate: 'Quando ocorreu a utilização principal?',
       step6UseDateHelp: 'Opcional. Se a utilização ocorreu em data anterior à geração desta declaração (por exemplo, tese ou trabalho elaborado ao longo de meses), indique-a aqui. Se deixar em branco, a data de utilização será considerada a mesma da geração.',

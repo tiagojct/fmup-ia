@@ -398,10 +398,20 @@
       step4Help: 'Indicate the name and, where possible, the version of the tools (e.g. ChatGPT 4o, Claude Sonnet 4.6, GitHub Copilot).',
       step4Placeholder: 'For example: ChatGPT 4o; DeepL',
       step5: 'How did you integrate the AI contributions?',
+      step5Help: 'Think about what you did with what the tool produced. If you only used it to confirm an idea or explore approaches, choose "Reference only". If you took the generated text/code, rewrote substantial parts, verified facts and rebuilt the reasoning, choose "Substantially edited". If you copied it as-is or only made superficial tweaks (commas, synonyms), choose "Without substantial changes". This choice shapes the final phrase of the statement and has implications for the degree of authorship you claim.',
       modification: {
-        reference: 'Reference only',
-        edited: 'Substantially edited',
-        as_is: 'Without substantial changes',
+        reference: {
+          label: 'Reference only',
+          description: 'The tool output served as inspiration or a point of comparison. It was not incorporated into the submitted work.',
+        },
+        edited: {
+          label: 'Substantially edited',
+          description: 'You rewrote significant parts, verified facts and sources, and the final result reflects your critical judgement. Full authorship retained.',
+        },
+        as_is: {
+          label: 'Without substantial changes',
+          description: 'The content remains largely as generated, with only superficial editing (formatting, minor corrections). Implies a smaller degree of personal authorship --- disclose transparently.',
+        },
       },
       step6UseDate: 'When did the main use occur?',
       step6UseDateHelp: 'Optional. If the AI tools were used at a date earlier than the generation of this statement (e.g. a thesis or project written over several months), indicate that date here. If left blank, the use date is taken to be the generation date.',

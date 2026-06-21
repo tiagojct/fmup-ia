@@ -304,6 +304,7 @@ main:focus { outline: none; }
 
 .option input { margin-top: 0.2rem; accent-color: var(--c-fmup-yellow); }
 
+.option input:checked ~ .option-text .option-label,
 .option input:checked ~ .option-label { font-weight: 700; }
 
 .option:has(input:checked) {
@@ -314,6 +315,27 @@ main:focus { outline: none; }
 }
 
 .option-label { font-size: 0.95rem; line-height: 1.4; }
+
+.option-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.option-description {
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--c-text-muted);
+}
+
+.option-with-description {
+  align-items: flex-start;
+}
+
+@media (prefers-color-scheme: dark) {
+  .option-description { color: var(--c-text-muted); }
+}
 
 .text-input,
 textarea {

@@ -11,7 +11,7 @@
 
   // ---- Single source of truth for the tool version. ----
   // Bump this when statement content (any i18n file) changes.
-  const APP_VERSION = '1.0.2';
+  const APP_VERSION = '1.0.3';
 
   // Schema version for the URL hash payload. Bump when state shape
   // changes incompatibly. Hashes with a different `v` are rejected.
@@ -508,7 +508,9 @@
   }
 
   function radioGroup(name, options, selected, onchange) {
-    const fg = el('div', { class: 'field-group cols-' + (options.length > 3 ? '2' : options.length) });
+    const hasDescriptions = options.some((o) => o.description);
+    const colsClass = hasDescriptions ? 'cols-1' : ('cols-' + (options.length > 3 ? '2' : options.length));
+    const fg = el('div', { class: 'field-group ' + colsClass });
     options.forEach((opt) => {
       const input = el('input', {
         type: 'radio',
@@ -517,7 +519,12 @@
         checked: selected === opt.value,
         onchange: () => { if (input.checked) onchange(opt.value); },
       });
-      const label = el('label', { class: 'option' }, input, el('span', { class: 'option-label', text: opt.label }));
+      const textWrap = el('span', { class: 'option-text' });
+      textWrap.appendChild(el('span', { class: 'option-label', text: opt.label }));
+      if (opt.description) {
+        textWrap.appendChild(el('span', { class: 'option-description', text: opt.description }));
+      }
+      const label = el('label', { class: 'option' + (opt.description ? ' option-with-description' : '') }, input, textWrap);
       fg.appendChild(label);
     });
     return fg;
@@ -558,7 +565,13 @@
   }
 
   function asOptions(map) {
-    return Object.keys(map).map((k) => ({ value: k, label: map[k] }));
+    return Object.keys(map).map((k) => {
+      const v = map[k];
+      if (v && typeof v === 'object') {
+        return { value: k, label: v.label, description: v.description || '' };
+      }
+      return { value: k, label: v };
+    });
   }
 
   function canGenerateNow() {
@@ -660,7 +673,7 @@
       (v) => { state.tools = v; syncHash(true); refreshGenerate(screen); }
     ));
 
-    screen.appendChild(stepHeader(5, total, i.student.step5));
+    screen.appendChild(stepHeader(5, total, i.student.step5, i.student.step5Help));
     screen.appendChild(radioGroup(
       'modification',
       asOptions(i.student.modification),
@@ -1084,9 +1097,9 @@
         return i.student.tasks[k];
       }).filter(Boolean).join(', '));
       pushRow(rows, i.student.step4, state.tools);
-      pushRow(rows, i.student.step5, i.student.modification[state.modification]);
+      pushRow(rows, i.student.step5, (i.student.modification[state.modification] || {}).label || '');
     } else if (state.role === 'teacher') {
-      pushRow(rows, i.teacher.step1, i.teacher.level[state.level]);
+      pushRow(rows, i.teacher.step0CourseType, i.teacher.courseType[state.courseType]);
       pushRow(rows, i.teacher.step2, (state.assignment || []).map((k) => i.teacher.assignment[k]).filter(Boolean).join(', '));
       pushRow(rows, i.teacher.step3, i.teacher.policy[state.policy]);
       const skills = (state.skills || []).map((k) => i.teacher.skills[k]).filter(Boolean);

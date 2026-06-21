@@ -26,6 +26,46 @@ This project follows a `MAJOR.MINOR.PATCH` scheme:
 
 ---
 
+## [1.0.3] — 2026-06-21 — Detailed option descriptions for step 5
+
+The "Como integrou os contributos da IA?" step in the student form
+showed three terse radio labels ("Apenas como referência",
+"Substancialmente editados", "Sem alterações substanciais") with no
+guidance, which is the step with the most consequential ambiguity for
+the user (it shapes the final clause of the statement and the
+authorship claim).
+
+### Added
+- `student.step5Help` (PT + EN): a paragraph that explains how to map
+  what was actually done with the AI output onto each of the three
+  options, and warns that the choice affects the authorship implied
+  by the statement.
+- `student.modification` is now a map of `{label, description}`
+  objects instead of plain strings. Each option carries a one- or
+  two-sentence description shown directly under the label in the
+  radio group, replacing the unannotated previous labels.
+
+### Changed
+- `radioGroup()` in `app.js` accepts options with a `description`
+  field and renders a `.option-description` line under the label.
+  When any option in the group has a description, the layout
+  automatically switches to a single-column stack so each option has
+  room to breathe.
+- `asOptions()` understands either string values (legacy) or
+  `{label, description}` objects.
+- `pushRow()` for the student summary now reads
+  `i.student.modification[state.modification].label` instead of the
+  bare value, so the summary continues to show only the short label.
+- The summary row for the teacher form now uses `step0CourseType`
+  and `courseType` (matching the corrected form flow from 1.0.2).
+- New `.option-description`, `.option-text`,
+  `.option-with-description` CSS classes; dark-mode-safe (uses
+  `var(--c-text-muted)`).
+
+`APP_VERSION` 1.0.2 → **1.0.3**. `policy.version` unchanged (1.3.0).
+
+---
+
 ## [1.0.2] — 2026-06-21 — Form-flow corrections + chip detail
 
 Post-implementation fixes following manual smoke-test on dark mode.
