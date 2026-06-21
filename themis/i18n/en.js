@@ -69,16 +69,26 @@
     return ['other'];
   };
 
-  const fmtAssignmentNoun = (a) => {
-    const arr = assignmentArr(a);
-    if (arr.length === 1) return ASSIGNMENT_NOUN[arr[0]] || ASSIGNMENT_NOUN.other;
-    return list(arr.map((k) => ASSIGNMENT_NOUN[k] || ASSIGNMENT_NOUN.other));
+  const resolveAssignmentNoun = (k, otherText) => {
+    if (k === 'other' && otherText && trim(otherText)) return trim(otherText);
+    return ASSIGNMENT_NOUN[k] || ASSIGNMENT_NOUN.other;
   };
 
-  const fmtAssignmentPrep = (a) => {
+  const resolveAssignmentPrep = (k, otherText) => {
+    if (k === 'other' && otherText && trim(otherText)) return 'in this ' + trim(otherText);
+    return ASSIGNMENT_PREP[k] || ASSIGNMENT_PREP.other;
+  };
+
+  const fmtAssignmentNoun = (a, otherText) => {
     const arr = assignmentArr(a);
-    if (arr.length === 1) return ASSIGNMENT_PREP[arr[0]] || ASSIGNMENT_PREP.other;
-    return 'in this piece of work (' + fmtAssignmentNoun(a) + ')';
+    if (arr.length === 1) return resolveAssignmentNoun(arr[0], otherText);
+    return list(arr.map((k) => resolveAssignmentNoun(k, otherText)));
+  };
+
+  const fmtAssignmentPrep = (a, otherText) => {
+    const arr = assignmentArr(a);
+    if (arr.length === 1) return resolveAssignmentPrep(arr[0], otherText);
+    return 'in this piece of work (' + fmtAssignmentNoun(a, otherText) + ')';
   };
 
   const LEVEL_LABEL = {
@@ -160,8 +170,8 @@
     const subj = s.submission === 'group'
       ? 'The authors of this work declare that they made use of'
       : 'I declare that I made use of';
-    const aPrep = fmtAssignmentPrep(s.assignment);
-    const aNoun = fmtAssignmentNoun(s.assignment);
+    const aPrep = fmtAssignmentPrep(s.assignment, s.assignmentOther);
+    const aNoun = fmtAssignmentNoun(s.assignment, s.assignmentOther);
     const tools = trim(s.tools) || 'unspecified generative artificial intelligence tools';
     const tasks = (s.tasks || []).map((k) => {
       if (k === 'other' && trim(s.tasksOther)) return trim(s.tasksOther);
@@ -197,7 +207,7 @@
   };
 
   const teacherSyllabus = (s, version, policy) => {
-    const aNoun = fmtAssignmentNoun(s.assignment);
+    const aNoun = fmtAssignmentNoun(s.assignment, s.assignmentOther);
     const subj = subjectsByCourseType(s.courseType);
     const COURSE_LEAD_EN = {
       uc_undergrad: 'In this undergraduate course unit',
@@ -362,6 +372,8 @@
       },
       step2: 'What type of assignment is it?',
       step2Help: 'Select all that apply (an assignment can combine several).',
+      assignmentOtherLabel: 'Specify the type of work',
+      assignmentOtherPlaceholder: 'For example: narrative review, educational video, clinical infographic…',
       assignment: {
         essay: 'Essay',
         report: 'Report',
@@ -436,6 +448,8 @@
       },
       step2: 'What type of work will be assessed?',
       step2Help: 'Select all that apply (a course-unit can combine several).',
+      assignmentOtherLabel: 'Specify the type of work',
+      assignmentOtherPlaceholder: 'For example: narrative review, educational video, clinical infographic, written OSCE…',
       assignment: {
         essay: 'Essay',
         report: 'Report',
@@ -450,10 +464,20 @@
         other: 'Other',
       },
       step3: 'What will the AI-use policy be?',
+      step3Help: 'Choose the regime that applies to the assessed work in this programme. The choice shapes the syllabus clause and the type of declaration students/participants will have to submit. If unsure, ask whether the learning objective can be reached with GenAI assistance (permit, with or without disclosure) or whether it requires fully human production to be assessable (do not permit). It is also legitimate to combine different regimes in different assessment moments — in that case, pick the regime of the dominant moment and clarify in the syllabus.',
       policy: {
-        not_permitted: 'Not permitted',
-        with_disclosure: 'Permitted with full disclosure',
-        without_restrictions: 'Permitted without specific restrictions',
+        not_permitted: {
+          label: 'Not permitted',
+          description: 'GenAI use in the submitted work is prohibited. Appropriate when the competence assessed requires fully human production (real-time clinical reasoning, original expression, knowledge display without assistance). Implies assessment design that is robust to undeclared use — for example, presential or oral moments.',
+        },
+        with_disclosure: {
+          label: 'Permitted with full disclosure',
+          description: 'GenAI use is permitted provided that it is declared in line with Appendix A of the Framework: tools, tasks, sections and degree of modification. Suitable for most academic work. Omitting the disclosure is a stand-alone breach of academic integrity, regardless of content quality.',
+        },
+        without_restrictions: {
+          label: 'Permitted without specific restrictions',
+          description: 'GenAI use is permitted with no formal disclosure requirement. Suitable for low-stakes tasks where the assessed competence does not depend on text authorship (e.g. exploratory exercises, early drafts). Students/participants are still encouraged to indicate the tools used, for the sake of transparency.',
+        },
       },
       step4: 'Which skills must be student-generated?',
       step4Help: 'Select and/or add the skills that must be the work of the student(s).',

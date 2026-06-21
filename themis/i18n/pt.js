@@ -69,16 +69,26 @@
     return ['other'];
   };
 
-  const fmtAssignmentNoun = (a) => {
-    const arr = assignmentArr(a);
-    if (arr.length === 1) return ASSIGNMENT_NOUN[arr[0]] || ASSIGNMENT_NOUN.other;
-    return list(arr.map((k) => ASSIGNMENT_NOUN[k] || ASSIGNMENT_NOUN.other));
+  const resolveAssignmentNoun = (k, otherText) => {
+    if (k === 'other' && otherText && trim(otherText)) return trim(otherText);
+    return ASSIGNMENT_NOUN[k] || ASSIGNMENT_NOUN.other;
   };
 
-  const fmtAssignmentPrep = (a) => {
+  const resolveAssignmentPrep = (k, otherText) => {
+    if (k === 'other' && otherText && trim(otherText)) return 'neste(a) ' + trim(otherText);
+    return ASSIGNMENT_PREP[k] || ASSIGNMENT_PREP.other;
+  };
+
+  const fmtAssignmentNoun = (a, otherText) => {
     const arr = assignmentArr(a);
-    if (arr.length === 1) return ASSIGNMENT_PREP[arr[0]] || ASSIGNMENT_PREP.other;
-    return 'neste trabalho (' + fmtAssignmentNoun(a) + ')';
+    if (arr.length === 1) return resolveAssignmentNoun(arr[0], otherText);
+    return list(arr.map((k) => resolveAssignmentNoun(k, otherText)));
+  };
+
+  const fmtAssignmentPrep = (a, otherText) => {
+    const arr = assignmentArr(a);
+    if (arr.length === 1) return resolveAssignmentPrep(arr[0], otherText);
+    return 'neste trabalho (' + fmtAssignmentNoun(a, otherText) + ')';
   };
 
   const LEVEL_LABEL = {
@@ -148,8 +158,8 @@
     const subj = s.submission === 'group'
       ? 'Os autores deste trabalho declaram que recorreram'
       : 'Declaro que recorri';
-    const aPrep = fmtAssignmentPrep(s.assignment);
-    const aNoun = fmtAssignmentNoun(s.assignment);
+    const aPrep = fmtAssignmentPrep(s.assignment, s.assignmentOther);
+    const aNoun = fmtAssignmentNoun(s.assignment, s.assignmentOther);
     const tools = trim(s.tools) || 'ferramentas de inteligência artificial generativa não especificadas';
     const tasks = (s.tasks || []).map((k) => {
       if (k === 'other' && trim(s.tasksOther)) return trim(s.tasksOther);
@@ -213,7 +223,7 @@
   };
 
   const teacherSyllabus = (s, version, policy) => {
-    const aNoun = fmtAssignmentNoun(s.assignment);
+    const aNoun = fmtAssignmentNoun(s.assignment, s.assignmentOther);
     const subj = teacherSubjects(s.courseType);
     const COURSE_LEAD_PT = {
       uc_undergrad: 'No âmbito desta UC de licenciatura',
@@ -374,6 +384,8 @@
       },
       step2: 'Que tipo de trabalho é?',
       step2Help: 'Selecione todos os tipos aplicáveis (um trabalho pode combinar vários).',
+      assignmentOtherLabel: 'Especifique o tipo de trabalho',
+      assignmentOtherPlaceholder: 'Por exemplo: revisão narrativa, vídeo educativo, infografia clínica…',
       assignment: {
         essay: 'Ensaio',
         report: 'Relatório',
@@ -448,6 +460,8 @@
       },
       step2: 'Que tipo de trabalho será avaliado?',
       step2Help: 'Selecione todos os tipos aplicáveis (uma UC pode combinar vários).',
+      assignmentOtherLabel: 'Especifique o tipo de trabalho',
+      assignmentOtherPlaceholder: 'Por exemplo: revisão narrativa, vídeo educativo, infografia clínica, OSCE escrito…',
       assignment: {
         essay: 'Ensaio',
         report: 'Relatório',
@@ -462,10 +476,20 @@
         other: 'Outro',
       },
       step3: 'Qual será a política de uso de IA?',
+      step3Help: 'Decida o regime aplicável ao(s) trabalho(s) avaliativo(s) desta oferta formativa. A escolha condiciona a cláusula gerada para o programa da UC e o tipo de declaração que os estudantes/formandos terão de submeter. Em caso de dúvida, considere se o objectivo de aprendizagem em causa pode ser atingido com o auxílio de GenAI (permitir, com ou sem divulgação) ou se requer produção integralmente humana para ser avaliável (não permitir). É também legítimo combinar regimes diferentes em momentos avaliativos distintos — neste caso, escolha o regime do momento avaliativo predominante e clarifique no programa.',
       policy: {
-        not_permitted: 'Não permitido',
-        with_disclosure: 'Permitido com divulgação integral',
-        without_restrictions: 'Permitido sem restrições específicas',
+        not_permitted: {
+          label: 'Não permitido',
+          description: 'O uso de GenAI no trabalho submetido é proibido. Adequado quando a competência avaliada exige produção integralmente humana (raciocínio clínico em tempo real, expressão original, demonstração de conhecimento sem assistência). Implica desenho de avaliação robusto à utilização não declarada — por exemplo, momentos presenciais ou orais.',
+        },
+        with_disclosure: {
+          label: 'Permitido com divulgação integral',
+          description: 'O uso de GenAI é permitido desde que declarado em conformidade com o Anexo A do Quadro: ferramentas, tarefas, secções e grau de modificação. Adequado para a maioria dos trabalhos académicos. A omissão da declaração constitui violação autónoma de integridade académica, independentemente da qualidade do conteúdo.',
+        },
+        without_restrictions: {
+          label: 'Permitido sem restrições específicas',
+          description: 'O uso de GenAI é permitido sem exigência formal de declaração. Adequado a tarefas de baixo impacto avaliativo onde a competência avaliada não depende da autoria do texto (e.g., exercícios de exploração, esboços iniciais). Recomenda-se ainda assim que os estudantes/formandos indiquem ferramentas usadas, em prol da transparência.',
+        },
       },
       step4: 'Que competências têm de ser do(s) estudante(s)?',
       step4Help: 'Selecione e/ou acrescente as competências que devem ser, obrigatoriamente, da autoria do(s) estudante(s).',

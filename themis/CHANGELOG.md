@@ -26,6 +26,36 @@ This project follows a `MAJOR.MINOR.PATCH` scheme:
 
 ---
 
+## [1.0.4] — 2026-06-21 — Policy detail + assignment-other input
+
+### Added
+- `teacher.step3Help` and detailed descriptions for the three teacher
+  `policy` options (PT + EN). The "Qual será a política de uso de IA?"
+  step now opens with a paragraph that explains how to choose between
+  not-permitted, with-disclosure and without-restrictions, and each
+  option carries a one- or two-sentence description shown directly
+  under its label.
+- `state.assignmentOther` field (encoded in URL hash). When the user
+  ticks the "Outro / Other" assignment option in the student or teacher
+  form, a text input appears immediately below the checkbox group
+  asking to specify the type of work. The custom text replaces the
+  generic "trabalho" / "piece of work" wherever the assignment is
+  mentioned in the generated statement.
+
+### Changed
+- `fmtAssignmentNoun()` / `fmtAssignmentPrep()` in both i18n files now
+  accept an optional `otherText` argument and, when the assignment key
+  is `other` and the text is non-empty, substitute the custom text for
+  the generic noun and the appropriate preposition ("neste(a) X" in
+  PT, "in this X" in EN).
+- `pushRow()` for the teacher summary now reads
+  `i.teacher.policy[state.policy].label` instead of the bare value, so
+  the summary continues to show only the short label.
+
+`APP_VERSION` 1.0.3 → **1.0.4**. `policy.version` unchanged (1.3.0).
+
+---
+
 ## [1.0.3] — 2026-06-21 — Detailed option descriptions for step 5
 
 The "Como integrou os contributos da IA?" step in the student form

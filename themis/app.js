@@ -11,7 +11,7 @@
 
   // ---- Single source of truth for the tool version. ----
   // Bump this when statement content (any i18n file) changes.
-  const APP_VERSION = '1.0.3';
+  const APP_VERSION = '1.0.4';
 
   // Schema version for the URL hash payload. Bump when state shape
   // changes incompatibly. Hashes with a different `v` are rejected.
@@ -55,6 +55,7 @@
       // student
       submission: null,
       assignment: [],
+      assignmentOther: '',
       tasks: [],
       tasksOther: '',
       tools: '',
@@ -106,6 +107,7 @@
       done: s.done,
       submission: s.submission,
       assignment: s.assignment,
+      assignmentOther: s.assignmentOther,
       tasks: s.tasks,
       tasksOther: s.tasksOther,
       tools: s.tools,
@@ -634,12 +636,26 @@
     ));
 
     screen.appendChild(stepHeader(2, total, i.student.step2, i.student.step2Help));
+    const studentAssignmentOtherWrap = el('div', { id: 'student-assignment-other-wrap', hidden: state.assignment.indexOf('other') === -1 });
+    studentAssignmentOtherWrap.appendChild(textInputRow(
+      'student-assignment-other-input',
+      i.student.assignmentOtherPlaceholder || i.student.assignmentOtherLabel,
+      state.assignmentOther || '',
+      (v) => { state.assignmentOther = v; syncHash(true); refreshGenerate(screen); },
+      i.student.assignmentOtherLabel
+    ));
     screen.appendChild(checkboxGroup(
       'assignment',
       asOptions(i.student.assignment),
       state.assignment,
-      (v) => { state.assignment = v; syncHash(true); refreshGenerate(screen); }
+      (v) => {
+        state.assignment = v;
+        studentAssignmentOtherWrap.hidden = v.indexOf('other') === -1;
+        syncHash(true);
+        refreshGenerate(screen);
+      }
     ));
+    screen.appendChild(studentAssignmentOtherWrap);
 
     screen.appendChild(stepHeader(3, total, i.student.step3, i.student.step3Help));
     const tasksOtherWrap = el('div', { id: 'tasks-other-wrap', hidden: state.tasks.indexOf('other') === -1 });
@@ -715,14 +731,28 @@
     ));
 
     screen.appendChild(stepHeader(2, total, i.teacher.step2, i.teacher.step2Help));
+    const teacherAssignmentOtherWrap = el('div', { id: 'teacher-assignment-other-wrap', hidden: state.assignment.indexOf('other') === -1 });
+    teacherAssignmentOtherWrap.appendChild(textInputRow(
+      'teacher-assignment-other-input',
+      i.teacher.assignmentOtherPlaceholder || i.teacher.assignmentOtherLabel,
+      state.assignmentOther || '',
+      (v) => { state.assignmentOther = v; syncHash(true); refreshGenerate(screen); },
+      i.teacher.assignmentOtherLabel
+    ));
     screen.appendChild(checkboxGroup(
       'assignment',
       asOptions(i.teacher.assignment),
       state.assignment,
-      (v) => { state.assignment = v; syncHash(true); refreshGenerate(screen); }
+      (v) => {
+        state.assignment = v;
+        teacherAssignmentOtherWrap.hidden = v.indexOf('other') === -1;
+        syncHash(true);
+        refreshGenerate(screen);
+      }
     ));
+    screen.appendChild(teacherAssignmentOtherWrap);
 
-    screen.appendChild(stepHeader(3, total, i.teacher.step3));
+    screen.appendChild(stepHeader(3, total, i.teacher.step3, i.teacher.step3Help));
     screen.appendChild(radioGroup(
       'policy',
       asOptions(i.teacher.policy),
@@ -1101,7 +1131,7 @@
     } else if (state.role === 'teacher') {
       pushRow(rows, i.teacher.step0CourseType, i.teacher.courseType[state.courseType]);
       pushRow(rows, i.teacher.step2, (state.assignment || []).map((k) => i.teacher.assignment[k]).filter(Boolean).join(', '));
-      pushRow(rows, i.teacher.step3, i.teacher.policy[state.policy]);
+      pushRow(rows, i.teacher.step3, (i.teacher.policy[state.policy] || {}).label || '');
       const skills = (state.skills || []).map((k) => i.teacher.skills[k]).filter(Boolean);
       if ((state.skillsOther || '').trim()) skills.push(state.skillsOther.trim());
       pushRow(rows, i.teacher.step4, skills.join(', '));
