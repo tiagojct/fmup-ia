@@ -178,13 +178,24 @@
     return intro + ' ' + modification + useDateClause + ' ' + responsibility + footer(version, policy);
   };
 
-  const teacherSubjects = (level) => {
-    if (level === 'doctoral') {
+  const teacherSubjects = (courseType) => {
+    if (courseType === 'uc_phd') {
       return {
         capPlural: 'Os doutorandos',
         plural: 'os doutorandos',
         byPlural: 'pelos doutorandos',
         possPlural: 'dos doutorandos',
+        verbDevem: 'devem',
+        verbMantem: 'mantêm',
+        verbAssumem: 'assumem',
+      };
+    }
+    if (courseType === 'cpd' || courseType === 'microcredential' || courseType === 'other') {
+      return {
+        capPlural: 'Os formandos',
+        plural: 'os formandos',
+        byPlural: 'pelos formandos',
+        possPlural: 'dos formandos',
         verbDevem: 'devem',
         verbMantem: 'mantêm',
         verbAssumem: 'assumem',
@@ -202,9 +213,8 @@
   };
 
   const teacherSyllabus = (s, version, policy) => {
-    const lvl = LEVEL_LABEL[s.level] || LEVEL_LABEL.undergraduate;
     const aNoun = fmtAssignmentNoun(s.assignment);
-    const subj = teacherSubjects(s.level);
+    const subj = teacherSubjects(s.courseType);
     const COURSE_LEAD_PT = {
       uc_undergrad: 'No âmbito desta UC de licenciatura',
       uc_master: 'No âmbito desta UC de mestrado',
@@ -213,20 +223,20 @@
       microcredential: 'No âmbito desta microcredencial',
       other: 'No âmbito desta oferta formativa',
     };
-    const courseLead = COURSE_LEAD_PT[s.courseType] || ('No âmbito desta ' + lvl);
+    const courseLead = COURSE_LEAD_PT[s.courseType] || 'No âmbito desta oferta formativa';
     const lead = courseLead + ', e relativamente ao trabalho avaliativo do tipo ' + aNoun + ',';
 
     const policyText = {
       not_permitted: ' não é permitida a utilização de ferramentas de inteligência artificial generativa na produção do trabalho submetido. Os trabalhos avaliativos devem refletir exclusivamente a produção intelectual ' + subj.possPlural + ', sendo qualquer recurso a estas ferramentas considerado uma falta à integridade académica.',
       with_disclosure: ' é permitida a utilização de ferramentas de inteligência artificial generativa, sob condição de divulgação integral. ' + subj.capPlural + ' ' + subj.verbDevem + ' declarar de forma transparente as ferramentas empregues, as tarefas para as quais recorreram a essas ferramentas e o grau de modificação dos contributos gerados, mantendo plena responsabilidade pelo conteúdo submetido.',
-      without_restrictions: ' é permitida a utilização de ferramentas de inteligência artificial generativa sem restrições específicas. ' + subj.capPlural + ' ' + subj.verbMantem + ', contudo, plena responsabilidade pelo conteúdo submetido e pela sua adequação aos objectivos pedagógicos da unidade curricular.',
+      without_restrictions: ' é permitida a utilização de ferramentas de inteligência artificial generativa sem restrições específicas. ' + subj.capPlural + ' ' + subj.verbMantem + ', contudo, plena responsabilidade pelo conteúdo submetido e pela sua adequação aos objectivos pedagógicos.',
     }[s.policy] || '';
 
     return lead + policyText + footer(version, policy);
   };
 
   const teacherDisclosure = (s, version, policy) => {
-    const subj = teacherSubjects(s.level);
+    const subj = teacherSubjects(s.courseType);
     const skills = (s.skills || []).map((k) => SKILL_PHRASES[k]).filter(Boolean);
     if (trim(s.skillsOther)) skills.push(trim(s.skillsOther));
     const skillsClause = skills.length
@@ -234,7 +244,7 @@
       : '';
 
     if (s.policy === 'not_permitted') {
-      return 'Não é exigida qualquer declaração, na medida em que o uso de ferramentas de inteligência artificial generativa não é permitido nesta unidade curricular.' + skillsClause +
+      return 'Não é exigida qualquer declaração, na medida em que o uso de ferramentas de inteligência artificial generativa não é permitido nesta oferta formativa.' + skillsClause +
         ' Caso seja detetado qualquer indício de utilização destas ferramentas, o trabalho será objeto de avaliação no âmbito do regulamento de integridade académica da FMUP.' + footer(version, policy);
     }
 
@@ -360,9 +370,7 @@
       step1: 'O trabalho é individual ou em grupo?',
       submission: {
         individual: 'Trabalho individual',
-        group: 'Trabalho em grupo',
-        cpd_individual: 'Curso de Formação Contínua (individual)',
-        cpd_group: 'Curso de Formação Contínua (em grupo)'
+        group: 'Trabalho em grupo'
       },
       step2: 'Que tipo de trabalho é?',
       step2Help: 'Selecione todos os tipos aplicáveis (um trabalho pode combinar vários).',

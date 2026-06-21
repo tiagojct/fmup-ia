@@ -11,7 +11,7 @@
 
   // ---- Single source of truth for the tool version. ----
   // Bump this when statement content (any i18n file) changes.
-  const APP_VERSION = '1.0.1';
+  const APP_VERSION = '1.0.2';
 
   // Schema version for the URL hash payload. Bump when state shape
   // changes incompatibly. Hashes with a different `v` are rejected.
@@ -690,7 +690,7 @@
 
   function renderTeacherForm() {
     const i = t();
-    const total = 5;
+    const total = 4;
     const screen = el('section', { class: 'screen' });
 
     screen.appendChild(stepHeader(1, total, i.teacher.step0CourseType, i.teacher.step0CourseTypeHelp));
@@ -701,15 +701,7 @@
       (v) => { state.courseType = v; syncHash(true); refreshGenerate(screen); }
     ));
 
-    screen.appendChild(stepHeader(2, total, i.teacher.step1));
-    screen.appendChild(radioGroup(
-      'level',
-      asOptions(i.teacher.level),
-      state.level,
-      (v) => { state.level = v; syncHash(true); refreshGenerate(screen); }
-    ));
-
-    screen.appendChild(stepHeader(3, total, i.teacher.step2, i.teacher.step2Help));
+    screen.appendChild(stepHeader(2, total, i.teacher.step2, i.teacher.step2Help));
     screen.appendChild(checkboxGroup(
       'assignment',
       asOptions(i.teacher.assignment),
@@ -717,7 +709,7 @@
       (v) => { state.assignment = v; syncHash(true); refreshGenerate(screen); }
     ));
 
-    screen.appendChild(stepHeader(4, total, i.teacher.step3));
+    screen.appendChild(stepHeader(3, total, i.teacher.step3));
     screen.appendChild(radioGroup(
       'policy',
       asOptions(i.teacher.policy),
@@ -725,7 +717,7 @@
       (v) => { state.policy = v; syncHash(true); refreshGenerate(screen); }
     ));
 
-    screen.appendChild(stepHeader(5, total, i.teacher.step4, i.teacher.step4Help));
+    screen.appendChild(stepHeader(4, total, i.teacher.step4, i.teacher.step4Help));
     screen.appendChild(checkboxGroup(
       'skills',
       asOptions(i.teacher.skills),
@@ -747,7 +739,7 @@
   }
 
   function canGenerateTeacher() {
-    return !!(state.level && (state.assignment || []).length && state.policy);
+    return !!(state.courseType && (state.assignment || []).length && state.policy);
   }
 
   // ---- Researcher form ----
@@ -859,6 +851,20 @@
       specialised: i.ui.toolsTierSpecialised,
       consumer_warning: i.ui.toolsTierConsumerWarning,
     };
+    const tierBlurbs = {
+      institutional: isPt
+        ? 'Primeira escolha. Conta institucional, sem uso de dados para treino.'
+        : 'First choice. Institutional account; data not used for training.',
+      enterprise_optout: isPt
+        ? 'Aceitável quando IAedu não responder. Versões empresariais com contrato e opt-out de treino. Conta institucional.'
+        : 'Acceptable when IAedu does not fit. Enterprise tiers with contract and training opt-out. Institutional account.',
+      specialised: isPt
+        ? 'Ferramentas com função específica (tradução, revisão, leitura assistida). Confirme política de dados antes de usar.'
+        : 'Tools with a specific function (translation, language polishing, assisted reading). Confirm data policy before use.',
+      consumer_warning: isPt
+        ? 'Versões grátis para o público. Por defeito, os dados podem ser usados para treino — desactive nas definições e nunca introduza informação sensível.'
+        : 'Consumer free tiers. By default, data may be used for training — disable in settings and never enter sensitive information.',
+    };
     const wrap = el('div', { class: 'tool-chips-wrap' });
     if (i.ui.toolsSuggestedHeader) {
       wrap.appendChild(el('p', { class: 'tool-chips-header', text: i.ui.toolsSuggestedHeader }));
@@ -866,32 +872,51 @@
     if (i.ui.toolsSuggestedHelp) {
       wrap.appendChild(el('p', { class: 'tool-chips-help', text: i.ui.toolsSuggestedHelp }));
     }
+
+    function chipIsAdded(toolName) {
+      const cur = (document.getElementById(toolsInputId) || { value: state.tools }).value || '';
+      return cur.indexOf(toolName) !== -1;
+    }
+
     const tiers = ['institutional', 'enterprise_optout', 'specialised', 'consumer_warning'];
     tiers.forEach((tier) => {
       const tools = POLICY.recommended_tools.filter((tool) => tool.tier === tier);
       if (!tools.length) return;
-      const tierBlock = el('div', { class: 'tool-chips-tier tool-chips-tier-' + tier.replace('_', '-') });
+      const tierKey = tier.replace(/_/g, '-');
+      const tierBlock = el('div', { class: 'tool-chips-tier tool-chips-tier-' + tierKey });
       if (tierLabels[tier]) {
         tierBlock.appendChild(el('h5', { class: 'tool-chips-tier-label', text: tierLabels[tier] }));
       }
+      if (tierBlurbs[tier]) {
+        tierBlock.appendChild(el('p', { class: 'tool-chips-tier-blurb', text: tierBlurbs[tier] }));
+      }
       const row = el('div', { class: 'tool-chips' });
       tools.forEach((tool) => {
+        const privacy = isPt ? tool.privacy_pt : tool.privacy_en;
+        const added = chipIsAdded(tool.name);
+        const chipClasses = ['tool-chip', 'tool-chip-' + tierKey];
+        if (added) chipClasses.push('tool-chip-added');
         const chip = el('button', {
           type: 'button',
-          class: 'tool-chip tool-chip-' + tier.replace('_', '-'),
-          'aria-label': tool.name + ' — ' + (isPt ? tool.privacy_pt : tool.privacy_en),
-          title: (isPt ? tool.privacy_pt : tool.privacy_en),
-          text: tool.name,
+          class: chipClasses.join(' '),
+          'aria-label': tool.name + ' — ' + privacy,
+          'aria-pressed': added ? 'true' : 'false',
         });
+        chip.appendChild(el('span', { class: 'tool-chip-name', text: tool.name }));
+        chip.appendChild(el('span', { class: 'tool-chip-meta', text: privacy }));
         chip.addEventListener('click', () => {
           const input = document.getElementById(toolsInputId);
           if (!input) return;
           const current = input.value.trim();
-          if (current && current.indexOf(tool.name) !== -1) return;
+          if (current.indexOf(tool.name) !== -1) {
+            return;
+          }
           const next = current ? (current.replace(/[;,]\s*$/, '') + '; ' + tool.name) : tool.name;
           input.value = next;
           state.tools = next;
           syncHash(true);
+          chip.classList.add('tool-chip-added');
+          chip.setAttribute('aria-pressed', 'true');
         });
         row.appendChild(chip);
       });

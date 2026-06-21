@@ -842,78 +842,184 @@ textarea { min-height: 9rem; line-height: 1.6; }
 
 .tool-chips-wrap {
   margin: 0.5rem 0 0.75rem;
-  padding: 0.75rem;
-  border: 1px solid #E0E0E0;
+  padding: 0.85rem 0.9rem;
+  border: 1px solid var(--c-border);
   border-radius: 6px;
-  background: #FAFAFA;
+  background: var(--c-surface);
+  color: var(--c-text);
 }
 
 .tool-chips-header {
   margin: 0 0 0.25rem;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.9rem;
+  color: var(--c-text);
 }
 
 .tool-chips-help {
-  margin: 0 0 0.75rem;
-  font-size: 0.8rem;
-  color: #555;
+  margin: 0 0 0.85rem;
+  font-size: 0.82rem;
+  color: var(--c-text-muted);
+  line-height: 1.45;
 }
 
 .tool-chips-tier + .tool-chips-tier {
-  margin-top: 0.6rem;
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px dashed var(--c-border);
 }
 
 .tool-chips-tier-label {
-  margin: 0 0 0.3rem;
-  font-size: 0.75rem;
+  margin: 0 0 0.45rem;
+  font-size: 0.72rem;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: #555;
-  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--c-text-muted);
+  font-weight: 700;
+}
+
+.tool-chips-tier-blurb {
+  margin: 0 0 0.5rem;
+  font-size: 0.78rem;
+  color: var(--c-text-muted);
+  line-height: 1.4;
 }
 
 .tool-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.45rem;
+}
+
+@media (min-width: 600px) {
+  .tool-chips {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .tool-chip {
-  display: inline-block;
-  padding: 0.3rem 0.7rem;
-  border: 1px solid #B3BBC4;
-  border-radius: 999px;
-  background: #FFFFFF;
-  color: #1A1A1A;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.18rem;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--c-border-strong);
+  border-radius: 8px;
+  background: var(--c-bg);
+  color: var(--c-text);
   font-size: 0.85rem;
   font-family: inherit;
   cursor: pointer;
-  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  text-align: left;
+  width: 100%;
+  transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.05s;
 }
 
 .tool-chip:hover, .tool-chip:focus-visible {
-  border-color: #1A1A1A;
-  background: #F0F0F0;
+  border-color: var(--c-text);
+  background: var(--c-surface);
   outline: none;
 }
 
+.tool-chip:active {
+  transform: translateY(1px);
+}
+
+.tool-chip-name {
+  font-weight: 700;
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
+
+.tool-chip-meta {
+  font-size: 0.74rem;
+  color: var(--c-text-muted);
+  line-height: 1.35;
+}
+
 .tool-chip-institutional {
-  border-color: #FFCD00;
-  background: #FFF8DA;
+  border-color: var(--c-fmup-yellow);
+  background: rgba(255, 205, 0, 0.10);
 }
 
 .tool-chip-institutional:hover, .tool-chip-institutional:focus-visible {
-  background: #FFCD00;
+  background: rgba(255, 205, 0, 0.22);
+  border-color: var(--c-fmup-yellow);
+}
+
+.tool-chip-institutional .tool-chip-name {
+  color: var(--c-text);
 }
 
 .tool-chip-consumer-warning {
   border-color: #D55E00;
-  color: #B43E00;
+}
+
+.tool-chip-consumer-warning .tool-chip-name {
+  color: #C75200;
 }
 
 .tool-chip-consumer-warning:hover, .tool-chip-consumer-warning:focus-visible {
-  background: #FFEEDD;
+  background: rgba(213, 94, 0, 0.10);
+  border-color: #D55E00;
+}
+
+.tool-chip-added {
+  border-color: #1A8C5A;
+  background: rgba(26, 140, 90, 0.10);
+}
+
+.tool-chip-added .tool-chip-name::after {
+  content: ' ✓';
+  color: #1A8C5A;
+  font-weight: 700;
+}
+
+@media (prefers-color-scheme: dark) {
+  .tool-chips-wrap {
+    background: var(--c-surface);
+    border-color: var(--c-border);
+  }
+
+  .tool-chip {
+    background: #1A1A1A;
+    border-color: #4A4A4A;
+  }
+
+  .tool-chip:hover, .tool-chip:focus-visible {
+    background: #2A2A2A;
+    border-color: var(--c-text);
+  }
+
+  .tool-chip-institutional {
+    background: rgba(255, 205, 0, 0.08);
+    border-color: var(--c-fmup-yellow);
+  }
+
+  .tool-chip-institutional:hover, .tool-chip-institutional:focus-visible {
+    background: rgba(255, 205, 0, 0.18);
+  }
+
+  .tool-chip-consumer-warning {
+    border-color: #E58A4D;
+  }
+
+  .tool-chip-consumer-warning .tool-chip-name {
+    color: #F2A572;
+  }
+
+  .tool-chip-consumer-warning:hover, .tool-chip-consumer-warning:focus-visible {
+    background: rgba(229, 138, 77, 0.10);
+  }
+
+  .tool-chip-added {
+    border-color: #4CAF80;
+    background: rgba(76, 175, 128, 0.12);
+  }
+
+  .tool-chip-added .tool-chip-name::after {
+    color: #4CAF80;
+  }
 }
 
 /* ---------- Print fix for risk panels (override coloured backgrounds) ---------- */

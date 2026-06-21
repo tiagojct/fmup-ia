@@ -26,6 +26,51 @@ This project follows a `MAJOR.MINOR.PATCH` scheme:
 
 ---
 
+## [1.0.2] — 2026-06-21 — Form-flow corrections + chip detail
+
+Post-implementation fixes following manual smoke-test on dark mode.
+
+### Removed
+- **CPD options from the student `submission` dictionary.** CPD is a
+  programme-level distinction made by the teacher when writing the
+  syllabus clause; a student answering the form is already enrolled
+  in a programme of a given type and only chooses between individual
+  and group submission.
+- **The teacher form's step "Qual é o nível da UC?".** It was a
+  one-to-one duplicate of the previous step (`courseType`, which
+  already covers undergraduate / master's / doctoral / CPD /
+  microcredential / other). The teacher form now has 4 steps instead
+  of 5. `state.level` is preserved in the URL hash for backward
+  compatibility with older shared declarations, but the form does
+  not render it and statement renderers ignore it.
+
+### Changed
+- Teacher statement renderers derive the subject ("estudantes",
+  "doutorandos", "formandos" / "students", "doctoral candidates",
+  "participants") from `state.courseType` instead of `state.level`.
+  The hard-coded phrase "unidade curricular" inside the
+  `not_permitted` and `without_restrictions` clauses is replaced by
+  "oferta formativa" / "programme" so the text reads correctly for
+  CPD courses and microcredentials.
+- **Tool-suggestion chips are now structured.** Each chip displays
+  the tool name on the top line and the privacy / data-handling note
+  on a second line, replacing the tooltip-only version. Each tier
+  block now opens with a short blurb explaining when to use that
+  tier (institutional first; enterprise opt-out when IAedu does not
+  fit; specialised for specific tasks; consumer free tiers with
+  data-handling caveat). A subtle "added" state (green border + tick)
+  is now shown on chips already present in the free-text field.
+- **Dark-mode styles for the chip block.** All colours now come from
+  CSS custom properties (`--c-bg`, `--c-surface`, `--c-border`,
+  `--c-border-strong`, `--c-text`, `--c-text-muted`,
+  `--c-fmup-yellow`) plus a `@media (prefers-color-scheme: dark)`
+  override that keeps yellow legible on dark surfaces and softens
+  the consumer-warning tone for dark backgrounds.
+
+`APP_VERSION` 1.0.1 → **1.0.2**. `policy.version` unchanged (1.3.0).
+
+---
+
 ## [1.0.1] — 2026-06-XX — Post-meeting feature pass
 
 Feature pass following the apresentação à direcção. Bumps

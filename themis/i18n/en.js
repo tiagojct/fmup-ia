@@ -190,10 +190,15 @@
     return intro + ' ' + modification + useDateClause + ' ' + responsibility + footer(version, policy);
   };
 
+  const subjectsByCourseType = (courseType) => {
+    if (courseType === 'uc_phd') return { sg: 'the doctoral candidate', pl: 'doctoral candidates', cap: 'Doctoral candidates' };
+    if (courseType === 'cpd' || courseType === 'microcredential' || courseType === 'other') return { sg: 'the participant', pl: 'participants', cap: 'Participants' };
+    return { sg: 'the student', pl: 'students', cap: 'Students' };
+  };
+
   const teacherSyllabus = (s, version, policy) => {
-    const lvl = LEVEL_LABEL[s.level] || LEVEL_LABEL.undergraduate;
     const aNoun = fmtAssignmentNoun(s.assignment);
-    const subjPlural = LEVEL_STUDENT[s.level] || 'students';
+    const subj = subjectsByCourseType(s.courseType);
     const COURSE_LEAD_EN = {
       uc_undergrad: 'In this undergraduate course unit',
       uc_master: 'In this Master’s course unit',
@@ -202,21 +207,22 @@
       microcredential: 'In this microcredential',
       other: 'In this programme',
     };
-    const courseLead = COURSE_LEAD_EN[s.courseType] || ('In this ' + lvl);
+    const courseLead = COURSE_LEAD_EN[s.courseType] || 'In this programme';
     const lead = courseLead + ', and with respect to the ' + aNoun + '(s) used for assessment,';
 
     const policyText = {
-      not_permitted: ' the use of generative artificial intelligence tools in producing the submitted work is not permitted. Assessed work must reflect exclusively the intellectual production of ' + subjPlural + '; any reliance on such tools will be treated as a breach of academic integrity.',
-      with_disclosure: ' the use of generative artificial intelligence tools is permitted, subject to full disclosure. ' + (s.level === 'doctoral' ? 'Doctoral candidates' : 'Students') + ' must transparently declare the tools they used, the tasks for which those tools were used, and the degree of modification applied to the generated contributions, while retaining full responsibility for the submitted content.',
-      without_restrictions: ' the use of generative artificial intelligence tools is permitted without specific restrictions. ' + (s.level === 'doctoral' ? 'Doctoral candidates' : 'Students') + ' nonetheless retain full responsibility for the content submitted and for its alignment with the pedagogical aims of the course unit.',
+      not_permitted: ' the use of generative artificial intelligence tools in producing the submitted work is not permitted. Assessed work must reflect exclusively the intellectual production of ' + subj.pl + '; any reliance on such tools will be treated as a breach of academic integrity.',
+      with_disclosure: ' the use of generative artificial intelligence tools is permitted, subject to full disclosure. ' + subj.cap + ' must transparently declare the tools they used, the tasks for which those tools were used, and the degree of modification applied to the generated contributions, while retaining full responsibility for the submitted content.',
+      without_restrictions: ' the use of generative artificial intelligence tools is permitted without specific restrictions. ' + subj.cap + ' nonetheless retain full responsibility for the content submitted and for its alignment with the pedagogical aims of the programme.',
     }[s.policy] || '';
 
     return lead + policyText + footer(version, policy);
   };
 
   const teacherDisclosure = (s, version, policy) => {
-    const subjSg = LEVEL_STUDENT_SG[s.level] || 'the student';
-    const subjPl = LEVEL_STUDENT[s.level] || 'students';
+    const subj = subjectsByCourseType(s.courseType);
+    const subjSg = subj.sg;
+    const subjPl = subj.pl;
     const skills = (s.skills || []).map((k) => SKILL_PHRASES[k]).filter(Boolean);
     if (trim(s.skillsOther)) skills.push(trim(s.skillsOther));
     const skillsClause = skills.length
@@ -224,7 +230,7 @@
       : '';
 
     if (s.policy === 'not_permitted') {
-      return 'No disclosure statement is required, since the use of generative artificial intelligence tools is not permitted in this course unit.' + skillsClause +
+      return 'No disclosure statement is required, since the use of generative artificial intelligence tools is not permitted in this programme.' + skillsClause +
         ' Any indication that such tools have been used will be assessed under FMUP’s academic integrity rules.' + footer(version, policy);
     }
 
@@ -352,9 +358,7 @@
       step1: 'Is this individual or group work?',
       submission: {
         individual: 'Individual assignment',
-        group: 'Group assignment',
-        cpd_individual: 'Continuing Professional Development course (individual)',
-        cpd_group: 'Continuing Professional Development course (group)'
+        group: 'Group assignment'
       },
       step2: 'What type of assignment is it?',
       step2Help: 'Select all that apply (an assignment can combine several).',
