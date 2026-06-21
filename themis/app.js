@@ -11,7 +11,7 @@
 
   // ---- Single source of truth for the tool version. ----
   // Bump this when statement content (any i18n file) changes.
-  const APP_VERSION = '1.0.4';
+  const APP_VERSION = '1.0.5';
 
   // Schema version for the URL hash payload. Bump when state shape
   // changes incompatibly. Hashes with a different `v` are rejected.
@@ -401,9 +401,23 @@
     return { number: number, name: name, href: href };
   }
 
+  function hasAnyFormSelection() {
+    if (state.role === 'student') {
+      return !!(state.submission || (state.assignment || []).length || (state.tasks || []).length || (state.tools || '').trim() || state.modification);
+    }
+    if (state.role === 'teacher') {
+      return !!(state.courseType || (state.assignment || []).length || state.policy || (state.skills || []).length || (state.skillsOther || '').trim());
+    }
+    if (state.role === 'researcher') {
+      return !!(state.activity || (state.tasks || []).length || (state.tools || '').trim() || state.target);
+    }
+    return false;
+  }
+
   function renderRiskPanel(showOnEmpty) {
     const i = t();
     const lang = state.lang || DEFAULT_LANG;
+    if (!showOnEmpty && !hasAnyFormSelection()) return null;
     if (!POLICY) {
       if (!showOnEmpty) return null;
       return el('div',

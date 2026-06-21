@@ -26,6 +26,25 @@ This project follows a `MAJOR.MINOR.PATCH` scheme:
 
 ---
 
+## [1.0.5] — 2026-06-21 — Defer risk panel until user has made a selection
+
+### Fixed
+- The risk panel was rendering immediately on the researcher form
+  because the `R-RESEARCHER-AUTHORSHIP` rule has a trigger of only
+  `{role: "researcher"}` and therefore fires on form entry, before
+  the user has answered anything. The panel now stays hidden in all
+  three forms until at least one selection has been made (state has
+  `submission`, `assignment`, `tasks`, `tools`, `modification`,
+  `courseType`, `policy`, `skills`, `skillsOther`, `activity`, or
+  `target` populated). New helper `hasAnyFormSelection()` in
+  `app.js`. The rule itself is unchanged — it still appears (with
+  the principle and scenario links) once the form starts being
+  filled, and continues to appear at output time as before.
+
+`APP_VERSION` 1.0.4 → **1.0.5**. `policy.version` unchanged (1.3.0).
+
+---
+
 ## [1.0.4] — 2026-06-21 — Policy detail + assignment-other input
 
 ### Added
