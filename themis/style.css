@@ -287,6 +287,15 @@ main:focus { outline: none; }
   .field-group.cols-3 { grid-template-columns: repeat(3, 1fr); }
 }
 
+/* Standalone toggle that is not part of the numbered step sequence
+   (the null-use declaration). Set apart so it does not read as a stray
+   option belonging to the step above it. */
+.field-group.single-checkbox {
+  margin-top: -0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--c-border);
+}
+
 .option {
   display: flex;
   align-items: flex-start;

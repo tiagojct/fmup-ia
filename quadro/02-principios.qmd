@@ -53,7 +53,7 @@ A ferramenta [**Themis**](../themis/) operacionaliza os princípios 1 a 4 atrav�
 |-----------|------------------------------|------------------------|
 | 1 — Agência humana | R-STUDENT-CLINICAL-IDEATION, R-STUDENT-AS-IS, R-TEACHER-CLASSIFICATION-WARNING, R-RESEARCHER-AUTHORSHIP | — |
 | 2 — Integridade académica | R-STUDENT-AS-IS, R-STUDENT-CODE, R-TEACHER-NOT-PERMITTED, R-RESEARCHER-AUTHORSHIP, R-RESEARCHER-DRAFTING-SUBSTANTIVE, R-RESEARCHER-STATISTICS | — |
-| 3 — Protecção de dados | R-COMMON-COMMERCIAL-DATA, R-STUDENT-DATA-ANALYSIS, R-TEACHER-DATA-ANALYSIS, R-RESEARCHER-PEER-REVIEW, R-RESEARCHER-DATA | — |
+| 3 — Protecção de dados | R-COMMON-UNAPPROVED-TOOL, R-COMMON-COMMERCIAL-DATA, R-STUDENT-DATA-ANALYSIS, R-TEACHER-DATA-ANALYSIS, R-RESEARCHER-PEER-REVIEW, R-RESEARCHER-DATA | — |
 | 4 — Transparência | R-TEACHER-OPEN, R-RESEARCHER-MANUSCRIPT-LANG | — |
 | 5 — Equidade de acesso | — | IAedu gratuita; cap. 6 |
 | 6 — Literacia crítica | — | Formação obrigatória; cap. 7 |

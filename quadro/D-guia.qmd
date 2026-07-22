@@ -52,6 +52,30 @@ Antes de usar GenAI num trabalho académico:
 6. **Em raciocínio clínico, não delegue.** A delegação compromete o desenvolvimento da sua competência clínica.
 7. **Seja capaz de defender o que submete.** Se não consegue explicar, não o devia ter submetido.
 
+### Como perguntar: rotina de estudo que preserva a aprendizagem
+
+A utilidade da GenAI no estudo não está em pedir mais, mas em pedir de outro modo. A sequência seguinte, adaptada do guia de boas práticas da U.Porto [@uporto2026guiabase; @uporto2026promptario], preserva o esforço cognitivo que produz aprendizagem duradoura:
+
+1. Tentar primeiro sem GenAI, durante alguns minutos.
+2. Pedir **pistas**, não a solução.
+3. Comparar a sua solução com a sugestão da ferramenta.
+4. Explicar por escrito por que razão um dos passos está correcto.
+5. Gerar uma variação do problema e resolvê-la de novo.
+6. Pedir à ferramenta que construa um teste com _feedback_.
+7. Registar as dúvidas e confirmar com o docente ou com fontes oficiais.
+
+A distinção entre bom e mau uso é quase sempre a mesma, qualquer que seja a tarefa:
+
+| Objectivo | Uso que faz aprender | Uso que substitui a aprendizagem |
+|---|---|---|
+| Compreender | Pedir explicação com exemplo e contraexemplo, e perguntas de autoteste | Pedir a resposta final e copiar |
+| Escrever melhor | Pedir crítica de clareza e depois reescrever com voz própria | Gerar o texto integral e submetê-lo |
+| Programar | Pedir explicação do erro e testes; aprender o padrão | Gerar o projecto completo sem o compreender |
+| Estudar | Criar _flashcards_, questões e planos de prática | Usar a ferramenta para fazer o trabalho avaliado |
+| Traduzir | Apoio linguístico com revisão dos termos técnicos | Traduzir quando a competência avaliada é a língua |
+
+Para o contexto clínico específico da FMUP --- treino de anamnese, exercício de raciocínio diferencial, preparação de OSCE ---, o [Anexo J](J-promptario-clinico.qmd) reúne padrões próprios, com a regra invariante de que nenhum dado de doente real entra em ferramenta alguma.
+
 ### Ferramentas
 
 - [IAedu](https://iaedu.pt) --- primeira opção institucional. Aceda com o seu email `@up.pt` em [iaedu.pt](https://iaedu.pt); não retém dados para treino de modelos.

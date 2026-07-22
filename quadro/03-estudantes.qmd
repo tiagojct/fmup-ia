@@ -6,15 +6,19 @@ other-links:
 
 # Vertente Estudantes
 
-## Utilizações permitidas
+::: {.callout-note appearance="simple"}
+As três secções seguintes correspondem aos marcadores do semáforo adoptado pelo guia de boas práticas da Universidade do Porto [@uporto2026guiabase]: 🟩 permitido, 🟨 permitido com condições, 🟥 proibido. O regime aplicável a cada actividade avaliada é o que constar da cláusula do programa da unidade curricular ([Anexo B](B-clausula.qmd)); as secções abaixo definem o enquadramento supletivo quando essa cláusula não seja específica. Ver [Anexo H](H-articulacao-uporto.qmd).
+:::
+
+## 🟩 Utilizações permitidas
 
 Os estudantes podem utilizar ferramentas de GenAI para apoio ao estudo individual, incluindo a revisão de conceitos, a geração de resumos a partir de material já estudado, a criação de material de estudo e a clarificação de terminologia médica. Podem também utilizar GenAI para revisão gramatical e estilística de textos da sua autoria, desde que o conteúdo intelectual permaneça do estudante. A condição essencial, documentada por Moorhouse et al. (2023) na sua análise das orientações das universidades com melhor posição nos _rankings_ mundiais, é que o utilizador tenha proficiência suficiente na área temática para verificar a exactidão do resultado gerado [@moorhouse2023assessment].
 
-## Utilizações condicionadas
+## 🟨 Utilizações condicionadas
 
 Determinados usos de GenAI ficam dependentes de autorização explícita do docente responsável pela unidade curricular. Isto inclui a utilização de GenAI na preparação de trabalhos de avaliação, na geração de conteúdo para apresentações ou na análise de dados em projectos curriculares. Os programas de cada unidade curricular devem incluir uma secção explícita sobre a política de utilização de GenAI (ver [Anexo B](B-clausula.qmd)).
 
-## Utilizações proibidas
+## 🟥 Utilizações proibidas
 
 Ficam proibidas as seguintes utilizações:
 
@@ -33,6 +37,12 @@ Conta como informação identificável — e está proibida em plataformas comer
 ## Declaração de uso
 
 Todos os trabalhos académicos em que tenha sido utilizada GenAI devem incluir uma declaração de uso que especifique a ferramenta, o tipo de assistência obtida, as secções em que foi aplicada e os _prompts_ utilizados (ver [Anexo A](A-declaracao.qmd)). Todo o conteúdo gerado por GenAI deve ser lido, verificado e editado pelo estudante antes de ser submetido. O estudante deve ser capaz de explicar e defender qualquer conteúdo que submeta. Para gerar uma declaração conforme o presente Quadro, utilize a ferramenta [**Themis**](../themis/).
+
+Em teses, dissertações, relatórios finais e documentos equivalentes aplica-se o regime de dois níveis definido pela Universidade do Porto [@uporto2026guiabase; @uporto2026posgrad]: **nota curta normalizada em todos os casos** --- incluindo a declaração de não-utilização --- e **declaração estruturada** quando a utilização tenha sido material, segundo a taxonomia GAIDeT [@suchikova2026gaidet]. O limiar de materialidade e a taxonomia estão no [Anexo A](A-declaracao.qmd); a articulação com o regime U.Porto está no [Anexo H](H-articulacao-uporto.qmd).
+
+## Trabalhos de grupo
+
+Em trabalhos avaliados realizados em grupo, o docente deve solicitar o registo da contribuição de cada estudante e a confirmação, por todos, de que aprovam a versão final --- prática decalcada das normas de autoria em publicação científica e recomendada pelo documento de orientações da U.Porto [@uporto2026orientacoes]. A declaração de uso de GenAI é colectiva quanto às ferramentas e finalidades, e individual quanto às secções em que cada elemento a utilizou. Nenhum elemento do grupo pode introduzir dados pessoais de colegas, de parceiros externos ou de doentes em ferramentas não aprovadas, independentemente do regime aplicável ao trabalho.
 
 ## Literacia em IA
 

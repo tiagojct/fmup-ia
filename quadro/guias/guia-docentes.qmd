@@ -53,4 +53,4 @@ A GenAI já é usada pelos estudantes em prevalências de 60% a 80%. A resposta 
 
 ---
 
-*Documento resumido. Versão de Abril de 2026. Documento vivo, sujeito a revisão anual. Para o tratamento integral das questões aqui resumidas, consulte o Quadro institucional [@jacinto2026quadro] e a ferramenta Atlas [@jacinto2026atlas].*
+*Documento resumido. Versão de Julho de 2026. Documento vivo, sujeito a revisão anual. Para o tratamento integral das questões aqui resumidas, consulte o Quadro institucional [@jacinto2026quadro] e a ferramenta Themis [@jacinto2026themis].*

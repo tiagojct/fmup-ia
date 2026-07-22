@@ -16,7 +16,7 @@ Faculdade de Medicina da Universidade do Porto
 ::: {.hero-subtitle}
 Um quadro de referência institucional e uma ferramenta para gerar declarações de uso de IA generativa na FMUP.
 
-Para compreender a política, comece pelo Quadro. Para declarar um uso concreto de IA, use o Atlas.
+Para compreender a política, comece pelo Quadro. Para declarar um uso concreto de IA, use a Themis.
 :::
 
 ::: {.hero-cta}
@@ -25,7 +25,7 @@ Para compreender a política, comece pelo Quadro. Para declarar um uso concreto 
 :::
 
 ::: {.hero-status}
-Estado: **contributo individual** de Tiago Jacinto para apreciação institucional --- v1.0 (2026). Não é documento aprovado pelos órgãos da FMUP, não substitui regulamentos pedagógicos em vigor, e não vincula a Faculdade. Ver [Estatuto editorial](sobre.qmd#estatuto-editorial).
+Estado: **contributo individual** de Tiago Jacinto para apreciação institucional --- {{< var quadro.versao >}} ({{< var quadro.data >}}). Não é documento aprovado pelos órgãos da FMUP, não substitui regulamentos pedagógicos em vigor, e não vincula a Faculdade. Ver [Estatuto editorial](sobre.qmd#estatuto-editorial).
 :::
 :::
 

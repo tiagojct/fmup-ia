@@ -4,7 +4,52 @@
 ## Geração automatizada da declaração
 
 O demonstrador prototípico [**Themis**](../themis/) gera uma versão em prosa equivalente à deste modelo, formatada para cada papel (estudante, docente, investigador) e para cada destinatário ([ICMJE](https://www.icmje.org/), FCT, Horizonte Europa, Wellcome Trust, conferência ou relatório institucional). Cada declaração gerada inclui a versão do quadro vigente, o que permite rastreá-la no tempo. A Themis, no presente estado, é demonstrador prototípico (não aplicação institucional certificada): qualquer utilização para gerar declarações vinculativas presume aceitação dos termos descritos em [Sobre · Estatuto editorial](../sobre.qmd#estatuto-editorial). O modelo abaixo permanece útil para preenchimento manual e como referência do conteúdo mínimo exigido.
+
+Até que a Themis integre a rotulagem por macrodomínios GAIDeT descrita abaixo, quem necessite de declaração estruturada em conformidade com o regime da Universidade do Porto deve usar as ferramentas por esta indicadas [@uporto2026posgrad]: o *GAIDeT Declaration Generator* (<https://panbibliotekar.github.io/gaidet-declaration/>) ou, para teses em LaTeX, o pacote `aidisclose` (<https://aidisclose.org/>).
 :::
+
+## Dois níveis de declaração
+
+O regime aplicável distingue dois níveis, em conformidade com o quadro da Universidade do Porto [@uporto2026guiabase; @uporto2026posgrad].
+
+**Nível 1 --- nota curta normalizada.** Obrigatória em teses, dissertações, relatórios finais e documentos equivalentes, **mesmo quando não houve utilização**. Três formulações:
+
+- *Sem utilização:* "O autor declara não ter utilizado ferramentas de IA generativa na preparação deste trabalho."
+- *Utilização instrumental (não material):* "O autor declara ter utilizado [ferramenta/versão], em [período], apenas para [revisão linguística / tradução / formatação / organização de referências], mantendo integral responsabilidade pelo conteúdo final."
+- *Utilização material:* "O autor declara ter utilizado [ferramenta/versão] em tarefas com influência material na preparação deste trabalho. A descrição das tarefas delegadas, das partes afectadas e das verificações efectuadas consta da declaração estruturada anexa."
+
+**Nível 2 --- declaração estruturada.** Exigida sempre que a utilização for material. Usa o modelo genérico abaixo, acrescido da classificação por macrodomínio e do âmbito do uso.
+
+::: {.callout-important appearance="simple"}
+## Limiar de materialidade
+
+Considera-se **uso material** quando a GenAI influencia substantivamente o conteúdo intelectual do trabalho: geração de texto, estruturação de argumentos, síntese de literatura, desenho metodológico, análise de dados, produção de código nuclear ou formulação de conclusões. **Não se considera material**, em regra, a revisão linguística, a tradução, a formatação ou a organização de referências --- salvo quando estas tarefas alterem o sentido ou a estrutura do trabalho [@uporto2026guiabase].
+
+Este limiar não dispensa a nota curta: um trabalho sem utilização material declara-o na primeira ou segunda formulação acima.
+:::
+
+## Macrodomínios de delegação e âmbito do uso
+
+A declaração estruturada classifica as tarefas efectivamente delegadas segundo a taxonomia **GAIDeT** [@suchikova2026gaidet], adoptada pela Universidade do Porto com extensão operacional própria [@uporto2026posgrad]. Assinalar apenas o que se aplica.
+
+| Macrodomínio | Abrange |
+|---|---|
+| Conceptualização | Definição do objecto, das perguntas de investigação ou do enquadramento |
+| Revisão da literatura | Pesquisa, triagem e sistematização de fontes |
+| Metodologia | Desenho do estudo, protocolo, escolha de instrumentos |
+| Desenvolvimento de _software_ e automação | Geração, refactorização e teste de código |
+| Gestão de dados | Limpeza, transformação, análise e visualização de dados |
+| Escrita e edição | Redacção, revisão linguística, tradução |
+| Revisão ética | Verificação de conformidade ética e regulatória |
+| Supervisão | Acompanhamento e validação de etapas do trabalho |
+| Visuais/multimédia *(extensão U.Porto)* | Figuras, imagens, elementos gráficos, material audiovisual |
+| Controlo de qualidade *(extensão U.Porto)* | Verificação sistemática de resultados, coerência e referências |
+
+O **âmbito** do uso classifica-se em três graus [@uporto2026guiabase]:
+
+- **Apoio técnico** --- tarefas operacionais ou formais, sem influência relevante no conteúdo intelectual.
+- **Apoio auxiliar com impacto limitado** --- organização, compreensão, revisão ou exploração inicial de ideias, mantendo-se as decisões, argumentos e resultados sob responsabilidade autoral.
+- **Contributo substantivo** --- influência relevante na conceptualização, metodologia, revisão da literatura, análise de dados, código, interpretação, escrita de resultados ou conclusões.
 
 ## Modelo genérico
 
@@ -14,11 +59,14 @@ Declaro que na elaboração deste trabalho foi utilizada a seguinte ferramenta d
 
 - Ferramenta: [ex: ChatGPT (GPT-5), Claude (Opus 4.5), Gemini 2.5 Pro, modelo da plataforma IAedu, etc.]
 - Tipo de assistência: [ex: revisão gramatical, geração de resumo, apoio à análise de dados, tradução, etc.]
+- Macrodomínios delegados: [assinalar da lista acima]
+- Âmbito do uso: [apoio técnico / apoio auxiliar com impacto limitado / contributo substantivo]
 - Secções em que foi aplicada: [indicar]
 - Prompts utilizados: [descrever ou anexar]
+- Verificações humanas efectuadas: [fontes e citações confirmadas no original; cálculos ou testes refeitos; validação do código; revisão terminológica; controlo de privacidade e confidencialidade]
 - Data de utilização: [indicar]
 
-O conteúdo intelectual do trabalho, incluindo a sua estrutura, argumentação e conclusões, é da minha responsabilidade. Revi e verifiquei toda a informação gerada pela ferramenta de IA.
+O conteúdo intelectual do trabalho, incluindo a sua estrutura, argumentação e conclusões, é da minha responsabilidade. Revi e verifiquei toda a informação gerada pela ferramenta de IA. Não introduzi dados pessoais, sensíveis ou confidenciais em serviços não autorizados.
 
 Data: _______________
 Assinatura: _______________

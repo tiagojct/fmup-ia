@@ -7,11 +7,12 @@ project:
     - "recursos.qmd"
     - "convencoes.qmd"
     - "sintese.qmd"
+    - "nota-integracao-uporto.qmd"
     - "404.qmd"
     - "quadro/index.qmd"
     - "quadro/0*.qmd"
     - "quadro/1*.qmd"
-    - "quadro/[A-G]-*.qmd"
+    - "quadro/[A-J]-*.qmd"
     - "quadro/references.qmd"
     - "apresentacoes/*.qmd"
     - "quadro/guias/*.qmd"
@@ -19,6 +20,7 @@ project:
     - "!themis/**"
   resources:
     - "themis/**"
+    - "atlas/**"
     - "assets/**"
   preview:
     port: 4321
@@ -103,13 +105,16 @@ website:
             - quadro/E-cenarios.qmd
             - quadro/F-glossario.qmd
             - quadro/G-maturidade-cnipes.qmd
+            - quadro/H-articulacao-uporto.qmd
+            - quadro/I-perfis-disciplinares.qmd
+            - quadro/J-promptario-clinico.qmd
         - quadro/references.qmd
 
   page-footer:
     background: light
     border: true
     left: |
-      © 2026 Tiago Jacinto · Faculdade de Medicina da Universidade do Porto · Quadro v1.0 · Maio 2026
+      © 2026 Tiago Jacinto · Faculdade de Medicina da Universidade do Porto · Quadro v1.2 · Julho 2026
       Conteúdo licenciado sob [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
     right:
       - text: "Síntese"

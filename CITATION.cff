@@ -7,9 +7,11 @@ abstract: >-
   análise comparativa internacional (Estados Unidos, Europa,
   Ibero-América, frameworks supranacionais, camada médica) e proposta
   operacional para a FMUP (sete princípios, três vertentes, infraestrutura,
-  governança e calendário de implementação). Acompanhado pela ferramenta
-  Atlas, geradora de declarações estruturadas de uso de IA com avaliação
-  guidante de risco em quatro níveis.
+  governança e calendário de implementação), com dez anexos e articulação
+  com o quadro institucional da Universidade do Porto. Acompanhado pela
+  ferramenta Themis (anteriormente Atlas), geradora de declarações
+  estruturadas de uso de IA — alinhadas com a taxonomia GAIDeT — com
+  avaliação guidante de risco em quatro níveis.
 authors:
   - family-names: Jacinto
     given-names: Tiago
@@ -27,6 +29,10 @@ keywords:
 license: CC-BY-4.0
 repository-code: "https://github.com/tiagojct/fmup-ia"
 url: "https://tiagojct.eu/fmup-ia/"
-version: "1.0.0"
-date-released: "2026-05-10"
+version: "1.2.0"
+date-released: "2026-07-22"
+# CFF 1.2.0 só admite `software` ou `dataset` no campo `type`; o tipo
+# correcto (relatório/publicação) está declarado em .zenodo.json, que
+# suporta `publication/report`. A divergência entre os dois ficheiros
+# é imposta pelos esquemas, não é um erro.
 type: dataset

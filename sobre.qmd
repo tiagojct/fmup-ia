@@ -31,10 +31,10 @@ Esta declaração será actualizada se alguma das condições materiais ou profi
 
 O Quadro e a Themis são, no presente estado, mantidos no espaço pessoal do autor. Reconhecendo as limitações que esta circunstância impõe a qualquer aspiração institucional, prevêem-se quatro medidas de continuidade:
 
-- **Licença permissiva.** Todo o conteúdo está publicado sob [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) e todo o código (Atlas, extensão Quarto, _scripts_ de _build_) sob a mesma licença. Qualquer pessoa ou instituição pode legalmente _forkar_, adaptar e manter cópias derivadas.
+- **Licença permissiva.** Todo o conteúdo está publicado sob [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) e todo o código (Themis, extensão Quarto, _scripts_ de _build_) sob a mesma licença. Qualquer pessoa ou instituição pode legalmente _forkar_, adaptar e manter cópias derivadas.
 - **Repositório público.** O código-fonte completo está em [github.com/tiagojct/fmup-ia](https://github.com/tiagojct/fmup-ia). A história editorial é integralmente reconstruível a partir do histórico `git`.
 - **Caminho de migração institucional.** Em caso de adopção formal pela FMUP, propõe-se a transferência do repositório para um _namespace_ institucional (`github.com/u-porto/...` ou equivalente), a migração da publicação para domínio institucional (`fmup.up.pt/...`), e a transição da manutenção para uma equipa designada pela direcção, com mandato e recursos próprios.
-- **Padrões abertos.** A _stack_ técnica (Quarto, Typst, Pandoc/CSL, JavaScript sem dependências para o Atlas, BibTeX) é integralmente baseada em padrões abertos e ferramentas de código aberto, o que reduz o custo de migração entre infraestruturas.
+- **Padrões abertos.** A _stack_ técnica (Quarto, Typst, Pandoc/CSL, JavaScript sem dependências para a Themis, BibTeX) é integralmente baseada em padrões abertos e ferramentas de código aberto, o que reduz o custo de migração entre infraestruturas.
 
 A presente arquitectura não pretende ser a arquitectura institucional final --- pretende mostrar que **uma arquitectura institucional é tecnicamente exequível** com a infraestrutura disponível em Portugal e na União Europeia.
 
@@ -62,7 +62,7 @@ A **Parte II — Proposta operacional** (capítulos 1 a 9) é a proposta para a 
 
 A Parte II inclui ainda capítulos sobre infraestrutura e governança (incluindo processo disciplinar), implementação faseada (2026-2029) e questões transversais.
 
-Sete **Anexos** (A–G) acompanham a proposta com instrumentos prontos a usar: modelo de declaração de uso, cláusula-tipo para programas de unidades curriculares, recursos externos, guia prático, cenários com casos-limite resolvidos, glossário e grelha de maturidade institucional.
+Dez **Anexos** (A–J) acompanham a proposta com instrumentos prontos a usar: modelo de declaração de uso, cláusula-tipo para programas de unidades curriculares, recursos externos, guia prático, cenários com casos-limite resolvidos, glossário, grelha de maturidade institucional, articulação com o quadro institucional da Universidade do Porto, perfis disciplinares da FMUP e promptário clínico.
 
 Uma convenção tipográfica: o documento chama-se sempre **Quadro** (maiúscula), a ferramenta chama-se **Themis** (anteriormente *Atlas*, renomeada em Junho de 2026 para evitar colisão com o portal *Atlas U.Porto*). As convenções completas de terminologia estão na página [Convenções](convencoes.qmd).
 
@@ -102,7 +102,7 @@ Texto, código e dados publicados sob **[Creative Commons Attribution 4.0 (CC BY
 
 ## Financiamento e conflitos
 
-Este trabalho não foi suportado por financiamento dedicado. Não há conflitos de interesse declaráveis. Ferramentas de GenAI usadas na produção do Quadro e do Atlas são declaradas no histórico do repositório `tiagojct/fmup-ia`, em coerência com os princípios que o próprio Quadro defende.
+Este trabalho não foi suportado por financiamento dedicado. Não há conflitos de interesse declaráveis. Ferramentas de GenAI usadas na produção do Quadro e da Themis são declaradas no histórico do repositório `tiagojct/fmup-ia`, em coerência com os princípios que o próprio Quadro defende.
 
 ## Estado de revisão
 
@@ -112,9 +112,12 @@ O Quadro segue um esquema de versão própria (`v1.0`, `v1.1`, …), distinto do
 |---|---|---|
 | 1.0 | 2026-04-21 | Primeira versão pública do Quadro. Ferramenta correspondente: *Atlas* `v0.3.0`. |
 | 1.0 (rev.) | 2026-05-23 | Iterações editoriais sem alteração à estrutura ou aos princípios. Ferramenta correspondente: *Atlas* `v0.9.1`. `policy.version`: `1.2.2`. |
-| 1.1 | 2026-06-XX | Harmonização com o *White Paper* da Comissão de Ética da FMUP (Falcão-Pires et al., 2023): nova subsecção "Articulação com a Comissão de Ética da FMUP" em capítulo 5, _cross-refs_ em capítulos 2, 6, 14. **Rebranding da ferramenta** de *Atlas* para **Themis** (colisão com portal *Atlas U.Porto*) --- `v1.0.0`. `policy.version`: `1.3.0` (`recommended_tools`, `submission` CPD, `courseType` docente, novas tipologias). |
+| 1.1 | 2026-06 | Harmonização com o *White Paper* da Comissão de Ética da FMUP (Falcão-Pires et al., 2023): nova subsecção "Articulação com a Comissão de Ética da FMUP" em capítulo 5, _cross-refs_ em capítulos 2, 6, 14. **Rebranding da ferramenta** de *Atlas* para **Themis** (colisão com portal *Atlas U.Porto*) --- `v1.0.0`. `policy.version`: `1.3.0` (`recommended_tools`, `submission` CPD, `courseType` docente, novas tipologias). |
+| 1.2 | 2026-07-22 | **Articulação com o pacote institucional da Universidade do Porto** (sete documentos, Junho de 2026): novo [Anexo H](quadro/H-articulacao-uporto.qmd) com regra de precedência, mapeamento de princípios, correspondência semáforo ↔ HEAT-AI e mapeamento GAIDeT. Adopção do regime de declaração em dois níveis e do limiar de materialidade ([Anexo A](quadro/A-declaracao.qmd)); marcadores de semáforo nos [Anexos B](quadro/B-clausula.qmd) e no [capítulo 3](quadro/03-estudantes.qmd); nova secção sobre trabalhos de grupo; regra prudencial de ferramentas não aprovadas e fluxo processual disciplinar da U.Porto no [capítulo 6](quadro/06-infraestrutura.qmd). Correcção factual no [capítulo 12](quadro/12-panorama-iberoamerica.qmd) (a afirmação de ausência de orientação da U.Porto deixou de ser verdadeira). Absorção das matérias do pacote U.Porto que o Quadro não cobria: ponderação minoritária, sobrecarga curricular como causa de uso indevido e alternativas não digitais à evidência de processo ([capítulo 4](quadro/04-docentes.qmd)); módulo de 1 ECTS no 1.º ciclo ([capítulo 7](quadro/07-implementacao.qmd)); sustentabilidade e grelha de adaptações razoáveis ([capítulo 8](quadro/08-transversais.qmd)); explicabilidade como recomendação pedagógica ([capítulo 6](quadro/06-infraestrutura.qmd)); rotina de estudo e padrões de _prompt_ ([Anexo D](quadro/D-guia.qmd)). Dois anexos novos como contributo para o pacote U.Porto: [Anexo I](quadro/I-perfis-disciplinares.qmd) (cinco perfis disciplinares da FMUP) e [Anexo J](quadro/J-promptario-clinico.qmd) (promptário clínico). Themis `v1.1.0` → `v1.1.1`: declaração em dois níveis, declaração de não-utilização, eixo de âmbito, taxonomia GAIDeT (mapa em `policy.json`), marcador de semáforo na cláusula gerada, e correcção de um defeito que fazia os campos de escolha múltipla reterem apenas a última opção seleccionada. `policy.version`: `1.5.0`. Revisão global de consistência: versão única do Quadro em `_variables.yml`, metadados de citação actualizados (CITATION.cff, .zenodo.json), _redirect_ `atlas/` → `themis/` para ligações anteriores ao _rebranding_, e banco de ensaio automatizado em `themis/test/`. |
 
-Revisões futuras (`v1.2`, `v2.0`, …) serão registadas neste quadro e no `CHANGELOG.md` do repositório, com correspondência explícita às versões da Themis e da `policy.json` que as acompanham.
+Revisões futuras (`v1.3`, `v2.0`, …) serão registadas neste quadro e no `CHANGELOG.md` do repositório, com correspondência explícita às versões da Themis e da `policy.json` que as acompanham.
+
+A revisão `v1.2` está descrita em detalhe na [Nota de integração com o quadro da Universidade do Porto](nota-integracao-uporto.qmd), que documenta o que foi corrigido, o que foi adoptado do pacote da Universidade, o que o Quadro acrescenta e como prosseguir.
 
 ## Reportar erros e contribuir
 

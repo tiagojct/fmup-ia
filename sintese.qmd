@@ -13,7 +13,7 @@ Este documento é um **contributo individual** de Tiago Jacinto submetido à apr
 - Uma **proposta de quadro institucional** para o uso responsável de inteligência artificial generativa (GenAI) na FMUP, em duas peças articuladas: o [**Quadro**](quadro/) (documento de referência, em prosa) e o [**Themis**](themis/) (demonstrador prototípico).
 - Cobre as três populações da FMUP: [estudantes](quadro/03-estudantes.qmd), [docentes](quadro/04-docentes.qmd) e [investigadores](quadro/05-investigadores.qmd).
 - Pré-AO90, formal, baseado em evidência e em literatura comparada internacional.
-- Estado: proposta em desenvolvimento (v1.0, 2026). **Não substitui regulamentos pedagógicos** — é input para deliberação institucional.
+- Estado: proposta em desenvolvimento ({{< var quadro.versao >}}, {{< var quadro.data >}}). **Não substitui regulamentos pedagógicos** — é input para deliberação institucional.
 
 ::: {.callout-note appearance="simple"}
 ## Decisão proposta
@@ -29,11 +29,12 @@ No presente estado, a decisão institucional pedida não é a adopção imediata
   - **European Health Data Space (EHDS)** — entrada em aplicação faseada a partir de Março de 2027, relevante para preparação de ambientes seguros de investigação em saúde.
   - **Agenda Nacional de IA (ANIA, RCM 2/2026)** — Plano de Acção 2026-2030 e Quadro Nacional de Competências Inteligentes (QNCI).
   - **Recomendação n.º 4/2026 do CNE** (DR, Maio de 2026) — 31 recomendações ao sistema educativo, com relevância directa para o ensino superior em três pontos (parcerias _edge computing_, RAG no ES, governança nacional) e orientação transversal sobre formação de docentes, transparência contratual e validação humana de decisões.
-- O [diagnóstico CNIPES 2026](quadro/12b-panorama-portugal.qmd) sobre o ensino superior português coloca a maioria das instituições em estado de prontidão "emergente"; a FMUP pode diferenciar-se pela adopção precoce de um referencial próprio.
+- O [diagnóstico CNIPES 2026](quadro/12b-panorama-portugal.qmd) sobre o ensino superior português coloca a maioria das instituições em estado de prontidão "emergente".
+- O **pacote institucional da Universidade do Porto** (sete documentos, Junho de 2026) estabelece o referencial transversal às quinze unidades orgânicas. Esta proposta subordina-se-lhe nas matérias que aquele cobre e acrescenta a camada biomédica que aquele não trata --- ver [Anexo H](quadro/H-articulacao-uporto.qmd) e a [Nota de integração](nota-integracao-uporto.qmd).
 
 ## O que tem
 
-A proposta tem **duas partes** e **sete anexos**.
+A proposta tem **duas partes** e **dez anexos**.
 
 **Parte I — Comparação** (capítulos 10 a 15): compara referenciais externos sem os importar acriticamente.
 
@@ -51,7 +52,7 @@ A proposta tem **duas partes** e **sete anexos**.
 - [Questões transversais](quadro/08-transversais.qmd) (ambiente, propriedade intelectual, conflitos de interesse).
 - [Considerações finais](quadro/09-consideracoes.qmd) e [objecções antecipadas](quadro/09b-objeccoes.qmd).
 
-**Anexos** (A a G): instrumentos prontos a usar.
+**Anexos** (A a J): instrumentos prontos a usar.
 
 - [Anexo A](quadro/A-declaracao.qmd) — Modelo de declaração de uso.
 - [Anexo B](quadro/B-clausula.qmd) — Cláusula-tipo para programas de UC.
@@ -60,6 +61,9 @@ A proposta tem **duas partes** e **sete anexos**.
 - [Anexo E](quadro/E-cenarios.qmd) — Cenários com casos-limite resolvidos.
 - [Anexo F](quadro/F-glossario.qmd) — Glossário.
 - [Anexo G](quadro/G-maturidade-cnipes.qmd) — Grelha de maturidade institucional alinhada com o CNIPES.
+- [Anexo H](quadro/H-articulacao-uporto.qmd) — Articulação com o quadro institucional da Universidade do Porto (Junho de 2026): regra de precedência, mapeamento de princípios, semáforo e taxonomia GAIDeT.
+- [Anexo I](quadro/I-perfis-disciplinares.qmd) — Cinco perfis disciplinares da FMUP na estrutura do caderno da U.Porto, propostos para inclusão nesse caderno.
+- [Anexo J](quadro/J-promptario-clinico.qmd) — Promptário clínico: padrões para anamnese, raciocínio diferencial, OSCE e leitura crítica, sem dados de doentes.
 
 ## Como se usa no dia-a-dia
 

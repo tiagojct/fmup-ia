@@ -21,7 +21,7 @@ O demonstrador prototípico [**Themis**](../themis/) acompanha este Quadro: gera
 
 ## Sumário executivo {.unnumbered}
 
-**Problema.** A adopção de GenAI por estudantes, docentes e investigadores é generalizada — inquéritos recentes indicam prevalências de 60% a 80% entre estudantes de medicina. A FMUP não dispõe de quadro de referência institucional: a ausência de enquadramento comum gera desigualdade de orientação, risco jurídico perante o RGPD e o AI Act, e menor capacidade de aproveitamento pedagógico.
+**Problema.** A adopção de GenAI por estudantes, docentes e investigadores é generalizada — inquéritos recentes indicam prevalências de 60% a 80% entre estudantes de medicina. Desde Junho de 2026, a Universidade do Porto dispõe de um quadro transversal às quinze unidades orgânicas ([Anexo H](H-articulacao-uporto.qmd)); a FMUP continua sem o instrumento de especialização biomédica que esse quadro, pela sua natureza transversal, não pode fornecer — enquadramento clínico e regulatório, ensaios sob GCP, dados de doentes em contexto formativo. A ausência desse instrumento gera desigualdade de orientação entre unidades curriculares, risco jurídico perante o RGPD e o AI Act, e menor capacidade de aproveitamento pedagógico.
 
 **Proposta.** Um quadro assente em sete princípios -- agência humana, integridade académica, protecção de dados, transparência, equidade, literacia crítica e revisão contínua -- articulado em três vertentes operacionais (estudantes, docentes, investigadores), complementado por regras para serviços e administração, e enquadrado por orientações sobre infraestrutura, governança e avaliação.
 
@@ -37,4 +37,4 @@ Indicadores de monitorização (cobertura curricular, formação docente, declar
 
 ---
 
-**FMUP Quadro de Referência v1.1** (revisão de Junho de 2026; edição original 2026-04-21) · Autor: Tiago Jacinto · Licença [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+**FMUP Quadro de Referência {{< var quadro.versao >}}** (revisão de {{< var quadro.data >}}; edição original 2026-04-21) · Autor: Tiago Jacinto · Licença [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).

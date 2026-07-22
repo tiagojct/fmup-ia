@@ -3,7 +3,7 @@ title: "Convenções e nomenclatura"
 toc: true
 ---
 
-Esta página documenta as convenções tipográficas, terminológicas e de citação utilizadas no Quadro e no Atlas. Destina-se a leitores que queiram compreender as escolhas editoriais do documento ou que pretendam referenciar correctamente os seus materiais.
+Esta página documenta as convenções tipográficas, terminológicas e de citação utilizadas no Quadro e na Themis. Destina-se a leitores que queiram compreender as escolhas editoriais do documento ou que pretendam referenciar correctamente os seus materiais.
 
 ## Termos do documento
 
@@ -15,7 +15,7 @@ Esta página documenta as convenções tipográficas, terminológicas e de cita�
 | **Parte I** | Comparação externa e diagnóstico de lacunas (capítulos 10 a 15). |
 | **Parte II** | Proposta operacional para a FMUP (capítulos 1 a 9). |
 | **capítulo X** | Referência a um capítulo numerado do Quadro. Escrito com minúscula, seguido do número. |
-| **Anexo X** | Instrumento prático numerado por letra (A a G), no final do Quadro. Escrito com maiúscula quando seguido da letra de identificação. |
+| **Anexo X** | Instrumento prático numerado por letra (A a J), no final do Quadro. Escrito com maiúscula quando seguido da letra de identificação. |
 | **Grupo de Trabalho** | O grupo institucional de coordenação de IA na FMUP, previsto no capítulo 6. Escrito com maiúsculas por designar um órgão formal. |
 | **Fase 1 / Fase 2 / Fase 3** | As três fases do calendário de implementação (2026–2027, 2027–2028, 2028–2029), descritas no capítulo 7. |
 
@@ -26,7 +26,7 @@ Esta página documenta as convenções tipográficas, terminológicas e de cita�
 | **GenAI** | Forma abreviada de *inteligência artificial generativa*, usada no corpo do texto. Introduzida na primeira ocorrência como "inteligência artificial generativa (GenAI)". |
 | **IA generativa** | Forma por extenso, usada no título do documento e em passagens de prosa formal. Equivalente a GenAI. |
 | **LLM** | *Large Language Model* — modelo de linguagem de larga escala. Sempre em maiúsculas; usado sem tradução fixa por ser o termo técnico dominante. |
-| **HEAT-AI** | Taxonomia de risco em quatro níveis proposta por Temper et al. (2025) na St. Pölten University. Usada na grelha de avaliação do Atlas e no capítulo 6. |
+| **HEAT-AI** | Taxonomia de risco em quatro níveis proposta por Temper et al. (2025) na St. Pölten University. Usada na grelha de avaliação da Themis e no capítulo 6. |
 | **SaMD / AIaMD** | *Software as a Medical Device* / *AI as a Medical Device*. Usados no capítulo 14 (enquadramento clínico) para designar sistemas de IA com estatuto regulado de dispositivo médico. |
 | **SauD InoB** | Licenciatura em Saúde Digital e Inovação Biomédica da FMUP. Abreviatura de uso corrente; nunca "SDB" ou "SDIB". |
 | **LCSP** | Licenciatura em Ciências da Saúde Pública da FMUP. |
@@ -44,7 +44,7 @@ Esta página documenta as convenções tipográficas, terminológicas e de cita�
 O Quadro é redigido em **português europeu pré-AO90**: *adopção*, *protecção*, *actualização*, *objectivo*, *utilização*, *faculdade*. Qualquer contributo deve manter esta convenção.
 
 ::: {.callout-note appearance="simple"}
-A escolha pelo pré-AO90 é editorial do autor e não constitui posição institucional da FMUP. A administração pública portuguesa adopta o Acordo Ortográfico de 1990 (Resolução do Conselho de Ministros n.º 8/2011); qualquer eventual adopção institucional deste Quadro pela Faculdade implicará, naturalmente, a transição para a norma em vigor. As declarações geradas pelo Atlas seguem a mesma convenção pré-AO90 nos elementos pré-formatados em PT, e em AO90 ou outra norma quando o destinatário (revista, agência financiadora) tenha exigências próprias.
+A escolha pelo pré-AO90 é editorial do autor e não constitui posição institucional da FMUP. A administração pública portuguesa adopta o Acordo Ortográfico de 1990 (Resolução do Conselho de Ministros n.º 8/2011); qualquer eventual adopção institucional deste Quadro pela Faculdade implicará, naturalmente, a transição para a norma em vigor. As declarações geradas pela Themis seguem a mesma convenção pré-AO90 nos elementos pré-formatados em PT, e em AO90 ou outra norma quando o destinatário (revista, agência financiadora) tenha exigências próprias.
 :::
 
 ## Versões e rastreabilidade
@@ -70,4 +70,4 @@ Para referenciar um capítulo específico, acrescentar o URL do capítulo:
 
 A Themis gera automaticamente a linha de citação adequada ao destinatário no final de cada declaração produzida. Para uma referência genérica à ferramenta:
 
-> Jacinto T. Themis — FMUP AI Usage Statement Generator (anteriormente *Atlas*), v1.0.0. Faculdade de Medicina da Universidade do Porto, 2026. <https://tiagojct.eu/fmup-ia/themis/>
+> Jacinto T. Themis — FMUP AI Usage Statement Generator (anteriormente *Atlas*), v1.1.1. Faculdade de Medicina da Universidade do Porto, 2026. <https://tiagojct.eu/fmup-ia/themis/>

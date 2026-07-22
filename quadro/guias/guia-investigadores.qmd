@@ -53,4 +53,4 @@ A responsabilidade intelectual pelo conteúdo publicado pertence sempre aos auto
 
 ---
 
-*Documento resumido. Versão de Abril de 2026. Documento vivo, sujeito a revisão anual. Para o tratamento integral das questões aqui resumidas, consulte o Quadro institucional [@jacinto2026quadro] e a ferramenta Atlas [@jacinto2026atlas].*
+*Documento resumido. Versão de Julho de 2026. Documento vivo, sujeito a revisão anual. Para o tratamento integral das questões aqui resumidas, consulte o Quadro institucional [@jacinto2026quadro] e a ferramenta Themis [@jacinto2026themis].*

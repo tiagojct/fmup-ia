@@ -15,12 +15,18 @@
 
   const TASK_PHRASES = {
     ideation: 'exploração de ideias',
+    conceptualisation: 'conceptualização do objecto e das perguntas de investigação',
     drafting: 'elaboração de versões iniciais do texto',
     editing: 'revisão linguística e estilística',
     translation: 'tradução',
     coding: 'auxílio na escrita de código',
     data_analysis: 'apoio à análise de dados',
+    data_management: 'tratamento e organização de dados',
     literature_search: 'pesquisa bibliográfica',
+    methodology: 'apoio ao desenho metodológico',
+    ethics_review: 'verificação de conformidade ética e regulatória',
+    supervision: 'acompanhamento e validação de etapas do trabalho',
+    quality_control: 'controlo de qualidade e verificação sistemática',
     statistics: 'análise estatística',
     figures: 'preparação de imagens ou figuras',
     poster_design: 'preparação de poster',
@@ -139,6 +145,27 @@
     master_jury: 'Para efeitos de apreciação pelo júri de mestrado,',
   };
 
+  // GAIDeT macrodomains (Suchikova et al. 2026) plus the two U.Porto
+  // operational extensions. Keys match GAIDET_ORDER in app.js.
+  const GAIDET_LABELS = {
+    conceptualisation: 'conceptualização',
+    literature_review: 'revisão da literatura',
+    methodology: 'metodologia',
+    software: 'desenvolvimento de software e automação',
+    data_management: 'gestão de dados',
+    writing: 'escrita e edição',
+    ethics_review: 'revisão ética',
+    supervision: 'supervisão',
+    quality_control: 'controlo de qualidade',
+    visuals: 'visuais/multimédia',
+  };
+
+  const SCOPE_SENTENCE = {
+    technical: 'O âmbito da utilização foi de apoio técnico: tarefas operacionais ou formais, sem influência relevante no conteúdo intelectual do trabalho.',
+    auxiliary: 'O âmbito da utilização foi de apoio auxiliar com impacto limitado: organização, compreensão, revisão ou exploração inicial de ideias, mantendo-se as decisões, os argumentos e os resultados sob responsabilidade autoral.',
+    substantive: 'O âmbito da utilização foi de contributo substantivo: a ferramenta influenciou de forma relevante o conteúdo intelectual do trabalho, o que determina a apresentação desta declaração estruturada.',
+  };
+
   const fmtDate = (d) => {
     const pad = (n) => String(n).padStart(2, '0');
     return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) +
@@ -152,6 +179,31 @@
       s += ' Em conformidade com ' + policy.framework_version + '.';
     }
     return s;
+  };
+
+  // Level 1 of the two-tier disclosure regime adopted by the U.Porto
+  // framework: a short normalised note, required in every final work.
+  // Three variants — no use, non-material use, material use.
+  const shortNote = (s, version, policy) => {
+    const tools = trim(s.tools) || 'ferramentas de inteligência artificial generativa não especificadas';
+    const period = trim(s.useDate) ? ' em ' + trim(s.useDate) + ',' : '';
+
+    if (s.noUse) {
+      return 'O autor declara não ter utilizado ferramentas de IA generativa na preparação deste trabalho.' +
+        footer(version, policy);
+    }
+
+    if (s.scope === 'substantive') {
+      return 'O autor declara ter utilizado ' + tools + ' em tarefas com influência material na preparação deste trabalho. ' +
+        'A descrição das tarefas delegadas, das partes afectadas e das verificações efectuadas consta da declaração estruturada anexa.' +
+        footer(version, policy);
+    }
+
+    const purposes = (s.tasks || []).map((k) => TASK_PHRASES[k]).filter(Boolean);
+    const purposeFrag = purposes.length ? list(purposes) : 'tarefas auxiliares de preparação';
+
+    return 'O autor declara ter utilizado ' + tools + ',' + period + ' apenas para ' + purposeFrag +
+      ', mantendo integral responsabilidade pelo conteúdo final.' + footer(version, policy);
   };
 
   const studentStatement = (s, version, policy) => {
@@ -175,6 +227,15 @@
       reference: 'Os contributos gerados pelas ferramentas foram utilizados apenas como referência, não tendo sido incorporados diretamente no conteúdo submetido.',
     }[s.modification] || '';
 
+    const scopeClause = SCOPE_SENTENCE[s.scope] ? ' ' + SCOPE_SENTENCE[s.scope] : '';
+
+    // Group work: the U.Porto framework asks for an individual contribution
+    // record and confirmation that every member approves the final version,
+    // by analogy with authorship practice in scientific publishing.
+    const groupClause = s.submission === 'group'
+      ? ' A contribuição individual de cada autor consta do registo que acompanha o trabalho, e todos os autores aprovam a versão final submetida.'
+      : '';
+
     const responsibility = s.submission === 'group'
       ? 'Os autores assumem plena responsabilidade pelo conteúdo apresentado, pela sua exactidão e pela sua conformidade com as normas académicas da FMUP.'
       : 'Assumo plena responsabilidade pelo conteúdo apresentado, pela sua exactidão e pela sua conformidade com as normas académicas da FMUP.';
@@ -185,7 +246,7 @@
 
     const useDateClause = trim(s.useDate) ? ' A utilização principal ocorreu em ' + trim(s.useDate) + '.' : '';
 
-    return intro + ' ' + modification + useDateClause + ' ' + responsibility + footer(version, policy);
+    return intro + ' ' + modification + scopeClause + useDateClause + groupClause + ' ' + responsibility + footer(version, policy);
   };
 
   const teacherSubjects = (courseType) => {
@@ -234,7 +295,15 @@
       other: 'No âmbito desta oferta formativa',
     };
     const courseLead = COURSE_LEAD_PT[s.courseType] || 'No âmbito desta oferta formativa';
-    const lead = courseLead + ', e relativamente ao trabalho avaliativo do tipo ' + aNoun + ',';
+    // Traffic-light marker required by the U.Porto framework on every
+    // assessed activity, so the clause is legible under both frameworks.
+    const SEMAFORO = {
+      not_permitted: '🟥 Proibido — ',
+      with_disclosure: '🟨 Permitido com condições — ',
+      without_restrictions: '🟩 Permitido — ',
+    };
+    const marker = SEMAFORO[s.policy] || '';
+    const lead = marker + courseLead + ', e relativamente ao trabalho avaliativo do tipo ' + aNoun + ',';
 
     const policyText = {
       not_permitted: ' não é permitida a utilização de ferramentas de inteligência artificial generativa na produção do trabalho submetido. Os trabalhos avaliativos devem refletir exclusivamente a produção intelectual ' + subj.possPlural + ', sendo qualquer recurso a estas ferramentas considerado uma falta à integridade académica.',
@@ -272,8 +341,20 @@
     const tasks = (s.tasks || []).map((k) => TASK_PHRASES[k]).filter(Boolean);
     const tasksClause = tasks.length ? ' nas seguintes tarefas: ' + list(tasks) : ' em tarefas auxiliares de preparação';
 
+    // Macrodomains delegated, in canonical GAIDeT order. The map lives in
+    // policy.json (policy.gaidet); when it is unavailable (file://), the
+    // clause is simply omitted.
+    const g = policy && policy.gaidet;
+    const seen = {};
+    if (g && g.map) (s.tasks || []).forEach((k) => { if (g.map[k]) seen[g.map[k]] = true; });
+    const domains = (g && Array.isArray(g.order) ? g.order : []).filter((d) => seen[d]).map((d) => GAIDET_LABELS[d]).filter(Boolean);
+    const domainsClause = domains.length
+      ? ' Segundo a taxonomia GAIDeT de delegação de tarefas, adoptada como referência pela Universidade do Porto, os macrodomínios delegados foram: ' + list(domains) + '.'
+      : '';
+    const scopeClause = SCOPE_SENTENCE[s.scope] ? ' ' + SCOPE_SENTENCE[s.scope] : '';
+
     let body = lead + ' declara-se que, ' + activity + ', foram utilizadas as seguintes ferramentas de inteligência artificial generativa — ' + tools +
-      ' —' + tasksClause + '. Os contributos gerados foram revistos criticamente ' + (s.activity === 'manuscript' ? 'pelos autores' : 'pelo(s) investigador(es)') + ', que assumem responsabilidade integral pelo conteúdo final, pela sua exactidão e pela sua integridade científica. As ferramentas de inteligência artificial não são listadas como autoras, na medida em que não preenchem os critérios de autoria aplicáveis (designadamente, a capacidade de assumir responsabilidade pública pelo conteúdo).';
+      ' —' + tasksClause + '.' + domainsClause + scopeClause + ' Os contributos gerados foram revistos criticamente ' + (s.activity === 'manuscript' ? 'pelos autores' : 'pelo(s) investigador(es)') + ', que assumem responsabilidade integral pelo conteúdo final, pela sua exactidão e pela sua integridade científica. As ferramentas de inteligência artificial não são listadas como autoras, na medida em que não preenchem os critérios de autoria aplicáveis (designadamente, a capacidade de assumir responsabilidade pública pelo conteúdo). Não foram introduzidos dados pessoais, sensíveis ou confidenciais em serviços não autorizados.';
 
     if (s.target === 'journal') {
       body += ' Esta declaração destina-se a ser incluída na secção de Métodos ou de Agradecimentos do manuscrito, em conformidade com as recomendações do ICMJE relativas ao uso de chatbots e modelos de linguagem na produção científica.';
@@ -345,6 +426,7 @@
       outputHeading: 'Declaração gerada',
       outputHeadingSyllabus: 'Texto para o programa da unidade curricular',
       outputHeadingTeacherDisclosure: 'Requisito de divulgação a comunicar aos estudantes',
+      outputHeadingShortNote: 'Nota curta normalizada',
       outputHeadingResearcherFull: 'Declaração para Métodos / Agradecimentos',
       outputHeadingResearcherInline: 'Declaração breve em linha',
       yourSelections: 'As suas seleções',
@@ -527,13 +609,19 @@
       step2: 'Para que tarefas recorreu à IA?',
       step2Help: 'Selecione todas as tarefas aplicáveis.',
       tasks: {
+        conceptualisation: 'Conceptualização (objecto, perguntas, enquadramento)',
         literature_search: 'Pesquisa bibliográfica',
+        methodology: 'Metodologia (desenho do estudo, protocolo)',
+        coding: 'Programação',
+        data_management: 'Gestão de dados (limpeza, transformação)',
+        statistics: 'Análise estatística',
         drafting: 'Redação',
         editing: 'Edição / revisão linguística',
         translation: 'Tradução',
-        statistics: 'Análise estatística',
-        coding: 'Programação',
         figures: 'Preparação de imagens / figuras',
+        ethics_review: 'Revisão ética',
+        supervision: 'Supervisão de etapas do trabalho',
+        quality_control: 'Controlo de qualidade',
         other: 'Outra',
       },
       step3: 'Que ferramentas usou?',
@@ -567,7 +655,31 @@
       unavailableBody: 'O ficheiro policy.json não foi carregado (acesso a partir de file:// ou ficheiro em falta). A ferramenta continua a funcionar; a categorização automática de risco ficará desactivada.',
       guidanceFoot: 'Avisos guidantes — não bloqueiam a geração da declaração. A responsabilidade final é do utilizador.',
     },
+    shared: {
+      stepScope: 'Qual foi o âmbito da utilização?',
+      stepScopeHelp: 'Este eixo distingue-se do grau de modificação: não descreve o que fez ao output, mas quanto é que a ferramenta influenciou o conteúdo intelectual do trabalho. É o critério que determina, no quadro da Universidade do Porto, se basta uma nota curta ou se é exigida declaração estruturada. Passo opcional: sem selecção, a declaração assume utilização não material.',
+      scope: {
+        technical: {
+          label: 'Apoio técnico',
+          description: 'Tarefas operacionais ou formais — formatação, organização de referências, conversão de formatos — sem influência relevante no conteúdo intelectual.',
+        },
+        auxiliary: {
+          label: 'Apoio auxiliar com impacto limitado',
+          description: 'Organização, compreensão, revisão ou exploração inicial de ideias. As decisões, os argumentos e os resultados permanecem sob a sua responsabilidade autoral.',
+        },
+        substantive: {
+          label: 'Contributo substantivo',
+          description: 'A ferramenta influenciou de forma relevante a conceptualização, a metodologia, a revisão da literatura, a análise, o código, a interpretação, a escrita de resultados ou as conclusões. Implica declaração estruturada.',
+        },
+      },
+      noUseLabel: 'Não utilizei ferramentas de IA generativa neste trabalho',
+      noUseHelp: 'O quadro da Universidade do Porto exige uma nota curta normalizada em todos os trabalhos finais, mesmo quando não houve qualquer utilização. Assinale para gerar essa declaração de não-utilização.',
+      noUseSummary: 'Declaração de não-utilização',
+      gaidetLabel: 'Macrodomínios delegados (GAIDeT)',
+      gaidet: GAIDET_LABELS,
+    },
     statements: {
+      shortNote: shortNote,
       student: studentStatement,
       teacherSyllabus: teacherSyllabus,
       teacherDisclosure: teacherDisclosure,

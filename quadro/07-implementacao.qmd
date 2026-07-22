@@ -10,6 +10,12 @@ O calendário de implementação é deliberadamente alinhado com quatro marcos e
 
 **Fase 2 (2027-2028):** extensão a todos os ciclos de estudo, plataforma institucional (IAedu como primeira linha), módulos de literacia em IA articulados com o QNCI, e operacionalização do _Trusted Research Environment_, com início da coordenação com a unidade hospitalar afiliada.
 
+### Módulo de entrada no 1.º ciclo
+
+O documento de orientações da Universidade do Porto recomenda a integração, no 1.º ano dos cursos de 1.º ciclo, de um módulo reconhecido com **pelo menos 1 ECTS** cobrindo os pressupostos da aprendizagem activa, a arte de tomar notas e de construir mapas conceptuais (_mitschreiben_, _zettelkasten_), a utilização responsável de ferramentas de IA, a gestão do tempo e a ética e integridade académica [@uporto2026orientacoes]. A recomendação é operacionalmente superior à formulação genérica de "integrar literacia em IA no currículo", porque fixa uma âncora curricular verificável --- créditos atribuídos, unidade curricular identificada, resultados de aprendizagem avaliáveis --- em vez de deixar a matéria dispersa por unidades curriculares existentes, onde tende a ser a primeira a ceder à pressão do programa.
+
+Na FMUP, o módulo aplica-se directamente à Licenciatura em Saúde Digital e Inovação Biomédica e à Licenciatura em Ciências da Saúde Pública. Para o Mestrado Integrado em Medicina, que não tem 1.º ciclo autónomo, o equivalente é a integração dos mesmos conteúdos no 1.º ano do ciclo integrado. A articulação com as quatro dimensões de literacia do [capítulo 2](02-principios.qmd#principio-6-literacia) e com os eixos da Recomendação 2.1 do CNE deve ser explícita no desenho do módulo, para evitar duplicação com a formação prevista nos ciclos seguintes.
+
 **Fase 3 (2028-2029):** avaliação de impacto, revisão do quadro, publicação dos resultados e ponderação de certificação ISO/IEC 42001 [@iso2023aims] como meta organizacional verificável.
 
 ## Adopção mínima viável

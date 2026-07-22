@@ -132,4 +132,12 @@ O CNIPES propõe a criação de uma **Plataforma Nacional de Práticas Pedagógi
 
 A ausência de orientação operacional identificada pelo CNE e o desfasamento empírico identificado pelo CNIPES (apenas 14,7% das IES com políticas em prática) reforçam a pertinência da presente proposta. O diagnóstico nacional sustenta a arquitectura do Quadro (sete princípios, três vertentes, infraestrutura, declaração obrigatória, taxonomia em quatro níveis) e acrescenta três contributos compatíveis com a estrutura existente: a grelha de maturidade (Anexo G), a taxonomia por categorias técnicas (capítulo 6) e a estrutura dos Três Pilares ([Parte II](02-principios.qmd)). A Themis, enquanto prática institucional versionada e registável, é candidato a contribuir para a futura Plataforma nacional.
 
+::: {.callout-note appearance="simple"}
+## Actualização --- Junho de 2026
+
+O inquérito do CNIPES foi realizado antes de Abril de 2026. Em Junho de 2026, a Universidade do Porto publicou um pacote de sete documentos sobre GenAI no domínio educativo [@uporto2026orientacoes; @uporto2026guiabase; @uporto2026posgrad], deslocando-se do grupo das IES "em elaboração" para o das IES com política institucional em prática. O dado de 14,7% mantém-se válido como retrato de Abril de 2026 e como fundamento do argumento estrutural do CNIPES; a evolução da U.Porto ilustra a trajectória que o diagnóstico antecipa. As implicações para o presente Quadro --- regra de precedência, mapeamento de princípios, correspondência entre semáforo e taxonomia HEAT-AI, regime de declaração em dois níveis --- estão no [Anexo H](H-articulacao-uporto.qmd).
+
+Uma nota de convergência independente: a formulação dos Três Pilares adoptada acima a partir do CNIPES (*Saber sobre IA / Fazer com IA / Ser sem IA*) coincide com o princípio vii do documento de orientações da U.Porto, que prescreve processos de ensino e de aprendizagem "sobre a IA, com a IA e sem IA" [@uporto2026orientacoes].
+:::
+
 A Recomendação n.º 4/2026 do CNE, publicada em Diário da República a 21 de Maio de 2026, acrescenta uma referência nacional consultiva aos referenciais já usados pelo Quadro (AI Act, EHDS, ANIA). O alinhamento estrutural é elevado: a Recomendação 3.1 ("códigos de conduta escolar") descreve, ao nível do sistema educativo, o tipo de instrumento que a FMUP aqui propõe, e as recomendações sobre validação humana (3.3), transparência contratual (3.2), e formação inicial e contínua de docentes (2.1, 2.2, 2.7) traduzem-se em mudanças concretas que o Quadro já incorpora ou incorporará em revisão menor.

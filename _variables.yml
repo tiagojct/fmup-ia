@@ -1,0 +1,10 @@
+# Fonte única para a versão do Quadro. Usada via {{< var quadro.versao >}}
+# nas páginas .qmd. NOTA: shortcodes não são processados dentro de
+# _quarto.yml (rodapé/navbar) nem em ficheiros fora do Quarto — esses
+# locais estão listados no CLAUDE.md e têm de ser actualizados à mão:
+#   _quarto.yml (page-footer), CITATION.cff, .zenodo.json,
+#   themis/policy.json (framework_version).
+quadro:
+  versao: "v1.2"
+  data: "Julho de 2026"
+  data-iso: "2026-07-22"

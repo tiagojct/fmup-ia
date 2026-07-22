@@ -1,0 +1,92 @@
+# Promptário clínico {#sec-anexo-j}
+
+O *Promptário de estudo* da Universidade do Porto reúne padrões de _prompt_ por objectivo de aprendizagem e por área, com uma lista de formulações a evitar [@uporto2026promptario]. Não contém conteúdo clínico. Este anexo é o suplemento correspondente para o ensino médico: padrões de utilização para treino de anamnese, exercício de raciocínio diferencial, preparação de OSCE e leitura crítica de literatura clínica.
+
+::: {.callout-important}
+## Regra invariante
+
+**Nenhum dado de doente real entra em ferramenta alguma.** Nem nome, número de processo, data de nascimento associada a diagnóstico, imagem, excerto de anamnese com detalhes únicos, nem nota de estágio que os contenha. A anonimização informal --- substituir o nome por "X" --- não cumpre os requisitos técnicos do RGPD (ver [capítulo 3](03-estudantes.qmd) e [cenário 4](E-cenarios.qmd#cenario-4)).
+
+Todos os padrões abaixo pressupõem **casos integralmente fictícios**, construídos pelo próprio estudante ou gerados pela ferramenta. Quando o objectivo for reflectir sobre um doente real observado em estágio, o exercício faz-se com o docente, não com uma ferramenta.
+:::
+
+## Regras de base
+
+Aplicam-se as do promptário da Universidade [@uporto2026promptario], com duas adições próprias do contexto clínico:
+
+- Tentar primeiro sem GenAI, durante alguns minutos.
+- Pedir pistas, explicações e testes; evitar começar por pedir a resposta final.
+- Verificar sempre factos, referências, doses e valores antes de usar qualquer resposta.
+- Guardar um rasto mínimo quando a actividade exija declaração.
+- **Nunca introduzir dados de doentes, colegas ou terceiros.**
+- **Verificar toda a informação clínica em fonte primária.** Um erro de dose, de interacção ou de contra-indicação não é um erro de estilo. As fontes de referência --- normas da Direcção-Geral da Saúde, resumo das características do medicamento, literatura primária --- não são substituíveis por um modelo de linguagem.
+- **Não usar a ferramenta como autoridade clínica.** Quanto menor o domínio da matéria, maior a dificuldade em criticar a resposta, e é exactamente aí que a fluência do texto é mais persuasiva.
+
+## Padrões por objectivo
+
+### Treino de anamnese
+
+O objectivo é praticar a recolha estruturada de informação e a formulação de perguntas, não obter o diagnóstico.
+
+| Objectivo | Padrão de _prompt_ | O que fazer a seguir |
+|---|---|---|
+| Simular um primeiro contacto | *"Assume o papel de um doente fictício de [idade] com uma queixa que não me vais revelar. Responde apenas ao que eu perguntar, de forma realista e sem antecipar informação. Eu conduzo a anamnese."* | Conduzir a entrevista até formular hipóteses. Só no fim pedir o que ficou por perguntar. |
+| Identificar lacunas | *"Esta é a anamnese que recolhi: [texto do estudante]. Não me dês o diagnóstico. Indica que dimensões ficaram por explorar e que perguntas as cobririam."* | Refazer a entrevista com as perguntas em falta. |
+| Treinar comunicação difícil | *"Assume o papel de um doente fictício ansioso e pouco colaborante. Reage de forma realista ao que eu disser. Não saias do papel."* | Discutir a interacção com o docente ou em tutorial. |
+| Praticar o resumo | *"Avalia o meu resumo clínico quanto a estrutura, cobertura e omissão de sinais de alarme: [texto]. Não reescrevas --- assinala o que falta e porquê."* | Reescrever o resumo antes de comparar com qualquer sugestão. |
+
+### Raciocínio diferencial
+
+O uso mais arriscado e o mais valioso: valioso se treinar o processo, nocivo se o substituir. A regra é sempre construir primeiro a lista própria.
+
+| Objectivo | Padrão de _prompt_ | O que fazer a seguir |
+|---|---|---|
+| Confrontar hipóteses (_shadow AI_) | *"Construí este diferencial para um caso fictício: [lista do estudante e justificação]. Não me dês a tua lista. Diz-me que hipóteses eu possa ter omitido e que dados discriminariam entre as que apresentei."* | Justificar por escrito porque cada hipótese acrescentada é ou não plausível. |
+| Treinar discriminação | *"Dá-me duas apresentações fictícias que possam ser confundidas entre [condição A] e [condição B]. Não indiques qual é qual. Eu decido e justifico."* | Verificar a discriminação nas fontes antes de confirmar. |
+| Praticar sob incerteza | *"Apresenta um caso fictício com informação deliberadamente incompleta. Quando eu pedir mais dados, dá apenas o que eu pedir especificamente."* | Registar em que momento a informação foi suficiente para decidir --- é essa a competência. |
+| Auditar o próprio raciocínio | *"Age como revisor céptico deste meu raciocínio clínico: [texto]. Identifica saltos lógicos, ancoragem e fechamento prematuro. Não proponhas o diagnóstico correcto."* | Rever o raciocínio antes de qualquer confirmação externa. |
+
+### Preparação de OSCE e avaliação prática
+
+O desempenho avaliado é presencial e sem apoio. O treino prévio é legítimo; a expectativa de assistência no momento não é.
+
+| Objectivo | Padrão de _prompt_ | O que fazer a seguir |
+|---|---|---|
+| Ensaiar a estrutura | *"Faz-me seis perguntas difíceis sobre a abordagem de [situação clínica fictícia], como um examinador faria. Não dês as respostas."* | Responder em voz alta, com tempo limitado, antes de consultar. |
+| Rever sequência de procedimento | *"Lista os passos de [exame objectivo] e assinala os erros mais frequentes em cada um. Vou verificar no manual da UC."* | Confirmar no manual da unidade curricular, que prevalece. |
+| Treinar comunicação estruturada | *"Avalia esta transmissão de informação clínica quanto a clareza e estrutura: [texto]. Assinala o que ficou ambíguo."* | Repetir a transmissão oralmente, sem apoio. |
+
+### Leitura crítica de literatura clínica
+
+| Objectivo | Padrão de _prompt_ | O que fazer a seguir |
+|---|---|---|
+| Preparar a leitura | *"Vou ler este artigo. Faz-me cinco perguntas de leitura crítica sobre desenho, viés e validade externa. Não resumas o artigo."* | Ler o artigo e responder. A ferramenta não substitui a leitura. |
+| Interrogar a metodologia | *"Que ameaças à validade eu devia procurar num estudo com este desenho: [desenho]? Indica o que verificar na secção de métodos."* | Verificar cada ponto no artigo original. |
+| Verificar o que citar | *"Age como revisor céptico e diz-me o que tenho mesmo de confirmar no original antes de citar isto: [afirmação]."* | Confirmar tudo manualmente. Nunca citar sem ler. |
+
+## Padrões a evitar
+
+| Formulação a evitar | Porque prejudica |
+|---|---|
+| *"Qual é o diagnóstico deste caso?"* | Substitui a competência que a unidade curricular certifica e produz a ilusão de a possuir. |
+| *"Dá-me o diferencial completo de [queixa]."* | Recebe-se uma lista sem o percurso que a torna utilizável à cabeceira. |
+| *"Que dose de [fármaco] para este doente?"* | Risco de erro plausível em matéria com consequência directa. A fonte é o resumo das características do medicamento, não um modelo de linguagem. |
+| *"Escreve a discussão do meu caso clínico."* | Apagamento de autoria; a discussão é a parte avaliada. |
+| *"Aqui está o processo do doente [dados]. O que achas?"* | Violação de confidencialidade e do RGPD, independentemente da resposta obtida. |
+| *"Resume este artigo, não preciso de o ler."* | Ilusão de domínio do estado da arte; omite nuances e limites metodológicos. |
+| *"Interpreta este resultado laboratorial."* | Se o doente é real, é violação; se é fictício, a interpretação é a competência a treinar. |
+
+## Utilização por docentes
+
+Os mesmos padrões servem, invertidos, a preparação de materiais --- com a responsabilidade pela exactidão clínica a permanecer integralmente do docente ([capítulo 4](04-docentes.qmd), [cenário 2](E-cenarios.qmd#cenario-2)):
+
+- *"Constrói uma vinheta clínica fictícia de [perfil], com história, exame, exames complementares e três questões de discussão para [ano curricular]."* Rever exaustivamente antes de usar: a verificação de coerência farmacológica e de plausibilidade dos valores é o passo que não pode ser omitido.
+- *"Gera dez variações desta vinheta, alterando um factor de cada vez, para treino de discriminação."* Seleccionar e corrigir manualmente.
+- *"Propõe questões socráticas que forcem o estudante a justificar cada passo do raciocínio."* Seleccionar as que se adequam ao nível.
+- *"Identifica que pressupostos demográficos esta vinheta está a assumir."* Instrumento útil contra o doente-tipo implícito ([capítulo 8](08-transversais.qmd)).
+
+Quando o material gerado chegar aos estudantes, declarar o uso e o método de verificação. A declaração é pedagógica antes de ser formal: mostra um caso de uso apropriado e torna visível o processo de verificação que se pretende que o estudante interiorize.
+
+## Nota sobre o português europeu médico
+
+Os modelos têm desempenho inferior em português europeu especializado, com sintomas recorrentes em terminologia clínica: tradução literal do inglês, formas da variante brasileira, e ortografia inconsistente ([capítulo 8](08-transversais.qmd)). Em qualquer material destinado a estudantes ou a comunicação com doentes, a verificação terminológica por quem tenha competência na área é exigida, não recomendada.

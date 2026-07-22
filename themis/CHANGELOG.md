@@ -26,6 +26,112 @@ This project follows a `MAJOR.MINOR.PATCH` scheme:
 
 ---
 
+## [1.1.1] — 2026-07-22 — GAIDeT map moved to policy.json; review fixes
+
+Follow-up to 1.1.0 after a project-wide review pass.
+
+### Changed
+- **GAIDeT map single-sourced in `policy.json`** (`policy.gaidet`, with
+  `order` and `map`). The map existed in three hand-kept copies — `app.js`
+  plus each i18n file. It is institutional taxonomy, i.e. data, and the
+  statement generators already receive `POLICY`, so it now lives with the
+  rules. `policy.version` → `1.5.0`. Degraded mode is coherent: from
+  `file://`, where `policy.json` cannot load, declarations omit the
+  macrodomain clause just as the risk panel is disabled.
+- **Dropped the `portfolio → quality_control` mapping.** Portfolio
+  organisation is not quality control; per the stated design rule, a task
+  without a clean macrodomain stays in prose only.
+- Scope step help now states the step is optional and what the declaration
+  assumes when it is left unanswered (both languages).
+
+### Fixed
+- `README.md` trigger-key list documented an `assignment` key that
+  `matchesTrigger()` does not support, and omitted `policy_any` which it
+  does. A rule written from the old README would never fire.
+- Removed a dead `tasksOther` branch in `shortNote` (the researcher branch
+  has no such field).
+
+### Added
+- Headless test harness committed under `test/` (jsdom; drives all three
+  branches through the real `index.html` + `app.js` and asserts generated
+  text, hash round-trip, and multi-select integrity — the check that caught
+  the 1.1.0 multi-select bug).
+- Redirect stub at `/atlas/` for pre-rename links (June 2026 talk, external
+  bookmarks).
+
+## [1.1.0] — 2026-07-22 — Align with the U.Porto framework: GAIDeT, two-level disclosure
+
+The University of Porto published a seven-document package on generative AI
+in education in June 2026 (Despacho N.º GR. 08/05/2025, Unidade de Inovação
+Educativa). It applies to all fifteen organic units, FMUP included, and it
+adopts GAIDeT as the reference taxonomy for declaring AI use in research.
+This release makes Themis interoperable with that regime. The full mapping
+is in Annex H of the framework.
+
+### Added
+- **Two-level disclosure for the researcher branch.** A new *short
+  normalised note* output block precedes the structured statement, per the
+  U.Porto regime that requires a short note in every final work. Three
+  variants: no use, non-material use, material use.
+- **Null declaration.** New `noUse` state flag, surfaced as a checkbox on
+  the researcher form. When ticked, the remaining steps collapse and the
+  only output is "the author declares that no generative AI tools were
+  used" — the U.Porto framework requires this note even in the null case,
+  and the tool previously had no way to express it.
+- **Scope axis (GAIDeT *âmbito*).** New `scope` state field on the student
+  and researcher branches: technical support / auxiliary support with
+  limited impact / substantive contribution. This is a distinct axis from
+  `modification` — that one describes what the user did to the output, this
+  one describes how far the tool influenced the intellectual content. It is
+  the criterion that determines whether a structured declaration is owed.
+- **GAIDeT macrodomain mapping.** New `GAIDET_DOMAINS` / `GAIDET_ORDER` /
+  `gaidetDomains()` in `app.js`, mapping this tool's task keys onto the
+  eight GAIDeT macrodomains plus the two U.Porto operational extensions
+  (visuals/multimedia, quality control). The researcher statement now names
+  the delegated macrodomains in canonical order, and the selections summary
+  lists them. Unmapped task keys deliberately claim no macrodomain.
+- **Six new researcher task options** to cover the macrodomains that had no
+  equivalent: conceptualisation, methodology, data management, ethics
+  review, supervision, quality control.
+- **Traffic-light marker in the generated syllabus clause.** The teacher
+  branch now prefixes the clause with 🟩/🟨/🟥 so the text is legible under
+  both the U.Porto guide and this framework.
+- **Group contribution record.** When `submission` is `group`, the student
+  statement now records that each author's individual contribution is
+  documented and that all authors approve the final version.
+- **New rule `R-COMMON-UNAPPROVED-TOOL`** (risk 1), firing whenever a tool
+  is named: until the University publishes its formal approved-tools list,
+  public tools are not authorised for personal, sensitive or confidential
+  data, unpublished assessment material, or non-public institutional
+  content.
+- Both statement generators now assert that no personal, sensitive or
+  confidential data were entered into unauthorised services.
+
+### Fixed
+- **Multi-select groups kept only the last ticked option.** `checkboxGroup()`
+  captured the `selected` array at render time and rebuilt the next
+  selection from it on every change. Because each handler replaces
+  `state.<field>` with a brand-new array and the group is never re-rendered,
+  the captured array went stale after the first tick: ticking *Ensaio*, then
+  *Relatório*, then *Poster* left `assignment` as `["poster"]` alone. This
+  affected every multi-select in the tool — student assignment types, student
+  tasks, teacher assessment types, teacher skills, researcher tasks — so
+  generated declarations silently under-reported what the user selected.
+  The handler now derives the selection from the checkboxes themselves,
+  which are the live source of truth. As a side effect the selection is now
+  in option order rather than click order, which is deterministic.
+  Present since multi-select was introduced; found by a headless run-through
+  of all three branches.
+
+### Changed
+- **`HASH_V` 1 → 2.** The state shape gained `scope` and `noUse`. Existing
+  share links are rejected rather than silently misread. No published links
+  are known to exist.
+- `policy.version` → `1.4.0`; `framework_version` → *FMUP Quadro de
+  Referência v1.2 (2026-07-22)*.
+- Student form: 6 → 7 steps (scope inserted before the use-date step).
+  Researcher form: 5 → 6 steps, or 2 when the null declaration is ticked.
+
 ## [1.0.5] — 2026-06-21 — Defer risk panel until user has made a selection
 
 ### Fixed

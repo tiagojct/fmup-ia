@@ -20,6 +20,28 @@ Em ciclos de estudo não-clínicos, os mesmos princípios traduzem-se em context
 A disponibilidade de GenAI exige uma revisão das práticas de avaliação. A resposta institucional não deve ser a proibição generalizada, mas o redesenho de métodos que valorizem competências que a GenAI não substitui: raciocínio clínico em tempo real, reflexão crítica fundamentada, apresentação oral com arguição, e avaliação prática de competências. O _framework_ do HEA irlandês identifica a avaliação como a área de maior pressão imediata [@hea2025framework]. Peters e Angelov (2025) propuseram o modelo AICAI, que articula a criatividade, a autenticidade e a integridade como eixos de redesenho [@peters2025aicai]. Chan e Colloton (2024) formularam as Six Assessment Redesign Pivotal Strategies (SARPS) [@chan2024book].
 O _toolkit_ da TEQSA australiana acrescenta uma perspectiva programática: a reforma da avaliação deve ser pensada ao nível do programa de estudos, garantindo coerência progressiva e alinhamento com as competências de saída [@teqsa2024genai]. Os docentes devem explicitar nos programas a política de utilização de GenAI aplicável à avaliação (ver modelos de cláusula em [Anexo B](B-clausula.qmd)).
 
+### Ponderação dos elementos produzidos com GenAI
+
+Quando o regime da unidade curricular permita o uso de GenAI em trabalhos ou outras peças avaliativas com impacto na classificação final, o documento de orientações da Universidade do Porto estabelece que a avaliação do produto potencialmente gerado com GenAI deve ter **ponderação minoritária** no cálculo dessa classificação [@uporto2026orientacoes]. A regra é simples de aplicar e resolve, sem recurso a detecção, o problema que a proibição generalizada não resolve: se o peso do produto for minoritário, a classificação passa a depender maioritariamente de evidência de desempenho autónomo --- discussão, demonstração, resolução presencial, arguição --- e o incentivo à delegação indevida desaparece por construção. A FMUP adopta esta regra.
+
+### Sobrecarga curricular como causa de utilização indevida
+
+Um dos contributos mais úteis do quadro da U.Porto é causal, e não normativo: identifica a **sobrecarga curricular** como factor que empurra o estudante para estratégias de _coping_ --- utilização apressada e não construtiva da GenAI para dar resposta a um volume de trabalho que a margem temporal disponível não comporta [@uporto2026orientacoes]. Nessa leitura, parte do uso indevido não é um problema de integridade, mas um sintoma de desenho curricular. A resposta correspondente também não é disciplinar: é o reforço da coordenação entre as unidades curriculares que decorrem no mesmo semestre para cada ciclo de estudos, de modo a manter o esforço global em patamares geríveis, com participação de docentes e estudantes e com margem de autorregulação ao longo do semestre.
+
+A observação é particularmente pertinente no Mestrado Integrado em Medicina, pela densidade curricular característica dos anos com componente clínica. Recomenda-se que a coordenação de cada ciclo de estudos inclua esta verificação no seu ciclo anual, e que o Grupo de Trabalho para GenAI (capítulo [6](06-infraestrutura.qmd)) a considere ao interpretar os dados de utilização declarada: uma concentração de declarações num período de elevada carga é indício de desenho curricular a rever, não necessariamente de má-fé.
+
+### Evidência de processo sem pressupor infraestrutura
+
+Exigir rasto de processo --- rascunhos, versões, registos datados, _commits_ --- é uma das respostas mais eficazes ao problema da autoria. Mas se a tarefa pressupõe registos digitais frequentes, passa a avaliar também o acesso a equipamento e a ligação estável, o que é matéria de equidade e não de competência [@uporto2026guiabase]. O docente deve prever alternativas equivalentes:
+
+| Evidência digital típica | Alternativa aceitável |
+|---|---|
+| _Commits_ datados em repositório | Sessões presenciais de revisão de código; submissões periódicas de ficheiros com notas de progresso |
+| Portefólio semanal em plataforma | Portefólio compilado em PDF com datas, ou em papel validado em aula, com _checkpoints_ presenciais |
+| Registos automáticos de _prompts_ | Registo manual mínimo dos _prompts_ essenciais e das decisões tomadas, sem expor dados pessoais |
+
+O objectivo do rasto é evidenciar competência e processo, não infraestrutura.
+
 ## Transparência e formação
 
 Se um docente utilizar GenAI na preparação de materiais ou em qualquer actividade pedagógica, é recomendável que o declare perante os estudantes.

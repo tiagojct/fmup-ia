@@ -1,0 +1,262 @@
+---
+title: "Nota de integração: articulação com o quadro da Universidade do Porto"
+subtitle: "Trabalho realizado a 22 de Julho de 2026 · Quadro v1.2 · Themis v1.1.1"
+toc: true
+toc-depth: 3
+---
+
+::: {.callout-important appearance="simple"}
+Esta nota descreve uma revisão do Quadro FMUP · IA e da ferramenta Themis, ambos contributos individuais de Tiago Jacinto submetidos à apreciação dos órgãos competentes da FMUP. Não é política institucional aprovada e não vincula a Faculdade nem a Universidade. Ver [Estatuto editorial](sobre.qmd#estatuto-editorial).
+:::
+
+## Sumário
+
+Em Junho de 2026, a Universidade do Porto publicou um pacote de sete documentos sobre a utilização de inteligência artificial generativa no domínio educativo. O pacote aplica-se às quinze unidades orgânicas da Universidade, entre as quais a FMUP, e qualifica-se a si próprio como «_soft law_ académico».
+
+Esta publicação alterou a posição do Quadro FMUP · IA. Até Junho, o Quadro era uma proposta formulada na ausência de orientação institucional da Universidade. Deixou de o ser. A revisão aqui descrita faz três coisas:
+
+1. **Corrige** uma afirmação do Quadro que a publicação do pacote tornou factualmente desactualizada.
+2. **Subordina** o Quadro ao pacote nas matérias que este cobre, e integra as onze matérias em que o pacote é mais completo ou mais operacional.
+3. **Delimita** o contributo próprio do Quadro --- a camada biomédica, clínica e regulatória que um referencial transversal a quinze unidades orgânicas não pode tratar com a profundidade que a matéria exige.
+
+O resultado não é um Quadro diminuído. É um Quadro com posição institucional mais clara: instrumento de especialização de um referencial existente, e não instrumento paralelo a ele. A articulação integral está no [Anexo H](quadro/H-articulacao-uporto.qmd).
+
+## 1. O pacote da Universidade do Porto
+
+Sete documentos, todos datados de Junho de 2026, produzidos pelo Grupo de Trabalho constituído pelo **Despacho N.º GR. 08/05/2025**, sob a Unidade de Inovação Educativa e com colaboração do Serviço de Apoio Jurídico da Universidade.
+
+| Documento | Função |
+|---|---|
+| **01** --- *Orientações para uso e adoção responsável* | Enquadramento estratégico: missão, cinco valores, oito princípios, riscos e oportunidades, seis eixos de recomendações, fluxo processual disciplinar, glossário |
+| **02** --- Guia de boas práticas | Núcleo operacional: sete regras mínimas, modelo de semáforo, governação em cinco níveis, dez situações-tipo, _checklists_, modelos de declaração |
+| **03** --- Guia prático para docentes | Uma página: fluxo de decisão em seis passos e texto-modelo para enunciados |
+| **04** --- Guia prático para estudantes | Uma página: leitura do semáforo, bom _versus_ mau uso, níveis de declaração |
+| **05** --- Caderno complementar de perfis disciplinares | Dez perfis de unidades curriculares, um por unidade orgânica; o perfil 7 é da FMUP |
+| **06** --- Caderno de Pós-graduação e Investigação | Taxonomia GAIDeT, declaração em dois níveis, políticas editoriais, geradores de declaração |
+| **07** --- Promptário de estudo | Padrões de _prompt_ por objectivo e por área; _prompts_ a evitar |
+
+**Dois dos catorze membros do Grupo de Trabalho --- Laura Ribeiro e Ricardo Correia --- são docentes da FMUP.** A Faculdade está representada na estrutura que produziu o pacote e que mantém o seu ciclo de revisão anual. Este facto tem consequência prática directa, tratada na secção [Como prosseguir](#como-prosseguir).
+
+## 2. O que já era convergente
+
+Antes de descrever o que mudou, importa registar o que não precisou de mudar. A comparação sistemática dos dois referenciais não encontrou **nenhuma divergência de primeira ordem**. Convergem nos seguintes pontos:
+
+- Agência humana e não-substituição do trabalho intelectual.
+- A GenAI nunca pode ser listada como autora; a responsabilidade é humana e indelegável.
+- Declaração obrigatória quando a utilização é material.
+- Proibição de dados pessoais, clínicos ou confidenciais em ferramentas não aprovadas.
+- Os detectores automáticos não constituem prova única.
+- Resposta pedagógica antes da resposta sancionatória.
+- Nenhuma actividade avaliada pode pressupor ferramenta paga.
+- Redesenho da avaliação em vez de dependência da detecção.
+- Documento vivo, com revisão periódica.
+- A ausência de declaração é, por si, violação de integridade --- independentemente da qualidade do conteúdo.
+
+Convergem também na base de evidência: ambos assentam no diagnóstico CNIPES, na Recomendação n.º 4/2026 do CNE, no AI Act e nas _Living Guidelines_ do ERA Forum.
+
+Há ainda uma convergência que merece registo autónomo, por ter ocorrido de forma independente. A tripartição **_Saber sobre IA / Fazer com IA / Ser sem IA_**, que o Quadro adoptou a partir do CNIPES, é literalmente a formulação do princípio vii da Universidade: processos de ensino e de aprendizagem "sobre a IA, com a IA e sem IA". Duas instituições chegaram à mesma estrutura por caminhos distintos, o que reforça a recomendação operacional de que cada ciclo de estudos identifique pelo menos um momento avaliativo sem IA.
+
+Esta convergência é o argumento mais forte a favor do Quadro: um documento redigido antes do pacote, e sem dele ter conhecimento, alinha-se com ele em todas as regras nucleares.
+
+## 3. O que foi corrigido
+
+Uma afirmação do Quadro deixou de ser verdadeira com a publicação do pacote. O [capítulo 12](quadro/12-panorama-iberoamerica.qmd) invocava "a ausência de orientação específica da Universidade do Porto à data desta proposta" como parte da justificação para a iniciativa da FMUP.
+
+A passagem foi reescrita. A justificação que a substitui é mais sólida do que a original: a FMUP não preenche um vazio, especializa um referencial existente para um domínio que aquele referencial não trata. Duas afirmações correlativas foram igualmente corrigidas no [capítulo 1](quadro/01-enquadramento.qmd), onde se lia que nenhuma instituição portuguesa havia publicado um quadro abrangente cobrindo estudantes, docentes e investigadores.
+
+O [capítulo 12b](quadro/12b-panorama-portugal.qmd) recebeu uma nota datada: o indicador CNIPES de 14,7% de instituições com política em prática mantém-se válido como retrato de Abril de 2026, mas a U.Porto passou entretanto para esse grupo. O dado não foi alterado --- foi contextualizado.
+
+## 4. O que foi adoptado do pacote
+
+Onze matérias em que o pacote é mais completo ou mais operacional do que o Quadro foram integradas. Todas constam da tabela de adopção do [Anexo H](quadro/H-articulacao-uporto.qmd), com indicação do destino e do estado.
+
+### Regime de declaração em dois níveis
+
+A alteração de maior consequência prática. A Universidade exige:
+
+1. **Nota curta normalizada** em todos os trabalhos finais --- **incluindo quando não houve utilização**: "O autor declara não ter utilizado ferramentas de IA generativa na preparação deste trabalho."
+2. **Declaração estruturada** quando a utilização for material, segundo a taxonomia **GAIDeT** (Suchikova et al., *Accountability in Research*, 33(3), art. 2544331), com extensão operacional da U.Porto para visuais/multimédia e controlo de qualidade.
+
+Define ainda um limiar operacional de materialidade e um eixo de **âmbito** em três graus --- apoio técnico, apoio auxiliar com impacto limitado, contributo substantivo --- que o modelo do [Anexo A](quadro/A-declaracao.qmd) não possuía. Ambos foram adoptados.
+
+### Semáforo por actividade
+
+A Universidade opera com um semáforo 🟩 / 🟨 / 🟥 por actividade avaliada. O Quadro operava com três regimes de cláusula e com a taxonomia de risco HEAT-AI em quatro níveis. Os marcadores foram acrescentados ao [Anexo B](quadro/B-clausula.qmd) e ao [capítulo 3](quadro/03-estudantes.qmd), e o [Anexo H](quadro/H-articulacao-uporto.qmd) estabelece a correspondência --- deixando explícito que os dois instrumentos **não são equivalentes**: o semáforo é normativo (o que o docente permite), a taxonomia HEAT-AI é descritiva (que risco a utilização comporta). Uma utilização de risco baixo pode ser 🟥 num exame; uma de risco alto pode ser 🟨 com condições de verificação.
+
+### Matérias novas integradas nos capítulos
+
+| Matéria | Destino |
+|---|---|
+| **Ponderação minoritária** do produto gerado com GenAI no cálculo da classificação | [Capítulo 4](quadro/04-docentes.qmd) |
+| **Sobrecarga curricular** como causa de utilização em registo de _coping_, e coordenação entre UCs do mesmo semestre | [Capítulo 4](quadro/04-docentes.qmd) |
+| **Alternativas não digitais** à evidência de processo | [Capítulo 4](quadro/04-docentes.qmd) |
+| **Módulo de 1 ECTS** no 1.º ano do 1.º ciclo | [Capítulo 7](quadro/07-implementacao.qmd) |
+| **Sustentabilidade** organizacional e ambiental | [Capítulo 8](quadro/08-transversais.qmd) |
+| **Grelha de adaptações razoáveis** por necessidade específica | [Capítulo 8](quadro/08-transversais.qmd) |
+| **Explicabilidade** como recomendação pedagógica, não apenas contratual | [Capítulo 6](quadro/06-infraestrutura.qmd) |
+| **Regra prudencial** sobre ferramentas não aprovadas | [Capítulo 6](quadro/06-infraestrutura.qmd) |
+| **Fluxo processual disciplinar** da U.Porto | [Capítulo 6](quadro/06-infraestrutura.qmd) |
+| **Registo de contribuição individual** em trabalhos de grupo | [Capítulo 3](quadro/03-estudantes.qmd) |
+| **Rotina de estudo e padrões de _prompt_** | [Anexo D](quadro/D-guia.qmd) |
+
+Duas destas matérias merecem destaque pela qualidade do contributo.
+
+A primeira é a **sobrecarga curricular** como causa de uso indevido. É um contributo causal, e não normativo: parte do uso indevido não é falha de integridade, é sintoma de desenho curricular. A resposta correspondente também não é disciplinar --- é coordenação entre unidades curriculares do mesmo semestre. A observação é particularmente pertinente no Mestrado Integrado em Medicina.
+
+A segunda é a **ponderação minoritária**. Resolve, sem recurso a detecção, o problema que a proibição generalizada não resolve: se o peso do produto potencialmente gerado for minoritário, a classificação passa a depender maioritariamente de evidência de desempenho autónomo, e o incentivo à delegação indevida desaparece por construção.
+
+### Uma divergência deliberada
+
+O princípio viii da Universidade trata a sustentabilidade como princípio autónomo. O Quadro integrou a matéria **sem criar um oitavo princípio**, por razão estrutural: os sete princípios são referenciados pelas regras da Themis através do campo `principle_ref`, pela grelha de maturidade do [Anexo G](quadro/G-maturidade-cnipes.qmd) e pelo mapeamento dos Três Pilares. Acrescentar um princípio obrigaria a revisões em cascata sem ganho normativo. A opção é de arquitectura documental, não de discordância substantiva, e está declarada como tal.
+
+## 5. O que o Quadro acrescenta
+
+O pacote da Universidade é transversal às quinze unidades orgânicas e, por essa razão, não trata matéria específica do domínio biomédico. **Nenhuma das áreas seguintes tem cobertura no pacote:**
+
+| Matéria | Onde está tratada |
+|---|---|
+| MDR, IVDR, SaMD/AIaMD, AI Act em contexto clínico, EHDS, _Trusted Research Environments_ | [Capítulo 14](quadro/14-camada-medica.qmd), [capítulo 6](quadro/06-infraestrutura.qmd) |
+| Documentação de ensaios clínicos sob GCP/ICH E6(R3): protocolo, consentimento, SAP, CSR | [Capítulo 5](quadro/05-investigadores.qmd), [cenário 11](quadro/E-cenarios.qmd#cenario-11) |
+| Revisão sistemática: PRISMA, PRISMA-AI, registo prévio em PROSPERO | [Capítulo 5](quadro/05-investigadores.qmd), [cenário 9](quadro/E-cenarios.qmd#cenario-9) |
+| Definição operacional de dado clínico identificável | [Capítulo 3](quadro/03-estudantes.qmd) |
+| Regimes de declaração por destinatário: ICMJE, FCT, Horizonte Europa, Wellcome Trust | [Capítulo 5](quadro/05-investigadores.qmd), [cenário 12](quadro/E-cenarios.qmd#cenario-12) |
+| Viés algorítmico em contextos clínicos: tom de pele, sexo, variação farmacogenómica | [Capítulo 8](quadro/08-transversais.qmd) |
+| Degradação terminológica em português europeu médico | [Capítulo 8](quadro/08-transversais.qmd) |
+| IA agêntica e multimodal | [Capítulo 8](quadro/08-transversais.qmd) |
+| Articulação com a Comissão de Ética da FMUP e com os critérios ICMJE de autoria | [Capítulo 5](quadro/05-investigadores.qmd#sec-articulacao-ce-fmup) |
+| NIST AI RMF e ISO/IEC 42001 | [Capítulo 6](quadro/06-infraestrutura.qmd), [capítulo 7](quadro/07-implementacao.qmd) |
+| Grelha de maturidade institucional para auto-avaliação anual | [Anexo G](quadro/G-maturidade-cnipes.qmd) |
+
+É esta camada que justifica a existência do Quadro depois da publicação do pacote. Um referencial que tem de servir simultaneamente Arquitectura e Medicina não pode --- nem deve --- descer ao ICH E6(R3) ou à distinção entre pseudonimização e anonimização em dados de ensaio clínico. A FMUP pode, e é a única unidade orgânica que tem de o fazer para o seu contexto.
+
+## 6. Os dois contributos novos
+
+Além de absorver, esta revisão produziu dois instrumentos destinados a serem **oferecidos ao pacote da Universidade**. O caderno de perfis é explicitamente extensível e convida as unidades orgânicas a propor contributos.
+
+### [Anexo I](quadro/I-perfis-disciplinares.qmd) --- Perfis disciplinares da FMUP
+
+Cinco perfis redigidos na estrutura exacta do caderno da Universidade: raciocínio clínico e prática tutelada, ciência de dados de saúde e bioestatística, saúde pública e comunicação em saúde, informática da saúde e engenharia de _software_ clínico, e bioética e integridade científica.
+
+Cada perfil identifica as competências nucleares, onde a GenAI ajuda, onde prejudica --- com o modo de falha próprio de cada disciplina ---, a regulação recomendada com semáforo, e as evidências de avaliação. O caderno da Universidade contém já um perfil da FMUP (*Medicina Clínica e Serviços de Saúde I*); estes cinco alargam a cobertura aos restantes contextos formativos da Faculdade.
+
+### [Anexo J](quadro/J-promptario-clinico.qmd) --- Promptário clínico
+
+O Promptário da Universidade não contém conteúdo clínico. Este anexo é o suplemento correspondente: padrões de utilização para treino de anamnese, exercício de raciocínio diferencial, preparação de OSCE e leitura crítica de literatura clínica, com secção própria para docentes e uma tabela de formulações a evitar com a razão de cada uma.
+
+A regra invariante está declarada no início: **nenhum dado de doente real entra em ferramenta alguma**, e a reflexão sobre um doente observado em estágio faz-se com o docente, não com uma ferramenta.
+
+É matéria em que a FMUP tem competência que as restantes unidades orgânicas não têm.
+
+## 7. A Themis
+
+### Porque é que isto importa institucionalmente
+
+O guia de boas práticas da Universidade termina com uma recomendação explícita de acção futura:
+
+> a Universidade do Porto deverá considerar o desenvolvimento ou a adaptação de um **gerador institucional de declarações de uso de IA, alojado em domínio próprio**, que incorpore a taxonomia de referência e a extensão operacional definidas neste pacote.
+
+Até lá, o pacote remete estudantes e orientadores para duas ferramentas externas: o *GAIDeT Declaration Generator* e o pacote LaTeX `aidisclose`.
+
+A Themis responde a essa especificação --- escrita pela Universidade sem conhecimento de que a ferramenta existe. Esta é a oportunidade institucional mais concreta que o projecto tem neste momento, e é sensível ao tempo: cada mês em que as duas ferramentas externas permanecem como referência prática recomendada é um mês em que se consolidam como opção por omissão.
+
+### O que foi feito
+
+A Themis passou à versão **1.1.1** (`policy.version` 1.5.0), com o objectivo de a tornar interoperável com o regime da Universidade:
+
+- **Declaração em dois níveis** --- novo bloco de nota curta normalizada, em três variantes.
+- **Declaração de não-utilização** --- a ferramenta não tinha forma de exprimir a ausência de uso, que o regime exige. Passou a ter.
+- **Eixo de âmbito** --- distinto do grau de modificação já existente: um descreve o que o utilizador fez ao _output_, o outro descreve quanto a ferramenta influenciou o conteúdo intelectual. É o segundo que determina se é devida declaração estruturada.
+- **Taxonomia GAIDeT** --- as tarefas declaradas são mapeadas nos dez macrodomínios e nomeadas na declaração gerada, em ordem canónica.
+- **Seis novas tarefas** na vertente Investigadores, cobrindo os macrodomínios que não tinham equivalente.
+- **Marcador de semáforo** na cláusula gerada para a vertente Docentes.
+- **Registo de contribuição individual** em trabalhos de grupo.
+- **Nova regra** `R-COMMON-UNAPPROVED-TOOL`, que assinala a regra prudencial sobre ferramentas não aprovadas sempre que o utilizador nomeie uma ferramenta.
+
+### Um defeito encontrado e corrigido
+
+A verificação sistemática desta revisão incluiu a construção de um banco de ensaio automatizado que percorre as três vertentes da ferramenta e verifica o texto efectivamente gerado. Esse ensaio revelou um defeito **anterior a esta revisão**, presente na versão publicada:
+
+> Todos os campos de escolha múltipla retinham apenas a **última** opção seleccionada. Um estudante que assinalasse "Ensaio", "Relatório" e "Poster" obtinha uma declaração que mencionava apenas "Poster".
+
+O defeito afectava todos os campos de escolha múltipla das três vertentes. A consequência é séria para uma ferramenta cuja função é a transparência: as declarações geradas sub-representavam o que o utilizador tinha efectivamente declarado. Foi corrigido, e a correcção está registada no `CHANGELOG.md` da ferramenta.
+
+O episódio tem uma leitura institucional que convém não perder: é precisamente o tipo de defeito que uma revisão de segurança independente e um processo de garantia de qualidade existem para apanhar, e é a razão pela qual a Themis se mantém declarada como **demonstrador prototípico** e não como aplicação institucional certificada.
+
+## 8. Estado do trabalho
+
+| Elemento | Versão | Estado |
+|---|---|---|
+| Quadro FMUP · IA | v1.2 (2026-07-22) | 17 capítulos, 10 anexos |
+| Themis | `v1.1.1` | Demonstrador prototípico |
+| `policy.json` | `1.5.0` | 16 regras |
+| Guias de uma página | 4 PDF | Actualizados |
+
+A bibliografia recebeu oito entradas novas: os sete documentos da Universidade e o artigo original do GAIDeT. Os metadados deste último foram verificados no registo Crossref, e não copiados do documento que o cita.
+
+## 9. Como prosseguir {#como-prosseguir}
+
+Os passos seguintes estão ordenados por precedência lógica, não por prioridade.
+
+### Passo 1 --- Validação interna dos perfis disciplinares
+
+Os cinco perfis do [Anexo I](quadro/I-perfis-disciplinares.qmd) fazem afirmações pedagógicas sobre famílias de unidades curriculares que devem ser confirmadas por quem as lecciona. São propostas de calibração, não descrições validadas.
+
+**Antes de qualquer submissão externa**, cada perfil deve ser revisto pela coordenação do ciclo de estudos correspondente e ancorado numa unidade curricular concreta, com ligação à respectiva ficha no SIGARRA --- que é o formato usado pelo caderno da Universidade.
+
+### Passo 2 --- Apresentação aos membros da FMUP no Grupo de Trabalho da U.Porto
+
+Antes de qualquer submissão formal, o Quadro e os dois anexos-contributo devem ser apresentados a **Laura Ribeiro** e **Ricardo Correia**, docentes da FMUP que integram o Grupo de Trabalho da Universidade.
+
+A razão não é protocolar. É de eficiência: o pacote tem ciclo de revisão anual em curso, e há risco real de duplicação de trabalho já em curso na estrutura da Universidade. A via interna existe e deve ser usada antes da via formal.
+
+### Passo 3 --- Submissão dos contributos ao Grupo de Trabalho da U.Porto
+
+Depois de validados, os dois contributos podem ser propostos:
+
+- Os **cinco perfis disciplinares**, para inclusão no *Caderno complementar de perfis disciplinares*. É o contributo de menor atrito: o caderno convida-os expressamente e define a estrutura a seguir.
+- O **promptário clínico**, como suplemento ao *Promptário de estudo*.
+
+### Passo 4 --- Posicionamento da Themis como gerador institucional
+
+Este é o passo com maior potencial de impacto e o que exige mais preparação. Se a FMUP entender propor a Themis como base do gerador institucional que o pacote recomenda, a transição exige, cumulativamente:
+
+1. Revisão de segurança independente.
+2. Avaliação de impacto sobre a protecção de dados (AIPD/DPIA).
+3. Registo no inventário de aplicações da Universidade.
+4. Responsável técnico designado, com mandato e recursos.
+5. Transferência ou abertura do desenvolvimento a terceiros, dado o conflito de interesses declarado do autor.
+
+Enquanto estes requisitos não estiverem cumpridos, a Themis serve para **demonstrar viabilidade e calibrar requisitos** --- não para ser adoptada como aplicação institucional. Essa distinção deve ser mantida em qualquer apresentação da ferramenta.
+
+### Passo 5 --- Parecer jurídico
+
+Mantém-se pendente, e é anterior a qualquer adopção formal, o parecer da Direcção Jurídica da Universidade sobre as duas secções já identificadas no Quadro: o [procedimento disciplinar](quadro/06-infraestrutura.qmd#processo-disciplinar-e-direito-de-defesa) e as [cláusulas de transparência algorítmica em contratos](quadro/06-infraestrutura.qmd).
+
+Nota relevante: o pacote da Universidade teve colaboração do Serviço de Apoio Jurídico, e o fluxo processual disciplinar que fixa é agora citado pelo Quadro em vez de ser por ele proposto. Isto reduz o âmbito do parecer necessário.
+
+### Passo 6 --- Decisão de processo
+
+A decisão institucional pedida mantém-se a que a [Síntese](sintese.qmd) descreve, e não é a adopção imediata do texto como política vinculativa: tomar conhecimento, encaminhar para apreciação, constituir Grupo de Trabalho se a apreciação for favorável, pedir parecer jurídico nas secções sensíveis, autorizar um piloto limitado antes de qualquer generalização.
+
+A [adopção mínima viável](quadro/07-implementacao.qmd) descrita no capítulo 7 continua a ser o instrumento adequado para essa fase.
+
+### Passo 7 --- Alinhamento do ciclo de revisão
+
+O pacote da Universidade prevê revisão anual, convocada pela estrutura responsável pela inovação pedagógica e coordenada pelo seu Grupo de Trabalho. O Quadro prevê igualmente revisão anual. Os dois ciclos devem ser alinhados, de modo a que a revisão do Quadro ocorra depois da revisão do pacote e possa incorporá-la, e não em paralelo.
+
+## 10. Pontos a verificar
+
+Registam-se, por transparência, os limites conhecidos deste trabalho.
+
+- **Os perfis disciplinares carecem de validação.** Ver Passo 1. As competências nucleares e as recomendações de avaliação foram inferidas do referencial e do perfil da FMUP já existente no caderno da Universidade, e não das fichas das unidades curriculares.
+- **Os documentos da Universidade não têm endereço público conhecido.** À data desta nota não foi localizado endereço de distribuição. As entradas bibliográficas correspondentes ficaram sem campo `url`, a completar quando a publicação institucional for confirmada. Convém pedir essa confirmação no Passo 2.
+- **Três referências citadas pelo pacote não foram integradas** por não terem sido verificadas na fonte primária: o estudo sobre IA sicofanta (Cheng et al., *Science*, 2026), a meta-análise de Dong (2026) e a entrada sobre viés algorítmico de Birhane (2026). O Quadro não adopta referências não verificadas, mesmo quando citadas por documento institucional.
+- **A quantificação do custo ambiental permanece disputada.** A secção sobre sustentabilidade assenta em proporcionalidade e prudência, e declara-o expressamente, em vez de invocar estimativas que a evidência disponível não sustenta.
+
+## Documentos relacionados
+
+- [Anexo H --- Articulação com o quadro da Universidade do Porto](quadro/H-articulacao-uporto.qmd) --- o instrumento técnico completo: regra de precedência, mapeamentos, tabelas de adopção.
+- [Anexo I --- Perfis disciplinares da FMUP](quadro/I-perfis-disciplinares.qmd)
+- [Anexo J --- Promptário clínico](quadro/J-promptario-clinico.qmd)
+- [Síntese](sintese.qmd) --- resumo executivo do Quadro.
+- [Sobre · Estado de revisão](sobre.qmd) --- histórico de versões.

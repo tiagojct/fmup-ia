@@ -1,6 +1,6 @@
 {
   "title": "FMUP · IA — Quadro de referência institucional para a utilização de inteligência artificial generativa na FMUP",
-  "description": "Quadro de referência institucional para o uso de IA generativa na Faculdade de Medicina da Universidade do Porto, em duas partes (análise comparativa internacional + proposta operacional FMUP), seis anexos e ferramenta operacional Atlas que gera declarações estruturadas com avaliação guidante de risco em quatro níveis.",
+  "description": "Quadro de referência institucional para o uso de IA generativa na Faculdade de Medicina da Universidade do Porto, em duas partes (análise comparativa internacional + proposta operacional FMUP), dez anexos — incluindo a articulação com o quadro institucional da Universidade do Porto — e ferramenta operacional Themis (anteriormente Atlas) que gera declarações estruturadas, alinhadas com a taxonomia GAIDeT, com avaliação guidante de risco em quatro níveis.",
   "creators": [
     {
       "name": "Jacinto, Tiago",

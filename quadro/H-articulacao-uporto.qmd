@@ -1,0 +1,165 @@
+# Articulação com o quadro da Universidade do Porto {#sec-anexo-h}
+
+Em Junho de 2026, a Universidade do Porto publicou um pacote de sete documentos sobre a utilização de IA generativa no domínio educativo, produzido pelo Grupo de Trabalho constituído pelo Despacho N.º GR. 08/05/2025, sob a Unidade de Inovação Educativa e com colaboração do Serviço de Apoio Jurídico da Universidade [@uporto2026orientacoes; @uporto2026guiabase; @uporto2026guiadocentes; @uporto2026guiaestudantes; @uporto2026perfis; @uporto2026posgrad; @uporto2026promptario]. O pacote qualifica-se a si próprio como «_soft law_ académico», declara não restringir as opções das unidades orgânicas e estabelece critérios comuns "susceptíveis de adaptação à especificidade das diferentes áreas científicas".
+
+A FMUP é uma das quinze unidades orgânicas abrangidas. Este anexo estabelece, por isso, a relação formal entre o presente Quadro e aquele pacote, no mesmo registo em que o [capítulo 5](05-investigadores.qmd#sec-articulacao-ce-fmup) estabelece a relação com o *White Paper* da Comissão de Ética da FMUP e o [capítulo 12b](12b-panorama-portugal.qmd) a relação com o diagnóstico CNIPES e a Recomendação n.º 4/2026 do CNE.
+
+## Regra de precedência
+
+O presente Quadro **não é um instrumento paralelo** ao pacote U.Porto. É uma proposta de camada de especialização biomédica sobre ele. Em consequência:
+
+1. **Nas matérias cobertas pelo pacote U.Porto, prevalece o pacote U.Porto.** Isto abrange o modelo de semáforo, as sete regras mínimas transversais, a estrutura de governação, a taxonomia de declaração e o fluxo processual disciplinar.
+2. **O Quadro acrescenta a camada que o pacote não trata**: enquadramento clínico e regulatório (MDR, IVDR, SaMD/AIaMD, AI Act em contexto clínico, EHDS), documentação de ensaios sob GCP/ICH E6(R3), metodologia de revisão sistemática, viés algorítmico em contextos clínicos, degradação terminológica em português europeu médico, e regime para IA agêntica e multimodal.
+3. **Onde o Quadro for mais restritivo, a restrição adicional é fundamentada no risco clínico ou regulatório**, e não em divergência doutrinária. Está sinalizada como tal no texto.
+4. **Em caso de divergência interpretativa não resolvida por esta regra**, cabe ao Grupo de Trabalho para GenAI da FMUP (capítulo [6](06-infraestrutura.qmd)) suscitar esclarecimento junto do Grupo de Trabalho da U.Porto.
+
+Esta regra espelha a que o próprio pacote adopta internamente: o Caderno de Pós-graduação e Investigação declara prevalecer sobre a síntese do guia base em caso de divergência [@uporto2026posgrad].
+
+## Convergência de princípios
+
+Os sete princípios do [capítulo 2](02-principios.qmd) não conflituam com os cinco valores nem com os oito princípios do documento de orientações [@uporto2026orientacoes]. O mapeamento é o seguinte.
+
+| Princípio FMUP | Valor U.Porto | Princípio U.Porto |
+|---|---|---|
+| 1 --- Agência humana | iv. Responsabilidade e responsabilização | i. Fortalecimento da compreensão conceptual e da autonomia intelectual |
+| 2 --- Integridade académica e científica | i. Integridade académica e científica | ii. Foco em análise crítica em detrimento de sínteses |
+| 3 --- Protecção de dados e confidencialidade | iv. Responsabilidade (dimensão _responsibility_) | (eixo 5 das recomendações) |
+| 4 --- Transparência | ii. Transparência; v. Confiança | v. Transparência, validade e fiabilidade na avaliação |
+| 5 --- Equidade de acesso | iii. Equidade | vi. Igualdade de oportunidades; viii. Inclusão, acessibilidade e sustentabilidade |
+| 6 --- Literacia crítica | (transversal) | vii. Literacia digital sobre a IA, com a IA e sem IA |
+| 7 --- Revisão contínua | (transversal) | (ciclo de revisão anual do guia base) |
+
+Duas convergências merecem registo autónomo.
+
+**Os Três Pilares e o princípio vii.** A tripartição *Saber sobre IA / Fazer com IA / Ser sem IA*, adoptada pelo Quadro a partir do CNIPES ([capítulo 2](02-principios.qmd#tres-pilares)), é literalmente a formulação do princípio vii da U.Porto: "processos de ensino e de aprendizagem **sobre a IA, com a IA e sem IA**". Duas instituições chegaram independentemente à mesma tripartição, o que reforça a recomendação operacional de que cada ciclo de estudos identifique pelo menos uma unidade curricular com momento avaliativo sem IA.
+
+**A ausência de declaração como violação autónoma.** O [cenário 1 do Anexo E](E-cenarios.qmd#cenario-1) e o Exemplo B.1 do [Anexo B](B-clausula.qmd) sustentam que a omissão da declaração constitui, por si, violação de integridade, independentemente da qualidade do conteúdo. O documento de orientações tipifica exactamente essa conduta como a primeira das três formas de uso fraudulento: "a omissão da declaração de utilização de ferramentas de IAGen quando tal declaração é obrigatória nos termos definidos pela unidade curricular" [@uporto2026orientacoes].
+
+## Semáforo e taxonomia HEAT-AI
+
+O pacote U.Porto opera com um **semáforo por actividade** --- 🟩 permitido, 🟨 permitido com condições, 🟥 proibido --- escolhido através de um fluxo de decisão em seis passos ancorado no resultado de aprendizagem e no risco de substituição [@uporto2026guiabase; @uporto2026guiadocentes]. O Quadro opera com a taxonomia **HEAT-AI em quatro níveis de risco** ([capítulo 6](06-infraestrutura.qmd)) e, ao nível das cláusulas de unidade curricular, com três regimes ([Anexo B](B-clausula.qmd)).
+
+Os dois instrumentos **não são isomorfos e não devem ser tratados como tal**: o semáforo é normativo (o que o docente permite naquela actividade), a taxonomia HEAT-AI é descritiva (que risco institucional aquele uso comporta). Uma utilização de risco intrínseco baixo pode ser 🟥 num exame presencial; uma utilização de risco alto pode ser 🟨 mediante condições de verificação. A correspondência útil é entre o semáforo e os **regimes de cláusula** do Anexo B, sendo o nível HEAT-AI o critério que informa que condições a cláusula deve impor.
+
+| Semáforo U.Porto | Regime do [Anexo B](B-clausula.qmd) | Nível HEAT-AI típico | Condições mínimas |
+|---|---|---|---|
+| 🟩 Permitido | Permitido (B.1) | 1 --- Mínimo | Verificação do _output_; declaração recomendada |
+| 🟨 Permitido com condições | Condicionado (B.2) | 2 --- Limitado; 3 --- Alto | Declaração obrigatória; rasto de processo; verificação; controlo pedagógico proporcional |
+| 🟥 Proibido | Proibido (B.3) | 4 --- Inaceitável, **ou** qualquer nível quando a competência avaliada exige produção integralmente humana | --- |
+
+**Recomendação operacional.** As cláusulas do [Anexo B](B-clausula.qmd) e as três secções da [vertente Estudantes](03-estudantes.qmd) devem passar a exibir o marcador de semáforo a par do regime, para que um docente da FMUP possa usar o guia da U.Porto e o Quadro sem tradução mental. A [Themis](../themis/) deve emitir o marcador no texto da cláusula gerada para a vertente Docentes.
+
+## Declaração de uso: dois níveis e taxonomia GAIDeT
+
+Esta é a divergência com maior consequência prática, porque afecta a interoperabilidade das declarações produzidas na FMUP.
+
+### O regime U.Porto
+
+O pacote exige **dois níveis** de declaração [@uporto2026guiabase; @uporto2026posgrad]:
+
+1. **Nota curta normalizada** --- obrigatória em *todos* os trabalhos finais, teses, dissertações e relatórios equivalentes, **incluindo quando não houve utilização**: "O autor declara não ter utilizado ferramentas de IA generativa na preparação deste trabalho."
+2. **Declaração estruturada** --- exigida quando a utilização for **material**, segundo a taxonomia **GAIDeT** [@suchikova2026gaidet], com a extensão operacional da U.Porto.
+
+Define ainda um limiar operacional de materialidade, que o Quadro adopta:
+
+> Considera-se uso material quando a IAGen influencia substantivamente o conteúdo intelectual do trabalho, nomeadamente: geração de texto, estruturação de argumentos, síntese de literatura, desenho metodológico, análise de dados, produção de código nuclear ou formulação de conclusões. Não se considera material, em regra, a revisão linguística, a tradução, a formatação ou a organização de referências, salvo quando estas tarefas alterem o sentido ou a estrutura do trabalho. [@uporto2026guiabase]
+
+A declaração estruturada acrescenta um eixo que o [Anexo A](A-declaracao.qmd) não possui --- o **âmbito** do uso, em três graus: *apoio técnico* (tarefas operacionais ou formais, sem influência relevante no conteúdo intelectual), *apoio auxiliar com impacto limitado* (organização, compreensão, revisão ou exploração inicial, mantendo-se decisões e argumentos sob autoria do estudante) e *contributo substantivo* (influência relevante na conceptualização, metodologia, revisão da literatura, análise, código, interpretação, escrita de resultados ou conclusões).
+
+### Mapeamento das tarefas
+
+A taxonomia GAIDeT organiza a delegação em oito macrodomínios; a U.Porto acrescenta duas categorias por razões operativas [@uporto2026guiabase]. A tabela mapeia o vocabulário actual da [Themis](../themis/) sobre essa taxonomia.
+
+| Macrodomínio (GAIDeT + extensão U.Porto) | Chave equivalente na Themis | Estado |
+|---|---|---|
+| Conceptualização | `ideation` (vertente Estudantes) | Ausente na vertente Investigadores |
+| Revisão da literatura | `literature_search` | Coberto |
+| Metodologia | --- | **Ausente** |
+| Desenvolvimento de software e automação | `coding` | Coberto |
+| Gestão de dados | `data_analysis`, `statistics` | Coberto, sem distinção entre tratamento e inferência |
+| Escrita e edição | `drafting`, `editing`, `translation` | Coberto |
+| Revisão ética | --- | **Ausente** |
+| Supervisão | --- | **Ausente** |
+| Visuais/multimédia *(extensão U.Porto)* | `figures`, `poster_design`, `presentation_prep` | Coberto |
+| Controlo de qualidade *(extensão U.Porto)* | --- | **Ausente** |
+
+**Recomendação operacional.** A Themis deve (i) rotular as tarefas declaradas pelos macrodomínios GAIDeT, (ii) acrescentar os quatro macrodomínios em falta, (iii) acrescentar o eixo de âmbito, (iv) passar a emitir a nota curta normalizada, incluindo a variante de não-utilização, e (v) manter o [Anexo A](A-declaracao.qmd) como formulário de preenchimento manual equivalente. Estas alterações implicam incremento de `APP_VERSION` e de `policy.version`, nos termos do próprio regime de versionamento da ferramenta.
+
+Até que essas alterações estejam disponíveis, os investigadores e estudantes da FMUP que necessitem de declaração estruturada em conformidade com o regime U.Porto devem usar as ferramentas indicadas no Caderno de Pós-graduação e Investigação: o *GAIDeT Declaration Generator* (<https://panbibliotekar.github.io/gaidet-declaration/>) ou, para teses em LaTeX, o pacote `aidisclose` (<https://aidisclose.org/>) [@uporto2026posgrad].
+
+## Governação
+
+O pacote U.Porto define cinco níveis de decisão, com um ponto focal por unidade orgânica, uma lista publicada de ferramentas aprovadas e um prazo indicativo de **30 dias úteis** para a avaliação de novas ferramentas por parte dos serviços digitais, segurança e DPO [@uporto2026guiabase]. O Grupo de Trabalho para GenAI proposto no [capítulo 6](06-infraestrutura.qmd) situa-se no terceiro desses níveis.
+
+| Nível U.Porto | Responsável | Correspondência na FMUP |
+|---|---|---|
+| Unidade curricular | Docente responsável | Cláusula do programa ([Anexo B](B-clausula.qmd)) |
+| Curso / ciclo de estudos | Direcção de curso e Comissão Pedagógica | Coordenações de ciclo de estudos da FMUP |
+| Unidade orgânica | Conselho Pedagógico e serviços de apoio (jurídico, ética, DPO) | Conselho Pedagógico da FMUP, CE-FMUP ([cap. 5](05-investigadores.qmd#sec-articulacao-ce-fmup)) e **Grupo de Trabalho para GenAI** ([cap. 6](06-infraestrutura.qmd)) |
+| U.Porto | Pró-reitoria / Unidade de Inovação Educativa e Grupo de Trabalho | Interlocutor do Grupo de Trabalho da FMUP; destinatário das contribuições propostas na secção final deste anexo |
+| Ferramentas digitais | Serviços digitais, segurança e DPO | Articulação da FMUP com os serviços da Universidade; a lista de ferramentas aprovadas da U.Porto substitui qualquer lista paralela da Faculdade |
+
+**Regra prudencial adoptada.** Enquanto não existir lista formal de ferramentas aprovadas, aplica-se a regra do guia base: as ferramentas públicas **não estão autorizadas** para dados pessoais, dados sensíveis, informação confidencial, material de avaliação não publicado ou conteúdos institucionais não públicos [@uporto2026guiabase]. Esta regra é compatível com o princípio 3 e mais explícita do que a formulação actual do [capítulo 6](06-infraestrutura.qmd); o Quadro adopta-a.
+
+## Processo disciplinar
+
+O [capítulo 6](06-infraestrutura.qmd#processo-disciplinar-e-direito-de-defesa) enuncia princípios operacionais --- proporcionalidade pedagógica antes de sancionatória, direito de defesa e contraditório, parecer técnico do Grupo de Trabalho, articulação com a CE-FMUP, revisão periódica --- e abstém-se deliberadamente de definir um procedimento. O documento de orientações da U.Porto define-o [@uporto2026orientacoes]:
+
+1. O docente que identifique indícios de fraude reporta o caso ao conselho pedagógico da unidade orgânica, instruindo a comunicação com os elementos de facto disponíveis.
+2. O conselho pedagógico aprecia os factos e delibera sobre a proposta de abertura de inquérito.
+3. O director da unidade orgânica decide, com base nessa deliberação, a instauração de processo de inquérito.
+4. O instrutor nomeado conduz as diligências previstas no regulamento aplicável.
+
+Os princípios do capítulo 6 aplicam-se **dentro** deste fluxo, não em alternativa a ele. Em particular, o parecer técnico do Grupo de Trabalho para GenAI insere-se na fase de instrução (passos 1 e 2) e a articulação com a CE-FMUP aplica-se aos casos que envolvam investigação.
+
+## O que este Quadro acrescenta
+
+O pacote U.Porto é transversal às quinze unidades orgânicas e, por essa razão, não trata matéria específica do domínio biomédico. As áreas seguintes não têm cobertura no pacote e constituem o contributo próprio deste Quadro.
+
+| Matéria | Onde está tratada |
+|---|---|
+| MDR, IVDR, SaMD/AIaMD, AI Act em contexto clínico, EHDS, TEHDAS2, _Trusted Research Environments_ | [Cap. 14](14-camada-medica.qmd); [cap. 6](06-infraestrutura.qmd) |
+| Documentação de ensaios clínicos sob GCP/ICH E6(R3): protocolo, consentimento, SAP, CSR | [Cap. 5](05-investigadores.qmd#sec-gcp); [cenário 11](E-cenarios.qmd#cenario-11) |
+| Revisão sistemática: PRISMA 2020, PRISMA-AI, registo prévio em PROSPERO antes de _screening_ assistido | [Cap. 5](05-investigadores.qmd#sec-revisao-sistematica); [cenário 9](E-cenarios.qmd#cenario-9) |
+| Definição operacional de dado clínico identificável | [Cap. 3](03-estudantes.qmd) |
+| Regimes de declaração por destinatário: ICMJE, FCT, Horizonte Europa, Wellcome Trust, conferência, relatório institucional | [Cap. 5](05-investigadores.qmd); [cenário 12](E-cenarios.qmd#cenario-12) |
+| Viés algorítmico em contextos clínicos: tom de pele, sexo, variação farmacogenómica | [Cap. 8](08-transversais.qmd) |
+| Degradação terminológica em português europeu médico | [Cap. 8](08-transversais.qmd) |
+| IA agêntica e multimodal: regime conservador na ausência de taxonomia adequada | [Cap. 8](08-transversais.qmd) |
+| Articulação com a Comissão de Ética da FMUP e com os critérios ICMJE de autoria | [Cap. 5](05-investigadores.qmd#sec-articulacao-ce-fmup) |
+| NIST AI RMF e ISO/IEC 42001 como referenciais de gestão | [Cap. 6](06-infraestrutura.qmd); [cap. 7](07-implementacao.qmd) |
+| Grelha de maturidade institucional para auto-avaliação anual | [Anexo G](G-maturidade-cnipes.qmd) |
+
+## O que este Quadro adopta do pacote U.Porto
+
+As matérias seguintes estão tratadas no pacote U.Porto e não no Quadro. São adoptadas por remissão e integradas nas revisões indicadas.
+
+| Matéria a integrar | Fonte | Destino no Quadro | Estado |
+|---|---|---|---|
+| Regime de declaração em dois níveis, limiar de materialidade e eixo de âmbito | [@uporto2026guiabase; @uporto2026posgrad] | [Anexo A](A-declaracao.qmd) e [Themis](../themis/) | Integrado (Quadro v1.2; Themis `v1.1.0`) |
+| Marcador de semáforo por actividade avaliada | [@uporto2026guiabase] | [Anexo B](B-clausula.qmd); [cap. 3](03-estudantes.qmd) | Integrado |
+| Sobrecarga curricular como causa de utilização em registo de _coping_; coordenação entre unidades curriculares do mesmo semestre | [@uporto2026orientacoes] | [Cap. 4](04-docentes.qmd) | Integrado |
+| Ponderação minoritária do produto potencialmente gerado com GenAI no cálculo da classificação final | [@uporto2026orientacoes] | [Cap. 4](04-docentes.qmd) | Integrado |
+| Módulo de 1 ECTS no 1.º ano do 1.º ciclo sobre aprendizagem activa, tomada de notas, utilização responsável de IA, gestão do tempo e integridade | [@uporto2026orientacoes] | [Cap. 7](07-implementacao.qmd) | Integrado |
+| Registo da contribuição individual e aprovação da versão final por todos, em trabalhos de grupo | [@uporto2026orientacoes] | [Cap. 3](03-estudantes.qmd); [Themis](../themis/) | Integrado |
+| Sustentabilidade organizacional e ambiental como critério de adopção, com formação associada | [@uporto2026orientacoes] | [Cap. 8](08-transversais.qmd); [cap. 6](06-infraestrutura.qmd) | Integrado como questão transversal, **não** como oitavo princípio --- ver nota abaixo |
+| Grelha de adaptações razoáveis por necessidade específica, com alternativa sem IA | [@uporto2026guiabase] | [Cap. 8](08-transversais.qmd) | Integrado, com linha adicional para OSCE |
+| Alternativas não digitais à evidência de processo, para estudantes sem acesso estável a equipamento ou ligação | [@uporto2026guiabase] | [Cap. 4](04-docentes.qmd) | Integrado |
+| Explicabilidade (_XAI_) como recomendação pedagógica, não apenas contratual | [@uporto2026orientacoes] | [Cap. 6](06-infraestrutura.qmd) | Integrado |
+| Padrões de _prompt_ que preservam aprendizagem e lista de _prompts_ a evitar | [@uporto2026guiabase; @uporto2026promptario] | [Anexo D](D-guia.qmd); [Anexo J](J-promptario-clinico.qmd) | Integrado |
+
+**Nota sobre a sustentabilidade.** O princípio viii da U.Porto trata a sustentabilidade organizacional e ambiental como princípio autónomo. O presente Quadro integra a matéria sem criar um oitavo princípio, por uma razão estrutural: os sete princípios do [capítulo 2](02-principios.qmd) são referenciados pelas regras da [Themis](../themis/) através do campo `principle_ref`, pela grelha de maturidade do [Anexo G](G-maturidade-cnipes.qmd) e pelo mapeamento dos Três Pilares. Acrescentar um princípio obrigaria a revisões em cascata sem ganho normativo, uma vez que a matéria fica coberta pela dimensão ético-regulatória do princípio 6 e pelos critérios de _procurement_ do [capítulo 6](06-infraestrutura.qmd). A opção é de arquitectura documental, não de discordância substantiva.
+
+Uma nota de método: o Quadro **não deve duplicar** a camada genérica do pacote U.Porto --- funcionamento dos modelos, noções de _prompting_, glossário básico, _checklists_ transversais. O [Anexo F](F-glossario.qmd) e partes do [Anexo D](D-guia.qmd) sobrepõem-se hoje ao glossário do documento de orientações e ao Anexo A do guia base. A resolução correcta é a remissão, não a repetição.
+
+## Contribuições propostas da FMUP para o pacote U.Porto
+
+Dois dos catorze membros do Grupo de Trabalho constituído pelo Despacho N.º GR. 08/05/2025 --- **Laura Ribeiro** e **Ricardo Correia** --- são docentes da FMUP. A Faculdade está, por isso, representada na estrutura que produziu o pacote e que mantém o seu ciclo de revisão anual. As contribuições abaixo não carecem de canal externo: podem ser encaminhadas pela via interna, o que também recomenda que o presente Quadro seja apresentado a esses membros antes de qualquer submissão formal, de modo a evitar duplicação de trabalho e a assegurar coerência com a revisão em curso.
+
+O pacote é explicitamente extensível. Três contributos estão ao alcance imediato da FMUP.
+
+**Perfis disciplinares.** O Caderno complementar [@uporto2026perfis] define um esquema reutilizável --- identificação e ligação à ficha da unidade curricular, competências nucleares, ajuda útil da IA, riscos de substituição, regulação recomendada, evidências e verificação --- e convida as unidades orgânicas a propor novos perfis. O caderno contém já um perfil da FMUP (*Medicina Clínica e Serviços de Saúde I*). O [Anexo I](I-perfis-disciplinares.qmd) propõe **cinco perfis adicionais** nessa estrutura: raciocínio clínico e prática tutelada, ciência de dados de saúde e bioestatística, saúde pública e comunicação em saúde, informática da saúde e engenharia de _software_ clínico, e bioética e integridade científica. É o contributo de menor atrito e maior visibilidade disponível.
+
+**Promptário clínico.** O Promptário [@uporto2026promptario] não contém conteúdo clínico. O [Anexo J](J-promptario-clinico.qmd) é o suplemento correspondente: padrões para treino de anamnese, exercício de raciocínio diferencial, preparação de OSCE e leitura crítica de literatura clínica, com a invariante de não introdução de dados de doentes e com uma secção própria para docentes. É matéria em que a FMUP tem competência que as restantes unidades orgânicas não têm.
+
+**Gerador institucional de declarações.** O guia base recomenda, como acção futura, que "a Universidade do Porto deverá considerar o desenvolvimento ou a adaptação de um gerador institucional de declarações de uso de IA, alojado em domínio próprio, que incorpore a taxonomia de referência e a extensão operacional definidas neste pacote" [@uporto2026guiabase], remetendo entretanto para duas ferramentas externas. A [Themis](../themis/) responde a essa especificação, desde que concluída a integração da taxonomia GAIDeT descrita neste anexo. A sua candidatura a esse papel pressupõe a transição descrita em [Sobre · Estatuto editorial](../sobre.qmd#estatuto-editorial): revisão de segurança independente, avaliação de impacto sobre a protecção de dados, registo no inventário de aplicações da Universidade e responsável técnico designado. Enquanto demonstrador prototípico, a Themis serve para demonstrar viabilidade e para calibrar requisitos --- não para ser adoptada como aplicação institucional no estado actual.

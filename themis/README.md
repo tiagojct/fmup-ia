@@ -21,10 +21,24 @@ inventory, and a designated technical owner.
 
 Three branches:
 
-- **Student** — declaration to accompany a submitted assignment.
-- **Teacher** — course-unit syllabus policy text + disclosure requirement to
+- **Student** — declaration to accompany a submitted assignment, including
+  the scope-of-use axis (technical / auxiliary / substantive) and, for group
+  submissions, an individual-contribution record.
+- **Teacher** — course-unit syllabus policy text (prefixed with the
+  U.Porto traffic-light marker 🟩/🟨/🟥) + disclosure requirement to
   communicate to students.
-- **Researcher** — Methods/Acknowledgements statement + brief inline statement.
+- **Researcher** — a **short normalised note** (three variants: no use,
+  non-material use, material use — the first tier of the University of
+  Porto's two-level disclosure regime), plus a Methods/Acknowledgements
+  statement naming the delegated **GAIDeT macrodomains**, plus a brief
+  inline statement. A dedicated checkbox produces the null declaration
+  ("no generative AI tools were used") required in every final work.
+
+Since `v1.1.0`, declarations are interoperable with the University of
+Porto's June 2026 framework (GAIDeT taxonomy with the U.Porto operational
+extension; two-level disclosure; materiality threshold). The mapping is
+documented in [Annex H](https://tiagojct.eu/fmup-ia/quadro/H-articulacao-uporto.html)
+of the FMUP framework.
 
 The tool is **client-side only** (HTML + vanilla JS + a single JSON policy
 file). It does not send any data to a server, does not use cookies for
@@ -108,9 +122,12 @@ all editable as plain text. To create a derivative for another institution:
    risk levels, and the rules list. Each rule has:
    - `id` (stable identifier);
    - `trigger` (a small object describing the state predicate that fires the
-     rule — supported keys: `role`, `submission`, `assignment`,
-     `assignment_any`, `tasks_any`, `tools_regex`, `policy`, `level`,
-     `activity`, `activity_any`, `target`, `target_any`, `modification`);
+     rule — supported keys, mirroring `matchesTrigger()` in `app.js`:
+     `role`, `submission`, `modification`, `policy`, `policy_any`, `level`,
+     `activity`, `activity_any`, `target`, `target_any`, `assignment_any`,
+     `tasks_any`, `tools_regex`; keys not in this list are silently
+     ignored, so adding a new trigger key requires editing
+     `matchesTrigger()`);
    - `risk` (1 = minimal, 2 = limited, 3 = high, 4 = unacceptable);
    - `principle_ref`, `scenario_ref` (informational anchors);
    - `message_pt`, `message_en` (user-visible guidance).

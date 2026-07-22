@@ -27,11 +27,32 @@ O regime jurídico da propriedade de conteúdo gerado com GenAI permanece em abe
 
 A escolha das plataformas tem consequências que excedem o critério funcional: cria relação contratual que pode comprometer soberania de dados, continuidade de serviço e capacidade de negociação. A análise internacional (capítulo [15](15-lacunas.qmd)) identifica dois pólos: a ASU com parceria integral OpenAI (máxima fluidez, dependência difícil de inverter) e a Cornell/Harvard com *sandboxes* negociadas + *Statement of Need* prévio (defensabilidade institucional). A recomendação para a FMUP aproxima-se do segundo pólo, mitigada por infraestrutura nacional: IAedu (FCT/FCCN) [@iaedu2025] como primeira linha, complementada pelo Deucalion e pela futura *Gigafactory* prevista na ANIA [@ania2026]. Plataformas comerciais (OpenAI, Anthropic, Google, Microsoft) usam-se com ponderação do regime contratual, dos termos de retenção e da exclusão de uso para treino.
 
+## Sustentabilidade organizacional e ambiental
+
+O princípio viii do documento de orientações da Universidade do Porto exige que a adopção de sistemas de GenAI considere "os mais essenciais princípios de sustentabilidade organizacional e ambiental, com base em escolhas tecnológicas proporcionais, na redução de redundâncias, no uso eficiente de recursos e em critérios responsáveis de aquisição e utilização" [@uporto2026orientacoes]. O presente Quadro trata a matéria como questão transversal, e não como princípio autónomo: os sete princípios do [capítulo 2](02-principios.qmd) mantêm-se, com o impacto ambiental a ser coberto pela dimensão ético-regulatória da literacia crítica (princípio 6) e pelos critérios de _procurement_ do [capítulo 6](06-infraestrutura.qmd).
+
+Operacionalmente, três consequências. A primeira é de **proporcionalidade**: o custo energético de uma inferência não é uniforme, e recorrer ao modelo mais capaz disponível para tarefas que um modelo menor resolve é desperdício com significado ambiental quando multiplicado por uma comunidade académica inteira. A segunda é de **redundância**: manter várias subscrições institucionais sobrepostas para a mesma função é ineficiência organizacional, e o critério de decisão deve ser funcional, à semelhança do que o próprio quadro da U.Porto estabelece para a equidade. A terceira é **formativa**: a U.Porto considera a formação nesta matéria tendencialmente obrigatória, e o plano de formação da Fase 1 ([capítulo 7](07-implementacao.qmd)) deve incluí-la, ainda que de forma breve.
+
+A honestidade intelectual exige uma nota: a quantificação do custo ambiental por interacção permanece disputada e os dados publicados pelos fornecedores não são auditáveis de forma independente. A recomendação acima assenta em proporcionalidade e prudência, não numa estimativa precisa que o estado actual da evidência não sustenta.
+
 ## Acessibilidade e equidade cognitiva
 
 A GenAI reduz barreiras para estudantes e docentes com dislexia, ADHD, espectro do autismo, deficiência visual ou condições que afectam concentração. Usos típicos: apoio à organização textual, simplificação linguística, conversão entre formatos, geração de resumos, reescrita acessível. Nesta dimensão, a GenAI é tecnologia assistiva.
 
 Implicações para a FMUP: as regras de declaração não desencorajam o uso como apoio de acessibilidade; o princípio 5 (equidade) estende-se a equidade cognitiva e não apenas financeira --- a gratuidade da IAedu torna-a acessível a todos; o Serviço de Apoio ao Estudante e o grupo de trabalho articulam-se para apoiar quem beneficie de utilização intensiva como acomodação razoável, sem agravar o ónus de declaração.
+
+Em contexto de avaliação, a questão trata-se como equidade e não como concessão individual: ou a funcionalidade equivalente é permitida a todos, ou é enquadrada como adaptação razoável devidamente autorizada, sem penalizar quem a declara [@uporto2026guiabase]. A grelha seguinte adapta a do guia de boas práticas da U.Porto, acrescentando as situações próprias do ensino médico.
+
+| Necessidade frequente | Uso legítimo de GenAI | Condições | Alternativa quando não se permite GenAI |
+|---|---|---|---|
+| Dislexia e dificuldades de leitura | Reescrita em linguagem mais simples; sumarização de texto próprio; leitura em voz alta | Não gerar conteúdo novo; foco na clareza; transparência sobre o que foi transformado | Materiais acessíveis, tempo adicional, versões simplificadas preparadas pelo docente |
+| PHDA e dificuldades de organização | Planos de estudo; decomposição de tarefas; _checklists_ | Usar para planeamento, não para produzir respostas finais | Tutoria, estruturação por marcos, _checklists_ fornecidas pela UC |
+| Estudantes internacionais | Tradução e revisão linguística; clarificação de instruções; glossários | Manter autoria intelectual; verificar terminologia clínica com docente | Recursos bilingues; revisão linguística humana |
+| Deficiência visual | Descrição de imagens; conversão de formatos; apoio à navegação | Preferir soluções institucionais; não carregar dados pessoais | Materiais em formatos alternativos conformes com as WCAG |
+| Ansiedade em avaliação oral | Treino prévio com simulação e _feedback_ sobre clareza | Treino fora da avaliação; na avaliação, critérios transparentes | Formato alternativo equivalente previsto nas normas internas |
+| Ansiedade em OSCE e avaliação clínica prática | Ensaio de estrutura de anamnese e de comunicação com casos fictícios | Nunca com dados de doentes reais; o desempenho avaliado é presencial e sem apoio | Simulação com colegas, treino com doente padronizado, sessões tutoriais adicionais |
+
+A última linha é específica da FMUP e merece nota: o treino prévio com GenAI é legítimo e potencialmente útil, mas a competência avaliada em OSCE --- comunicação clínica em tempo real, com uma pessoa --- não é substituível nem assistível, e o enquadramento da adaptação razoável não pode ser lido como abertura nesse sentido.
 
 ## Modalidades emergentes de IA
 

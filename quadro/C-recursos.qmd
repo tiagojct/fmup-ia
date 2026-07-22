@@ -14,6 +14,20 @@ A **WAME** (_World Association of Medical Editors_) publicou, em Janeiro de 2023
 
 O **COPE** (_Committee on Publication Ethics_) emitiu posição sobre o uso de ferramentas de IA na investigação e na submissão de manuscritos, sublinhando a responsabilidade indelegável dos autores humanos pelo conteúdo publicado (<https://publicationethics.org>).
 
+## Referencial da Universidade do Porto (Junho de 2026)
+
+O referencial hierarquicamente mais próximo da FMUP. Sete documentos publicados em Junho de 2026 pela Unidade de Inovação Educativa da U.Porto, produzidos pelo Grupo de Trabalho constituído pelo Despacho N.º GR. 08/05/2025, com colaboração do Serviço de Apoio Jurídico da Universidade. O pacote qualifica-se a si próprio como «_soft law_ académico» e aplica-se às quinze unidades orgânicas, entre as quais a FMUP. A articulação integral com o presente Quadro consta do [Anexo H](H-articulacao-uporto.qmd).
+
+- **Doc. 01** -- *Inteligência artificial generativa no domínio educativo: Orientações para uso e adoção responsável* [@uporto2026orientacoes]. Enquadramento estratégico: missão, cinco valores, oito princípios, análise de riscos e oportunidades, seis eixos de recomendações, fluxo processual disciplinar, glossário.
+- **Doc. 02** -- *Guia de boas práticas para o uso de inteligência artificial generativa no contexto académico* [@uporto2026guiabase]. Núcleo operacional: sete regras mínimas transversais, modelo de semáforo por actividade, estrutura de governação em cinco níveis, dez situações-tipo, _checklists_ e modelos de declaração.
+- **Doc. 03** -- *Guia prático para docentes* [@uporto2026guiadocentes]. Uma página: fluxo de decisão em seis passos e texto-modelo para enunciados.
+- **Doc. 04** -- *Guia prático para estudantes* [@uporto2026guiaestudantes]. Uma página: leitura do semáforo, bom _versus_ mau uso, níveis de declaração.
+- **Doc. 05** -- *Caderno complementar de perfis disciplinares* [@uporto2026perfis]. Dez perfis de unidades curriculares, um por unidade orgânica; o perfil 7 corresponde à UC *Medicina Clínica e Serviços de Saúde I* da FMUP. O caderno é explicitamente extensível por proposta das unidades orgânicas.
+- **Doc. 06** -- *Caderno de Pós-graduação e Investigação com Inteligência Artificial Generativa* [@uporto2026posgrad]. Adopta o **GAIDeT** [@suchikova2026gaidet] como taxonomia-base de delegação de tarefas, com extensão operacional U.Porto para visuais/multimédia e controlo de qualidade; define o regime de declaração em dois níveis.
+- **Doc. 07** -- *Promptário de estudo com Inteligência Artificial Generativa* [@uporto2026promptario]. Padrões de _prompt_ por objectivo de aprendizagem e por área, e lista de _prompts_ a evitar.
+
+À data de consulta (Julho de 2026) não foi localizado endereço público de distribuição para estes documentos; as entradas bibliográficas correspondentes não incluem `url`, campo a completar quando a publicação institucional for confirmada.
+
 ## Referenciais nacionais portugueses (2026)
 
 Dois documentos institucionais portugueses publicados em Abril de 2026, ambos contemporâneos da redacção do presente Quadro:

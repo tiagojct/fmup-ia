@@ -11,11 +11,12 @@
 
   // ---- Single source of truth for the tool version. ----
   // Bump this when statement content (any i18n file) changes.
-  const APP_VERSION = '1.0.5';
+  const APP_VERSION = '1.1.1';
 
   // Schema version for the URL hash payload. Bump when state shape
   // changes incompatibly. Hashes with a different `v` are rejected.
-  const HASH_V = 1;
+  // v2 adds `scope` (GAIDeT âmbito axis) and `noUse` (null declaration).
+  const HASH_V = 2;
 
   const I18N = { pt: window.I18N_PT, en: window.I18N_EN };
   const DEFAULT_LANG = 'pt';
@@ -52,6 +53,11 @@
       lang: detectLang(),
       role: null,
       done: false,
+      // shared: GAIDeT âmbito axis (apoio técnico / apoio auxiliar com
+      // impacto limitado / contributo substantivo) and the null-use flag
+      // that drives the "declaro não ter utilizado" short note.
+      scope: null,
+      noUse: false,
       // student
       submission: null,
       assignment: [],
@@ -105,6 +111,8 @@
       lang: s.lang,
       role: s.role,
       done: s.done,
+      scope: s.scope,
+      noUse: s.noUse,
       submission: s.submission,
       assignment: s.assignment,
       assignmentOther: s.assignmentOther,
@@ -388,6 +396,26 @@
     'principio-7-revisao':          { pt: 'Revisão contínua', en: 'Continuous revision' },
   };
 
+  // The task-key → GAIDeT-macrodomain map lives in policy.json
+  // (`policy.gaidet`), because it is institutional taxonomy — data, not
+  // behaviour — and because the statement generators in i18n/*.js need the
+  // same map and already receive POLICY as an argument. Keys absent from
+  // the map contribute no macrodomain — deliberate: an unmapped task is
+  // still declared in prose, it just does not claim a taxonomy slot it
+  // does not fill. When policy.json is unavailable (file://), declarations
+  // simply omit the macrodomain clause, consistent with the risk panel
+  // being disabled in that mode. See Anexo H of the Quadro.
+  function gaidetDomains(s) {
+    const g = POLICY && POLICY.gaidet;
+    if (!g || !g.map || !Array.isArray(g.order)) return [];
+    const seen = {};
+    (s.tasks || []).forEach((k) => {
+      const d = g.map[k];
+      if (d) seen[d] = true;
+    });
+    return g.order.filter((d) => seen[d]);
+  }
+
   // Returns { number, name, href } for a principle_ref, or null if it cannot
   // be parsed. `href` points to the anchor in the rendered Quadro chapter.
   function principleInfo(ref, lang) {
@@ -403,13 +431,13 @@
 
   function hasAnyFormSelection() {
     if (state.role === 'student') {
-      return !!(state.submission || (state.assignment || []).length || (state.tasks || []).length || (state.tools || '').trim() || state.modification);
+      return !!(state.submission || (state.assignment || []).length || (state.tasks || []).length || (state.tools || '').trim() || state.modification || state.scope);
     }
     if (state.role === 'teacher') {
       return !!(state.courseType || (state.assignment || []).length || state.policy || (state.skills || []).length || (state.skillsOther || '').trim());
     }
     if (state.role === 'researcher') {
-      return !!(state.activity || (state.tasks || []).length || (state.tools || '').trim() || state.target);
+      return !!(state.activity || (state.tasks || []).length || (state.tools || '').trim() || state.target || state.scope || state.noUse);
     }
     return false;
   }
@@ -548,19 +576,22 @@
 
   function checkboxGroup(name, options, selected, onchange) {
     const fg = el('div', { class: 'field-group ' + (options.length > 4 ? 'cols-2' : '') });
+    // Derive the new selection from the DOM rather than from the `selected`
+    // array captured at render time. The caller replaces state.<field> with
+    // a fresh array on every change and the group is not re-rendered, so the
+    // captured array goes stale after the first tick — reading it would drop
+    // every previously ticked option. The checkboxes are the live truth.
+    const readChecked = () => Array.prototype.slice
+      .call(fg.querySelectorAll('input[type="checkbox"]'))
+      .filter((x) => x.checked)
+      .map((x) => x.value);
     options.forEach((opt) => {
       const input = el('input', {
         type: 'checkbox',
         name: name,
         value: opt.value,
         checked: selected.indexOf(opt.value) !== -1,
-        onchange: () => {
-          const next = selected.slice();
-          const idx = next.indexOf(opt.value);
-          if (input.checked && idx === -1) next.push(opt.value);
-          else if (!input.checked && idx !== -1) next.splice(idx, 1);
-          onchange(next);
-        },
+        onchange: () => onchange(readChecked()),
       });
       const label = el('label', { class: 'option' }, input, el('span', { class: 'option-label', text: opt.label }));
       fg.appendChild(label);
@@ -638,7 +669,7 @@
 
   function renderStudentForm() {
     const i = t();
-    const total = 6;
+    const total = 7;
     const screen = el('section', { class: 'screen' });
 
     screen.appendChild(stepHeader(1, total, i.student.step1));
@@ -711,7 +742,15 @@
       (v) => { state.modification = v; syncHash(true); refreshGenerate(screen); }
     ));
 
-    screen.appendChild(stepHeader(6, total, i.student.step6UseDate, i.student.step6UseDateHelp));
+    screen.appendChild(stepHeader(6, total, i.shared.stepScope, i.shared.stepScopeHelp));
+    screen.appendChild(radioGroup(
+      'scope',
+      asOptions(i.shared.scope),
+      state.scope,
+      (v) => { state.scope = v; syncHash(true); refreshGenerate(screen); }
+    ));
+
+    screen.appendChild(stepHeader(7, total, i.student.step6UseDate, i.student.step6UseDateHelp));
     screen.appendChild(dateInputRow(
       'use-date-input',
       state.useDate,
@@ -803,7 +842,7 @@
 
   function renderResearcherForm() {
     const i = t();
-    const total = 5;
+    const total = state.noUse ? 2 : 6;
     const screen = el('section', { class: 'screen' });
 
     screen.appendChild(stepHeader(1, total, i.researcher.step1));
@@ -814,48 +853,84 @@
       (v) => { state.activity = v; syncHash(true); refreshGenerate(screen); }
     ));
 
-    screen.appendChild(stepHeader(2, total, i.researcher.step2, i.researcher.step2Help));
-    screen.appendChild(checkboxGroup(
-      'tasks',
-      asOptions(i.researcher.tasks),
-      state.tasks,
-      (v) => { state.tasks = v; syncHash(true); refreshGenerate(screen); }
+    // Null declaration. The U.Porto regime requires a short normalised note
+    // in every final work, including when no GenAI was used at all — so the
+    // tool has to be able to state the absence of use, not only its extent.
+    // Ticking this collapses the remaining steps: there is nothing to
+    // describe, only a target to address the note to.
+    screen.appendChild(singleCheckbox(
+      'no-use',
+      i.shared.noUseLabel,
+      i.shared.noUseHelp,
+      state.noUse,
+      (v) => {
+        state.noUse = v;
+        if (v) {
+          state.tasks = [];
+          state.tools = '';
+          state.scope = null;
+        }
+        syncHash(true);
+        render();
+      }
     ));
 
-    screen.appendChild(stepHeader(3, total, i.researcher.step3, i.researcher.step3Help));
-    const researcherChips = renderToolChips('tools-input');
-    if (researcherChips) screen.appendChild(researcherChips);
-    screen.appendChild(textInputRow(
-      'tools-input',
-      i.researcher.step3Placeholder,
-      state.tools,
-      (v) => { state.tools = v; syncHash(true); refreshGenerate(screen); }
-    ));
+    if (!state.noUse) {
+      screen.appendChild(stepHeader(2, total, i.researcher.step2, i.researcher.step2Help));
+      screen.appendChild(checkboxGroup(
+        'tasks',
+        asOptions(i.researcher.tasks),
+        state.tasks,
+        (v) => { state.tasks = v; syncHash(true); refreshGenerate(screen); }
+      ));
 
-    screen.appendChild(stepHeader(4, total, i.researcher.step4));
+      screen.appendChild(stepHeader(3, total, i.researcher.step3, i.researcher.step3Help));
+      const researcherChips = renderToolChips('tools-input');
+      if (researcherChips) screen.appendChild(researcherChips);
+      screen.appendChild(textInputRow(
+        'tools-input',
+        i.researcher.step3Placeholder,
+        state.tools,
+        (v) => { state.tools = v; syncHash(true); refreshGenerate(screen); }
+      ));
+
+      screen.appendChild(stepHeader(4, total, i.shared.stepScope, i.shared.stepScopeHelp));
+      screen.appendChild(radioGroup(
+        'scope',
+        asOptions(i.shared.scope),
+        state.scope,
+        (v) => { state.scope = v; syncHash(true); refreshGenerate(screen); }
+      ));
+    }
+
+    const targetStep = state.noUse ? 2 : 5;
+    screen.appendChild(stepHeader(targetStep, total, i.researcher.step4));
     screen.appendChild(radioGroup(
       'target',
       asOptions(i.researcher.target),
       state.target,
       (v) => { state.target = v; syncHash(true); refreshGenerate(screen); }
     ));
-    if (i.researcher.promptsRefLabel) {
-      screen.appendChild(textInputRow(
-        'prompts-ref-input',
-        i.researcher.promptsRefPlaceholder,
-        state.promptsRef || '',
-        (v) => { state.promptsRef = v; syncHash(true); },
-        i.researcher.promptsRefLabel
+
+    if (!state.noUse) {
+      if (i.researcher.promptsRefLabel) {
+        screen.appendChild(textInputRow(
+          'prompts-ref-input',
+          i.researcher.promptsRefPlaceholder,
+          state.promptsRef || '',
+          (v) => { state.promptsRef = v; syncHash(true); },
+          i.researcher.promptsRefLabel
+        ));
+      }
+
+      screen.appendChild(stepHeader(6, total, i.researcher.step5UseDate, i.researcher.step5UseDateHelp));
+      screen.appendChild(dateInputRow(
+        'use-date-input',
+        state.useDate,
+        (v) => { state.useDate = v; syncHash(true); refreshGenerate(screen); },
+        i.researcher.step5UseDateLabel
       ));
     }
-
-    screen.appendChild(stepHeader(5, total, i.researcher.step5UseDate, i.researcher.step5UseDateHelp));
-    screen.appendChild(dateInputRow(
-      'use-date-input',
-      state.useDate,
-      (v) => { state.useDate = v; syncHash(true); refreshGenerate(screen); },
-      i.researcher.step5UseDateLabel
-    ));
 
     const panel = renderRiskPanel(false);
     if (panel) screen.appendChild(panel);
@@ -865,6 +940,22 @@
 
   function canGenerateResearcher() {
     return !!(state.activity && state.target);
+  }
+
+  function singleCheckbox(id, label, help, checked, onchange) {
+    const wrap = el('div', { class: 'field-group cols-1 single-checkbox' });
+    const input = el('input', {
+      type: 'checkbox',
+      id: id,
+      name: id,
+      checked: !!checked,
+      onchange: () => onchange(input.checked),
+    });
+    const textWrap = el('span', { class: 'option-text' });
+    textWrap.appendChild(el('span', { class: 'option-label', text: label }));
+    if (help) textWrap.appendChild(el('span', { class: 'option-description', text: help }));
+    wrap.appendChild(el('label', { class: 'option option-with-description' }, input, textWrap));
+    return wrap;
   }
 
   function textInputRow(id, placeholder, value, oninput, label) {
@@ -1053,20 +1144,32 @@
         printTarget: true,
       });
     } else if (state.role === 'researcher') {
+      // Level 1 of the U.Porto two-tier regime: the short normalised note,
+      // required in every final work — including when nothing was used.
       out.push({
-        key: 'researcher-full',
-        heading: i.ui.outputHeadingResearcherFull,
-        text: i.statements.researcherFull(state, APP_VERSION, POLICY),
-        markdownTitle: i.ui.outputHeadingResearcherFull,
+        key: 'researcher-note',
+        heading: i.ui.outputHeadingShortNote,
+        text: i.statements.shortNote(state, APP_VERSION, POLICY),
+        markdownTitle: i.ui.outputHeadingShortNote,
         printTarget: true,
       });
-      out.push({
-        key: 'researcher-inline',
-        heading: i.ui.outputHeadingResearcherInline,
-        text: i.statements.researcherInline(state, APP_VERSION, POLICY),
-        markdownTitle: i.ui.outputHeadingResearcherInline,
-        printTarget: true,
-      });
+      // Level 2 is only meaningful when there is a use to describe.
+      if (!state.noUse) {
+        out.push({
+          key: 'researcher-full',
+          heading: i.ui.outputHeadingResearcherFull,
+          text: i.statements.researcherFull(state, APP_VERSION, POLICY),
+          markdownTitle: i.ui.outputHeadingResearcherFull,
+          printTarget: true,
+        });
+        out.push({
+          key: 'researcher-inline',
+          heading: i.ui.outputHeadingResearcherInline,
+          text: i.statements.researcherInline(state, APP_VERSION, POLICY),
+          markdownTitle: i.ui.outputHeadingResearcherInline,
+          printTarget: true,
+        });
+      }
     }
     return out;
   }
@@ -1142,6 +1245,8 @@
       }).filter(Boolean).join(', '));
       pushRow(rows, i.student.step4, state.tools);
       pushRow(rows, i.student.step5, (i.student.modification[state.modification] || {}).label || '');
+      pushRow(rows, i.shared.stepScope, (i.shared.scope[state.scope] || {}).label || '');
+      pushRow(rows, i.shared.gaidetLabel, gaidetDomains(state).map((d) => i.shared.gaidet[d]).filter(Boolean).join(', '));
     } else if (state.role === 'teacher') {
       pushRow(rows, i.teacher.step0CourseType, i.teacher.courseType[state.courseType]);
       pushRow(rows, i.teacher.step2, (state.assignment || []).map((k) => i.teacher.assignment[k]).filter(Boolean).join(', '));
@@ -1151,8 +1256,14 @@
       pushRow(rows, i.teacher.step4, skills.join(', '));
     } else if (state.role === 'researcher') {
       pushRow(rows, i.researcher.step1, i.researcher.activity[state.activity]);
-      pushRow(rows, i.researcher.step2, (state.tasks || []).map((k) => i.researcher.tasks[k]).filter(Boolean).join(', '));
-      pushRow(rows, i.researcher.step3, state.tools);
+      if (state.noUse) {
+        pushRow(rows, i.shared.noUseLabel, i.shared.noUseSummary);
+      } else {
+        pushRow(rows, i.researcher.step2, (state.tasks || []).map((k) => i.researcher.tasks[k]).filter(Boolean).join(', '));
+        pushRow(rows, i.researcher.step3, state.tools);
+        pushRow(rows, i.shared.stepScope, (i.shared.scope[state.scope] || {}).label || '');
+        pushRow(rows, i.shared.gaidetLabel, gaidetDomains(state).map((d) => i.shared.gaidet[d]).filter(Boolean).join(', '));
+      }
       pushRow(rows, i.researcher.step4, i.researcher.target[state.target]);
       if ((state.promptsRef || '').trim() && i.researcher.promptsRefLabel) {
         pushRow(rows, i.researcher.promptsRefLabel, state.promptsRef.trim());

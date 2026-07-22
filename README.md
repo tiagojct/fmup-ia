@@ -1,20 +1,20 @@
 # FMUP · IA
 
-**Quadro de referência institucional para o uso de IA generativa na Faculdade de Medicina da Universidade do Porto + ferramenta operacional Atlas.**
+**Quadro de referência institucional para o uso de IA generativa na Faculdade de Medicina da Universidade do Porto + ferramenta operacional Themis.**
 
 - 🌐 Site: <https://tiagojct.eu/fmup-ia/>
 - 📖 Quadro: <https://tiagojct.eu/fmup-ia/quadro/>
-- 🧭 Atlas (ferramenta): <https://tiagojct.eu/fmup-ia/atlas/>
+- ⚖️ Themis (ferramenta): <https://tiagojct.eu/fmup-ia/themis/>
 - 🪪 Licença: [CC BY 4.0](LICENSE)
 
 ## O que é
 
 Um repositório que reúne, num único site Quarto:
 
-1. **Quadro** (`/quadro/`) — proposta institucional sobre uso de GenAI na FMUP, em duas partes: comparação externa (Parte I) e proposta operacional para a FMUP (Parte II), seguidas de seis anexos.
-2. **Atlas** (`/atlas/`) — SPA cliente em vanilla JS sem _build_ que gera declarações estruturadas de uso de IA para três papéis (estudante, docente, investigador) e devolve avaliação guidante de risco em quatro níveis (HEAT-AI), com base nas regras codificadas em `atlas/policy.json`. A ferramenta é guidante, não bloqueante.
+1. **Quadro** (`/quadro/`) — proposta institucional sobre uso de GenAI na FMUP, em duas partes: comparação externa (Parte I) e proposta operacional para a FMUP (Parte II), seguidas de dez anexos.
+2. **Themis** (`/themis/`) — SPA cliente em vanilla JS sem _build_ que gera declarações estruturadas de uso de IA para três papéis (estudante, docente, investigador) e devolve avaliação guidante de risco em quatro níveis (HEAT-AI), com base nas regras codificadas em `themis/policy.json`. A ferramenta é guidante, não bloqueante. Chamava-se *Atlas* até Junho de 2026; foi renomeada para evitar colisão com o portal institucional *Atlas U.Porto* (`atlas.up.pt`).
 
-Tudo está cruzadamente ligado: o site liga ao Atlas (navbar, _landing_, anexos); o Atlas liga ao Quadro (header "voltar", _footer_, e via `framework_url` em `policy.json`).
+Tudo está cruzadamente ligado: o site liga à Themis (navbar, _landing_, anexos); a Themis liga ao Quadro (header "voltar", _footer_, e via `framework_url` em `policy.json`).
 
 ## Estrutura
 
@@ -23,15 +23,16 @@ fmup-ia/
 ├── _quarto.yml          # Quarto website config
 ├── theme.scss           # overrides locais sobre o tema FMUP
 ├── index.qmd            # landing
-├── sobre.qmd, recursos.qmd, 404.qmd
-├── quadro/              # o livro (16+ capítulos + 7 anexos + bibliografia)
+├── sintese.qmd, sobre.qmd, recursos.qmd, convencoes.qmd, 404.qmd
+├── quadro/              # o documento (17 capítulos + 10 anexos + bibliografia)
 │   ├── index.qmd
 │   ├── 10-…15-          # Parte I (comparação)
 │   ├── 01-…09b-         # Parte II (proposta FMUP)
-│   ├── A-…G-            # Anexos
+│   ├── A-…J-            # Anexos
 │   ├── references.bib, chicago-author-date.csl
 │   └── guias/           # 4 handouts em format: fmup-typst (PDF)
-├── atlas/               # SPA: index.html, app.js, style.css, policy.json, i18n/
+├── apresentacoes/       # slides em format: fmup-revealjs
+├── themis/              # SPA: index.html, app.js, style.css, policy.json, i18n/
 ├── assets/
 │   ├── logos/           # logos institucionais FMUP / U.Porto
 │   └── favicon.svg
@@ -48,11 +49,11 @@ quarto preview          # dev server com live reload
 quarto render           # build completo para _site/ (HTML + 4 PDFs dos guias)
 ```
 
-Para testar o Atlas juntamente com o site renderizado:
+Para testar a Themis juntamente com o site renderizado:
 
 ```bash
 cd _site && python3 -m http.server 8000
-# abrir http://localhost:8000/
+# abrir http://localhost:8000/themis/
 ```
 
 ## Deploy
@@ -83,7 +84,7 @@ Metadados estruturados em [CITATION.cff](CITATION.cff). Sugestão de citação l
 Este repositório consolida dois repositórios anteriores, hoje arquivados:
 
 - [`tiagojct/ia-fmup`](https://github.com/tiagojct/ia-fmup) — versão inicial do livro Quarto.
-- [`tiagojct/ai-usage-tool`](https://github.com/tiagojct/ai-usage-tool) — versão inicial da ferramenta (v0.1.0–v0.2.0, antes do rebrand para Atlas).
+- [`tiagojct/ai-usage-tool`](https://github.com/tiagojct/ai-usage-tool) — versão inicial da ferramenta (v0.1.0–v0.2.0, antes do rebrand para Atlas e, depois, para Themis).
 
 ## Licença
 

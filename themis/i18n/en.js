@@ -15,12 +15,18 @@
 
   const TASK_PHRASES = {
     ideation: 'idea exploration',
+    conceptualisation: 'conceptualisation of the object and research questions',
     drafting: 'drafting initial versions of the text',
     editing: 'language and stylistic editing',
     translation: 'translation',
     coding: 'assistance with writing code',
     data_analysis: 'support with data analysis',
+    data_management: 'data cleaning and organisation',
     literature_search: 'literature searching',
+    methodology: 'support with study design',
+    ethics_review: 'checking ethical and regulatory compliance',
+    supervision: 'monitoring and validating stages of the work',
+    quality_control: 'quality control and systematic verification',
     statistics: 'statistical analysis',
     figures: 'image or figure preparation',
     poster_design: 'poster preparation',
@@ -151,6 +157,27 @@
     master_jury: 'For the purpose of appraisal by the master’s examination committee,',
   };
 
+  // GAIDeT macrodomains (Suchikova et al. 2026) plus the two U.Porto
+  // operational extensions. Keys match GAIDET_ORDER in app.js.
+  const GAIDET_LABELS = {
+    conceptualisation: 'conceptualisation',
+    literature_review: 'literature review',
+    methodology: 'methodology',
+    software: 'software development and automation',
+    data_management: 'data management',
+    writing: 'writing and editing',
+    ethics_review: 'ethics review',
+    supervision: 'supervision',
+    quality_control: 'quality control',
+    visuals: 'visuals/multimedia',
+  };
+
+  const SCOPE_SENTENCE = {
+    technical: 'The scope of use was technical support: operational or formal tasks, with no material influence on the intellectual content of the work.',
+    auxiliary: 'The scope of use was auxiliary support with limited impact: organisation, comprehension, review or initial exploration of ideas, with decisions, arguments and results remaining under the author’s responsibility.',
+    substantive: 'The scope of use was a substantive contribution: the tool materially influenced the intellectual content of the work, which is why this structured declaration is provided.',
+  };
+
   const fmtDate = (d) => {
     const pad = (n) => String(n).padStart(2, '0');
     return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) +
@@ -164,6 +191,31 @@
       s += ' In line with ' + policy.framework_version + '.';
     }
     return s;
+  };
+
+  // Level 1 of the two-tier disclosure regime adopted by the U.Porto
+  // framework: a short normalised note, required in every final work.
+  // Three variants — no use, non-material use, material use.
+  const shortNote = (s, version, policy) => {
+    const tools = trim(s.tools) || 'unspecified generative artificial intelligence tools';
+    const period = trim(s.useDate) ? ', in ' + trim(s.useDate) + ',' : '';
+
+    if (s.noUse) {
+      return 'The author declares that no generative AI tools were used in the preparation of this work.' +
+        footer(version, policy);
+    }
+
+    if (s.scope === 'substantive') {
+      return 'The author declares having used ' + tools + ' in tasks with a material influence on the preparation of this work. ' +
+        'A description of the delegated tasks, the parts affected and the verifications carried out is set out in the attached structured declaration.' +
+        footer(version, policy);
+    }
+
+    const purposes = (s.tasks || []).map((k) => TASK_PHRASES[k]).filter(Boolean);
+    const purposeFrag = purposes.length ? list(purposes) : 'ancillary preparation tasks';
+
+    return 'The author declares having used ' + tools + period + ' solely for ' + purposeFrag +
+      ', retaining full responsibility for the final content.' + footer(version, policy);
   };
 
   const studentStatement = (s, version, policy) => {
@@ -187,6 +239,15 @@
       reference: 'The contributions produced by these tools were used only as reference and were not directly incorporated into the submitted work.',
     }[s.modification] || '';
 
+    const scopeClause = SCOPE_SENTENCE[s.scope] ? ' ' + SCOPE_SENTENCE[s.scope] : '';
+
+    // Group work: the U.Porto framework asks for an individual contribution
+    // record and confirmation that every member approves the final version,
+    // by analogy with authorship practice in scientific publishing.
+    const groupClause = s.submission === 'group'
+      ? ' The individual contribution of each author is set out in the record accompanying this work, and all authors approve the final submitted version.'
+      : '';
+
     const responsibility = s.submission === 'group'
       ? 'The authors take full responsibility for the content presented, for its accuracy, and for its compliance with FMUP’s academic standards.'
       : 'I take full responsibility for the content presented, for its accuracy, and for its compliance with FMUP’s academic standards.';
@@ -197,7 +258,7 @@
 
     const useDateClause = trim(s.useDate) ? ' The main use took place on ' + trim(s.useDate) + '.' : '';
 
-    return intro + ' ' + modification + useDateClause + ' ' + responsibility + footer(version, policy);
+    return intro + ' ' + modification + scopeClause + useDateClause + groupClause + ' ' + responsibility + footer(version, policy);
   };
 
   const subjectsByCourseType = (courseType) => {
@@ -218,7 +279,15 @@
       other: 'In this programme',
     };
     const courseLead = COURSE_LEAD_EN[s.courseType] || 'In this programme';
-    const lead = courseLead + ', and with respect to the ' + aNoun + '(s) used for assessment,';
+    // Traffic-light marker required by the U.Porto framework on every
+    // assessed activity, so the clause is legible under both frameworks.
+    const SEMAFORO = {
+      not_permitted: '🟥 Not permitted — ',
+      with_disclosure: '🟨 Permitted with conditions — ',
+      without_restrictions: '🟩 Permitted — ',
+    };
+    const marker = SEMAFORO[s.policy] || '';
+    const lead = marker + courseLead + ', and with respect to the ' + aNoun + '(s) used for assessment,';
 
     const policyText = {
       not_permitted: ' the use of generative artificial intelligence tools in producing the submitted work is not permitted. Assessed work must reflect exclusively the intellectual production of ' + subj.pl + '; any reliance on such tools will be treated as a breach of academic integrity.',
@@ -259,9 +328,21 @@
     const tasksClause = tasks.length ? ' for the following tasks: ' + list(tasks) : ' for ancillary preparatory tasks';
     const subj = s.activity === 'manuscript' ? 'the authors' : 'the researcher(s)';
 
+    // Macrodomains delegated, in canonical GAIDeT order. The map lives in
+    // policy.json (policy.gaidet); when it is unavailable (file://), the
+    // clause is simply omitted.
+    const g = policy && policy.gaidet;
+    const seen = {};
+    if (g && g.map) (s.tasks || []).forEach((k) => { if (g.map[k]) seen[g.map[k]] = true; });
+    const domains = (g && Array.isArray(g.order) ? g.order : []).filter((d) => seen[d]).map((d) => GAIDET_LABELS[d]).filter(Boolean);
+    const domainsClause = domains.length
+      ? ' Under the GAIDeT task delegation taxonomy, adopted as a reference by the University of Porto, the macrodomains delegated were: ' + list(domains) + '.'
+      : '';
+    const scopeClause = SCOPE_SENTENCE[s.scope] ? ' ' + SCOPE_SENTENCE[s.scope] : '';
+
     let body = lead + ' it is hereby declared that, ' + activity + ', the following generative artificial intelligence tools were used — ' + tools +
-      ' —' + tasksClause + '. The contributions generated were critically reviewed by ' + subj +
-      ', who take full responsibility for the final content, for its accuracy, and for its scientific integrity. The artificial intelligence tools are not listed as authors, since they do not meet the applicable authorship criteria (notably, the ability to take public responsibility for the content).';
+      ' —' + tasksClause + '.' + domainsClause + scopeClause + ' The contributions generated were critically reviewed by ' + subj +
+      ', who take full responsibility for the final content, for its accuracy, and for its scientific integrity. The artificial intelligence tools are not listed as authors, since they do not meet the applicable authorship criteria (notably, the ability to take public responsibility for the content). No personal, sensitive or confidential data were entered into unauthorised services.';
 
     if (s.target === 'journal') {
       body += ' This statement is intended for inclusion in the Methods or Acknowledgements section of the manuscript, in line with the ICMJE recommendations on the use of chatbots and large language models in scientific publication.';
@@ -333,6 +414,7 @@
       outputHeading: 'Generated statement',
       outputHeadingSyllabus: 'Text for the course-unit syllabus',
       outputHeadingTeacherDisclosure: 'Disclosure requirement to communicate to students',
+      outputHeadingShortNote: 'Short normalised note',
       outputHeadingResearcherFull: 'Methods / Acknowledgements statement',
       outputHeadingResearcherInline: 'Brief inline statement',
       yourSelections: 'Your selections',
@@ -515,13 +597,19 @@
       step2: 'For which tasks did you use AI?',
       step2Help: 'Select all that apply.',
       tasks: {
+        conceptualisation: 'Conceptualisation (object, questions, framing)',
         literature_search: 'Literature searching',
+        methodology: 'Methodology (study design, protocol)',
+        coding: 'Coding',
+        data_management: 'Data management (cleaning, transformation)',
+        statistics: 'Statistical analysis',
         drafting: 'Drafting',
         editing: 'Editing / language polishing',
         translation: 'Translation',
-        statistics: 'Statistical analysis',
-        coding: 'Coding',
         figures: 'Image / figure preparation',
+        ethics_review: 'Ethics review',
+        supervision: 'Supervision of stages of the work',
+        quality_control: 'Quality control',
         other: 'Other',
       },
       step3: 'Which tools did you use?',
@@ -555,7 +643,31 @@
       unavailableBody: 'policy.json could not be loaded (file:// access or missing file). The tool still works; automatic risk classification will be disabled.',
       guidanceFoot: 'Guiding warnings — they do not block statement generation. Final responsibility is the user’s.',
     },
+    shared: {
+      stepScope: 'What was the scope of the use?',
+      stepScopeHelp: 'This axis is distinct from the degree of modification: it does not describe what you did to the output, but how far the tool influenced the intellectual content of the work. Under the University of Porto framework, it determines whether a short note suffices or a structured declaration is required. Optional step: if left unanswered, the declaration assumes non-material use.',
+      scope: {
+        technical: {
+          label: 'Technical support',
+          description: 'Operational or formal tasks — formatting, reference organisation, format conversion — with no material influence on intellectual content.',
+        },
+        auxiliary: {
+          label: 'Auxiliary support with limited impact',
+          description: 'Organisation, comprehension, review or initial exploration of ideas. Decisions, arguments and results remain your authorial responsibility.',
+        },
+        substantive: {
+          label: 'Substantive contribution',
+          description: 'The tool materially influenced conceptualisation, methodology, literature review, analysis, code, interpretation, the writing of results or the conclusions. Requires a structured declaration.',
+        },
+      },
+      noUseLabel: 'I did not use generative AI tools in this work',
+      noUseHelp: 'The University of Porto framework requires a short normalised note in every final work, including when there was no use at all. Tick this to generate that null declaration.',
+      noUseSummary: 'Declaration of non-use',
+      gaidetLabel: 'Delegated macrodomains (GAIDeT)',
+      gaidet: GAIDET_LABELS,
+    },
     statements: {
+      shortNote: shortNote,
       student: studentStatement,
       teacherSyllabus: teacherSyllabus,
       teacherDisclosure: teacherDisclosure,

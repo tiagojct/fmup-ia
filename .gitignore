@@ -20,8 +20,11 @@ node_modules/
 package-lock.json
 npm-debug.log*
 
-# Atlas — local artefacts (none expected, but defensive)
-atlas/.cache/
+# Themis — local artefacts (none expected, but defensive)
+themis/.cache/
+
+# Local scratch: source documents not part of the site
+documentos up/
 
 # Logs
 *.log
