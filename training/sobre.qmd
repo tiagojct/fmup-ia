@@ -1,0 +1,70 @@
+---
+title: "Sobre"
+toc: true
+---
+
+## Estatuto editorial {#estatuto-editorial}
+
+Esta plataforma é um **contributo individual** de Tiago Jacinto, de apoio a uma sessão de formação para docentes da Faculdade de Medicina da Universidade do Porto. Não é, no presente estado, material formativo aprovado pelos órgãos competentes da FMUP, não foi mandatado por despacho ou deliberação, e não vincula a Faculdade.
+
+A sessão corresponde à formação inicial para docentes prevista na Fase 1 (2026-2027) do [Quadro de referência institucional FMUP · IA](https://tiagojct.eu/fmup-ia/quadro/). Essa correspondência é de conteúdo, não de estatuto: o Quadro é ele próprio uma proposta submetida a apreciação institucional, e esta plataforma partilha integralmente esse estatuto.
+
+As formulações em registo institucional que percorrem as páginas, designadamente na página [Regras](regras.qmd), devem ser lidas como proposta redigida para facilitar eventual adopção formal, e não como descrição do regime em vigor. O regime aplicável é o que consta dos regulamentos pedagógicos, dos despachos da Direcção, das deliberações do Conselho Científico e do pacote institucional da Universidade do Porto.
+
+A publicação em domínio pessoal corresponde a publicação académica em nome individual, sob licença CC BY 4.0, para discussão pública. Não constitui presença institucional da FMUP.
+
+## Autoria
+
+**Tiago Jacinto**, Professor Auxiliar no MEDCIDS (Medicina da Comunidade, Informação e Decisão em Saúde), Faculdade de Medicina da Universidade do Porto. Investigador no [RISE-Health](https://rise-health.pt/).
+
+Autor do [Quadro de referência institucional FMUP · IA](https://tiagojct.eu/fmup-ia/) e da ferramenta [Themis](https://tiagojct.eu/fmup-ia/themis/), com os quais esta plataforma se articula.
+
+Página pessoal: [tiagojct.eu](https://tiagojct.eu).
+
+## Declaração de conflitos de interesse
+
+Por aplicação do princípio de transparência que a própria sessão propõe:
+
+- **Autoria do Quadro FMUP · IA e da Themis.** A sessão recomenda ambos e demonstra a segunda. O autor é o mesmo.
+- **Direcção do Mestrado em Informática da Saúde** da FMUP e docência na Licenciatura em Saúde Digital e Inovação Biomédica, ciclos de estudo em que as matérias tratadas são também conteúdo curricular.
+- **Investigação no RISE-Health**, com linhas em IA aplicada ao suporte à decisão clínica.
+
+O autor não recebeu financiamento dedicado para a preparação desta sessão. Não tem acordos comerciais, consultadoria, participação social ou outra relação financeira com fornecedores de plataformas de IA generativa, incluindo os mencionados nestas páginas.
+
+## Convenções de escrita
+
+- **Português europeu, ortografia pré-AO90**, por coerência com o Quadro, onde a convenção está documentada. A escolha é editorial do autor e não constitui posição institucional da FMUP.
+- **Sem travessões** como sinal de pontuação, sem emojis, e com aspas rectas nos blocos de código e nos prompts, para que estes possam ser copiados e colados sem correcção manual.
+- Os prompts estão escritos para a IAedu e foram testados aí. Funcionam noutras plataformas com ajustes mínimos.
+
+## Verificação de referências
+
+A integridade das citações é regra do projecto. Nenhuma referência é incluída sem verificação na fonte primária: os identificadores DOI através do registo Crossref, os artigos biomédicos indexados através da PubMed, e os recursos institucionais através da página do respectivo editor.
+
+Onde a atribuição correntemente divulgada divergiu da fonte, prevaleceu a fonte, e a divergência foi assinalada na ficha correspondente. É o caso da ficha 5, cuja actividade é por vezes atribuída a "Kristina Tan" e cuja fonte identifica **Tari Tan**.
+
+Nenhum DOI, número de página, volume ou data foi reproduzido sem confirmação.
+
+## Licença
+
+Texto e código publicados sob **[Creative Commons Attribution 4.0 (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)**. Reutilização permitida com atribuição, incluindo adaptação das fichas a outras instituições.
+
+As marcas institucionais, designadamente os logótipos da FMUP e da Universidade do Porto, são propriedade das respectivas instituições e a sua utilização externa requer autorização própria.
+
+Sugestão de citação:
+
+> Jacinto T. *Adaptar o ensino à GenAI: sessão de formação para docentes da FMUP*. Faculdade de Medicina da Universidade do Porto, 2026.
+
+## Registo de alterações
+
+| Versão | Data | Notas |
+|---|---|---|
+| 1.0 | 2026-07-22 | Primeira versão. Oito blocos, seis fichas de actividade, folha de prática com teste cruzado, página de regras e recursos verificados. |
+
+Revisões futuras serão registadas neste quadro. A plataforma acompanha o Quadro FMUP · IA, e uma revisão do Quadro que altere princípios, regime de declaração ou cláusulas-tipo implica revisão correspondente destas páginas.
+
+## Reportar erros
+
+O repositório é público em [github.com/tiagojct/fmup-ia](https://github.com/tiagojct/fmup-ia), na pasta `training/`. Erros factuais, referências mal atribuídas, prompts que não funcionem como descrito e sugestões de novas fichas podem ser submetidos por *issue* ou por *pull request*.
+
+Correcções de referências têm prioridade sobre qualquer outra alteração.

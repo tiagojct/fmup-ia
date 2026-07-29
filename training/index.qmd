@@ -1,0 +1,78 @@
+---
+title: "Adaptar o ensino à GenAI"
+description: "Sessão de formação para docentes da FMUP, 120 minutos"
+page-layout: full
+toc: false
+---
+
+::: {.hero}
+::: {.hero-eyebrow}
+Faculdade de Medicina da Universidade do Porto
+:::
+
+# Adaptar o ensino à GenAI
+
+::: {.hero-subtitle}
+Sessão de formação para docentes da FMUP, 120 minutos.
+
+A sessão não é sobre ferramentas. É sobre o que muda no desenho das aulas e da avaliação quando os estudantes já usam inteligência artificial generativa, e sobre o que cada docente pode levar pronto a aplicar na sua unidade curricular.
+:::
+
+::: {.hero-cta}
+[Ver o programa](programa.qmd){.btn .btn-primary .btn-lg}
+[Abrir as fichas](fichas/){.btn .btn-secondary .btn-lg}
+:::
+
+::: {.hero-status}
+Estatuto: **contributo individual** de Tiago Jacinto. Não é documento aprovado pelos órgãos da FMUP, não substitui regulamentos pedagógicos em vigor, e não vincula a Faculdade. Ver [Sobre](sobre.qmd#estatuto-editorial).
+:::
+:::
+
+## Enquadramento
+
+Esta sessão corresponde à formação inicial para docentes prevista na Fase 1 (2026-2027) do [Quadro de referência institucional FMUP · IA](https://tiagojct.eu/fmup-ia/quadro/), que propõe um programa regular de formação como condição da adopção do próprio quadro.
+
+O objectivo não é cobrir o tema, que é vasto e move-se depressa. É garantir que, no fim dos 120 minutos, cada participante sai com uma actividade desenhada para a sua unidade curricular, testada por um par, e com a declaração de uso correspondente já gerada.
+
+::: {.cards-3}
+::: {.card-tile}
+### Programa
+
+Oito blocos, do caso clínico gerado ao vivo ao encerramento. Inclui cronómetro para quem facilita.
+
+[Ver o programa](programa.qmd){.card-link}
+:::
+
+::: {.card-tile}
+### Fichas de actividade
+
+Seis actividades para usar em aula, cada uma com prompt completo, papéis, correcção, armadilhas e plano B.
+
+[Abrir as fichas](fichas/){.card-link}
+:::
+
+::: {.card-tile}
+### Prática
+
+A folha de trabalho do bloco 6: desenhar uma actividade para a própria unidade curricular, em pares.
+
+[Ir para a prática](pratica.qmd){.card-link}
+:::
+:::
+
+## Antes da sessão
+
+A ferramenta de referência é a plataforma **IAedu** (FCT/FCCN), que oferece acesso institucional federado a modelos de linguagem com garantia contratual de não utilização dos dados para treino. É a escolha de primeira linha por duas razões: protecção de dados e equidade, já que nenhum participante precisa de subscrição paga.
+
+Confirme o acesso **antes** da sessão, em <https://iaedu.pt>, com as credenciais `@up.pt`. Quem não conseguir autenticar-se a tempo deve avisar, para ficar emparelhado com um colega com acesso durante os blocos práticos.
+
+Traga também, em formato digital ou em papel:
+
+- O programa de uma unidade curricular que lecciona.
+- Um enunciado de avaliação dessa unidade curricular, de preferência um que suspeite estar vulnerável.
+
+::: {.callout-important appearance="simple"}
+## Dados de doentes
+
+Nenhum dado de doente entra em ferramenta alguma durante a sessão, nem identificável nem pseudonimizado, nem sequer em ferramenta institucional. Todos os casos usados são fictícios. Esta regra não tem excepções e está detalhada em [Regras](regras.qmd).
+:::

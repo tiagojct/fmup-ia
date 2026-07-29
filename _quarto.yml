@@ -18,6 +18,9 @@ project:
     - "quadro/guias/*.qmd"
     - "!quadro/full-references.md"
     - "!themis/**"
+    # Projecto Quarto autónomo, com _quarto.yml próprio e construção
+    # separada (deploy no Cloudflare Pages, raiz `training/`).
+    - "!training/**"
   resources:
     - "themis/**"
     - "atlas/**"

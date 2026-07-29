@@ -5,6 +5,11 @@ author: "FMUP --- Grupo de trabalho para IA generativa"
 date: "2026-04-21"
 date-format: "D [de] MMMM [de] YYYY"
 lang: pt-PT
+# CSL colocado nesta pasta de propósito. O Typst do Quarto 1.10+
+# rejeita caminhos com "..", que é o que a definição de `csl` ao
+# nível do projecto (quadro/chicago-author-date.csl) produziria
+# aqui: "path must not contain a backslash".
+csl: chicago-author-date.csl
 format:
   fmup-typst:
     toc: false

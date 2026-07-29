@@ -1,0 +1,123 @@
+---
+title: "Ficha 3. O estudante como corrector"
+subtitle: "Explicitação de critérios de qualidade"
+toc: true
+toc-depth: 2
+---
+
+::: {.ficha-meta}
+| | |
+|---|---|
+| **Competência** | Critérios de qualidade, autorregulação, escrita académica |
+| **Formato** | Grupos de quatro, com produção colectiva de rubrica |
+| **Duração** | 50 a 60 minutos, ou duas sessões de 30 |
+| **Ano sugerido** | Qualquer ano, ajustando o tipo de resposta pedida |
+| **Ferramenta** | IAedu, usada pelos estudantes em aula |
+:::
+
+## Objectivo de aprendizagem
+
+No fim da actividade, o estudante enuncia por escrito os critérios que distinguem uma resposta boa de uma resposta medíocre no seu domínio, aplica-os a respostas que não escreveu, e reconhece a diferença entre uma resposta bem escrita e uma resposta correcta.
+
+A competência protegida é a explicitação de critérios. Um estudante que sabe corrigir sabe o que se espera dele, e a investigação sobre avaliação formativa identifica esta transferência de critérios como um dos mecanismos centrais da autorregulação.
+
+## Formato e duração em aula
+
+A actividade tem quatro fases e a ordem é essencial: a rubrica é construída **antes** de qualquer texto ser gerado.
+
+- **15 min.** Cada grupo constrói a rubrica para uma pergunta dada pelo docente. Sem ferramenta.
+- **10 min.** Cada grupo gera três respostas à mesma pergunta, com qualidade deliberadamente diferente.
+- **15 min.** Os grupos trocam respostas e aplicam a rubrica do próprio grupo às respostas de outro.
+- **15 min.** Plenário: comparação das rubricas e discussão dos desacordos de classificação.
+
+Se dispuser de duas sessões, faça as fases 1 e 2 na primeira e as fases 3 e 4 na segunda, com o docente a compilar as rubricas entretanto.
+
+## Prompt base
+
+Este prompt é usado pelos estudantes, na fase 2, depois de a rubrica estar escrita.
+
+```text
+Vais escrever três respostas diferentes à mesma pergunta de exame, com
+níveis de qualidade deliberadamente distintos. As respostas vão ser
+usadas num exercício de correcção entre pares, portanto a diferença
+de qualidade tem de ser real mas não óbvia à primeira leitura.
+
+PERGUNTA
+"Um homem de 62 anos, fumador, com dispneia de esforço progressiva
+há 18 meses e tosse produtiva matinal, tem uma espirometria com
+FEV1/FVC de 0,61 após broncodilatador. Explique o que este resultado
+permite concluir, o que não permite concluir, e que informação
+adicional pediria antes de assumir um diagnóstico."
+
+AS TRÊS RESPOSTAS
+Resposta A: nível bom. Correcta, com raciocínio explícito,
+  reconhece limitações e distingue o que os dados sustentam do que
+  não sustentam.
+Resposta B: nível intermédio. Factualmente correcta no essencial,
+  mas afirmativa demais: apresenta como conclusão o que é apenas
+  compatível, e não distingue o que ficou por esclarecer.
+Resposta C: nível fraco, mas bem escrita. Fluente, bem estruturada,
+  com vocabulário técnico correcto, e com pelo menos dois erros de
+  raciocínio relevantes. Esta é a resposta mais importante do
+  exercício: tem de parecer boa a quem leia depressa.
+
+REGRAS
+- Todas as respostas com extensão semelhante, entre 150 e 200
+  palavras. Diferenças de extensão denunciam o nível.
+- Não identifiques o nível de cada resposta. Apresenta-as apenas
+  como "Resposta 1", "Resposta 2" e "Resposta 3", por ordem
+  aleatória.
+- Não uses marcas de qualidade evidentes: nada de erros
+  ortográficos na resposta fraca, nem de citações na resposta boa.
+- No fim, e só no fim, depois de uma linha com dez tracejados,
+  indica que resposta corresponde a que nível.
+```
+
+O grupo guarda a última linha e entrega ao grupo seguinte apenas as três respostas.
+
+## Papéis
+
+### Papel do estudante
+
+**Fase 1.** Construir a rubrica sem ferramenta e sem consultar rubricas existentes. A rubrica tem de ter, no mínimo, três critérios e três níveis de desempenho por critério, com descritores em linguagem observável. "Demonstra bom raciocínio" não é descritor; "distingue explicitamente o que os dados sustentam do que não sustentam" é.
+
+**Fase 3.** Aplicar a rubrica às respostas de outro grupo, classificar, e escrever uma justificação por critério.
+
+**Fase 4.** Defender as classificações atribuídas perante o grupo que gerou as respostas.
+
+### Papel do docente
+
+Fornece a pergunta e não fornece a rubrica. A tentação de distribuir uma rubrica pronta destrói a actividade: é a construção que produz a aprendizagem.
+
+Na fase 4, conduz a comparação entre rubricas e destaca os critérios que apareceram em todos os grupos e os que apareceram só num.
+
+## Como se corrige ou discute
+
+O plenário organiza-se por três perguntas:
+
+1. **Que critérios apareceram em todas as rubricas?** São o núcleo partilhado e normalmente coincidem com o que o docente valoriza, o que é uma descoberta útil para os estudantes.
+2. **Onde é que os grupos discordaram na classificação da mesma resposta?** Os desacordos revelam descritores ambíguos, e a correcção é reescrever o descritor, não votar na classificação.
+3. **A resposta fluente e errada foi bem classificada?** É o ponto central da actividade. Se um grupo lhe atribuiu nível bom, discuta porquê, sem constrangimento: é exactamente o efeito que se pretende demonstrar.
+
+Se pretender avaliar, avalie a rubrica produzida e a justificação das classificações. Não avalie a exactidão das respostas geradas, que não são obra dos estudantes.
+
+## Armadilhas conhecidas
+
+- **Respostas com qualidade indistinguível.** Sem a instrução explícita de que a diferença tem de ser real, o modelo produz três variantes equivalentes. Verifique antes de trocar entre grupos.
+- **Resposta fraca demasiado óbvia.** A instrução de que a resposta C tem de parecer boa é o elemento crítico do prompt. Sem ela, o exercício perde o seu objectivo.
+- **Rubricas genéricas.** Grupos apressados produzem critérios como "clareza" e "correcção", sem descritores. Exija descritores observáveis logo na fase 1, e recuse rubricas sem eles.
+- **Deriva para a discussão do caso clínico.** Os grupos tendem a discutir o diagnóstico em vez dos critérios. Redirija: a pergunta em causa é o que distingue uma boa resposta, não qual é a resposta.
+
+## Plano B sem ligação à internet
+
+Gere previamente três conjuntos de respostas, para três perguntas diferentes, e imprima-os. As fases 1, 3 e 4 mantêm-se integralmente; perde-se a fase 2.
+
+A perda é menor do que parece. A fase 2 é a que menos aprendizagem produz, e a versão sem ligação tem a vantagem de o docente poder verificar previamente que a resposta fluente e errada está mesmo fluente e errada.
+
+## Referência
+
+Nicol DJ, Macfarlane-Dick D. Formative assessment and self-regulated learning: a model and seven principles of good feedback practice. *Studies in Higher Education*. 2006;31(2):199-218. DOI: [10.1080/03075070600572090](https://doi.org/10.1080/03075070600572090).
+
+Referência clássica sobre o mecanismo que esta actividade explora: os estudantes desenvolvem autorregulação quando têm de aplicar critérios de avaliação, e não apenas quando os recebem. O artigo é anterior à IA generativa, e é por isso que serve: o princípio pedagógico não depende da ferramenta, que aqui é apenas o meio de produzir rapidamente material de correcção com qualidade controlada.
+
+Para o enquadramento institucional da actividade, ver o princípio 6 do [Quadro FMUP · IA](https://tiagojct.eu/fmup-ia/quadro/02-principios.html), literacia crítica.

@@ -1,0 +1,76 @@
+---
+title: "Fichas de actividade"
+subtitle: "Seis actividades para usar em aula"
+toc: false
+---
+
+Seis actividades desenhadas para uso em aula, todas com a mesma estrutura: objectivo, formato e duração, prompt base pronto a usar, papéis, método de correcção, armadilhas conhecidas, plano B sem ligação à internet e referência.
+
+Os prompts estão escritos para funcionar na [IAedu](https://iaedu.pt) e foram testados aí. Funcionam noutras plataformas com ajustes mínimos, mas a IAedu é a escolha de primeira linha por protecção de dados e por equidade de acesso.
+
+::: {.callout-important appearance="simple"}
+Todas as actividades usam casos fictícios. Nenhum dado de doente real entra em ferramenta alguma, em circunstância alguma. Ver [Regras](../regras.qmd).
+:::
+
+::: {.cards-3}
+::: {.card-tile}
+### 1. Doente virtual
+
+Anamnese em pares com um doente simulado que não revela o diagnóstico. Protege a recolha estruturada de informação.
+
+[Abrir ficha](1-doente-virtual.qmd){.card-link}
+:::
+
+::: {.card-tile}
+### 2. Crítica de outputs
+
+Nota clínica com erros plantados, que os estudantes encontram com rubrica. Protege a detecção de erro em texto plausível.
+
+[Abrir ficha](2-critica-de-outputs.qmd){.card-link}
+:::
+
+::: {.card-tile}
+### 3. Aluno corrector
+
+Os estudantes constroem a rubrica, geram respostas e aplicam-na. Protege a explicitação de critérios de qualidade.
+
+[Abrir ficha](3-aluno-corretor.qmd){.card-link}
+:::
+:::
+
+::: {.cards-3}
+::: {.card-tile}
+### 4. Advogado do diabo
+
+A ferramenta gera contra-argumentos, os estudantes respondem. Protege a argumentação fundamentada.
+
+[Abrir ficha](4-advogado-do-diabo.qmd){.card-link}
+:::
+
+::: {.card-tile}
+### 5. Fazer e comparar
+
+O estudante resolve sozinho, repete com a ferramenta, compara. Protege o esforço deliberado e a metacognição.
+
+[Abrir ficha](5-fazer-e-comparar.qmd){.card-link}
+:::
+
+::: {.card-tile}
+### 6. Tutor restringido
+
+Assistente limitado aos materiais da UC por RAG. Opção avançada, exige infraestrutura.
+
+[Abrir ficha](6-tutor-restringido.qmd){.card-link}
+:::
+:::
+
+## Como escolher
+
+| Se o problema é | Comece pela ficha |
+|---|---|
+| Os estudantes não sabem conduzir uma anamnese completa | 1 |
+| Os estudantes aceitam sem questionar o que a ferramenta produz | 2 |
+| Os estudantes não percebem o que distingue um trabalho bom de um medíocre | 3 |
+| As discussões em aula são superficiais e consensuais | 4 |
+| Os estudantes usam a ferramenta antes de tentarem sozinhos | 5 |
+| Os estudantes estudam por fontes não verificadas | 6 |

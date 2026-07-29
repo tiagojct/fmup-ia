@@ -1,0 +1,127 @@
+---
+title: "Ficha 4. Debate com advogado do diabo"
+subtitle: "Argumentação e antecipação de objecções"
+toc: true
+toc-depth: 2
+---
+
+::: {.ficha-meta}
+| | |
+|---|---|
+| **Competência** | Argumentação fundamentada, raciocínio ético, decisão sob controvérsia |
+| **Formato** | Pares ou grupos de três, seguidos de plenário |
+| **Duração** | 40 a 50 minutos |
+| **Ano sugerido** | Qualquer ano, ajustando a controvérsia ao programa |
+| **Ferramenta** | IAedu, usada pelos estudantes em aula |
+:::
+
+## Objectivo de aprendizagem
+
+No fim da actividade, o estudante sustenta uma posição sobre uma questão controversa, antecipa as objecções mais fortes a essa posição, e responde-lhes com fundamentação, distinguindo os argumentos que o obrigam a rever a posição daqueles que não o obrigam.
+
+A competência protegida é a argumentação. O uso da ferramenta é deliberadamente adversarial: gera os contra-argumentos que os estudantes têm de enfrentar, o que resolve o problema habitual das discussões em aula, em que a turma converge cedo para o consenso confortável.
+
+## Formato e duração em aula
+
+- **5 min.** O docente enuncia a questão e cada grupo toma posição por escrito, numa frase.
+- **10 min.** Cada grupo obtém da ferramenta os contra-argumentos à sua própria posição.
+- **15 min.** O grupo responde por escrito aos contra-argumentos, classificando cada um.
+- **15 min.** Plenário, com confronto entre grupos que tomaram posições opostas.
+
+A ordem importa. A posição é tomada **antes** de a ferramenta ser consultada, para que os estudantes tenham algo que defender e não adoptem a posição que a ferramenta apresentar melhor.
+
+## Prompt base
+
+```text
+Vais actuar como advogado do diabo. A tua função é atacar a posição
+que te vou apresentar, com os melhores argumentos disponíveis contra
+ela. Não é para equilibrar, não é para apresentar os dois lados: é
+para atacar.
+
+A POSIÇÃO A ATACAR
+"Um médico deve informar sempre o doente do diagnóstico completo,
+incluindo prognóstico reservado, mesmo quando a família pede
+expressamente que não o faça."
+
+O QUE PRECISO
+1. Apresenta os cinco contra-argumentos mais fortes contra esta
+   posição. Ordena-os do mais forte para o mais fraco, e diz porque
+   ordenaste assim.
+2. Para cada contra-argumento, indica em que assenta: um princípio
+   ético, evidência empírica, enquadramento legal, ou prática
+   clínica estabelecida.
+3. Identifica o pressuposto mais frágil da posição que te apresentei,
+   ou seja, aquilo que ela dá como assente e que pode ser
+   questionado.
+
+REGRAS
+- Não suavizes. Não escrevas "por outro lado" nem "é importante
+  reconhecer que ambos os lados". A tua função aqui é adversarial.
+- Não inventes referências, estudos, números ou casos de
+  jurisprudência. Se um argumento depende de evidência empírica que
+  não consegues citar com segurança, diz explicitamente "este
+  argumento depende de evidência que eu não posso confirmar".
+- Distingue claramente o que é argumento ético do que é
+  constrangimento legal. Não os apresentes misturados.
+- No fim, indica qual dos cinco contra-argumentos consideras que a
+  posição original consegue rebater com mais facilidade, e porquê.
+```
+
+::: {.callout-tip appearance="simple"}
+## Outras questões que funcionam
+
+Ajuste a controvérsia ao programa. Funcionam bem: a obrigatoriedade da vacinação em profissionais de saúde; o rastreio populacional com baixa especificidade; a atribuição de recursos escassos por critério de idade; o dever de reportar um colega com desempenho comprometido. A questão tem de ter dois lados defensáveis, caso contrário o exercício é retórico.
+:::
+
+## Papéis
+
+### Papel do estudante
+
+Toma posição antes de consultar a ferramenta e assume-a até ao fim, mesmo que mude de opinião: a mudança de opinião regista-se e discute-se, não se dissimula.
+
+Responde a cada contra-argumento classificando-o numa de três categorias, e esta classificação é o produto da actividade:
+
+| Categoria | Significado |
+|---|---|
+| Rebatível | O contra-argumento tem resposta, e o grupo escreve-a |
+| Obriga a qualificar | A posição mantém-se, mas com uma condição ou excepção explícita |
+| Obriga a rever | O contra-argumento é decisivo e a posição inicial não se sustenta |
+
+A terceira categoria é a que interessa. Um grupo que não classifique nenhum contra-argumento como decisivo deve ser interpelado sobre isso no plenário.
+
+### Papel do docente
+
+Escolhe a questão e não toma posição. Se o docente sinalizar a sua posição, os grupos alinham por ela.
+
+No plenário, confronta grupos com posições opostas e centra a discussão nos contra-argumentos classificados como decisivos, não nos rebatidos.
+
+## Como se corrige ou discute
+
+O plenário organiza-se por quatro perguntas:
+
+1. **Que contra-argumento foi classificado como decisivo por mais grupos?** Normalmente identifica o ponto genuinamente difícil da questão.
+2. **Algum grupo mudou de posição?** Se sim, o que o motivou. Se nenhum mudou, vale a pena perguntar se a classificação foi honesta.
+3. **Que contra-argumentos vinham sem fundamentação verificável?** A instrução do prompt obriga a ferramenta a assinalá-los, e é o momento de literacia crítica da actividade.
+4. **O que a ferramenta não conseguiu produzir?** Tipicamente, o argumento ancorado no contexto local: legislação portuguesa concreta, prática da instituição, particularidade cultural.
+
+Se avaliar, avalie a resposta escrita aos contra-argumentos, com peso maior para as classificações justificadas. Não avalie a posição tomada.
+
+## Armadilhas conhecidas
+
+- **Deriva para o consenso.** O modelo tende, por defeito, a produzir texto equilibrado e a fechar com uma síntese conciliadora. A instrução explícita de não suavizar é indispensável e mesmo assim pode ter de ser repetida na conversa.
+- **Argumentos com evidência inventada.** É o risco principal desta actividade, porque um contra-argumento ganha força aparente quando invoca um estudo. A instrução de assinalar a evidência não confirmável reduz o problema; a verificação no plenário fecha-o.
+- **Adopção da posição da ferramenta.** Se a posição não for tomada antes, os estudantes adoptam a que lhes for apresentada com mais fluência. A ordem das fases não é negociável.
+- **Questões sem dois lados.** Se a controvérsia escolhida tiver uma resposta claramente correcta, os contra-argumentos saem artificiais e os estudantes percebem-no.
+- **Confusão entre ético e legal.** O modelo mistura os dois registos com facilidade. A instrução separa-os, e a distinção deve ser retomada no plenário.
+
+## Plano B sem ligação à internet
+
+Gere previamente os cinco contra-argumentos para duas ou três posições, e imprima-os.
+
+A actividade quase não perde: os grupos tomam posição, recebem o conjunto de contra-argumentos em papel, e classificam-nos na mesma. Perde-se apenas a possibilidade de os grupos tomarem posições divergentes, já que os contra-argumentos impressos pressupõem uma posição definida. Distribua-os pelos dois lados: metade dos grupos defende a posição, metade defende a contrária, e cada metade recebe os contra-argumentos correspondentes.
+
+## Referência
+
+Dietis N. Three ways to use ChatGPT to enhance students' critical thinking in the classroom. *Times Higher Education*, THE Campus, 8 de Janeiro de 2024. Disponível em <https://www.timeshighereducation.com/campus/three-ways-use-chatgpt-enhance-students-critical-thinking-classroom>.
+
+Nikolas Dietis é professor auxiliar de Farmacologia na Faculdade de Medicina da Universidade de Chipre. O artigo descreve o exercício em que os estudantes escolhem um tema, solicitam à ferramenta argumentos a favor e contra, sintetizam-nos e apresentam-nos em aula com a sua própria perspectiva, seguindo-se comentário dos colegas. A ficha acima acrescenta duas alterações ao formato original: a posição é tomada antes da consulta à ferramenta, e os contra-argumentos são classificados em três categorias em vez de apenas sintetizados.

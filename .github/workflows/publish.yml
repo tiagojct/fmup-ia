@@ -27,6 +27,19 @@ jobs:
       - name: Render Quarto site
         run: quarto render
 
+      # `training/` is a separate Quarto project with its own navbar and
+      # footer, so it cannot be folded into the parent render. It is built
+      # on its own and copied into the parent output, which puts it at
+      # /fmup-ia/training/ on the deployed site.
+      - name: Render training site
+        run: quarto render
+        working-directory: training
+
+      - name: Merge training site into output
+        run: |
+          rm -rf _site/training
+          cp -R training/_site _site/training
+
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:

@@ -1,0 +1,13 @@
+# Variáveis da sessão, usadas nas páginas via {{< var nome >}}.
+#
+# ficha-partilhada.url: documento colaborativo onde os pares depositam
+# as fichas preenchidas durante o bloco 6. Substituir pelo endereço
+# real antes da sessão. Enquanto contiver o valor de marcação abaixo,
+# a página de Prática mostra um aviso em vez da ligação.
+ficha-partilhada:
+  url: "FICHA_PARTILHADA_URL"
+  definida: false
+
+sessao:
+  versao: "v1.0"
+  data: "Julho de 2026"

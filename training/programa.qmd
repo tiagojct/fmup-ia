@@ -1,0 +1,156 @@
+---
+title: "Programa"
+subtitle: "Oito blocos, 120 minutos"
+toc: true
+toc-depth: 2
+include-after-body:
+  text: |
+    <script src="js/cronometro.js"></script>
+---
+
+A sessão está desenhada para 120 minutos sem intervalo formal. Os blocos 4 e 6 são os mais longos e concentram o trabalho dos participantes; os restantes existem para os preparar e para os fechar.
+
+Se o tempo apertar, o bloco a encurtar é o 5, não o 6. Sair da sessão sem produto desenhado é o único desfecho que a compromete.
+
+## Cronómetro
+
+Para uso do facilitador. Seleccione o bloco, inicie a contagem, e continue a apresentar. A contagem prossegue em valores negativos depois de esgotado o tempo, para que o atraso acumulado seja visível.
+
+```{=html}
+<!-- Botões reais, e não spans com role="button": um span não é
+     activável por teclado, o que tornaria o cronómetro inutilizável
+     sem rato. -->
+<div id="cronometro" class="cronometro" data-duracao="480">
+  <div class="cronometro-blocos" role="group" aria-label="Duração do bloco">
+    <button type="button" class="cronometro-bloco" data-minutos="8" aria-pressed="true">8 min</button>
+    <button type="button" class="cronometro-bloco" data-minutos="7" aria-pressed="false">7 min</button>
+    <button type="button" class="cronometro-bloco" data-minutos="10" aria-pressed="false">10 min</button>
+    <button type="button" class="cronometro-bloco" data-minutos="15" aria-pressed="false">15 min</button>
+    <button type="button" class="cronometro-bloco" data-minutos="30" aria-pressed="false">30 min</button>
+    <button type="button" class="cronometro-bloco" data-minutos="5" aria-pressed="false">5 min</button>
+  </div>
+  <div class="cronometro-display" role="timer" aria-live="off">08:00</div>
+  <div class="cronometro-controlos">
+    <button type="button" class="btn btn-primary" data-accao="iniciar" aria-pressed="false">Iniciar</button>
+    <button type="button" class="btn btn-secondary" data-accao="repor">Repor</button>
+  </div>
+  <p class="cronometro-estado" aria-live="polite"></p>
+</div>
+```
+
+## Sequência
+
+| # | Bloco | Duração | Produto |
+|---|---|---|---|
+| 1 | Demonstração de abertura | 8 min | Nenhum, é demonstração |
+| 2 | Fundamentos mínimos | 7 min | Nenhum |
+| 3 | Eixo 1, preparar a aula com IA | 15 min | Nenhum |
+| 4 | Eixo 2, actividades para os alunos em aula | 30 min | Nenhum |
+| 5 | Eixo 3, adaptar conteúdos e avaliação | 15 min | Nenhum |
+| 6 | Prática, desenhar para a própria UC | 30 min | Ficha preenchida |
+| 7 | Teste cruzado | 10 min | Ficha anotada por outro par |
+| 8 | Encerramento | 5 min | Declaração de uso e compromisso |
+
+## 1. Demonstração de abertura {#bloco-1}
+
+**8 minutos.**
+
+Um caso clínico com perguntas de escolha múltipla, gerado ao vivo na IAedu, a partir de um tema escolhido pela sala no momento.
+
+O objectivo é duplo e deve ser dito por essa ordem. Primeiro, mostrar que a geração de material é rápida e utilizável. Segundo, e mais importante, mostrar em directo o que sai errado: um distractor implausível, uma referência que não existe, uma dose que não bate certo. A demonstração só cumpre a sua função se o erro aparecer, portanto não se deve escolher um tema fácil nem esconder o resultado.
+
+Se nada correr mal na primeira geração, insista com uma pergunta mais específica, sobre valores de referência ou sobre literatura recente. O erro aparece.
+
+## 2. Fundamentos mínimos {#bloco-2}
+
+**7 minutos.**
+
+O mínimo indispensável para os blocos seguintes, sem aprofundar:
+
+- **Confabulação.** O modelo prevê a continuação mais provável do texto, não consulta uma base de factos. Produz afirmações plausíveis e falsas com a mesma fluência com que produz afirmações verdadeiras.
+- **Referências inventadas.** É o modo de falha mais frequente em contexto académico e o mais fácil de verificar. Confirmar sempre no original, com DOI ou ligação.
+- **Dados de doentes.** Nunca, em plataforma alguma. A anonimização informal não cumpre os requisitos técnicos do RGPD.
+- **Risco baixo e risco alto.** Preparar materiais que o docente revê é risco baixo. Avaliar ou classificar estudantes é risco alto, e a decisão final tem de ser humana.
+
+Estes quatro pontos ancoram nos sete princípios do Quadro: agência humana, integridade académica e científica, protecção de dados, transparência, equidade de acesso, literacia crítica e revisão contínua. A página [Regras](regras.qmd) resume cada um numa frase.
+
+## 3. Eixo 1, preparar a aula com IA {#bloco-3}
+
+**15 minutos.**
+
+Aplicações de risco baixo, em que o docente é o único utilizador e revê tudo antes de o material chegar aos estudantes:
+
+- **Casos clínicos com variação de dificuldade.** Gerar um caso base e pedir três variantes: uma com apresentação atípica, uma com comorbilidade que altera a decisão, uma com dado laboratorial contraditório. É trabalho que demora horas a fazer à mão e minutos a rascunhar, com revisão obrigatória.
+- **Perguntas de escolha múltipla com distractores plausíveis.** O valor está nos distractores, não no enunciado. Pedir explicitamente que cada distractor corresponda a um erro de raciocínio identificável, e pedir que o modelo explique qual.
+- **Rubricas.** Converter critérios implícitos de correcção em rubrica explícita, com níveis de desempenho. O docente sabe o que valoriza; a ferramenta ajuda a escrevê-lo de forma utilizável pelos estudantes.
+
+A regra transversal deste eixo: o que sai da ferramenta é rascunho, e a responsabilidade pela exactidão clínica e pela adequação pedagógica permanece integralmente do docente.
+
+## 4. Eixo 2, actividades para os alunos em aula {#bloco-4}
+
+**30 minutos.**
+
+O bloco central. Percorrer as seis fichas, com demonstração breve de duas ou três conforme o perfil da sala. Cada ficha tem prompt completo, papéis definidos, método de correcção, armadilhas conhecidas e plano B sem ligação à internet.
+
+| Ficha | Actividade | Competência que protege |
+|---|---|---|
+| [1](fichas/1-doente-virtual.qmd) | Doente virtual para anamnese em pares | Recolha estruturada de informação |
+| [2](fichas/2-critica-de-outputs.qmd) | Crítica estruturada de outputs | Detecção de erro em texto plausível |
+| [3](fichas/3-aluno-corretor.qmd) | Aluno como corrector | Explicitação de critérios de qualidade |
+| [4](fichas/4-advogado-do-diabo.qmd) | Debate com advogado do diabo | Argumentação e antecipação de objecções |
+| [5](fichas/5-fazer-e-comparar.qmd) | Fazer primeiro, comparar depois | Metacognição e esforço deliberado |
+| [6](fichas/6-tutor-restringido.qmd) | Tutor restringido aos materiais da UC | Estudo autónomo com fonte controlada |
+
+A ficha 6 é apresentada como opção avançada: exige infraestrutura que a maioria dos participantes não terá disponível a curto prazo, e serve sobretudo para mostrar o que é possível quando a fonte é controlada.
+
+## 5. Eixo 3, adaptar conteúdos e avaliação {#bloco-5}
+
+**15 minutos.**
+
+A pergunta que estrutura o bloco não é se a GenAI é boa ou má, mas o que ela compromete e o que ela valoriza.
+
+| Compromete | Valoriza |
+|---|---|
+| Trabalho escrito produzido fora da aula, sem verificação | Raciocínio em tempo real, com arguição |
+| Perguntas de definição e de recuperação de factos | Perguntas de aplicação, comparação e decisão sob incerteza |
+| Revisão de literatura como produto entregue | Leitura demonstrada, com discussão das fontes |
+| Resumos e sínteses genéricas | Reflexão ancorada em dados do próprio percurso |
+| Correcção baseada apenas no produto final | Avaliação de processo, com marcos intermédios |
+
+A resposta institucional não é a proibição generalizada, que não é verificável, mas o redesenho dos elementos vulneráveis e a explicitação do regime aplicável em cada actividade avaliada.
+
+Para essa explicitação existe instrumento pronto: o [Anexo B do Quadro](https://tiagojct.eu/fmup-ia/quadro/B-clausula.html) contém três cláusulas-tipo para programas de unidade curricular, uma por regime, permitido, condicionado e proibido, adaptáveis ao desenho de cada UC.
+
+## 6. Prática, desenhar para a própria UC {#bloco-6}
+
+**30 minutos.**
+
+Trabalho em pares heterogéneos: sempre que possível, docentes de unidades curriculares diferentes, ou de anos diferentes. Pares homogéneos convergem depressa demais e produzem fichas que só funcionam no contexto que ambos já conhecem.
+
+O produto é obrigatório: uma ficha preenchida, com prompt escrito e testado na IAedu. Não é um plano de intenções.
+
+As instruções detalhadas, o esquema em branco e a versão para impressão estão em [Prática](pratica.qmd).
+
+## 7. Teste cruzado {#bloco-7}
+
+**10 minutos.**
+
+Cada par troca a ficha com outro par e tenta quebrá-la. Não é revisão amigável, é tentativa deliberada de fazer a actividade falhar.
+
+Três perguntas guiam o teste:
+
+1. Consigo obter o produto final desta actividade com um único prompt, sem fazer o que a actividade pretende que eu faça?
+2. O que acontece se a ferramenta estiver indisponível, ou se der uma resposta errada e convincente?
+3. Um estudante sem acesso a ferramenta paga fica em desvantagem?
+
+Quem testa escreve as respostas na própria ficha e devolve-a. Quem recebe não discute no momento: anota e corrige depois.
+
+## 8. Encerramento {#bloco-8}
+
+**5 minutos.**
+
+Demonstração da [Themis](https://tiagojct.eu/fmup-ia/themis/), o gerador de declarações de uso associado ao Quadro. Cada docente gera a declaração correspondente à actividade que desenhou, na vertente Docentes, que produz o texto da cláusula para o programa da unidade curricular e o requisito de divulgação a comunicar aos estudantes.
+
+A declaração inclui a versão do Quadro e a versão da ferramenta que a produziram, o que a torna rastreável no tempo.
+
+Fecho: cada participante diz uma frase, com a estrutura fixa "na minha UC, vou mudar X". Uma frase, sem justificação. O objectivo do formato é impedir a diluição em intenções gerais.

@@ -1,0 +1,26 @@
+# Saídas do Quarto
+_site/
+.quarto/
+*.html.bak
+
+# Cache de referências cruzadas
+.crossref-cache/
+
+# Ruído do sistema operativo e de editores
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Node, caso venha a ser adicionado tooling local
+node_modules/
+package-lock.json
+npm-debug.log*
+
+# Registos
+*.log
+
+/.quarto/
+**/*.quarto_ipynb

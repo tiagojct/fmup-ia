@@ -1,0 +1,116 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - "index.qmd"
+    - "programa.qmd"
+    - "pratica.qmd"
+    - "regras.qmd"
+    - "recursos.qmd"
+    - "sobre.qmd"
+    - "fichas/*.qmd"
+  resources:
+    - "assets/**"
+    - "js/**"
+  preview:
+    port: 4322
+    browser: false
+
+website:
+  title: "Adaptar o ensino à GenAI"
+  description: "Sessão de formação para docentes da FMUP sobre estratégias pedagógicas com inteligência artificial generativa."
+  site-url: "https://tiagojct.eu/fmup-ia/training/"
+  repo-url: "https://github.com/tiagojct/fmup-ia"
+  repo-subdir: "training"
+  repo-actions: [edit, issue]
+  favicon: assets/favicon.svg
+  open-graph: true
+  twitter-card: true
+  page-navigation: true
+  back-to-top-navigation: true
+  reader-mode: false
+  search:
+    location: navbar
+    type: overlay
+
+  navbar:
+    background: light
+    pinned: true
+    logo: assets/logos/fmup-geral.png
+    logo-alt: "FMUP, Faculdade de Medicina da Universidade do Porto"
+    title: false
+    left:
+      - href: index.qmd
+        text: "Início"
+      - href: programa.qmd
+        text: "Programa"
+      - text: "Fichas"
+        menu:
+          - href: fichas/index.qmd
+            text: "Todas as fichas"
+          - text: "---"
+          - href: fichas/1-doente-virtual.qmd
+            text: "1. Doente virtual"
+          - href: fichas/2-critica-de-outputs.qmd
+            text: "2. Crítica de outputs"
+          - href: fichas/3-aluno-corretor.qmd
+            text: "3. Aluno corrector"
+          - href: fichas/4-advogado-do-diabo.qmd
+            text: "4. Advogado do diabo"
+          - href: fichas/5-fazer-e-comparar.qmd
+            text: "5. Fazer e comparar"
+          - href: fichas/6-tutor-restringido.qmd
+            text: "6. Tutor restringido"
+      - href: pratica.qmd
+        text: "Prática"
+      - href: regras.qmd
+        text: "Regras"
+      - href: recursos.qmd
+        text: "Recursos"
+      - href: sobre.qmd
+        text: "Sobre"
+    right:
+      - icon: github
+        href: https://github.com/tiagojct/fmup-ia
+        aria-label: "Repositório GitHub"
+
+  page-footer:
+    background: light
+    border: true
+    left: |
+      © 2026 Tiago Jacinto · Faculdade de Medicina da Universidade do Porto · Sessão de formação v1.0 · Julho 2026
+      Conteúdo licenciado sob [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+    right:
+      - text: "Quadro FMUP · IA"
+        href: https://tiagojct.eu/fmup-ia/quadro/
+      - text: "Themis"
+        href: https://tiagojct.eu/fmup-ia/themis/
+      - text: "GitHub"
+        href: https://github.com/tiagojct/fmup-ia
+
+format:
+  fmup-html:
+    toc-depth: 3
+    toc-location: right
+    theme:
+      light:
+        - default
+        - _extensions/tiagojct/fmup/fmup.scss
+        - _extensions/tiagojct/fmup/fmup-variables.scss
+        - theme.scss
+      dark:
+        - default
+        - _extensions/tiagojct/fmup/fmup.scss
+        - _extensions/tiagojct/fmup/fmup-variables-dark.scss
+        - theme.scss
+
+lang: pt-PT
+
+language:
+  repo-action-links-edit: "Editar"
+  repo-action-links-issue: "Reportar"
+
+execute:
+  freeze: false
+
+license: "CC BY 4.0"

@@ -1,0 +1,309 @@
+/*-- scss:rules --*/
+
+// Overlay específico da plataforma de formação, sobre o tema `quarto-fmup`.
+// A extensão cobre paleta, tipografia, navbar, sidebar, TOC, callouts,
+// código, tabelas e footer. Este ficheiro acrescenta apenas os componentes
+// próprios desta sessão: bloco hero, grelha de cartões, cronómetro,
+// cabeçalho das fichas e regras de impressão.
+//
+// Todas as cores referenciam os tokens `$fmup-*` definidos em
+// `fmup-variables.scss` (claro) e `fmup-variables-dark.scss` (escuro),
+// pelo que este ficheiro funciona automaticamente nos dois modos.
+
+// ---- Bloco hero (usado em index.qmd) ----
+
+.hero {
+  padding: 3rem 0 2.5rem;
+  border-bottom: 4px solid $fmup-yellow;
+  margin-bottom: 2.5rem;
+
+  .hero-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: $fmup-text-muted;
+    margin-bottom: 0.5rem;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+    font-weight: 800;
+    margin: 0 0 1rem;
+    letter-spacing: -0.02em;
+    color: $fmup-text;
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem;
+    max-width: 60ch;
+    color: $fmup-text;
+    margin: 0 0 1.5rem;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-status {
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    color: $fmup-text-muted;
+  }
+}
+
+// ---- Grelha de três cartões (usada em index.qmd) ----
+
+.cards-3 {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+
+  @media (min-width: 720px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .card-tile {
+    background: $fmup-surface;
+    border: 1px solid $fmup-border;
+    border-radius: $fmup-radius;
+    padding: 1.5rem 1.25rem;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    transition: border-color 120ms, transform 120ms, box-shadow 120ms;
+
+    &:hover {
+      border-color: $fmup-text;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba($fmup-text, 0.12);
+      background: $fmup-surface-strong;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: $fmup-text;
+
+      &::before {
+        content: none;
+      }
+    }
+
+    p {
+      margin: 0;
+      color: $fmup-text-muted;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .card-link {
+      margin-top: auto;
+      font-weight: 700;
+      color: $fmup-text;
+
+      &::after {
+        content: " →";
+      }
+    }
+  }
+}
+
+// ---- Cronómetro do facilitador (programa.qmd) ----
+
+.cronometro {
+  background: $fmup-surface;
+  border: 1px solid $fmup-border;
+  border-radius: $fmup-radius;
+  padding: 1.25rem;
+  margin: 1.5rem 0 2rem;
+
+  .cronometro-display {
+    font-family: var(--bs-font-monospace, monospace);
+    font-size: clamp(2.5rem, 2rem + 4vw, 4rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: $fmup-text;
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 0.75rem;
+  }
+
+  // Estado de tempo esgotado. A cor não é o único sinal: o texto de
+  // estado muda em paralelo, para não depender da percepção cromática.
+  &.is-terminado .cronometro-display {
+    color: #B3261E;
+  }
+
+  .cronometro-controlos {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .cronometro-estado {
+    font-size: 0.85rem;
+    color: $fmup-text-muted;
+    margin: 0;
+    min-height: 1.4em;
+  }
+
+  .cronometro-blocos {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+  }
+
+  .cronometro-bloco {
+    font-family: inherit; // botões não herdam a fonte por omissão
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+    background: $fmup-bg;
+    border: 1px solid $fmup-border;
+    border-radius: $fmup-radius;
+    cursor: pointer;
+    color: $fmup-text;
+
+    &:hover {
+      border-color: $fmup-text;
+    }
+
+    &[aria-pressed="true"] {
+      border-color: $fmup-text;
+      background: $fmup-surface-strong;
+      font-weight: 700;
+    }
+  }
+}
+
+// ---- Cabeçalho de metadados das fichas ----
+
+// O conteúdo é escrito como tabela de duas colunas em Markdown, e não
+// como lista de definição, para que as fichas se mantenham legíveis em
+// texto simples. As regras abaixo despem a tabela do estilo Bootstrap,
+// que dentro da caixa destacada ficaria demasiado carregado.
+.ficha-meta {
+  background: $fmup-surface;
+  border-left: 4px solid $fmup-yellow;
+  border-radius: 0 $fmup-radius $fmup-radius 0;
+  padding: 0.85rem 1.25rem;
+  margin: 0 0 1.75rem;
+
+  table {
+    margin: 0;
+    width: auto;
+    background: transparent;
+    border: 0;
+    font-size: 0.9rem;
+  }
+
+  tbody,
+  tr,
+  td {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  td {
+    padding: 0.2rem 1.25rem 0.2rem 0;
+    vertical-align: baseline;
+    color: $fmup-text;
+  }
+
+  // Primeira coluna: o rótulo.
+  td:first-child {
+    white-space: nowrap;
+
+    strong {
+      font-weight: 700;
+      color: $fmup-text-muted;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+  }
+}
+
+// ---- Esquema da ficha em branco (pratica.qmd) ----
+
+.ficha-branco {
+  border: 1px solid $fmup-border;
+  border-radius: $fmup-radius;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+
+  h3 {
+    margin-top: 1.25rem;
+    font-size: 1rem;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .linha-resposta {
+    border-bottom: 1px solid $fmup-border;
+    height: 1.6rem;
+    margin: 0.4rem 0;
+  }
+}
+
+// ---- Impressão ----
+// A folha de exercício da prática tem de sair legível numa impressora
+// a preto e branco, sem navegação nem elementos interactivos.
+
+@media print {
+  .navbar,
+  .nav-footer,
+  #quarto-sidebar,
+  #quarto-margin-sidebar,
+  .toc-actions,
+  .quarto-title-banner .quarto-title-tools,
+  .cronometro-controlos,
+  .cronometro-blocos,
+  .btn {
+    display: none !important;
+  }
+
+  body {
+    font-size: 11pt;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  // Links externos ficam ilegíveis em papel se o destino não for visível.
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    word-break: break-all;
+  }
+
+  .ficha-branco {
+    break-inside: avoid;
+    border: 1px solid #000;
+  }
+
+  .linha-resposta {
+    border-bottom: 1px solid #000;
+  }
+
+  .callout {
+    break-inside: avoid;
+  }
+
+  .quebra-pagina {
+    break-before: page;
+  }
+}

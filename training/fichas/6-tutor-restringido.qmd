@@ -1,0 +1,137 @@
+---
+title: "Ficha 6. Tutor restringido aos materiais da UC"
+subtitle: "Opção avançada, com infraestrutura"
+toc: true
+toc-depth: 2
+---
+
+::: {.ficha-meta}
+| | |
+|---|---|
+| **Competência** | Estudo autónomo com fonte controlada |
+| **Formato** | Uso individual pelos estudantes, fora da aula |
+| **Duração** | Contínua ao longo do semestre |
+| **Ano sugerido** | Unidades curriculares de ciências básicas com corpo documental estável |
+| **Ferramenta** | Sistema RAG sobre materiais curados, não disponível por omissão na IAedu |
+:::
+
+::: {.callout-important appearance="simple"}
+## Opção avançada
+
+Esta ficha distingue-se das cinco anteriores: não é aplicável na próxima aula. Exige infraestrutura, decisão institucional e responsável técnico. É apresentada para mostrar o que se torna possível quando a fonte é controlada, e para que quem tenha condições de a explorar saiba o que está em causa. Qualquer implementação real na FMUP tem de passar pelos serviços competentes da Universidade e pela avaliação prevista no [Quadro](https://tiagojct.eu/fmup-ia/quadro/06-infraestrutura.html).
+:::
+
+## Objectivo de aprendizagem
+
+O estudante esclarece dúvidas sobre a matéria da unidade curricular a qualquer hora, com respostas ancoradas nos materiais que o docente curou, e com indicação da fonte de cada resposta dentro desses materiais.
+
+A competência protegida é o estudo autónomo com verificação. A diferença face a um assistente genérico não é a qualidade da redacção: é a rastreabilidade. O estudante pode ir ao documento de origem confirmar.
+
+::: {.callout-note appearance="simple"}
+## O que é RAG, em três frases
+
+*Retrieval-Augmented Generation* significa que, antes de responder, o sistema procura passagens relevantes num conjunto de documentos definido pelo docente e só depois gera a resposta a partir dessas passagens.
+
+O modelo continua a poder errar na redacção, mas deixa de poder inventar conteúdo que não exista no corpus, porque não é dele que a resposta é extraída.
+
+A contrapartida é rígida: aquilo que não estiver nos materiais, o sistema não responde.
+:::
+
+## Formato e duração em aula
+
+Não é uma actividade de aula, é um serviço disponível ao longo do semestre. O padrão de utilização observado na literatura é informativo para quem planeie: a utilização intensifica-se nos períodos de avaliação de maior peso e concentra-se substancialmente fora do horário lectivo.
+
+O trabalho do docente concentra-se antes do semestre, na curadoria do corpus, e não durante.
+
+## Prompt base
+
+Num sistema RAG, o comportamento define-se na instrução de sistema, configurada uma vez, e não em cada conversa. É esta instrução que separa um tutor utilizável de um assistente genérico com documentos anexados.
+
+```text
+És o assistente de estudo da unidade curricular. Respondes apenas com
+base nos documentos que te foram fornecidos.
+
+REGRAS DE FONTE
+1. Responde exclusivamente a partir das passagens recuperadas dos
+   materiais da unidade curricular. Não uses conhecimento geral, nem
+   para completar, nem para contextualizar.
+2. No fim de cada resposta, indica sempre a fonte: nome do documento
+   e secção ou número de página.
+3. Se a resposta não estiver nos materiais, di-lo de forma directa:
+   "Isto não está coberto pelos materiais desta unidade curricular."
+   Depois sugere ao estudante que consulte o docente. Nunca completes
+   com conhecimento exterior.
+4. Se os materiais forem ambíguos ou contraditórios num ponto,
+   assinala a ambiguidade em vez de escolher uma interpretação.
+
+REGRAS PEDAGÓGICAS
+5. Perante um pedido de resolução de um problema de avaliação,
+   não dês a solução. Faz uma pergunta que ajude o estudante a dar
+   o passo seguinte.
+6. Quando explicares um conceito, começa pela versão mais simples
+   presente nos materiais e só desenvolve se o estudante pedir.
+7. Não escrevas texto que o estudante possa submeter como trabalho
+   próprio. Se te pedirem um parágrafo para um trabalho, recusa e
+   explica porquê.
+
+REGRAS DE DADOS
+8. Se um estudante introduzir informação que pareça referir-se a um
+   doente real, interrompe e responde apenas: "Não posso processar
+   informação de doentes. Reformule o caso de forma fictícia." Não
+   repitas a informação recebida.
+```
+
+## Papéis
+
+### Papel do estudante
+
+Usa o assistente como primeira linha de esclarecimento, sabendo que a resposta está limitada aos materiais da unidade curricular e que essa limitação é intencional.
+
+Verifica a fonte indicada quando a resposta for usada em trabalho avaliado. A indicação da fonte só tem valor se for consultada.
+
+### Papel do docente
+
+O trabalho é de curadoria, e é substancial:
+
+- Definir o corpus: apontamentos, protocolos, capítulos autorizados, normas aplicáveis. Corpus pequeno e correcto funciona melhor do que corpus grande e desactualizado.
+- Verificar direitos de utilização de cada documento incluído. Material sob direitos de terceiros não entra sem autorização.
+- Rever o corpus a cada edição da unidade curricular. Um documento desactualizado passa a ser fonte de erro com aparência de autoridade.
+- Acompanhar as perguntas mais frequentes, que constituem um diagnóstico directo do que a turma não está a perceber.
+
+## Como se corrige ou discute
+
+Não há correcção: não é actividade avaliada. Há dois usos do registo de utilização, ambos valiosos e ambos sujeitos à mesma condição.
+
+O primeiro é pedagógico: as perguntas mais frequentes indicam onde o material é insuficiente ou confuso, o que é informação directa para a revisão da unidade curricular.
+
+O segundo é de desenho: os momentos de maior utilização revelam a distribuição real da carga de trabalho ao longo do semestre.
+
+::: {.callout-warning appearance="simple"}
+## Condição sobre os registos
+
+O registo de utilização contém dados pessoais de estudantes. A sua análise exige base legal, informação prévia aos titulares e definição de prazo de conservação. Nenhum uso pedagógico dos registos dispensa esta avaliação, que compete aos serviços da Universidade e não ao docente a título individual.
+:::
+
+## Armadilhas conhecidas
+
+- **Tensão entre fiabilidade e abrangência.** É o resultado central do estudo de referência e o mais importante de antecipar: as restrições ao corpus que garantem a exactidão limitam simultaneamente as perguntas mais amplas, e essa tensão molda o modo como os estudantes incorporam a ferramenta no seu estudo. Um estudante que faça uma pergunta legítima e receba "não está coberto" repetidamente abandona a ferramenta.
+- **Corpus desactualizado.** Mais perigoso do que ausência de corpus. O sistema responde com autoridade a partir de material superado, e indica a fonte, o que reforça a confiança na resposta errada.
+- **Falsa sensação de segurança.** RAG reduz a confabulação, não a elimina. O modelo pode representar mal uma passagem correctamente recuperada.
+- **Custo de manutenção subestimado.** A curadoria inicial é visível; a manutenção anual não é, e é onde estes projectos costumam morrer.
+- **Direitos de autor.** Carregar material de terceiros num sistema institucional é acto de reprodução e exige verificação prévia da licença.
+
+## Plano B sem ligação à internet
+
+Não há plano B: a actividade é o sistema.
+
+O que existe é uma versão degradada que captura parte do valor sem infraestrutura. Compile um documento único de perguntas frequentes, com as respostas e a indicação da secção dos materiais onde cada uma se fundamenta, e distribua-o. Reproduz, de forma estática, o que o sistema faria dinamicamente, e tem a vantagem de ser integralmente verificado pelo docente antes de chegar aos estudantes.
+
+## Referência
+
+Thesen T, Park SH. A generative AI teaching assistant for personalized learning in medical education. *npj Digital Medicine*. 2025;8(1):627. DOI: [10.1038/s41746-025-02022-1](https://doi.org/10.1038/s41746-025-02022-1). PMID: 41188616.
+
+Estudo do Department of Medical Education da Geisel School of Medicine at Dartmouth. Os autores implementaram um assistente baseado em RAG numa unidade curricular de ciências básicas, ao longo de duas coortes consecutivas, e analisaram padrões de utilização, conteúdo das conversas e opinião dos estudantes.
+
+Resultados relevantes para quem pondere replicar: a utilização foi estratégica e dependente do contexto, intensificando-se nos períodos de avaliação de maior peso, com utilização substancial fora do horário lectivo. Os estudantes procuraram sobretudo clarificação de conceitos fundamentais e valorizaram a disponibilidade permanente e as respostas ancoradas em fonte. As restrições da base de conhecimento que asseguraram a exactidão limitaram, porém, as perguntas mais amplas, criando uma tensão entre fiabilidade e abrangência que moldou o modo como os estudantes integraram a ferramenta nas suas rotinas de estudo.
+
+Referência obtida através da PubMed.

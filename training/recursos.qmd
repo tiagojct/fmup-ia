@@ -1,0 +1,70 @@
+---
+title: "Recursos"
+subtitle: "Referências usadas nas fichas e leitura adicional"
+toc: true
+toc-depth: 2
+---
+
+Lista comentada. As referências das fichas aparecem primeiro, pela ordem das fichas, seguidas de leitura adicional sobre integração curricular.
+
+Para o enquadramento institucional, normativo e deontológico, a lista de referência é a do projecto principal e não se duplica aqui: ver [Recursos do Quadro FMUP · IA](https://tiagojct.eu/fmup-ia/recursos.html).
+
+## Referências das fichas
+
+### Ficha 1, doente virtual
+
+Holderried F, Stegemann-Philipps C, Herschbach L, Moldt JA, Nevins A, Griewatz J, Holderried M, Herrmann-Werner A, Festl-Wietek T, Mahling M. A Generative Pretrained Transformer (GPT)-Powered Chatbot as a Simulated Patient to Practice History Taking: Prospective, Mixed Methods Study. *JMIR Medical Education*. 2024;10:e53961. DOI: [10.2196/53961](https://doi.org/10.2196/53961). PMID: 38227363.
+
+O estudo que fundamenta a ficha 1 e o mais útil de ler na íntegra antes de a aplicar. Tübingen Institute for Medical Education, 28 estudantes, 826 pares pergunta-resposta analisados quantitativa e qualitativamente. Dois resultados são directamente operacionais: 97,9% das respostas foram classificadas como plausíveis, mas em perguntas não cobertas pelo guião o modelo recorreu a informação fictícia em 56,4% dos casos. A estrutura de prompt usada, guião de doença mais componente comportamental, é a que a ficha reproduz.
+
+Hicke Y, Geathers J, Vu K, Sewell J, Cardie C, Talwalkar J, Shung D, Jack AG, Cornes S, Preston M, Kizilcec R. MedSimAI: Simulation and Formative Feedback Generation to Enhance Deliberate Practice in Medical Education. [arXiv:2503.05793](https://arxiv.org/abs/2503.05793), 2025.
+
+Implementação institucional do mesmo princípio, com avaliação automática segundo rubrica de OSCE e retorno imediato. Desenvolvida pela Cornell Bowers College of Computing and Information Science em colaboração com a Weill Cornell Medicine, Yale e UCSF, com 410 estudantes em três faculdades de medicina. Relevante para quem pondere passar da actividade pontual a um serviço com avaliação estruturada. Divulgação acessível na [Cornell Chronicle](https://news.cornell.edu/stories/2025/03/medical-students-use-ai-practice-communication-skills).
+
+### Ficha 2, crítica de outputs
+
+University of Pittsburgh, University Center for Teaching and Learning. *ChatGPT in the Classroom*. <https://teaching.pitt.edu/resources/chatgpt-in-the-classroom/>
+
+Recurso institucional de apoio a docentes, com estratégias de integração e de integridade académica. O mesmo centro mantém *The Prompt*, secção dedicada ao ensino com IA generativa, em <https://teaching.pitt.edu/generative-ai-resources-for-faculty/>, que inclui um repositório de trabalhos e actividades contribuídos por docentes, útil como fonte de variantes.
+
+### Ficha 3, o estudante como corrector
+
+Nicol DJ, Macfarlane-Dick D. Formative assessment and self-regulated learning: a model and seven principles of good feedback practice. *Studies in Higher Education*. 2006;31(2):199-218. DOI: [10.1080/03075070600572090](https://doi.org/10.1080/03075070600572090).
+
+Referência clássica sobre avaliação formativa e autorregulação. Anterior à IA generativa, e é essa a razão de estar aqui: o mecanismo pedagógico que a ficha explora, o estudante desenvolve autorregulação quando aplica critérios de avaliação e não apenas quando os recebe, não depende da tecnologia. A ferramenta é apenas o meio de produzir depressa material de correcção com qualidade controlada.
+
+### Ficha 4, advogado do diabo
+
+Dietis N. Three ways to use ChatGPT to enhance students' critical thinking in the classroom. *Times Higher Education*, THE Campus, 8 de Janeiro de 2024. <https://www.timeshighereducation.com/campus/three-ways-use-chatgpt-enhance-students-critical-thinking-classroom>
+
+Nikolas Dietis, professor auxiliar de Farmacologia na Faculdade de Medicina da Universidade de Chipre, descreve três actividades curtas. A que a ficha 4 adapta é a de geração de perspectivas opostas seguida de síntese e apresentação em aula, com comentário dos colegas. Formato leve, aplicável sem preparação longa.
+
+### Ficha 5, fazer e comparar
+
+*Harvard's New Playbook for Teaching with AI*. Harvard Magazine. <https://www.harvardmagazine.com/teaching-learning/harvard-redesigning-assignments-ai>
+
+Reportagem sobre redesenho de trabalhos em Harvard. Contém a descrição do exercício em que os estudantes anotam primeiro os seus próprios materiais e só depois os submetem a uma ferramenta para comparação, atribuída a Tari Tan, *lecturer on neurobiology* e *assistant dean for educational scholarship and innovation* na Harvard Medical School, com ênfase na metacognição como elemento central.
+
+### Ficha 6, tutor restringido
+
+Thesen T, Park SH. A generative AI teaching assistant for personalized learning in medical education. *npj Digital Medicine*. 2025;8(1):627. DOI: [10.1038/s41746-025-02022-1](https://doi.org/10.1038/s41746-025-02022-1). PMID: 41188616.
+
+Implementação de um assistente baseado em *retrieval-augmented generation*, restrito a materiais curados pelo docente, numa unidade curricular de ciências básicas da Geisel School of Medicine at Dartmouth, ao longo de duas coortes. O resultado mais útil para quem planeie replicar é a tensão documentada entre fiabilidade e abrangência: as restrições ao corpus que garantem exactidão limitam simultaneamente as perguntas mais amplas, e essa tensão determina a adesão dos estudantes.
+
+## Leitura adicional
+
+Boyle P. Medical schools move from worrying about AI to teaching it. *AAMC News*, 15 de Maio de 2025. <https://www.aamc.org/news/medical-schools-move-worrying-about-ai-teaching-it>
+
+Panorâmica do que as faculdades de medicina norte-americanas estão a fazer, com exemplos concretos de integração curricular. Útil para situar decisões locais num contexto mais amplo, e para perceber que a fase de deliberar se o tema entra no currículo já passou na maioria das instituições de referência.
+
+Gehrman E. How Generative AI Is Transforming Medical Education. *Harvard Medicine*, Outono de 2024. <https://magazine.hms.harvard.edu/articles/how-generative-ai-transforming-medical-education>
+
+Reportagem sobre a integração de IA generativa no currículo da Harvard Medical School, incluindo o curso introdutório de um mês e a via doutoral em IA em Medicina. Apresenta com equilíbrio as oportunidades e as preocupações, incluindo o risco de dependência excessiva no raciocínio diagnóstico, que é a preocupação mais pertinente para o desenho de actividades.
+
+## Referenciais institucionais
+
+Não se reproduzem aqui. As ligações directas mais usadas durante a sessão estão em [Regras](regras.qmd#ligacoes-directas), e a lista completa de referenciais internacionais, normativa nacional e princípios deontológicos está em [Recursos do Quadro FMUP · IA](https://tiagojct.eu/fmup-ia/recursos.html).
+
+## Nota sobre verificação
+
+As referências desta página foram verificadas na fonte: os DOI através do registo Crossref, os artigos indexados através da PubMed, e os recursos institucionais através da página do editor. Onde a atribuição corrente diverge da fonte, prevalece a fonte, e a divergência é assinalada na ficha correspondente.

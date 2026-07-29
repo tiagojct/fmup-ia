@@ -1,0 +1,240 @@
+---
+title: "Prática"
+subtitle: "Bloco 6, desenhar uma actividade para a própria unidade curricular"
+toc: true
+toc-depth: 2
+---
+
+::: {.callout-note appearance="simple"}
+Esta página é a folha de trabalho do [bloco 6](programa.qmd#bloco-6). Está preparada para impressão: use a função de imprimir do navegador, que remove a navegação e mantém apenas o esquema de preenchimento.
+:::
+
+## O que se pede
+
+Trinta minutos, em pares. No fim, cada par tem **uma ficha preenchida**, com o prompt escrito e testado na IAedu.
+
+Não é um plano de intenções nem um esboço para desenvolver mais tarde. A ficha tem de estar em condições de ser entregue a outro par, no [bloco 7](programa.qmd#bloco-7), que vai tentar quebrá-la.
+
+## Regras do trabalho em pares
+
+1. **Pares heterogéneos.** Sempre que possível, docentes de unidades curriculares diferentes, ou de anos diferentes. Pares que leccionam o mesmo convergem depressa demais e produzem fichas que só funcionam no contexto que ambos já conhecem.
+2. **Uma unidade curricular, não duas.** Escolham a de um dos dois. Quem não a lecciona tem a função mais útil: perguntar porquê a cada decisão. Se uma justificação não convencer quem está de fora, não vai convencer os estudantes.
+3. **Partam de um problema real.** Não desenhem a actividade ideal. Escolham um elemento da unidade curricular que já vos preocupa: um trabalho que suspeitam ser feito com IA, uma competência que os estudantes não estão a desenvolver, uma aula que não funciona.
+4. **Adaptem, não inventem.** As [seis fichas](fichas/) são pontos de partida. É mais rápido e mais seguro adaptar uma do que criar de raiz.
+5. **Testem o prompt.** Um prompt que não foi corrido na IAedu não está terminado. A maior parte das falhas só aparece na primeira execução.
+
+## Sequência sugerida
+
+| Tempo | O quê |
+|---|---|
+| 5 min | Escolher a unidade curricular e o problema concreto |
+| 5 min | Escolher a ficha de partida e o que muda |
+| 10 min | Escrever o prompt e testá-lo na IAedu |
+| 5 min | Preencher armadilhas e plano B |
+| 5 min | Reler como se fossem o par que vai tentar quebrá-la |
+
+Os últimos cinco minutos são os que mais fichas salvam. Não os dispensem.
+
+## Onde depositar
+
+::: {.callout-warning appearance="simple"}
+## Ligação por definir
+
+O endereço do documento partilhado (`{{< var ficha-partilhada.url >}}`) ainda não foi definido. Será comunicado no início da sessão e substituído nesta página.
+
+Enquanto isso, fotografem a ficha preenchida ou guardem-na em ficheiro próprio. O depósito serve para que as fichas fiquem disponíveis a toda a turma depois da sessão, e não é condição para o bloco 7.
+:::
+
+## Esquema da ficha
+
+::: {.ficha-branco}
+### Unidade curricular
+
+::: {.linha-resposta}
+:::
+
+::: {.linha-resposta}
+:::
+
+### Problema concreto que motiva a actividade
+
+::: {.linha-resposta}
+:::
+
+::: {.linha-resposta}
+:::
+
+### Ficha de partida e o que muda
+
+::: {.linha-resposta}
+:::
+
+::: {.linha-resposta}
+:::
+
+### Objectivo de aprendizagem
+
+Uma frase, na forma "no fim da actividade, o estudante...". Descreva o que fica observável, não o que fica sabido.
+
+::: {.linha-resposta}
+:::
+
+::: {.linha-resposta}
+:::
+
+### Competência que a actividade protege
+
+O que é que os estudantes têm de continuar a saber fazer sem ferramenta.
+
+::: {.linha-resposta}
+:::
+
+### Formato e duração em aula
+
+Individual, pares ou grupos. Minutos por fase.
+
+::: {.linha-resposta}
+:::
+
+::: {.linha-resposta}
+:::
+
+### Prompt base
+
+Escrever por extenso e testar na IAedu. Incluir as instruções de comportamento: o que a ferramenta não deve fazer, não apenas o que deve.
+
+::: {.linha-resposta}
+:::
+
+::: {.linha-resposta}
+:::
+
+::: {.linha-resposta}
+:::
+
+::: {.linha-resposta}
+:::
+
+::: {.linha-resposta}
+:::
+
+::: {.linha-resposta}
+:::
+
+::: {.linha-resposta}
+:::
+
+::: {.linha-resposta}
+:::
+
+### Papel do estudante
+
+::: {.linha-resposta}
+:::
+
+::: {.linha-resposta}
+:::
+
+### Papel do docente
+
+::: {.linha-resposta}
+:::
+
+::: {.linha-resposta}
+:::
+
+### Como se corrige ou discute
+
+O que é avaliado, se é avaliado. Que perguntas conduzem a discussão.
+
+::: {.linha-resposta}
+:::
+
+::: {.linha-resposta}
+:::
+
+::: {.linha-resposta}
+:::
+
+### Armadilhas conhecidas
+
+Duas, no mínimo. O que corre mal e o que fazer quando correr.
+
+::: {.linha-resposta}
+:::
+
+::: {.linha-resposta}
+:::
+
+::: {.linha-resposta}
+:::
+
+### Plano B sem ligação à internet
+
+O que se imprime ou se prepara antes para que a aula funcione na mesma.
+
+::: {.linha-resposta}
+:::
+
+::: {.linha-resposta}
+:::
+
+### Regime aplicável na unidade curricular
+
+Permitido, condicionado ou proibido, e em que termos. Ver o [Anexo B do Quadro](https://tiagojct.eu/fmup-ia/quadro/B-clausula.html).
+
+::: {.linha-resposta}
+:::
+
+::: {.linha-resposta}
+:::
+:::
+
+## Teste cruzado {.quebra-pagina}
+
+Preenchido pelo **outro par**, no [bloco 7](programa.qmd#bloco-7). Não é revisão amigável: é tentativa deliberada de fazer a actividade falhar.
+
+::: {.ficha-branco}
+### 1. Consegue-se obter o produto final com um único prompt, sem fazer o que a actividade pretende?
+
+Se sim, escrever o prompt que o consegue.
+
+::: {.linha-resposta}
+:::
+
+::: {.linha-resposta}
+:::
+
+::: {.linha-resposta}
+:::
+
+### 2. O que acontece se a ferramenta estiver indisponível, ou se der uma resposta errada e convincente?
+
+::: {.linha-resposta}
+:::
+
+::: {.linha-resposta}
+:::
+
+### 3. Um estudante sem acesso a ferramenta paga fica em desvantagem?
+
+::: {.linha-resposta}
+:::
+
+::: {.linha-resposta}
+:::
+
+### Observação livre
+
+::: {.linha-resposta}
+:::
+
+::: {.linha-resposta}
+:::
+:::
+
+## Depois da sessão
+
+Cada participante gera, na [Themis](https://tiagojct.eu/fmup-ia/themis/), a declaração de uso correspondente à actividade desenhada. Na vertente Docentes, a ferramenta produz dois textos: a cláusula para o programa da unidade curricular e o requisito de divulgação a comunicar aos estudantes.
+
+A declaração inclui a versão do Quadro e a versão da ferramenta que a produziram, o que a torna rastreável no tempo.

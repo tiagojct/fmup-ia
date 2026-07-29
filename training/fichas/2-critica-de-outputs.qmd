@@ -1,0 +1,139 @@
+---
+title: "Ficha 2. Crítica estruturada de outputs"
+subtitle: "Detecção de erro em texto clinicamente plausível"
+toc: true
+toc-depth: 2
+---
+
+::: {.ficha-meta}
+| | |
+|---|---|
+| **Competência** | Leitura crítica, verificação, raciocínio clínico |
+| **Formato** | Grupos de três, com rubrica |
+| **Duração** | 30 a 40 minutos |
+| **Ano sugerido** | Qualquer ano com base clínica suficiente para o tema escolhido |
+| **Ferramenta** | IAedu, preparação prévia pelo docente |
+:::
+
+## Objectivo de aprendizagem
+
+No fim da actividade, o estudante identifica erros factuais e de raciocínio num texto clínico bem escrito, classifica-os por gravidade e justifica cada identificação com uma fonte.
+
+A competência protegida é a detecção de erro em texto plausível, que é exactamente aquilo que a fluência dos modelos de linguagem torna difícil. Um texto mal escrito levanta suspeitas; um texto bem escrito e errado não.
+
+## Formato e duração em aula
+
+- **5 min.** Distribuição do texto e da rubrica. O docente diz quantos erros existem, mas não de que tipo.
+- **15 min.** Trabalho em grupos de três. Cada grupo assinala os erros que encontra e classifica-os.
+- **10 min.** Confronto com a chave de correcção, erro a erro.
+- **5 a 10 min.** Discussão dos erros que nenhum grupo encontrou, que são os mais instrutivos.
+
+Dizer o número de erros é uma decisão deliberada: sem essa informação, os grupos param cedo demais. Numa segunda utilização com a mesma turma, omita o número.
+
+## Prompt base
+
+O docente gera o material antes da aula. O prompt produz duas coisas: a nota clínica que os estudantes recebem e a chave que fica com o docente.
+
+```text
+Preciso de material para um exercício de leitura crítica com
+estudantes de Medicina. Vais escrever uma nota clínica de admissão,
+fictícia, sobre um doente com dor torácica, e vais plantar nela erros
+deliberados para os estudantes encontrarem.
+
+CASO
+Homem de 57 anos, admitido no serviço de urgência por dor torácica
+retroesternal com duas horas de evolução, opressiva, com irradiação
+para o membro superior esquerdo, acompanhada de sudorese. Factores de
+risco: hipertensão, dislipidemia, fumador activo.
+
+O QUE PRECISO
+Escreve a nota clínica completa, com as secções habituais: motivo de
+admissão, história da doença actual, antecedentes, medicação
+habitual, exame objectivo, exames complementares com valores, e
+avaliação com plano.
+
+ERROS A PLANTAR
+Planta exactamente seis erros, distribuídos assim:
+- Dois erros factuais de valores (um valor laboratorial ou vital
+  incompatível com o quadro descrito, ou com as unidades trocadas).
+- Dois erros de raciocínio (uma conclusão que não decorre dos dados
+  apresentados, ou um diagnóstico diferencial que ignora um dado
+  relevante da própria nota).
+- Um erro de medicação (dose, via, frequência ou uma
+  contra-indicação ignorada face aos antecedentes descritos).
+- Uma incoerência interna (uma afirmação numa secção que contradiz
+  outra secção da mesma nota).
+
+REGRAS
+- Os erros têm de ser plausíveis. Nada de absurdos evidentes: um
+  estudante desatento deve conseguir passar por eles sem reparar.
+- Não assinales os erros no texto da nota. Sem asteriscos, sem
+  negrito, sem notas de rodapé.
+- O resto da nota tem de estar clinicamente correcto.
+
+FORMATO DA RESPOSTA
+Primeiro, a nota clínica completa, sob o título "NOTA CLÍNICA".
+Depois, uma linha com dez tracejados.
+Depois, sob o título "CHAVE DE CORRECÇÃO", a lista dos seis erros,
+numerados, cada um com: a citação exacta do trecho errado, o tipo de
+erro, a explicação do que está errado, e o que estaria correcto.
+```
+
+::: {.callout-warning appearance="simple"}
+## Verificação obrigatória antes da aula
+
+O docente verifica a nota **e** a chave antes de distribuir. Duas falhas são frequentes: o modelo planta menos erros do que os pedidos, e o modelo introduz erros adicionais que não constam da chave. Ambos os casos comprometem o exercício se não forem corrigidos, e o segundo é o mais provável.
+:::
+
+### Rubrica para distribuir
+
+Faz parte do material a preparar. Distribua esta grelha com o texto. Cada erro encontrado preenche uma linha.
+
+| Trecho citado | Tipo de erro | Porque está errado | Fonte que o confirma | Gravidade |
+|---|---|---|---|---|
+| | Factual / raciocínio / medicação / incoerência | | | Alta, média ou baixa |
+
+A coluna da gravidade é a que gera mais discussão e é a que interessa: obriga a distinguir um erro de transcrição de um erro que resultaria em dano.
+
+## Papéis
+
+### Papel do estudante
+
+Lê a nota, assinala os erros, preenche a rubrica. Para cada erro, tem de indicar uma fonte que o confirme, seja o manual da unidade curricular, uma norma da Direcção-Geral da Saúde, ou o resumo das características do medicamento. Uma identificação sem fonte não conta.
+
+No confronto com a chave, o grupo defende as identificações que a chave não previu, em vez de as descartar.
+
+### Papel do docente
+
+Gera e verifica o material antes da aula. Durante a actividade, não confirma nem infirma identificações. Na fase de confronto, conduz erro a erro e reserva a maior parte do tempo para os erros que nenhum grupo encontrou.
+
+Deve também estar preparado para o caso em que um grupo encontre um erro real que o modelo introduziu sem intenção e que não consta da chave. Reconhecê-lo em voz alta é o melhor momento pedagógico da actividade.
+
+## Como se corrige ou discute
+
+A correcção faz-se por confronto com a chave, mas a discussão vale mais do que a contagem. Três perguntas de fecho:
+
+1. **Que erros escaparam a todos os grupos, e porquê?** Normalmente são os de raciocínio, não os de valores. Os erros numéricos saltam à vista; uma conclusão que não decorre dos dados passa despercebida porque está bem escrita.
+2. **Que identificações estavam certas e não constavam da chave?** Demonstra que a ferramenta introduz erros que não controla.
+3. **Como se detectaria isto na prática, com uma nota gerada por um sistema de documentação automática?** Liga o exercício ao contexto profissional em que os estudantes vão encontrar estes textos.
+
+## Armadilhas conhecidas
+
+- **Erros não solicitados.** O modelo introduz erros para além dos pedidos e não os declara na chave. É o problema mais frequente e obriga o docente a ler a nota com atenção antes da aula.
+- **Erros demasiado evidentes.** Sem a instrução de plausibilidade, o modelo produz erros grosseiros que qualquer estudante encontra em segundos, e o exercício perde valor. Se acontecer, peça uma nova versão com erros mais subtis.
+- **Fixação nos números.** Os grupos tendem a procurar apenas valores errados. A rubrica com quatro tipos de erro contraria a tendência, mas convém dizê-lo em voz alta no arranque.
+- **Contagem em vez de análise.** Se a actividade for avaliada pelo número de erros encontrados, os grupos passam a adivinhar. Avalie a qualidade da justificação e da fonte, não a contagem.
+
+## Plano B sem ligação à internet
+
+Esta actividade já é, por desenho, executada a partir de material pré-gerado. O plano B é apenas imprimir a nota clínica e a rubrica.
+
+Convém manter em arquivo duas ou três notas com chaves verificadas, de temas diferentes, prontas a usar. Uma vez construídas, servem vários anos, e um conjunto acumulado permite variar o caso entre turmas.
+
+## Referência
+
+University of Pittsburgh, University Center for Teaching and Learning. *ChatGPT in the Classroom*. Disponível em <https://teaching.pitt.edu/resources/chatgpt-in-the-classroom/>.
+
+O centro mantém também *The Prompt*, uma secção de recursos para ensino com IA generativa, em <https://teaching.pitt.edu/generative-ai-resources-for-faculty/>, com um repositório de trabalhos e actividades contribuídos por docentes.
+
+A lógica da actividade articula-se com o princípio 6 do Quadro FMUP · IA, literacia crítica, na sua dimensão avaliativa: identificar erros factuais, referências fabricadas e inconsistências, verificando contra fontes primárias.

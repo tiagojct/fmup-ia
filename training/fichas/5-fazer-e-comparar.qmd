@@ -1,0 +1,130 @@
+---
+title: "Ficha 5. Fazer primeiro, comparar depois"
+subtitle: "Esforço deliberado e reflexão metacognitiva"
+toc: true
+toc-depth: 2
+---
+
+::: {.ficha-meta}
+| | |
+|---|---|
+| **Competência** | Metacognição, autoavaliação, raciocínio autónomo |
+| **Formato** | Individual, com discussão em pares no fim |
+| **Duração** | 40 minutos, ou dividida entre trabalho de casa e aula |
+| **Ano sugerido** | Qualquer ano |
+| **Ferramenta** | IAedu, usada pelo estudante depois de resolver |
+:::
+
+## Objectivo de aprendizagem
+
+No fim da actividade, o estudante compara a sua própria resolução com a de uma ferramenta generativa, identifica em que pontos diverge e porquê, e enuncia o que aprendeu sobre o seu próprio processo de raciocínio.
+
+A competência protegida é o esforço deliberado. Esta é a única das seis fichas cujo objectivo principal não é o produto mas o hábito: estabelecer, desde cedo, a sequência tentar primeiro, consultar depois. Uma vez invertida, a sequência é difícil de recuperar.
+
+## Formato e duração em aula
+
+A sequência é rígida e é o que define a actividade.
+
+- **15 min.** Resolução individual, sem qualquer consulta. Nem ferramenta, nem apontamentos, nem colegas.
+- **5 min.** O estudante entrega ou fotografa a sua resolução. Este passo não é burocrático: sem ele, a comparação posterior contamina a memória do que tinha feito.
+- **10 min.** Resolução com a ferramenta, com o prompt abaixo.
+- **10 min.** Comparação escrita e discussão em pares.
+
+Funciona bem repartida: as duas primeiras fases como trabalho preparatório, as duas últimas em aula. Só resulta se a entrega da primeira resolução for verificável.
+
+## Prompt base
+
+Usado pelo estudante, depois de ter a sua própria resolução escrita e entregue.
+
+```text
+Já resolvi este problema sozinho. Agora quero comparar o meu
+raciocínio com o teu, para perceber onde divergimos e porquê.
+
+Não quero que me digas se estou certo ou errado antes de teres
+explicado o teu próprio raciocínio. Segue esta ordem.
+
+PRIMEIRO
+Resolve o problema abaixo do zero, sem veres a minha resolução.
+Mostra o raciocínio passo a passo, e em cada passo indica que
+informação usaste e que hipótese estás a assumir.
+
+PROBLEMA
+"Mulher de 34 anos recorre ao serviço de urgência por dispneia de
+início súbito há seis horas, com dor torácica pleurítica à direita.
+Sem febre. Frequência cardíaca 112 bpm, frequência respiratória 24
+cpm, SpO2 93% em ar ambiente, tensão arterial 118/74 mmHg.
+Antecedentes: contraceptivo oral combinado. Viagem de avião de sete
+horas há três dias. Auscultação pulmonar sem alterações. Explique a
+sua abordagem diagnóstica inicial e justifique cada passo."
+
+DEPOIS DE TERES RESOLVIDO
+Vou colar a minha resolução. Aí sim, quero que faças três coisas,
+por esta ordem:
+1. Identifica os pontos em que o meu raciocínio e o teu divergem.
+   Lista apenas as divergências, sem julgar qual está correcta.
+2. Para cada divergência, explica o que a pode originar: um dado
+   que eu valorizei e tu não, uma hipótese diferente, um erro meu,
+   ou um erro teu.
+3. Só no fim, e claramente separado, indica quais das divergências
+   correspondem a erro meu e quais correspondem a erro teu ou a
+   opção legítima diferente.
+
+Não reformules a minha resolução. Não escrevas uma versão melhorada.
+Quero perceber as diferenças, não receber um texto corrigido.
+```
+
+::: {.callout-note appearance="simple"}
+## Porque é que o prompt proíbe a versão melhorada
+
+Sem essa instrução, a ferramenta devolve um texto reescrito, o estudante lê-o, acha-o melhor, e a actividade converte-se em substituição. A proibição mantém o estudante na posição de quem compara, não na de quem recebe.
+:::
+
+## Papéis
+
+### Papel do estudante
+
+Resolve primeiro, sozinho, e entrega antes de consultar. Esta é a única regra que não admite excepção.
+
+Depois da comparação, escreve uma nota curta, de cinco a dez linhas, com três elementos: uma divergência em que estava errado e porquê; uma divergência em que a ferramenta estava errada ou em que a sua opção era igualmente defensável; e uma frase sobre o que faria de outro modo da próxima vez.
+
+### Papel do docente
+
+Garante a entrega da primeira resolução antes de qualquer consulta. Sem esse controlo, a actividade não tem valor e não é verificável.
+
+Recolhe as notas de comparação, que são o produto avaliável, e usa-as para identificar os erros de raciocínio recorrentes na turma, que são material directo para a aula seguinte.
+
+## Como se corrige ou discute
+
+Avalie a nota de comparação, não a resolução inicial. A resolução inicial pode estar errada sem prejuízo: o objectivo é que o estudante identifique porquê.
+
+A discussão em pares, nos últimos dez minutos, organiza-se por uma pergunta única: **em que divergência é que a ferramenta estava errada?** Obriga a que o estudante verifique em vez de aceitar, e é a pergunta que mais rapidamente revela quem fez a comparação a sério.
+
+No plenário, se houver tempo, recolha dois ou três casos em que a ferramenta errou e discuta-os. Num caso como o do problema acima, os erros típicos são valorizar insuficientemente o contexto de risco tromboembólico, ou propor exames por ordem inadequada à probabilidade pré-teste.
+
+## Armadilhas conhecidas
+
+- **Inversão da sequência.** É a armadilha principal e é fatal para a actividade. Se o estudante consultar primeiro, a comparação não existe e o exercício vira cópia. A entrega verificável da primeira resolução é a única salvaguarda eficaz.
+- **Comparação superficial.** "A IA disse o mesmo que eu" é a nota mais frequente e quase sempre falsa. Exija a identificação de pelo menos duas divergências concretas, mesmo que menores.
+- **Deferência à ferramenta.** Perante divergência, o estudante assume que o erro é seu. A instrução do prompt que separa erro meu de erro teu contraria a tendência, mas convém reforçá-la em aula: o estudante deve procurar activamente um ponto em que a ferramenta esteja errada.
+- **Reescrita disfarçada.** Mesmo com a proibição, o modelo tende a produzir uma versão melhorada. Se acontecer, o estudante deve responder na conversa "não reescrevas, lista apenas as divergências".
+- **Problemas fáceis demais.** Se o problema tiver resposta única e directa, não há divergências para comparar. Escolha problemas com decisão sob incerteza, com mais de uma abordagem defensável.
+
+## Plano B sem ligação à internet
+
+Gere previamente a resolução do problema pela ferramenta e imprima-a, sem a mostrar antes.
+
+A sequência mantém-se: os estudantes resolvem, entregam, e só depois recebem a folha com a resolução gerada. Perde-se a fase 2 do prompt, ou seja, a análise automática das divergências, que passa a ser feita pelo próprio estudante. É uma perda pequena, e há quem argumente que a versão em papel é pedagogicamente superior, porque obriga o estudante a fazer a comparação em vez de a receber feita.
+
+## Referência
+
+Tan T, citada em: *Harvard's New Playbook for Teaching with AI*. Harvard Magazine. Disponível em <https://www.harvardmagazine.com/teaching-learning/harvard-redesigning-assignments-ai>.
+
+Tari Tan é *lecturer on neurobiology* e *assistant dean for educational scholarship and innovation* na Harvard Medical School. O exercício descrito no artigo tem esta estrutura: os estudantes anotam primeiro os seus próprios materiais de estudo, submetem-nos depois a uma ferramenta generativa e comparam os resultados, reflectindo sobre a qualidade dos seus prompts, sobre potencial enviesamento no resultado e sobre o alinhamento com os seus objectivos. Tan sublinha a metacognição como elemento central: quando os estudantes conseguem articular como estão a usar a ferramenta, distinguem melhor os momentos em que estão a aprender daqueles em que estão a externalizar o pensamento.
+
+::: {.callout-note appearance="simple"}
+## Nota sobre a atribuição
+
+Esta actividade é por vezes atribuída a "Kristina Tan". O nome que consta da fonte é **Tari Tan**. A ficha usa o nome verificado.
+:::
+
+Para o enquadramento institucional, ver o terceiro pilar do [Quadro FMUP · IA](https://tiagojct.eu/fmup-ia/quadro/02-principios.html), *Ser sem IA*: a capacidade de decidir quando não usar a ferramenta, que o Quadro trata como exigência pedagógica e não como restrição.

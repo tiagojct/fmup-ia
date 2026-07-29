@@ -1,0 +1,82 @@
+---
+title: "Regras"
+subtitle: "O que se aplica, durante a sessão e depois dela"
+toc: true
+toc-depth: 2
+---
+
+## Os sete princípios do Quadro
+
+O [Quadro de referência institucional FMUP · IA](https://tiagojct.eu/fmup-ia/quadro/02-principios.html) assenta em sete princípios. Uma frase cada.
+
+| # | Princípio | Em uma frase |
+|---|---|---|
+| 1 | **Agência humana** | A ferramenta apoia, não substitui: a responsabilidade pelo conteúdo produzido, revisto ou submetido é sempre de quem o assina. |
+| 2 | **Integridade académica e científica** | Aplicam-se os mesmos padrões de honestidade que a qualquer outra forma de assistência: declarar, verificar, e não apresentar como próprio o que não é. |
+| 3 | **Protecção de dados** | Nenhum dado pessoal, clínico ou de saúde entra em plataforma sem garantias contratuais adequadas. |
+| 4 | **Transparência** | O uso é documentado e declarável; transparência não significa proibição, significa que o uso é explícito e rastreável. |
+| 5 | **Equidade de acesso** | Se a instituição recomenda ou exige o uso, garante acesso sem que o custo individual constitua barreira. |
+| 6 | **Literacia crítica** | Quem usa tem de compreender os limites do modelo e avaliar criticamente o que ele produz. |
+| 7 | **Revisão contínua** | Qualquer política sobre esta matéria é documento vivo, com revisão periódica. |
+
+## Regras práticas da sessão
+
+### Dados de doentes
+
+::: {.callout-important appearance="simple"}
+Nenhum dado de doente entra em ferramenta alguma. Nem identificável, nem pseudonimizado, nem em ferramenta institucional. Sem excepções.
+:::
+
+Conta como identificável qualquer dado que, isolado ou combinado, permita identificar uma pessoa: nome, número de processo, data de nascimento associada a diagnóstico, imagem com rosto ou código de barras, excerto de anamnese com pormenores únicos como local de residência, profissão ou datas de admissão.
+
+A anonimização informal, substituir o nome por uma inicial, não cumpre os requisitos técnicos do RGPD. Todos os casos usados nesta sessão são fictícios, e é assim que devem permanecer nas actividades que forem desenhadas.
+
+Para discussão de um caso real observado em contexto clínico, o interlocutor é o docente, não a ferramenta.
+
+### Declaração de uso
+
+O uso de GenAI em trabalho académico ou em material pedagógico é declarado. O instrumento é a [Themis](https://tiagojct.eu/fmup-ia/themis/), que gera a declaração adequada a cada papel:
+
+- **Vertente Estudantes:** declaração para acompanhar um trabalho submetido.
+- **Vertente Docentes:** cláusula para o programa da unidade curricular, e requisito de divulgação a comunicar aos estudantes.
+- **Vertente Investigadores:** nota curta normalizada e declaração estruturada para manuscrito, candidatura ou tese.
+
+A ausência de declaração, quando esta é obrigatória, constitui por si violação de integridade académica, independentemente da qualidade do conteúdo apresentado.
+
+### Equidade
+
+Nenhuma actividade avaliada pode pressupor subscrição paga. É por isso que a ferramenta de referência é a [IAedu](https://iaedu.pt), gratuita para a comunidade da Universidade do Porto, com autenticação `@up.pt` e sem utilização dos dados para treino de modelos.
+
+Se desenhar uma actividade que funcione melhor com uma ferramenta comercial, tem de existir via equivalente: com ferramenta institucional, com versão gratuita autorizada, ou sem ferramenta.
+
+### Avaliação e decisão
+
+A classificação é responsabilidade do docente. A GenAI pode apoiar a construção de rubricas ou a identificação de padrões para análise humana posterior, mas não toma decisões sobre classificação, progressão ou avaliação de competências.
+
+Não se submetem trabalhos de estudantes a plataformas comerciais para efeitos de correcção: viola a confidencialidade dos dados académicos e o regime aplicável à decisão automatizada.
+
+### Detecção
+
+Os detectores automáticos de texto gerado não constituem prova. Perante suspeita fundamentada, a verificação faz-se por evidência de processo, por defesa oral curta, ou por reconstrução do raciocínio, com direito a esclarecimento antes de qualquer encaminhamento formal.
+
+## Enquadramento institucional
+
+Esta sessão situa-se dentro de dois referenciais, e não os substitui.
+
+O primeiro é o **pacote institucional da Universidade do Porto** de Junho de 2026, transversal às quinze unidades orgânicas, que estabelece o modelo de semáforo por actividade avaliada, as regras mínimas comuns e o regime de declaração em dois níveis.
+
+O segundo é o **Quadro FMUP · IA**, que acrescenta a esse pacote a camada biomédica: enquadramento clínico e regulatório, dados de doentes em contexto formativo, e integridade em investigação com participantes humanos.
+
+A articulação entre os dois está descrita no [Anexo H do Quadro](https://tiagojct.eu/fmup-ia/quadro/H-articulacao-uporto.html).
+
+## Ligações directas {#ligacoes-directas}
+
+| Recurso | Para quê |
+|---|---|
+| [Quadro FMUP · IA](https://tiagojct.eu/fmup-ia/quadro/) | O documento de referência completo |
+| [Princípios, capítulo 2](https://tiagojct.eu/fmup-ia/quadro/02-principios.html) | Os sete princípios desenvolvidos |
+| [Anexo B, cláusula para o programa da UC](https://tiagojct.eu/fmup-ia/quadro/B-clausula.html) | Três cláusulas-tipo, uma por regime |
+| [Anexo A, modelo de declaração](https://tiagojct.eu/fmup-ia/quadro/A-declaracao.html) | Conteúdo mínimo de uma declaração de uso |
+| [Anexo E, cenários](https://tiagojct.eu/fmup-ia/quadro/E-cenarios.html) | Casos-limite resolvidos, incluindo os de dados clínicos |
+| [Themis](https://tiagojct.eu/fmup-ia/themis/) | Gerar a declaração |
+| [IAedu](https://iaedu.pt) | A plataforma institucional |
