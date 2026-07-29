@@ -25,6 +25,7 @@ training/
 ├── regras.qmd               # sete princípios e regras práticas
 ├── recursos.qmd             # referências verificadas e leitura adicional
 ├── sobre.qmd                # autoria, estatuto editorial, licença, registo de alterações
+├── guiao.md                 # guião do facilitador, não publicado no site
 ├── fichas/                  # seis fichas de actividade, estrutura idêntica
 ├── js/cronometro.js         # cronómetro, JavaScript sem dependências
 └── assets/                  # logótipos e favicon
