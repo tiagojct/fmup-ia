@@ -12,6 +12,7 @@ toc-depth: 2
 | **Formato** | Pares, um conduz e outro observa |
 | **Duração** | 35 a 45 minutos |
 | **Ano sugerido** | A partir da introdução à semiologia |
+| **Áreas** | Clínica. O mecanismo transfere, o objectivo não |
 | **Ferramenta** | IAedu, modo conversa |
 :::
 
@@ -94,6 +95,25 @@ espera pela primeira pergunta.
 
 Substitua o bloco `GUIÃO DE DOENÇA` por uma apresentação de asma mal controlada numa mulher de 24 anos, com tosse nocturna, uso de broncodilatador mais de três vezes por semana, agravamento na primavera e um gato em casa desde há seis meses. Mantenha todas as regras de comportamento sem alteração.
 :::
+
+### Variantes por área
+
+**Esta ficha é clínica, e não se disfarça de outra coisa.** O objectivo de aprendizagem é conduzir uma anamnese, e não existe equivalente em histologia ou em ciência de dados. Quem lecciona ciências básicas ou informática não deve tentar adaptá-la: deve reconhecer o que nela é transferível e aplicá-lo noutro objectivo.
+
+**O que é transferível** é o mecanismo, não a actividade: um interlocutor de papel restrito, que retém a resposta, responde apenas ao que lhe for perguntado, e não oferece o que não foi pedido. É a estrutura das regras 1 a 6 do prompt acima, que se mantém intacta em qualquer área.
+
+**O que muda, e é preciso dizê-lo:** ao transpor o mecanismo, muda o objectivo de aprendizagem. A ficha 1 avalia a estrutura da recolha de informação clínica; uma variante avalia outra coisa, e a grelha do observador tem de ser reescrita em conformidade. O estudo de Tübingen citado abaixo valida o doente simulado, e não valida as transposições.
+
+Dois exemplos de transposição, com o objectivo reformulado:
+
+| Área | Interlocutor | Objectivo reformulado |
+|---|---|---|
+| Ciências básicas | Uma preparação, um tecido ou um organismo desconhecido, que só responde a perguntas sobre características observáveis | Identificar por interrogatório dirigido, explicitando que característica exclui cada alternativa |
+| Ciência de dados | Um conjunto de dados desconhecido, que só devolve a estatística exactamente pedida | Conduzir uma exploração de dados por hipóteses, justificando cada pedido antes de o fazer |
+
+O segundo é o mais próximo do original em valor pedagógico: obriga o estudante a decidir que estatística pedir **antes** de a ver, que é a competência que a análise exploratória sem disciplina destrói.
+
+Para quem preferir manter o registo de *role-play* sem contexto clínico, note-se que Anand et al. tratam o desenho de cenários e o desenvolvimento de *role-play* como duas coisas distintas nos seus cinco *workshops*, o que sustenta a leitura de que o *role-play* é a categoria geral e a anamnese uma instância dela.
 
 ## Papéis
 

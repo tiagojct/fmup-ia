@@ -12,6 +12,7 @@ toc-depth: 2
 | **Formato** | Pares ou grupos de três, seguidos de plenário |
 | **Duração** | 40 a 50 minutos |
 | **Ano sugerido** | Qualquer ano, ajustando a controvérsia ao programa |
+| **Áreas** | Todas, mudando apenas a controvérsia |
 | **Ferramenta** | IAedu, usada pelos estudantes em aula |
 :::
 
@@ -48,8 +49,8 @@ O QUE PRECISO
    posição. Ordena-os do mais forte para o mais fraco, e diz porque
    ordenaste assim.
 2. Para cada contra-argumento, indica em que assenta: um princípio
-   ético, evidência empírica, enquadramento legal, ou prática
-   clínica estabelecida.
+   ético, evidência empírica, enquadramento legal, consenso
+   metodológico, ou prática estabelecida na área.
 3. Identifica o pressuposto mais frágil da posição que te apresentei,
    ou seja, aquilo que ela dá como assente e que pode ser
    questionado.
@@ -70,7 +71,15 @@ REGRAS
 ::: {.callout-tip appearance="simple"}
 ## Outras questões que funcionam
 
-Ajuste a controvérsia ao programa. Funcionam bem: a obrigatoriedade da vacinação em profissionais de saúde; o rastreio populacional com baixa especificidade; a atribuição de recursos escassos por critério de idade; o dever de reportar um colega com desempenho comprometido. A questão tem de ter dois lados defensáveis, caso contrário o exercício é retórico.
+Ajuste a controvérsia ao programa. A questão tem de ter dois lados defensáveis, caso contrário o exercício é retórico.
+
+**Clínicas e de saúde pública:** a obrigatoriedade da vacinação em profissionais de saúde; o rastreio populacional com baixa especificidade; a atribuição de recursos escassos por critério de idade; o dever de reportar um colega com desempenho comprometido.
+
+**Ciências básicas:** se um resultado obtido em modelo animal justifica extrapolação para humano na ausência de alternativa; se a investigação em linhas celulares imortalizadas exige consentimento rastreável à origem; se um achado não replicado deve constar do ensino de licenciatura; onde está o limite entre simplificação didáctica e ensinar algo que se sabe ser incorrecto.
+
+**Ciência de dados e informática médica:** se um modelo mais exacto e não interpretável é preferível a um menos exacto e explicável em contexto clínico; se dados de saúde pseudonimizados devem poder ser reutilizados sem novo consentimento; se um algoritmo de apoio à decisão deve mostrar a sua incerteza ao utilizador ou apenas a recomendação; se a correcção de enviesamento num modelo deve ser feita nos dados ou no resultado.
+
+Estas últimas duas famílias são as mais produtivas com esta ficha, e por uma razão específica: são controvérsias em que a resposta socialmente esperada é conhecida, e o modelo tende a produzi-la. Isso torna visível o viés de conformidade que a actividade existe para expor.
 :::
 
 ## Papéis

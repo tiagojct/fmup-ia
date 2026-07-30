@@ -12,6 +12,7 @@ toc-depth: 2
 | **Formato** | Individual, com discussão em pares no fim |
 | **Duração** | 40 minutos, ou dividida entre trabalho de casa e aula |
 | **Ano sugerido** | Qualquer ano |
+| **Áreas** | Todas, sem alteração de estrutura |
 | **Ferramenta** | IAedu, usada pelo estudante depois de resolver |
 :::
 
@@ -79,6 +80,39 @@ Quero perceber as diferenças, não receber um texto corrigido.
 Sem essa instrução, a ferramenta devolve um texto reescrito, o estudante lê-o, acha-o melhor, e a actividade converte-se em substituição. A proibição mantém o estudante na posição de quem compara, não na de quem recebe.
 :::
 
+### Variantes por área
+
+Muda só o bloco `PROBLEMA`. A sequência das quatro fases, a proibição da versão melhorada e a nota de comparação mantêm-se sem alteração, e é nelas que está a actividade.
+
+O critério de escolha do problema é o mesmo em todas as áreas: tem de haver decisão sob incerteza, com mais de uma abordagem defensável. Um problema com resposta única e directa não produz divergências para comparar.
+
+**Ciências básicas:**
+
+```text
+PROBLEMA
+"Uma cultura de células em meio com glucose apresenta, após duas
+horas em condições de hipoxia, aumento de lactato no meio e queda do
+pH intracelular, sem alteração significativa do consumo total de
+glucose. Explique que vias metabólicas estão envolvidas, que
+mecanismo compensatório esperaria observar a seguir, e como o
+verificaria experimentalmente. Justifique cada passo."
+```
+
+**Ciência de dados e informática médica:**
+
+```text
+PROBLEMA
+"Um conjunto de dados clínicos fictício tem 1200 observações, 14
+variáveis e 18% de valores ausentes concentrados em três variáveis,
+uma das quais é o desfecho. Explique a sua abordagem ao tratamento
+dos valores ausentes, que pressupostos cada opção exige, e por que
+ordem faria as verificações. Justifique cada passo."
+```
+
+O segundo é particularmente adequado a esta ficha, porque a resolução gerada tende a propor imputação sem verificar o mecanismo de ausência, que é exactamente o tipo de divergência que a comparação deve fazer aparecer.
+
+**Ficha 6.** Se a sua unidade curricular é de ciências básicas com corpo documental estável, veja também a [ficha 6](6-tutor-restringido.qmd): o estudo que a fundamenta foi conduzido precisamente nesse contexto.
+
 ## Papéis
 
 ### Papel do estudante
@@ -99,7 +133,7 @@ Avalie a nota de comparação, não a resolução inicial. A resolução inicial
 
 A discussão em pares, nos últimos dez minutos, organiza-se por uma pergunta única: **em que divergência é que a ferramenta estava errada?** Obriga a que o estudante verifique em vez de aceitar, e é a pergunta que mais rapidamente revela quem fez a comparação a sério.
 
-No plenário, se houver tempo, recolha dois ou três casos em que a ferramenta errou e discuta-os. Num caso como o do problema acima, os erros típicos são valorizar insuficientemente o contexto de risco tromboembólico, ou propor exames por ordem inadequada à probabilidade pré-teste.
+No plenário, se houver tempo, recolha dois ou três casos em que a ferramenta errou e discuta-os. Os erros típicos são da mesma família em qualquer área: subvalorizar um dado do enunciado que altera a abordagem, e propor os passos por uma ordem que não corresponde à sua utilidade informativa. No problema clínico acima, traduzem-se em subvalorizar o contexto de risco tromboembólico e em pedir exames sem atender à probabilidade pré-teste.
 
 ## Armadilhas conhecidas
 

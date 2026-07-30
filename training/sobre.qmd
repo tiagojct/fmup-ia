@@ -9,6 +9,16 @@ Esta plataforma é um **contributo individual** de Tiago Jacinto, de apoio a uma
 
 A sessão corresponde à formação inicial para docentes prevista na Fase 1 (2026-2027) do [Quadro de referência institucional FMUP · IA](https://tiagojct.eu/fmup-ia/quadro/). Essa correspondência é de conteúdo, não de estatuto: o Quadro é ele próprio uma proposta submetida a apreciação institucional, e esta plataforma partilha integralmente esse estatuto.
 
+## Limitação assumida do formato
+
+Cento e vinte minutos numa sessão única não são suficientes, e convém que isso conste.
+
+O único estudo publicado sobre este tipo de formação usou cinco sessões de uma hora e conclui que formação de curta duração pode iniciar experimentação e reflexão mas não completa o trabalho de integrar a matéria no ensino de forma criticamente reflectida e eticamente explícita (Anand et al. 2026, ver [Recursos](recursos.qmd)). No seguimento a duas semanas desse estudo, todos os respondentes tencionavam usar a ferramenta para preparar aulas e avaliações, mas menos de metade tencionava definir práticas de uso responsável. Eram cinco respostas, portanto é hipótese e não resultado, mas descreve o desequilíbrio mais provável de uma sessão curta.
+
+Esta plataforma responde a isso de duas formas, e nenhuma delas resolve o problema: torna obrigatório um produto que inclui o regime de uso aplicável à unidade curricular, e submete cada actividade ao teste de um par, cuja terceira pergunta é sobre equidade de acesso e é a única verificação da sessão que não é feita por quem desenhou a actividade.
+
+Se a formação prevista na Fase 1 vier a ser adoptada institucionalmente, a recomendação que decorre do estudo é estrutura longitudinal, repositório central de prâmptos validados e comunidade de prática, e não uma sessão mais longa.
+
 As formulações em registo institucional que percorrem as páginas, designadamente na página [Regras](regras.qmd), devem ser lidas como proposta redigida para facilitar eventual adopção formal, e não como descrição do regime em vigor. O regime aplicável é o que consta dos regulamentos pedagógicos, dos despachos da Direcção, das deliberações do Conselho Científico e do pacote institucional da Universidade do Porto.
 
 A publicação em domínio pessoal corresponde a publicação académica em nome individual, sob licença CC BY 4.0, para discussão pública. Não constitui presença institucional da FMUP.
@@ -59,6 +69,7 @@ Sugestão de citação:
 
 | Versão | Data | Notas |
 |---|---|---|
+| 1.1 | 2026-07-29 | **Adaptação a audiência mista.** Linha `Áreas` e subsecção `Variantes por área` nas seis fichas, com exemplos de substituição para ciências básicas e para ciência de dados e informática médica; a ficha 1 assume-se clínica e identifica o mecanismo transferível. Prompt de abertura neutro quanto à área, com escaladas de erro próprias para cada uma. Nova secção "Ler a sala" e regra de emparelhamento em dois níveis no guião. Eixos de risco novos em [Regras](regras.qmd): dados, código e resultados; imagens geradas. Visualização de materiais nomeada no bloco 3 e deliberadamente não demonstrada. Integração de Anand et al. 2026. |
 | 1.0 | 2026-07-22 | Primeira versão. Oito blocos, seis fichas de actividade, folha de prática com teste cruzado, página de regras e recursos verificados. |
 
 Revisões futuras serão registadas neste quadro. A plataforma acompanha o Quadro FMUP · IA, e uma revisão do Quadro que altere princípios, regime de declaração ou cláusulas-tipo implica revisão correspondente destas páginas.

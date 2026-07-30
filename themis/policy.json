@@ -1,11 +1,11 @@
 {
-  "version": "1.5.0",
-  "framework_version": "FMUP Quadro de Referência v1.2 (2026-07-22)",
-  "framework_short_pt": "Quadro FMUP v1.2",
-  "framework_short_en": "FMUP Framework v1.2",
+  "version": "1.6.0",
+  "framework_version": "FMUP Quadro de Referência v1.3 (2026-07-29)",
+  "framework_short_pt": "Quadro FMUP v1.3",
+  "framework_short_en": "FMUP Framework v1.3",
   "framework_url": "https://tiagojct.eu/fmup-ia/quadro/",
   "issued": "2026-04-21",
-  "revised": "2026-07-22",
+  "revised": "2026-07-29",
   "gaidet": {
     "order": ["conceptualisation", "literature_review", "methodology", "software", "data_management", "writing", "ethics_review", "supervision", "quality_control", "visuals"],
     "map": {

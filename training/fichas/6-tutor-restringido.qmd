@@ -12,6 +12,7 @@ toc-depth: 2
 | **Formato** | Uso individual pelos estudantes, fora da aula |
 | **Duração** | Contínua ao longo do semestre |
 | **Ano sugerido** | Unidades curriculares de ciências básicas com corpo documental estável |
+| **Áreas** | Todas com corpo documental estável |
 | **Ferramenta** | Sistema RAG sobre materiais curados, não disponível por omissão na IAedu |
 :::
 

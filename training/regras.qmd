@@ -33,6 +33,38 @@ A anonimização informal, substituir o nome por uma inicial, não cumpre os req
 
 Para discussão de um caso real observado em contexto clínico, o interlocutor é o docente, não a ferramenta.
 
+### Dados, código e resultados
+
+O risco dos dados de doentes é o mais conhecido, mas não é o único, e quem lecciona bioestatística, ciência de dados ou informática médica encontra outro, de natureza diferente e mais difícil de detectar.
+
+O modelo produz **prosa estatística plausível**: escolha de teste, leitura de um valor de _p_, comentário de um intervalo de confiança, tudo redigido com fluência e factualmente errado. Quem não domina a matéria não distingue, e a fluência é precisamente o que impede a suspeita. O mesmo se aplica ao código: uma transformação de dados aceite sem leitura introduz erro silencioso, que ninguém volta a inspeccionar porque o _pipeline_ corre sem falhar.
+
+Três regras seguem daqui, e são as do [Anexo I do Quadro](https://tiagojct.eu/fmup-ia/quadro/I-perfis-disciplinares.html):
+
+- **Código que não se consegue explicar não se submete.** Vale para estudantes e para docentes.
+- **Nunca pedir a um modelo o resultado numérico de um cálculo.** Pedir o código, correr o código, e verificar um subresultado por cálculo manual. Um modelo que devolve um valor sem o ter calculado é o modo de falha mais perigoso desta família, porque o valor parece um resultado.
+- **Reprodutibilidade como salvaguarda:** ambiente, semente aleatória e registos de execução. Em trabalho de estudantes, exigir a secção "o que a ferramenta sugeriu e o que corrigi".
+
+Fabricar dados, resultados ou saídas de análise é falta de integridade científica, não erro de utilização, e não muda de natureza por a ferramenta os ter produzido.
+
+### Imagens e materiais visuais gerados
+
+Gerar diagramas, esquemas e imagens para material pedagógico é uma das utilizações de maior valor para quem ensina anatomia, histologia ou bioquímica. Também é a que escapa ao reflexo de verificação que todas as outras regras assumem.
+
+Uma referência fabricada verifica-se em segundos: abre-se o DOI. Uma imagem histológica ou um diagrama de via metabólica subtilmente errados não têm equivalente, e chegam ao estudante com a autoridade de material didáctico.
+
+O Quadro já o estabelece, em [Questões transversais](https://tiagojct.eu/fmup-ia/quadro/08-transversais.html): a geração de imagens de patologia ou imagiologia para fins pedagógicos exige verificação de exactidão e declaração do processo de geração nos materiais. Na prática:
+
+- **Verificar contra fonte primária** antes de o material chegar aos estudantes, com o mesmo cuidado que se daria a uma figura de manual.
+- **Assinalar no próprio material** que a imagem é gerada e ilustrativa. Uma imagem gerada nunca é apresentada como observação, registo ou resultado.
+- **Nunca em substituição de imagem real** quando o objectivo de aprendizagem é reconhecer o real. Para treinar identificação em histologia, a preparação é a preparação.
+
+::: {.callout-note appearance="simple"}
+## Sobre a ferramenta
+
+À data desta sessão, não está confirmado que a IAedu gere imagem. Enquanto não estiver, esta utilização depende de ferramenta comercial, o que a coloca sob a regra de equidade abaixo: não pode ser pressuposto de nenhuma actividade avaliada, e exige via equivalente.
+:::
+
 ### Declaração de uso
 
 O uso de GenAI em trabalho académico ou em material pedagógico é declarado. O instrumento é a [Themis](https://tiagojct.eu/fmup-ia/themis/), que gera a declaração adequada a cada papel:

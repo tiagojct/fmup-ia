@@ -5,6 +5,6 @@
 #   _quarto.yml (page-footer), CITATION.cff, .zenodo.json,
 #   themis/policy.json (framework_version).
 quadro:
-  versao: "v1.2"
+  versao: "v1.3"
   data: "Julho de 2026"
-  data-iso: "2026-07-22"
+  data-iso: "2026-07-29"

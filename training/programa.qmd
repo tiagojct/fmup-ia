@@ -55,9 +55,9 @@ Para uso do facilitador. Seleccione o bloco, inicie a contagem, e continue a apr
 
 **8 minutos.**
 
-Um caso clínico com perguntas de escolha múltipla, gerado ao vivo na IAedu, a partir de um tema escolhido pela sala no momento.
+Um cenário com perguntas de escolha múltipla, gerado ao vivo na IAedu, a partir de um tema escolhido pela sala no momento. O tema pode ser clínico ou não: o prompt de abertura funciona igualmente com uma agudização de DPOC, com o ciclo de Krebs ou com a interpretação de um coeficiente de regressão.
 
-O objectivo é duplo e deve ser dito por essa ordem. Primeiro, mostrar que a geração de material é rápida e utilizável. Segundo, e mais importante, mostrar em directo o que sai errado: um distractor implausível, uma referência que não existe, uma dose que não bate certo. A demonstração só cumpre a sua função se o erro aparecer, portanto não se deve escolher um tema fácil nem esconder o resultado.
+O objectivo é duplo e deve ser dito por essa ordem. Primeiro, mostrar que a geração de material é rápida e utilizável. Segundo, e mais importante, mostrar em directo o que sai errado: um distractor implausível, uma referência que não existe, um valor que não bate certo, um resultado numérico que o modelo não pode ter calculado. A demonstração só cumpre a sua função se o erro aparecer, portanto não se deve escolher um tema fácil nem esconder o resultado.
 
 Se nada correr mal na primeira geração, insista com uma pergunta mais específica, sobre valores de referência ou sobre literatura recente. O erro aparece.
 
@@ -80,17 +80,23 @@ Estes quatro pontos ancoram nos sete princípios do Quadro: agência humana, int
 
 Aplicações de risco baixo, em que o docente é o único utilizador e revê tudo antes de o material chegar aos estudantes:
 
-- **Casos clínicos com variação de dificuldade.** Gerar um caso base e pedir três variantes: uma com apresentação atípica, uma com comorbilidade que altera a decisão, uma com dado laboratorial contraditório. É trabalho que demora horas a fazer à mão e minutos a rascunhar, com revisão obrigatória.
+- **Material de estudo com variação de dificuldade.** Gerar um cenário base e pedir três variantes que testem competências diferentes. Em contexto clínico: apresentação atípica, comorbilidade que altera a decisão, dado laboratorial contraditório. Em ciências básicas: condições experimentais alteradas, um resultado que contraria a hipótese, um artefacto de técnica. Em ciência de dados: violação de um pressuposto, dados ausentes não aleatórios, um efeito que desaparece ao estratificar. É trabalho que demora horas a fazer à mão e minutos a rascunhar, com revisão obrigatória.
 - **Perguntas de escolha múltipla com distractores plausíveis.** O valor está nos distractores, não no enunciado. Pedir explicitamente que cada distractor corresponda a um erro de raciocínio identificável, e pedir que o modelo explique qual.
 - **Rubricas.** Converter critérios implícitos de correcção em rubrica explícita, com níveis de desempenho. O docente sabe o que valoriza; a ferramenta ajuda a escrevê-lo de forma utilizável pelos estudantes.
 
-A regra transversal deste eixo: o que sai da ferramenta é rascunho, e a responsabilidade pela exactidão clínica e pela adequação pedagógica permanece integralmente do docente.
+Há uma quarta aplicação que não se demonstra nesta sessão: a **visualização de materiais**, ou seja, gerar diagramas, esquemas e imagens de apoio. É a aplicação de maior valor para quem ensina anatomia, histologia ou bioquímica, e no estudo de Anand et al. foi um dos cinco *workshops* e uma das intenções mais declaradas pelos participantes.
+
+Fica nomeada e não demonstrada por duas razões. Primeira, não está confirmado que a IAedu gere imagem, e depender de ferramenta comercial colide com a regra de equidade. Segunda, e mais séria: uma imagem subtilmente errada não é apanhada pelo reflexo de verificação que este eixo ensina. Uma referência fabricada verifica-se abrindo o DOI; um diagrama de via metabólica com uma seta invertida não tem equivalente, e chega ao estudante com autoridade de material didáctico. As regras aplicáveis estão em [Regras](regras.qmd).
+
+A regra transversal deste eixo: o que sai da ferramenta é rascunho, e a responsabilidade pela exactidão do conteúdo, clínica ou científica, e pela adequação pedagógica permanece integralmente do docente.
 
 ## 4. Eixo 2, actividades para os alunos em aula {#bloco-4}
 
 **30 minutos.**
 
 O bloco central. Percorrer as seis fichas, com demonstração breve de duas ou três conforme o perfil da sala. Cada ficha tem prompt completo, papéis definidos, método de correcção, armadilhas conhecidas e plano B sem ligação à internet.
+
+Cada ficha tem também, dentro de `Prompt base`, uma subsecção **Variantes por área** com exemplos de substituição para ciências básicas e para ciência de dados, e uma linha `Áreas` no cabeçalho que diz se a actividade transfere sem alteração ou se precisa de exemplo novo. Só a ficha 1 é intrinsecamente clínica, e assume-o.
 
 | Ficha | Actividade | Competência que protege |
 |---|---|---|

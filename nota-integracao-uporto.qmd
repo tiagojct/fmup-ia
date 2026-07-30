@@ -199,7 +199,7 @@ Os passos seguintes estão ordenados por precedência lógica, não por priorida
 
 ### Passo 1 --- Validação interna dos perfis disciplinares
 
-Os cinco perfis do [Anexo I](quadro/I-perfis-disciplinares.qmd) fazem afirmações pedagógicas sobre famílias de unidades curriculares que devem ser confirmadas por quem as lecciona. São propostas de calibração, não descrições validadas.
+Os seis perfis do [Anexo I](quadro/I-perfis-disciplinares.qmd) fazem afirmações pedagógicas sobre famílias de unidades curriculares que devem ser confirmadas por quem as lecciona. São propostas de calibração, não descrições validadas.
 
 **Antes de qualquer submissão externa**, cada perfil deve ser revisto pela coordenação do ciclo de estudos correspondente e ancorado numa unidade curricular concreta, com ligação à respectiva ficha no SIGARRA --- que é o formato usado pelo caderno da Universidade.
 
@@ -213,7 +213,7 @@ A razão não é protocolar. É de eficiência: o pacote tem ciclo de revisão a
 
 Depois de validados, os dois contributos podem ser propostos:
 
-- Os **cinco perfis disciplinares**, para inclusão no *Caderno complementar de perfis disciplinares*. É o contributo de menor atrito: o caderno convida-os expressamente e define a estrutura a seguir.
+- Os **seis perfis disciplinares**, para inclusão no *Caderno complementar de perfis disciplinares*. É o contributo de menor atrito: o caderno convida-os expressamente e define a estrutura a seguir.
 - O **promptário clínico**, como suplemento ao *Promptário de estudo*.
 
 ### Passo 4 --- Posicionamento da Themis como gerador institucional

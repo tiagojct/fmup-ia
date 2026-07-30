@@ -1,6 +1,6 @@
 ---
 title: "Ficha 2. Crítica estruturada de outputs"
-subtitle: "Detecção de erro em texto clinicamente plausível"
+subtitle: "Detecção de erro em texto plausível"
 toc: true
 toc-depth: 2
 ---
@@ -8,16 +8,17 @@ toc-depth: 2
 ::: {.ficha-meta}
 | | |
 |---|---|
-| **Competência** | Leitura crítica, verificação, raciocínio clínico |
+| **Competência** | Leitura crítica, verificação, detecção de erro |
 | **Formato** | Grupos de três, com rubrica |
 | **Duração** | 30 a 40 minutos |
-| **Ano sugerido** | Qualquer ano com base clínica suficiente para o tema escolhido |
+| **Ano sugerido** | Qualquer ano, com base suficiente no tema escolhido |
+| **Áreas** | Todas, com exemplo próprio da área |
 | **Ferramenta** | IAedu, preparação prévia pelo docente |
 :::
 
 ## Objectivo de aprendizagem
 
-No fim da actividade, o estudante identifica erros factuais e de raciocínio num texto clínico bem escrito, classifica-os por gravidade e justifica cada identificação com uma fonte.
+No fim da actividade, o estudante identifica erros factuais e de raciocínio num texto tecnicamente bem escrito da sua área, classifica-os por gravidade e justifica cada identificação com uma fonte.
 
 A competência protegida é a detecção de erro em texto plausível, que é exactamente aquilo que a fluência dos modelos de linguagem torna difícil. Um texto mal escrito levanta suspeitas; um texto bem escrito e errado não.
 
@@ -59,8 +60,9 @@ Planta exactamente seis erros, distribuídos assim:
 - Dois erros de raciocínio (uma conclusão que não decorre dos dados
   apresentados, ou um diagnóstico diferencial que ignora um dado
   relevante da própria nota).
-- Um erro de medicação (dose, via, frequência ou uma
-  contra-indicação ignorada face aos antecedentes descritos).
+- Um erro de aplicação de norma ou procedimento (em contexto
+  clínico, uma dose, via, frequência ou contra-indicação ignorada
+  face aos antecedentes descritos).
 - Uma incoerência interna (uma afirmação numa secção que contradiz
   outra secção da mesma nota).
 
@@ -85,13 +87,78 @@ erro, a explicação do que está errado, e o que estaria correcto.
 O docente verifica a nota **e** a chave antes de distribuir. Duas falhas são frequentes: o modelo planta menos erros do que os pedidos, e o modelo introduz erros adicionais que não constam da chave. Ambos os casos comprometem o exercício se não forem corrigidos, e o segundo é o mais provável.
 :::
 
+### Variantes por área
+
+O prompt acima corre como está, e o exemplo é clínico porque é o mais imediato para parte da sala. A estrutura não é clínica: um texto fluente com erros plantados, uma rubrica de cinco colunas, e a exigência de uma fonte por identificação. Para adaptar, substituem-se dois blocos e mantém-se tudo o resto.
+
+**Ciências básicas.** Substituir os blocos `CASO`, `O QUE PRECISO` e `ERROS A PLANTAR` por:
+
+```text
+CASO
+Descrição de um protocolo de coloração de um corte histológico de
+tecido epitelial, com os passos, os tempos, as concentrações dos
+reagentes e a interpretação das estruturas observadas.
+
+O QUE PRECISO
+Escreve o protocolo completo e o relatório de observação, com as
+secções habituais: objectivo, material e reagentes, procedimento
+passo a passo com tempos e concentrações, observação descritiva das
+estruturas, e conclusão sobre o tipo de tecido.
+
+ERROS A PLANTAR
+Planta exactamente seis erros, distribuídos assim:
+- Dois erros factuais de valores (uma concentração, um tempo de
+  incubação ou uma temperatura incompatível com o resultado
+  descrito, ou com as unidades trocadas).
+- Dois erros de raciocínio (uma conclusão sobre o tipo de tecido que
+  não decorre das estruturas descritas, ou a omissão de uma
+  estrutura que contraria a identificação proposta).
+- Um erro de aplicação de procedimento (um passo fora de ordem, ou
+  um reagente incompatível com o passo anterior).
+- Uma incoerência interna (uma estrutura descrita na observação que
+  não poderia ser visível com a coloração usada).
+```
+
+**Ciência de dados e informática médica.** Substituir os mesmos três blocos por:
+
+```text
+CASO
+Relatório de uma análise que investiga a associação entre duas
+variáveis num conjunto de dados de 240 observações, com estatística
+descritiva, o modelo ajustado, os pressupostos verificados e a
+interpretação dos resultados.
+
+O QUE PRECISO
+Escreve o relatório completo, com as secções habituais: pergunta,
+dados e limpeza, estatística descritiva com valores, modelo e
+justificação da escolha, verificação de pressupostos, resultados com
+estimativas e intervalos, e interpretação.
+
+ERROS A PLANTAR
+Planta exactamente seis erros, distribuídos assim:
+- Dois erros factuais de valores (um intervalo de confiança
+  incompatível com a estimativa apresentada, ou um n que não bate
+  certo entre secções).
+- Dois erros de raciocínio (uma conclusão causal a partir de um
+  desenho que não a sustenta, ou uma interpretação de significância
+  que ignora o tamanho do efeito).
+- Um erro de aplicação de procedimento (um modelo escolhido sem que
+  os seus pressupostos estejam verificados nos dados descritos).
+- Uma incoerência interna (uma afirmação sobre os dados que
+  contradiz a estatística descritiva da própria secção anterior).
+```
+
+A variante de dados é a mais instrutiva das três, e vale a pena dizê-lo à sala: é a única em que o erro plantado é indistinguível, à leitura, do modo de falha espontâneo dos modelos quando produzem prosa estatística. O exercício e o risco coincidem.
+
+**A fonte exigida muda com a área.** Onde o exemplo clínico admite a norma da Direcção-Geral da Saúde ou o resumo das características do medicamento, a variante de ciências básicas admite o protocolo de laboratório ou o manual da unidade curricular, e a de dados admite a documentação do método ou um texto de referência de estatística. A regra mantém-se: identificação sem fonte não conta.
+
 ### Rubrica para distribuir
 
 Faz parte do material a preparar. Distribua esta grelha com o texto. Cada erro encontrado preenche uma linha.
 
 | Trecho citado | Tipo de erro | Porque está errado | Fonte que o confirma | Gravidade |
 |---|---|---|---|---|
-| | Factual / raciocínio / medicação / incoerência | | | Alta, média ou baixa |
+| | Factual / raciocínio / norma ou procedimento / incoerência | | | Alta, média ou baixa |
 
 A coluna da gravidade é a que gera mais discussão e é a que interessa: obriga a distinguir um erro de transcrição de um erro que resultaria em dano.
 
@@ -99,7 +166,7 @@ A coluna da gravidade é a que gera mais discussão e é a que interessa: obriga
 
 ### Papel do estudante
 
-Lê a nota, assinala os erros, preenche a rubrica. Para cada erro, tem de indicar uma fonte que o confirme, seja o manual da unidade curricular, uma norma da Direcção-Geral da Saúde, ou o resumo das características do medicamento. Uma identificação sem fonte não conta.
+Lê o texto, assinala os erros, preenche a rubrica. Para cada erro, tem de indicar uma fonte que o confirme: o manual da unidade curricular, o protocolo de laboratório, a documentação do método, ou, em contexto clínico, uma norma da Direcção-Geral da Saúde ou o resumo das características do medicamento. Uma identificação sem fonte não conta.
 
 No confronto com a chave, o grupo defende as identificações que a chave não previu, em vez de as descartar.
 
@@ -115,7 +182,7 @@ A correcção faz-se por confronto com a chave, mas a discussão vale mais do qu
 
 1. **Que erros escaparam a todos os grupos, e porquê?** Normalmente são os de raciocínio, não os de valores. Os erros numéricos saltam à vista; uma conclusão que não decorre dos dados passa despercebida porque está bem escrita.
 2. **Que identificações estavam certas e não constavam da chave?** Demonstra que a ferramenta introduz erros que não controla.
-3. **Como se detectaria isto na prática, com uma nota gerada por um sistema de documentação automática?** Liga o exercício ao contexto profissional em que os estudantes vão encontrar estes textos.
+3. **Como se detectaria isto fora da aula, num texto que ninguém plantou de propósito?** Liga o exercício ao contexto em que os estudantes vão encontrar estes textos: uma nota gerada por um sistema de documentação automática, um relatório de análise produzido por um colega com assistência de IA, um protocolo copiado de uma fonte não verificada.
 
 ## Armadilhas conhecidas
 

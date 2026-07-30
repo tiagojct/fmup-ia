@@ -117,7 +117,7 @@ website:
     background: light
     border: true
     left: |
-      © 2026 Tiago Jacinto · Faculdade de Medicina da Universidade do Porto · Quadro v1.2 · Julho 2026
+      © 2026 Tiago Jacinto · Faculdade de Medicina da Universidade do Porto · Quadro v1.3 · Julho 2026
       Conteúdo licenciado sob [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
     right:
       - text: "Síntese"

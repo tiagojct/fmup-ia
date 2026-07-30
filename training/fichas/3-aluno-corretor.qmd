@@ -12,6 +12,7 @@ toc-depth: 2
 | **Formato** | Grupos de quatro, com produção colectiva de rubrica |
 | **Duração** | 50 a 60 minutos, ou duas sessões de 30 |
 | **Ano sugerido** | Qualquer ano, ajustando o tipo de resposta pedida |
+| **Áreas** | Todas, mudando apenas a pergunta |
 | **Ferramenta** | IAedu, usada pelos estudantes em aula |
 :::
 
@@ -75,6 +76,36 @@ REGRAS
 
 O grupo guarda a última linha e entrega ao grupo seguinte apenas as três respostas.
 
+### Variantes por área
+
+Nesta ficha muda só o bloco `PERGUNTA`. Todo o resto do prompt, e as quatro fases da actividade, mantêm-se sem alteração.
+
+A pergunta tem de admitir mais do que uma resposta defensável, ou não há graus de qualidade para distinguir. Pergunta de recuperação de facto não serve, em nenhuma área.
+
+**Ciências básicas:**
+
+```text
+PERGUNTA
+"Um corte histológico corado com hematoxilina e eosina mostra
+epitélio pseudoestratificado cilíndrico ciliado com células
+caliciformes dispersas. Explique o que esta observação permite
+concluir sobre a localização do tecido, o que não permite concluir,
+e que informação adicional pediria antes de a afirmar."
+```
+
+**Ciência de dados e informática médica:**
+
+```text
+PERGUNTA
+"Um modelo de regressão logística ajustado a 180 observações devolve
+um odds ratio de 2,4 com intervalo de confiança a 95% entre 1,05 e
+5,48 para a variável de interesse. Explique o que este resultado
+permite concluir, o que não permite concluir, e que informação
+adicional pediria antes de o reportar."
+```
+
+A estrutura "o que permite concluir, o que não permite, o que pediria a seguir" é a que faz a pergunta funcionar em qualquer área, porque força a distinção entre o que os dados sustentam e o que a redacção sugere. Convém mantê-la ao adaptar.
+
 ## Papéis
 
 ### Papel do estudante
@@ -106,7 +137,7 @@ Se pretender avaliar, avalie a rubrica produzida e a justificação das classifi
 - **Respostas com qualidade indistinguível.** Sem a instrução explícita de que a diferença tem de ser real, o modelo produz três variantes equivalentes. Verifique antes de trocar entre grupos.
 - **Resposta fraca demasiado óbvia.** A instrução de que a resposta C tem de parecer boa é o elemento crítico do prompt. Sem ela, o exercício perde o seu objectivo.
 - **Rubricas genéricas.** Grupos apressados produzem critérios como "clareza" e "correcção", sem descritores. Exija descritores observáveis logo na fase 1, e recuse rubricas sem eles.
-- **Deriva para a discussão do caso clínico.** Os grupos tendem a discutir o diagnóstico em vez dos critérios. Redirija: a pergunta em causa é o que distingue uma boa resposta, não qual é a resposta.
+- **Deriva para a discussão da matéria.** Os grupos tendem a discutir a resposta certa, o diagnóstico ou o resultado, em vez dos critérios. Redirija: a pergunta em causa é o que distingue uma boa resposta, não qual é a resposta.
 
 ## Plano B sem ligação à internet
 

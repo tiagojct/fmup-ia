@@ -29,7 +29,15 @@ em blocos de código, com aspas rectas, prontos a copiar.
       demonstram. Os modelos mudam, e o comportamento descrito pode
       ter deixado de se verificar.
 - [ ] Definir `ficha-partilhada.url` em `training/_variables.yml` e
-      publicar, ou decidir que se dispensa e avisar na altura.
+      publicar. **Não dispensar.** Anand et al. recomendam
+      explicitamente repositórios centralizados de prompts validados e
+      exemplos como condição de o efeito da formação persistir, e é a
+      única coisa desta lista que sobrevive à sessão. Sem o repositório,
+      cada participante fica com a sua folha e o conjunto perde-se.
+- [ ] Perguntar às inscrições qual a área de cada participante, ou
+      contar com a pergunta de mão no ar no arranque. Determina o tema
+      de abertura e a segunda demonstração. Ver
+      [Ler a sala](#parte-2b-ler-a-sala).
 - [ ] Imprimir: 15 a 20 cópias da folha de prática, que sai de
       [pratica.html](https://tiagojct.eu/fmup-ia/training/pratica.html)
       pela função de imprimir do navegador.
@@ -84,6 +92,72 @@ desenhado é o único desfecho que a compromete.
 minutos. Se for preciso, interrompa a discussão do bloco 5 a meio de
 uma frase e diga que se retoma no fim.
 
+**Sobre cortar exposição, e não prática.** A regra de corte acima e a
+escolha da segunda demonstração no bloco 4 têm apoio no único estudo
+publicado sobre este tipo de formação. Anand et al. reestruturaram a
+Experiential Learning Theory para que a acção seguisse imediatamente a
+experiência concreta, em vez da ordem original de Kolb, e a facilitação
+adaptativa que descrevem entre duas iterações consistiu exactamente em
+encurtar a introdução, aumentar o tempo prático e passar de orientação
+estruturada para experimentação flexível. Quando estiver em dúvida sobre
+o que cortar, corte exposição.
+
+Vale a pena reter o reverso: esta sessão tem 52 minutos entre a
+demonstração de abertura e o momento em que os participantes põem as
+mãos no trabalho. É a fragilidade estrutural do formato de 120 minutos e
+não se resolve dentro dele. Resolve-se não deixando o bloco 6 encurtar.
+
+---
+
+## Parte 2b. Ler a sala
+
+A sala não é de clínicos. A FMUP tem docentes de ciências básicas
+(biologia, histologia, anatomia, fisiologia, bioquímica) e de ciência de
+dados e informática médica, e para muitos deles o vocabulário clínico é
+tão exterior quanto para um engenheiro.
+
+Isto não é uma suposição de precaução. No estudo de Anand et al., as
+áreas dos dez docentes participantes eram dominadas por ciências básicas
+e métodos: anatomia, bioquímica, biologia, biofísica, bioestatística,
+química, física, metodologia de investigação, entre outras. A única
+evidência publicada sobre esta formação vem de uma sala mais parecida
+com a da FMUP do que com um serviço clínico.
+
+### Perguntar no início, não adivinhar
+
+Nos primeiros trinta segundos, antes da demonstração:
+
+> "Quem aqui lecciona unidades curriculares com componente clínica?
+> E quem lecciona ciências básicas? E quem dá alguma coisa com dados,
+> estatística ou programação?"
+
+Três mãos no ar dizem-lhe qual dos temas propor no bloco 1 e qual a
+segunda ficha a demonstrar no bloco 4. Custa meio minuto e evita
+quarenta e cinco de desencontro.
+
+### O que muda conforme a sala
+
+| Sala | Tema de abertura | Segunda demonstração | Escalada do erro |
+|---|---|---|---|
+| Maioria clínica | Agudização de DPOC, ou o que a sala der | Ficha 2, crítica de outputs | Norma da DGS |
+| Maioria de ciências básicas | Ciclo de Krebs, identificação de tecido, mecanismo de transporte membranar | Ficha 2, com o exemplo de ciências básicas | Constante numérica com figura e página |
+| Maioria de dados e informática | Escolha de modelo, interpretação de um coeficiente, revisão de código | Ficha 4, advogado do diabo | Código mais resultado numérico |
+| Mista, o caso mais provável | Aceite o primeiro tema que a sala der | Ficha 2, a mais transversal | DOI, que serve a todos |
+
+### A frase que evita perder metade da sala
+
+Se a sala for mista, diga-o em voz alta antes da demonstração:
+
+> "O exemplo que vou usar é clínico porque foi o tema que saiu. As
+> actividades não são clínicas: cada ficha tem variantes para ciências
+> básicas e para dados. Se em algum momento parecer que isto não serve
+> para a vossa UC, interrompam-me, porque quase sempre serve com outro
+> exemplo."
+
+O convite a interromper não é retórico. Use-o: se ninguém interromper
+durante o bloco 4, pergunte directamente a alguém de ciências básicas se
+a ficha que acabou de mostrar serviria.
+
 ---
 
 ## Parte 3. Guião bloco a bloco
@@ -103,25 +177,31 @@ entusiasta.
 Aceite o primeiro que ouvir. Não negocie o tema: escolher pelo grupo
 sinaliza que precisa de terreno seguro.
 
-**Prompt de abertura.** Substituir apenas o bloco `TEMA`.
+**Prompt de abertura.** Substituir apenas o bloco `TEMA`. O prompt é
+neutro quanto à área de propósito: aceita o ciclo de Krebs, a
+identificação de um tecido ou um problema de regressão da mesma forma
+que aceita uma agudização de DPOC. A linha condicional dos dados é o
+que o torna transponível, portanto não a corte.
 
 ```text
-Preciso de material para uma aula de Medicina. Gera, sobre o tema
-abaixo, um caso clínico curto e três perguntas de escolha múltipla.
+Preciso de material para uma aula na FMUP. Gera, sobre o tema abaixo,
+um cenário curto e três perguntas de escolha múltipla.
 
 TEMA
 Agudização de DPOC
 
-CASO CLÍNICO
-Máximo 120 palavras. Apresentação realista, com idade, antecedentes
-relevantes, queixa, e os achados de exame objectivo e exames
-complementares necessários para responder às perguntas. Não indiques
-o diagnóstico.
+CENÁRIO
+Máximo 120 palavras. Situação realista e concreta, com todos os dados
+necessários para responder às perguntas e nenhum a mais. Se o tema for
+clínico, inclui idade, antecedentes relevantes, queixa e os achados
+necessários. Se não for clínico, inclui os dados equivalentes:
+condições experimentais, valores medidos, características da amostra ou
+do conjunto de dados. Não indiques a resposta nem o diagnóstico.
 
 PERGUNTAS
 Três perguntas de escolha múltipla, quatro opções cada, uma só
 correcta. Devem exigir raciocínio e não memorização: aplicação a este
-caso, decisão sobre o passo seguinte, interpretação de um resultado.
+cenário, decisão sobre o passo seguinte, interpretação de um resultado.
 
 DISTRACTORES
 Cada opção errada tem de corresponder a um erro de raciocínio
@@ -129,7 +209,7 @@ identificável. Depois de cada pergunta, indica numa linha que erro
 cada distractor representa.
 
 FORMATO
-Caso, depois perguntas, depois a chave com as respostas correctas e
+Cenário, depois perguntas, depois a chave com as respostas correctas e
 a justificação de cada distractor.
 ```
 
@@ -137,23 +217,51 @@ a justificação de cada distractor.
 estrutura, a qualidade dos distractores. Se estiverem bons, diga-o.
 Não desvalorize o que é bom, ou a segunda metade soa a preconceito.
 
-**Depois, force o erro.** Escale por esta ordem até algo falhar:
+**Depois, force o erro.** Comece sempre pelo primeiro, que é neutro
+quanto à área e é o que costuma bastar:
 
 ```text
 Indica as referências que sustentam a resposta à pergunta 2, com DOI.
 ```
+
+A fabricação de DOI é o modo de falha mais fácil de mostrar e de
+verificar em directo: abra `doi.org` e cole.
+
+Se não bastar, escale com a variante que corresponde ao tema que a sala
+deu. **Não use a norma da DGS se o tema não for clínico**, ou a
+demonstração perde credibilidade em vez de a construir.
+
+*Tema clínico:*
 
 ```text
 Qual é o valor de corte usado na norma da Direcção-Geral da Saúde
 para esta situação? Cita o número da norma e o ano.
 ```
 
+*Ciências básicas:*
+
+```text
+Indica o valor numérico dessa constante nas condições que descreveste,
+e a figura e a página de um manual de referência onde ele aparece.
+```
+
+*Ciência de dados ou informática:*
+
+```text
+Escreve o código que produz esse resultado e indica o valor numérico
+que ele devolve com os dados do cenário.
+```
+
+O último é o mais instrutivo para uma sala de ciência de dados, porque
+o modelo devolve código plausível **e** um resultado que não pode ter
+calculado. É o modo de falha que o Anexo I do Quadro descreve como erro
+silencioso, e não é apanhado por leitura distraída.
+
+*Qualquer tema, último recurso:*
+
 ```text
 Que estudos publicados em 2025 e 2026 alteraram esta recomendação?
 ```
-
-O primeiro costuma bastar. A fabricação de DOI é o modo de falha mais
-fácil de mostrar e de verificar em directo: abra `doi.org` e cole.
 
 **Frase de fecho do bloco.**
 
@@ -288,10 +396,18 @@ bloco 6. Não é preciso cobrir as seis com igual profundidade.
 - 4 min: passar pelas restantes em duas frases cada.
 - 9 min: perguntas.
 
-**Como escolher a segunda demonstração.** Sala clínica, escolha a
-ficha 2, crítica de outputs. Sala com muita gente de ciências
-básicas, bioética ou saúde pública, escolha a 4, advogado do diabo.
-Sala mista, escolha a 2, que é a mais transversal.
+**Como escolher a segunda demonstração.** Ver a tabela em
+[Ler a sala](#parte-2b-ler-a-sala). Em resumo: sala clínica ou mista,
+ficha 2; sala de ciências básicas, ficha 2 com o exemplo de ciências
+básicas; sala de dados e informática, ficha 4.
+
+**Diga onde estão as variantes.** Em cada ficha, dentro de
+`Prompt base`, há uma subsecção `Variantes por área` com exemplos de
+substituição para ciências básicas e para ciência de dados. Mostre uma
+em directo, mesmo que de passagem: é o que convence quem está a pensar
+que nada daquilo serve para a sua UC. A linha `Áreas` no cabeçalho de
+cada ficha diz se a actividade transfere sem alteração ou se precisa de
+exemplo novo.
 
 **Ficha 1, doente virtual, 8 min.** Demonstre em directo com um
 voluntário da sala a conduzir a anamnese. Prompt completo em
@@ -376,14 +492,38 @@ B, e passe ao bloco 6.
 
 **Objectivo do bloco.** O produto. É por isto que a sessão existe.
 
-**Formar os pares, 2 min.** Diga em voz alta:
+**Formar os pares, 2 min.** A regra tem dois níveis, e o primeiro é o
+que se diz em voz alta:
 
-> "Pares de UCs diferentes, ou de anos diferentes. Quem lecciona o
-> mesmo converge depressa demais e faz uma ficha que só funciona no
-> contexto que os dois já conhecem."
+> "Pares de UCs diferentes, mas com os mesmos estudantes: mesmo ciclo de
+> estudos, ou mesmo ano. Quem lecciona o mesmo converge depressa demais
+> e faz uma ficha que só funciona no contexto que os dois já conhecem."
 
-Emparelhe activamente quem ficou sozinho ou sem acesso à IAedu. Não
-espere que se resolvam.
+**Segundo nível, só se a sala obrigar.** Numa sala mista pode não haver
+pares possíveis dentro da mesma população de estudantes, e então
+emparelha-se por áreas distintas: um histologista com alguém de ciência
+de dados. Nesse caso, diga em voz alta qual é a função de quem está de
+fora, ou o par perde os primeiros dez minutos a explicar contexto:
+
+> "Quem não conhece a UC do outro não dá conselhos de conteúdo. Faz, mais
+> cedo, as três perguntas do bloco 7: isto obtém-se com um único prompt?
+> o que acontece se a ferramenta falhar? quem não tem ferramenta paga
+> fica em desvantagem? São perguntas que se fazem sem saber a matéria."
+
+Vale a pena saber porque é que isto funciona. O terreno partilhado de um
+par não é o conteúdo, é a pedagogia e os estudantes. No enquadramento
+TPACK que Anand et al. usaram, o conhecimento tecnológico e o pedagógico
+transferem entre disciplinas; o de conteúdo não transfere, e é por isso
+que as fichas precisam de variantes por área e os pares não precisam de
+partilhar matéria. A leitura é minha, não é conclusão do estudo, mas é o
+que dá sentido às duas regras: os exemplos são específicos, o desenho da
+actividade não é.
+
+**Emparelhe activamente.** Quem ficou sozinho, sem acesso à IAedu, ou
+sendo o único da sua área na sala. Este último caso é previsível numa
+sala mista, não acidental: haverá um docente de bioestatística ou um de
+biofísica sem par óbvio. Identifique-os no arranque do bloco, não a
+meio.
 
 **Instruções, 2 min.** Distribua as folhas. Aponte para
 [pratica.html](https://tiagojct.eu/fmup-ia/training/pratica.html).
@@ -425,10 +565,19 @@ fichas incompletas e não funciona sem tempo.
 **Troca, 1 min.** Fisicamente, papel na mão. Pares adjacentes.
 
 **Teste, 6 min.** As três perguntas estão impressas na folha. A
-primeira é a que interessa:
+primeira é a que dá o efeito mais imediato:
 
 > "Consigo obter o produto final desta actividade com um único
 > prompt, sem fazer o que a actividade pretende que eu faça?"
+
+A terceira é a que tem mais consequência institucional, e é a única
+verificação de toda a sessão que não é autodeclarada por quem desenhou a
+actividade:
+
+> "Um estudante sem acesso a ferramenta paga fica em desvantagem?"
+
+Se o tempo só der para uma pergunta a sério, é esta. Ver a décima
+pergunta da [Parte 4](#parte-4-perguntas-difíceis) para a razão.
 
 Quem testa escreve na ficha e devolve. **Quem recebe não discute no
 momento.** Isto tem de ser dito, ou os últimos minutos evaporam-se em
@@ -554,6 +703,44 @@ que refutá-la.
 > E não submeta trabalhos de alunos a plataformas comerciais, que é
 > problema de dados antes de ser de avaliação."
 
+**"Isto muda alguma coisa em 120 minutos?"**
+
+Vai ser perguntada, e a resposta honesta é que provavelmente não muda o
+suficiente. Não a evite.
+
+> "Provavelmente não. O único estudo publicado sobre este tipo de
+> formação usou cinco sessões de uma hora, não uma de duas, e os autores
+> concluem que formação curta pode iniciar experimentação e reflexão mas
+> não completa o trabalho de integrar isto no ensino de forma
+> criticamente reflectida. Esta sessão é a formação inicial da Fase 1 do
+> Quadro, não é o programa todo."
+
+E acrescente o achado que interessa, porque é sobre a sala em que estão:
+
+> "Nesse estudo, no seguimento a duas semanas, todos os participantes
+> tencionavam usar isto para preparar aulas e avaliações. Menos de
+> metade tencionava definir práticas de uso responsável, e um em cinco
+> tencionava iniciar discussões éticas. Eram cinco respostas, portanto é
+> hipótese e não resultado, mas é a hipótese que me preocupa: sair daqui
+> entusiasmado com a geração de material e não mudar nada no que declara
+> ou no que exige aos alunos."
+
+**Onde isto tem consequência prática.** A sessão tem defesas contra essa
+assimetria, mas só uma delas não depende da boa vontade de quem desenhou
+a actividade:
+
+| Defesa | Quem a verifica |
+|---|---|
+| Linha "Regime aplicável" na ficha | Quem desenhou. Autodeclarada. |
+| Declaração da Themis no bloco 8 | Quem desenhou. Autodeclarada. |
+| **Pergunta 3 do bloco 7, sobre equidade** | **Outro par.** É a única verificada por terceiros. |
+
+Daí uma instrução operacional: no bloco 7, não deixe a pergunta 3 passar
+como formalidade. É a única parte da sessão em que alguém que não
+desenhou a actividade tem de responder se ela exclui estudantes sem
+ferramenta paga. Se sobrar tempo em apenas uma das três perguntas, gaste
+nessa.
+
 ---
 
 ## Parte 5. Depois da sessão
@@ -587,17 +774,31 @@ Todos os prompts das fichas estão nas páginas respectivas. Os que só
 existem neste guião são os três seguintes.
 
 **Abertura, bloco 1.** Ver acima, secção do bloco 1. Substituir o
-bloco `TEMA`.
+bloco `TEMA`. O prompt é neutro quanto à área.
 
-**Forçar o erro, bloco 1.** Por esta ordem, até algo falhar:
+**Forçar o erro, bloco 1.** Começar sempre pelo pedido de DOI, que é
+neutro quanto à área:
 
 ```text
 Indica as referências que sustentam a resposta à pergunta 2, com DOI.
 ```
 
+Se não bastar, usar a variante correspondente ao tema que a sala deu.
+Não usar a norma da DGS com tema não clínico.
+
 ```text
 Qual é o valor de corte usado na norma da Direcção-Geral da Saúde
 para esta situação? Cita o número da norma e o ano.
+```
+
+```text
+Indica o valor numérico dessa constante nas condições que descreveste,
+e a figura e a página de um manual de referência onde ele aparece.
+```
+
+```text
+Escreve o código que produz esse resultado e indica o valor numérico
+que ele devolve com os dados do cenário.
 ```
 
 ```text

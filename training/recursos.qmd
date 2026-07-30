@@ -51,6 +51,24 @@ Thesen T, Park SH. A generative AI teaching assistant for personalized learning 
 
 Implementação de um assistente baseado em *retrieval-augmented generation*, restrito a materiais curados pelo docente, numa unidade curricular de ciências básicas da Geisel School of Medicine at Dartmouth, ao longo de duas coortes. O resultado mais útil para quem planeie replicar é a tensão documentada entre fiabilidade e abrangência: as restrições ao corpus que garantem exactidão limitam simultaneamente as perguntas mais amplas, e essa tensão determina a adesão dos estudantes.
 
+## Sobre o desenho desta sessão
+
+Anand R, Bowers N, Manyama MF. Design and Evaluation of a Faculty Development Workshop Series on Integrating Generative Artificial Intelligence in Medical Education: Mixed Methods Pilot Study. *JMIR Medical Education*. 2026;12:e89815. DOI: [10.2196/89815](https://doi.org/10.2196/89815). PMID: 42090298.
+
+A referência mais próxima desta sessão, e a única publicada sobre este tipo de formação. Estudo-piloto de métodos mistos no Weill Cornell Medical College do Qatar, com uma série de cinco *workshops* de uma hora, síncronos e em linha, fundada na Experiential Learning Theory e no enquadramento TPACK (*Technological Pedagogical Content Knowledge*). Dez docentes participaram.
+
+Três razões para constar aqui, e não em leitura adicional.
+
+**A composição da sala.** As áreas dos participantes eram dominadas por ciências básicas e métodos: anatomia, bioquímica, biologia, biofísica, bioestatística, química, física, metodologia de investigação, patologia, saúde pública e humanidades médicas. É o argumento mais directo para que esta plataforma traga variantes por área em vez de assumir contexto clínico.
+
+**A sequência.** Os autores reestruturaram deliberadamente o ciclo da Experiential Learning Theory para que a acção seguisse imediatamente a experiência concreta, em vez da ordem original de Kolb, e descrevem a facilitação adaptativa entre duas iterações como encurtar a introdução, aumentar o tempo prático e passar de orientação estruturada para experimentação flexível. É apoio directo à regra de corte desta sessão, que manda comprimir exposição e nunca a prática.
+
+**O aviso.** No seguimento a duas semanas (n=5), todos os respondentes tencionavam aplicar a ferramenta a planeamento de aulas e a desenho de avaliação, e 80% a cenários e a visualização de material. Mas apenas 40% tencionavam definir práticas de uso responsável e 20% iniciar discussões éticas. Com cinco respostas, é hipótese e não resultado, e vale nos dois sentidos, já que os 100% são as mesmas cinco pessoas. Ainda assim descreve o modo de falha mais provável de uma sessão curta, e os autores concluem que formação de curta duração "may initiate experimentation and reflection but cannot complete the work of embedding GenAI into teaching in critically reflective and ethically explicit ways".
+
+Um dos cinco *workshops* foi dedicado a geração de imagem e visualização, matéria que esta sessão nomeia mas não demonstra, pelas razões dadas no [programa](programa.qmd#bloco-3) e em [Regras](regras.qmd).
+
+Nota: o estudo é do Weill Cornell Medical College do **Qatar**, instituição distinta do Weill Cornell Medicine de Nova Iorque referido acima a propósito do MedSimAI.
+
 ## Leitura adicional
 
 Boyle P. Medical schools move from worrying about AI to teaching it. *AAMC News*, 15 de Maio de 2025. <https://www.aamc.org/news/medical-schools-move-worrying-about-ai-teaching-it>
