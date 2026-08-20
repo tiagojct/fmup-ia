@@ -19,7 +19,7 @@ project:
 website:
   title: "Adaptar o ensino à GenAI"
   description: "Sessão de formação para docentes da FMUP sobre estratégias pedagógicas com inteligência artificial generativa."
-  site-url: "https://tiagojct.eu/fmup-ia/training/"
+  site-url: "https://tiagojacinto.eu/fmup-ia/training/"
   repo-url: "https://github.com/tiagojct/fmup-ia"
   repo-subdir: "training"
   repo-actions: [edit, issue]
@@ -82,9 +82,9 @@ website:
       Conteúdo licenciado sob [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
     right:
       - text: "Quadro FMUP · IA"
-        href: https://tiagojct.eu/fmup-ia/quadro/
+        href: https://tiagojacinto.eu/fmup-ia/quadro/
       - text: "Themis"
-        href: https://tiagojct.eu/fmup-ia/themis/
+        href: https://tiagojacinto.eu/fmup-ia/themis/
       - text: "GitHub"
         href: https://github.com/tiagojct/fmup-ia
 

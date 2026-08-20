@@ -151,4 +151,4 @@ Nicol DJ, Macfarlane-Dick D. Formative assessment and self-regulated learning: a
 
 Referência clássica sobre o mecanismo que esta actividade explora: os estudantes desenvolvem autorregulação quando têm de aplicar critérios de avaliação, e não apenas quando os recebem. O artigo é anterior à IA generativa, e é por isso que serve: o princípio pedagógico não depende da ferramenta, que aqui é apenas o meio de produzir rapidamente material de correcção com qualidade controlada.
 
-Para o enquadramento institucional da actividade, ver o princípio 6 do [Quadro FMUP · IA](https://tiagojct.eu/fmup-ia/quadro/02-principios.html), literacia crítica.
+Para o enquadramento institucional da actividade, ver o princípio 6 do [Quadro FMUP · IA](https://tiagojacinto.eu/fmup-ia/quadro/02-principios.html), literacia crítica.

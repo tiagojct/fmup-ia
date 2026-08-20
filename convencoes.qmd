@@ -10,7 +10,7 @@ Esta página documenta as convenções tipográficas, terminológicas e de cita�
 | Termo | Definição |
 |---|---|
 | **Quadro** | O presente documento de política institucional: *FMUP · IA — Quadro de referência institucional para a utilização de IA generativa na FMUP*. Escrito sempre com maiúscula quando se refere a este documento. |
-| **Themis** | A ferramenta web que gera declarações de uso de IA padronizadas, disponível em [tiagojct.eu/fmup-ia/themis/](themis/). Escrita com maiúscula por ser nome próprio. **Era** *Atlas* até Junho de 2026 (rebranding para evitar colisão com o portal *Atlas U.Porto*). |
+| **Themis** | A ferramenta web que gera declarações de uso de IA padronizadas, disponível em [tiagojacinto.eu/fmup-ia/themis/](themis/). Escrita com maiúscula por ser nome próprio. **Era** *Atlas* até Junho de 2026 (rebranding para evitar colisão com o portal *Atlas U.Porto*). |
 | **Vertente** | Uma das três aplicações operacionais da Parte II: Estudantes, Docentes ou Investigadores. Cada vertente tem o seu capítulo próprio e o seu ramo na Themis. |
 | **Parte I** | Comparação externa e diagnóstico de lacunas (capítulos 10 a 15). |
 | **Parte II** | Proposta operacional para a FMUP (capítulos 1 a 9). |
@@ -60,14 +60,14 @@ Cada declaração gerada pela Themis inclui ambos os números, permitindo rastre
 
 ## Como citar o Quadro
 
-> Jacinto T. *FMUP · IA — Quadro de referência institucional para a utilização de inteligência artificial generativa na FMUP*. Faculdade de Medicina da Universidade do Porto, 2026. <https://tiagojct.eu/fmup-ia/>
+> Jacinto T. *FMUP · IA — Quadro de referência institucional para a utilização de inteligência artificial generativa na FMUP*. Faculdade de Medicina da Universidade do Porto, 2026. <https://tiagojacinto.eu/fmup-ia/>
 
 Para referenciar um capítulo específico, acrescentar o URL do capítulo:
 
-> Jacinto T. *FMUP · IA — Quadro*, capítulo 3 (Vertente Estudantes). <https://tiagojct.eu/fmup-ia/quadro/03-estudantes.html>
+> Jacinto T. *FMUP · IA — Quadro*, capítulo 3 (Vertente Estudantes). <https://tiagojacinto.eu/fmup-ia/quadro/03-estudantes.html>
 
 ## Como citar a Themis
 
 A Themis gera automaticamente a linha de citação adequada ao destinatário no final de cada declaração produzida. Para uma referência genérica à ferramenta:
 
-> Jacinto T. Themis — FMUP AI Usage Statement Generator (anteriormente *Atlas*), v1.1.1. Faculdade de Medicina da Universidade do Porto, 2026. <https://tiagojct.eu/fmup-ia/themis/>
+> Jacinto T. Themis — FMUP AI Usage Statement Generator (anteriormente *Atlas*), v1.1.1. Faculdade de Medicina da Universidade do Porto, 2026. <https://tiagojacinto.eu/fmup-ia/themis/>

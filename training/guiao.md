@@ -2,10 +2,10 @@
 
 **Sessão:** Adaptar o ensino à GenAI
 **Duração-alvo:** 120 minutos, sem intervalo formal
-**Plataforma:** [tiagojct.eu/fmup-ia/training/](https://tiagojct.eu/fmup-ia/training/)
+**Plataforma:** [tiagojacinto.eu/fmup-ia/training/](https://tiagojacinto.eu/fmup-ia/training/)
 **Ferramenta:** [IAedu](https://iaedu.pt), autenticação `@up.pt`
-**Quadro:** [tiagojct.eu/fmup-ia/quadro/](https://tiagojct.eu/fmup-ia/quadro/)
-**Themis:** [tiagojct.eu/fmup-ia/themis/](https://tiagojct.eu/fmup-ia/themis/)
+**Quadro:** [tiagojacinto.eu/fmup-ia/quadro/](https://tiagojacinto.eu/fmup-ia/quadro/)
+**Themis:** [tiagojacinto.eu/fmup-ia/themis/](https://tiagojacinto.eu/fmup-ia/themis/)
 
 Este ficheiro não é publicado no site. Tem cinco partes: preparação,
 mapa de tempo, guião bloco a bloco, perguntas difíceis, e o que fazer
@@ -39,7 +39,7 @@ em blocos de código, com aspas rectas, prontos a copiar.
       de abertura e a segunda demonstração. Ver
       [Ler a sala](#parte-2b-ler-a-sala).
 - [ ] Imprimir: 15 a 20 cópias da folha de prática, que sai de
-      [pratica.html](https://tiagojct.eu/fmup-ia/training/pratica.html)
+      [pratica.html](https://tiagojacinto.eu/fmup-ia/training/pratica.html)
       pela função de imprimir do navegador.
 - [ ] Imprimir o material dos planos B de pelo menos duas fichas.
       Se a rede falhar, a sessão continua.
@@ -48,7 +48,7 @@ em blocos de código, com aspas rectas, prontos a copiar.
 
 - [ ] Abrir e autenticar a IAedu. Confirmar que responde.
 - [ ] Abrir separadores: plataforma, programa, Themis, Anexo B.
-- [ ] Abrir o [cronómetro](https://tiagojct.eu/fmup-ia/training/programa.html)
+- [ ] Abrir o [cronómetro](https://tiagojacinto.eu/fmup-ia/training/programa.html)
       e seleccionar o bloco de 8 min.
 - [ ] Projectar e verificar o tamanho de letra do lado de trás da
       sala. A demonstração falha se ninguém ler o que sai.
@@ -323,7 +323,7 @@ se seguem.
 
 **Ligação ao Quadro, cerca de 20 segundos.** Diga que os quatro
 pontos assentam nos sete princípios, aponte para a página
-[Regras](https://tiagojct.eu/fmup-ia/training/regras.html), e não os
+[Regras](https://tiagojacinto.eu/fmup-ia/training/regras.html), e não os
 enumere. Enumerar sete princípios em sete minutos mata o bloco.
 
 ---
@@ -411,7 +411,7 @@ exemplo novo.
 
 **Ficha 1, doente virtual, 8 min.** Demonstre em directo com um
 voluntário da sala a conduzir a anamnese. Prompt completo em
-[fichas/1](https://tiagojct.eu/fmup-ia/training/fichas/1-doente-virtual.html).
+[fichas/1](https://tiagojacinto.eu/fmup-ia/training/fichas/1-doente-virtual.html).
 
 Prepare a conversa antes, com o guião já colado, e passe o teclado.
 Deixe correr cinco ou seis perguntas. Depois interrompa e faça a
@@ -455,7 +455,7 @@ possível quando a fonte é controlada.
 ou má, é o que compromete e o que valoriza.
 
 **Comece pela tabela.** Está em
-[programa.html](https://tiagojct.eu/fmup-ia/training/programa.html#bloco-5).
+[programa.html](https://tiagojacinto.eu/fmup-ia/training/programa.html#bloco-5).
 Projecte-a e percorra-a em três minutos.
 
 **A frase que estrutura o bloco.**
@@ -472,7 +472,7 @@ Projecte-a e percorra-a em três minutos.
 > clareza o que é permitido em cada actividade."
 
 **Aterre no Anexo B.** Mostre as três cláusulas-tipo em
-[B-clausula](https://tiagojct.eu/fmup-ia/quadro/B-clausula.html),
+[B-clausula](https://tiagojacinto.eu/fmup-ia/quadro/B-clausula.html),
 permitido, condicionado, proibido, e diga que se adaptam e se colam
 no programa da UC. É o instrumento mais imediatamente utilizável de
 toda a sessão.
@@ -526,7 +526,7 @@ biofísica sem par óbvio. Identifique-os no arranque do bloco, não a
 meio.
 
 **Instruções, 2 min.** Distribua as folhas. Aponte para
-[pratica.html](https://tiagojct.eu/fmup-ia/training/pratica.html).
+[pratica.html](https://tiagojacinto.eu/fmup-ia/training/pratica.html).
 Diga as três coisas que importam:
 
 1. Partir de um problema real, não da actividade ideal.
@@ -600,7 +600,7 @@ plenário: um par apresenta em dois minutos, a sala tenta partir.
 **Objectivo do bloco.** Fechar com um acto concreto e um compromisso
 dito em voz alta.
 
-**Themis, 3 min.** Abra [themis](https://tiagojct.eu/fmup-ia/themis/),
+**Themis, 3 min.** Abra [themis](https://tiagojacinto.eu/fmup-ia/themis/),
 escolha a vertente Docentes, e preencha em directo com a actividade
 de alguém da sala. Mostre os dois textos que saem: a cláusula para o
 programa da UC e o requisito de divulgação a comunicar aos alunos.
@@ -632,7 +632,7 @@ seguinte.
 ## Parte 4. Perguntas difíceis
 
 As cinco primeiras estão trabalhadas por escrito no
-[Anexo 9b do Quadro](https://tiagojct.eu/fmup-ia/quadro/09b-objeccoes.html).
+[Anexo 9b do Quadro](https://tiagojacinto.eu/fmup-ia/quadro/09b-objeccoes.html).
 Aqui ficam versões curtas, para responder de pé. **Não defenda o
 Quadro.** Conceder o que a objecção tem de razoável é mais eficaz do
 que refutá-la.

@@ -7,7 +7,7 @@ toc-depth: 2
 
 ## Os sete princípios do Quadro
 
-O [Quadro de referência institucional FMUP · IA](https://tiagojct.eu/fmup-ia/quadro/02-principios.html) assenta em sete princípios. Uma frase cada.
+O [Quadro de referência institucional FMUP · IA](https://tiagojacinto.eu/fmup-ia/quadro/02-principios.html) assenta em sete princípios. Uma frase cada.
 
 | # | Princípio | Em uma frase |
 |---|---|---|
@@ -39,7 +39,7 @@ O risco dos dados de doentes é o mais conhecido, mas não é o único, e quem l
 
 O modelo produz **prosa estatística plausível**: escolha de teste, leitura de um valor de _p_, comentário de um intervalo de confiança, tudo redigido com fluência e factualmente errado. Quem não domina a matéria não distingue, e a fluência é precisamente o que impede a suspeita. O mesmo se aplica ao código: uma transformação de dados aceite sem leitura introduz erro silencioso, que ninguém volta a inspeccionar porque o _pipeline_ corre sem falhar.
 
-Três regras seguem daqui, e são as do [Anexo I do Quadro](https://tiagojct.eu/fmup-ia/quadro/I-perfis-disciplinares.html):
+Três regras seguem daqui, e são as do [Anexo I do Quadro](https://tiagojacinto.eu/fmup-ia/quadro/I-perfis-disciplinares.html):
 
 - **Código que não se consegue explicar não se submete.** Vale para estudantes e para docentes.
 - **Nunca pedir a um modelo o resultado numérico de um cálculo.** Pedir o código, correr o código, e verificar um subresultado por cálculo manual. Um modelo que devolve um valor sem o ter calculado é o modo de falha mais perigoso desta família, porque o valor parece um resultado.
@@ -53,7 +53,7 @@ Gerar diagramas, esquemas e imagens para material pedagógico é uma das utiliza
 
 Uma referência fabricada verifica-se em segundos: abre-se o DOI. Uma imagem histológica ou um diagrama de via metabólica subtilmente errados não têm equivalente, e chegam ao estudante com a autoridade de material didáctico.
 
-O Quadro já o estabelece, em [Questões transversais](https://tiagojct.eu/fmup-ia/quadro/08-transversais.html): a geração de imagens de patologia ou imagiologia para fins pedagógicos exige verificação de exactidão e declaração do processo de geração nos materiais. Na prática:
+O Quadro já o estabelece, em [Questões transversais](https://tiagojacinto.eu/fmup-ia/quadro/08-transversais.html): a geração de imagens de patologia ou imagiologia para fins pedagógicos exige verificação de exactidão e declaração do processo de geração nos materiais. Na prática:
 
 - **Verificar contra fonte primária** antes de o material chegar aos estudantes, com o mesmo cuidado que se daria a uma figura de manual.
 - **Assinalar no próprio material** que a imagem é gerada e ilustrativa. Uma imagem gerada nunca é apresentada como observação, registo ou resultado.
@@ -67,7 +67,7 @@ O Quadro já o estabelece, em [Questões transversais](https://tiagojct.eu/fmup-
 
 ### Declaração de uso
 
-O uso de GenAI em trabalho académico ou em material pedagógico é declarado. O instrumento é a [Themis](https://tiagojct.eu/fmup-ia/themis/), que gera a declaração adequada a cada papel:
+O uso de GenAI em trabalho académico ou em material pedagógico é declarado. O instrumento é a [Themis](https://tiagojacinto.eu/fmup-ia/themis/), que gera a declaração adequada a cada papel:
 
 - **Vertente Estudantes:** declaração para acompanhar um trabalho submetido.
 - **Vertente Docentes:** cláusula para o programa da unidade curricular, e requisito de divulgação a comunicar aos estudantes.
@@ -99,16 +99,16 @@ O primeiro é o **pacote institucional da Universidade do Porto** de Junho de 20
 
 O segundo é o **Quadro FMUP · IA**, que acrescenta a esse pacote a camada biomédica: enquadramento clínico e regulatório, dados de doentes em contexto formativo, e integridade em investigação com participantes humanos.
 
-A articulação entre os dois está descrita no [Anexo H do Quadro](https://tiagojct.eu/fmup-ia/quadro/H-articulacao-uporto.html).
+A articulação entre os dois está descrita no [Anexo H do Quadro](https://tiagojacinto.eu/fmup-ia/quadro/H-articulacao-uporto.html).
 
 ## Ligações directas {#ligacoes-directas}
 
 | Recurso | Para quê |
 |---|---|
-| [Quadro FMUP · IA](https://tiagojct.eu/fmup-ia/quadro/) | O documento de referência completo |
-| [Princípios, capítulo 2](https://tiagojct.eu/fmup-ia/quadro/02-principios.html) | Os sete princípios desenvolvidos |
-| [Anexo B, cláusula para o programa da UC](https://tiagojct.eu/fmup-ia/quadro/B-clausula.html) | Três cláusulas-tipo, uma por regime |
-| [Anexo A, modelo de declaração](https://tiagojct.eu/fmup-ia/quadro/A-declaracao.html) | Conteúdo mínimo de uma declaração de uso |
-| [Anexo E, cenários](https://tiagojct.eu/fmup-ia/quadro/E-cenarios.html) | Casos-limite resolvidos, incluindo os de dados clínicos |
-| [Themis](https://tiagojct.eu/fmup-ia/themis/) | Gerar a declaração |
+| [Quadro FMUP · IA](https://tiagojacinto.eu/fmup-ia/quadro/) | O documento de referência completo |
+| [Princípios, capítulo 2](https://tiagojacinto.eu/fmup-ia/quadro/02-principios.html) | Os sete princípios desenvolvidos |
+| [Anexo B, cláusula para o programa da UC](https://tiagojacinto.eu/fmup-ia/quadro/B-clausula.html) | Três cláusulas-tipo, uma por regime |
+| [Anexo A, modelo de declaração](https://tiagojacinto.eu/fmup-ia/quadro/A-declaracao.html) | Conteúdo mínimo de uma declaração de uso |
+| [Anexo E, cenários](https://tiagojacinto.eu/fmup-ia/quadro/E-cenarios.html) | Casos-limite resolvidos, incluindo os de dados clínicos |
+| [Themis](https://tiagojacinto.eu/fmup-ia/themis/) | Gerar a declaração |
 | [IAedu](https://iaedu.pt) | A plataforma institucional |

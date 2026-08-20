@@ -7,7 +7,7 @@ toc-depth: 2
 
 Lista comentada. As referências das fichas aparecem primeiro, pela ordem das fichas, seguidas de leitura adicional sobre integração curricular.
 
-Para o enquadramento institucional, normativo e deontológico, a lista de referência é a do projecto principal e não se duplica aqui: ver [Recursos do Quadro FMUP · IA](https://tiagojct.eu/fmup-ia/recursos.html).
+Para o enquadramento institucional, normativo e deontológico, a lista de referência é a do projecto principal e não se duplica aqui: ver [Recursos do Quadro FMUP · IA](https://tiagojacinto.eu/fmup-ia/recursos.html).
 
 ## Referências das fichas
 
@@ -81,7 +81,7 @@ Reportagem sobre a integração de IA generativa no currículo da Harvard Medica
 
 ## Referenciais institucionais
 
-Não se reproduzem aqui. As ligações directas mais usadas durante a sessão estão em [Regras](regras.qmd#ligacoes-directas), e a lista completa de referenciais internacionais, normativa nacional e princípios deontológicos está em [Recursos do Quadro FMUP · IA](https://tiagojct.eu/fmup-ia/recursos.html).
+Não se reproduzem aqui. As ligações directas mais usadas durante a sessão estão em [Regras](regras.qmd#ligacoes-directas), e a lista completa de referenciais internacionais, normativa nacional e princípios deontológicos está em [Recursos do Quadro FMUP · IA](https://tiagojacinto.eu/fmup-ia/recursos.html).
 
 ## Nota sobre verificação
 

@@ -2,9 +2,9 @@
 
 **Quadro de referência institucional para o uso de IA generativa na Faculdade de Medicina da Universidade do Porto + ferramenta operacional Themis.**
 
-- 🌐 Site: <https://tiagojct.eu/fmup-ia/>
-- 📖 Quadro: <https://tiagojct.eu/fmup-ia/quadro/>
-- ⚖️ Themis (ferramenta): <https://tiagojct.eu/fmup-ia/themis/>
+- 🌐 Site: <https://tiagojacinto.eu/fmup-ia/>
+- 📖 Quadro: <https://tiagojacinto.eu/fmup-ia/quadro/>
+- ⚖️ Themis (ferramenta): <https://tiagojacinto.eu/fmup-ia/themis/>
 - 🪪 Licença: [CC BY 4.0](LICENSE)
 
 ## O que é
@@ -62,9 +62,9 @@ Push para `main` dispara o workflow `publish.yml` (`.github/workflows/`), que:
 
 1. instala Quarto;
 2. corre `quarto render` (build do site + 4 PDFs dos guias);
-3. publica `_site/` no branch `gh-pages` via `peaceiris/actions-gh-pages`.
+3. envia `_site/` para o servidor pessoal via rsync (`/opt/vps/caddy/srv/fmup-ia/`), servido em <https://tiagojacinto.eu/fmup-ia/>.
 
-GitHub Pages está configurado para servir do branch `gh-pages`. URL custom: `tiagojct.eu/fmup-ia/` (herdado do CNAME de `tiagojct.github.io`).
+O URL antigo `tiagojct.eu/fmup-ia/` redirecciona (301) para o novo domínio.
 
 ## Identidade visual
 
@@ -77,7 +77,7 @@ GitHub Pages está configurado para servir do branch `gh-pages`. URL custom: `ti
 
 Metadados estruturados em [CITATION.cff](CITATION.cff). Sugestão de citação livre:
 
-> Jacinto T. *FMUP · IA — Quadro de referência institucional para a utilização de inteligência artificial generativa na FMUP*. Faculdade de Medicina da Universidade do Porto, 2026. <https://tiagojct.eu/fmup-ia/>
+> Jacinto T. *FMUP · IA — Quadro de referência institucional para a utilização de inteligência artificial generativa na FMUP*. Faculdade de Medicina da Universidade do Porto, 2026. <https://tiagojacinto.eu/fmup-ia/>
 
 ## Histórico
 

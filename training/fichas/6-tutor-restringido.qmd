@@ -19,7 +19,7 @@ toc-depth: 2
 ::: {.callout-important appearance="simple"}
 ## Opção avançada
 
-Esta ficha distingue-se das cinco anteriores: não é aplicável na próxima aula. Exige infraestrutura, decisão institucional e responsável técnico. É apresentada para mostrar o que se torna possível quando a fonte é controlada, e para que quem tenha condições de a explorar saiba o que está em causa. Qualquer implementação real na FMUP tem de passar pelos serviços competentes da Universidade e pela avaliação prevista no [Quadro](https://tiagojct.eu/fmup-ia/quadro/06-infraestrutura.html).
+Esta ficha distingue-se das cinco anteriores: não é aplicável na próxima aula. Exige infraestrutura, decisão institucional e responsável técnico. É apresentada para mostrar o que se torna possível quando a fonte é controlada, e para que quem tenha condições de a explorar saiba o que está em causa. Qualquer implementação real na FMUP tem de passar pelos serviços competentes da Universidade e pela avaliação prevista no [Quadro](https://tiagojacinto.eu/fmup-ia/quadro/06-infraestrutura.html).
 :::
 
 ## Objectivo de aprendizagem

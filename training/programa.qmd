@@ -125,7 +125,7 @@ A pergunta que estrutura o bloco não é se a GenAI é boa ou má, mas o que ela
 
 A resposta institucional não é a proibição generalizada, que não é verificável, mas o redesenho dos elementos vulneráveis e a explicitação do regime aplicável em cada actividade avaliada.
 
-Para essa explicitação existe instrumento pronto: o [Anexo B do Quadro](https://tiagojct.eu/fmup-ia/quadro/B-clausula.html) contém três cláusulas-tipo para programas de unidade curricular, uma por regime, permitido, condicionado e proibido, adaptáveis ao desenho de cada UC.
+Para essa explicitação existe instrumento pronto: o [Anexo B do Quadro](https://tiagojacinto.eu/fmup-ia/quadro/B-clausula.html) contém três cláusulas-tipo para programas de unidade curricular, uma por regime, permitido, condicionado e proibido, adaptáveis ao desenho de cada UC.
 
 ## 6. Prática, desenhar para a própria UC {#bloco-6}
 
@@ -155,7 +155,7 @@ Quem testa escreve as respostas na própria ficha e devolve-a. Quem recebe não 
 
 **5 minutos.**
 
-Demonstração da [Themis](https://tiagojct.eu/fmup-ia/themis/), o gerador de declarações de uso associado ao Quadro. Cada docente gera a declaração correspondente à actividade que desenhou, na vertente Docentes, que produz o texto da cláusula para o programa da unidade curricular e o requisito de divulgação a comunicar aos estudantes.
+Demonstração da [Themis](https://tiagojacinto.eu/fmup-ia/themis/), o gerador de declarações de uso associado ao Quadro. Cada docente gera a declaração correspondente à actividade que desenhou, na vertente Docentes, que produz o texto da cláusula para o programa da unidade curricular e o requisito de divulgação a comunicar aos estudantes.
 
 A declaração inclui a versão do Quadro e a versão da ferramenta que a produziram, o que a torna rastreável no tempo.
 

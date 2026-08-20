@@ -181,7 +181,7 @@ O que se imprime ou se prepara antes para que a aula funcione na mesma.
 
 ### Regime aplicável na unidade curricular
 
-Permitido, condicionado ou proibido, e em que termos. Ver o [Anexo B do Quadro](https://tiagojct.eu/fmup-ia/quadro/B-clausula.html).
+Permitido, condicionado ou proibido, e em que termos. Ver o [Anexo B do Quadro](https://tiagojacinto.eu/fmup-ia/quadro/B-clausula.html).
 
 ::: {.linha-resposta}
 :::
@@ -235,6 +235,6 @@ Se sim, escrever o prompt que o consegue.
 
 ## Depois da sessão
 
-Cada participante gera, na [Themis](https://tiagojct.eu/fmup-ia/themis/), a declaração de uso correspondente à actividade desenhada. Na vertente Docentes, a ferramenta produz dois textos: a cláusula para o programa da unidade curricular e o requisito de divulgação a comunicar aos estudantes.
+Cada participante gera, na [Themis](https://tiagojacinto.eu/fmup-ia/themis/), a declaração de uso correspondente à actividade desenhada. Na vertente Docentes, a ferramenta produz dois textos: a cláusula para o programa da unidade curricular e o requisito de divulgação a comunicar aos estudantes.
 
 A declaração inclui a versão do Quadro e a versão da ferramenta que a produziram, o que a torna rastreável no tempo.

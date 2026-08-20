@@ -11,7 +11,7 @@ As formulações do tipo "A FMUP define...", "A FMUP adopta..." que pontuam o Qu
 
 O documento é submetido aos órgãos competentes da FMUP para apreciação, no entendimento de que qualquer adopção formal exigirá processo deliberativo próprio, ajustamentos editoriais resultantes da apreciação institucional, e --- nas secções que tratam de matérias jurídicas, designadamente o procedimento disciplinar e as cláusulas de procurement --- parecer prévio da Direcção Jurídica da Universidade do Porto.
 
-A publicação online no domínio pessoal [tiagojct.eu/fmup-ia](https://tiagojct.eu/fmup-ia/) corresponde a publicação académica em nome individual, sob licença [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), para discussão pública. Não constitui presença institucional da FMUP nem dispensa os processos próprios para o efeito.
+A publicação online no domínio pessoal [tiagojacinto.eu/fmup-ia](https://tiagojacinto.eu/fmup-ia/) corresponde a publicação académica em nome individual, sob licença [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), para discussão pública. Não constitui presença institucional da FMUP nem dispensa os processos próprios para o efeito.
 
 ## Declaração de conflitos de interesse {#declaracao-de-conflitos-de-interesse}
 
@@ -82,7 +82,7 @@ A [**Themis**](themis/) é uma ferramenta web que acompanha o Quadro e gera decl
 
 ## Infraestrutura técnica
 
-O Quadro e a Themis são publicados como um único sítio web estático, construído com [Quarto](https://quarto.org/) e alojado no GitHub Pages. O repositório fonte é público em [github.com/tiagojct/fmup-ia](https://github.com/tiagojct/fmup-ia).
+O Quadro e a Themis são publicados como um único sítio web estático, construído com [Quarto](https://quarto.org/) e alojado em <https://tiagojacinto.eu/fmup-ia/> no servidor pessoal. O repositório fonte é público em [github.com/tiagojct/fmup-ia](https://github.com/tiagojct/fmup-ia).
 
 **Quadro — website Quarto.** Os capítulos e anexos são ficheiros `.qmd` (Quarto Markdown) que o Quarto converte em HTML com navegação lateral, referências bibliográficas automáticas (formato Chicago Author-Date, via Pandoc/CSL) e tabela de conteúdos por página. A estrutura é de *website* (não de *book*): cada página é autónoma e os links cruzados são explícitos.
 
@@ -90,11 +90,11 @@ O Quadro e a Themis são publicados como um único sítio web estático, constru
 
 **Guias PDF.** Quatro guias práticos de uma página (estudantes, docentes, investigadores, serviços) são gerados directamente pelo `quarto render` via `format: fmup-typst` declarado em cada `.qmd` de guia, partilhando a tipografia e a paleta institucional do resto do site.
 
-**Publicação contínua.** Um *workflow* de GitHub Actions (`publish.yml`) constrói o site e os guias a cada *push* para o ramo principal e publica o resultado no GitHub Pages.
+**Publicação contínua.** Um *workflow* de GitHub Actions (`publish.yml`) constrói o site e os guias a cada *push* para o ramo principal e publica o resultado em <https://tiagojacinto.eu/fmup-ia/>.
 
 ## Como citar
 
-> Jacinto T. *FMUP · IA — Quadro de referência institucional para a utilização de inteligência artificial generativa na FMUP*. Faculdade de Medicina da Universidade do Porto, 2026. <https://tiagojct.eu/fmup-ia/>
+> Jacinto T. *FMUP · IA — Quadro de referência institucional para a utilização de inteligência artificial generativa na FMUP*. Faculdade de Medicina da Universidade do Porto, 2026. <https://tiagojacinto.eu/fmup-ia/>
 
 ## Licença
 

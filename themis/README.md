@@ -9,7 +9,7 @@ University of Porto (FMUP)**.
 > The tool was previously named *Atlas*. It was renamed in June 2026 to
 > avoid collision with the existing **Atlas U.Porto** institutional
 > application portal at `atlas.up.pt`. URL changes accordingly: the live
-> location is now `tiagojct.eu/fmup-ia/themis/`.
+> location is now `tiagojacinto.eu/fmup-ia/themis/`.
 
 Status: this is a prototype demonstrator, **not a certified institutional
 application**. The accompanying framework is an individual contribution
@@ -37,7 +37,7 @@ Three branches:
 Since `v1.1.0`, declarations are interoperable with the University of
 Porto's June 2026 framework (GAIDeT taxonomy with the U.Porto operational
 extension; two-level disclosure; materiality threshold). The mapping is
-documented in [Annex H](https://tiagojct.eu/fmup-ia/quadro/H-articulacao-uporto.html)
+documented in [Annex H](https://tiagojacinto.eu/fmup-ia/quadro/H-articulacao-uporto.html)
 of the FMUP framework.
 
 The tool is **client-side only** (HTML + vanilla JS + a single JSON policy
@@ -48,7 +48,7 @@ tracking, and does not require a build step.
 
 This tool is the operational companion to the **FMUP · IA Quadro de Referência
 Institucional para a Utilização de IA Generativa** (Quarto site at
-<https://tiagojct.eu/fmup-ia/quadro/>). Each generated declaration is footed
+<https://tiagojacinto.eu/fmup-ia/quadro/>). Each generated declaration is footed
 with the exact framework version it reflects.
 
 While the user fills in the form, the tool reads `policy.json` and runs
@@ -84,13 +84,13 @@ evaluations can contribute as registrable institutional practice.
 
 The detailed mapping between Themis / the FMUP framework and the
 CNIPES diagnosis is in
-[Chapter 12b — Enquadramento nacional](https://tiagojct.eu/fmup-ia/quadro/12b-panorama-portugal.html)
-and in [Annex G — Grelha de maturidade](https://tiagojct.eu/fmup-ia/quadro/G-maturidade-cnipes.html)
+[Chapter 12b — Enquadramento nacional](https://tiagojacinto.eu/fmup-ia/quadro/12b-panorama-portugal.html)
+and in [Annex G — Grelha de maturidade](https://tiagojacinto.eu/fmup-ia/quadro/G-maturidade-cnipes.html)
 of the FMUP framework.
 
 ## Use it
 
-- Hosted: <https://tiagojct.eu/fmup-ia/themis/> (deployed to GitHub Pages on every
+- Hosted: <https://tiagojacinto.eu/fmup-ia/themis/> (deployed to the personal VPS on every
   push to `main` of the parent monorepo `tiagojct/fmup-ia`).
 - Locally with a server (recommended for full functionality):
   ```sh

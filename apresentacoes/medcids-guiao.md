@@ -2,9 +2,9 @@
 
 **Data:** 17 de Junho de 2026
 **Duração-alvo:** ~15 minutos + perguntas
-**Apresentação:** `apresentacoes/medcids.qmd` → [`/apresentacoes/medcids.html`](https://tiagojct.eu/fmup-ia/apresentacoes/medcids.html)
-**Quadro:** [tiagojct.eu/fmup-ia/quadro/](https://tiagojct.eu/fmup-ia/quadro/)
-**Atlas:** [tiagojct.eu/fmup-ia/atlas/](https://tiagojct.eu/fmup-ia/atlas/)
+**Apresentação:** `apresentacoes/medcids.qmd` → [`/apresentacoes/medcids.html`](https://tiagojacinto.eu/fmup-ia/apresentacoes/medcids.html)
+**Quadro:** [tiagojacinto.eu/fmup-ia/quadro/](https://tiagojacinto.eu/fmup-ia/quadro/)
+**Atlas:** [tiagojacinto.eu/fmup-ia/atlas/](https://tiagojacinto.eu/fmup-ia/atlas/)
 **Repositório:** [github.com/tiagojct/fmup-ia](https://github.com/tiagojct/fmup-ia)
 
 Este ficheiro tem duas partes: **(1) guião por slide** com pontos de
@@ -46,8 +46,8 @@ medida no sistema português.
   Faculdade; a articulação com o CHUSJ é etapa futura de
   integração, não pressuposto operacional.
 
-**Links no slide:** [Quadro](https://tiagojct.eu/fmup-ia/quadro/) ·
-[Cap. 12b](https://tiagojct.eu/fmup-ia/quadro/12b-panorama-portugal.html).
+**Links no slide:** [Quadro](https://tiagojacinto.eu/fmup-ia/quadro/) ·
+[Cap. 12b](https://tiagojacinto.eu/fmup-ia/quadro/12b-panorama-portugal.html).
 
 **Tom:** factual, sem alarmismo. Os 14,7% legitimam por si só.
 
@@ -91,16 +91,16 @@ interligadas. ~10 segundos cada, com ligação directa a cada uma.
 
 1. **Sete princípios orientadores** — ERA Forum *Living Guidelines*,
    _framework_ de Chan (2023), princípios AAMC.
-   [Cap. 2 →](https://tiagojct.eu/fmup-ia/quadro/02-principios.html)
+   [Cap. 2 →](https://tiagojacinto.eu/fmup-ia/quadro/02-principios.html)
 2. **Três vertentes operacionais** — estudantes, docentes,
    investigadores. Cada uma com regras próprias.
-   [Caps. 3–5 →](https://tiagojct.eu/fmup-ia/quadro/03-estudantes.html)
+   [Caps. 3–5 →](https://tiagojacinto.eu/fmup-ia/quadro/03-estudantes.html)
 3. **Infraestrutura e governança** — Grupo de Trabalho permanente;
    articulação clínica-hospitalar como etapa futura.
-   [Cap. 6 →](https://tiagojct.eu/fmup-ia/quadro/06-infraestrutura.html)
+   [Cap. 6 →](https://tiagojacinto.eu/fmup-ia/quadro/06-infraestrutura.html)
 4. **Declaração obrigatória de uso** — modelo institucional padrão,
    suportado pela Atlas.
-   [Anexo A →](https://tiagojct.eu/fmup-ia/quadro/A-declaracao.html)
+   [Anexo A →](https://tiagojacinto.eu/fmup-ia/quadro/A-declaracao.html)
 5. **Taxonomia de risco em quatro níveis** — HEAT-AI (Temper et al.
    2025) adaptado.
 
@@ -123,7 +123,7 @@ Pontos a destacar:
 Os restantes — integridade, protecção de dados, transparência,
 equidade — leio-os a passar.
 
-**Link no slide:** [Cap. 2](https://tiagojct.eu/fmup-ia/quadro/02-principios.html).
+**Link no slide:** [Cap. 2](https://tiagojacinto.eu/fmup-ia/quadro/02-principios.html).
 
 ---
 
@@ -139,10 +139,10 @@ equidade — leio-os a passar.
 - **Investigadores.** Declaração metodológica. **Sem autoria a
   GenAI** (COPE, ICMJE, WAME). *Living Guidelines* do ERA Forum.
 
-**Links no slide:** [Cap. 3](https://tiagojct.eu/fmup-ia/quadro/03-estudantes.html)
-· [Cap. 4](https://tiagojct.eu/fmup-ia/quadro/04-docentes.html) ·
-[Anexo B](https://tiagojct.eu/fmup-ia/quadro/B-clausula.html) ·
-[Cap. 5](https://tiagojct.eu/fmup-ia/quadro/05-investigadores.html).
+**Links no slide:** [Cap. 3](https://tiagojacinto.eu/fmup-ia/quadro/03-estudantes.html)
+· [Cap. 4](https://tiagojacinto.eu/fmup-ia/quadro/04-docentes.html) ·
+[Anexo B](https://tiagojacinto.eu/fmup-ia/quadro/B-clausula.html) ·
+[Cap. 5](https://tiagojacinto.eu/fmup-ia/quadro/05-investigadores.html).
 
 ---
 
@@ -191,8 +191,8 @@ Evidência para o terceiro pilar:
 
 A combinação informa a Atlas.
 
-**Links no slide:** [Cap. 6](https://tiagojct.eu/fmup-ia/quadro/06-infraestrutura.html)
-· [Anexo E](https://tiagojct.eu/fmup-ia/quadro/E-cenarios.html).
+**Links no slide:** [Cap. 6](https://tiagojacinto.eu/fmup-ia/quadro/06-infraestrutura.html)
+· [Anexo E](https://tiagojacinto.eu/fmup-ia/quadro/E-cenarios.html).
 
 ---
 
@@ -208,7 +208,7 @@ torna as regras testáveis de imediato.
   Pedagógicas (CNIPES, em desenvolvimento).
 
 **Demonstração ao vivo, se possível:** abrir
-[tiagojct.eu/fmup-ia/atlas/](https://tiagojct.eu/fmup-ia/atlas/),
+[tiagojacinto.eu/fmup-ia/atlas/](https://tiagojacinto.eu/fmup-ia/atlas/),
 papel "Estudante", cenário rápido, mostrar a declaração com a versão
 do Quadro no rodapé.
 
@@ -231,7 +231,7 @@ critérios adoptados directamente do CNIPES; operacionalizados com
 5. **Decisão baseada em evidências** — estratégias baseadas em
    dados.
 
-**Link no slide:** [Anexo G](https://tiagojct.eu/fmup-ia/quadro/G-maturidade-cnipes.html).
+**Link no slide:** [Anexo G](https://tiagojacinto.eu/fmup-ia/quadro/G-maturidade-cnipes.html).
 
 ---
 
@@ -249,7 +249,7 @@ institucional da FMUP.
   **ISO/IEC 42001** — sistema de gestão de IA. Objectivo possível, não
   obrigação.
 
-**Link no slide:** [Cap. 7](https://tiagojct.eu/fmup-ia/quadro/07-implementacao.html).
+**Link no slide:** [Cap. 7](https://tiagojacinto.eu/fmup-ia/quadro/07-implementacao.html).
 
 ---
 
@@ -267,7 +267,7 @@ estar familiarizado.
 - **Plataforma CNIPES** — em desenvolvimento na Fase 2 do projecto.
   A Atlas pode articular-se com a Plataforma quando estiver operacional.
 
-**Link no slide:** [Cap. 12b](https://tiagojct.eu/fmup-ia/quadro/12b-panorama-portugal.html).
+**Link no slide:** [Cap. 12b](https://tiagojacinto.eu/fmup-ia/quadro/12b-panorama-portugal.html).
 
 ---
 
@@ -288,7 +288,7 @@ Não ler a lista; nomear o gesto.
 e deontologia) ficam parcialmente em aberto — e isso está escrito no
 capítulo."
 
-**Link no slide:** [Cap. 9b](https://tiagojct.eu/fmup-ia/quadro/09b-objeccoes.html).
+**Link no slide:** [Cap. 9b](https://tiagojacinto.eu/fmup-ia/quadro/09b-objeccoes.html).
 
 ---
 
@@ -320,8 +320,8 @@ discussão institucional.
 
 Não ler os links. Indicar onde está o quê:
 
-- **Quadro** — [tiagojct.eu/fmup-ia/quadro/](https://tiagojct.eu/fmup-ia/quadro/)
-- **Atlas** — [tiagojct.eu/fmup-ia/atlas/](https://tiagojct.eu/fmup-ia/atlas/)
+- **Quadro** — [tiagojacinto.eu/fmup-ia/quadro/](https://tiagojacinto.eu/fmup-ia/quadro/)
+- **Atlas** — [tiagojacinto.eu/fmup-ia/atlas/](https://tiagojacinto.eu/fmup-ia/atlas/)
 - **Cap. 12b** — enquadramento nacional
 - **Cap. 9b** — objecções
 - **Anexo G** — maturidade
@@ -424,7 +424,7 @@ Competências, Governação.
 
 **Cinco critérios CNIPES** — Mediação humana, verificação,
 transparência, literacia afectiva, decisão baseada em evidências.
-[Anexo G](https://tiagojct.eu/fmup-ia/quadro/G-maturidade-cnipes.html).
+[Anexo G](https://tiagojacinto.eu/fmup-ia/quadro/G-maturidade-cnipes.html).
 
 **Chan framework** — Quadro tridimensional de **Cecilia Ka Yuk Chan**
 (2023): governança, pedagógica, operacional.
@@ -509,14 +509,14 @@ IA*. Estrutura de **Zagalo & Couvaneiro (2025)**.
 
 **Atlas** — Ferramenta web institucional. Gera declarações
 estruturadas com avaliação de risco. Cliente-side.
-[tiagojct.eu/fmup-ia/atlas/](https://tiagojct.eu/fmup-ia/atlas/).
+[tiagojacinto.eu/fmup-ia/atlas/](https://tiagojacinto.eu/fmup-ia/atlas/).
 
 **Cláusula tipo** — Texto padrão, [Anexo
-B](https://tiagojct.eu/fmup-ia/quadro/B-clausula.html), para o
+B](https://tiagojacinto.eu/fmup-ia/quadro/B-clausula.html), para o
 programa da UC. Quatro variantes.
 
 **Declaração de uso** — Documento estruturado, [Anexo
-A](https://tiagojct.eu/fmup-ia/quadro/A-declaracao.html), anexado ao
+A](https://tiagojacinto.eu/fmup-ia/quadro/A-declaracao.html), anexado ao
 trabalho. Pode ser gerado pela Atlas.
 
 **GenAI** — *Generative AI*. Equivalente português: *IA generativa*.
@@ -560,7 +560,7 @@ próprias: estudantes, docentes, investigadores.
 - **Se perguntarem sobre limitações:** três caveats — evidência
   longitudinal sobre efeitos cognitivos ainda frágil; Plataforma
   CNIPES ainda não existe; AI Act exige acompanhamento. Mais detalhe
-  no [cap. 9b](https://tiagojct.eu/fmup-ia/quadro/09b-objeccoes.html).
+  no [cap. 9b](https://tiagojacinto.eu/fmup-ia/quadro/09b-objeccoes.html).
 
 ---
 

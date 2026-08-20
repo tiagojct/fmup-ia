@@ -2,9 +2,9 @@
 
 Plataforma web de apoio a uma sessão de formação de 120 minutos para docentes da Faculdade de Medicina da Universidade do Porto, sobre estratégias pedagógicas com inteligência artificial generativa.
 
-Articula-se com o [Quadro de referência institucional FMUP · IA](https://tiagojct.eu/fmup-ia/) e com a ferramenta [Themis](https://tiagojct.eu/fmup-ia/themis/), que vivem no mesmo repositório e são publicados no mesmo sítio.
+Articula-se com o [Quadro de referência institucional FMUP · IA](https://tiagojacinto.eu/fmup-ia/) e com a ferramenta [Themis](https://tiagojacinto.eu/fmup-ia/themis/), que vivem no mesmo repositório e são publicados no mesmo sítio.
 
-Endereço publicado: <https://tiagojct.eu/fmup-ia/training/>
+Endereço publicado: <https://tiagojacinto.eu/fmup-ia/training/>
 
 ## Estatuto
 
@@ -47,7 +47,7 @@ A razão de serem projectos separados é simples: o Quarto admite uma navbar por
 
 ## Publicar
 
-Publicação no GitHub Pages, pelo mesmo workflow do projecto principal, em `.github/workflows/publish.yml`. Não há configuração própria a manter.
+Publicação no servidor pessoal (https://tiagojacinto.eu/fmup-ia/training/), pelo mesmo workflow do projecto principal, em `.github/workflows/publish.yml`. Não há configuração própria a manter.
 
 A cada `push` para `main`, o workflow:
 
@@ -57,7 +57,7 @@ A cada `push` para `main`, o workflow:
 4. copia `training/_site` para `_site/training`;
 5. publica `_site/` no ramo `gh-pages`.
 
-O resultado fica em `https://tiagojct.eu/fmup-ia/training/`.
+O resultado fica em `https://tiagojacinto.eu/fmup-ia/training/`.
 
 As ligações desta plataforma para o Quadro e para a Themis são absolutas, e não relativas, de propósito: assim resolvem correctamente tanto no sítio publicado como durante `quarto preview` deste projecto isolado, onde `../quadro/` não existiria.
 

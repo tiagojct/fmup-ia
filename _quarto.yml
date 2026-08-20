@@ -32,7 +32,7 @@ project:
 website:
   title: "FMUP · IA"
   description: "Quadro de referência institucional para a utilização de inteligência artificial generativa na Faculdade de Medicina da Universidade do Porto."
-  site-url: "https://tiagojct.eu/fmup-ia/"
+  site-url: "https://tiagojacinto.eu/fmup-ia/"
   repo-url: "https://github.com/tiagojct/fmup-ia"
   repo-actions: [edit, issue]
   favicon: assets/favicon.svg
