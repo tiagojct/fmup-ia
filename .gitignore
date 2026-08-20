@@ -15,6 +15,9 @@ Thumbs.db
 .vscode/
 .idea/
 
+# Local agent guidance (not published with the repo)
+CLAUDE.md
+
 # Node (only if local tooling is added in the future)
 node_modules/
 package-lock.json
