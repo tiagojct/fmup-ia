@@ -238,7 +238,7 @@
     const modification = {
       as_is: 'Os contributos gerados pelas ferramentas foram integrados sem alterações substanciais, mantendo-se o conteúdo, em larga medida, conforme produzido pelas mesmas.',
       edited: 'Os contributos gerados pelas ferramentas foram revistos e substancialmente editados, sendo o conteúdo final fruto do juízo crítico ' + (s.submission === 'group' ? 'dos autores' : 'do(a) próprio(a) autor(a)') + '.',
-      reference: 'Os contributos gerados pelas ferramentas foram utilizados apenas como referência, não tendo sido incorporados diretamente no conteúdo submetido.',
+      reference: 'Os contributos gerados pelas ferramentas foram utilizados apenas como referência, não tendo sido incorporados directamente no conteúdo submetido.',
     }[s.modification] || '';
 
     const domainsClause = gaidetClause(s, policy);
@@ -328,7 +328,7 @@
     const lead = marker + courseLead + ', e relativamente ao trabalho avaliativo do tipo ' + aNoun + ',';
 
     const policyText = {
-      not_permitted: ' não é permitida a utilização de ferramentas de inteligência artificial generativa na produção do trabalho submetido. Os trabalhos avaliativos devem refletir exclusivamente a produção intelectual ' + subj.possPlural + ', sendo qualquer recurso a estas ferramentas considerado uma falta à integridade académica.',
+      not_permitted: ' não é permitida a utilização de ferramentas de inteligência artificial generativa na produção do trabalho submetido. Os trabalhos avaliativos devem reflectir exclusivamente a produção intelectual ' + subj.possPlural + ', sendo qualquer recurso a estas ferramentas considerado uma falta à integridade académica.',
       with_disclosure: ' é permitida a utilização de ferramentas de inteligência artificial generativa, sob condição de divulgação integral. ' + subj.capPlural + ' ' + subj.verbDevem + ' declarar de forma transparente as ferramentas empregues, as tarefas para as quais recorreram a essas ferramentas e o grau de modificação dos contributos gerados, mantendo plena responsabilidade pelo conteúdo submetido.',
       without_restrictions: ' é permitida a utilização de ferramentas de inteligência artificial generativa sem restrições específicas. ' + subj.capPlural + ' ' + subj.verbMantem + ', contudo, plena responsabilidade pelo conteúdo submetido e pela sua adequação aos objectivos pedagógicos.',
     }[s.policy] || '';
@@ -346,7 +346,7 @@
 
     if (s.policy === 'not_permitted') {
       return 'Não é exigida qualquer declaração, na medida em que o uso de ferramentas de inteligência artificial generativa não é permitido nesta oferta formativa.' + skillsClause +
-        ' Caso seja detetado qualquer indício de utilização destas ferramentas, o trabalho será objeto de avaliação no âmbito do regulamento de integridade académica da FMUP.' + footer(version, policy);
+        ' Caso seja detectado qualquer indício de utilização destas ferramentas, o trabalho será objecto de avaliação no âmbito do regulamento de integridade académica da FMUP.' + footer(version, policy);
     }
 
     const reportClause = s.policy === 'with_disclosure'
@@ -374,9 +374,9 @@
     } else if (s.target === 'fct') {
       body += ' A presente declaração acompanha os elementos formais da candidatura submetida à Fundação para a Ciência e a Tecnologia.';
     } else if (s.target === 'horizon') {
-      body += ' A presente declaração observa as orientações da Comissão Europeia e do ERA Forum sobre o uso responsável de IA generativa em projetos financiados pelo Horizonte Europa.';
+      body += ' A presente declaração observa as orientações da Comissão Europeia e do ERA Forum sobre o uso responsável de IA generativa em projectos financiados pelo Horizonte Europa.';
     } else if (s.target === 'wellcome') {
-      body += ' A presente declaração observa a política do Wellcome Trust sobre o uso de IA generativa em projetos por si financiados.';
+      body += ' A presente declaração observa a política do Wellcome Trust sobre o uso de IA generativa em projectos por si financiados.';
     } else if (s.target === 'conference') {
       body += ' A presente declaração acompanha o material submetido à conferência.';
     } else if (s.target === 'institutional') {
@@ -402,7 +402,7 @@
     const fw = policy && policy.framework_version ? '; em conformidade com ' + policy.framework_version : '';
     const useDate = trim(s.useDate) ? '; utilização em ' + trim(s.useDate) : '';
     return 'Os autores declaram a utilização de ' + tools + ' para ' + tasksFrag +
-      ', tendo revisto criticamente os respetivos contributos e assumindo responsabilidade integral pelo conteúdo (gerado pela Themis (FMUP · IA), v' + version + useDate + fw + ').';
+      ', tendo revisto criticamente os respectivos contributos e assumindo responsabilidade integral pelo conteúdo (gerado pela Themis (FMUP · IA), v' + version + useDate + fw + ').';
   };
 
   window.I18N_PT = {
@@ -443,7 +443,7 @@
       outputHeadingResearcherFull: 'Declaração para Métodos / Agradecimentos',
       outputHeadingResearcherInline: 'Declaração breve em linha',
       yourSelections: 'As suas seleções',
-      reviewBeforeCopy: 'Reveja a declaração antes de a utilizar. O conteúdo deve refletir, de boa-fé, a utilização efetivamente feita das ferramentas indicadas.',
+      reviewBeforeCopy: 'Reveja a declaração antes de a utilizar. O conteúdo deve reflectir, de boa-fé, a utilização efectivamente feita das ferramentas indicadas.',
       requiredAsterisk: '*',
       backToQuadro: '← Quadro',
       backToHome: '← Início',
@@ -498,7 +498,7 @@
       step3Help: 'Selecione todas as tarefas aplicáveis.',
       tasks: {
         ideation: 'Exploração de ideias',
-        drafting: 'Redação',
+        drafting: 'Redacção',
         editing: 'Edição / revisão linguística',
         translation: 'Tradução',
         coding: 'Programação',
@@ -591,9 +591,9 @@
       skills: {
         critical_thinking: 'Pensamento crítico e argumentação',
         clinical_reasoning: 'Raciocínio clínico',
-        original_writing: 'Redação original',
+        original_writing: 'Redacção original',
         data_interpretation: 'Interpretação de resultados',
-        bibliography: 'Seleção e síntese bibliográfica',
+        bibliography: 'Selecção e síntese bibliográfica',
         oral_presentation: 'Apresentação oral',
         metacognition: 'Reflexão metacognitiva',
         inter_professional_communication: 'Comunicação interprofissional',
@@ -605,7 +605,7 @@
     researcher: {
       step1: 'Que tipo de actividade?',
       activity: {
-        manuscript: 'Redação de manuscrito',
+        manuscript: 'Redacção de manuscrito',
         grant: 'Candidatura a financiamento',
         review: 'Revisão sistemática / pesquisa bibliográfica',
         data_analysis: 'Análise de dados / programação',
@@ -628,7 +628,7 @@
         coding: 'Programação',
         data_management: 'Gestão de dados (limpeza, transformação)',
         statistics: 'Análise estatística',
-        drafting: 'Redação',
+        drafting: 'Redacção',
         editing: 'Edição / revisão linguística',
         translation: 'Tradução',
         figures: 'Preparação de imagens / figuras',

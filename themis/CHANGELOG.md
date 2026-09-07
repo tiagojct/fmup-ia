@@ -26,6 +26,19 @@ This project follows a `MAJOR.MINOR.PATCH` scheme:
 
 ---
 
+## [1.2.1] — 2026-09-07 — Pre-AO90 orthography in the Portuguese copy
+
+### Fixed
+- Fourteen words in `i18n/pt.js` were spelled in AO90 orthography, against
+  the project convention of European Portuguese, pre-AO90 (`convencoes.qmd`):
+  *diretamente*, *refletir* (×2), *detetado*, *objeto*, *projetos* (×2),
+  *respetivos*, *efetivamente*, *Redação* (×4) and *Seleção*. Four of them
+  reached generated statements — including the inline researcher declaration
+  and the student "reference only" sentence — so declarations were shipping
+  in the orthography the framework says it does not use.
+
+---
+
 ## [1.2.0] — 2026-09-07 — GAIDeT macrodomains in the student statement
 
 ### Added
