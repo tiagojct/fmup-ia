@@ -21,9 +21,10 @@ inventory, and a designated technical owner.
 
 Three branches:
 
-- **Student** — declaration to accompany a submitted assignment, including
-  the scope-of-use axis (technical / auxiliary / substantive) and, for group
-  submissions, an individual-contribution record.
+- **Student** — declaration to accompany a submitted assignment, naming the
+  delegated **GAIDeT macrodomains** and including the scope-of-use axis
+  (technical / auxiliary / substantive) and, for group submissions, an
+  individual-contribution record.
 - **Teacher** — course-unit syllabus policy text (prefixed with the
   U.Porto traffic-light marker 🟩/🟨/🟥) + disclosure requirement to
   communicate to students.

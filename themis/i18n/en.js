@@ -178,6 +178,21 @@
     substantive: 'The scope of use was a substantive contribution: the tool materially influenced the intellectual content of the work, which is why this structured declaration is provided.',
   };
 
+  // Macrodomains delegated, in canonical GAIDeT order. The map lives in
+  // policy.json (policy.gaidet); when it is unavailable (file://), the
+  // clause is simply omitted. Shared by the student and researcher
+  // generators: the U.Porto two-tier regime asks for the same taxonomy in
+  // a structured declaration regardless of who signs it.
+  const gaidetClause = (s, policy) => {
+    const g = policy && policy.gaidet;
+    const seen = {};
+    if (g && g.map) (s.tasks || []).forEach((k) => { if (g.map[k]) seen[g.map[k]] = true; });
+    const domains = (g && Array.isArray(g.order) ? g.order : []).filter((d) => seen[d]).map((d) => GAIDET_LABELS[d]).filter(Boolean);
+    return domains.length
+      ? ' Under the GAIDeT task delegation taxonomy, adopted as a reference by the University of Porto, the macrodomains delegated were: ' + list(domains) + '.'
+      : '';
+  };
+
   const fmtDate = (d) => {
     const pad = (n) => String(n).padStart(2, '0');
     return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) +
@@ -223,7 +238,6 @@
       ? 'The authors of this work declare that they made use of'
       : 'I declare that I made use of';
     const aPrep = fmtAssignmentPrep(s.assignment, s.assignmentOther);
-    const aNoun = fmtAssignmentNoun(s.assignment, s.assignmentOther);
     const tools = trim(s.tools) || 'unspecified generative artificial intelligence tools';
     const tasks = (s.tasks || []).map((k) => {
       if (k === 'other' && trim(s.tasksOther)) return trim(s.tasksOther);
@@ -239,6 +253,7 @@
       reference: 'The contributions produced by these tools were used only as reference and were not directly incorporated into the submitted work.',
     }[s.modification] || '';
 
+    const domainsClause = gaidetClause(s, policy);
     const scopeClause = SCOPE_SENTENCE[s.scope] ? ' ' + SCOPE_SENTENCE[s.scope] : '';
 
     // Group work: the U.Porto framework asks for an individual contribution
@@ -252,13 +267,19 @@
       ? 'The authors take full responsibility for the content presented, for its accuracy, and for its compliance with FMUP’s academic standards.'
       : 'I take full responsibility for the content presented, for its accuracy, and for its compliance with FMUP’s academic standards.';
 
-    const intro = subj + ' generative artificial intelligence tools ' + aPrep +
-      ' (' + aNoun + (s.submission === 'group' ? ', submitted as a group' : ', individual submission') + '). ' +
+    // `aPrep` already names the assignment type(s) — and enumerates them in
+    // parentheses when several are ticked — so the intro must not repeat the
+    // noun.
+    const submissionSentence = s.submission === 'group'
+      ? 'This is a group submission.'
+      : 'This is an individual submission.';
+    const intro = subj + ' generative artificial intelligence tools ' + aPrep + '. ' +
+      submissionSentence + ' ' +
       'The tool(s) used: ' + tools + tasksClause + '.';
 
     const useDateClause = trim(s.useDate) ? ' The main use took place on ' + trim(s.useDate) + '.' : '';
 
-    return intro + ' ' + modification + scopeClause + useDateClause + groupClause + ' ' + responsibility + footer(version, policy);
+    return intro + domainsClause + ' ' + modification + scopeClause + useDateClause + groupClause + ' ' + responsibility + footer(version, policy);
   };
 
   const subjectsByCourseType = (courseType) => {
@@ -328,16 +349,7 @@
     const tasksClause = tasks.length ? ' for the following tasks: ' + list(tasks) : ' for ancillary preparatory tasks';
     const subj = s.activity === 'manuscript' ? 'the authors' : 'the researcher(s)';
 
-    // Macrodomains delegated, in canonical GAIDeT order. The map lives in
-    // policy.json (policy.gaidet); when it is unavailable (file://), the
-    // clause is simply omitted.
-    const g = policy && policy.gaidet;
-    const seen = {};
-    if (g && g.map) (s.tasks || []).forEach((k) => { if (g.map[k]) seen[g.map[k]] = true; });
-    const domains = (g && Array.isArray(g.order) ? g.order : []).filter((d) => seen[d]).map((d) => GAIDET_LABELS[d]).filter(Boolean);
-    const domainsClause = domains.length
-      ? ' Under the GAIDeT task delegation taxonomy, adopted as a reference by the University of Porto, the macrodomains delegated were: ' + list(domains) + '.'
-      : '';
+    const domainsClause = gaidetClause(s, policy);
     const scopeClause = SCOPE_SENTENCE[s.scope] ? ' ' + SCOPE_SENTENCE[s.scope] : '';
 
     let body = lead + ' it is hereby declared that, ' + activity + ', the following generative artificial intelligence tools were used — ' + tools +

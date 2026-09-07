@@ -114,7 +114,15 @@ setTimeout(() => {
   let o = outputs();
   check('student emits 1 block', o.length === 1, 'got ' + o.length);
   check('student statement names both assignment types', /ensaio/.test(o[0].text) && /relatório/.test(o[0].text));
+  // Regression guard: the type used to be named twice — once by the
+  // preposition phrase, once inside a parenthetical carrying the submission
+  // mode. The mode is now a sentence of its own.
+  check('student statement names each assignment type once', (o[0].text.match(/relatório/g) || []).length === 1, o[0].text);
+  check('student statement states submission mode separately', /O trabalho é de autoria colectiva \(submissão em grupo\)\./.test(o[0].text));
   check('student statement carries scope sentence', /âmbito da utilização foi de apoio auxiliar/.test(o[0].text));
+  // Both ticked tasks (drafting, editing) map to the same macrodomain, so
+  // the clause must name `escrita e edição` once, not twice.
+  check('student statement names GAIDeT macrodomains from policy.json', /macrodomínios delegados foram: escrita e edição\./.test(o[0].text));
   check('student statement carries group contribution record', /contribuição individual de cada autor/.test(o[0].text));
   check('student statement footer carries APP_VERSION', APP_VERSION_RE.test(o[0].text));
 

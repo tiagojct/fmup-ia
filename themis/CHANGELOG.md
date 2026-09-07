@@ -26,6 +26,38 @@ This project follows a `MAJOR.MINOR.PATCH` scheme:
 
 ---
 
+## [1.2.0] — 2026-09-07 — GAIDeT macrodomains in the student statement
+
+### Added
+- **The student statement now names the delegated GAIDeT macrodomains**, in
+  canonical order, immediately after the task list — the same sentence the
+  researcher statement has carried since `1.1.0`. Until now the student
+  branch showed macrodomains only in the on-screen choice summary and in the
+  print view, so a declaration pasted into a dissertation dropped the one
+  element the U.Porto two-tier regime requires of a structured declaration.
+  Raised by the MMED dissertation manual, which is being revised to point
+  students to Themis.
+
+### Changed
+- The macrodomain clause is now a single shared helper (`gaidetClause`) in
+  each i18n file, instead of being inlined in the researcher generator. Both
+  branches produce identical wording from the same `policy.json` map.
+- `policy.version` → `1.6.1`, `framework_version` → **Quadro v1.4
+  (2026-09-07)**. The rules themselves are unchanged: the GAIDeT map already
+  covered every student task key that claims a macrodomain, and `portfolio`
+  and `other` remain deliberately unmapped, per the 1.1.1 decision.
+
+### Fixed
+- **The student statement repeated the assignment type.** With more than one
+  type ticked it read "neste trabalho (ensaio e relatório) (ensaio e
+  relatório submetido em grupo)", and with a single feminine-gender type it
+  agreed the participle wrongly ("análise de dados submetido em grupo"). The
+  submission mode is now a short sentence of its own ("O trabalho é de
+  autoria individual." / "This is a group submission."), so the type is named
+  once and no adjective has to agree with a noun of unknown gender.
+
+---
+
 ## [1.1.1] — 2026-07-22 — GAIDeT map moved to policy.json; review fixes
 
 Follow-up to 1.1.0 after a project-wide review pass.

@@ -72,20 +72,22 @@ A taxonomia GAIDeT organiza a delegação em oito macrodomínios; a U.Porto acre
 
 | Macrodomínio (GAIDeT + extensão U.Porto) | Chave equivalente na Themis | Estado |
 |---|---|---|
-| Conceptualização | `ideation` (vertente Estudantes) | Ausente na vertente Investigadores |
+| Conceptualização | `ideation` (Estudantes), `conceptualisation` (Investigadores) | Coberto |
 | Revisão da literatura | `literature_search` | Coberto |
-| Metodologia | --- | **Ausente** |
+| Metodologia | `methodology` | Coberto na vertente Investigadores |
 | Desenvolvimento de software e automação | `coding` | Coberto |
-| Gestão de dados | `data_analysis`, `statistics` | Coberto, sem distinção entre tratamento e inferência |
-| Escrita e edição | `drafting`, `editing`, `translation` | Coberto |
-| Revisão ética | --- | **Ausente** |
-| Supervisão | --- | **Ausente** |
-| Visuais/multimédia *(extensão U.Porto)* | `figures`, `poster_design`, `presentation_prep` | Coberto |
-| Controlo de qualidade *(extensão U.Porto)* | --- | **Ausente** |
+| Gestão de dados | `data_analysis` (Estudantes), `data_management`, `statistics` (Investigadores) | Coberto, sem distinção entre tratamento e inferência |
+| Escrita e edição | `drafting`, `editing`, `translation`, `study_summary`, `case_report`, `reflective_journal` | Coberto |
+| Revisão ética | `ethics_review` | Coberto na vertente Investigadores |
+| Supervisão | `supervision` | Coberto na vertente Investigadores |
+| Visuais/multimédia *(extensão U.Porto)* | `figures` (Investigadores), `poster_design`, `presentation_prep` (Estudantes) | Coberto |
+| Controlo de qualidade *(extensão U.Porto)* | `quality_control` | Coberto na vertente Investigadores |
 
-**Recomendação operacional.** A Themis deve (i) rotular as tarefas declaradas pelos macrodomínios GAIDeT, (ii) acrescentar os quatro macrodomínios em falta, (iii) acrescentar o eixo de âmbito, (iv) passar a emitir a nota curta normalizada, incluindo a variante de não-utilização, e (v) manter o [Anexo A](A-declaracao.qmd) como formulário de preenchimento manual equivalente. Estas alterações implicam incremento de `APP_VERSION` e de `policy.version`, nos termos do próprio regime de versionamento da ferramenta.
+O mapa tarefa → macrodomínio vive em `policy.json` (`gaidet.order` e `gaidet.map`), por ser taxonomia institucional e não comportamento da aplicação. Uma chave ausente do mapa --- como `portfolio` ou `other` --- não reivindica macrodomínio algum: a tarefa é declarada em prosa, sem ocupar uma casa da taxonomia que não preenche.
 
-Até que essas alterações estejam disponíveis, os investigadores e estudantes da FMUP que necessitem de declaração estruturada em conformidade com o regime U.Porto devem usar as ferramentas indicadas no Caderno de Pós-graduação e Investigação: o *GAIDeT Declaration Generator* (<https://panbibliotekar.github.io/gaidet-declaration/>) ou, para teses em LaTeX, o pacote `aidisclose` (<https://aidisclose.org/>) [@uporto2026posgrad].
+**Estado da execução.** As cinco alterações recomendadas por este anexo estão concluídas: a Themis (i) rotula as tarefas declaradas pelos macrodomínios GAIDeT --- na vertente Investigadores desde a versão `1.1.1`, na vertente Estudantes desde a `1.2.0` ---, (ii) acrescentou os macrodomínios em falta, (iii) acrescentou o eixo de âmbito, (iv) emite a nota curta normalizada, incluindo a variante de não-utilização, e (v) mantém o [Anexo A](A-declaracao.qmd) como formulário de preenchimento manual equivalente. A vertente Docentes não produz declaração, mas cláusula de programa de unidade curricular, pelo que a taxonomia não lhe é aplicável.
+
+As ferramentas indicadas no Caderno de Pós-graduação e Investigação --- o *GAIDeT Declaration Generator* (<https://panbibliotekar.github.io/gaidet-declaration/>) ou, para teses em LaTeX, o pacote `aidisclose` (<https://aidisclose.org/>) [@uporto2026posgrad] --- permanecem alternativas válidas, designadamente enquanto a Themis for demonstrador prototípico e não aplicação institucional certificada.
 
 ## Governação
 
@@ -162,4 +164,4 @@ O pacote é explicitamente extensível. Três contributos estão ao alcance imed
 
 **Promptário clínico.** O Promptário [@uporto2026promptario] não contém conteúdo clínico. O [Anexo J](J-promptario-clinico.qmd) é o suplemento correspondente: padrões para treino de anamnese, exercício de raciocínio diferencial, preparação de OSCE e leitura crítica de literatura clínica, com a invariante de não introdução de dados de doentes e com uma secção própria para docentes. É matéria em que a FMUP tem competência que as restantes unidades orgânicas não têm.
 
-**Gerador institucional de declarações.** O guia base recomenda, como acção futura, que "a Universidade do Porto deverá considerar o desenvolvimento ou a adaptação de um gerador institucional de declarações de uso de IA, alojado em domínio próprio, que incorpore a taxonomia de referência e a extensão operacional definidas neste pacote" [@uporto2026guiabase], remetendo entretanto para duas ferramentas externas. A [Themis](../themis/) responde a essa especificação, desde que concluída a integração da taxonomia GAIDeT descrita neste anexo. A sua candidatura a esse papel pressupõe a transição descrita em [Sobre · Estatuto editorial](../sobre.qmd#estatuto-editorial): revisão de segurança independente, avaliação de impacto sobre a protecção de dados, registo no inventário de aplicações da Universidade e responsável técnico designado. Enquanto demonstrador prototípico, a Themis serve para demonstrar viabilidade e para calibrar requisitos --- não para ser adoptada como aplicação institucional no estado actual.
+**Gerador institucional de declarações.** O guia base recomenda, como acção futura, que "a Universidade do Porto deverá considerar o desenvolvimento ou a adaptação de um gerador institucional de declarações de uso de IA, alojado em domínio próprio, que incorpore a taxonomia de referência e a extensão operacional definidas neste pacote" [@uporto2026guiabase], remetendo entretanto para duas ferramentas externas. A [Themis](../themis/) responde a essa especificação: a integração da taxonomia GAIDeT descrita neste anexo está concluída. A sua candidatura a esse papel pressupõe a transição descrita em [Sobre · Estatuto editorial](../sobre.qmd#estatuto-editorial): revisão de segurança independente, avaliação de impacto sobre a protecção de dados, registo no inventário de aplicações da Universidade e responsável técnico designado. Enquanto demonstrador prototípico, a Themis serve para demonstrar viabilidade e para calibrar requisitos --- não para ser adoptada como aplicação institucional no estado actual.
