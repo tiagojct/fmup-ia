@@ -15,7 +15,7 @@ Para o enquadramento institucional, normativo e deontológico, a lista de refer�
 
 Holderried F, Stegemann-Philipps C, Herschbach L, Moldt JA, Nevins A, Griewatz J, Holderried M, Herrmann-Werner A, Festl-Wietek T, Mahling M. A Generative Pretrained Transformer (GPT)-Powered Chatbot as a Simulated Patient to Practice History Taking: Prospective, Mixed Methods Study. *JMIR Medical Education*. 2024;10:e53961. DOI: [10.2196/53961](https://doi.org/10.2196/53961). PMID: 38227363.
 
-O estudo que fundamenta a ficha 1 e o mais útil de ler na íntegra antes de a aplicar. Tübingen Institute for Medical Education, 28 estudantes, 826 pares pergunta-resposta analisados quantitativa e qualitativamente. Dois resultados são directamente operacionais: 97,9% das respostas foram classificadas como plausíveis, mas em perguntas não cobertas pelo guião o modelo recorreu a informação fictícia em 56,4% dos casos. A estrutura de prompt usada, guião de doença mais componente comportamental, é a que a ficha reproduz.
+O estudo que fundamenta a ficha 1 e o mais útil de ler na íntegra antes de a aplicar. Tübingen Institute for Medical Education, 28 estudantes, 826 pares pergunta-resposta analisados quantitativa e qualitativamente. Dois resultados são directamente operacionais: 97,9 % das respostas foram classificadas como plausíveis, mas em perguntas não cobertas pelo guião o modelo recorreu a informação fictícia em 56,4 % dos casos. A estrutura de prompt usada, guião de doença mais componente comportamental, é a que a ficha reproduz.
 
 Hicke Y, Geathers J, Vu K, Sewell J, Cardie C, Talwalkar J, Shung D, Jack AG, Cornes S, Preston M, Kizilcec R. MedSimAI: Simulation and Formative Feedback Generation to Enhance Deliberate Practice in Medical Education. [arXiv:2503.05793v2](https://arxiv.org/abs/2503.05793v2), 22 de Janeiro de 2026 (primeira versão: Março de 2025). Versão revista aceite na LAK 2026, segundo o registo dos autores.
 
@@ -49,7 +49,7 @@ Reportagem sobre redesenho de trabalhos em Harvard. Contém a descrição do exe
 
 Thesen T, Park SH. A generative AI teaching assistant for personalized learning in medical education. *npj Digital Medicine*. 2025;8(1):627. DOI: [10.1038/s41746-025-02022-1](https://doi.org/10.1038/s41746-025-02022-1). PMID: 41188616.
 
-Implementação de um assistente baseado em *retrieval-augmented generation*, restrito a materiais curados pelo docente, numa unidade curricular de ciências básicas da Geisel School of Medicine at Dartmouth, ao longo de duas coortes. O resultado mais útil para quem planeie replicar é a tensão documentada entre fiabilidade e abrangência: as restrições ao corpus que garantem exactidão limitam simultaneamente as perguntas mais amplas, e essa tensão determina a adesão dos estudantes.
+Implementação de um assistente baseado em *retrieval-augmented generation*, restrito a materiais curados pelo docente, numa unidade curricular de ciências básicas da Geisel School of Medicine at Dartmouth, ao longo de duas coortes. O resultado mais útil para quem planeie replicar é a tensão documentada entre fiabilidade e abrangência: as restrições ao corpus que procuram melhorar a exactidão limitam simultaneamente as perguntas mais amplas, e essa tensão determina a adesão dos estudantes.
 
 ## Sobre o desenho desta sessão
 
@@ -63,7 +63,7 @@ Três razões para constar aqui, e não em leitura adicional.
 
 **A sequência.** Os autores reestruturaram deliberadamente o ciclo da Experiential Learning Theory para que a acção seguisse imediatamente a experiência concreta, em vez da ordem original de Kolb, e descrevem a facilitação adaptativa entre duas iterações como encurtar a introdução, aumentar o tempo prático e passar de orientação estruturada para experimentação flexível. É apoio directo à regra de corte desta sessão, que manda comprimir exposição e nunca a prática.
 
-**O aviso.** No seguimento a duas semanas (n=5), todos os respondentes tencionavam aplicar a ferramenta a planeamento de aulas e a desenho de avaliação, e 80% a cenários e a visualização de material. Mas apenas 40% tencionavam definir práticas de uso responsável e 20% iniciar discussões éticas. Com cinco respostas, é hipótese e não resultado, e vale nos dois sentidos, já que os 100% são as mesmas cinco pessoas. Ainda assim descreve o modo de falha mais provável de uma sessão curta, e os autores concluem que formação de curta duração "may initiate experimentation and reflection but cannot complete the work of embedding GenAI into teaching in critically reflective and ethically explicit ways".
+**O aviso.** No seguimento a duas semanas (n=5), todos os respondentes tencionavam aplicar a ferramenta a planeamento de aulas e a desenho de avaliação, e 80 % a cenários e a visualização de material. Mas apenas 40 % tencionavam definir práticas de uso responsável e 20 % iniciar discussões éticas. São resultados descritivos de cinco respondentes, sem generalização para outros docentes. As intenções declaradas não demonstram mudança efectiva de prática, e os autores concluem que formação de curta duração "may initiate experimentation and reflection but cannot complete the work of embedding GenAI into teaching in critically reflective and ethically explicit ways".
 
 Um dos cinco *workshops* foi dedicado a geração de imagem e visualização, matéria que esta sessão nomeia mas não demonstra, pelas razões dadas no [programa](programa.qmd#bloco-3) e em [Regras](regras.qmd).
 
@@ -73,7 +73,7 @@ Nota: o estudo é do Weill Cornell Medical College do **Qatar**, instituição d
 
 Boyle P. Medical schools move from worrying about AI to teaching it. *AAMC News*, 15 de Maio de 2025. <https://www.aamc.org/news/medical-schools-move-worrying-about-ai-teaching-it>
 
-Panorâmica do que as faculdades de medicina norte-americanas estão a fazer, com exemplos concretos de integração curricular. Útil para situar decisões locais num contexto mais amplo, e para perceber que a fase de deliberar se o tema entra no currículo já passou na maioria das instituições de referência.
+Panorâmica do que as faculdades de medicina norte-americanas estão a fazer, com exemplos concretos de integração curricular. Útil para situar decisões locais num contexto mais amplo, e para perceber que as instituições descritas já estão a experimentar integração curricular; a reportagem não estima a proporção de todas as escolas médicas.
 
 Gehrman E. How Generative AI Is Transforming Medical Education. *Harvard Medicine*, Outono de 2024. <https://magazine.hms.harvard.edu/articles/how-generative-ai-transforming-medical-education>
 

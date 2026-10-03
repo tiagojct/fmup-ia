@@ -15,7 +15,7 @@ Faculdade de Medicina da Universidade do Porto
 ::: {.hero-subtitle}
 Sessão de formação para docentes da FMUP, 120 minutos.
 
-A sessão não é sobre ferramentas. É sobre o que muda no desenho das aulas e da avaliação quando os estudantes já usam inteligência artificial generativa, e sobre o que cada docente pode levar pronto a aplicar na sua unidade curricular.
+A sessão trabalha o desenho de aulas e de avaliação em contexto de uso de IA generativa. Cada docente prepara uma actividade para a sua unidade curricular e testa-a com um colega.
 
 Dirige-se a todas as áreas da Faculdade: unidades curriculares clínicas, de ciências básicas e de ciência de dados e informática médica. As actividades propostas trazem variantes para cada uma.
 :::
@@ -34,7 +34,7 @@ Estatuto: **contributo individual** de Tiago Jacinto. Não é documento aprovado
 
 Esta sessão corresponde à formação inicial para docentes prevista na Fase 1 (2026-2027) do [Quadro de referência institucional FMUP · IA](https://tiagojacinto.eu/fmup-ia/quadro/), que propõe um programa regular de formação como condição da adopção do próprio quadro.
 
-O objectivo não é cobrir o tema, que é vasto e move-se depressa. É garantir que, no fim dos 120 minutos, cada participante sai com uma actividade desenhada para a sua unidade curricular, testada por um par, e com a declaração de uso correspondente já gerada.
+No fim dos 120 minutos, pretende-se que cada participante tenha uma actividade desenhada para a sua unidade curricular, testada por um par, e uma cláusula de uso preparada na Themis.
 
 ::: {.cards-3}
 ::: {.card-tile}

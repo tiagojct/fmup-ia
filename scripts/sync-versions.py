@@ -33,6 +33,7 @@ d=json.loads((ROOT/'themis/policy.json').read_text());d.update(version=v['themis
 update('themis/policy.json',json.dumps(d,ensure_ascii=False,indent=2)+'\n')
 replace('CITATION.cff',r'(?m)^version: .+$',f'version: "{version.removeprefix("v")}.0"')
 replace('CITATION.cff',r'(?m)^date-released: .+$',f'date-released: "{date}"')
+replace('quadro/references.bib', r'Contributo individual (?:submetido|destinado) a apreciação institucional; versão [\d.]+', f'Contributo individual destinado a apreciação institucional; versão {version.removeprefix("v")}')
 # Zenodo deposition metadata supports version and publication_date.
 d=json.loads((ROOT/'.zenodo.json').read_text());d.update(version=version.removeprefix('v')+'.0',publication_date=date)
 update('.zenodo.json',json.dumps(d,ensure_ascii=False,indent=2)+'\n')

@@ -11,7 +11,7 @@
 
   // Derived from _variables.yml by scripts/sync-versions.py.
   // Bump themis.versao there when statement content changes.
-  const APP_VERSION = '1.3.0';
+  const APP_VERSION = '1.3.1';
 
   // Schema version for the URL hash payload. Bump when state shape
   // changes incompatibly. Hashes with a different `v` are rejected.

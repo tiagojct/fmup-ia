@@ -3,12 +3,12 @@ title: "Recursos"
 toc: true
 ---
 
-Lista de _frameworks_, regulamentos e documentos institucionais referenciados ao longo do Quadro. As entradas estão organizadas por jurisdição/escala. Para a bibliografia académica completa, ver [Referências](quadro/references.qmd).
+Lista de referenciais, regulamentos e documentos institucionais referenciados ao longo do Quadro. As entradas estão organizadas por jurisdição/escala. Para a bibliografia académica completa, ver [Referências](quadro/references.qmd).
 
 ## União Europeia
 
-- **[Regulamento (UE) 2024/1689 — EU AI Act](https://eur-lex.europa.eu/eli/reg/2024/1689/oj)** --- Em vigor desde Agosto de 2024; aplicação plena em Agosto de 2026. Anexo III, ponto 3, classifica como de alto risco os sistemas de IA usados em educação para acesso/admissão, avaliação de resultados e detecção de comportamentos proibidos durante avaliações.
-- **[European Health Data Space (EHDS)](https://health.ec.europa.eu/ehealth-digital-health-and-care/european-health-data-space_en)** --- Regulamento em vigor desde Março de 2025; aplicação geral em Março de 2027. Define obrigações para uso primário e secundário de dados de saúde.
+- **[Regulamento (UE) 2024/1689 — EU AI Act](https://eur-lex.europa.eu/eli/reg/2024/1689/oj)** --- Em vigor desde Agosto de 2024, com aplicação faseada. A [actualização da Comissão Europeia de Julho de 2026](https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force) fixa 2 de Dezembro de 2027 para alto risco do Anexo III e 2 de Agosto de 2028 para produtos regulados do Anexo I. Anexo III, ponto 3, classifica como de alto risco os sistemas de IA usados em educação para acesso/admissão, avaliação de resultados e detecção de comportamentos proibidos durante avaliações.
+- **[European Health Data Space (EHDS)](https://health.ec.europa.eu/ehealth-digital-health-and-care/european-health-data-space-regulation-ehds_en)** --- Regulamento em vigor desde Março de 2025; principais obrigações em Março de 2029 e categorias adicionais em Março de 2031. Em 2027 está prevista a adopção de actos de execução da Comissão. Define obrigações para uso primário e secundário de dados de saúde.
 - **[RGPD (Regulamento (UE) 2016/679)](https://eur-lex.europa.eu/eli/reg/2016/679/oj)** --- Base jurídica transversal para protecção de dados pessoais; aplicável a todo o uso de GenAI envolvendo dados identificáveis ou pseudonimizados.
 - **[Regulamento (UE) 2017/745 — MDR](https://eur-lex.europa.eu/eli/reg/2017/745/oj)** e **[(UE) 2017/746 — IVDR](https://eur-lex.europa.eu/eli/reg/2017/746/oj)** --- Aplicáveis a _Software as a Medical Device_ (SaMD/AIaMD) usado em ensino clínico ou investigação translacional.
 - **[Living Guidelines on the Responsible Use of Generative AI in Research](https://research-and-innovation.ec.europa.eu/document/download/2b6cf7e5-36ac-41cb-aab5-0d32050143dc_en)** (Comissão Europeia / ERA Forum, 3.ª edição, Maio de 2026) --- Quatro princípios derivados do European Code of Conduct for Research Integrity.
@@ -16,7 +16,7 @@ Lista de _frameworks_, regulamentos e documentos institucionais referenciados ao
 ## Internacional
 
 - **[UNESCO Recommendation on the Ethics of AI (2021)](https://www.unesco.org/en/artificial-intelligence/recommendation-ethics)** + **[Guidance for Generative AI in Education and Research](https://unesdoc.unesco.org/ark:/48223/pf0000386693)** (Miao & Holmes, 2023) + **AI Competency Framework for Students** (2024).
-- **[OECD AI Principles (2019, rev. 2023)](https://oecd.ai/en/ai-principles)** --- Cinco princípios de IA confiável; taxonomia largamente referida em políticas nacionais.
+- **[OECD AI Principles (2019; definição revista em 2023, princípios actualizados em 2024)](https://oecd.ai/en/ai-principles)** --- Cinco princípios de IA confiável; taxonomia largamente referida em políticas nacionais.
 - **[Council of Europe Framework Convention on AI (CETS 225)](https://www.coe.int/en/web/artificial-intelligence/the-framework-convention-on-artificial-intelligence)** --- Primeiro tratado internacional juridicamente vinculativo sobre IA, aberto para assinatura em Vilnius, 5 de Setembro de 2024.
 - **[NIST AI Risk Management Framework 1.0](https://www.nist.gov/itl/ai-risk-management-framework)** --- Quatro funções: GOVERN, MAP, MEASURE, MANAGE. Companion **Generative AI Profile** (NIST AI 600-1, Julho 2024).
 - **[ISO/IEC 42001:2023](https://www.iso.org/standard/81230.html)** --- Primeiro standard internacional certificável para sistemas de gestão de IA (AIMS), metodologia Plan-Do-Check-Act.
@@ -27,7 +27,7 @@ Lista de _frameworks_, regulamentos e documentos institucionais referenciados ao
 - **[AAMC Principles for the Responsible Use of AI in and for Medical Education](https://www.aamc.org/about-us/mission-areas/medical-education/principles-ai-use)** --- Sete eixos. Versão 1.0, texto final de 3 de Janeiro de 2025, segundo a página oficial.
 - **AAMC AI Competencies for Medical Educators** (CGEA) e _AI Competencies Across the Continuum_ (com a Josiah Macy Jr. Foundation).
 - **HEAT-AI** (Temper et al., 2025, Frontiers in Education) --- Operacionalização universitária do _risk-based approach_ do EU AI Act em quatro níveis. Adoptado pela St. Pölten University of Applied Sciences.
-- **Russell Group Principles on the Use of Generative AI Tools in Education** (UK, 2023) --- Cinco princípios principlistas, adoptados pelas 24 universidades-membro.
+- **Russell Group Principles on the Use of Generative AI Tools in Education** (UK, 2023) --- Cinco princípios, adoptados pelas 24 universidades-membro.
 
 ## Integridade da publicação científica
 
@@ -38,7 +38,7 @@ Lista de _frameworks_, regulamentos e documentos institucionais referenciados ao
 ## Portugal
 
 - **[Recomendação n.º 4/2026 do CNE](https://diariodarepublica.pt/dr/detalhe/recomendacao/4-2026-1124911989)** --- Conselho Nacional de Educação, _Integração da Inteligência Artificial no sistema educativo português_, publicada em DR 2.ª série, n.º 98, 21 de Maio de 2026. 31 recomendações em três eixos (Infraestrutura e Soberania Digital; Pedagogia, Currículo, Literacia e Formação; Ética, Responsabilidade, Governança e Monitorização), com calendarização (medidas urgentes / médio prazo / longo prazo). Aplicação ao ensino superior em três recomendações específicas (1.6 _edge computing_, 2.13 _RAG_, 3.5 governança nacional); princípios transversais aplicáveis a todo o sistema educativo público.
-- **[Resolução do Conselho de Ministros n.º 2/2026](https://diariodarepublica.pt/)** --- Agenda Nacional de Inteligência Artificial (ANIA) e Plano de Acção 2026-2030. Quatro eixos; Quadro Nacional de Competências Inteligentes (QNCI); reforço do Deucalion.
+- **[Resolução do Conselho de Ministros n.º 2/2026](https://diariodarepublica.pt/dr/detalhe/resolucao-conselho-ministros/2-2026-1000882016)** --- Agenda Nacional de Inteligência Artificial (ANIA) e Plano de Acção 2026-2030. Quatro eixos; Quadro Nacional de Competências Inteligentes (QNCI); reforço do Deucalion.
 - **[IAedu](https://iaedu.pt/)** --- Plataforma da FCT/FCCN para acesso institucional federado a modelos de larga escala, com garantia contratual de que os dados dos utilizadores não são usados para treino.
 - **[A3ES](https://www.a3es.pt/)** --- Agência de avaliação e acreditação do ensino superior; em discussão a integração de competências em IA nos referenciais.
 
@@ -50,7 +50,7 @@ Lista de _frameworks_, regulamentos e documentos institucionais referenciados ao
 
 ## Ferramentas e infraestrutura
 
-- **[Themis](themis/)** --- demonstrador prototípico do Quadro FMUP · IA. Gera declarações estruturadas para os três papéis institucionais. (Anteriormente conhecida como *Atlas*, renomeada em Junho de 2026 para evitar colisão com o portal **Atlas U.Porto**.)
+- **[Themis](themis/)** --- demonstrador prototípico do Quadro FMUP · IA. Gera declarações para estudantes e investigadores e cláusulas de unidade curricular para docentes. (Anteriormente conhecida como *Atlas*, renomeada em Junho de 2026 para evitar colisão com o portal **Atlas U.Porto**.)
 - **[GitHub](https://github.com/tiagojct/fmup-ia)** --- repositório-fonte do Quadro e da Themis.
 
 ## Como sugerir adições

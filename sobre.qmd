@@ -9,7 +9,7 @@ Este documento é um **contributo individual** de Tiago Jacinto à reflexão sob
 
 As formulações do tipo "A FMUP define...", "A FMUP adopta..." que pontuam o Quadro devem ser lidas como propostas redigidas em registo institucional para facilitar a sua eventual adopção formal --- não como descrição do estado actual do regime aplicável à Faculdade. O regime em vigor é o que consta dos regulamentos pedagógicos, despachos da Direcção, deliberações do Conselho Científico, e demais instrumentos institucionais publicados pelos canais próprios da Faculdade e da Universidade do Porto.
 
-O documento é submetido aos órgãos competentes da FMUP para apreciação, no entendimento de que qualquer adopção formal exigirá processo deliberativo próprio, ajustamentos editoriais resultantes da apreciação institucional, e --- nas secções que tratam de matérias jurídicas, designadamente o procedimento disciplinar e as cláusulas de procurement --- parecer prévio da Direcção Jurídica da Universidade do Porto.
+O documento destina-se à apreciação pelos órgãos competentes da FMUP, no entendimento de que qualquer adopção formal exigirá processo deliberativo próprio, ajustamentos editoriais resultantes da apreciação institucional, e --- nas secções que tratam de matérias jurídicas, designadamente o procedimento disciplinar e as cláusulas de procurement --- parecer prévio da Direcção Jurídica da Universidade do Porto.
 
 A publicação online no domínio pessoal [tiagojacinto.eu/fmup-ia](https://tiagojacinto.eu/fmup-ia/) corresponde a publicação académica em nome individual, sob licença [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), para discussão pública. Não constitui presença institucional da FMUP nem dispensa os processos próprios para o efeito.
 
@@ -32,11 +32,11 @@ Esta declaração será actualizada se alguma das condições materiais ou profi
 O Quadro e a Themis são, no presente estado, mantidos no espaço pessoal do autor. Reconhecendo as limitações que esta circunstância impõe a qualquer aspiração institucional, prevêem-se quatro medidas de continuidade:
 
 - **Licença permissiva.** Todo o conteúdo está publicado sob [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) e todo o código (Themis, extensão Quarto, _scripts_ de _build_) sob a mesma licença. Qualquer pessoa ou instituição pode legalmente _forkar_, adaptar e manter cópias derivadas.
-- **Repositório público.** O código-fonte completo está em [github.com/tiagojct/fmup-ia](https://github.com/tiagojct/fmup-ia). A história editorial é integralmente reconstruível a partir do histórico `git`.
+- **Repositório público.** O código-fonte completo está em [github.com/tiagojct/fmup-ia](https://github.com/tiagojct/fmup-ia). O histórico `git` permite consultar as alterações registadas no repositório.
 - **Caminho de migração institucional.** Em caso de adopção formal pela FMUP, propõe-se a transferência do repositório para um _namespace_ institucional (`github.com/u-porto/...` ou equivalente), a migração da publicação para domínio institucional (`fmup.up.pt/...`), e a transição da manutenção para uma equipa designada pela direcção, com mandato e recursos próprios.
 - **Padrões abertos.** A _stack_ técnica (Quarto, Typst, Pandoc/CSL, JavaScript sem dependências para a Themis, BibTeX) é integralmente baseada em padrões abertos e ferramentas de código aberto, o que reduz o custo de migração entre infraestruturas.
 
-A presente arquitectura não pretende ser a arquitectura institucional final --- pretende mostrar que **uma arquitectura institucional é tecnicamente exequível** com a infraestrutura disponível em Portugal e na União Europeia.
+A infraestrutura actual permite testar os requisitos de uma eventual aplicação institucional e preparar a sua migração para uma equipa com mandato e recursos próprios.
 
 ## Autoria
 
@@ -52,7 +52,7 @@ Este Quadro foi redigido em pt-PT (pré-AO90) entre Abril e Maio de 2026, na seq
 
 O Quadro divide-se em dois momentos distintos.
 
-A **Parte I — Comparação** (capítulos 10 a 15) percorre referenciais externos: modelos anglo-americanos, europeus, ibero-americanos e supranacionais (UNESCO, ERA Forum, AI Act, Conselho da Europa), incluindo um enquadramento clínico específico para faculdades de medicina e um diagnóstico das lacunas que os quadros existentes não cobrem.
+A **Parte I — Comparação** (capítulos 10 a 15) percorre referenciais externos: modelos anglo-americanos, europeus, ibero-americanos e supranacionais (UNESCO, ERA Forum, AI Act, Conselho da Europa), incluindo um enquadramento clínico específico para faculdades de medicina e uma análise de limites na aplicação dos referenciais existentes.
 
 A **Parte II — Proposta operacional** (capítulos 1 a 9) é a proposta para a FMUP. Assenta em sete princípios orientadores e organiza-se em três vertentes:
 
@@ -68,17 +68,15 @@ Uma convenção tipográfica: o documento chama-se sempre **Quadro** (maiúscula
 
 ## Como funciona a Themis
 
-A [**Themis**](themis/) é uma ferramenta web que acompanha o Quadro e gera declarações de uso de IA generativa padronizadas. Corre inteiramente no browser — não instala nada, não envia dados para nenhum servidor, não guarda cookies.
+A [Themis](themis/) é um demonstrador que gera rascunhos de declarações para estudantes e investigadores e cláusulas para programas de unidades curriculares. Os destinatários incluem trabalhos académicos, revistas, financiadores e repositórios. O utilizador deve verificar as exigências actuais de cada destinatário e rever o texto antes de o utilizar.
 
-**O que faz:** a partir de um conjunto de perguntas sobre o papel do utilizador (estudante, docente ou investigador), a ferramenta utilizada e o tipo de assistência obtida, a Themis produz um texto de declaração formatado para o destinatário pretendido — trabalho académico, manuscrito científico, candidatura FCT, Horizonte Europa ou Wellcome Trust.
+O formulário corre no navegador, sem envio dos campos para um servidor e sem cookies. As escolhas e o texto livre ficam, porém, codificados no fragmento do endereço (`#`) e podem permanecer no histórico. Quem tiver a ligação pode recuperá-los. Não se deve introduzir informação pessoal, clínica ou confidencial nos campos.
 
-**Como se relaciona com o Quadro:** cada declaração gerada referencia a versão do Quadro em vigor no momento da geração (versões do Quadro, da aplicação e das regras no texto de cada declaração), tornando-a rastreável no tempo. Quando a proposta for revista, as versões actualizadas ficam registadas no `CHANGELOG.md` do repositório.
+A avaliação de risco tem quatro níveis, adaptados do HEAT-AI. É indicativa e não bloqueia a geração do texto; também não autoriza um uso proibido nem certifica conformidade institucional ou jurídica.
 
-**Avaliação de risco:** a Themis integra uma grelha de risco em quatro níveis (baseada no modelo HEAT-AI de Temper et al., 2025) que orienta o utilizador sobre a compatibilidade do uso com o Quadro. Esta avaliação é **sempre guiante — nunca bloqueante**: o utilizador mantém o controlo e pode gerar a declaração independentemente do nível de risco assinalado.
+Cada texto inclui a data de geração e as versões da aplicação, das regras e do Quadro usado como referência. Uma ligação partilhável recupera escolhas e exige nova revisão; não arquiva a redacção original. Para conservar essa redacção, guarde o texto ou o PDF. As alterações estão registadas no [histórico da Themis](https://github.com/tiagojct/fmup-ia/blob/main/themis/CHANGELOG.md).
 
-**Ligações partilháveis:** o estado de cada formulário é codificado no URL (fragmento `#`), permitindo partilhar ou arquivar uma declaração específica sem enviar dados para qualquer servidor.
-
-**Para citar a Themis num trabalho académico:** a Themis gera automaticamente a linha de citação adequada ao destinatário no final de cada declaração.
+Para citar a ferramenta num trabalho académico, use a referência da página [Convenções](convencoes.qmd#como-citar-a-themis).
 
 ## Infraestrutura técnica
 
@@ -88,7 +86,7 @@ O Quadro e a Themis são publicados como um único sítio web estático, constru
 
 **Themis — demonstrador prototípico sem dependências.** O demonstrador é uma aplicação de página única escrita em JavaScript, HTML e CSS sem dependências externas ou passo de compilação. O Quarto copia-a como recurso estático. Corre inteiramente no browser do utilizador.
 
-**Guias PDF.** Quatro guias práticos de uma página (estudantes, docentes, investigadores, serviços) são gerados directamente pelo `quarto render` via `format: fmup-typst` declarado em cada `.qmd` de guia, partilhando a tipografia e a paleta institucional do resto do site.
+**Guias PDF.** Quatro guias práticos em PDF (estudantes, docentes, investigadores, serviços) são gerados directamente pelo `quarto render` via `format: fmup-typst` declarado em cada `.qmd` de guia, partilhando a tipografia e a paleta institucional do resto do site.
 
 **Publicação contínua.** Um *workflow* de GitHub Actions (`publish.yml`) constrói o site e os guias a cada *push* para o ramo principal e publica o resultado em <https://tiagojacinto.eu/fmup-ia/>.
 
@@ -102,9 +100,9 @@ Texto, código e dados publicados sob **[Creative Commons Attribution 4.0 (CC BY
 
 ## Financiamento e conflitos
 
-Este trabalho não foi suportado por financiamento dedicado. Não há conflitos de interesse declaráveis. Ferramentas de GenAI usadas na produção do Quadro e da Themis são declaradas no histórico do repositório `tiagojct/fmup-ia`, em coerência com os princípios que o próprio Quadro defende.
+Este trabalho não recebeu financiamento dedicado. Os interesses profissionais e a autoria das ferramentas recomendadas estão identificados na [declaração de conflitos de interesse](#declaracao-de-conflitos-de-interesse). A revisão editorial de Outubro de 2026 foi realizada com assistência de IA generativa, incluindo revisão de texto, coerência entre páginas e verificações automatizadas, registadas no repositório. Essa assistência não constitui validação ou aprovação institucional.
 
-## Estado de revisão
+## Estado de revisão {#estado-de-revisao}
 
 O Quadro segue um esquema de versão própria (`v1.0`, `v1.1`, …), distinto do esquema da Themis (`APP_VERSION`) e da `policy.version` do conjunto de regras. As três versões são todas declaradas no rodapé de cada declaração emitida pela Themis.
 
@@ -114,11 +112,12 @@ O Quadro segue um esquema de versão própria (`v1.0`, `v1.1`, …), distinto do
 | 1.0 (rev.) | 2026-05-23 | Iterações editoriais sem alteração à estrutura ou aos princípios. Ferramenta correspondente: *Atlas* `v0.9.1`. `policy.version`: `1.2.2`. |
 | 1.1 | 2026-06 | Harmonização com o *White Paper* da Comissão de Ética da FMUP (Falcão-Pires et al., 2023): nova subsecção "Articulação com a Comissão de Ética da FMUP" em capítulo 5, _cross-refs_ em capítulos 2, 6, 14. **Rebranding da ferramenta** de *Atlas* para **Themis** (colisão com portal *Atlas U.Porto*) --- `v1.0.0`. `policy.version`: `1.3.0` (`recommended_tools`, `submission` CPD, `courseType` docente, novas tipologias). |
 | 1.2 | 2026-07-22 | **Articulação com o pacote institucional da Universidade do Porto** (sete documentos, Junho de 2026): novo [Anexo H](quadro/H-articulacao-uporto.qmd) com regra de precedência, mapeamento de princípios, correspondência semáforo ↔ HEAT-AI e mapeamento GAIDeT. Adopção do regime de declaração em dois níveis e do limiar de materialidade ([Anexo A](quadro/A-declaracao.qmd)); marcadores de semáforo nos [Anexos B](quadro/B-clausula.qmd) e no [capítulo 3](quadro/03-estudantes.qmd); nova secção sobre trabalhos de grupo; regra prudencial de ferramentas não aprovadas e fluxo processual disciplinar da U.Porto no [capítulo 6](quadro/06-infraestrutura.qmd). Correcção factual no [capítulo 12](quadro/12-panorama-iberoamerica.qmd) (a afirmação de ausência de orientação da U.Porto deixou de ser verdadeira). Absorção das matérias do pacote U.Porto que o Quadro não cobria: ponderação minoritária, sobrecarga curricular como causa de uso indevido e alternativas não digitais à evidência de processo ([capítulo 4](quadro/04-docentes.qmd)); módulo de 1 ECTS no 1.º ciclo ([capítulo 7](quadro/07-implementacao.qmd)); sustentabilidade e grelha de adaptações razoáveis ([capítulo 8](quadro/08-transversais.qmd)); explicabilidade como recomendação pedagógica ([capítulo 6](quadro/06-infraestrutura.qmd)); rotina de estudo e padrões de _prompt_ ([Anexo D](quadro/D-guia.qmd)). Dois anexos novos como contributo para o pacote U.Porto: [Anexo I](quadro/I-perfis-disciplinares.qmd) (cinco perfis disciplinares da FMUP) e [Anexo J](quadro/J-promptario-clinico.qmd) (promptário clínico). Themis `v1.1.0` → `v1.1.1`: declaração em dois níveis, declaração de não-utilização, eixo de âmbito, taxonomia GAIDeT (mapa em `policy.json`), marcador de semáforo na cláusula gerada, e correcção de um defeito que fazia os campos de escolha múltipla reterem apenas a última opção seleccionada. `policy.version`: `1.5.0`. Revisão global de consistência: versão única do Quadro em `_variables.yml`, metadados de citação actualizados (CITATION.cff, .zenodo.json), _redirect_ `atlas/` → `themis/` para ligações anteriores ao _rebranding_, e banco de ensaio automatizado em `themis/test/`. |
-| 1.3 | 2026-07-29 | **Sexto perfil disciplinar no [Anexo I](quadro/I-perfis-disciplinares.qmd): ciências básicas** (biologia, histologia, anatomia, fisiologia, bioquímica), na estrutura do caderno da U.Porto. Cobre uma lacuna do próprio caderno, cujos dez perfis não incluem nenhuma destas áreas, e é a área com maior peso relativo no corpo docente dos primeiros anos do MIMED. Contagens actualizadas no [Anexo H](quadro/H-articulacao-uporto.qmd) e na [nota de integração](nota-integracao-uporto.qmd). `policy.version`: `1.6.0`. Sem alteração à Themis. A plataforma de formação foi adaptada em paralelo a uma audiência mista (formação `v1.1`), com integração de Anand et al. 2026. |
+| 1.3 | 2026-07-29 | **Sexto perfil disciplinar no [Anexo I](quadro/I-perfis-disciplinares.qmd): ciências básicas** (biologia, histologia, anatomia, fisiologia, bioquímica), na estrutura do caderno da U.Porto. Cobre uma lacuna do próprio caderno, cujos dez perfis não incluem nenhuma destas áreas, e desenvolve exemplos para docentes dos primeiros anos do MIMED. Contagens actualizadas no [Anexo H](quadro/H-articulacao-uporto.qmd) e na [nota de integração](nota-integracao-uporto.qmd). `policy.version`: `1.6.0`. Sem alteração à Themis. A plataforma de formação foi adaptada em paralelo a uma audiência mista (formação `v1.1`), com integração de Anand et al. 2026. |
 | 1.4 | 2026-09-07 | **Conclusão da integração da taxonomia GAIDeT na Themis.** A vertente Estudantes passa a nomear os macrodomínios delegados no texto da declaração, e não apenas no resumo de escolhas --- o elemento que o regime de dois níveis da U.Porto exige de uma declaração estruturada, e que até aqui se perdia quando o estudante colava a declaração numa dissertação. Actualização do estado da execução e da tabela de mapeamento no [Anexo H](quadro/H-articulacao-uporto.qmd) e do _callout_ do [Anexo A](quadro/A-declaracao.qmd), ambos desactualizados face ao estado real da ferramenta. Themis `v1.1.1` → `v1.2.0`: cláusula de macrodomínios partilhada pelas vertentes Estudantes e Investigadores, e correcção de uma duplicação na frase de abertura da declaração de estudante quando estavam seleccionados vários tipos de trabalho. `policy.version`: `1.6.1`. Revisão motivada pelo pedido de inclusão da Themis no manual de dissertação do MMED. |
-| 1.5 | 2026-10-03 | Correcção das declarações e da avaliação de risco da Themis `1.3.0` (regras `1.7.0`); recolha dos elementos da declaração estruturada, âmbito obrigatório, não-utilização para estudantes, confirmações explícitas e recuperação segura de ligações. Revalidação bibliográfica com correcções de DOI, PMID, autoria e edições; identificação dos URLs públicos do pacote U.Porto, com limitação de acesso aos PDFs registada. Testes em português e inglês integrados na publicação e sincronização automática de versões. |
+| 1.5 | 2026-10-03 | Correcção das declarações e da avaliação de risco da Themis `1.3.0` (regras `1.7.0`); recolha dos elementos da declaração estruturada, âmbito obrigatório, não-utilização para estudantes, confirmações explícitas e recuperação segura de ligações. Revalidação bibliográfica com correcções de DOI, PMID, autoria e edições; identificação dos URLs públicos do pacote U.Porto, com consulta dos sete PDFs e registo da evidência de revalidação. Testes em português e inglês integrados na publicação e sincronização automática de versões. |
+| 1.6 | 2026-10-03 | Revisão integral do texto, com remoção de formulações promocionais e generalizações sem suporte; harmonização de terminologia, contagens, regimes e limites da Themis em português e inglês. Correcção de instruções das fichas e actualização dos guias PDF e slides. Themis `1.3.1`, regras `1.7.1`, formação `v1.3`. Registo em [revisão editorial](https://github.com/tiagojct/fmup-ia/blob/main/audits/revisao-editorial-2026-10-03.md). |
 
-Revisões futuras (`v1.5`, `v2.0`, …) serão registadas neste quadro e no `CHANGELOG.md` do repositório, com correspondência explícita às versões da Themis e da `policy.json` que as acompanham.
+Revisões futuras (`v1.7`, `v2.0`, …) serão registadas neste quadro e no `CHANGELOG.md` do repositório, com correspondência explícita às versões da Themis e da `policy.json` que as acompanham.
 
 A revisão `v1.2` está descrita em detalhe na [Nota de integração com o quadro da Universidade do Porto](nota-integracao-uporto.qmd), que documenta o que foi corrigido, o que foi adoptado do pacote da Universidade, o que o Quadro acrescenta e como prosseguir.
 

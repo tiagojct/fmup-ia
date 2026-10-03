@@ -6,8 +6,10 @@ toc-depth: 3
 ---
 
 ::: {.callout-important appearance="simple"}
-Esta nota descreve uma revisão do Quadro FMUP · IA e da ferramenta Themis, ambos contributos individuais de Tiago Jacinto submetidos à apreciação dos órgãos competentes da FMUP. Não é política institucional aprovada e não vincula a Faculdade nem a Universidade. Ver [Estatuto editorial](sobre.qmd#estatuto-editorial).
+Esta nota descreve uma revisão do Quadro FMUP · IA e da ferramenta Themis, ambos contributos individuais de Tiago Jacinto destinados à apreciação dos órgãos competentes da FMUP. Não é política institucional aprovada e não vincula a Faculdade nem a Universidade. Ver [Estatuto editorial](sobre.qmd#estatuto-editorial).
 :::
+
+O estado técnico da secção 8 corresponde à revisão de 22 de Julho de 2026. As actualizações posteriores estão identificadas no texto e em [Sobre](sobre.qmd#estado-de-revisao).
 
 ## Sumário
 
@@ -19,7 +21,7 @@ Esta publicação alterou a posição do Quadro FMUP · IA. Até Junho, o Quadro
 2. **Subordina** o Quadro ao pacote nas matérias que este cobre, e integra as onze matérias em que o pacote é mais completo ou mais operacional.
 3. **Delimita** o contributo próprio do Quadro --- a camada biomédica, clínica e regulatória que um referencial transversal a quinze unidades orgânicas não pode tratar com a profundidade que a matéria exige.
 
-O resultado não é um Quadro diminuído. É um Quadro com posição institucional mais clara: instrumento de especialização de um referencial existente, e não instrumento paralelo a ele. A articulação integral está no [Anexo H](quadro/H-articulacao-uporto.qmd).
+A revisão posiciona o Quadro como proposta de aplicação biomédica das orientações da U.Porto. A articulação está no [Anexo H](quadro/H-articulacao-uporto.qmd).
 
 ## 1. O pacote da Universidade do Porto
 
@@ -54,17 +56,17 @@ Antes de descrever o que mudou, importa registar o que não precisou de mudar. A
 
 Convergem também na base de evidência: ambos assentam no diagnóstico CNIPES, na Recomendação n.º 4/2026 do CNE, no AI Act e nas _Living Guidelines_ do ERA Forum.
 
-Há ainda uma convergência que merece registo autónomo, por ter ocorrido de forma independente. A tripartição **_Saber sobre IA / Fazer com IA / Ser sem IA_**, que o Quadro adoptou a partir do CNIPES, é literalmente a formulação do princípio vii da Universidade: processos de ensino e de aprendizagem "sobre a IA, com a IA e sem IA". Duas instituições chegaram à mesma estrutura por caminhos distintos, o que reforça a recomendação operacional de que cada ciclo de estudos identifique pelo menos um momento avaliativo sem IA.
+A estrutura Saber sobre IA / Fazer com IA / Ser sem IA, adoptada a partir do CNIPES, é compatível com o princípio vii da U.Porto, que prevê aprendizagem sobre, com e sem IA. Essa correspondência apoia a proposta de momentos avaliativos sem IA.
 
-Esta convergência é o argumento mais forte a favor do Quadro: um documento redigido antes do pacote, e sem dele ter conhecimento, alinha-se com ele em todas as regras nucleares.
+A comparação identificou convergências nas regras nucleares e diferenças de detalhe que motivaram as alterações descritas abaixo.
 
 ## 3. O que foi corrigido
 
 Uma afirmação do Quadro deixou de ser verdadeira com a publicação do pacote. O [capítulo 12](quadro/12-panorama-iberoamerica.qmd) invocava "a ausência de orientação específica da Universidade do Porto à data desta proposta" como parte da justificação para a iniciativa da FMUP.
 
-A passagem foi reescrita. A justificação que a substitui é mais sólida do que a original: a FMUP não preenche um vazio, especializa um referencial existente para um domínio que aquele referencial não trata. Duas afirmações correlativas foram igualmente corrigidas no [capítulo 1](quadro/01-enquadramento.qmd), onde se lia que nenhuma instituição portuguesa havia publicado um quadro abrangente cobrindo estudantes, docentes e investigadores.
+A passagem foi reescrita. A nova justificação situa a proposta como desenvolvimento biomédico do referencial transversal da U.Porto. Duas afirmações correlativas foram igualmente corrigidas no [capítulo 1](quadro/01-enquadramento.qmd), onde se lia que nenhuma instituição portuguesa havia publicado um quadro abrangente cobrindo estudantes, docentes e investigadores.
 
-O [capítulo 12b](quadro/12b-panorama-portugal.qmd) recebeu uma nota datada: o indicador CNIPES de 14,7% de instituições com política em prática mantém-se válido como retrato de Abril de 2026, mas a U.Porto passou entretanto para esse grupo. O dado não foi alterado --- foi contextualizado.
+O [capítulo 12b](quadro/12b-panorama-portugal.qmd) recebeu uma nota datada: o indicador CNIPES de 14,7 % de instituições com política em prática mantém-se válido como retrato de Abril de 2026, e a U.Porto publicou entretanto orientações. O inquérito não permite identificar a resposta individual da Universidade nem reclassificá-la. O dado não foi alterado --- foi contextualizado.
 
 ## 4. O que foi adoptado do pacote
 
@@ -101,9 +103,9 @@ A Universidade opera com um semáforo 🟩 / 🟨 / 🟥 por actividade avaliada
 
 Duas destas matérias merecem destaque pela qualidade do contributo.
 
-A primeira é a **sobrecarga curricular** como causa de uso indevido. É um contributo causal, e não normativo: parte do uso indevido não é falha de integridade, é sintoma de desenho curricular. A resposta correspondente também não é disciplinar --- é coordenação entre unidades curriculares do mesmo semestre. A observação é particularmente pertinente no Mestrado Integrado em Medicina.
+A sobrecarga curricular pode favorecer uso apressado de GenAI. A resposta proposta inclui coordenação entre unidades curriculares, em complemento do apuramento de eventuais infracções.
 
-A segunda é a **ponderação minoritária**. Resolve, sem recurso a detecção, o problema que a proibição generalizada não resolve: se o peso do produto potencialmente gerado for minoritário, a classificação passa a depender maioritariamente de evidência de desempenho autónomo, e o incentivo à delegação indevida desaparece por construção.
+A ponderação minoritária do produto gerado com GenAI aumenta o peso da evidência de desempenho autónomo. É uma medida de desenho de avaliação; a sua eficácia deve ser verificada no piloto.
 
 ### Uma divergência deliberada
 
@@ -111,7 +113,7 @@ O princípio viii da Universidade trata a sustentabilidade como princípio autó
 
 ## 5. O que o Quadro acrescenta
 
-O pacote da Universidade é transversal às quinze unidades orgânicas e, por essa razão, não trata matéria específica do domínio biomédico. **Nenhuma das áreas seguintes tem cobertura no pacote:**
+O pacote da Universidade é transversal às quinze unidades orgânicas. A proposta FMUP desenvolve os requisitos biomédicos com maior detalhe operacional e regulatório. As matérias seguintes recebem desenvolvimento específico no Quadro:
 
 | Matéria | Onde está tratada |
 |---|---|
@@ -127,7 +129,7 @@ O pacote da Universidade é transversal às quinze unidades orgânicas e, por es
 | NIST AI RMF e ISO/IEC 42001 | [Capítulo 6](quadro/06-infraestrutura.qmd), [capítulo 7](quadro/07-implementacao.qmd) |
 | Grelha de maturidade institucional para auto-avaliação anual | [Anexo G](quadro/G-maturidade-cnipes.qmd) |
 
-É esta camada que justifica a existência do Quadro depois da publicação do pacote. Um referencial que tem de servir simultaneamente Arquitectura e Medicina não pode --- nem deve --- descer ao ICH E6(R3) ou à distinção entre pseudonimização e anonimização em dados de ensaio clínico. A FMUP pode, e é a única unidade orgânica que tem de o fazer para o seu contexto.
+O contributo proposto é o detalhe biomédico destas matérias, a validar com as coordenações de curso, os serviços competentes e os parceiros clínicos.
 
 ## 6. Os dois contributos novos
 
@@ -145,7 +147,7 @@ O Promptário da Universidade não contém conteúdo clínico. Este anexo é o s
 
 A regra invariante está declarada no início: **nenhum dado de doente real entra em ferramenta alguma**, e a reflexão sobre um doente observado em estágio faz-se com o docente, não com uma ferramenta.
 
-É matéria em que a FMUP tem competência que as restantes unidades orgânicas não têm.
+A FMUP pode contribuir com a sua experiência de formação clínica.
 
 ## 7. A Themis
 
@@ -157,7 +159,7 @@ O guia de boas práticas da Universidade termina com uma recomendação explíci
 
 Até lá, o pacote remete estudantes e orientadores para duas ferramentas externas: o *GAIDeT Declaration Generator* e o pacote LaTeX `aidisclose`.
 
-A Themis responde a essa especificação --- escrita pela Universidade sem conhecimento de que a ferramenta existe. Esta é a oportunidade institucional mais concreta que o projecto tem neste momento, e é sensível ao tempo: cada mês em que as duas ferramentas externas permanecem como referência prática recomendada é um mês em que se consolidam como opção por omissão.
+A Themis implementa elementos dessa especificação, incluindo a taxonomia e a declaração em dois níveis. A sua adequação a um serviço institucional exige avaliação técnica, segurança, governação e manutenção.
 
 ### O que foi feito
 
@@ -189,7 +191,7 @@ O episódio tem uma leitura institucional que convém não perder: é precisamen
 | Quadro FMUP · IA | v1.2 (2026-07-22) | 17 capítulos, 10 anexos |
 | Themis | `v1.1.1` | Demonstrador prototípico |
 | `policy.json` | `1.5.0` | 16 regras |
-| Guias de uma página | 4 PDF | Actualizados |
+| Guias PDF | 4 PDF | Actualizados |
 
 A bibliografia recebeu oito entradas novas: os sete documentos da Universidade e o artigo original do GAIDeT. Os metadados deste último foram verificados no registo Crossref, e não copiados do documento que o cita.
 
@@ -199,7 +201,7 @@ Os passos seguintes estão ordenados por precedência lógica, não por priorida
 
 ### Passo 1 --- Validação interna dos perfis disciplinares
 
-Os seis perfis do [Anexo I](quadro/I-perfis-disciplinares.qmd) fazem afirmações pedagógicas sobre famílias de unidades curriculares que devem ser confirmadas por quem as lecciona. São propostas de calibração, não descrições validadas.
+Os perfis do [Anexo I](quadro/I-perfis-disciplinares.qmd) fazem afirmações pedagógicas sobre famílias de unidades curriculares que devem ser confirmadas por quem as lecciona. São propostas de calibração, não descrições validadas.
 
 **Antes de qualquer submissão externa**, cada perfil deve ser revisto pela coordenação do ciclo de estudos correspondente e ancorado numa unidade curricular concreta, com ligação à respectiva ficha no SIGARRA --- que é o formato usado pelo caderno da Universidade.
 
@@ -213,7 +215,7 @@ A razão não é protocolar. É de eficiência: o pacote tem ciclo de revisão a
 
 Depois de validados, os dois contributos podem ser propostos:
 
-- Os **seis perfis disciplinares**, para inclusão no *Caderno complementar de perfis disciplinares*. É o contributo de menor atrito: o caderno convida-os expressamente e define a estrutura a seguir.
+- Os **perfis disciplinares** (seis na versão actual), para inclusão no *Caderno complementar de perfis disciplinares*. É o contributo de menor atrito: o caderno convida-os expressamente e define a estrutura a seguir.
 - O **promptário clínico**, como suplemento ao *Promptário de estudo*.
 
 ### Passo 4 --- Posicionamento da Themis como gerador institucional

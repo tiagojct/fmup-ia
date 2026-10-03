@@ -1,8 +1,8 @@
 ---
 title: "Guia prático: utilização de IA generativa"
 subtitle: "Docentes da FMUP"
-author: "FMUP --- Grupo de trabalho para IA generativa"
-date: "2026-04-21"
+author: "Tiago Jacinto — contributo individual para discussão"
+date: "2026-10-03"
 date-format: "D [de] MMMM [de] YYYY"
 lang: pt-PT
 # CSL colocado nesta pasta de propósito. O Typst do Quarto 1.10+
@@ -23,7 +23,7 @@ format:
 
 ## Enquadramento mínimo
 
-A GenAI já é usada pelos estudantes em prevalências de 60% a 80%. A resposta institucional não pode ser a proibição generalizada: tem de ser o redesenho de métodos que valorizem competências que a GenAI não substitui -- raciocínio clínico em tempo real, reflexão crítica fundamentada, apresentação oral com arguição, avaliação prática.
+O uso de GenAI documentado em inquéritos exige explicitar o regime de cada actividade e verificar competências individuais: raciocínio presencial, reflexão fundamentada, apresentação com arguição ou prova prática.
 
 ## Regras essenciais
 
@@ -31,7 +31,7 @@ A GenAI já é usada pelos estudantes em prevalências de 60% a 80%. A resposta 
 2. **Inclua no programa da UC uma cláusula explícita sobre GenAI.** Permitido, condicionado ou proibido -- e em que termos. O modelo do Anexo B tem três exemplos trabalhados.
 3. **Redesenhe a avaliação onde for necessário.** Privilegie formatos em que a autoria é verificável: apresentação oral com arguição, raciocínio clínico presencial, reflexão pessoal com dados do próprio percurso, avaliação prática de competências.
 4. **Se usar GenAI para preparar materiais, reveja tudo e declare.** Verifique exactidão clínica e terminológica; explicite aos estudantes o uso e o método de verificação -- a declaração é pedagógica, não apenas formal.
-5. **Não submeta trabalhos de estudantes a plataformas comerciais para classificar.** Viola confidencialidade e o RGPD (decisão automatizada sobre avaliação requer intervenção humana substantiva).
+5. **Não submeta trabalhos de estudantes a serviços não autorizados.** O apoio à avaliação exige protecção dos dados e revisão humana substantiva; a decisão final é do docente.
 6. **Distinga apoio pedagógico positivo de substituição cognitiva.** GenAI pode ser instrumento de _reflective practice_, simulador de "primeiro doente" para treino de anamnese, gerador de vinhetas clínicas auditadas -- usos que tornam o processo de raciocínio _mais_ visível, não menos.
 7. **Participe na formação e na partilha.** O quadro institucional é um documento vivo: as práticas que funcionam na sua UC podem servir de calibração às outras.
 
@@ -42,11 +42,11 @@ A GenAI já é usada pelos estudantes em prevalências de 60% a 80%. A resposta 
 - **Preparação de questões socráticas:** usar GenAI para gerar _pools_ de perguntas, seleccionar e adaptar manualmente.
 - **Tradução e adaptação de conteúdos:** materiais em inglês traduzidos com declaração, para discussão pedagógica sobre fidelidade terminológica.
 
-## Plataformas recomendadas
+## Ferramentas e condições de uso
 
 - **IAedu** — <https://iaedu.pt>. Institucional, conta `@up.pt`. Primeira opção sempre que possível.
-- **ChatGPT** — <https://chatgpt.com> e **Claude** — <https://claude.ai>. Para testar capacidades e limitações. Usar versões com opt-out de treino ou conta institucional.
-- **NotebookLM** — <https://notebooklm.google.com>. Excelente para criar _tutores_ a partir de materiais curriculares (com as cautelas de protecção de dados).
+- **ChatGPT** — <https://chatgpt.com> e **Claude** — <https://claude.ai>. Para testar capacidades e limitações. Usar apenas materiais autorizados para a conta e o serviço; o opt-out de treino não substitui essa autorização.
+- **NotebookLM** — <https://notebooklm.google.com>. Pode apoiar o estudo a partir de materiais curriculares (com as cautelas de protecção de dados).
 - **Perplexity** — <https://www.perplexity.ai>. Útil para respostas com citações verificáveis -- mas verifique sempre as referências.
 
 ## Recursos de consulta
@@ -58,4 +58,4 @@ A GenAI já é usada pelos estudantes em prevalências de 60% a 80%. A resposta 
 
 ---
 
-*Documento resumido. Versão de Julho de 2026. Documento vivo, sujeito a revisão anual. Para o tratamento integral das questões aqui resumidas, consulte o Quadro institucional [@jacinto2026quadro] e a ferramenta Themis [@jacinto2026themis].*
+*Guia da proposta {{< var quadro.versao >}}, revisto em {{< var quadro.data >}}. Não é política institucional aprovada. Para o tratamento integral das questões aqui resumidas, consulte o Quadro institucional [@jacinto2026quadro] e a ferramenta Themis [@jacinto2026themis].*

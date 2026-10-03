@@ -4,7 +4,7 @@ Para além das referências académicas e institucionais citadas no corpo do doc
 
 ## Evidência académica sobre _slop_ e output não editado
 
-Jones et al. (2025), ao analisarem vídeos de educação biomédica em YouTube e TikTok, propuseram a primeira definição formal de _slop_ em meios educacionais e encontraram que 5,3% do conteúdo examinado era _slop_ gerado por IA [@jones2025slop]. O termo _slop_ foi escolhido Palavra do Ano 2025 pelo _Merriam-Webster_.
+Jones et al. (2025), ao analisarem vídeos de educação biomédica em YouTube e TikTok, propuseram uma definição de _slop_ em meios educacionais e encontraram que 5,3 % do conteúdo examinado era _slop_ gerado por IA [@jones2025slop]. O termo _slop_ foi escolhido Palavra do Ano 2025 pelo _Merriam-Webster_.
 
 ## Orientações profissionais e editoriais internacionais
 
@@ -20,13 +20,13 @@ O referencial hierarquicamente mais próximo da FMUP. Sete documentos publicados
 
 - **Doc. 01** -- *Inteligência artificial generativa no domínio educativo: Orientações para uso e adoção responsável* [@uporto2026orientacoes]. Enquadramento estratégico: missão, cinco valores, oito princípios, análise de riscos e oportunidades, seis eixos de recomendações, fluxo processual disciplinar, glossário.
 - **Doc. 02** -- *Guia de boas práticas para o uso de inteligência artificial generativa no contexto académico* [@uporto2026guiabase]. Núcleo operacional: sete regras mínimas transversais, modelo de semáforo por actividade, estrutura de governação em cinco níveis, dez situações-tipo, _checklists_ e modelos de declaração.
-- **Doc. 03** -- *Guia prático para docentes* [@uporto2026guiadocentes]. Uma página: fluxo de decisão em seis passos e texto-modelo para enunciados.
-- **Doc. 04** -- *Guia prático para estudantes* [@uporto2026guiaestudantes]. Uma página: leitura do semáforo, bom _versus_ mau uso, níveis de declaração.
+- **Doc. 03** -- *Guia prático para docentes* [@uporto2026guiadocentes]. Fluxo de decisão em seis passos e texto-modelo para enunciados.
+- **Doc. 04** -- *Guia prático para estudantes* [@uporto2026guiaestudantes]. Leitura do semáforo, bom _versus_ mau uso, níveis de declaração.
 - **Doc. 05** -- *Caderno complementar de perfis disciplinares* [@uporto2026perfis]. Dez perfis de unidades curriculares, um por unidade orgânica; o perfil 7 corresponde à UC *Medicina Clínica e Serviços de Saúde I* da FMUP. O caderno é explicitamente extensível por proposta das unidades orgânicas.
 - **Doc. 06** -- *Caderno de Pós-graduação e Investigação com Inteligência Artificial Generativa* [@uporto2026posgrad]. Adopta o **GAIDeT** [@suchikova2026gaidet] como taxonomia-base de delegação de tarefas, com extensão operacional U.Porto para visuais/multimédia e controlo de qualidade; define o regime de declaração em dois níveis.
 - **Doc. 07** -- *Promptário de estudo com Inteligência Artificial Generativa* [@uporto2026promptario]. Padrões de _prompt_ por objectivo de aprendizagem e por área, e lista de _prompts_ a evitar.
 
-À data de consulta (Julho de 2026) não foi localizado endereço público de distribuição para estes documentos; as entradas bibliográficas correspondentes não incluem `url`, campo a completar quando a publicação institucional for confirmada.
+Os sete documentos e as ligações directas aos PDFs foram confirmados em 3 de Outubro de 2026 na página de [Documentos orientadores da U.Porto](https://www.up.pt/portal/pt/inovacao-educativa/recursos/documentos-orientadores/). As entradas bibliográficas incluem esses endereços.
 
 ## Referenciais nacionais portugueses (2026)
 

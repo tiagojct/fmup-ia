@@ -86,7 +86,7 @@ Estas últimas duas famílias são as mais produtivas com esta ficha, e por uma 
 
 ### Papel do estudante
 
-Toma posição antes de consultar a ferramenta e assume-a até ao fim, mesmo que mude de opinião: a mudança de opinião regista-se e discute-se, não se dissimula.
+Regista a posição inicial antes de consultar a ferramenta. Se a rever, identifica o argumento e a evidência que motivaram a mudança.
 
 Responde a cada contra-argumento classificando-o numa de três categorias, e esta classificação é o produto da actividade:
 
@@ -96,7 +96,7 @@ Responde a cada contra-argumento classificando-o numa de três categorias, e est
 | Obriga a qualificar | A posição mantém-se, mas com uma condição ou excepção explícita |
 | Obriga a rever | O contra-argumento é decisivo e a posição inicial não se sustenta |
 
-A terceira categoria é a que interessa. Um grupo que não classifique nenhum contra-argumento como decisivo deve ser interpelado sobre isso no plenário.
+Todas as categorias exigem justificação. Um grupo pode manter a posição inicial se rebater os argumentos com fundamento; mudar de opinião não é, por si só, critério de qualidade.
 
 ### Papel do docente
 
@@ -109,16 +109,16 @@ No plenário, confronta grupos com posições opostas e centra a discussão nos 
 O plenário organiza-se por quatro perguntas:
 
 1. **Que contra-argumento foi classificado como decisivo por mais grupos?** Normalmente identifica o ponto genuinamente difícil da questão.
-2. **Algum grupo mudou de posição?** Se sim, o que o motivou. Se nenhum mudou, vale a pena perguntar se a classificação foi honesta.
-3. **Que contra-argumentos vinham sem fundamentação verificável?** A instrução do prompt obriga a ferramenta a assinalá-los, e é o momento de literacia crítica da actividade.
+2. **Algum grupo mudou de posição?** Se sim, o que o motivou. Se nenhum mudou, peça que explicitem as razões para manter a posição.
+3. **Que contra-argumentos vinham sem fundamentação verificável?** A instrução do prompt pede à ferramenta que os assinale, mas não garante que o faça, e é o momento de literacia crítica da actividade.
 4. **O que a ferramenta não conseguiu produzir?** Tipicamente, o argumento ancorado no contexto local: legislação portuguesa concreta, prática da instituição, particularidade cultural.
 
 Se avaliar, avalie a resposta escrita aos contra-argumentos, com peso maior para as classificações justificadas. Não avalie a posição tomada.
 
 ## Armadilhas conhecidas
 
-- **Deriva para o consenso.** O modelo tende, por defeito, a produzir texto equilibrado e a fechar com uma síntese conciliadora. A instrução explícita de não suavizar é indispensável e mesmo assim pode ter de ser repetida na conversa.
-- **Argumentos com evidência inventada.** É o risco principal desta actividade, porque um contra-argumento ganha força aparente quando invoca um estudo. A instrução de assinalar a evidência não confirmável reduz o problema; a verificação no plenário fecha-o.
+- **Deriva para o consenso.** O modelo tende, por defeito, a produzir texto equilibrado e a fechar com uma síntese conciliadora. A instrução explícita de não suavizar pode ajudar, mas pode ter de ser repetida na conversa.
+- **Argumentos com evidência inventada.** É o risco principal desta actividade, porque um contra-argumento ganha força aparente quando invoca um estudo. A instrução de assinalar a evidência não confirmável reduz o problema; a verificação no plenário ajuda a identificar o que permanece sem suporte.
 - **Adopção da posição da ferramenta.** Se a posição não for tomada antes, os estudantes adoptam a que lhes for apresentada com mais fluência. A ordem das fases não é negociável.
 - **Questões sem dois lados.** Se a controvérsia escolhida tiver uma resposta claramente correcta, os contra-argumentos saem artificiais e os estudantes percebem-no.
 - **Confusão entre ético e legal.** O modelo mistura os dois registos com facilidade. A instrução separa-os, e a distinção deve ser retomada no plenário.

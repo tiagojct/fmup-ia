@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1] — 2026-10-03
+
+- Correct bilingual wording: teacher prohibition applies to the selected assessed work; open use retains data, integrity and disclosure requirements.
+- Remove automatic authorship and compliance assurances; use proposal-based risk labels and reference-tool labels.
+- Align policy 1.7.1 descriptions with explicit context rules, authorised data environments and final-work disclosure. Predicates and risk levels are unchanged.
+- Reference Framework v1.6 and clarify separate clauses for different assessment regimes.
+
 ## [1.3.0] — 2026-10-03
 
 - Require tools, tasks and an explicit scope; material use also needs an actual use date, affected sections, human checks and a prompt record/reference.

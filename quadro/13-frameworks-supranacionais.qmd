@@ -8,7 +8,7 @@ A _Recommendation on the Ethics of AI_, adoptada por unanimidade pelos 193 Estad
 
 ## OECD
 
-Os [_AI Principles_ da OCDE](https://oecd.ai/en/ai-principles) (2019, com definição de IA revista em 2023 e princípios actualizados em Maio de 2024) e o [_Framework for the Classification of AI Systems_](https://doi.org/10.1787/cb6d9eca-en) (2022) fornecem uma taxonomia largamente referida em políticas nacionais. A OECD.AI _Policy Observatory_ mantém repositório de iniciativas de mais de 80 jurisdições. A vantagem principal da abordagem OCDE é a sua neutralidade tecnológica e o seu enraizamento numa tradição de _soft law_ que tem permitido a sua adopção por administrações públicas com diferentes capacidades regulatórias.
+Os [_AI Principles_ da OCDE](https://oecd.ai/en/ai-principles) (2019, com definição de IA revista em 2023 e princípios actualizados em Maio de 2024) e o [_Framework for the Classification of AI Systems_](https://doi.org/10.1787/cb6d9eca-en) (2022) fornecem uma taxonomia largamente referida em políticas nacionais. A OECD.AI _Policy Observatory_ mantém repositório de iniciativas de mais de 80 jurisdições. A vantagem principal da abordagem OCDE é a sua neutralidade tecnológica e o seu enraizamento numa tradição de _soft law_ que facilita a sua adopção por administrações públicas com diferentes capacidades regulatórias.
 
 ## Conselho da Europa
 

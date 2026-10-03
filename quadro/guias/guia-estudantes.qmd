@@ -1,8 +1,8 @@
 ---
 title: "Guia prático: utilização de IA generativa"
 subtitle: "Estudantes da FMUP"
-author: "FMUP --- Grupo de trabalho para IA generativa"
-date: "2026-04-21"
+author: "Tiago Jacinto — contributo individual para discussão"
+date: "2026-10-03"
 date-format: "D [de] MMMM [de] YYYY"
 lang: pt-PT
 # CSL colocado nesta pasta de propósito. O Typst do Quarto 1.10+
@@ -38,13 +38,13 @@ format:
 6. **Em raciocínio clínico, não delegue.** A utilização de GenAI para gerar diagnósticos diferenciais ou planos de gestão sobre casos discutidos em aula compromete o desenvolvimento da sua competência clínica.
 7. **Seja capaz de defender o que submete.** O docente pode pedir-lhe para explicar linha a linha o que entregou. Se não consegue, não o devia ter submetido.
 
-## Plataformas recomendadas
+## Ferramentas e condições de uso
 
 - **IAedu** — <https://iaedu.pt>. Plataforma institucional portuguesa (FCT/FCCN), autenticação federada com conta `@up.pt`. Gratuita, com garantia de não-utilização dos dados para treino.
-- **ChatGPT** — <https://chatgpt.com>. Verifique as definições de privacidade; se usar a versão gratuita, os dados podem ser utilizados para treino.
-- **Claude** — <https://claude.ai>. Alternativa frequentemente mais conservadora em matéria de confabulação.
-- **DeepL** — <https://www.deepl.com>. Para traduções técnicas de alta qualidade.
-- **NotebookLM** — <https://notebooklm.google.com>. Útil para estudar a partir de materiais que você próprio fornece (apontamentos, PDFs de livros), mantendo o âmbito controlado.
+- **ChatGPT** — <https://chatgpt.com>. Reveja treino e retenção nas definições da conta; isso não autoriza dados protegidos.
+- **Claude** — <https://claude.ai>. Ferramenta conversacional; confirme as referências e as condições de utilização.
+- **DeepL** — <https://www.deepl.com>. Para tradução, com revisão terminológica.
+- **NotebookLM** — <https://notebooklm.google.com>. Útil para estudar a partir de materiais próprios ou autorizados, mantendo o âmbito controlado.
 
 ## Mais informação
 
@@ -52,8 +52,8 @@ format:
 - Modelo de declaração de uso: Anexo A.
 - Modelo de cláusula para programas de UC: Anexo B.
 - Cenários práticos de aplicação: Anexo E.
-- Para questões não cobertas por este guia, contacte o grupo de trabalho para IA generativa da FMUP.
+- Para questões não cobertas por este guia, consulte o docente ou os serviços competentes da U.Porto. O grupo de trabalho da FMUP é uma estrutura proposta.
 
 ---
 
-*Documento resumido. Versão de Julho de 2026. Documento vivo, sujeito a revisão anual. Para o tratamento integral das questões aqui resumidas, consulte o Quadro institucional [@jacinto2026quadro] e a ferramenta Themis [@jacinto2026themis].*
+*Guia da proposta {{< var quadro.versao >}}, revisto em {{< var quadro.data >}}. Não é política institucional aprovada. Para o tratamento integral das questões aqui resumidas, consulte o Quadro institucional [@jacinto2026quadro] e a ferramenta Themis [@jacinto2026themis].*

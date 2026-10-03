@@ -2,48 +2,49 @@
 
 A literatura sobre governação institucional de GenAI é jovem mas convergente num ponto: existe um conjunto consistente de lacunas que atravessa as diferentes regiões e limita a eficácia das políticas mesmo em instituições maduras. O reconhecimento destas lacunas é parte essencial da proposta para a FMUP.
 
-## Oito lacunas críticas
+## Nove lacunas a considerar
 
-1. **_Implementation gap_.** Os documentos privilegiam compromissos aspiracionais e sub-investem em mecanismos operacionais. McDonald et al. [@mcdonald2025policies] quantificam: 63% das 116 universidades R1 dos EUA encorajam o uso, apenas 38% exigem citação. Em Portugal, o silêncio é a expressão extrema do mesmo padrão.
+1. **_Implementation gap_.** Os documentos privilegiam compromissos aspiracionais e sub-investem em mecanismos operacionais. McDonald et al. [@mcdonald2025policies] quantificam: 63 % das 116 universidades R1 dos EUA encorajam o uso, apenas 38 % exigem citação. O diagnóstico CNIPES de Abril de 2026 documenta a diferença entre adopção e políticas em prática [@cnipes2026].
 
 2. **Escassez de validação empírica.** Poucos estudos mostram que as políticas alteram comportamentos efectivos. A tipologia de Ng et al. [@ng2023aieducation], a literacia documentada por Levingston et al. [@levingston2024literacy] e os achados de Shin et al. [@shin2024impact] são contributos importantes, mas a literatura específica sobre eficácia de políticas é incipiente.
 
-3. **Sub-representação geográfica e linguística.** A maioria dos estudos vem do *Global North* com enviesamento anglófono. O português europeu está sub-representado nos modelos (capítulo [8](08-transversais.qmd)); o ibero-americano só recentemente ganha visibilidade.
+3. **Cobertura geográfica e linguística.** A selecção de fontes e as línguas de publicação condicionam a comparação. No uso local, é necessário testar terminologia e desempenho em português europeu, como propõe o [capítulo 8](08-transversais.qmd).
 
-4. **Participação substantiva dos estudantes.** Os exemplos notáveis (AAC de Coimbra, *Honor Council* de Harvard) são excepções. A maioria das instituições inclui estudantes em comités de forma simbólica, sem mandato operacional.
+4. **Participação dos estudantes.** A presença num comité não demonstra influência nas decisões. A proposta deve definir mandato, acesso à informação e participação na avaliação do piloto.
 
-5. **Atraso da capacidade docente e da literacia.** O King's College London documentou em 2025 que 81% dos investigadores se posicionam em níveis baixos a médios de literacia ética em IA. Onde existe quadro normativo, a aplicação colapsa em *compliance* formal.
+5. **Capacidade docente e literacia.** A existência de um quadro normativo não demonstra que os utilizadores saibam aplicá-lo. A formação deve observar tarefas, verificação e dificuldades, em vez de medir apenas satisfação ou confiança.
 
-6. **_Procurement_ e dependência de fornecedores.** A dependência de OpenAI, Microsoft, Google cria risco de captura tecnológica. A ASU (parceria integral OpenAI, capítulo [10](10-panorama-eua.qmd)) e a Cornell/Harvard (*sandboxes* negociadas) são pólos opostos. A articulação com o Deucalion e a futura *Gigafactory* da ANIA pode mitigar o risco em Portugal.
+6. **Aquisição e dependência de fornecedores.** A contratação pode criar dependência de modelos, formatos ou serviços. Os casos do [capítulo 10](10-panorama-eua.qmd) mostram projectos seleccionados, avaliação de fornecedores e recursos institucionais. A IAedu e a infraestrutura nacional podem diversificar opções, mas a redução da dependência tem de ser demonstrada pelas condições efectivas de cada serviço.
 
-7. **Vigilância algorítmica administrativa.** Admissões, recrutamento, avaliação de desempenho e direitos laborais associados --- sobretudo de pessoal precário. É a dimensão menos endereçada na maioria das políticas.
+7. **Vigilância algorítmica administrativa.** Admissões, recrutamento e avaliação de desempenho podem afectar direitos. A proposta deve analisar esses usos e os mecanismos de supervisão e contestação aplicáveis.
 
 8. **_Equity gap_.** Interno (entre estudantes com diferentes capacidades de pagamento) e externo (entre instituições e jurisdições). A literatura sobre *digital divide* específico de GenAI confirma que a equidade tem dimensão material que excede o discurso.
 
-## Comparação
+9. **Verificação apenas formal.** Assinalar uma confirmação ou anexar uma declaração não demonstra que se tenham conferido fontes, dados e raciocínios. O piloto deve observar as verificações realizadas e as dificuldades encontradas, como discutido no [capítulo de objecções](09b-objeccoes.qmd).
 
-| Dimensão | EUA | Europa | Ibero-América |
-|---|---|---|---|
-| Factor principal | Autonomia docente, gestão de risco, *peer collaboration* | EU AI Act, RGPD, Russell Group | ANIA, UNESCO, CRUE-TIC, heterogeneidade nacional |
-| Modelo de governação | Multi-domínio com comités delegados | *Risk-based*, conformidade regulatória, *deployer obligations* | Heterogéneo, emergente, *top-down* quando existe |
-| Mecanismos típicos | *Task forces*, AI Advisory Council, *Statement of Need* | DPIAs, ALTAI, comités éticos, princípios sectoriais | Comités coordenadores, centros de referência, GTs |
-| Ênfase regulatória | FERPA, ADA, contratual | EU AI Act Anexo III, MDR/IVDR, RGPD, NIS2 | LGPD (BR), RGPD (PT/ES), regulações sectoriais |
-| Velocidade de adopção | Alta (2023-2024) | Média (2024-2025), atrasada pela calibração regulatória | Baixa-média, em aceleração |
-| Papel dos estudantes | Consultivo (*Honor Council*) | Principlista (Russell Group) | Crescente via associações académicas |
-| Papel dos docentes | Autonomia ao nível do curso | Híbrido entre princípios e adaptação local | Autonomia por défice institucional |
-| Integração QA/acreditação | Indirecta | Crescente (ENQA, ALTAI) | Variável; A3ES em discussão |
-| Sanções | Disciplinares (*Honor Code*) | Administrativas (DPA, AI Office) + académicas | Subdesenvolvidas |
-| Transparência | *Disclosure* obrigatório por curso | *Disclosure* + Anexo IV | *Disclosure* declarativo, raramente operacional |
-| *Redress* | Comités de integridade, ouvidor | Direitos RGPD + Art. 86.º EU AI Act | Variáveis, frequentemente genéricos |
+## Exemplos comparados
+
+A tabela resume os casos seleccionados nos capítulos anteriores. Não mede velocidade de adopção nem estabelece um modelo comum a cada continente.
+
+| Caso | Instrumento documentado | Questão para a FMUP |
+|---|---|---|
+| Cornell | Relatórios por domínio e ligação a processos de aquisição | Articular responsabilidades e avaliação de fornecedores |
+| Stanford | Princípios de supervisão e aplicação de regras existentes | Definir autoridade humana e responsabilidade |
+| Harvard / HMS | Aprovação por ferramenta e nível de dados | Verificar a finalidade e os dados permitidos em cada serviço |
+| Russell Group | Cinco princípios de ensino e avaliação | Traduzir princípios em regras por actividade |
+| St. Pölten | HEAT-AI, quatro níveis de risco institucional | Testar a adaptação local da taxonomia |
+| Unicamp | Deliberação e apoio técnico do Crefia | Ligar regras, capacitação e acompanhamento |
+| UNAM | Conselho coordenador e comité interdisciplinar | Definir coordenação e mandato |
+| U.Porto | Orientações, guias e semáforo por actividade | Aplicar o referencial transversal e desenvolver a camada biomédica |
 
 ## Cinco eixos éticos: cobertura desigual
 
-A **privacidade** está bem codificada em todas as regiões (FERPA, RGPD, LGPD). A **transparência** é o princípio de maior consenso textual, mas com *gap* operacional largo (Manganello et al. mostram-no para Itália). A **equidade** é a dimensão menos desenvolvida operacionalmente, sobretudo quanto a auditoria de viés. O **bem-estar** (carga cognitiva, dependência, impactos psicossociais) é em larga medida discursivo, com excepções como León-Domínguez [@leondominguez2024cognitive] e Shin et al. [@shin2024impact]. A *accountability* tem maior maturidade nos EUA (via *Honor Codes*) e na UE (via *deployer obligations*).
+Privacidade, transparência, equidade, bem-estar e responsabilidade devem ter medidas observáveis. Uma cláusula de protecção de dados não demonstra cumprimento; uma declaração não prova verificação. Os trabalhos de León-Domínguez [@leondominguez2024cognitive] e Shin et al. [@shin2024impact] justificam atenção aos efeitos cognitivos e à aprendizagem, nas condições que estudam. A comparação aqui apresentada não mede a cobertura efectiva destes cinco eixos em todas as regiões.
 
-## Caveats metodológicos
+## Limitações metodológicas
 
-A leitura requer prudência. Os documentos institucionais podem ter sido revistos após os estudos sintetizados; o ritmo é alto. Vários *frameworks* (HEAT-AI [@temper2025heatai], *XAI-ED*, Cornell, Stanford) são propostas conceptuais com pilotagem limitada. A distinção entre governação institucional e prática pedagógica é, empiricamente, mais fluida do que esta análise sugere. A RCM 2/2026 da ANIA [@ania2026] é recentíssima e a tradução em programas executados está por verificar.
+A leitura requer prudência. Os documentos institucionais podem ter sido revistos após os estudos sintetizados; o ritmo é alto. Vários *frameworks* (HEAT-AI [@temper2025heatai], *XAI-ED*, Cornell, Stanford) são propostas conceptuais com pilotagem limitada. A distinção entre governação institucional e prática pedagógica é, empiricamente, mais fluida do que esta análise sugere. A RCM 2/2026 da ANIA [@ania2026] foi aprovada em Janeiro de 2026 e a tradução em programas executados está por verificar.
 
 ## Síntese para o contexto FMUP
 
-Três conclusões relevantes para a [Parte II](02-principios.qmd). A proposta precisa de mecanismos operacionais explícitos para os princípios mais frágeis (equidade, bem-estar, *accountability*) e não pode ater-se à dimensão declarativa. A literacia em IA é o ponto mais subdesenvolvido em quase todas as instituições; o investimento em formação docente é proporcional, não residual. As questões de *procurement*, vigilância administrativa e *equity gap* pertencem ao capítulo [8](08-transversais.qmd) e não devem ser relegadas.
+A [Parte II](02-principios.qmd) deve associar princípios a procedimentos e observar a sua aplicação no piloto. A formação docente precisa de tempo, apoio e revisão dos resultados. A aquisição de serviços, os usos administrativos e a equidade de acesso requerem acompanhamento, como propõe o [capítulo 8](08-transversais.qmd).

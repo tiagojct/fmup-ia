@@ -1,20 +1,20 @@
 ---
 title: "Quadro de Referência para a Utilização de IA Generativa na FMUP"
-subtitle: "Proposta para discussão"
+subtitle: "Proposta para discussão · apresentação original de 17 de Junho de 2026, revista em Outubro"
 author: "Tiago Jacinto"
 institute: "MEDCIDS · Faculdade de Medicina da Universidade do Porto"
-date: 2026-06-17
+date: 2026-10-03
 date-format: "D [de] MMMM [de] YYYY"
 lang: pt-PT
 format:
   fmup-revealjs:
-    footer: "Quadro FMUP · IA — MEDCIDS — 17 Junho 2026"
+    footer: "Quadro FMUP · IA — MEDCIDS — revisão de Outubro de 2026"
 ---
 
 ## Porquê este Quadro, e porquê agora
 
-- **14,7%** das IES portuguesas reportam políticas sobre IA em prática (CNIPES, Abril 2026). 42,6% em elaboração; 42,6% sem qualquer enquadramento.
-- O **EU AI Act** entra em aplicação faseada até Agosto de 2026.
+- **14,7 %** das 68 IES portuguesas inquiridas reportam políticas sobre IA em prática (CNIPES, Abril 2026). 42,6 % em elaboração; 42,6 % sem qualquer enquadramento.
+- O **EU AI Act** tem aplicação faseada, com prazos de alto risco em Dezembro de 2027 e Agosto de 2028. [Calendário actualizado](https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force).
 - A FMUP — MIMED, Saúde Digital e Inovação Biomédica, nova Licenciatura em Ciências da Saúde Pública, mestrados e doutoramentos em Bioética, Cuidados Paliativos, Informática da Saúde e Ciência de Dados de Saúde — reúne condições para um referencial institucional próprio.
 
 [Quadro →](https://tiagojacinto.eu/fmup-ia/quadro/) · [Cap. 12b — Enquadramento nacional →](https://tiagojacinto.eu/fmup-ia/quadro/12b-panorama-portugal.html)
@@ -38,7 +38,7 @@ Três documentos recentes:
 1. **Sete princípios orientadores** — ERA Forum, Chan, AAMC. [Cap. 2 →](https://tiagojacinto.eu/fmup-ia/quadro/02-principios.html)
 2. **Três vertentes** — estudantes, docentes, investigadores. [Caps. 3–5 →](https://tiagojacinto.eu/fmup-ia/quadro/03-estudantes.html)
 3. **Infraestrutura e governança** — Grupo de Trabalho permanente; articulação clínica-hospitalar como etapa futura. [Cap. 6 →](https://tiagojacinto.eu/fmup-ia/quadro/06-infraestrutura.html)
-4. **Declaração obrigatória de uso** — modelo padrão, suportado pela Atlas. [Anexo A →](https://tiagojacinto.eu/fmup-ia/quadro/A-declaracao.html)
+4. **Declaração obrigatória de uso** — modelo padrão, suportado pela Themis. [Anexo A →](https://tiagojacinto.eu/fmup-ia/quadro/A-declaracao.html)
 5. **Taxonomia de risco em quatro níveis** — adaptada da grelha HEAT-AI.
 
 ## Sete princípios orientadores
@@ -60,7 +60,7 @@ Três documentos recentes:
 ::: {.column width="33%"}
 **Estudantes**
 
-Declaração por trabalho. Quatro regimes consoante a competência avaliada: proibido, permitido com declaração, recomendado, exigido.
+Declaração por trabalho. Três regimes por actividade: permitido, permitido com condições ou proibido, consoante a competência avaliada.
 
 [Cap. 3 →](https://tiagojacinto.eu/fmup-ia/quadro/03-estudantes.html)
 :::
@@ -112,15 +112,15 @@ Leitura transversal dos sete princípios.
 
 [Cap. 6 →](https://tiagojacinto.eu/fmup-ia/quadro/06-infraestrutura.html) · [Anexo E — cenários →](https://tiagojacinto.eu/fmup-ia/quadro/E-cenarios.html)
 
-## Atlas — ferramenta de apoio
+## Themis — ferramenta de apoio
 
-Gera declarações estruturadas por papel (estudante, docente, investigador) e contexto, com avaliação guidante de risco.
+Gera declarações para estudantes e investigadores e cláusulas de UC para docentes, com avaliação indicativa de risco.
 
-- Demonstrador prototípico; cliente-side; sem cookies; sem servidor.
+- Demonstrador prototípico; execução no navegador; sem cookies ou envio dos campos. As escolhas ficam no endereço e podem permanecer no histórico.
 - Versionada em paralelo com o Quadro (`policy.version` separa regras de *wording*).
 - Articulação prevista com a Plataforma Nacional de Práticas Pedagógicas (CNIPES, em desenvolvimento).
 
-[**Abrir Atlas →**](https://tiagojacinto.eu/fmup-ia/atlas/)
+[**Abrir Themis →**](https://tiagojacinto.eu/fmup-ia/themis/)
 
 ## Cinco critérios de maturidade
 
@@ -138,17 +138,17 @@ Auto-avaliação institucional anual, adoptados do CNIPES, operacionalizados com
 
 | Fase | Período | Foco |
 |---|---|---|
-| **Fase 1** | 2026–2027 | Adopção institucional; cláusula tipo nas UCs; formação; Atlas disponível como demonstrador. |
+| **Fase 1** | 2026–2027 | Adopção institucional; cláusula tipo nas UCs; formação; Themis disponível como demonstrador. |
 | **Fase 2** | 2027–2028 | Auditorias internas; grelha de maturidade; articulação CNIPES. |
-| **Fase 3** | 2028–2030 | Consolidação; eventual certificação ISO/IEC 42001. |
+| **Fase 3** | 2028–2029 | Consolidação; eventual certificação ISO/IEC 42001. |
 
 [Cap. 7 →](https://tiagojacinto.eu/fmup-ia/quadro/07-implementacao.html)
 
 ## Articulação nacional
 
 - **IAedu** (FCT/FCCN) — acesso institucional federado a LLMs, sem treino sobre dados. Infraestrutura de primeira linha.
-- **ANIA** (RCM 2/2026) — 400 M€ até 2030; reforço do Deucalion.
-- **Plataforma CNIPES** — articulação prevista. Atlas pode contribuir com o referencial FMUP.
+- **ANIA** (RCM 2/2026) — Plano de Acção 2026-2030; reforço do Deucalion.
+- **Plataforma CNIPES** — articulação prevista. Themis pode contribuir com o referencial FMUP.
 
 [Cap. 12b →](https://tiagojacinto.eu/fmup-ia/quadro/12b-panorama-portugal.html)
 
@@ -174,7 +174,7 @@ O Quadro publica as suas próprias fragilidades. Cinco objecções, cinco respos
 ## Recursos
 
 - **Quadro** — [tiagojacinto.eu/fmup-ia/quadro/](https://tiagojacinto.eu/fmup-ia/quadro/)
-- **Atlas** — [tiagojacinto.eu/fmup-ia/atlas/](https://tiagojacinto.eu/fmup-ia/atlas/)
+- **Themis** — [tiagojacinto.eu/fmup-ia/themis/](https://tiagojacinto.eu/fmup-ia/themis/)
 - **Cap. 12b — Enquadramento nacional** — [12b-panorama-portugal](https://tiagojacinto.eu/fmup-ia/quadro/12b-panorama-portugal.html)
 - **Cap. 9b — Objecções** — [09b-objeccoes](https://tiagojacinto.eu/fmup-ia/quadro/09b-objeccoes.html)
 - **Anexo G — Maturidade** — [G-maturidade-cnipes](https://tiagojacinto.eu/fmup-ia/quadro/G-maturidade-cnipes.html)

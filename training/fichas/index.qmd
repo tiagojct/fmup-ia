@@ -8,7 +8,7 @@ Seis actividades desenhadas para uso em aula, todas com a mesma estrutura: objec
 
 Nenhuma pressupõe unidade curricular clínica, com uma excepção declarada. Dentro de `Prompt base`, cada ficha tem uma subsecção **Variantes por área** com exemplos de substituição para ciências básicas (biologia, histologia, anatomia, bioquímica) e para ciência de dados e informática médica.
 
-Os prompts estão escritos para funcionar na [IAedu](https://iaedu.pt) e foram testados aí. Funcionam noutras plataformas com ajustes mínimos, mas a IAedu é a escolha de primeira linha por protecção de dados e por equidade de acesso.
+Os prompts foram preparados para a [IAedu](https://iaedu.pt), salvo a ficha 6, que exige um sistema RAG próprio. Devem ser testados antes da aula e adaptados ao modelo disponível. A IAedu é a referência da sessão pelo acesso institucional e pela equidade.
 
 ::: {.callout-important appearance="simple"}
 Todas as actividades usam casos fictícios. Nenhum dado de doente real entra em ferramenta alguma, em circunstância alguma. Ver [Regras](../regras.qmd).

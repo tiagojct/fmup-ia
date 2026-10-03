@@ -224,7 +224,7 @@
 
     if (s.scope === 'substantive') {
       return subject + ' having used ' + tools + ' in tasks with a material influence on the preparation of this work. ' +
-        'A description of the delegated tasks, the parts affected and the verifications carried out is set out in the attached structured declaration.' +
+        'A description of the delegated tasks, the parts affected and the checks and their status is set out in the attached structured declaration.' +
         footer(version, policy);
     }
 
@@ -320,12 +320,12 @@
       without_restrictions: '🟩 Permitted — ',
     };
     const marker = SEMAFORO[s.policy] || '';
-    const lead = marker + courseLead + ', and with respect to the ' + aNoun + '(s) used for assessment,';
+    const lead = marker + courseLead + ', for assessed activities described as ' + aNoun + ',';
 
     const policyText = {
       not_permitted: ' the use of generative artificial intelligence tools in producing the submitted work is not permitted. Assessed work must reflect exclusively the intellectual production of ' + subj.pl + '; any reliance on such tools will be treated as a breach of academic integrity.',
       with_disclosure: ' the use of generative artificial intelligence tools is permitted, subject to full disclosure. ' + subj.cap + ' must transparently declare the tools they used, the tasks for which those tools were used, and the degree of modification applied to the generated contributions, while retaining full responsibility for the submitted content.',
-      without_restrictions: ' the use of generative artificial intelligence tools is permitted without specific restrictions. ' + subj.cap + ' nonetheless retain full responsibility for the content submitted and for its alignment with the pedagogical aims of the programme.',
+      without_restrictions: ' the use of generative artificial intelligence tools is permitted without additional task restrictions, subject to data protection, integrity and disclosure requirements. ' + subj.cap + ' nonetheless retain full responsibility for the content submitted and for its alignment with the pedagogical aims of the programme.',
     }[s.policy] || '';
 
     return lead + policyText + footer(version, policy);
@@ -342,13 +342,13 @@
       : '';
 
     if (s.policy === 'not_permitted') {
-      return 'Generative AI use is not permitted in this programme. Theses, dissertations, final reports and equivalent documents must include a no-use note.' + skillsClause +
+      return 'Generative AI use is not permitted in this assessed work. Theses, dissertations, final reports and equivalent documents must include a no-use note.' + skillsClause +
         ' Any indication that such tools have been used will be assessed under FMUP’s academic integrity rules.' + footer(version, policy);
     }
 
     const reportClause = s.policy === 'with_disclosure'
       ? 'Together with the submitted work, ' + subjSg + ' must attach a brief disclosure statement indicating: (i) the generative AI tools used, including version where applicable; (ii) the specific tasks for which those tools were used; (iii) the degree of modification applied to the generated contributions; and (iv) confirmation that ' + subjSg + ' takes full responsibility for the submitted content. Failing to provide this statement, or providing an inaccurate one, may constitute a breach of academic integrity.'
-      : 'Although the use of these tools is permitted without specific restrictions, ' + subjPl + ' must disclose tools and tasks in all submitted work. Theses, dissertations, final reports and equivalents require a short note even when no AI was used; substantive use also requires structured disclosure.';
+      : 'Although the use of these tools is permitted without additional task restrictions, ' + subjPl + ' must disclose tools and tasks in all submitted work. Theses, dissertations, final reports and equivalents require a short note even when no AI was used; substantive use also requires structured disclosure.';
 
     return reportClause + skillsClause + (s.policy === 'with_disclosure' ? ' Theses, dissertations, final reports and equivalents always require a short note, even without AI use, and structured disclosure for material use.' : '') + footer(version, policy);
   };
@@ -372,7 +372,7 @@
     } else if (s.target === 'fct') {
       body += ' This statement accompanies the formal materials of the application submitted to the Fundação para a Ciência e a Tecnologia.';
     } else if (s.target === 'horizon') {
-      body += ' This statement follows the guidance issued by the European Commission and the ERA Forum on the responsible use of generative AI in projects funded by Horizon Europe.';
+      body += ' This statement documents the reported use for review against the guidance issued by the European Commission and the ERA Forum on the responsible use of generative AI in projects funded by Horizon Europe.';
     } else if (s.target === 'wellcome') {
       body += ' This statement documents the reported use in the Wellcome Trust application.';
     } else if (s.target === 'conference') {
@@ -444,13 +444,13 @@
       viewScenario: 'View scenario in the framework',
       principleLabel: 'Principle',
       footerNationalPlatform: 'National diagnosis of AI in higher education (CNIPES)',
-      toolsSuggestedHeader: 'Suggested tools (click to add)',
-      toolsSuggestedHelp: 'First the institutional platform (IAedu); then platforms with a contract and training opt-out; then specialised tools; finally consumer versions that require caution with data.',
+      toolsSuggestedHeader: 'Reference tools (click to add)',
+      toolsSuggestedHelp: 'Start with IAedu for authorised tasks. For any service, confirm the account, contract and permitted data categories. A paid account or training opt-out does not replace institutional authorisation.',
       toolsTierInstitutional: 'Institutional platform',
       toolsTierEnterprise: 'Enterprise tiers (contract + training opt-out)',
       toolsTierSpecialised: 'Specialised tools',
       toolsTierConsumerWarning: 'Consumer versions — mind the data',
-      studentUCPolicyReminder: 'Before submitting this declaration, check your course unit\'s policy — the course syllabus or <a href="../quadro/B-clausula.html" target="_blank">Appendix B</a> specify the applicable regime (permitted, conditioned or prohibited). This declaration reflects the institutional framework, not necessarily the specific course unit policy.',
+      studentUCPolicyReminder: 'Before submitting this declaration, check your course unit\'s policy — the course syllabus or <a href="../quadro/B-clausula.html" target="_blank">Appendix B</a> specify the applicable regime (permitted, conditioned or prohibited). This declaration is based on the FMUP proposal. Completing it does not demonstrate compliance with the specific course-unit policy.',
       teacherAdaptReminder: 'This text is a template. Adapt it to the specific pedagogical design of your course unit before including it in the syllabus — in particular, specify the course name, semester, and any specific conditions. <a href="../quadro/B-clausula.html" target="_blank">Appendix B</a> contains additional examples by regime.',
       landingPrivacyNote: 'This tool runs entirely in your browser — no form data is sent to a server and no cookies are used. Choices and free text are encoded in the browser address and may remain in its history; anyone with the link can recover them. Do not enter personal, clinical or identifiable information in any free-text field. The risk assessment is advisory; the final decision always belongs to the user.',
     },
@@ -518,7 +518,7 @@
         },
         edited: {
           label: 'Substantially edited',
-          description: 'You rewrote significant parts, verified facts and sources, and the final result reflects your critical judgement. Full authorship retained.',
+          description: 'You rewrote significant parts, verified facts and sources, and the final result reflects your critical judgement. You remain responsible for the final content; authorship requires your own intellectual contribution.',
         },
         as_is: {
           label: 'Without substantial changes',
@@ -564,15 +564,15 @@
         other: 'Other',
       },
       step3: 'What will the AI-use policy be?',
-      step3Help: 'Choose the regime that applies to the assessed work in this programme. The choice shapes the syllabus clause and the type of declaration students/participants will have to submit. If unsure, ask whether the learning objective can be reached with GenAI assistance (permit, with the applicable disclosure conditions) or whether it requires fully human production to be assessable (do not permit). It is also legitimate to combine different regimes in different assessment moments — in that case, pick the regime of the dominant moment and clarify in the syllabus.',
+      step3Help: 'Choose the regime that applies to the assessed work in this programme. The choice shapes the syllabus clause and the type of declaration students/participants will have to submit. If unsure, ask whether the learning objective can be reached with GenAI assistance (permit, with the applicable disclosure conditions) or whether it requires fully human production to be assessable (do not permit). It is also legitimate to combine different regimes in different assessment moments — in that case, generate a separate clause for each activity or set of activities with the same regime and identify them in the syllabus.',
       policy: {
         not_permitted: {
           label: 'Not permitted',
-          description: 'GenAI use in the submitted work is prohibited. Appropriate when the competence assessed requires fully human production (real-time clinical reasoning, original expression, knowledge display without assistance). Implies assessment design that is robust to undeclared use — for example, presential or oral moments.',
+          description: 'GenAI use in the submitted work is prohibited. Appropriate when the competence assessed requires fully human production (real-time clinical reasoning, original expression, knowledge display without assistance). Implies assessment design that is robust to undeclared use — for example, in-person or oral assessments.',
         },
         with_disclosure: {
           label: 'Permitted with full disclosure',
-          description: 'GenAI use is permitted provided that it is declared in line with Appendix A of the Framework: tools, tasks, sections and degree of modification. Suitable for most academic work. Omitting the disclosure is a stand-alone breach of academic integrity, regardless of content quality.',
+          description: 'GenAI use is permitted provided that it is declared in line with Appendix A of the Framework: tools, tasks, sections and degree of modification. Suitable for most academic work. Omitting a required disclosure may constitute a breach of academic integrity, regardless of content quality.',
         },
         without_restrictions: {
           label: 'Permitted without specific restrictions',
@@ -653,11 +653,11 @@
       step5UseDateLabel: 'Date of main use',
     },
     risk: {
-      heading: 'Institutional assessment — Level',
+      heading: 'Assessment under the proposal — Level',
       levelShort: 'Level',
-      cleanHeading: 'Institutional assessment — no alerts',
+      cleanHeading: 'Assessment under the proposal — no alerts',
       cleanBody: 'Your selections did not trigger any FMUP framework rule. Please still review the statement before using it.',
-      unavailableHeading: 'Institutional assessment unavailable',
+      unavailableHeading: 'Assessment under the proposal unavailable',
       unavailableBody: 'policy.json could not be loaded (file:// access or missing file). The tool still works; automatic risk classification will be disabled.',
       guidanceFoot: 'Guiding warnings — they do not block statement generation. Final responsibility is the user’s.',
     },
@@ -694,7 +694,7 @@
         },
       },
       noUseLabel: 'I did not use generative AI tools in this work',
-      noUseHelp: 'The University of Porto framework requires a short normalised note in every final work, including when there was no use at all. Tick this to generate that null declaration.',
+      noUseHelp: 'The University of Porto framework requires a short normalised note in every final work, including when there was no use at all. Tick this to generate that no-use note.',
       noUseSummary: 'Declaration of non-use',
       gaidetLabel: 'Delegated macrodomains (GAIDeT)',
       gaidet: GAIDET_LABELS,

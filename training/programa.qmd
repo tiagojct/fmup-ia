@@ -10,7 +10,7 @@ include-after-body:
 
 A sessão está desenhada para 120 minutos sem intervalo formal. Os blocos 4 e 6 são os mais longos e concentram o trabalho dos participantes; os restantes existem para os preparar e para os fechar.
 
-Se o tempo apertar, o bloco a encurtar é o 5, não o 6. Sair da sessão sem produto desenhado é o único desfecho que a compromete.
+Se o tempo apertar, o bloco a encurtar é o 5, não o 6. Preserve o tempo de desenho e teste da actividade.
 
 ## Cronómetro
 
@@ -57,9 +57,9 @@ Para uso do facilitador. Seleccione o bloco, inicie a contagem, e continue a apr
 
 Um cenário com perguntas de escolha múltipla, gerado ao vivo na IAedu, a partir de um tema escolhido pela sala no momento. O tema pode ser clínico ou não: o prompt de abertura funciona igualmente com uma agudização de DPOC, com o ciclo de Krebs ou com a interpretação de um coeficiente de regressão.
 
-O objectivo é duplo e deve ser dito por essa ordem. Primeiro, mostrar que a geração de material é rápida e utilizável. Segundo, e mais importante, mostrar em directo o que sai errado: um distractor implausível, uma referência que não existe, um valor que não bate certo, um resultado numérico que o modelo não pode ter calculado. A demonstração só cumpre a sua função se o erro aparecer, portanto não se deve escolher um tema fácil nem esconder o resultado.
+A demonstração permite observar a rapidez de geração e verificar o material produzido: referências, valores, distractores e coerência. Mostre tanto os elementos correctos como os erros encontrados. Se a resposta estiver correcta, explique como foi verificada.
 
-Se nada correr mal na primeira geração, insista com uma pergunta mais específica, sobre valores de referência ou sobre literatura recente. O erro aparece.
+Se não surgir um erro, não insista para além de dois minutos. Use um exemplo previamente guardado e identificado como tal. A verificação mantém-se necessária mesmo quando a resposta inicial está correcta.
 
 ## 2. Fundamentos mínimos {#bloco-2}
 
@@ -67,10 +67,10 @@ Se nada correr mal na primeira geração, insista com uma pergunta mais específ
 
 O mínimo indispensável para os blocos seguintes, sem aprofundar:
 
-- **Confabulação.** O modelo prevê a continuação mais provável do texto, não consulta uma base de factos. Produz afirmações plausíveis e falsas com a mesma fluência com que produz afirmações verdadeiras.
-- **Referências inventadas.** É o modo de falha mais frequente em contexto académico e o mais fácil de verificar. Confirmar sempre no original, com DOI ou ligação.
+- **Confabulação.** Um modelo de linguagem gera continuações de texto e pode produzir afirmações falsas. Algumas aplicações consultam fontes ou executam código; essas funções exigem verificação própria. Produz afirmações plausíveis e falsas com a mesma fluência com que produz afirmações verdadeiras.
+- **Referências inventadas.** É um modo de falha verificável em contexto académico. Confirmar sempre no original, com DOI ou ligação.
 - **Dados de doentes.** Nunca, em plataforma alguma. A anonimização informal não cumpre os requisitos técnicos do RGPD.
-- **Risco baixo e risco alto.** Preparar materiais que o docente revê é risco baixo. Avaliar ou classificar estudantes é risco alto, e a decisão final tem de ser humana.
+- **Risco por utilização.** O Quadro distingue tarefas auxiliares de usos com impacto formativo. Materiais pedagógicos e avaliação exigem revisão adequada ao impacto; a decisão final sobre classificação permanece humana.
 
 Estes quatro pontos ancoram nos sete princípios do Quadro: agência humana, integridade académica e científica, protecção de dados, transparência, equidade de acesso, literacia crítica e revisão contínua. A página [Regras](regras.qmd) resume cada um numa frase.
 
@@ -78,13 +78,13 @@ Estes quatro pontos ancoram nos sete princípios do Quadro: agência humana, int
 
 **15 minutos.**
 
-Aplicações de risco baixo, em que o docente é o único utilizador e revê tudo antes de o material chegar aos estudantes:
+Aplicações de apoio, em que o docente é o único utilizador e revê tudo antes de o material chegar aos estudantes:
 
-- **Material de estudo com variação de dificuldade.** Gerar um cenário base e pedir três variantes que testem competências diferentes. Em contexto clínico: apresentação atípica, comorbilidade que altera a decisão, dado laboratorial contraditório. Em ciências básicas: condições experimentais alteradas, um resultado que contraria a hipótese, um artefacto de técnica. Em ciência de dados: violação de um pressuposto, dados ausentes não aleatórios, um efeito que desaparece ao estratificar. É trabalho que demora horas a fazer à mão e minutos a rascunhar, com revisão obrigatória.
+- **Material de estudo com variação de dificuldade.** Gerar um cenário base e pedir três variantes que testem competências diferentes. Em contexto clínico: apresentação atípica, comorbilidade que altera a decisão, dado laboratorial contraditório. Em ciências básicas: condições experimentais alteradas, um resultado que contraria a hipótese, um artefacto de técnica. Em ciência de dados: violação de um pressuposto, dados ausentes não aleatórios, um efeito que desaparece ao estratificar. A ferramenta pode acelerar o rascunho; o tempo de revisão continua a ser necessário.
 - **Perguntas de escolha múltipla com distractores plausíveis.** O valor está nos distractores, não no enunciado. Pedir explicitamente que cada distractor corresponda a um erro de raciocínio identificável, e pedir que o modelo explique qual.
 - **Rubricas.** Converter critérios implícitos de correcção em rubrica explícita, com níveis de desempenho. O docente sabe o que valoriza; a ferramenta ajuda a escrevê-lo de forma utilizável pelos estudantes.
 
-Há uma quarta aplicação que não se demonstra nesta sessão: a **visualização de materiais**, ou seja, gerar diagramas, esquemas e imagens de apoio. É a aplicação de maior valor para quem ensina anatomia, histologia ou bioquímica, e no estudo de Anand et al. foi um dos cinco *workshops* e uma das intenções mais declaradas pelos participantes.
+Há uma quarta aplicação que não se demonstra nesta sessão: a **visualização de materiais**, ou seja, gerar diagramas, esquemas e imagens de apoio. Pode apoiar quem ensina anatomia, histologia ou bioquímica, e no estudo de Anand et al. foi um dos cinco *workshops* e uma das intenções mais declaradas pelos participantes.
 
 Fica nomeada e não demonstrada por duas razões. Primeira, não está confirmado que a IAedu gere imagem, e depender de ferramenta comercial colide com a regra de equidade. Segunda, e mais séria: uma imagem subtilmente errada não é apanhada pelo reflexo de verificação que este eixo ensina. Uma referência fabricada verifica-se abrindo o DOI; um diagrama de via metabólica com uma seta invertida não tem equivalente, e chega ao estudante com autoridade de material didáctico. As regras aplicáveis estão em [Regras](regras.qmd).
 
@@ -107,13 +107,13 @@ Cada ficha tem também, dentro de `Prompt base`, uma subsecção **Variantes por
 | [5](fichas/5-fazer-e-comparar.qmd) | Fazer primeiro, comparar depois | Metacognição e esforço deliberado |
 | [6](fichas/6-tutor-restringido.qmd) | Tutor restringido aos materiais da UC | Estudo autónomo com fonte controlada |
 
-A ficha 6 é apresentada como opção avançada: exige infraestrutura que a maioria dos participantes não terá disponível a curto prazo, e serve sobretudo para mostrar o que é possível quando a fonte é controlada.
+A ficha 6 é apresentada como opção avançada: exige preparação de uma base documental e de um ambiente de recuperação, e serve sobretudo para mostrar o que é possível quando a fonte é controlada.
 
 ## 5. Eixo 3, adaptar conteúdos e avaliação {#bloco-5}
 
 **15 minutos.**
 
-A pergunta que estrutura o bloco não é se a GenAI é boa ou má, mas o que ela compromete e o que ela valoriza.
+O bloco identifica que produtos ficam vulneráveis ao uso não declarado e que formatos permitem observar a competência individual.
 
 | Compromete | Valoriza |
 |---|---|
@@ -123,7 +123,7 @@ A pergunta que estrutura o bloco não é se a GenAI é boa ou má, mas o que ela
 | Resumos e sínteses genéricas | Reflexão ancorada em dados do próprio percurso |
 | Correcção baseada apenas no produto final | Avaliação de processo, com marcos intermédios |
 
-A resposta institucional não é a proibição generalizada, que não é verificável, mas o redesenho dos elementos vulneráveis e a explicitação do regime aplicável em cada actividade avaliada.
+O redesenho dos elementos vulneráveis complementa a definição de regimes permitido, condicionado e proibido para cada actividade. Uma proibição exige instruções claras e formas proporcionais de verificar o seu cumprimento.
 
 Para essa explicitação existe instrumento pronto: o [Anexo B do Quadro](https://tiagojacinto.eu/fmup-ia/quadro/B-clausula.html) contém três cláusulas-tipo para programas de unidade curricular, uma por regime, permitido, condicionado e proibido, adaptáveis ao desenho de cada UC.
 
@@ -131,9 +131,9 @@ Para essa explicitação existe instrumento pronto: o [Anexo B do Quadro](https:
 
 **30 minutos.**
 
-Trabalho em pares heterogéneos: sempre que possível, docentes de unidades curriculares diferentes, ou de anos diferentes. Pares homogéneos convergem depressa demais e produzem fichas que só funcionam no contexto que ambos já conhecem.
+Trabalho em pares heterogéneos: sempre que possível, docentes de unidades curriculares diferentes, ou de anos diferentes. A composição heterogénea pretende expor pressupostos que podem passar despercebidos entre colegas da mesma UC.
 
-O produto é obrigatório: uma ficha preenchida, com prompt escrito e testado na IAedu. Não é um plano de intenções.
+O produto é obrigatório: uma ficha preenchida, com prompt escrito e testado na IAedu. Inclua instruções, critérios e plano B.
 
 As instruções detalhadas, o esquema em branco e a versão para impressão estão em [Prática](pratica.qmd).
 
@@ -141,7 +141,7 @@ As instruções detalhadas, o esquema em branco e a versão para impressão est�
 
 **10 minutos.**
 
-Cada par troca a ficha com outro par e tenta quebrá-la. Não é revisão amigável, é tentativa deliberada de fazer a actividade falhar.
+Cada par troca a ficha com outro par e tenta quebrá-la. O teste procura falhas no desenho, no acesso e no funcionamento da actividade.
 
 Três perguntas guiam o teste:
 
@@ -155,8 +155,8 @@ Quem testa escreve as respostas na própria ficha e devolve-a. Quem recebe não 
 
 **5 minutos.**
 
-Demonstração da [Themis](https://tiagojacinto.eu/fmup-ia/themis/), o gerador de declarações de uso associado ao Quadro. Cada docente gera a declaração correspondente à actividade que desenhou, na vertente Docentes, que produz o texto da cláusula para o programa da unidade curricular e o requisito de divulgação a comunicar aos estudantes.
+Demonstração da [Themis](https://tiagojacinto.eu/fmup-ia/themis/), o gerador de declarações de uso associado ao Quadro. Cada docente prepara a cláusula correspondente à actividade que desenhou, na vertente Docentes, que produz o texto da cláusula para o programa da unidade curricular e o requisito de divulgação a comunicar aos estudantes.
 
-A declaração inclui a versão do Quadro e a versão da ferramenta que a produziram, o que a torna rastreável no tempo.
+O texto inclui a versão do Quadro e a versão da ferramenta que a produziram, o que permite identificar a referência usada. Guarde o texto para conservar essa redacção.
 
 Fecho: cada participante diz uma frase, com a estrutura fixa "na minha UC, vou mudar X". Uma frase, sem justificação. O objectivo do formato é impedir a diluição em intenções gerais.

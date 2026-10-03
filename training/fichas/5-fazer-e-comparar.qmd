@@ -119,11 +119,11 @@ O segundo é particularmente adequado a esta ficha, porque a resolução gerada 
 
 Resolve primeiro, sozinho, e entrega antes de consultar. Esta é a única regra que não admite excepção.
 
-Depois da comparação, escreve uma nota curta, de cinco a dez linhas, com três elementos: uma divergência em que estava errado e porquê; uma divergência em que a ferramenta estava errada ou em que a sua opção era igualmente defensável; e uma frase sobre o que faria de outro modo da próxima vez.
+Depois da comparação, escreve uma nota curta, de cinco a dez linhas, com três elementos: os pontos de concordância ou divergência que verificou e a respectiva justificação; eventuais erros seus ou da ferramenta, se os encontrou; e uma frase sobre o que faria de outro modo da próxima vez.
 
 ### Papel do docente
 
-Garante a entrega da primeira resolução antes de qualquer consulta. Sem esse controlo, a actividade não tem valor e não é verificável.
+Garante a entrega da primeira resolução antes de qualquer consulta. Esse controlo permite observar o raciocínio anterior à consulta.
 
 Recolhe as notas de comparação, que são o produto avaliável, e usa-as para identificar os erros de raciocínio recorrentes na turma, que são material directo para a aula seguinte.
 
@@ -131,15 +131,15 @@ Recolhe as notas de comparação, que são o produto avaliável, e usa-as para i
 
 Avalie a nota de comparação, não a resolução inicial. A resolução inicial pode estar errada sem prejuízo: o objectivo é que o estudante identifique porquê.
 
-A discussão em pares, nos últimos dez minutos, organiza-se por uma pergunta única: **em que divergência é que a ferramenta estava errada?** Obriga a que o estudante verifique em vez de aceitar, e é a pergunta que mais rapidamente revela quem fez a comparação a sério.
+A discussão em pares, nos últimos dez minutos, organiza-se por uma pergunta única: **que pontos confirmaram ou corrigiram, e com que fundamento?** Obriga a que o estudante verifique em vez de aceitar, e é a pergunta que mais rapidamente revela quem fez a comparação a sério.
 
 No plenário, se houver tempo, recolha dois ou três casos em que a ferramenta errou e discuta-os. Os erros típicos são da mesma família em qualquer área: subvalorizar um dado do enunciado que altera a abordagem, e propor os passos por uma ordem que não corresponde à sua utilidade informativa. No problema clínico acima, traduzem-se em subvalorizar o contexto de risco tromboembólico e em pedir exames sem atender à probabilidade pré-teste.
 
 ## Armadilhas conhecidas
 
-- **Inversão da sequência.** É a armadilha principal e é fatal para a actividade. Se o estudante consultar primeiro, a comparação não existe e o exercício vira cópia. A entrega verificável da primeira resolução é a única salvaguarda eficaz.
-- **Comparação superficial.** "A IA disse o mesmo que eu" é a nota mais frequente e quase sempre falsa. Exija a identificação de pelo menos duas divergências concretas, mesmo que menores.
-- **Deferência à ferramenta.** Perante divergência, o estudante assume que o erro é seu. A instrução do prompt que separa erro meu de erro teu contraria a tendência, mas convém reforçá-la em aula: o estudante deve procurar activamente um ponto em que a ferramenta esteja errada.
+- **Inversão da sequência.** É a armadilha principal e é fatal para a actividade. Se o estudante consultar primeiro, a comparação não existe e o exercício vira cópia. A entrega verificável da primeira resolução é uma salvaguarda a combinar com discussão do processo e observação docente.
+- **Comparação superficial.** "A IA disse o mesmo que eu" é uma nota insuficiente sem comparação fundamentada. Exija pelo menos dois pontos concretos de comparação, com fontes ou raciocínio que sustentem a concordância ou a divergência. Não é obrigatório encontrar erros.
+- **Deferência à ferramenta.** Perante divergência, o estudante assume que o erro é seu. A instrução do prompt que separa erro meu de erro teu contraria a tendência, mas convém reforçá-la em aula: o estudante deve verificar os pontos de concordância e divergência sem presumir qual das respostas está correcta.
 - **Reescrita disfarçada.** Mesmo com a proibição, o modelo tende a produzir uma versão melhorada. Se acontecer, o estudante deve responder na conversa "não reescrevas, lista apenas as divergências".
 - **Problemas fáceis demais.** Se o problema tiver resposta única e directa, não há divergências para comparar. Escolha problemas com decisão sob incerteza, com mais de uma abordagem defensável.
 
@@ -147,7 +147,7 @@ No plenário, se houver tempo, recolha dois ou três casos em que a ferramenta e
 
 Gere previamente a resolução do problema pela ferramenta e imprima-a, sem a mostrar antes.
 
-A sequência mantém-se: os estudantes resolvem, entregam, e só depois recebem a folha com a resolução gerada. Perde-se a fase 2 do prompt, ou seja, a análise automática das divergências, que passa a ser feita pelo próprio estudante. É uma perda pequena, e há quem argumente que a versão em papel é pedagogicamente superior, porque obriga o estudante a fazer a comparação em vez de a receber feita.
+A sequência mantém-se: os estudantes resolvem, entregam, e só depois recebem a folha com a resolução gerada. Perde-se a fase 2 do prompt, ou seja, a análise automática das divergências, que passa a ser feita pelo próprio estudante. Na versão em papel, o estudante faz directamente a comparação e fundamenta-a nas fontes disponíveis.
 
 ## Referência
 

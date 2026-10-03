@@ -84,12 +84,12 @@ erro, a explicação do que está errado, e o que estaria correcto.
 ::: {.callout-warning appearance="simple"}
 ## Verificação obrigatória antes da aula
 
-O docente verifica a nota **e** a chave antes de distribuir. Duas falhas são frequentes: o modelo planta menos erros do que os pedidos, e o modelo introduz erros adicionais que não constam da chave. Ambos os casos comprometem o exercício se não forem corrigidos, e o segundo é o mais provável.
+O docente verifica a nota **e** a chave antes de distribuir. Duas falhas são frequentes: o modelo planta menos erros do que os pedidos, e o modelo introduz erros adicionais que não constam da chave. Ambos os casos comprometem o exercício se não forem corrigidos, e ambos devem ser procurados na revisão.
 :::
 
 ### Variantes por área
 
-O prompt acima corre como está, e o exemplo é clínico porque é o mais imediato para parte da sala. A estrutura não é clínica: um texto fluente com erros plantados, uma rubrica de cinco colunas, e a exigência de uma fonte por identificação. Para adaptar, substituem-se dois blocos e mantém-se tudo o resto.
+O prompt acima corre como está, e o exemplo é clínico porque é o mais imediato para parte da sala. A estrutura não é clínica: um texto fluente com erros plantados, uma rubrica de cinco colunas, e a exigência de uma fonte por identificação. Para adaptar, substituem-se três blocos e mantém-se tudo o resto.
 
 **Ciências básicas.** Substituir os blocos `CASO`, `O QUE PRECISO` e `ERROS A PLANTAR` por:
 
@@ -148,7 +148,7 @@ Planta exactamente seis erros, distribuídos assim:
   contradiz a estatística descritiva da própria secção anterior).
 ```
 
-A variante de dados é a mais instrutiva das três, e vale a pena dizê-lo à sala: é a única em que o erro plantado é indistinguível, à leitura, do modo de falha espontâneo dos modelos quando produzem prosa estatística. O exercício e o risco coincidem.
+Na variante de dados, os erros plantados permitem discutir também respostas estatísticas plausíveis mas incorrectas produzidas sem essa intenção. Verifique os valores e a coerência do relatório antes da aula.
 
 **A fonte exigida muda com a área.** Onde o exemplo clínico admite a norma da Direcção-Geral da Saúde ou o resumo das características do medicamento, a variante de ciências básicas admite o protocolo de laboratório ou o manual da unidade curricular, e a de dados admite a documentação do método ou um texto de referência de estatística. A regra mantém-se: identificação sem fonte não conta.
 

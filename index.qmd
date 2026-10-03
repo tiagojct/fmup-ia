@@ -16,7 +16,7 @@ Faculdade de Medicina da Universidade do Porto
 ::: {.hero-subtitle}
 Um quadro de referência institucional e uma ferramenta para gerar declarações de uso de IA generativa na FMUP.
 
-Para compreender a política, comece pelo Quadro. Para declarar um uso concreto de IA, use a Themis.
+Para compreender a proposta, comece pelo Quadro. Para declarar um uso concreto de IA, use a Themis.
 :::
 
 ::: {.hero-cta}
@@ -33,7 +33,7 @@ Estado: **contributo individual** de Tiago Jacinto para apreciação institucion
 ::: {.card-tile}
 ### Themis
 
-Demonstrador prototípico que gera declarações estruturadas de uso de IA com avaliação guidante de risco em quatro níveis. Não é aplicação institucional certificada.
+Demonstrador prototípico que gera declarações estruturadas de uso de IA com avaliação indicativa de risco em quatro níveis. Não é aplicação institucional certificada.
 
 [Abrir a Themis](themis/){.card-link}
 :::
@@ -49,7 +49,7 @@ Proposta institucional em duas partes: análise comparativa internacional e prop
 ::: {.card-tile}
 ### Recursos
 
-*Frameworks* internacionais, normativa nacional e princípios deontológicos --- leitura adicional sobre qualquer ponto do Quadro.
+Referenciais internacionais, normativa nacional e princípios deontológicos --- leitura adicional sobre qualquer ponto do Quadro.
 
 [Ver Recursos](recursos.qmd){.card-link}
 :::

@@ -33,9 +33,9 @@ A competência protegida é o estudo autónomo com verificação. A diferença f
 
 *Retrieval-Augmented Generation* significa que, antes de responder, o sistema procura passagens relevantes num conjunto de documentos definido pelo docente e só depois gera a resposta a partir dessas passagens.
 
-O modelo continua a poder errar na redacção, mas deixa de poder inventar conteúdo que não exista no corpus, porque não é dele que a resposta é extraída.
+A recuperação de documentos pode reduzir erros, mas não impede que o modelo invente conteúdo, atribua mal uma fonte ou interprete incorrectamente uma passagem.
 
-A contrapartida é rígida: aquilo que não estiver nos materiais, o sistema não responde.
+O sistema deve recusar perguntas sem suporte nos materiais. Essa regra exige testes, controlo da recuperação e revisão das respostas; a instrução de sistema, por si só, não a garante.
 :::
 
 ## Formato e duração em aula
@@ -77,10 +77,12 @@ REGRAS PEDAGÓGICAS
 
 REGRAS DE DADOS
 8. Se um estudante introduzir informação que pareça referir-se a um
-   doente real, interrompe e responde apenas: "Não posso processar
+   doente real, responde apenas: "Não posso processar
    informação de doentes. Reformule o caso de forma fictícia." Não
    repitas a informação recebida.
 ```
+
+A regra 8 limita a resposta, mas não impede o envio inicial de dados. A protecção exige informação aos utilizadores e controlos técnicos antes da submissão; um prompt não é uma barreira de segurança.
 
 ## Papéis
 
@@ -115,7 +117,7 @@ O registo de utilização contém dados pessoais de estudantes. A sua análise e
 
 ## Armadilhas conhecidas
 
-- **Tensão entre fiabilidade e abrangência.** É o resultado central do estudo de referência e o mais importante de antecipar: as restrições ao corpus que garantem a exactidão limitam simultaneamente as perguntas mais amplas, e essa tensão molda o modo como os estudantes incorporam a ferramenta no seu estudo. Um estudante que faça uma pergunta legítima e receba "não está coberto" repetidamente abandona a ferramenta.
+- **Tensão entre fiabilidade e abrangência.** É o resultado central do estudo de referência e o mais importante de antecipar: as restrições ao corpus destinadas a melhorar a exactidão limitam simultaneamente as perguntas mais amplas, e essa tensão molda o modo como os estudantes incorporam a ferramenta no seu estudo. Um estudante que faça uma pergunta legítima e receba "não está coberto" repetidamente abandona a ferramenta.
 - **Corpus desactualizado.** Mais perigoso do que ausência de corpus. O sistema responde com autoridade a partir de material superado, e indica a fonte, o que reforça a confiança na resposta errada.
 - **Falsa sensação de segurança.** RAG reduz a confabulação, não a elimina. O modelo pode representar mal uma passagem correctamente recuperada.
 - **Custo de manutenção subestimado.** A curadoria inicial é visível; a manutenção anual não é, e é onde estes projectos costumam morrer.
@@ -133,6 +135,6 @@ Thesen T, Park SH. A generative AI teaching assistant for personalized learning 
 
 Estudo do Department of Medical Education da Geisel School of Medicine at Dartmouth. Os autores implementaram um assistente baseado em RAG numa unidade curricular de ciências básicas, ao longo de duas coortes consecutivas, e analisaram padrões de utilização, conteúdo das conversas e opinião dos estudantes.
 
-Resultados relevantes para quem pondere replicar: a utilização foi estratégica e dependente do contexto, intensificando-se nos períodos de avaliação de maior peso, com utilização substancial fora do horário lectivo. Os estudantes procuraram sobretudo clarificação de conceitos fundamentais e valorizaram a disponibilidade permanente e as respostas ancoradas em fonte. As restrições da base de conhecimento que asseguraram a exactidão limitaram, porém, as perguntas mais amplas, criando uma tensão entre fiabilidade e abrangência que moldou o modo como os estudantes integraram a ferramenta nas suas rotinas de estudo.
+Resultados relevantes para quem pondere replicar: a utilização foi estratégica e dependente do contexto, intensificando-se nos períodos de avaliação de maior peso, com utilização substancial fora do horário lectivo. Os estudantes procuraram sobretudo clarificação de conceitos fundamentais e valorizaram a disponibilidade permanente e as respostas ancoradas em fonte. As restrições da base de conhecimento destinadas a melhorar a exactidão limitaram, porém, as perguntas mais amplas, criando uma tensão entre fiabilidade e abrangência que moldou o modo como os estudantes integraram a ferramenta nas suas rotinas de estudo.
 
 Referência obtida através da PubMed.

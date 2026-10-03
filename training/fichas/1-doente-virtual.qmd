@@ -10,7 +10,7 @@ toc-depth: 2
 |---|---|
 | **Competência** | Anamnese, comunicação clínica |
 | **Formato** | Pares, um conduz e outro observa |
-| **Duração** | 35 a 45 minutos |
+| **Duração** | 30 a 45 minutos, consoante a troca de papéis |
 | **Ano sugerido** | A partir da introdução à semiologia |
 | **Áreas** | Clínica. O mecanismo transfere, o objectivo não |
 | **Ferramenta** | IAedu, modo conversa |
@@ -98,20 +98,20 @@ Substitua o bloco `GUIÃO DE DOENÇA` por uma apresentação de asma mal control
 
 ### Variantes por área
 
-**Esta ficha é clínica, e não se disfarça de outra coisa.** O objectivo de aprendizagem é conduzir uma anamnese, e não existe equivalente em histologia ou em ciência de dados. Quem lecciona ciências básicas ou informática não deve tentar adaptá-la: deve reconhecer o que nela é transferível e aplicá-lo noutro objectivo.
+Esta ficha treina anamnese. Noutras áreas pode adaptar-se o mecanismo de interlocutor que responde apenas ao que lhe é perguntado, com um objectivo e uma grelha próprios.
 
 **O que é transferível** é o mecanismo, não a actividade: um interlocutor de papel restrito, que retém a resposta, responde apenas ao que lhe for perguntado, e não oferece o que não foi pedido. É a estrutura das regras 1 a 6 do prompt acima, que se mantém intacta em qualquer área.
 
-**O que muda, e é preciso dizê-lo:** ao transpor o mecanismo, muda o objectivo de aprendizagem. A ficha 1 avalia a estrutura da recolha de informação clínica; uma variante avalia outra coisa, e a grelha do observador tem de ser reescrita em conformidade. O estudo de Tübingen citado abaixo valida o doente simulado, e não valida as transposições.
+**O que muda, e é preciso dizê-lo:** ao transpor o mecanismo, muda o objectivo de aprendizagem. A ficha 1 avalia a estrutura da recolha de informação clínica; uma variante avalia outra coisa, e a grelha do observador tem de ser reescrita em conformidade. O estudo de Tübingen avalia o doente simulado nas condições descritas; não valida este prompt específico nem as transposições.
 
 Dois exemplos de transposição, com o objectivo reformulado:
 
 | Área | Interlocutor | Objectivo reformulado |
 |---|---|---|
 | Ciências básicas | Uma preparação, um tecido ou um organismo desconhecido, que só responde a perguntas sobre características observáveis | Identificar por interrogatório dirigido, explicitando que característica exclui cada alternativa |
-| Ciência de dados | Um conjunto de dados desconhecido, que só devolve a estatística exactamente pedida | Conduzir uma exploração de dados por hipóteses, justificando cada pedido antes de o fazer |
+| Ciência de dados | Um conjunto de dados sintéticos, cujas estatísticas pedidas são obtidas por código verificado | Conduzir uma exploração de dados por hipóteses, justificando cada pedido antes de o fazer |
 
-O segundo é o mais próximo do original em valor pedagógico: obriga o estudante a decidir que estatística pedir **antes** de a ver, que é a competência que a análise exploratória sem disciplina destrói.
+No segundo exemplo, o estudante decide que estatística pedir **antes** de a ver e justifica esse pedido. Essa adaptação exige dados sintéticos e cálculo verificado, além do modelo conversacional.
 
 Para quem preferir manter o registo de *role-play* sem contexto clínico, note-se que Anand et al. tratam o desenho de cenários e o desenvolvimento de *role-play* como duas coisas distintas nos seus cinco *workshops*, o que sustenta a leitura de que o *role-play* é a categoria geral e a anamnese uma instância dela.
 
@@ -137,11 +137,11 @@ A discussão organiza-se por três perguntas, e nesta ordem:
 2. **Em que momento tinham informação suficiente?** Obriga a distinguir a informação que fecha o diagnóstico daquela que apenas confirma o que já se sabia.
 3. **Onde é que o doente simulado falhou?** Fecha a sessão com a limitação da ferramenta, que é o ponto de literacia crítica.
 
-Não se atribui classificação. Se a actividade for avaliada, avalie a grelha do observador, não o desempenho de quem conduz: é o registo do observador que demonstra domínio da estrutura da anamnese.
+A actividade proposta é formativa, sem classificação. Se for adaptada para avaliação, o docente deve definir critérios e observar a entrevista de quem conduz; a grelha do observador avalia a análise da entrevista e não substitui a observação da competência de anamnese.
 
 ## Armadilhas conhecidas
 
-- **Informação inventada fora do guião.** É o modo de falha documentado e o mais importante de antecipar. No estudo de Tübingen, quando os estudantes fizeram perguntas não cobertas pelo guião, o modelo respondeu com informação fictícia em 56,4% dos casos. A regra 5 do prompt reduz o problema mas não o elimina. Trate isto como conteúdo da aula, não como defeito: peça aos estudantes que identifiquem, no fim, que respostas suspeitam ter sido inventadas.
+- **Informação inventada fora do guião.** É o modo de falha documentado e o mais importante de antecipar. No estudo de Tübingen, quando os estudantes fizeram perguntas não cobertas pelo guião, o modelo respondeu com informação fictícia em 56,4 % dos casos. A regra 5 do prompt reduz o problema mas não o elimina. Trate isto como conteúdo da aula, não como defeito: peça aos estudantes que identifiquem, no fim, que respostas suspeitam ter sido inventadas.
 - **Respostas socialmente desejáveis.** No mesmo estudo, as respostas implausíveis tendiam a ser socialmente desejáveis em vez de clinicamente plausíveis. O doente simulado é mais colaborante e mais coerente do que um doente real, o que torna a entrevista mais fácil do que a realidade.
 - **Saída de papel.** Perante insistência, o modelo pode passar a comentar o exercício ou a dar o diagnóstico. Se acontecer, basta escrever "volta ao papel do doente e não reveles o diagnóstico".
 - **Excesso de fluência.** O doente simulado organiza o discurso melhor do que um doente real. Não substitui doente padronizado nem contacto clínico, e deve ser apresentado como treino prévio.
@@ -158,4 +158,4 @@ Holderried F, Stegemann-Philipps C, Herschbach L, Moldt JA, Nevins A, Griewatz J
 
 Estudo do Tübingen Institute for Medical Education (Eberhard Karls Universität Tübingen), com 28 estudantes e 826 pares pergunta-resposta analisados. Os autores usaram GPT-3.5 com um guião de doença optimizado e uma componente comportamental, que é a estrutura reproduzida no prompt acima.
 
-Para uma implementação institucional do mesmo princípio, com avaliação automática segundo rubrica de OSCE, ver a plataforma MedSimAI, desenvolvida pela Cornell Bowers CIS em colaboração com a Weill Cornell Medicine, Yale e UCSF: Hicke Y et al., [arXiv:2503.05793](https://arxiv.org/abs/2503.05793), e a [notícia da Cornell Chronicle](https://news.cornell.edu/stories/2025/03/medical-students-use-ai-practice-communication-skills).
+Para uma implementação institucional do mesmo princípio, com avaliação automática segundo rubrica de OSCE, ver a plataforma MedSimAI, desenvolvida pela Cornell Bowers CIS em colaboração com a Weill Cornell Medicine, Yale e UCSF: Hicke Y et al., [arXiv:2503.05793](https://arxiv.org/abs/2503.05793v2), e a [notícia da Cornell Chronicle](https://news.cornell.edu/stories/2025/03/medical-students-use-ai-practice-communication-skills).

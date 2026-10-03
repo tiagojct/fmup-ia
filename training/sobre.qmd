@@ -7,17 +7,17 @@ toc: true
 
 Esta plataforma é um **contributo individual** de Tiago Jacinto, de apoio a uma sessão de formação para docentes da Faculdade de Medicina da Universidade do Porto. Não é, no presente estado, material formativo aprovado pelos órgãos competentes da FMUP, não foi mandatado por despacho ou deliberação, e não vincula a Faculdade.
 
-A sessão corresponde à formação inicial para docentes prevista na Fase 1 (2026-2027) do [Quadro de referência institucional FMUP · IA](https://tiagojacinto.eu/fmup-ia/quadro/). Essa correspondência é de conteúdo, não de estatuto: o Quadro é ele próprio uma proposta submetida a apreciação institucional, e esta plataforma partilha integralmente esse estatuto.
+A sessão corresponde à formação inicial para docentes prevista na Fase 1 (2026-2027) do [Quadro de referência institucional FMUP · IA](https://tiagojacinto.eu/fmup-ia/quadro/). Essa correspondência é de conteúdo, não de estatuto: o Quadro é ele próprio uma proposta destinada a apreciação institucional, e esta plataforma partilha integralmente esse estatuto.
 
 ## Limitação assumida do formato
 
 Cento e vinte minutos numa sessão única não são suficientes, e convém que isso conste.
 
-O único estudo publicado sobre este tipo de formação usou cinco sessões de uma hora e conclui que formação de curta duração pode iniciar experimentação e reflexão mas não completa o trabalho de integrar a matéria no ensino de forma criticamente reflectida e eticamente explícita (Anand et al. 2026, ver [Recursos](recursos.qmd)). No seguimento a duas semanas desse estudo, todos os respondentes tencionavam usar a ferramenta para preparar aulas e avaliações, mas menos de metade tencionava definir práticas de uso responsável. Eram cinco respostas, portanto é hipótese e não resultado, mas descreve o desequilíbrio mais provável de uma sessão curta.
+Anand et al. (2026) estudaram uma série de cinco sessões de uma hora (ver [Recursos](recursos.qmd)). O estudo-piloto indica que a formação curta pode iniciar experimentação e reflexão, mas não demonstra integração duradoura. No seguimento a duas semanas, cinco docentes responderam: todos tencionavam usar GenAI na preparação de aulas e avaliações, e dois tencionavam definir práticas de uso responsável. São resultados descritivos de uma amostra pequena, não estimativas generalizáveis nem prova de mudança de prática.
 
-Esta plataforma responde a isso de duas formas, e nenhuma delas resolve o problema: torna obrigatório um produto que inclui o regime de uso aplicável à unidade curricular, e submete cada actividade ao teste de um par, cuja terceira pergunta é sobre equidade de acesso e é a única verificação da sessão que não é feita por quem desenhou a actividade.
+A sessão inclui o regime de uso no produto a preparar e o teste por um par, com uma pergunta sobre equidade. Estas medidas procuram tornar as condições de uso explícitas; a sua eficácia precisa de ser avaliada após a sessão.
 
-Se a formação prevista na Fase 1 vier a ser adoptada institucionalmente, a recomendação que decorre do estudo é estrutura longitudinal, repositório central de prâmptos validados e comunidade de prática, e não uma sessão mais longa.
+Se a formação prevista na Fase 1 vier a ser adoptada institucionalmente, a recomendação que decorre do estudo é estrutura longitudinal, repositório de prompts revistos e comunidade de prática, e não uma sessão mais longa.
 
 As formulações em registo institucional que percorrem as páginas, designadamente na página [Regras](regras.qmd), devem ser lidas como proposta redigida para facilitar eventual adopção formal, e não como descrição do regime em vigor. O regime aplicável é o que consta dos regulamentos pedagógicos, dos despachos da Direcção, das deliberações do Conselho Científico e do pacote institucional da Universidade do Porto.
 
@@ -45,7 +45,7 @@ O autor não recebeu financiamento dedicado para a preparação desta sessão. N
 
 - **Português europeu, ortografia pré-AO90**, por coerência com o Quadro, onde a convenção está documentada. A escolha é editorial do autor e não constitui posição institucional da FMUP.
 - **Sem travessões** como sinal de pontuação, sem emojis, e com aspas rectas nos blocos de código e nos prompts, para que estes possam ser copiados e colados sem correcção manual.
-- Os prompts estão escritos para a IAedu e foram testados aí. Funcionam noutras plataformas com ajustes mínimos.
+- Os prompts foram preparados para a IAedu. Devem ser testados antes de cada sessão, porque o comportamento varia entre modelos, versões e configurações; não se garante transferência sem ajustes.
 
 ## Verificação de referências
 
@@ -53,7 +53,7 @@ A integridade das citações é regra do projecto. Nenhuma referência é inclu�
 
 Onde a atribuição correntemente divulgada divergiu da fonte, prevaleceu a fonte, e a divergência foi assinalada na ficha correspondente. É o caso da ficha 5, cuja actividade é por vezes atribuída a "Kristina Tan" e cuja fonte identifica **Tari Tan**.
 
-Nenhum DOI, número de página, volume ou data foi reproduzido sem confirmação.
+A revalidação de Outubro de 2026 confirmou os identificadores e metadados dos artigos indicados em [Recursos](recursos.qmd). A disponibilidade das restantes ligações foi verificada; isso não equivale a nova revisão integral de cada recurso.
 
 ## Licença
 
@@ -69,6 +69,8 @@ Sugestão de citação:
 
 | Versão | Data | Notas |
 |---|---|---|
+| 1.3 | 2026-10-03 | Revisão editorial das páginas, fichas e guião; correcção de durações, contagens, pressupostos de comparação e limites de prompts e recuperação documental. Harmonização com o Quadro v1.6 e a Themis 1.3.1. |
+| 1.2 | 2026-10-03 | Correcção do cronómetro, resolução da ligação partilhada e revalidação bibliográfica. |
 | 1.1 | 2026-07-29 | **Adaptação a audiência mista.** Linha `Áreas` e subsecção `Variantes por área` nas seis fichas, com exemplos de substituição para ciências básicas e para ciência de dados e informática médica; a ficha 1 assume-se clínica e identifica o mecanismo transferível. Prompt de abertura neutro quanto à área, com escaladas de erro próprias para cada uma. Nova secção "Ler a sala" e regra de emparelhamento em dois níveis no guião. Eixos de risco novos em [Regras](regras.qmd): dados, código e resultados; imagens geradas. Visualização de materiais nomeada no bloco 3 e deliberadamente não demonstrada. Integração de Anand et al. 2026. |
 | 1.0 | 2026-07-22 | Primeira versão. Oito blocos, seis fichas de actividade, folha de prática com teste cruzado, página de regras e recursos verificados. |
 
@@ -79,7 +81,3 @@ Revisões futuras serão registadas neste quadro. A plataforma acompanha o Quadr
 O repositório é público em [github.com/tiagojct/fmup-ia](https://github.com/tiagojct/fmup-ia), na pasta `training/`. Erros factuais, referências mal atribuídas, prompts que não funcionem como descrito e sugestões de novas fichas podem ser submetidos por *issue* ou por *pull request*.
 
 Correcções de referências têm prioridade sobre qualquer outra alteração.
-
-### v1.2, Outubro de 2026
-
-Correcção do cronómetro para contar tempo decorrido mesmo quando o navegador atrasa a execução; ligação do documento partilhado resolvida durante a construção; revalidação dos metadados bibliográficos e clarificação do alcance dessa verificação.

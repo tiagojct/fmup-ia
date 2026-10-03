@@ -6,19 +6,16 @@ A integração de GenAI no Mestrado Integrado em Medicina envolve três domínio
 
 ## Princípios da AAMC
 
-Os *Principles for the Responsible Use of Artificial Intelligence in and for Medical Education* [@aamc2025principles] definem sete eixos: juízo humano essencial; acesso equitativo; formação contínua; desenvolvimento curricular interdisciplinar; medição de impacto; protecção da informação; alinhamento com valores institucionais. A AAMC desenvolveu também as *AI Competencies for Medical Educators* [@aamc2025competencies] no âmbito da CGEA e está a articular as *AI Competencies Across the Continuum* com a Josiah Macy Jr. Foundation, cobrindo o continuum educação pré-graduada / pós-graduada / desenvolvimento profissional contínuo. O LCME ainda não exige formalmente competências em IA no *curriculum*; em Portugal, o equivalente em A3ES é matéria em discussão.
+Os *Principles for the Responsible Use of Artificial Intelligence in and for Medical Education* [@aamc2025principles] definem sete eixos: juízo humano, acesso equitativo, formação, desenvolvimento curricular, medição de impacto, protecção da informação e valores institucionais. As competências propostas para educadores [@aamc2025competencies] ajudam a desenhar a formação. Estes referenciais não demonstram a existência de uma exigência geral de acreditação em IA; devem ser distinguidos das normas efectivamente aplicáveis a cada ciclo de estudos.
 
 ## Governação clínica e académica integrada
 
-A separação entre governação académica genérica e governação clínica específica é constante nas escolas médicas norte-americanas mais maduras:
+A governação clínica exige avaliar finalidade, população, impacto e condições de utilização. Dois exemplos ajudam a distinguir o apoio académico da integração em cuidados:
 
-- **Stanford Medicine** --- AIMI Center (2018) e iniciativa RAISE Health, com publicação do *FURM Assessment Model* para integração responsável em ensino médico.
-- **Mayo Clinic** --- estratégia de *AI enablement* com vice-*chair* próprio, consultoria interna, programa de formação e grau próprio de IA médico.
-- **Harvard Medical School** --- orientações HUIT alargadas, com regras adicionais para citação (COPE, WAME) e protecção de dados genómicos (NIH NOT-OD-25-081).
-- **Johns Hopkins** --- *responsible-use guideline* alargada (Maio 2025).
-- **Duke Institute for Health Innovation (DIHI)** --- referência para validação clínica.
+- **Stanford Health Care.** O [FURM (*Fair, Useful, and Reliable Models*)](https://arxiv.org/abs/2403.07911) avalia modelos para adopção em processos clínicos e operacionais, com revisão ética, simulação de utilidade, viabilidade técnica e monitorização. Não é um modelo de validação de formação médica.
+- **Harvard Medical School.** As [orientações de ferramentas e dados](https://it.hms.harvard.edu/about/policies-and-guidelines/generative-ai-guidelines) especificam níveis de informação autorizados para cada serviço. Essa aprovação é própria da instituição e da conta, não uma autorização transferível para a FMUP.
 
-A FMUP está em situação análoga; o [capítulo 6](06-infraestrutura.qmd) propõe a arquitectura institucional correspondente, em que o enquadramento clínico é definido para articulação futura com a unidade hospitalar afiliada.
+O [capítulo 6](06-infraestrutura.qmd) propõe articulação com a unidade hospitalar para actividades que dependam das suas competências e dados.
 
 ## Governação de IA em imagiologia e especialidades de imagem
 
@@ -26,7 +23,7 @@ As especialidades com uso intensivo de imagem (imagiologia, radioterapia, patolo
 
 ## NHS, MHRA, NICE: pilar regulatório britânico
 
-O sistema britânico (sem equivalente directo em Portugal) opera sobre quatro pilares: marcação UKCA/CE como SaMD sob MHRA; recomendações NICE (MTG, DG, EVA); *Digital Technology Assessment Criteria* (DTAC) como *baseline* de aquisição; supervisão pela CQC. A iniciativa *STANDING Together* (Birmingham) foca-se em *data diversity, inclusivity and generalisability*. Serve como termo de comparação para o SNS português.
+No NHS, a [estratégia de segurança clínica digital](https://www.england.nhs.uk/long-read/digital-clinical-safety-strategy/) relaciona normas de segurança clínica e os *Digital Technology Assessment Criteria* (DTAC): protecção de dados, segurança técnica, interoperabilidade, usabilidade e acessibilidade. Quando a tecnologia é um dispositivo médico, acrescem requisitos próprios. É uma referência comparada para aquisição e avaliação; a sua adopção não substitui os regimes português e europeu.
 
 ## EU MDR/IVDR, AI Act e EHDS
 
@@ -43,11 +40,11 @@ Para faculdades de medicina europeias, o quadro regulatório clínico combina:
 
 Os prazos do AI Act reflectem a [actualização publicada pela Comissão Europeia em Julho de 2026](https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force). No [EHDS](https://health.ec.europa.eu/ehealth-digital-health-and-care/european-health-data-space-regulation-ehds_en), Março de 2027 é um marco para actos de execução da Comissão; não é o prazo geral para operacionalizar o uso secundário de dados.
 
-A *TEHDAS2 Joint Action* (Maio 2024 -- Dezembro 2026), coordenada pela Sitra com 29 países, prepara o uso secundário de dados. Hospitais universitários precisam de *Trusted Research Environments* (TREs) compatíveis com EHDS, com pseudonimização integrada. Sete projectos europeus (IDERHA, EUCAIM, ASCAPE, iHelp, Bigpicture, HealthData@EU pilot, INCISIVE) definem a interoperabilidade prática. A FMUP prepara-se para esta arquitectura num prazo estimado de 18-24 meses --- coincidente com o [capítulo 7](07-implementacao.qmd) ---, com articulação hospitalar a definir em diálogo posterior.
+A [TEHDAS2 Joint Action](https://tehdas.eu/) decorre de Maio de 2024 a Dezembro de 2026, com 29 países e coordenação da Sitra, para preparar o uso secundário de dados. Os seus resultados devem informar a preparação de ambientes seguros de tratamento. Propõe-se avaliar necessidades e responsabilidades na Fase 2, conforme o [capítulo 7](07-implementacao.qmd), em articulação com as estruturas hospitalares e de dados competentes.
 
 ## Comités de ética e investigação clínica com IA
 
-Os comités de ética adquirem competências adicionais quando a investigação envolve componentes de IA: devem avaliar simultaneamente o MDR e o EU AI Act em SaMD com IA, e aplicar os princípios de IA confiável mesmo em estudos onde o EU AI Act não seja directamente aplicável. Para a FMUP: (i) a Comissão de Ética [@cefmup2023integridade] recebe formação específica nestas duas dimensões, em articulação detalhada na subsecção [Articulação com a Comissão de Ética da FMUP](05-investigadores.qmd#sec-articulacao-ce-fmup) do capítulo 5; (ii) os protocolos com modelos generativos documentam o regime jurídico aplicável; (iii) sempre que a investigação envolva execução clínica em unidade hospitalar parceira, essa articulação é explicitada em submissão.
+A investigação com IA deve identificar os regimes aplicáveis ao protocolo e ao sistema. O MDR ou o IVDR dependem da finalidade prevista como dispositivo; o AI Act tem critérios próprios. Propõe-se formação da Comissão de Ética [@cefmup2023integridade] e articulação com os serviços jurídicos e técnicos, como descrito no [capítulo 5](05-investigadores.qmd#sec-articulacao-ce-fmup). A competência de apreciar ética não substitui a avaliação técnica ou regulatória de um dispositivo. Os protocolos devem explicitar autorizações, dados e responsabilidades hospitalares quando aplicável.
 
 ## Investigação clínica: usos e limites
 
@@ -62,4 +59,4 @@ Quatro usos frequentes e o seu enquadramento:
 
 ## Síntese
 
-Três obrigações operacionais que a Parte II incorpora. A articulação académica-clínica é definida como integração futura com a unidade hospitalar afiliada --- naturalmente a ULS São João ---, com adopção institucional do Quadro ainda dependente de decisão formal da FMUP. A governação de IA em especialidades com uso intensivo de imagem e dados estruturados segue um modelo de validação faseada e supervisão contínua. Propõe-se acompanhar os resultados da TEHDAS2 e preparar o EHDS segundo o calendário faseado de 2029 e 2031, sem antecipar esses prazos como obrigações legais em 2027.
+Três propostas operacionais que a Parte II incorpora. A articulação académica-clínica é definida como integração futura com a unidade hospitalar afiliada --- naturalmente a ULS São João ---, com adopção institucional do Quadro ainda dependente de decisão formal da FMUP. A governação de IA em especialidades com uso intensivo de imagem e dados estruturados segue um modelo de validação faseada e supervisão contínua. Propõe-se acompanhar os resultados da TEHDAS2 e preparar o EHDS segundo o calendário faseado de 2029 e 2031, sem antecipar esses prazos como obrigações legais em 2027.

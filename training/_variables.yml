@@ -8,5 +8,5 @@ ficha-partilhada:
   url: "FICHA_PARTILHADA_URL"
 
 sessao:
-  versao: "v1.2"
+  versao: "v1.3"
   data: "Outubro de 2026"

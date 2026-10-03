@@ -37,14 +37,14 @@ O objectivo é praticar a recolha estruturada de informação e a formulação d
 
 ### Raciocínio diferencial
 
-O uso mais arriscado e o mais valioso: valioso se treinar o processo, nocivo se o substituir. A regra é sempre construir primeiro a lista própria.
+Neste exercício, o estudante constrói e justifica primeiro o seu diferencial; só depois o compara com sugestões da ferramenta.
 
 | Objectivo | Padrão de _prompt_ | O que fazer a seguir |
 |---|---|---|
 | Confrontar hipóteses (_shadow AI_) | *"Construí este diferencial para um caso fictício: [lista do estudante e justificação]. Não me dês a tua lista. Diz-me que hipóteses eu possa ter omitido e que dados discriminariam entre as que apresentei."* | Justificar por escrito porque cada hipótese acrescentada é ou não plausível. |
 | Treinar discriminação | *"Dá-me duas apresentações fictícias que possam ser confundidas entre [condição A] e [condição B]. Não indiques qual é qual. Eu decido e justifico."* | Verificar a discriminação nas fontes antes de confirmar. |
 | Praticar sob incerteza | *"Apresenta um caso fictício com informação deliberadamente incompleta. Quando eu pedir mais dados, dá apenas o que eu pedir especificamente."* | Registar em que momento a informação foi suficiente para decidir --- é essa a competência. |
-| Auditar o próprio raciocínio | *"Age como revisor céptico deste meu raciocínio clínico: [texto]. Identifica saltos lógicos, ancoragem e fechamento prematuro. Não proponhas o diagnóstico correcto."* | Rever o raciocínio antes de qualquer confirmação externa. |
+| Auditar o próprio raciocínio | *"Age como revisor céptico deste meu raciocínio clínico: [texto]. Identifica saltos lógicos, ancoragem e encerramento prematuro. Não proponhas o diagnóstico correcto."* | Rever o raciocínio antes de qualquer confirmação externa. |
 
 ### Preparação de OSCE e avaliação prática
 
@@ -89,4 +89,4 @@ Quando o material gerado chegar aos estudantes, declarar o uso e o método de ve
 
 ## Nota sobre o português europeu médico
 
-Os modelos têm desempenho inferior em português europeu especializado, com sintomas recorrentes em terminologia clínica: tradução literal do inglês, formas da variante brasileira, e ortografia inconsistente ([capítulo 8](08-transversais.qmd)). Em qualquer material destinado a estudantes ou a comunicação com doentes, a verificação terminológica por quem tenha competência na área é exigida, não recomendada.
+A geração de português europeu médico pode introduzir erros de terminologia, incluindo tradução literal do inglês, formas da variante brasileira, e ortografia inconsistente ([capítulo 8](08-transversais.qmd)). Em qualquer material destinado a estudantes ou a comunicação com doentes, a verificação terminológica por quem tenha competência na área é exigida, não recomendada.

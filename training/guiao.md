@@ -93,8 +93,7 @@ minutos. Se for preciso, interrompa a discussão do bloco 5 a meio de
 uma frase e diga que se retoma no fim.
 
 **Sobre cortar exposição, e não prática.** A regra de corte acima e a
-escolha da segunda demonstração no bloco 4 têm apoio no único estudo
-publicado sobre este tipo de formação. Anand et al. reestruturaram a
+escolha da segunda demonstração no bloco 4 têm apoio no estudo de Anand et al.. Anand et al. reestruturaram a
 Experiential Learning Theory para que a acção seguisse imediatamente a
 experiência concreta, em vez da ordem original de Kolb, e a facilitação
 adaptativa que descrevem entre duas iterações consistiu exactamente em
@@ -102,9 +101,8 @@ encurtar a introdução, aumentar o tempo prático e passar de orientação
 estruturada para experimentação flexível. Quando estiver em dúvida sobre
 o que cortar, corte exposição.
 
-Vale a pena reter o reverso: esta sessão tem 52 minutos entre a
-demonstração de abertura e o momento em que os participantes põem as
-mãos no trabalho. É a fragilidade estrutural do formato de 120 minutos e
+Vale a pena reter o reverso: esta sessão tem 67 minutos entre o fim da
+demonstração de abertura e o início do bloco de prática. É a fragilidade estrutural do formato de 120 minutos e
 não se resolve dentro dele. Resolve-se não deixando o bloco 6 encurtar.
 
 ---
@@ -119,9 +117,7 @@ tão exterior quanto para um engenheiro.
 Isto não é uma suposição de precaução. No estudo de Anand et al., as
 áreas dos dez docentes participantes eram dominadas por ciências básicas
 e métodos: anatomia, bioquímica, biologia, biofísica, bioestatística,
-química, física, metodologia de investigação, entre outras. A única
-evidência publicada sobre esta formação vem de uma sala mais parecida
-com a da FMUP do que com um serviço clínico.
+química, física, metodologia de investigação, entre outras. Essa composição reforça a necessidade de exemplos para diferentes áreas, sem demonstrar que a amostra represente o corpo docente da FMUP.
 
 ### Perguntar no início, não adivinhar
 
@@ -252,9 +248,7 @@ Escreve o código que produz esse resultado e indica o valor numérico
 que ele devolve com os dados do cenário.
 ```
 
-O último é o mais instrutivo para uma sala de ciência de dados, porque
-o modelo devolve código plausível **e** um resultado que não pode ter
-calculado. É o modo de falha que o Anexo I do Quadro descreve como erro
+O último é o mais instrutivo para uma sala de ciência de dados, porque é necessário distinguir código proposto de código efectivamente executado. Um resultado numérico exige execução e verificação. É o modo de falha que o Anexo I do Quadro descreve como erro
 silencioso, e não é apanhado por leitura distraída.
 
 *Qualquer tema, último recurso:*
@@ -301,25 +295,21 @@ quatro pontos, e seguir.
 > explicar só o que muda o que vocês fazem."
 
 **1. Confabulação.** O modelo prevê a continuação mais provável do
-texto. Não consulta factos. Produz o falso com a mesma fluência com
+texto. Algumas aplicações consultam fontes ou executam código; essas funções também exigem verificação. Produz o falso com a mesma fluência com
 que produz o verdadeiro, e foi isso que acabaram de ver.
 
 Se quiser uma formulação que costuma fixar, use a do CNIPES:
 
 > "Os LLM automatizam linguagem, não conhecimento."
 
-**2. Referências inventadas.** O modo de falha mais frequente em
-contexto académico e o mais fácil de verificar. Regra: confirmar
+**2. Referências inventadas.** Um modo de falha verificável em contexto académico. Regra: confirmar
 sempre no original, com DOI ou ligação.
 
 **3. Dados de doentes.** Nunca, em plataforma alguma, nem sequer na
 institucional. A anonimização informal não cumpre o RGPD. Este ponto
 diz-se devagar e sem hedging.
 
-**4. Risco baixo e risco alto.** Preparar materiais que o docente
-revê é risco baixo. Avaliar ou classificar estudantes é risco alto, e
-a decisão final é humana. Esta distinção estrutura os três eixos que
-se seguem.
+**4. Risco por utilização.** O Quadro distingue apoio auxiliar de usos com impacto formativo. Materiais e avaliação exigem revisão adequada ao impacto, e a decisão final sobre classificação permanece humana.
 
 **Ligação ao Quadro, cerca de 20 segundos.** Diga que os quatro
 pontos assentam nos sete princípios, aponte para a página
@@ -570,9 +560,7 @@ primeira é a que dá o efeito mais imediato:
 > "Consigo obter o produto final desta actividade com um único
 > prompt, sem fazer o que a actividade pretende que eu faça?"
 
-A terceira é a que tem mais consequência institucional, e é a única
-verificação de toda a sessão que não é autodeclarada por quem desenhou a
-actividade:
+A terceira é a que tem mais consequência institucional, e deve ser respondida pelo par que testa a actividade:
 
 > "Um estudante sem acesso a ferramenta paga fica em desvantagem?"
 
@@ -607,9 +595,7 @@ programa da UC e o requisito de divulgação a comunicar aos alunos.
 
 Diga o que interessa sobre a rastreabilidade:
 
-> "Reparem no rodapé. Traz a versão da ferramenta e a versão do
-> Quadro que a produziram. Daqui a dois anos consegue-se saber que
-> regras estavam em vigor quando esta declaração foi feita."
+> "O rodapé identifica versões da aplicação, das regras e do Quadro. Guardem o texto ou PDF para conservar esta redacção: a ligação recupera escolhas, mas a regeneração usa as versões actuais."
 
 Diga também o que ela não é:
 
@@ -632,7 +618,7 @@ seguinte.
 ## Parte 4. Perguntas difíceis
 
 As cinco primeiras estão trabalhadas por escrito no
-[Anexo 9b do Quadro](https://tiagojacinto.eu/fmup-ia/quadro/09b-objeccoes.html).
+[Capítulo 9b do Quadro](https://tiagojacinto.eu/fmup-ia/quadro/09b-objeccoes.html).
 Aqui ficam versões curtas, para responder de pé. **Não defenda o
 Quadro.** Conceder o que a objecção tem de razoável é mais eficaz do
 que refutá-la.
@@ -649,11 +635,7 @@ que refutá-la.
 
 **"Isto não é aceitar a inevitabilidade sem a discutir?"**
 
-> "É uma objecção justa e está escrita no documento, no anexo das
-> objecções. A pergunta prévia, deve a Faculdade aceitar isto, não
-> foi feita antes da operacional. A minha resposta é que os 60 a 80%
-> de adopção não obrigam a nada, mas obrigam a decidir. E não decidir
-> também é uma decisão, tomada por omissão."
+> "O uso observado justifica discutir regras, mas não obriga a adoptar a ferramenta. A decisão institucional deve explicitar onde permitir, condicionar ou proibir, e verificar os efeitos sobre a aprendizagem."
 
 **"A verificação não anula a poupança de tempo?"**
 
@@ -671,29 +653,15 @@ que refutá-la.
 
 **"A IAedu é mesmo soberana?"**
 
-> "Não, e o Quadro tem uma objecção sobre isso. A soberania é
-> contratual e operacional, não material nem epistémica: corre em
-> hardware americano com modelos treinados por privados. O que a
-> IAedu resolve é concreto e limitado: garantia contratual de não
-> utilização dos dados para treino, e acesso sem custo individual.
-> Isso chega para os dois problemas que temos aqui, protecção de
-> dados e equidade."
+> "O acesso institucional e a ausência de treino com os dados são condições relevantes, mas não demonstram soberania nem conformidade universal. Para cada tarefa, temos de confirmar autorização, dados permitidos e condições de tratamento."
 
 **"Não tenho tempo para nada disto."**
 
-> "Por isso é que o produto de hoje é uma ficha e não um plano. E o
-> eixo 1 poupa tempo desde a primeira utilização. Se só levarem uma
-> coisa, levem a cláusula do Anexo B: são dez minutos e resolve a
-> ambiguidade toda na vossa UC."
+> "O produto de hoje é uma ficha de actividade e uma cláusula para o programa da UC. O tempo necessário para as preparar e verificar depende da tarefa; queremos identificar também os casos em que a IA não compensa."
 
 **"E se os alunos usarem à mesma, sem declarar?"**
 
-> "Vão usar. A ausência de declaração é, por si, violação de
-> integridade, independentemente da qualidade do trabalho, e isso é
-> mais fácil de sustentar do que provar que houve uso. Mas a resposta
-> principal não é disciplinar: é que o trabalho não declarado deixe
-> de ser suficiente para ter nota, porque há uma componente que exige
-> presença."
+> "Se o uso e a omissão de uma declaração obrigatória forem demonstrados, pode haver infracção de integridade. A ausência de uma declaração, por si só, não prova que houve uso. A avaliação deve combinar produto, processo e observação da competência."
 
 **"Posso usar para corrigir?"**
 
@@ -708,22 +676,11 @@ que refutá-la.
 Vai ser perguntada, e a resposta honesta é que provavelmente não muda o
 suficiente. Não a evite.
 
-> "Provavelmente não. O único estudo publicado sobre este tipo de
-> formação usou cinco sessões de uma hora, não uma de duas, e os autores
-> concluem que formação curta pode iniciar experimentação e reflexão mas
-> não completa o trabalho de integrar isto no ensino de forma
-> criticamente reflectida. Esta sessão é a formação inicial da Fase 1 do
-> Quadro, não é o programa todo."
+> "Anand et al. estudaram cinco sessões de uma hora com dez docentes. Esses resultados não validam esta sessão de duas horas. Aqui propomos formação inicial e uma actividade testada, a acompanhar posteriormente."
 
 E acrescente o achado que interessa, porque é sobre a sala em que estão:
 
-> "Nesse estudo, no seguimento a duas semanas, todos os participantes
-> tencionavam usar isto para preparar aulas e avaliações. Menos de
-> metade tencionava definir práticas de uso responsável, e um em cinco
-> tencionava iniciar discussões éticas. Eram cinco respostas, portanto é
-> hipótese e não resultado, mas é a hipótese que me preocupa: sair daqui
-> entusiasmado com a geração de material e não mudar nada no que declara
-> ou no que exige aos alunos."
+> "No seguimento a duas semanas, os cinco respondentes indicaram intenção de usar IA para preparar aulas e avaliações. Menos indicaram práticas de uso responsável e discussão ética. São resultados descritivos de uma amostra pequena; não demonstram mudança efectiva de práticas."
 
 **Onde isto tem consequência prática.** A sessão tem defesas contra essa
 assimetria, mas só uma delas não depende da boa vontade de quem desenhou
@@ -733,12 +690,10 @@ a actividade:
 |---|---|
 | Linha "Regime aplicável" na ficha | Quem desenhou. Autodeclarada. |
 | Declaração da Themis no bloco 8 | Quem desenhou. Autodeclarada. |
-| **Pergunta 3 do bloco 7, sobre equidade** | **Outro par.** É a única verificada por terceiros. |
+| Três perguntas do bloco 7, incluindo equidade | Outro par, com fundamento registado na ficha. |
 
 Daí uma instrução operacional: no bloco 7, não deixe a pergunta 3 passar
-como formalidade. É a única parte da sessão em que alguém que não
-desenhou a actividade tem de responder se ela exclui estudantes sem
-ferramenta paga. Se sobrar tempo em apenas uma das três perguntas, gaste
+como formalidade. O par que testa deve verificar se a actividade exclui estudantes sem ferramenta paga. Se sobrar tempo em apenas uma das três perguntas, gaste
 nessa.
 
 ---

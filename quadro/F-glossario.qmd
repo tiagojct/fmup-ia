@@ -6,7 +6,7 @@ Termos usados neste quadro de referência, organizados alfabeticamente. As entra
 
 **AAMC** --- _Association of American Medical Colleges_. Associação das faculdades de medicina dos Estados Unidos. Publicou, em 2025, sete princípios para a utilização responsável de IA em educação médica.
 
-**AI Act** --- Regulamento Europeu da Inteligência Artificial (Regulamento UE 2024/1689), adoptado em 2024 e com aplicação escalonada ao longo de 2025-2026. Classifica sistemas de IA por nível de risco, com obrigações diferenciadas, e aplica-se directamente às instituições de ensino superior enquanto utilizadoras.
+**AI Act** --- Regulamento Europeu da Inteligência Artificial (Regulamento UE 2024/1689), adoptado em 2024 e com aplicação escalonada com prazos de alto risco em 2027-2028 (ver capítulo [14](14-camada-medica.qmd#eu-mdrivdr-ai-act-e-ehds)). Classifica sistemas de IA por nível de risco, com obrigações diferenciadas, e aplica-se directamente às instituições de ensino superior enquanto utilizadoras.
 
 **AICAI** --- modelo proposto por Peters e Angelov (2025) para redesenho de trabalhos de avaliação académica perante a disponibilidade de GenAI. Articula três eixos: criatividade, autenticidade e integridade.
 
@@ -32,15 +32,15 @@ Termos usados neste quadro de referência, organizados alfabeticamente. As entra
 
 **IAedu** --- plataforma institucional portuguesa, desenvolvida pela FCCN (serviços digitais da FCT), lançada em 2025. Oferece acesso centralizado a LLMs para o ensino superior e investigação, com autenticação federada institucional e garantia de não-utilização dos dados para treino.
 
-**ICMJE** --- _International Committee of Medical Journal Editors_. Emite recomendações adoptadas pela maioria das revistas médicas internacionais.
+**ICMJE** --- _International Committee of Medical Journal Editors_. Emite recomendações para a publicação médica; deve consultar-se também a política da revista destinatária.
 
-**LLM (_Large Language Model_)** --- modelo de linguagem de grande dimensão, treinado em volumes massivos de texto para prever a palavra seguinte e, por extensão, gerar texto coerente a partir de instruções. Exemplos correntes: GPT (OpenAI), Claude (Anthropic), Gemini (Google), Llama (Meta), DeepSeek.
+**LLM (_Large Language Model_)** --- modelo de linguagem de grande dimensão, treinado em volumes massivos de texto para prever unidades de texto (_tokens_) e, por extensão, gerar texto coerente a partir de instruções. Exemplos correntes: GPT (OpenAI), Claude (Anthropic), Gemini (Google), Llama (Meta), DeepSeek.
 
 **_Living Guidelines_** --- _Living Guidelines on the Responsible Use of Generative AI in Research_, documento do ERA Forum. "Vivo" porque sujeito a actualizações regulares à medida que a tecnologia evolui.
 
 **_Prompt_** --- instrução em linguagem natural dada ao modelo. **_Prompting_** --- prática de formular _prompts_; componente central da literacia em IA na sua dimensão prática.
 
-**RGPD** --- Regulamento Geral sobre a Protecção de Dados (Regulamento UE 2016/679). Aplica-se a qualquer tratamento de dados pessoais na União Europeia; impõe, entre outras, a proibição de decisão exclusivamente automatizada em matérias com efeito jurídico ou significativo sobre as pessoas, sem intervenção humana substantiva.
+**RGPD** --- Regulamento Geral sobre a Protecção de Dados (Regulamento UE 2016/679). Aplica-se a qualquer tratamento de dados pessoais na União Europeia; o artigo 22.º estabelece o direito a não ficar sujeito a decisões exclusivamente automatizadas com efeitos jurídicos ou semelhantes, com as excepções e salvaguardas previstas no próprio regulamento.
 
 **_Scaffolding_** --- estratégia pedagógica em que o apoio ao estudante é progressivamente reduzido à medida que a competência é adquirida. Boman et al. (2025) propõem um modelo de _scaffolding_ específico para integração de GenAI em educação médica.
 
@@ -48,7 +48,7 @@ Termos usados neste quadro de referência, organizados alfabeticamente. As entra
 
 **SARPS** --- _Six Assessment Redesign Pivotal Strategies_. _Framework_ proposto por Chan e Colloton (2024) para redesenho de avaliação perante a disponibilidade de GenAI.
 
-**_Slop_** --- conteúdo gerado por IA de baixa qualidade, publicado sem curadoria humana, com pouco valor acrescentado. Palavra do Ano 2025 do _Merriam-Webster_. Jones et al. (2025) propuseram a primeira definição académica formal do termo em meios educacionais [@jones2025slop].
+**_Slop_** --- conteúdo gerado por IA de baixa qualidade, publicado sem curadoria humana, com pouco valor acrescentado. Palavra do Ano 2025 do _Merriam-Webster_. Jones et al. (2025) propuseram uma definição académica do termo em meios educacionais [@jones2025slop].
 
 **_Sloppypasta_** --- neologismo que junta _slop_ e _copypasta_; o acto específico de copiar-e-colar _output_ bruto de um modelo de linguagem sem leitura, verificação ou edição.
 

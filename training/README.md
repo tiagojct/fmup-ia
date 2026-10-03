@@ -8,7 +8,7 @@ Endereço publicado: <https://tiagojacinto.eu/fmup-ia/training/>
 
 ## Estatuto
 
-Contributo individual de Tiago Jacinto, submetido a apreciação institucional. Não é material formativo aprovado pelos órgãos da FMUP e não vincula a Faculdade. Ver a página Sobre do site.
+Contributo individual de Tiago Jacinto, destinado a apreciação institucional. Não é material formativo aprovado pelos órgãos da FMUP e não vincula a Faculdade. Ver a página Sobre do site.
 
 ## Conteúdo
 

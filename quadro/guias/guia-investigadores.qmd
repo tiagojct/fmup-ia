@@ -1,8 +1,8 @@
 ---
 title: "Guia prático: utilização de IA generativa"
 subtitle: "Investigadores da FMUP"
-author: "FMUP --- Grupo de trabalho para IA generativa"
-date: "2026-04-21"
+author: "Tiago Jacinto — contributo individual para discussão"
+date: "2026-10-03"
 date-format: "D [de] MMMM [de] YYYY"
 lang: pt-PT
 # CSL colocado nesta pasta de propósito. O Typst do Quarto 1.10+
@@ -27,16 +27,16 @@ A responsabilidade intelectual pelo conteúdo publicado pertence sempre aos auto
 
 ## Regras essenciais
 
-1. **Apoio linguístico é aceitável; geração substantiva não é.** Revisão gramatical, melhoria estilística e tradução são usos legítimos com declaração. Formulação de hipóteses, interpretação de resultados ou redacção substantiva da discussão reduzem a autoria intelectual.
+1. **Distinga apoio linguístico de contributo substantivo.** A declaração segue as regras do destinatário. Usos substantivos exigem verificação e registo detalhado; a decisão e a responsabilidade científicas permanecem humanas.
 2. **Declare no manuscrito.** Na secção de métodos ou nos agradecimentos, indique ferramenta, versão, data e natureza da assistência. Siga a política da revista quando especificar detalhe adicional.
 3. **A GenAI não pode ser listada como autora.** A autoria implica responsabilidade e prestação de contas, que nenhum sistema de IA pode assumir. Os editores das principais revistas médicas são inequívocos neste ponto.
 4. **Não delegue a revisão por pares ou a avaliação de candidaturas à GenAI nem exponha materiais confidenciais.** As _Living Guidelines_ desaconselham usos substantivos nestas tarefas. Apoio pontual com informação pública exige respeito pelas regras da revista ou do financiador.
-5. **Código gerado por GenAI: só submeta o que consegue explicar.** Leia, teste, compreenda. Se não explica, não é seu. Regra aplicável também a código de análise estatística ou limpeza de dados.
-6. **Nunca introduza dados sensíveis em plataformas comerciais.** Dados de participantes, registos clínicos, imagens, excertos de entrevistas. Use IAedu ou plataformas com contrato de tratamento de dados conforme ao RGPD.
+5. **Código gerado por GenAI: só submeta o que consegue explicar.** Reveja e teste o código, incluindo os resultados e pressupostos. Regra aplicável também a código de análise estatística ou limpeza de dados.
+6. **Não introduza dados sensíveis em serviços não autorizados.** O tratamento exige base legal, autorização institucional e ambiente aprovado para os dados e a finalidade. Ter acesso à IAedu não autoriza dados de saúde.
 7. **Em revisões sistemáticas ou triagem assistida por IA, documente tudo.** Ferramenta, _prompts_, critérios, validação cruzada com revisor humano, taxas de concordância. A decisão de inclusão não pode ser exclusivamente automatizada. Consulte as _guidelines_ PRISMA-AI quando aplicáveis.
-8. **Se desenvolve IA aplicada à clínica, articule com ética e CNPD desde o início.** Um sistema que venha a ser usado em triagem, diagnóstico ou decisão clínica pode constituir "alto risco" sob o AI Act. Envolva o grupo de trabalho para IA generativa da FMUP cedo.
+8. **Se desenvolve IA aplicada à clínica, envolva a comissão de ética e o encarregado de protecção de dados desde o início.** Um sistema que venha a ser usado em triagem, diagnóstico ou decisão clínica pode constituir "alto risco" sob o AI Act. Avalie as obrigações com os serviços competentes; o grupo de trabalho da FMUP é proposto.
 
-## Plataformas recomendadas
+## Ferramentas e condições de uso
 
 - **IAedu** — <https://iaedu.pt>. Institucional, conta `@up.pt`. Primeira opção para qualquer utilização que envolva texto académico próprio.
 - **ChatGPT** — <https://chatgpt.com> / **Claude** — <https://claude.ai>. Para apoio linguístico e exploratório. Versões com opt-out de treino ou API com contrato.
@@ -58,4 +58,4 @@ A responsabilidade intelectual pelo conteúdo publicado pertence sempre aos auto
 
 ---
 
-*Documento resumido. Versão de Julho de 2026. Documento vivo, sujeito a revisão anual. Para o tratamento integral das questões aqui resumidas, consulte o Quadro institucional [@jacinto2026quadro] e a ferramenta Themis [@jacinto2026themis].*
+*Guia da proposta {{< var quadro.versao >}}, revisto em {{< var quadro.data >}}. Não é política institucional aprovada. Para o tratamento integral das questões aqui resumidas, consulte o Quadro institucional [@jacinto2026quadro] e a ferramenta Themis [@jacinto2026themis].*

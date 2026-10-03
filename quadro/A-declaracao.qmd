@@ -3,7 +3,7 @@
 ::: {.callout-note}
 ## Geração automatizada da declaração
 
-O demonstrador prototípico [**Themis**](../themis/) recolhe ferramentas, tarefas, âmbito, partes afectadas, verificações e referência dos prompts para gerar uma versão em prosa deste modelo, formatada para cada papel (estudante, docente, investigador) e para cada destinatário ([ICMJE](https://www.icmje.org/), FCT, Horizonte Europa, Wellcome Trust, conferência ou relatório institucional). Cada declaração gerada inclui a versão do quadro vigente, o que permite rastreá-la no tempo. A Themis, no presente estado, é demonstrador prototípico (não aplicação institucional certificada): qualquer utilização para gerar declarações vinculativas presume aceitação dos termos descritos em [Sobre · Estatuto editorial](../sobre.qmd#estatuto-editorial). O modelo abaixo permanece útil para preenchimento manual e como referência do conteúdo mínimo exigido.
+O demonstrador [Themis](../themis/) recolhe ferramentas, tarefas, âmbito, partes afectadas, verificações e referência dos prompts. Gera rascunhos de declarações para estudantes e investigadores, adaptados ao destinatário, e cláusulas para docentes. Cada texto identifica a versão do Quadro usada como referência. A ferramenta não certifica conformidade nem substitui a revisão das exigências do destinatário. O modelo abaixo permite preenchimento manual.
 
 A Themis rotula as tarefas declaradas pelos macrodomínios GAIDeT descritos abaixo, nas vertentes Estudantes e Investigadores. Permanecem alternativas válidas as ferramentas indicadas pela Universidade do Porto [@uporto2026posgrad], designadamente enquanto a Themis for demonstrador prototípico e não aplicação institucional certificada: o *GAIDeT Declaration Generator* (<https://panbibliotekar.github.io/gaidet-declaration/>) ou, para teses em LaTeX, o pacote `aidisclose` (<https://aidisclose.org/>).
 :::
@@ -42,8 +42,8 @@ A declaração estruturada classifica as tarefas efectivamente delegadas segundo
 | Escrita e edição | Redacção, revisão linguística, tradução |
 | Revisão ética | Verificação de conformidade ética e regulatória |
 | Supervisão | Acompanhamento e validação de etapas do trabalho |
-| Visuais/multimédia *(extensão U.Porto)* | Figuras, imagens, elementos gráficos, material audiovisual |
 | Controlo de qualidade *(extensão U.Porto)* | Verificação sistemática de resultados, coerência e referências |
+| Visuais/multimédia *(extensão U.Porto)* | Figuras, imagens, elementos gráficos, material audiovisual |
 
 O **âmbito** do uso classifica-se em três graus [@uporto2026guiabase]:
 
@@ -57,7 +57,7 @@ O **âmbito** do uso classifica-se em três graus [@uporto2026guiabase]:
 
 Declaro que na elaboração deste trabalho foi utilizada a seguinte ferramenta de inteligência artificial generativa:
 
-- Ferramenta: [ex: ChatGPT (GPT-5), Claude (Opus 4.5), Gemini 2.5 Pro, modelo da plataforma IAedu, etc.]
+- Ferramenta: [nome da ferramenta, versão do modelo e tipo de conta ou serviço usado]
 - Tipo de assistência: [ex: revisão gramatical, geração de resumo, apoio à análise de dados, tradução, etc.]
 - Macrodomínios delegados: [assinalar da lista acima]
 - Âmbito do uso: [apoio técnico / apoio auxiliar com impacto limitado / contributo substantivo]
@@ -73,11 +73,11 @@ Assinatura: _______________
 
 ## Exemplos preenchidos
 
-Os exemplos abaixo ilustram níveis distintos de assistência e devem ser lidos como referência, não como inventário exaustivo.
+Os exemplos são fictícios. Ilustram o registo da assistência e não confirmam a disponibilidade de modelos na IAedu ou a existência de contas institucionais. Para uso material, acrescentem-se todos os campos do modelo, incluindo macrodomínios, âmbito e verificações.
 
 ### Exemplo 1 --- Revisão linguística de um trabalho escrito
 
-- Ferramenta: Claude Opus 4.5, via IAedu.
+- Ferramenta: Modelo de linguagem disponibilizado na IAedu (registar nome e versão).
 - Tipo de assistência: revisão gramatical, ortográfica e estilística.
 - Secções em que foi aplicada: introdução, discussão e conclusão.
 - Prompts utilizados: _"Revê o texto abaixo, corrigindo erros gramaticais e de pontuação e propondo, em comentário, alternativas estilísticas quando o texto for ambíguo. Não alteres o conteúdo factual nem a argumentação."_
@@ -85,7 +85,7 @@ Os exemplos abaixo ilustram níveis distintos de assistência e devem ser lidos 
 
 ### Exemplo 2 --- Apoio à análise de dados
 
-- Ferramenta: ChatGPT (GPT-5), conta institucional com opt-out de treino.
+- Ferramenta: Modelo de linguagem em conta autorizada para a tarefa (registar nome, versão e condições da conta).
 - Tipo de assistência: geração de _scripts_ em R para regressão logística multivariável e interpretação de diagnósticos de multicolinearidade.
 - Secções em que foi aplicada: Métodos (desenvolvimento do código) e Resultados (verificação de pressupostos).
 - Prompts utilizados: _"Dado um dataset com as variáveis X, Y e Z, produz um script R que ajuste um modelo logístico multivariável, calcule VIF e produza um gráfico de resíduos. Comenta passo a passo."_ _Prompt_ completo anexado como material suplementar.
@@ -94,7 +94,7 @@ Os exemplos abaixo ilustram níveis distintos de assistência e devem ser lidos 
 
 ### Exemplo 3 --- Preparação de caso clínico simulado (docente)
 
-- Ferramenta: Claude Opus 4.5, via IAedu.
+- Ferramenta: Modelo de linguagem disponibilizado na IAedu (registar nome e versão).
 - Tipo de assistência: geração de uma vinheta clínica simulada sobre insuficiência cardíaca descompensada para discussão tutorial, com questões para debate.
 - Secções em que foi aplicada: material de apoio à sessão tutorial da unidade curricular [XYZ].
 - Prompts utilizados: _"Constrói uma vinheta clínica fictícia de um doente de 72 anos com insuficiência cardíaca descompensada de etiologia isquémica. Inclui história, exame físico, exames complementares e três questões de discussão adequadas a alunos do 4.º ano de Medicina."_

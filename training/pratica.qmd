@@ -15,7 +15,7 @@ Esta página é a folha de trabalho do [bloco 6](programa.qmd#bloco-6). Está pr
 
 Trinta minutos, em pares. No fim, cada par tem **uma ficha preenchida**, com o prompt escrito e testado na IAedu.
 
-Não é um plano de intenções nem um esboço para desenvolver mais tarde. A ficha tem de estar em condições de ser entregue a outro par, no [bloco 7](programa.qmd#bloco-7), que vai tentar quebrá-la.
+A ficha deve incluir instruções suficientes para ser entregue a outro par, no [bloco 7](programa.qmd#bloco-7), que vai tentar quebrá-la.
 
 ## Regras do trabalho em pares
 
@@ -197,7 +197,7 @@ Permitido, condicionado ou proibido, e em que termos. Ver o [Anexo B do Quadro](
 
 ## Teste cruzado {.quebra-pagina}
 
-Preenchido pelo **outro par**, no [bloco 7](programa.qmd#bloco-7). Não é revisão amigável: é tentativa deliberada de fazer a actividade falhar.
+Preenchido pelo **outro par**, no [bloco 7](programa.qmd#bloco-7). O teste procura falhas de desenho, acesso e funcionamento antes de a actividade ser aplicada.
 
 ::: {.ficha-branco}
 ### 1. Consegue-se obter o produto final com um único prompt, sem fazer o que a actividade pretende?
@@ -240,6 +240,6 @@ Se sim, escrever o prompt que o consegue.
 
 ## Depois da sessão
 
-Cada participante gera, na [Themis](https://tiagojacinto.eu/fmup-ia/themis/), a declaração de uso correspondente à actividade desenhada. Na vertente Docentes, a ferramenta produz dois textos: a cláusula para o programa da unidade curricular e o requisito de divulgação a comunicar aos estudantes.
+Cada participante gera, na [Themis](https://tiagojacinto.eu/fmup-ia/themis/), a cláusula de uso correspondente à actividade desenhada. Na vertente Docentes, a ferramenta produz dois textos: a cláusula para o programa da unidade curricular e o requisito de divulgação a comunicar aos estudantes.
 
-A declaração inclui a versão do Quadro e a versão da ferramenta que a produziram, o que a torna rastreável no tempo.
+O texto inclui a versão do Quadro e a versão da ferramenta que a produziram, o que a torna rastreável no tempo.

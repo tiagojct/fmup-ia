@@ -12,7 +12,7 @@
 Um repositório que reúne, num único site Quarto:
 
 1. **Quadro** (`/quadro/`) — proposta institucional sobre uso de GenAI na FMUP, em duas partes: comparação externa (Parte I) e proposta operacional para a FMUP (Parte II), seguidas de dez anexos.
-2. **Themis** (`/themis/`) — SPA cliente em vanilla JS sem _build_ que gera declarações estruturadas de uso de IA para três papéis (estudante, docente, investigador) e devolve avaliação guidante de risco em quatro níveis (HEAT-AI), com base nas regras codificadas em `themis/policy.json`. A ferramenta é guidante, não bloqueante. Chamava-se *Atlas* até Junho de 2026; foi renomeada para evitar colisão com o portal institucional *Atlas U.Porto* (`atlas.up.pt`).
+2. **Themis** (`/themis/`) — SPA cliente em vanilla JS sem _build_ que gera declarações de uso de IA para estudantes e investigadores e cláusulas de UC para docentes. Devolve uma avaliação indicativa de risco em quatro níveis (HEAT-AI), com base nas regras codificadas em `themis/policy.json`. Os avisos são indicativos e não bloqueiam a declaração. Chamava-se *Atlas* até Junho de 2026; foi renomeada para evitar colisão com o portal institucional *Atlas U.Porto* (`atlas.up.pt`).
 
 Tudo está cruzadamente ligado: o site liga à Themis (navbar, _landing_, anexos); a Themis liga ao Quadro (header "voltar", _footer_, e via `framework_url` em `policy.json`).
 

@@ -9,14 +9,14 @@ Esta página documenta as convenções tipográficas, terminológicas e de cita�
 
 | Termo | Definição |
 |---|---|
-| **Quadro** | O presente documento de política institucional: *FMUP · IA — Quadro de referência institucional para a utilização de IA generativa na FMUP*. Escrito sempre com maiúscula quando se refere a este documento. |
+| **Quadro** | A presente proposta de quadro institucional: *FMUP · IA — Quadro de referência institucional para a utilização de IA generativa na FMUP*. Escrito sempre com maiúscula quando se refere a este documento. |
 | **Themis** | A ferramenta web que gera declarações de uso de IA padronizadas, disponível em [tiagojacinto.eu/fmup-ia/themis/](themis/). Escrita com maiúscula por ser nome próprio. **Era** *Atlas* até Junho de 2026 (rebranding para evitar colisão com o portal *Atlas U.Porto*). |
 | **Vertente** | Uma das três aplicações operacionais da Parte II: Estudantes, Docentes ou Investigadores. Cada vertente tem o seu capítulo próprio e o seu ramo na Themis. |
 | **Parte I** | Comparação externa e diagnóstico de lacunas (capítulos 10 a 15). |
 | **Parte II** | Proposta operacional para a FMUP (capítulos 1 a 9). |
 | **capítulo X** | Referência a um capítulo numerado do Quadro. Escrito com minúscula, seguido do número. |
 | **Anexo X** | Instrumento prático numerado por letra (A a J), no final do Quadro. Escrito com maiúscula quando seguido da letra de identificação. |
-| **Grupo de Trabalho** | O grupo institucional de coordenação de IA na FMUP, previsto no capítulo 6. Escrito com maiúsculas por designar um órgão formal. |
+| **Grupo de Trabalho** | O grupo de coordenação de GenAI proposto para a FMUP no capítulo 6. As maiúsculas distinguem esta estrutura proposta do Grupo de Trabalho já constituído pela U.Porto; não significam que o grupo da FMUP exista. |
 | **Fase 1 / Fase 2 / Fase 3** | As três fases do calendário de implementação (2026–2027, 2027–2028, 2028–2029), descritas no capítulo 7. |
 
 ## Terminologia de IA
@@ -36,7 +36,7 @@ Esta página documenta as convenções tipográficas, terminológicas e de cita�
 - **Itálico com sublinhado Markdown** (`_palavra_`): termos ingleses em contexto português — _toolkits_, _scaffolding_, _deployer_, _outputs_.
 - **Negrito**: ênfase editorial ou primeiro uso de um termo importante.
 - **`código`**: nomes de ficheiros, versões de software, identificadores técnicos.
-- **Citações bibliográficas**: sintaxe Pandoc `[@chave]` — nunca inline com URL.
+- **Citações bibliográficas**: sintaxe Pandoc `[@chave]` para entradas da bibliografia. Ligações directas são usadas para páginas institucionais, legislação e outros recursos de consulta.
 - **Links internos**: sempre com texto descritivo, nunca URLs nuas.
 
 ## Ortografia
@@ -44,7 +44,7 @@ Esta página documenta as convenções tipográficas, terminológicas e de cita�
 O Quadro é redigido em **português europeu pré-AO90**: *adopção*, *protecção*, *actualização*, *objectivo*, *utilização*, *faculdade*. Qualquer contributo deve manter esta convenção.
 
 ::: {.callout-note appearance="simple"}
-A escolha pelo pré-AO90 é editorial do autor e não constitui posição institucional da FMUP. A administração pública portuguesa adopta o Acordo Ortográfico de 1990 (Resolução do Conselho de Ministros n.º 8/2011); qualquer eventual adopção institucional deste Quadro pela Faculdade implicará, naturalmente, a transição para a norma em vigor. As declarações geradas pela Themis seguem a mesma convenção pré-AO90 nos elementos pré-formatados em PT, e em AO90 ou outra norma quando o destinatário (revista, agência financiadora) tenha exigências próprias.
+A escolha pelo pré-AO90 é editorial do autor e não constitui posição institucional da FMUP. A administração pública portuguesa adopta o Acordo Ortográfico de 1990 (Resolução do Conselho de Ministros n.º 8/2011); qualquer eventual adopção institucional deste Quadro pela Faculdade implicará, naturalmente, a transição para a norma em vigor. As declarações geradas pela Themis seguem a mesma convenção pré-AO90 nos elementos pré-formatados em PT, sem conversão automática para AO90. O utilizador deve adaptar o texto à norma exigida pelo destinatário.
 :::
 
 ## Versões e rastreabilidade
@@ -56,7 +56,7 @@ A Themis mantém dois números de versão independentes:
 | `APP_VERSION` | Interface, textos das declarações, ficheiros `i18n/` | Muda quando o texto gerado muda |
 | `policy.version` | Regras institucionais em `policy.json` | Muda quando as regras ou os níveis de risco mudam |
 
-Cada declaração gerada pela Themis inclui ambos os números, permitindo rastrear exactamente qual a versão do Quadro e da ferramenta que produziu aquela declaração.
+Cada texto gerado inclui a versão da aplicação, a versão das regras e a versão do Quadro usada como referência. Para conservar o texto exacto, guarde-o em ficheiro ou PDF: uma ligação partilhável recupera as escolhas, mas gera o texto com as versões actuais.
 
 ## Como citar o Quadro
 
@@ -68,6 +68,6 @@ Para referenciar um capítulo específico, acrescentar o URL do capítulo:
 
 ## Como citar a Themis
 
-A Themis gera automaticamente a linha de citação adequada ao destinatário no final de cada declaração produzida. Para uma referência genérica à ferramenta:
+A Themis acrescenta ao texto gerado a data e as versões utilizadas. Esse registo não substitui uma referência bibliográfica à ferramenta. Para uma referência genérica à ferramenta:
 
 > Jacinto T. Themis — FMUP AI Usage Statement Generator (anteriormente *Atlas*), v{{< var themis.versao >}}. Faculdade de Medicina da Universidade do Porto, 2026. <https://tiagojacinto.eu/fmup-ia/themis/>

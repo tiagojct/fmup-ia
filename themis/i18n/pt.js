@@ -81,7 +81,7 @@
   };
 
   const resolveAssignmentPrep = (k, otherText) => {
-    if (k === 'other' && otherText && trim(otherText)) return 'neste(a) ' + trim(otherText);
+    if (k === 'other' && otherText && trim(otherText)) return 'na preparação do trabalho descrito como ' + trim(otherText);
     return ASSIGNMENT_PREP[k] || ASSIGNMENT_PREP.other;
   };
 
@@ -212,7 +212,7 @@
 
     if (s.scope === 'substantive') {
       return subject + ' ter utilizado ' + tools + ' em tarefas com influência material na preparação deste trabalho. ' +
-        'A descrição das tarefas delegadas, das partes afectadas e das verificações efectuadas consta da declaração estruturada anexa.' +
+        'A descrição das tarefas delegadas, das partes afectadas e das verificações e do seu estado consta da declaração estruturada anexa.' +
         footer(version, policy);
     }
 
@@ -244,7 +244,7 @@
       return TASK_PHRASES[k];
     }).filter(Boolean);
     const tasksClause = tasks.length
-      ? ' especificamente para ' + list(tasks)
+      ? '; finalidades: ' + list(tasks)
       : '';
 
     const modification = {
@@ -276,7 +276,7 @@
       : 'O trabalho é de autoria individual.';
     const intro = subj + ' à utilização de ferramentas de inteligência artificial generativa ' + aPrep + '. ' +
       submissionSentence + ' ' +
-      'A(s) ferramenta(s) utilizada(s) foi(foram): ' + tools + tasksClause + '.';
+      'Ferramentas utilizadas: ' + tools + tasksClause + '.';
 
     const useDateClause = trim(s.useDate) ? ' A utilização principal ocorreu em ' + trim(s.useDate) + '.' : '';
 
@@ -337,12 +337,12 @@
       without_restrictions: '🟩 Permitido — ',
     };
     const marker = SEMAFORO[s.policy] || '';
-    const lead = marker + courseLead + ', e relativamente ao trabalho avaliativo do tipo ' + aNoun + ',';
+    const lead = marker + courseLead + ', para as actividades avaliadas descritas como ' + aNoun + ',';
 
     const policyText = {
       not_permitted: ' não é permitida a utilização de ferramentas de inteligência artificial generativa na produção do trabalho submetido. Os trabalhos avaliativos devem reflectir exclusivamente a produção intelectual ' + subj.possPlural + ', sendo qualquer recurso a estas ferramentas considerado uma falta à integridade académica.',
       with_disclosure: ' é permitida a utilização de ferramentas de inteligência artificial generativa, sob condição de divulgação integral. ' + subj.capPlural + ' ' + subj.verbDevem + ' declarar de forma transparente as ferramentas empregues, as tarefas para as quais recorreram a essas ferramentas e o grau de modificação dos contributos gerados, mantendo plena responsabilidade pelo conteúdo submetido.',
-      without_restrictions: ' é permitida a utilização de ferramentas de inteligência artificial generativa sem restrições específicas. ' + subj.capPlural + ' ' + subj.verbMantem + ', contudo, plena responsabilidade pelo conteúdo submetido e pela sua adequação aos objectivos pedagógicos.',
+      without_restrictions: ' é permitida a utilização de ferramentas de inteligência artificial generativa sem restrições adicionais às tarefas, mantendo as regras de protecção de dados, integridade e declaração. ' + subj.capPlural + ' ' + subj.verbMantem + ', contudo, plena responsabilidade pelo conteúdo submetido e pela sua adequação aos objectivos pedagógicos.',
     }[s.policy] || '';
 
     return lead + policyText + footer(version, policy);
@@ -357,13 +357,13 @@
       : '';
 
     if (s.policy === 'not_permitted') {
-      return 'O uso de ferramentas de inteligência artificial generativa não é permitido nesta oferta formativa. Teses, dissertações, relatórios finais e documentos equivalentes devem incluir uma nota de não-utilização.' + skillsClause +
+      return 'O uso de ferramentas de inteligência artificial generativa não é permitido neste trabalho avaliativo. Teses, dissertações, relatórios finais e documentos equivalentes devem incluir uma nota de não-utilização.' + skillsClause +
         ' Caso seja detectado qualquer indício de utilização destas ferramentas, o trabalho será objecto de avaliação no âmbito do regulamento de integridade académica da FMUP.' + footer(version, policy);
     }
 
     const reportClause = s.policy === 'with_disclosure'
       ? 'Junto ao trabalho submetido, ' + subj.plural + ' ' + subj.verbDevem + ' anexar uma breve declaração indicando: (i) as ferramentas de inteligência artificial generativa utilizadas, incluindo a versão sempre que aplicável; (ii) as tarefas específicas para as quais essas ferramentas foram empregues; (iii) o grau de modificação aplicado aos contributos gerados; e (iv) a confirmação de que ' + subj.verbAssumem + ' responsabilidade integral pelo conteúdo submetido. A omissão desta declaração ou a sua imprecisão pode constituir falta à integridade académica.'
-      : 'Embora o uso destas ferramentas seja permitido sem restrições específicas, ' + subj.plural + ' devem declarar as ferramentas e tarefas em todos os trabalhos submetidos. Em teses, dissertações, relatórios finais e equivalentes, a nota curta é obrigatória mesmo sem utilização; quando há contributo substantivo, acresce declaração estruturada.';
+      : 'Embora o uso destas ferramentas seja permitido sem restrições adicionais às tarefas, ' + subj.plural + ' devem declarar as ferramentas e tarefas em todos os trabalhos submetidos. Em teses, dissertações, relatórios finais e equivalentes, a nota curta é obrigatória mesmo sem utilização; quando há contributo substantivo, acresce declaração estruturada.';
 
     return reportClause + skillsClause + (s.policy === 'with_disclosure' ? ' Em teses, dissertações, relatórios finais e equivalentes, inclua sempre a nota curta, mesmo sem utilização, e declaração estruturada quando o uso for material.' : '') + footer(version, policy);
   };
@@ -386,7 +386,7 @@
     } else if (s.target === 'fct') {
       body += ' A presente declaração acompanha os elementos formais da candidatura submetida à Fundação para a Ciência e a Tecnologia.';
     } else if (s.target === 'horizon') {
-      body += ' A presente declaração observa as orientações da Comissão Europeia e do ERA Forum sobre o uso responsável de IA generativa em projectos financiados pelo Horizonte Europa.';
+      body += ' A presente declaração destina-se a documentar o uso para apreciação segundo as orientações da Comissão Europeia e do ERA Forum sobre o uso responsável de IA generativa em projectos financiados pelo Horizonte Europa.';
     } else if (s.target === 'wellcome') {
       body += ' Esta declaração documenta o uso indicado para a candidatura ao Wellcome Trust.';
     } else if (s.target === 'conference') {
@@ -441,15 +441,15 @@
       required: 'Campo obrigatório',
       step: 'Passo',
       of: 'de',
-      landingPrompt: 'Selecione o seu papel',
-      landingHelp: 'Esta ferramenta gera declarações de utilização de ferramentas de inteligência artificial generativa adequadas ao contexto da FMUP. Selecione o papel que melhor descreve a sua situação para começar.',
+      landingPrompt: 'Seleccione o seu papel',
+      landingHelp: 'Esta ferramenta gera declarações de utilização de ferramentas de inteligência artificial generativa adequadas ao contexto da FMUP. Seleccione o papel que melhor descreve a sua situação para começar.',
       outputHeading: 'Declaração gerada',
       outputHeadingSyllabus: 'Texto para o programa da unidade curricular',
       outputHeadingTeacherDisclosure: 'Requisito de divulgação a comunicar aos estudantes',
       outputHeadingShortNote: 'Nota curta normalizada',
       outputHeadingResearcherFull: 'Declaração para Métodos / Agradecimentos',
       outputHeadingResearcherInline: 'Declaração breve em linha',
-      yourSelections: 'As suas seleções',
+      yourSelections: 'As suas selecções',
       reviewBeforeCopy: 'Reveja a declaração antes de a utilizar. O conteúdo deve reflectir, de boa-fé, a utilização efectivamente feita das ferramentas indicadas.',
       requiredAsterisk: '*',
       backToQuadro: '← Quadro',
@@ -458,13 +458,13 @@
       viewScenario: 'Ver cenário no Quadro',
       principleLabel: 'Princípio',
       footerNationalPlatform: 'Diagnóstico nacional sobre IA no ensino superior (CNIPES)',
-      toolsSuggestedHeader: 'Sugestões institucionais (clique para adicionar)',
-      toolsSuggestedHelp: 'Em primeiro a plataforma institucional (IAedu); depois plataformas com contrato e opt-out de treino; depois ferramentas especializadas; por fim, versões grátis que requerem cautela com os dados.',
+      toolsSuggestedHeader: 'Ferramentas de referência (clique para adicionar)',
+      toolsSuggestedHelp: 'Comece pela IAedu para as tarefas autorizadas. Para qualquer serviço, confirme a conta, o contrato e as categorias de dados permitidas. Uma conta paga ou a exclusão do treino não substitui autorização institucional.',
       toolsTierInstitutional: 'Plataforma institucional',
       toolsTierEnterprise: 'Versões empresariais (contrato + opt-out de treino)',
       toolsTierSpecialised: 'Ferramentas especializadas',
       toolsTierConsumerWarning: 'Versões públicas — atenção aos dados',
-      studentUCPolicyReminder: 'Antes de submeter esta declaração, verifique a política da sua unidade curricular — o programa da UC ou o <a href="../quadro/B-clausula.html" target="_blank">Anexo B</a> indicam o regime aplicável (permitido, condicionado ou proibido). Esta declaração reflecte o Quadro institucional, não necessariamente o regime específico da UC.',
+      studentUCPolicyReminder: 'Antes de submeter esta declaração, verifique a política da sua unidade curricular — o programa da UC ou o <a href="../quadro/B-clausula.html" target="_blank">Anexo B</a> indicam o regime aplicável (permitido, condicionado ou proibido). Esta declaração baseia-se na proposta FMUP. O seu preenchimento não demonstra que o uso respeitou o regime específico da UC.',
       teacherAdaptReminder: 'Este texto é um modelo. Adapte-o ao desenho pedagógico concreto da sua unidade curricular antes de o incluir no programa — nomeadamente, especificando o nome da UC, o semestre e quaisquer condições específicas. O <a href="../quadro/B-clausula.html" target="_blank">Anexo B</a> contém exemplos adicionais por regime.',
       landingPrivacyNote: 'Esta ferramenta corre inteiramente no seu navegador — sem envio dos campos para um servidor e sem cookies. As escolhas e o texto livre ficam codificados no endereço do navegador e podem permanecer no histórico; qualquer pessoa com a ligação pode recuperá-los. Não introduza informação pessoal, clínica ou identificável nos campos de texto livre. A avaliação de risco é orientadora; a decisão final pertence sempre ao utilizador.',
     },
@@ -485,7 +485,7 @@
         group: 'Trabalho em grupo'
       },
       step2: 'Que tipo de trabalho é?',
-      step2Help: 'Selecione todos os tipos aplicáveis (um trabalho pode combinar vários).',
+      step2Help: 'Seleccione todos os tipos aplicáveis (um trabalho pode combinar vários).',
       assignmentOtherLabel: 'Especifique o tipo de trabalho',
       assignmentOtherPlaceholder: 'Por exemplo: revisão narrativa, vídeo educativo, infografia clínica…',
       assignment: {
@@ -502,7 +502,7 @@
         other: 'Outro',
       },
       step3: 'Para que tarefas recorreu à IA?',
-      step3Help: 'Selecione todas as tarefas aplicáveis.',
+      step3Help: 'Seleccione todas as tarefas aplicáveis.',
       tasks: {
         ideation: 'Exploração de ideias',
         drafting: 'Redacção',
@@ -532,7 +532,7 @@
         },
         edited: {
           label: 'Substancialmente editados',
-          description: 'Reescreveu partes significativas, verificou factos e fontes, e o resultado final reflecte o seu juízo crítico. Mantém autoria plena.',
+          description: 'Reescreveu partes significativas, verificou factos e fontes, e o resultado final reflecte o seu juízo crítico. A responsabilidade pelo conteúdo final mantém-se; a autoria exige contributo intelectual próprio.',
         },
         as_is: {
           label: 'Sem alterações substanciais',
@@ -545,7 +545,7 @@
     },
     teacher: {
       step0CourseType: 'Que tipo de oferta formativa é?',
-      step0CourseTypeHelp: 'Selecione o enquadramento da oferta formativa para que a cláusula gerada use a terminologia adequada.',
+      step0CourseTypeHelp: 'Seleccione o enquadramento da oferta formativa para que a cláusula gerada use a terminologia adequada.',
       courseType: {
         uc_undergrad: 'UC de licenciatura',
         uc_master: 'UC de mestrado',
@@ -561,7 +561,7 @@
         doctoral: 'Doutoramento',
       },
       step2: 'Que tipo de trabalho será avaliado?',
-      step2Help: 'Selecione todos os tipos aplicáveis (uma UC pode combinar vários).',
+      step2Help: 'Seleccione todos os tipos aplicáveis (uma UC pode combinar vários).',
       assignmentOtherLabel: 'Especifique o tipo de trabalho',
       assignmentOtherPlaceholder: 'Por exemplo: revisão narrativa, vídeo educativo, infografia clínica, OSCE escrito…',
       assignment: {
@@ -578,7 +578,7 @@
         other: 'Outro',
       },
       step3: 'Qual será a política de uso de IA?',
-      step3Help: 'Decida o regime aplicável ao(s) trabalho(s) avaliativo(s) desta oferta formativa. A escolha condiciona a cláusula gerada para o programa da UC e o tipo de declaração que os estudantes/formandos terão de submeter. Em caso de dúvida, considere se o objectivo de aprendizagem em causa pode ser atingido com o auxílio de GenAI (permitir, com as condições de divulgação aplicáveis) ou se requer produção integralmente humana para ser avaliável (não permitir). É também legítimo combinar regimes diferentes em momentos avaliativos distintos — neste caso, escolha o regime do momento avaliativo predominante e clarifique no programa.',
+      step3Help: 'Decida o regime aplicável ao(s) trabalho(s) avaliativo(s) desta oferta formativa. A escolha condiciona a cláusula gerada para o programa da UC e o tipo de declaração que os estudantes/formandos terão de submeter. Em caso de dúvida, considere se o objectivo de aprendizagem em causa pode ser atingido com o auxílio de GenAI (permitir, com as condições de divulgação aplicáveis) ou se requer produção integralmente humana para ser avaliável (não permitir). É também legítimo combinar regimes diferentes em momentos avaliativos distintos — nesse caso, gere uma cláusula para cada actividade ou conjunto de actividades com o mesmo regime e identifique-as no programa.',
       policy: {
         not_permitted: {
           label: 'Não permitido',
@@ -594,7 +594,7 @@
         },
       },
       step4: 'Que competências têm de ser do(s) estudante(s)?',
-      step4Help: 'Selecione e/ou acrescente as competências que devem ser, obrigatoriamente, da autoria do(s) estudante(s).',
+      step4Help: 'Seleccione e/ou acrescente as competências que devem ser, obrigatoriamente, da autoria do(s) estudante(s).',
       skills: {
         critical_thinking: 'Pensamento crítico e argumentação',
         clinical_reasoning: 'Raciocínio clínico',
@@ -627,7 +627,7 @@
         other: 'Outra',
       },
       step2: 'Para que tarefas recorreu à IA?',
-      step2Help: 'Selecione todas as tarefas aplicáveis.',
+      step2Help: 'Seleccione todas as tarefas aplicáveis.',
       tasks: {
         conceptualisation: 'Conceptualização (objecto, perguntas, enquadramento)',
         literature_search: 'Pesquisa bibliográfica',
@@ -667,13 +667,13 @@
       step5UseDateLabel: 'Data da utilização principal',
     },
     risk: {
-      heading: 'Avaliação institucional — Nível',
+      heading: 'Avaliação segundo a proposta — Nível',
       levelShort: 'Nível',
-      cleanHeading: 'Avaliação institucional — sem alertas',
-      cleanBody: 'As suas seleções não accionaram regras do Quadro de Referência FMUP. Reveja, ainda assim, a declaração antes de a utilizar.',
-      unavailableHeading: 'Avaliação institucional indisponível',
+      cleanHeading: 'Avaliação segundo a proposta — sem alertas',
+      cleanBody: 'As suas selecções não accionaram regras do Quadro de Referência FMUP. Reveja, ainda assim, a declaração antes de a utilizar.',
+      unavailableHeading: 'Avaliação segundo a proposta indisponível',
       unavailableBody: 'O ficheiro policy.json não foi carregado (acesso a partir de file:// ou ficheiro em falta). A ferramenta continua a funcionar; a categorização automática de risco ficará desactivada.',
-      guidanceFoot: 'Avisos guidantes — não bloqueiam a geração da declaração. A responsabilidade final é do utilizador.',
+      guidanceFoot: 'Avisos indicativos — não bloqueiam a geração da declaração. A responsabilidade final é do utilizador.',
     },
     shared: {
       detailsTitle: "Elementos da declaração estruturada",

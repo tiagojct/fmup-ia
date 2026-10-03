@@ -1,5 +1,5 @@
 # Considerações finais
 
-Este documento é uma proposta inicial. Sem um quadro de referência institucional, cada docente decide isoladamente, cada estudante recebe orientação desigual e cada investigador interpreta as regras sem referência comum. A evidência mostra que esta é a situação na maioria das escolas médicas estudadas até à data e no ensino superior em geral [@ichikawa2025genai; @jin2025global].
+Este documento é uma proposta sujeita a apreciação institucional. O referencial da U.Porto oferece uma base comum; a adaptação à Faculdade deve explicitar responsabilidades por actividade e mecanismos de apoio. Os estudos de escolas médicas e universidades [@ichikawa2025genai; @jin2025global] documentam diferenças de orientação nas respectivas amostras, sem caracterizar todas as instituições ou o estado actual da FMUP.
 
-Como escreveu Ursula Franklin nas suas Massey Lectures de 1989, toda a tecnologia tem uma dimensão política e social que antecede a sua dimensão técnica [@franklin1989realworld]. A forma como a FMUP escolher integrar a GenAI nas suas práticas dirá tanto sobre os seus valores institucionais como sobre a sua capacidade de inovação.
+Ursula Franklin, nas Massey Lectures de 1989, discutiu a dimensão política e social da tecnologia [@franklin1989realworld]. A decisão institucional sobre GenAI deve considerar os seus efeitos sobre aprendizagem, responsabilidade e relações de trabalho, além das capacidades técnicas.

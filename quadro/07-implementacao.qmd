@@ -12,7 +12,7 @@ O calendário de implementação é deliberadamente alinhado com quatro marcos e
 
 ### Módulo de entrada no 1.º ciclo
 
-O documento de orientações da Universidade do Porto recomenda a integração, no 1.º ano dos cursos de 1.º ciclo, de um módulo reconhecido com **pelo menos 1 ECTS** cobrindo os pressupostos da aprendizagem activa, a arte de tomar notas e de construir mapas conceptuais (_mitschreiben_, _zettelkasten_), a utilização responsável de ferramentas de IA, a gestão do tempo e a ética e integridade académica [@uporto2026orientacoes]. A recomendação é operacionalmente superior à formulação genérica de "integrar literacia em IA no currículo", porque fixa uma âncora curricular verificável --- créditos atribuídos, unidade curricular identificada, resultados de aprendizagem avaliáveis --- em vez de deixar a matéria dispersa por unidades curriculares existentes, onde tende a ser a primeira a ceder à pressão do programa.
+As orientações da U.Porto recomendam, no 1.º ano do 1.º ciclo, um módulo de pelo menos 1 ECTS sobre aprendizagem activa, tomada de notas, mapas conceptuais, uso responsável de IA, gestão do tempo e integridade [@uporto2026orientacoes]. A definição de créditos, resultados de aprendizagem e avaliação permite verificar a sua integração curricular.
 
 Na FMUP, o módulo aplica-se directamente à Licenciatura em Saúde Digital e Inovação Biomédica e à Licenciatura em Ciências da Saúde Pública. Para o Mestrado Integrado em Medicina, que não tem 1.º ciclo autónomo, o equivalente é a integração dos mesmos conteúdos no 1.º ano do ciclo integrado. A articulação com as quatro dimensões de literacia do [capítulo 2](02-principios.qmd#principio-6-literacia) e com os eixos da Recomendação 2.1 do CNE deve ser explícita no desenho do módulo, para evitar duplicação com a formação prevista nos ciclos seguintes.
 
@@ -26,7 +26,7 @@ Antes da adopção integral, a FMUP pode aprovar um conjunto mínimo de medidas 
 |---|---|---|---|
 | Cláusula GenAI em todos os programas de UC | Tornar explícito o regime permitido, condicionado ou proibido | Conselho Pedagógico / docentes responsáveis | % de UCs com cláusula |
 | Declaração de uso para trabalhos com GenAI | Normalizar transparência sem automatizar sanções | Docentes / estudantes | Número e tipo de declarações |
-| Proibição de dados pessoais ou clínicos em plataformas comerciais | Reduzir risco RGPD imediato | Serviços, docentes, investigadores | Incidentes reportados; dúvidas frequentes |
+| Proibição de dados pessoais ou clínicos em serviços não autorizados | Reduzir risco RGPD imediato | Serviços, docentes, investigadores | Incidentes reportados; dúvidas frequentes |
 | Validação humana em avaliação e decisões sensíveis | Prevenir decisão exclusivamente automatizada | Docentes / júris / serviços | Casos analisados; pareceres técnicos |
 | Formação inicial e relatório anual | Criar literacia e medir efeitos reais | Grupo de Trabalho | Participação, necessidades e melhorias propostas |
 
@@ -34,8 +34,8 @@ O piloto deve terminar com uma decisão explícita: adoptar, rever ou suspender 
 
 O quadro será revisto anualmente, com revisões extraordinárias quando necessário. Para sustentar a avaliação, propõem-se os seguintes indicadores, inspirados nos _frameworks_ da TEQSA e da HEA Irlanda [@teqsa2024genai; @hea2025framework]:
 
-- **Cobertura curricular:** percentagem de unidades curriculares cujos programas incluem cláusula explícita sobre GenAI (meta Fase 2: 100%).
-- **Formação docente:** percentagem de docentes que completaram formação introdutória em GenAI (meta Fase 2: 75%; Fase 3: 90%).
+- **Cobertura curricular:** percentagem de unidades curriculares cujos programas incluem cláusula explícita sobre GenAI (meta Fase 2: 100 %).
+- **Formação docente:** percentagem de docentes que completaram formação introdutória em GenAI (meta Fase 2: 75 %; Fase 3: 90 %).
 - **Declaração de uso:** percentagem de trabalhos submetidos nos ciclos de estudo piloto que incluem declaração conforme o [Anexo A](A-declaracao.qmd) (monitorizada, sem meta numérica na Fase 1).
 - **Literacia dos estudantes:** instrumento de autoavaliação calibrado no modelo de Ng et al. (2023), aplicado à entrada e à saída dos ciclos de estudo [@ng2023aieducation].
 - **Incidentes de integridade académica:** número e natureza de casos envolvendo GenAI, comparado com o período pré-2026, com análise qualitativa das decisões tomadas.

@@ -2,8 +2,8 @@
 
 **Themis** (Greek goddess of divine order, custom and law) is the **prototype
 demonstrator** of the FMUP · IA framework. It is a self-contained,
-dependency-free web tool that generates standardised AI-usage declarations
-for academic and research contexts at the **Faculty of Medicine of the
+dependency-free web tool that generates AI-usage declarations for students and researchers, and
+syllabus clauses for teachers at the **Faculty of Medicine of the
 University of Porto (FMUP)**.
 
 > The tool was previously named *Atlas*. It was renamed in June 2026 to
@@ -13,7 +13,7 @@ University of Porto (FMUP)**.
 
 Status: this is a prototype demonstrator, **not a certified institutional
 application**. The accompanying framework is an individual contribution
-submitted for institutional appraisal — see the [Editorial status
+intended for institutional appraisal — see the [Editorial status
 note](../sobre.qmd#estatuto-editorial) on the project site. Any transition
 to a certified institutional tool will require an independent security
 review, a DPIA, registration in the University of Porto application
