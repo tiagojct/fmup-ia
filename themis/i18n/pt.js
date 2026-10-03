@@ -136,7 +136,7 @@
     journal: 'Para efeitos de submissão a uma revista científica, e em linha com as recomendações do ICMJE,',
     fct: 'Para efeitos de divulgação à Fundação para a Ciência e a Tecnologia (FCT),',
     horizon: 'Para efeitos de divulgação no âmbito do programa Horizonte Europa, e em linha com as orientações do ERA Forum sobre o uso responsável de IA generativa na investigação,',
-    wellcome: 'Para efeitos de divulgação ao Wellcome Trust, em conformidade com a sua política sobre o uso de IA generativa,',
+    wellcome: 'Para efeitos de divulgação ao Wellcome Trust, quanto ao uso de IA generativa nesta candidatura,',
     institutional: 'Para efeitos de relatório institucional,',
     conference: 'Para efeitos de submissão a uma conferência,',
     book: 'Para efeitos de submissão a uma editora de livro,',
@@ -191,8 +191,9 @@
     const d = fmtDate(new Date());
     let s = ' Declaração gerada a ' + d + ' através da Themis (FMUP · IA), versão ' + version + '.';
     if (policy && policy.framework_version) {
-      s += ' Em conformidade com ' + policy.framework_version + '.';
+      s += ' Referência: ' + policy.framework_version + '.';
     }
+    if (policy && policy.version) s += ' Regras v' + policy.version + '.';
     return s;
   };
 
@@ -200,25 +201,36 @@
   // framework: a short normalised note, required in every final work.
   // Three variants — no use, non-material use, material use.
   const shortNote = (s, version, policy) => {
+    const subject = s.role === 'student' && s.submission === 'group' ? 'Os autores declaram' : 'O autor declara';
     const tools = trim(s.tools) || 'ferramentas de inteligência artificial generativa não especificadas';
     const period = trim(s.useDate) ? ' em ' + trim(s.useDate) + ',' : '';
 
     if (s.noUse) {
-      return 'O autor declara não ter utilizado ferramentas de IA generativa na preparação deste trabalho.' +
+      return subject + ' não ter utilizado ferramentas de IA generativa na preparação deste trabalho.' +
         footer(version, policy);
     }
 
     if (s.scope === 'substantive') {
-      return 'O autor declara ter utilizado ' + tools + ' em tarefas com influência material na preparação deste trabalho. ' +
+      return subject + ' ter utilizado ' + tools + ' em tarefas com influência material na preparação deste trabalho. ' +
         'A descrição das tarefas delegadas, das partes afectadas e das verificações efectuadas consta da declaração estruturada anexa.' +
         footer(version, policy);
     }
 
-    const purposes = (s.tasks || []).map((k) => TASK_PHRASES[k]).filter(Boolean);
+    const purposes = (s.tasks || []).map((k) => k === 'other' && trim(s.tasksOther) ? trim(s.tasksOther) : TASK_PHRASES[k]).filter(Boolean);
     const purposeFrag = purposes.length ? list(purposes) : 'tarefas auxiliares de preparação';
 
-    return 'O autor declara ter utilizado ' + tools + ',' + period + ' apenas para ' + purposeFrag +
+    return subject + ' ter utilizado ' + tools + ',' + period + ' apenas para ' + purposeFrag +
       ', mantendo integral responsabilidade pelo conteúdo final.' + footer(version, policy);
+  };
+
+  const evidence = (s) => {
+    let text = '';
+    for (const [key, label] of Object.entries({"affectedSections": "Secções ou partes do trabalho afectadas", "verifications": "Verificações humanas efectuadas ou pendentes", "promptsRef": "Descrição dos prompts ou referência do registo de interacções"})) {
+      if (trim(s[key])) text += ' ' + label + ': ' + trim(s[key]) + '.';
+    }
+    if (s.reviewConfirmed) text += " Confirmo que revi criticamente os contributos gerados.";
+    if (s.privacyConfirmed && !(s.riskFlags || []).includes('sensitive_public')) text += " N\u00e3o foram introduzidos dados pessoais, sens\u00edveis ou confidenciais em servi\u00e7os n\u00e3o autorizados.";
+    return text;
   };
 
   const studentStatement = (s, version, policy) => {
@@ -247,7 +259,7 @@
     // Group work: the U.Porto framework asks for an individual contribution
     // record and confirmation that every member approves the final version,
     // by analogy with authorship practice in scientific publishing.
-    const groupClause = s.submission === 'group'
+    const groupClause = s.submission === 'group' && s.groupConfirmed
       ? ' A contribuição individual de cada autor consta do registo que acompanha o trabalho, e todos os autores aprovam a versão final submetida.'
       : '';
 
@@ -268,7 +280,7 @@
 
     const useDateClause = trim(s.useDate) ? ' A utilização principal ocorreu em ' + trim(s.useDate) + '.' : '';
 
-    return intro + domainsClause + ' ' + modification + scopeClause + useDateClause + groupClause + ' ' + responsibility + footer(version, policy);
+    return intro + domainsClause + ' ' + modification + scopeClause + useDateClause + groupClause + ' ' + responsibility + evidence(s) + footer(version, policy);
   };
 
   const teacherSubjects = (courseType) => {
@@ -345,29 +357,29 @@
       : '';
 
     if (s.policy === 'not_permitted') {
-      return 'Não é exigida qualquer declaração, na medida em que o uso de ferramentas de inteligência artificial generativa não é permitido nesta oferta formativa.' + skillsClause +
+      return 'O uso de ferramentas de inteligência artificial generativa não é permitido nesta oferta formativa. Teses, dissertações, relatórios finais e documentos equivalentes devem incluir uma nota de não-utilização.' + skillsClause +
         ' Caso seja detectado qualquer indício de utilização destas ferramentas, o trabalho será objecto de avaliação no âmbito do regulamento de integridade académica da FMUP.' + footer(version, policy);
     }
 
     const reportClause = s.policy === 'with_disclosure'
       ? 'Junto ao trabalho submetido, ' + subj.plural + ' ' + subj.verbDevem + ' anexar uma breve declaração indicando: (i) as ferramentas de inteligência artificial generativa utilizadas, incluindo a versão sempre que aplicável; (ii) as tarefas específicas para as quais essas ferramentas foram empregues; (iii) o grau de modificação aplicado aos contributos gerados; e (iv) a confirmação de que ' + subj.verbAssumem + ' responsabilidade integral pelo conteúdo submetido. A omissão desta declaração ou a sua imprecisão pode constituir falta à integridade académica.'
-      : 'Embora o uso destas ferramentas seja permitido sem restrições específicas, recomenda-se que ' + subj.plural + ' indiquem, de forma sucinta, as ferramentas empregues e as tarefas para as quais recorreram às mesmas, em prol da transparência académica.';
+      : 'Embora o uso destas ferramentas seja permitido sem restrições específicas, ' + subj.plural + ' devem declarar as ferramentas e tarefas em todos os trabalhos submetidos. Em teses, dissertações, relatórios finais e equivalentes, a nota curta é obrigatória mesmo sem utilização; quando há contributo substantivo, acresce declaração estruturada.';
 
-    return reportClause + skillsClause + footer(version, policy);
+    return reportClause + skillsClause + (s.policy === 'with_disclosure' ? ' Em teses, dissertações, relatórios finais e equivalentes, inclua sempre a nota curta, mesmo sem utilização, e declaração estruturada quando o uso for material.' : '') + footer(version, policy);
   };
 
   const researcherFull = (s, version, policy) => {
     const lead = TARGET_LEAD[s.target] || TARGET_LEAD.institutional;
     const activity = ACTIVITY_PHRASE[s.activity] || ACTIVITY_PHRASE.other;
     const tools = trim(s.tools) || 'ferramentas de inteligência artificial generativa não especificadas';
-    const tasks = (s.tasks || []).map((k) => TASK_PHRASES[k]).filter(Boolean);
+    const tasks = (s.tasks || []).map((k) => k === 'other' && trim(s.tasksOther) ? trim(s.tasksOther) : TASK_PHRASES[k]).filter(Boolean);
     const tasksClause = tasks.length ? ' nas seguintes tarefas: ' + list(tasks) : ' em tarefas auxiliares de preparação';
 
     const domainsClause = gaidetClause(s, policy);
     const scopeClause = SCOPE_SENTENCE[s.scope] ? ' ' + SCOPE_SENTENCE[s.scope] : '';
 
     let body = lead + ' declara-se que, ' + activity + ', foram utilizadas as seguintes ferramentas de inteligência artificial generativa — ' + tools +
-      ' —' + tasksClause + '.' + domainsClause + scopeClause + ' Os contributos gerados foram revistos criticamente ' + (s.activity === 'manuscript' ? 'pelos autores' : 'pelo(s) investigador(es)') + ', que assumem responsabilidade integral pelo conteúdo final, pela sua exactidão e pela sua integridade científica. As ferramentas de inteligência artificial não são listadas como autoras, na medida em que não preenchem os critérios de autoria aplicáveis (designadamente, a capacidade de assumir responsabilidade pública pelo conteúdo). Não foram introduzidos dados pessoais, sensíveis ou confidenciais em serviços não autorizados.';
+      ' —' + tasksClause + '.' + domainsClause + scopeClause + ' Os autores assumem responsabilidade integral pelo conteúdo final, pela sua exactidão e pela sua integridade científica. As ferramentas de inteligência artificial não preenchem os critérios de autoria aplicáveis (designadamente, a capacidade de assumir responsabilidade pública pelo conteúdo).';
 
     if (s.target === 'journal') {
       body += ' Esta declaração destina-se a ser incluída na secção de Métodos ou de Agradecimentos do manuscrito, em conformidade com as recomendações do ICMJE relativas ao uso de chatbots e modelos de linguagem na produção científica.';
@@ -376,33 +388,25 @@
     } else if (s.target === 'horizon') {
       body += ' A presente declaração observa as orientações da Comissão Europeia e do ERA Forum sobre o uso responsável de IA generativa em projectos financiados pelo Horizonte Europa.';
     } else if (s.target === 'wellcome') {
-      body += ' A presente declaração observa a política do Wellcome Trust sobre o uso de IA generativa em projectos por si financiados.';
+      body += ' Esta declaração documenta o uso indicado para a candidatura ao Wellcome Trust.';
     } else if (s.target === 'conference') {
       body += ' A presente declaração acompanha o material submetido à conferência.';
     } else if (s.target === 'institutional') {
       body += ' A presente declaração integra o relatório institucional correspondente.';
     }
 
-    const replicabilityTargets = ['journal', 'fct', 'horizon', 'wellcome'];
-    if (trim(s.promptsRef) && replicabilityTargets.indexOf(s.target) !== -1) {
-      body += ' Os prompts utilizados e a interacção completa com as ferramentas encontram-se disponíveis em / no ' + trim(s.promptsRef) + '.';
-    }
 
     if (trim(s.useDate)) {
       body += ' A utilização principal das ferramentas ocorreu em ' + trim(s.useDate) + '.';
     }
 
-    return body + footer(version, policy);
+    return body + evidence(s) + footer(version, policy);
   };
 
   const researcherInline = (s, version, policy) => {
-    const tools = trim(s.tools) || 'ferramentas de IA generativa não especificadas';
-    const tasks = (s.tasks || []).map((k) => TASK_PHRASES[k]).filter(Boolean);
-    const tasksFrag = tasks.length ? list(tasks) : 'tarefas auxiliares';
-    const fw = policy && policy.framework_version ? '; em conformidade com ' + policy.framework_version : '';
-    const useDate = trim(s.useDate) ? '; utilização em ' + trim(s.useDate) : '';
-    return 'Os autores declaram a utilização de ' + tools + ' para ' + tasksFrag +
-      ', tendo revisto criticamente os respectivos contributos e assumindo responsabilidade integral pelo conteúdo (gerado pela Themis (FMUP · IA), v' + version + useDate + fw + ').';
+    const tasks = (s.tasks || []).map(k => k === 'other' ? trim(s.tasksOther) : TASK_PHRASES[k]).filter(Boolean);
+    return 'Os autores declaram a utilização de ' + trim(s.tools) + ' para ' + list(tasks) +
+      ', assumindo responsabilidade integral pelo conteúdo.' + evidence(s) + footer(version, policy);
   };
 
   window.I18N_PT = {
@@ -412,6 +416,9 @@
     altLangCode: 'en',
     htmlLang: 'pt-PT',
     ui: {
+      copyFailed: "Não foi possível copiar. Seleccione e copie o texto manualmente.",
+      restoredChoices: "Escolhas recuperadas de uma ligação. Reveja os campos: a declaração será gerada com as versões e a data actuais; a ligação não é um arquivo do texto original.",
+
       brand: 'FMUP',
       brandFull: 'Faculdade de Medicina da Universidade do Porto',
       appTitle: 'Themis — Declarações de uso de IA',
@@ -450,7 +457,7 @@
       linkInvalid: 'Ligação inválida ou de versão antiga.',
       viewScenario: 'Ver cenário no Quadro',
       principleLabel: 'Princípio',
-      footerNationalPlatform: 'Articula-se com a Plataforma Nacional de Práticas Pedagógicas de IA',
+      footerNationalPlatform: 'Diagnóstico nacional sobre IA no ensino superior (CNIPES)',
       toolsSuggestedHeader: 'Sugestões institucionais (clique para adicionar)',
       toolsSuggestedHelp: 'Em primeiro a plataforma institucional (IAedu); depois plataformas com contrato e opt-out de treino; depois ferramentas especializadas; por fim, versões grátis que requerem cautela com os dados.',
       toolsTierInstitutional: 'Plataforma institucional',
@@ -459,7 +466,7 @@
       toolsTierConsumerWarning: 'Versões públicas — atenção aos dados',
       studentUCPolicyReminder: 'Antes de submeter esta declaração, verifique a política da sua unidade curricular — o programa da UC ou o <a href="../quadro/B-clausula.html" target="_blank">Anexo B</a> indicam o regime aplicável (permitido, condicionado ou proibido). Esta declaração reflecte o Quadro institucional, não necessariamente o regime específico da UC.',
       teacherAdaptReminder: 'Este texto é um modelo. Adapte-o ao desenho pedagógico concreto da sua unidade curricular antes de o incluir no programa — nomeadamente, especificando o nome da UC, o semestre e quaisquer condições específicas. O <a href="../quadro/B-clausula.html" target="_blank">Anexo B</a> contém exemplos adicionais por regime.',
-      landingPrivacyNote: 'Esta ferramenta corre inteiramente no seu navegador — sem servidor, sem cookies, sem registo de dados. Não introduza informação pessoal, clínica ou identificável nos campos de texto livre. A avaliação de risco é orientadora; a decisão final pertence sempre ao utilizador.',
+      landingPrivacyNote: 'Esta ferramenta corre inteiramente no seu navegador — sem envio dos campos para um servidor e sem cookies. As escolhas e o texto livre ficam codificados no endereço do navegador e podem permanecer no histórico; qualquer pessoa com a ligação pode recuperá-los. Não introduza informação pessoal, clínica ou identificável nos campos de texto livre. A avaliação de risco é orientadora; a decisão final pertence sempre ao utilizador.',
     },
     roles: {
       student: 'Estudante',
@@ -533,8 +540,8 @@
         },
       },
       step6UseDate: 'Quando ocorreu a utilização principal?',
-      step6UseDateHelp: 'Opcional. Se a utilização ocorreu em data anterior à geração desta declaração (por exemplo, tese ou trabalho elaborado ao longo de meses), indique-a aqui. Se deixar em branco, a data de utilização será considerada a mesma da geração.',
-      step6UseDateLabel: 'Data de utilização (opcional)',
+      step6UseDateHelp: 'Indique a data da utilização principal. Obrigatória para contributo substantivo; para utilização ao longo de um período, acrescente o intervalo na descrição das partes afectadas. A data de geração não substitui a data de uso.',
+      step6UseDateLabel: 'Data da utilização principal',
     },
     teacher: {
       step0CourseType: 'Que tipo de oferta formativa é?',
@@ -571,7 +578,7 @@
         other: 'Outro',
       },
       step3: 'Qual será a política de uso de IA?',
-      step3Help: 'Decida o regime aplicável ao(s) trabalho(s) avaliativo(s) desta oferta formativa. A escolha condiciona a cláusula gerada para o programa da UC e o tipo de declaração que os estudantes/formandos terão de submeter. Em caso de dúvida, considere se o objectivo de aprendizagem em causa pode ser atingido com o auxílio de GenAI (permitir, com ou sem divulgação) ou se requer produção integralmente humana para ser avaliável (não permitir). É também legítimo combinar regimes diferentes em momentos avaliativos distintos — neste caso, escolha o regime do momento avaliativo predominante e clarifique no programa.',
+      step3Help: 'Decida o regime aplicável ao(s) trabalho(s) avaliativo(s) desta oferta formativa. A escolha condiciona a cláusula gerada para o programa da UC e o tipo de declaração que os estudantes/formandos terão de submeter. Em caso de dúvida, considere se o objectivo de aprendizagem em causa pode ser atingido com o auxílio de GenAI (permitir, com as condições de divulgação aplicáveis) ou se requer produção integralmente humana para ser avaliável (não permitir). É também legítimo combinar regimes diferentes em momentos avaliativos distintos — neste caso, escolha o regime do momento avaliativo predominante e clarifique no programa.',
       policy: {
         not_permitted: {
           label: 'Não permitido',
@@ -583,7 +590,7 @@
         },
         without_restrictions: {
           label: 'Permitido sem restrições específicas',
-          description: 'O uso de GenAI é permitido sem exigência formal de declaração. Adequado a tarefas de baixo impacto avaliativo onde a competência avaliada não depende da autoria do texto (e.g., exercícios de exploração, esboços iniciais). Recomenda-se ainda assim que os estudantes/formandos indiquem ferramentas usadas, em prol da transparência.',
+          description: 'O uso de GenAI é permitido sem restrições específicas às tarefas; a declaração mantém-se obrigatória nos trabalhos submetidos. Adequado a tarefas de baixo impacto avaliativo onde a competência avaliada não depende da autoria do texto (e.g., exercícios de exploração, esboços iniciais). Em exercícios exploratórios não submetidos, a indicação das ferramentas é recomendada.',
         },
       },
       step4: 'Que competências têm de ser do(s) estudante(s)?',
@@ -656,8 +663,8 @@
         master_jury: 'Júri de mestrado',
       },
       step5UseDate: 'Quando ocorreu a utilização principal?',
-      step5UseDateHelp: 'Opcional. Indique a data em que a utilização principal das ferramentas ocorreu (por exemplo, durante a redacção de um manuscrito ao longo de meses). Se deixar em branco, a data de utilização será considerada a mesma da geração desta declaração.',
-      step5UseDateLabel: 'Data de utilização (opcional)',
+      step5UseDateHelp: 'Indique a data da utilização principal. Obrigatória para contributo substantivo; para utilização ao longo de um período, acrescente o intervalo na descrição das partes afectadas. A data de geração não substitui a data de uso.',
+      step5UseDateLabel: 'Data da utilização principal',
     },
     risk: {
       heading: 'Avaliação institucional — Nível',
@@ -669,8 +676,23 @@
       guidanceFoot: 'Avisos guidantes — não bloqueiam a geração da declaração. A responsabilidade final é do utilizador.',
     },
     shared: {
+      detailsTitle: "Elementos da declaração estruturada",
+      detailsHelp: "Para contributo substantivo, preencha os três campos. Descreva apenas o que fez; se uma verificação estiver pendente, indique-o. Não inclua dados pessoais nem conteúdo confidencial.",
+      affectedSections: "Secções ou partes do trabalho afectadas",
+      verifications: "Verificações humanas efectuadas ou pendentes",
+      promptsRef: "Descrição dos prompts ou referência do registo de interacções",
+      contextTitle: "Contexto e confirmações",
+      contextHelp: "Assinale os contextos aplicáveis. Os alertas não impedem a declaração. As confirmações de revisão, privacidade e autoria são opcionais e só entram no texto quando assinaladas.",
+      contextReviewed: "Revi os contextos acima indicados e assinalei todos os que se aplicam (obrigatório).",
+      reviewConfirmed: "Confirmo que revi criticamente os contributos gerados.",
+      privacyConfirmed: "Confirmo que não introduzi dados pessoais, sensíveis ou confidenciais em serviços não autorizados.",
+      groupConfirmed: "Confirmo que existe registo de contribuições individuais e que todos os autores aprovaram a versão final.",
+      noUseRisk: "Não foi declarada utilização de IA; a avaliação de risco de utilização não se aplica.",
+      requiredHelp: "Preencha as escolhas do contexto. Se houve utilização, indique tarefas, ferramentas e âmbito e confirme a revisão dos contextos de risco. No contributo substantivo, indique a data de utilização e complete os três campos da declaração estruturada.",
+      riskFlags: {"sensitive_public": "Introduzi dados pessoais, sensíveis ou confidenciais num serviço não autorizado.", "clinical_delegation": "Deleguei uma decisão clínica em IA em contexto de cuidados.", "automated_grading": "Usei classificação de estudantes exclusivamente por IA, sem revisão humana substantiva.", "ai_authorship": "Listei uma ferramenta de IA como autora.", "confidential_review": "Introduzi um manuscrito confidencial de revisão por pares numa plataforma pública."},
+
       stepScope: 'Qual foi o âmbito da utilização?',
-      stepScopeHelp: 'Este eixo distingue-se do grau de modificação: não descreve o que fez ao output, mas quanto é que a ferramenta influenciou o conteúdo intelectual do trabalho. É o critério que determina, no quadro da Universidade do Porto, se basta uma nota curta ou se é exigida declaração estruturada. Passo opcional: sem selecção, a declaração assume utilização não material.',
+      stepScopeHelp: 'Este eixo distingue-se do grau de modificação: não descreve o que fez ao output, mas quanto é que a ferramenta influenciou o conteúdo intelectual do trabalho. É o critério que determina, no quadro da Universidade do Porto, se basta uma nota curta ou se é exigida declaração estruturada. Escolha obrigatória quando houve utilização; a ferramenta não presume o âmbito.',
       scope: {
         technical: {
           label: 'Apoio técnico',

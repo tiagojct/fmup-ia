@@ -11,7 +11,7 @@ Lista de _frameworks_, regulamentos e documentos institucionais referenciados ao
 - **[European Health Data Space (EHDS)](https://health.ec.europa.eu/ehealth-digital-health-and-care/european-health-data-space_en)** --- Regulamento em vigor desde Março de 2025; aplicação geral em Março de 2027. Define obrigações para uso primário e secundário de dados de saúde.
 - **[RGPD (Regulamento (UE) 2016/679)](https://eur-lex.europa.eu/eli/reg/2016/679/oj)** --- Base jurídica transversal para protecção de dados pessoais; aplicável a todo o uso de GenAI envolvendo dados identificáveis ou pseudonimizados.
 - **[Regulamento (UE) 2017/745 — MDR](https://eur-lex.europa.eu/eli/reg/2017/745/oj)** e **[(UE) 2017/746 — IVDR](https://eur-lex.europa.eu/eli/reg/2017/746/oj)** --- Aplicáveis a _Software as a Medical Device_ (SaMD/AIaMD) usado em ensino clínico ou investigação translacional.
-- **[Living Guidelines on the Responsible Use of Generative AI in Research](https://research-and-innovation.ec.europa.eu/document/download/2b6cf7e5-36ac-41cb-aab5-0d32050143dc_en)** (Comissão Europeia / ERA Forum, 2024-2025) --- Quatro princípios derivados do European Code of Conduct for Research Integrity.
+- **[Living Guidelines on the Responsible Use of Generative AI in Research](https://research-and-innovation.ec.europa.eu/document/download/2b6cf7e5-36ac-41cb-aab5-0d32050143dc_en)** (Comissão Europeia / ERA Forum, 3.ª edição, Maio de 2026) --- Quatro princípios derivados do European Code of Conduct for Research Integrity.
 
 ## Internacional
 
@@ -24,7 +24,7 @@ Lista de _frameworks_, regulamentos e documentos institucionais referenciados ao
 
 ## Educação médica
 
-- **[AAMC Principles for the Responsible Use of AI in and for Medical Education](https://www.aamc.org/about-us/mission-areas/medical-education/principles-ai-use)** --- Sete eixos. Versão 2.0, Julho de 2025.
+- **[AAMC Principles for the Responsible Use of AI in and for Medical Education](https://www.aamc.org/about-us/mission-areas/medical-education/principles-ai-use)** --- Sete eixos. Versão 1.0, texto final de 3 de Janeiro de 2025, segundo a página oficial.
 - **AAMC AI Competencies for Medical Educators** (CGEA) e _AI Competencies Across the Continuum_ (com a Josiah Macy Jr. Foundation).
 - **HEAT-AI** (Temper et al., 2025, Frontiers in Education) --- Operacionalização universitária do _risk-based approach_ do EU AI Act em quatro níveis. Adoptado pela St. Pölten University of Applied Sciences.
 - **Russell Group Principles on the Use of Generative AI Tools in Education** (UK, 2023) --- Cinco princípios principlistas, adoptados pelas 24 universidades-membro.
@@ -44,7 +44,7 @@ Lista de _frameworks_, regulamentos e documentos institucionais referenciados ao
 
 ## Imagiologia, radiologia e _SaMD_
 
-- Stogiannos N et al. *AI implementation in the UK landscape*. _The British Journal of Radiology_ 2023; **96**: 20221157. DOI: [10.1259/bjr.20221157](https://doi.org/10.1259/bjr.20221157).
+- Stogiannos N et al. *Black box no more: a scoping review of AI governance frameworks to guide procurement and adoption of AI in medical imaging and radiotherapy in the UK*. _The British Journal of Radiology_ 2023; **96**: 20221157. DOI: [10.1259/bjr.20221157](https://doi.org/10.1259/bjr.20221157).
 - **European Society of Radiology** --- Recomendações 2025 para implementação efectiva do EU AI Act em radiologia (_Insights into Imaging_ 16:33).
 - **STANDING Together** (Universidade de Birmingham) --- _Data diversity, inclusivity and generalisability_.
 

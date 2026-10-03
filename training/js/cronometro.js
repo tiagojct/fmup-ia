@@ -24,6 +24,8 @@
   var duracao = parseInt(raiz.dataset.duracao, 10) || 300;
   var restante = duracao;
   var temporizador = null;
+  var fim = null;
+  var anunciado = false;
 
   function formatar(segundos) {
     var negativo = segundos < 0;
@@ -52,20 +54,23 @@
   }
 
   function tique() {
-    restante -= 1;
+    restante = Math.ceil((fim - Date.now()) / 1000);
     desenhar();
-    if (restante === 0) {
+    if (restante <= 0 && !anunciado) {
+      anunciado = true;
       dizer('Tempo esgotado.');
     }
   }
 
   btIniciar.addEventListener('click', function () {
     if (temporizador) {
+      tique();
       parar();
       dizer('Em pausa, ' + formatar(restante) + ' por decorrer.');
       return;
     }
-    temporizador = setInterval(tique, 1000);
+    fim = Date.now() + restante * 1000;
+    temporizador = setInterval(tique, 250);
     btIniciar.textContent = 'Pausar';
     btIniciar.setAttribute('aria-pressed', 'true');
     dizer('A contar.');
@@ -74,6 +79,7 @@
   btRepor.addEventListener('click', function () {
     parar();
     restante = duracao;
+    anunciado = false;
     desenhar();
     dizer('Reposto em ' + formatar(duracao) + '.');
   });
@@ -83,6 +89,7 @@
       parar();
       duracao = parseInt(botao.dataset.minutos, 10) * 60;
       restante = duracao;
+      anunciado = false;
       raiz.dataset.duracao = String(duracao);
       blocos.forEach(function (outro) {
         outro.setAttribute('aria-pressed', outro === botao ? 'true' : 'false');
@@ -92,5 +99,8 @@
     });
   });
 
+  document.addEventListener('visibilitychange', function () {
+    if (temporizador) tique();
+  });
   desenhar();
 })();

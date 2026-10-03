@@ -37,7 +37,7 @@ fmup-ia/
 │   ├── logos/           # logos institucionais FMUP / U.Porto
 │   └── favicon.svg
 └── .github/workflows/
-    └── publish.yml      # CI: build Quarto + deploy gh-pages
+    └── publish.yml      # CI: testes + build Quarto e formação + deploy VPS
 ```
 
 ## Build local
@@ -61,8 +61,9 @@ cd _site && python3 -m http.server 8000
 Push para `main` dispara o workflow `publish.yml` (`.github/workflows/`), que:
 
 1. instala Quarto;
-2. corre `quarto render` (build do site + 4 PDFs dos guias);
-3. envia `_site/` para o servidor pessoal via rsync (`/opt/vps/caddy/srv/fmup-ia/`), servido em <https://tiagojacinto.eu/fmup-ia/>.
+2. verifica as versões e executa os testes da Themis;
+3. corre `quarto render` na raiz e em `training/`, agregando os dois sites e os quatro PDFs;
+4. envia `_site/` para o servidor pessoal via rsync (`/opt/vps/caddy/srv/fmup-ia/`), servido em <https://tiagojacinto.eu/fmup-ia/>.
 
 O URL antigo `tiagojct.eu/fmup-ia/` redirecciona (301) para o novo domínio.
 
@@ -89,3 +90,16 @@ Este repositório consolida dois repositórios anteriores, hoje arquivados:
 ## Licença
 
 [CC BY 4.0](LICENSE) para o conteúdo, código e dados deste repositório. Os logos institucionais não estão cobertos por esta licença — ver nota em `LICENSE`.
+
+## Verificação antes de publicar
+
+```bash
+npm ci --prefix themis/test
+npm test --prefix themis/test
+python3 scripts/sync-versions.py --check
+python3 scripts/check-content.py
+```
+
+Depois de editar as versões em `_variables.yml` (e em `training/_variables.yml` para a formação), execute `python3 scripts/sync-versions.py`. As versões derivadas são verificadas em CI.
+
+A revalidação de fontes de 2–3 de Outubro de 2026, incluindo correcções e limitações de acesso, está em [audits/referencias-2026-10-03.md](audits/referencias-2026-10-03.md). Para repetir a recolha de metadados e a verificação de URLs: `python3 scripts/audit-references.py --output /tmp/fmup-ia-references.json`. Uma resposta HTTP não substitui a verificação do conteúdo.

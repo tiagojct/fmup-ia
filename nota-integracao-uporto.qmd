@@ -29,8 +29,8 @@ Sete documentos, todos datados de Junho de 2026, produzidos pelo Grupo de Trabal
 |---|---|
 | **01** --- *Orientações para uso e adoção responsável* | Enquadramento estratégico: missão, cinco valores, oito princípios, riscos e oportunidades, seis eixos de recomendações, fluxo processual disciplinar, glossário |
 | **02** --- Guia de boas práticas | Núcleo operacional: sete regras mínimas, modelo de semáforo, governação em cinco níveis, dez situações-tipo, _checklists_, modelos de declaração |
-| **03** --- Guia prático para docentes | Uma página: fluxo de decisão em seis passos e texto-modelo para enunciados |
-| **04** --- Guia prático para estudantes | Uma página: leitura do semáforo, bom _versus_ mau uso, níveis de declaração |
+| **03** --- Guia prático para docentes | Guia prático: fluxo de decisão em seis passos e texto-modelo para enunciados |
+| **04** --- Guia prático para estudantes | Guia prático: leitura do semáforo, bom _versus_ mau uso, níveis de declaração |
 | **05** --- Caderno complementar de perfis disciplinares | Dez perfis de unidades curriculares, um por unidade orgânica; o perfil 7 é da FMUP |
 | **06** --- Caderno de Pós-graduação e Investigação | Taxonomia GAIDeT, declaração em dois níveis, políticas editoriais, geradores de declaração |
 | **07** --- Promptário de estudo | Padrões de _prompt_ por objectivo e por área; _prompts_ a evitar |
@@ -249,7 +249,7 @@ O pacote da Universidade prevê revisão anual, convocada pela estrutura respons
 Registam-se, por transparência, os limites conhecidos deste trabalho.
 
 - **Os perfis disciplinares carecem de validação.** Ver Passo 1. As competências nucleares e as recomendações de avaliação foram inferidas do referencial e do perfil da FMUP já existente no caderno da Universidade, e não das fichas das unidades curriculares.
-- **Os documentos da Universidade não têm endereço público conhecido.** À data desta nota não foi localizado endereço de distribuição. As entradas bibliográficas correspondentes ficaram sem campo `url`, a completar quando a publicação institucional for confirmada. Convém pedir essa confirmação no Passo 2.
+- **Actualização de 3 de Outubro de 2026:** os sete documentos estão agora identificados na página pública de [Documentos orientadores da U.Porto](https://www.up.pt/portal/pt/inovacao-educativa/recursos/documentos-orientadores/), e as ligações foram incluídas na bibliografia. Foram consultados os sete PDFs, confirmando a edição de Junho de 2026 e as disposições citadas sobre declaração, governação e ferramentas. Esta confirmação não equivale à aprovação institucional da presente proposta FMUP.
 - **Três referências citadas pelo pacote não foram integradas** por não terem sido verificadas na fonte primária: o estudo sobre IA sicofanta (Cheng et al., *Science*, 2026), a meta-análise de Dong (2026) e a entrada sobre viés algorítmico de Birhane (2026). O Quadro não adopta referências não verificadas, mesmo quando citadas por documento institucional.
 - **A quantificação do custo ambiental permanece disputada.** A secção sobre sustentabilidade assenta em proporcionalidade e prudência, e declara-o expressamente, em vez de invocar estimativas que a evidência disponível não sustenta.
 

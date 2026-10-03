@@ -70,4 +70,4 @@ Para referenciar um capítulo específico, acrescentar o URL do capítulo:
 
 A Themis gera automaticamente a linha de citação adequada ao destinatário no final de cada declaração produzida. Para uma referência genérica à ferramenta:
 
-> Jacinto T. Themis — FMUP AI Usage Statement Generator (anteriormente *Atlas*), v1.1.1. Faculdade de Medicina da Universidade do Porto, 2026. <https://tiagojacinto.eu/fmup-ia/themis/>
+> Jacinto T. Themis — FMUP AI Usage Statement Generator (anteriormente *Atlas*), v{{< var themis.versao >}}. Faculdade de Medicina da Universidade do Porto, 2026. <https://tiagojacinto.eu/fmup-ia/themis/>

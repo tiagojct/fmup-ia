@@ -18,9 +18,8 @@ Thumbs.db
 # Local agent guidance (not published with the repo)
 CLAUDE.md
 
-# Node (only if local tooling is added in the future)
+# Node (dependências dos testes da Themis)
 node_modules/
-package-lock.json
 npm-debug.log*
 
 # Themis — local artefacts (none expected, but defensive)
@@ -34,3 +33,6 @@ documentos up/
 
 /.quarto/
 **/*.quarto_ipynb
+
+# Python tooling
+__pycache__/

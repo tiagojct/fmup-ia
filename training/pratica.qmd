@@ -3,6 +3,8 @@ title: "Prática"
 subtitle: "Bloco 6, desenhar uma actividade para a própria unidade curricular"
 toc: true
 toc-depth: 2
+filters:
+  - filters/ficha-partilhada.lua
 ---
 
 ::: {.callout-note appearance="simple"}
@@ -37,6 +39,7 @@ Os últimos cinco minutos são os que mais fichas salvam. Não os dispensem.
 
 ## Onde depositar
 
+:::: {#deposito-ficha}
 ::: {.callout-warning appearance="simple"}
 ## Ligação por definir
 
@@ -44,6 +47,8 @@ O endereço do documento partilhado (`{{< var ficha-partilhada.url >}}`) ainda n
 
 Enquanto isso, fotografem a ficha preenchida ou guardem-na em ficheiro próprio. O depósito serve para que as fichas fiquem disponíveis a toda a turma depois da sessão, e não é condição para o bloco 7.
 :::
+
+::::
 
 ## Esquema da ficha
 

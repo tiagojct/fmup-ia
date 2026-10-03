@@ -148,7 +148,7 @@
     journal: 'For the purpose of submission to a peer-reviewed journal, and in line with ICMJE recommendations,',
     fct: 'For the purpose of disclosure to the Fundação para a Ciência e a Tecnologia (FCT),',
     horizon: 'For the purpose of disclosure under the Horizon Europe programme, and in line with the European Commission and ERA Forum guidance on the responsible use of generative AI in research,',
-    wellcome: 'For the purpose of disclosure to the Wellcome Trust, in compliance with its policy on the use of generative AI,',
+    wellcome: 'For the purpose of disclosure to the Wellcome Trust, regarding generative AI use in this application,',
     institutional: 'For the purpose of institutional reporting,',
     conference: 'For the purpose of conference submission,',
     book: 'For the purpose of submission to a book publisher,',
@@ -203,8 +203,9 @@
     const d = fmtDate(new Date());
     let s = ' Statement generated on ' + d + ' using Themis (FMUP · IA), version ' + version + '.';
     if (policy && policy.framework_version) {
-      s += ' In line with ' + policy.framework_version + '.';
+      s += ' Reference: ' + policy.framework_version + '.';
     }
+    if (policy && policy.version) s += ' Rules v' + policy.version + '.';
     return s;
   };
 
@@ -212,25 +213,36 @@
   // framework: a short normalised note, required in every final work.
   // Three variants — no use, non-material use, material use.
   const shortNote = (s, version, policy) => {
+    const subject = s.role === 'student' && s.submission === 'group' ? 'The authors declare' : 'The author declares';
     const tools = trim(s.tools) || 'unspecified generative artificial intelligence tools';
     const period = trim(s.useDate) ? ', in ' + trim(s.useDate) + ',' : '';
 
     if (s.noUse) {
-      return 'The author declares that no generative AI tools were used in the preparation of this work.' +
+      return subject + ' that no generative AI tools were used in the preparation of this work.' +
         footer(version, policy);
     }
 
     if (s.scope === 'substantive') {
-      return 'The author declares having used ' + tools + ' in tasks with a material influence on the preparation of this work. ' +
+      return subject + ' having used ' + tools + ' in tasks with a material influence on the preparation of this work. ' +
         'A description of the delegated tasks, the parts affected and the verifications carried out is set out in the attached structured declaration.' +
         footer(version, policy);
     }
 
-    const purposes = (s.tasks || []).map((k) => TASK_PHRASES[k]).filter(Boolean);
+    const purposes = (s.tasks || []).map((k) => k === 'other' && trim(s.tasksOther) ? trim(s.tasksOther) : TASK_PHRASES[k]).filter(Boolean);
     const purposeFrag = purposes.length ? list(purposes) : 'ancillary preparation tasks';
 
-    return 'The author declares having used ' + tools + period + ' solely for ' + purposeFrag +
+    return subject + ' having used ' + tools + period + ' solely for ' + purposeFrag +
       ', retaining full responsibility for the final content.' + footer(version, policy);
+  };
+
+  const evidence = (s) => {
+    let text = '';
+    for (const [key, label] of Object.entries({"affectedSections": "Sections or parts of the work affected", "verifications": "Human checks completed or pending", "promptsRef": "Description of prompts or reference to the interaction record"})) {
+      if (trim(s[key])) text += ' ' + label + ': ' + trim(s[key]) + '.';
+    }
+    if (s.reviewConfirmed) text += " I confirm that I critically reviewed the generated contributions.";
+    if (s.privacyConfirmed && !(s.riskFlags || []).includes('sensitive_public')) text += " No personal, sensitive or confidential data were entered into unauthorised services.";
+    return text;
   };
 
   const studentStatement = (s, version, policy) => {
@@ -259,7 +271,7 @@
     // Group work: the U.Porto framework asks for an individual contribution
     // record and confirmation that every member approves the final version,
     // by analogy with authorship practice in scientific publishing.
-    const groupClause = s.submission === 'group'
+    const groupClause = s.submission === 'group' && s.groupConfirmed
       ? ' The individual contribution of each author is set out in the record accompanying this work, and all authors approve the final submitted version.'
       : '';
 
@@ -279,7 +291,7 @@
 
     const useDateClause = trim(s.useDate) ? ' The main use took place on ' + trim(s.useDate) + '.' : '';
 
-    return intro + domainsClause + ' ' + modification + scopeClause + useDateClause + groupClause + ' ' + responsibility + footer(version, policy);
+    return intro + domainsClause + ' ' + modification + scopeClause + useDateClause + groupClause + ' ' + responsibility + evidence(s) + footer(version, policy);
   };
 
   const subjectsByCourseType = (courseType) => {
@@ -330,22 +342,22 @@
       : '';
 
     if (s.policy === 'not_permitted') {
-      return 'No disclosure statement is required, since the use of generative artificial intelligence tools is not permitted in this programme.' + skillsClause +
+      return 'Generative AI use is not permitted in this programme. Theses, dissertations, final reports and equivalent documents must include a no-use note.' + skillsClause +
         ' Any indication that such tools have been used will be assessed under FMUP’s academic integrity rules.' + footer(version, policy);
     }
 
     const reportClause = s.policy === 'with_disclosure'
       ? 'Together with the submitted work, ' + subjSg + ' must attach a brief disclosure statement indicating: (i) the generative AI tools used, including version where applicable; (ii) the specific tasks for which those tools were used; (iii) the degree of modification applied to the generated contributions; and (iv) confirmation that ' + subjSg + ' takes full responsibility for the submitted content. Failing to provide this statement, or providing an inaccurate one, may constitute a breach of academic integrity.'
-      : 'Although the use of these tools is permitted without specific restrictions, ' + subjPl + ' are encouraged to indicate, briefly, the tools used and the tasks for which they were used, in the interests of academic transparency.';
+      : 'Although the use of these tools is permitted without specific restrictions, ' + subjPl + ' must disclose tools and tasks in all submitted work. Theses, dissertations, final reports and equivalents require a short note even when no AI was used; substantive use also requires structured disclosure.';
 
-    return reportClause + skillsClause + footer(version, policy);
+    return reportClause + skillsClause + (s.policy === 'with_disclosure' ? ' Theses, dissertations, final reports and equivalents always require a short note, even without AI use, and structured disclosure for material use.' : '') + footer(version, policy);
   };
 
   const researcherFull = (s, version, policy) => {
     const lead = TARGET_LEAD[s.target] || TARGET_LEAD.institutional;
     const activity = ACTIVITY_PHRASE[s.activity] || ACTIVITY_PHRASE.other;
     const tools = trim(s.tools) || 'unspecified generative artificial intelligence tools';
-    const tasks = (s.tasks || []).map((k) => TASK_PHRASES[k]).filter(Boolean);
+    const tasks = (s.tasks || []).map((k) => k === 'other' && trim(s.tasksOther) ? trim(s.tasksOther) : TASK_PHRASES[k]).filter(Boolean);
     const tasksClause = tasks.length ? ' for the following tasks: ' + list(tasks) : ' for ancillary preparatory tasks';
     const subj = s.activity === 'manuscript' ? 'the authors' : 'the researcher(s)';
 
@@ -353,8 +365,7 @@
     const scopeClause = SCOPE_SENTENCE[s.scope] ? ' ' + SCOPE_SENTENCE[s.scope] : '';
 
     let body = lead + ' it is hereby declared that, ' + activity + ', the following generative artificial intelligence tools were used — ' + tools +
-      ' —' + tasksClause + '.' + domainsClause + scopeClause + ' The contributions generated were critically reviewed by ' + subj +
-      ', who take full responsibility for the final content, for its accuracy, and for its scientific integrity. The artificial intelligence tools are not listed as authors, since they do not meet the applicable authorship criteria (notably, the ability to take public responsibility for the content). No personal, sensitive or confidential data were entered into unauthorised services.';
+      ' —' + tasksClause + '.' + domainsClause + scopeClause + ' The authors take full responsibility for the final content, for its accuracy, and for its scientific integrity. Artificial intelligence tools do not meet the applicable authorship criteria (notably, the ability to take public responsibility for the content).';
 
     if (s.target === 'journal') {
       body += ' This statement is intended for inclusion in the Methods or Acknowledgements section of the manuscript, in line with the ICMJE recommendations on the use of chatbots and large language models in scientific publication.';
@@ -363,33 +374,25 @@
     } else if (s.target === 'horizon') {
       body += ' This statement follows the guidance issued by the European Commission and the ERA Forum on the responsible use of generative AI in projects funded by Horizon Europe.';
     } else if (s.target === 'wellcome') {
-      body += ' This statement follows the Wellcome Trust’s policy on the use of generative AI in projects it funds.';
+      body += ' This statement documents the reported use in the Wellcome Trust application.';
     } else if (s.target === 'conference') {
       body += ' This statement accompanies the material submitted to the conference.';
     } else if (s.target === 'institutional') {
       body += ' This statement is included in the corresponding institutional report.';
     }
 
-    const replicabilityTargets = ['journal', 'fct', 'horizon', 'wellcome'];
-    if (trim(s.promptsRef) && replicabilityTargets.indexOf(s.target) !== -1) {
-      body += ' The prompts used and the complete interaction log are available at / in ' + trim(s.promptsRef) + '.';
-    }
 
     if (trim(s.useDate)) {
       body += ' The main use of the tools took place on ' + trim(s.useDate) + '.';
     }
 
-    return body + footer(version, policy);
+    return body + evidence(s) + footer(version, policy);
   };
 
   const researcherInline = (s, version, policy) => {
-    const tools = trim(s.tools) || 'unspecified generative AI tools';
-    const tasks = (s.tasks || []).map((k) => TASK_PHRASES[k]).filter(Boolean);
-    const tasksFrag = tasks.length ? list(tasks) : 'ancillary tasks';
-    const fw = policy && policy.framework_version ? '; in line with ' + policy.framework_version : '';
-    const useDate = trim(s.useDate) ? '; use on ' + trim(s.useDate) : '';
-    return 'The authors disclose the use of ' + tools + ' for ' + tasksFrag +
-      '; the resulting contributions were critically reviewed and the authors take full responsibility for the content (generated by Themis (FMUP · IA), v' + version + useDate + fw + ').';
+    const tasks = (s.tasks || []).map(k => k === 'other' ? trim(s.tasksOther) : TASK_PHRASES[k]).filter(Boolean);
+    return 'The authors disclose the use of ' + trim(s.tools) + ' for ' + list(tasks) +
+      ', taking full responsibility for the content.' + evidence(s) + footer(version, policy);
   };
 
   window.I18N_EN = {
@@ -399,6 +402,9 @@
     altLangCode: 'pt',
     htmlLang: 'en',
     ui: {
+      copyFailed: "Copy failed. Select and copy the text manually.",
+      restoredChoices: "Choices restored from a link. Review the fields: the statement will use current versions and date; the link is not an archive of the original text.",
+
       brand: 'FMUP',
       brandFull: 'Faculty of Medicine of the University of Porto',
       appTitle: 'Themis — AI Usage Statements',
@@ -437,7 +443,7 @@
       linkInvalid: 'Invalid or outdated link.',
       viewScenario: 'View scenario in the framework',
       principleLabel: 'Principle',
-      footerNationalPlatform: 'Articulated with the National Platform for AI Pedagogical Practices',
+      footerNationalPlatform: 'National diagnosis of AI in higher education (CNIPES)',
       toolsSuggestedHeader: 'Suggested tools (click to add)',
       toolsSuggestedHelp: 'First the institutional platform (IAedu); then platforms with a contract and training opt-out; then specialised tools; finally consumer versions that require caution with data.',
       toolsTierInstitutional: 'Institutional platform',
@@ -446,7 +452,7 @@
       toolsTierConsumerWarning: 'Consumer versions — mind the data',
       studentUCPolicyReminder: 'Before submitting this declaration, check your course unit\'s policy — the course syllabus or <a href="../quadro/B-clausula.html" target="_blank">Appendix B</a> specify the applicable regime (permitted, conditioned or prohibited). This declaration reflects the institutional framework, not necessarily the specific course unit policy.',
       teacherAdaptReminder: 'This text is a template. Adapt it to the specific pedagogical design of your course unit before including it in the syllabus — in particular, specify the course name, semester, and any specific conditions. <a href="../quadro/B-clausula.html" target="_blank">Appendix B</a> contains additional examples by regime.',
-      landingPrivacyNote: 'This tool runs entirely in your browser — no server, no cookies, no data logging. Do not enter personal, clinical or identifiable information in any free-text field. The risk assessment is advisory; the final decision always belongs to the user.',
+      landingPrivacyNote: 'This tool runs entirely in your browser — no form data is sent to a server and no cookies are used. Choices and free text are encoded in the browser address and may remain in its history; anyone with the link can recover them. Do not enter personal, clinical or identifiable information in any free-text field. The risk assessment is advisory; the final decision always belongs to the user.',
     },
     roles: {
       student: 'Student',
@@ -520,8 +526,8 @@
         },
       },
       step6UseDate: 'When did the main use occur?',
-      step6UseDateHelp: 'Optional. If the AI tools were used at a date earlier than the generation of this statement (e.g. a thesis or project written over several months), indicate that date here. If left blank, the use date is taken to be the generation date.',
-      step6UseDateLabel: 'Date of use (optional)',
+      step6UseDateHelp: 'Enter the date of the main use. Required for substantive contributions; for use over a period, add the range to the description of affected parts. The generation date does not replace the use date.',
+      step6UseDateLabel: 'Date of main use',
     },
     teacher: {
       step0CourseType: 'What kind of programme is this?',
@@ -558,7 +564,7 @@
         other: 'Other',
       },
       step3: 'What will the AI-use policy be?',
-      step3Help: 'Choose the regime that applies to the assessed work in this programme. The choice shapes the syllabus clause and the type of declaration students/participants will have to submit. If unsure, ask whether the learning objective can be reached with GenAI assistance (permit, with or without disclosure) or whether it requires fully human production to be assessable (do not permit). It is also legitimate to combine different regimes in different assessment moments — in that case, pick the regime of the dominant moment and clarify in the syllabus.',
+      step3Help: 'Choose the regime that applies to the assessed work in this programme. The choice shapes the syllabus clause and the type of declaration students/participants will have to submit. If unsure, ask whether the learning objective can be reached with GenAI assistance (permit, with the applicable disclosure conditions) or whether it requires fully human production to be assessable (do not permit). It is also legitimate to combine different regimes in different assessment moments — in that case, pick the regime of the dominant moment and clarify in the syllabus.',
       policy: {
         not_permitted: {
           label: 'Not permitted',
@@ -570,7 +576,7 @@
         },
         without_restrictions: {
           label: 'Permitted without specific restrictions',
-          description: 'GenAI use is permitted with no formal disclosure requirement. Suitable for low-stakes tasks where the assessed competence does not depend on text authorship (e.g. exploratory exercises, early drafts). Students/participants are still encouraged to indicate the tools used, for the sake of transparency.',
+          description: 'GenAI use is permitted without specific task restrictions; disclosure remains required in submitted work. Suitable for low-stakes tasks where the assessed competence does not depend on text authorship (e.g. exploratory exercises, early drafts). Disclosure is recommended for exploratory exercises that are not submitted.',
         },
       },
       step4: 'Which skills must be student-generated?',
@@ -643,8 +649,8 @@
         master_jury: 'Master’s examination committee',
       },
       step5UseDate: 'When did the main use occur?',
-      step5UseDateHelp: 'Optional. Indicate the date on which the main use of the tools occurred (e.g. during the drafting of a manuscript over several months). If left blank, the use date is taken to be the generation date of this statement.',
-      step5UseDateLabel: 'Date of use (optional)',
+      step5UseDateHelp: 'Enter the date of the main use. Required for substantive contributions; for use over a period, add the range to the description of affected parts. The generation date does not replace the use date.',
+      step5UseDateLabel: 'Date of main use',
     },
     risk: {
       heading: 'Institutional assessment — Level',
@@ -656,8 +662,23 @@
       guidanceFoot: 'Guiding warnings — they do not block statement generation. Final responsibility is the user’s.',
     },
     shared: {
+      detailsTitle: "Structured disclosure details",
+      detailsHelp: "For a substantive contribution, complete all three fields. Describe only what you did; identify pending checks. Do not include personal data or confidential content.",
+      affectedSections: "Sections or parts of the work affected",
+      verifications: "Human checks completed or pending",
+      promptsRef: "Description of prompts or reference to the interaction record",
+      contextTitle: "Context and confirmations",
+      contextHelp: "Select the applicable contexts. Alerts do not block disclosure. Review, privacy and authorship confirmations are optional and only appear in the statement when selected.",
+      contextReviewed: "I have reviewed the contexts above and selected all that apply (required).",
+      reviewConfirmed: "I confirm that I critically reviewed the generated contributions.",
+      privacyConfirmed: "I confirm that I did not enter personal, sensitive or confidential data into unauthorised services.",
+      groupConfirmed: "I confirm that individual contributions are recorded and all authors approved the final version.",
+      noUseRisk: "No AI use was declared; the use-related risk assessment does not apply.",
+      requiredHelp: "Complete the context choices. If AI was used, specify tasks, tools and scope and confirm that you reviewed the risk contexts. For substantive contributions, enter the date of use and complete all three structured disclosure fields.",
+      riskFlags: {"sensitive_public": "I entered personal, sensitive or confidential data into an unauthorised service.", "clinical_delegation": "I delegated a clinical decision to AI in a care setting.", "automated_grading": "I used AI-only student grading without substantive human review.", "ai_authorship": "I listed an AI tool as an author.", "confidential_review": "I entered a confidential peer-review manuscript into a public platform."},
+
       stepScope: 'What was the scope of the use?',
-      stepScopeHelp: 'This axis is distinct from the degree of modification: it does not describe what you did to the output, but how far the tool influenced the intellectual content of the work. Under the University of Porto framework, it determines whether a short note suffices or a structured declaration is required. Optional step: if left unanswered, the declaration assumes non-material use.',
+      stepScopeHelp: 'This axis is distinct from the degree of modification: it does not describe what you did to the output, but how far the tool influenced the intellectual content of the work. Under the University of Porto framework, it determines whether a short note suffices or a structured declaration is required. Required when AI was used; the tool does not assume the scope.',
       scope: {
         technical: {
           label: 'Technical support',

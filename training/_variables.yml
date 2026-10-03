@@ -6,8 +6,7 @@
 # a página de Prática mostra um aviso em vez da ligação.
 ficha-partilhada:
   url: "FICHA_PARTILHADA_URL"
-  definida: false
 
 sessao:
-  versao: "v1.1"
-  data: "Julho de 2026"
+  versao: "v1.2"
+  data: "Outubro de 2026"

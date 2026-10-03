@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.3.0] — 2026-10-03
+
+- Require tools, tasks and an explicit scope; material use also needs an actual use date, affected sections, human checks and a prompt record/reference.
+- Add student no-use notes and short notes; privacy, review and group assertions require explicit confirmation.
+- Validate and recover shared state; v2 links migrate to review, v3 stores source versions and never claims to archive historical wording.
+- Include policy version in every generated declaration; align teacher clauses with final-work disclosure.
+- Correct live tool-chip risk updates, no-use assessment and systematic-review classification; explicit prohibited contexts activate level 4 in policy 1.7.0.
+- Handle unavailable local storage, clipboard failures and malformed policies.
+- Add bilingual DOM regression tests, CI checks and reproducible test dependencies.
+
 All notable changes to **Themis** (FMUP · IA — AI usage statement generator,
 formerly **Atlas** until June 2026) are documented here. This file tracks
 changes to **statement content** and the **policy basis** they reflect,
@@ -9,7 +19,7 @@ Pre-1.0.0 entries below refer to the tool under its previous name (Atlas);
 the textual history is preserved as it was written at the time. Beginning
 with the 1.0.0 entry, the tool is named Themis.
 
-The version number lives as a single constant (`APP_VERSION`) in `app.js`.
+The version number is maintained in `_variables.yml` and synchronised to `APP_VERSION` in `app.js` by `scripts/sync-versions.py`.
 **Whenever the wording in `i18n/en.js` or `i18n/pt.js` changes, the version
 must be incremented** so that previously generated statements remain
 traceable to the wording that produced them.

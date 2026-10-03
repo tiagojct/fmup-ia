@@ -34,5 +34,7 @@
       "relation": "isSupplementTo",
       "scheme": "url"
     }
-  ]
+  ],
+  "version": "1.5.0",
+  "publication_date": "2026-10-03"
 }

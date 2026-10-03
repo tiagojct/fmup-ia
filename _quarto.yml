@@ -19,10 +19,14 @@ project:
     - "!quadro/full-references.md"
     - "!themis/**"
     # Projecto Quarto autónomo, com _quarto.yml próprio e construção
-    # separada (deploy no Cloudflare Pages, raiz `training/`).
+    # separada, agregada pelo workflow antes da publicação no VPS.
     - "!training/**"
   resources:
-    - "themis/**"
+    - "themis/index.html"
+    - "themis/app.js"
+    - "themis/style.css"
+    - "themis/policy.json"
+    - "themis/i18n/**"
     - "atlas/**"
     - "assets/**"
   preview:
@@ -117,7 +121,7 @@ website:
     background: light
     border: true
     left: |
-      © 2026 Tiago Jacinto · Faculdade de Medicina da Universidade do Porto · Quadro v1.4 · Setembro 2026
+      © 2026 Tiago Jacinto · Faculdade de Medicina da Universidade do Porto · Quadro v1.5 · Outubro 2026
       Conteúdo licenciado sob [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
     right:
       - text: "Síntese"

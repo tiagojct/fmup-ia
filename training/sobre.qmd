@@ -79,3 +79,7 @@ Revisões futuras serão registadas neste quadro. A plataforma acompanha o Quadr
 O repositório é público em [github.com/tiagojct/fmup-ia](https://github.com/tiagojct/fmup-ia), na pasta `training/`. Erros factuais, referências mal atribuídas, prompts que não funcionem como descrito e sugestões de novas fichas podem ser submetidos por *issue* ou por *pull request*.
 
 Correcções de referências têm prioridade sobre qualquer outra alteração.
+
+### v1.2, Outubro de 2026
+
+Correcção do cronómetro para contar tempo decorrido mesmo quando o navegador atrasa a execução; ligação do documento partilhado resolvida durante a construção; revalidação dos metadados bibliográficos e clarificação do alcance dessa verificação.

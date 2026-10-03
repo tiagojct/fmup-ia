@@ -33,7 +33,7 @@ training/
 
 ## Construir localmente
 
-Requer [Quarto](https://quarto.org) 1.5 ou superior. Não há passo de compilação adicional, nem dependências de Node ou Python.
+Requer [Quarto](https://quarto.org) 1.9 ou superior. Não há passo de compilação adicional, nem dependências de Node ou Python.
 
 ```bash
 cd training
@@ -55,7 +55,7 @@ A cada `push` para `main`, o workflow:
 2. constrói o projecto principal, para `_site/`;
 3. constrói este projecto, para `training/_site/`;
 4. copia `training/_site` para `_site/training`;
-5. publica `_site/` no ramo `gh-pages`.
+5. publica `_site/` no VPS por `rsync`.
 
 O resultado fica em `https://tiagojacinto.eu/fmup-ia/training/`.
 

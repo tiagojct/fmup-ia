@@ -56,7 +56,7 @@ Em paralelo, o grupo de trabalho deve manter alinhamento explícito com dois sta
 
 ## Enquadramento clínico e articulação hospitalar
 
-Em qualquer questão que envolva dados clínicos, prática supervisionada ou *Software as a Medical Device* (SaMD/AIaMD), o Quadro pressupõe articulação com a unidade hospitalar onde a actividade clínica é executada. Esta articulação é uma extensão futura --- o Centro Hospitalar Universitário de São João (CHUSJ) é o interlocutor evidente para a FMUP ---, mas o Quadro vigora institucionalmente dentro da Faculdade sem dela depender. Para este domínio, o grupo de trabalho adopta como referência operacional o *framework* de Stogiannos e colaboradores [@stogiannos2023imaging] --- validação multi-fase, monitorização contínua, conformidade com organismos de acreditação --- transponível para especialidades intensivas em dados (patologia digital, dermatologia, oftalmologia).
+Em qualquer questão que envolva dados clínicos, prática supervisionada ou *Software as a Medical Device* (SaMD/AIaMD), o Quadro pressupõe articulação com a unidade hospitalar onde a actividade clínica é executada. Esta articulação é uma extensão futura --- a [Unidade Local de Saúde de São João](https://www.sns.min-saude.pt/expansao-do-projeto/uls-sao-joao/) (ULS São João) é o interlocutor evidente para a FMUP ---, mantendo-se o Quadro como proposta sujeita a adopção formal pela Faculdade. Para este domínio, o grupo de trabalho adopta como referência operacional o *framework* de Stogiannos e colaboradores [@stogiannos2023imaging] --- validação multi-fase, monitorização contínua, conformidade com organismos de acreditação --- transponível para especialidades intensivas em dados (patologia digital, dermatologia, oftalmologia).
 
 A articulação académica-clínica exige conformidade simultânea com os seguintes regulamentos europeus para qualquer SaMD/AIaMD em ensino clínico ou investigação translacional:
 
@@ -65,10 +65,11 @@ A articulação académica-clínica exige conformidade simultânea com os seguin
 | Reg. (UE) 2017/745 (MDR) | Dispositivos médicos | Em vigor |
 | Reg. (UE) 2017/746 (IVDR) | Diagnóstico *in vitro* | Em vigor |
 | Reg. (UE) 2024/1689 (AI Act) — modelos GPAI | Modelos de IA de uso geral | Agosto 2025 |
-| Reg. (UE) 2024/1689 (AI Act) — sistemas de alto risco (incl. educação e saúde) | Sistemas de IA | Agosto 2026 |
-| EHDS | Espaço europeu de dados de saúde | Março 2027 |
+| AI Act — alto risco, Anexo III (incl. usos educativos) | Sistemas abrangidos pelo Anexo III | 2 de Dezembro de 2027 |
+| AI Act — alto risco associado a produtos regulados, Anexo I | Inclui dispositivos quando preenchidos os critérios legais | 2 de Agosto de 2028 |
+| EHDS | Espaço europeu de dados de saúde | Implementação faseada; principais obrigações em 2029 e 2031 |
 
-A preparação para o EHDS exige *Trusted Research Environments* compatíveis e coordenação com a *TEHDAS2 Joint Action* --- detalhe no capítulo [14](14-camada-medica.qmd).
+Calendário actualizado segundo a [Comissão Europeia: AI Omnibus](https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force) e o [calendário do EHDS](https://health.ec.europa.eu/ehealth-digital-health-and-care/european-health-data-space-regulation-ehds_en), consultados em 3 de Outubro de 2026. A preparação de ambientes seguros de tratamento de dados e o acompanhamento dos resultados da TEHDAS2 são propostas de implementação; não equivalem a uma obrigação geral de conformidade EHDS em Março de 2027. Detalhe no capítulo [14](14-camada-medica.qmd).
 
 ## Processo disciplinar e direito de defesa {#processo-disciplinar-e-direito-de-defesa}
 

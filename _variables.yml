@@ -1,10 +1,9 @@
-# Fonte única para a versão do Quadro. Usada via {{< var quadro.versao >}}
-# nas páginas .qmd. NOTA: shortcodes não são processados dentro de
-# _quarto.yml (rodapé/navbar) nem em ficheiros fora do Quarto — esses
-# locais estão listados no CLAUDE.md e têm de ser actualizados à mão:
-#   _quarto.yml (page-footer), CITATION.cff, .zenodo.json,
-#   themis/policy.json (framework_version).
+# Fonte única das versões; executar python3 scripts/sync-versions.py após editar.
+# A CI verifica a coerência dos ficheiros derivados com --check.
 quadro:
-  versao: "v1.4"
-  data: "Setembro de 2026"
-  data-iso: "2026-09-07"
+  versao: "v1.5"
+  data: "Outubro de 2026"
+  data-iso: "2026-10-03"
+themis:
+  versao: "1.3.0"
+  regras: "1.7.0"

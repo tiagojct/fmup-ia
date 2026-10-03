@@ -1,0 +1,2129 @@
+{
+  "checked_on": "2026-10-03",
+  "scope": "Metadados bibliográficos e identificação das fontes; consulta dirigida dos documentos institucionais. HTTP 200 não demonstra correspondência de conteúdo nem aprovação institucional.",
+  "references": [
+    {
+      "key": "miao2023guidance",
+      "title": "Guidance for Generative {AI} in Education and Research",
+      "doi": "10.54675/EWZM9535",
+      "url": "https://unesdoc.unesco.org/ark:/48223/pf0000386693",
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.54675/EWZM9535",
+        "title": "Guidance for generative AI in education and research",
+        "authors": [],
+        "published": [
+          [
+            2023
+          ]
+        ]
+      },
+      "http_check": {
+        "status": 403,
+        "error": "HTTP Error 403: Forbidden",
+        "url": "https://unesdoc.unesco.org/ark:/48223/pf0000386693"
+      },
+      "authors": "Miao, Fengchun and Holmes, Wayne",
+      "year": "2023"
+    },
+    {
+      "key": "bockting2023living",
+      "title": "Living Guidelines for Generative {AI} --- Why Scientists Must Oversee Its Use",
+      "doi": "10.1038/d41586-023-03266-1",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.1038/d41586-023-03266-1",
+        "title": "Living guidelines for generative AI — why scientists must oversee its use",
+        "authors": [
+          "Claudi L. Bockting",
+          "Eva A. M. van Dis",
+          "Robert van Rooij",
+          "Willem Zuidema",
+          "Johan Bollen"
+        ],
+        "published": [
+          [
+            2023,
+            10,
+            19
+          ]
+        ]
+      },
+      "authors": "Bockting, Claudi L. and van Dis, Eva A. M. and van Rooij, Robert and Zuidema, Willem and Bollen, Johan",
+      "year": "2023"
+    },
+    {
+      "key": "ec2024livingguidelines",
+      "title": "Living Guidelines on the Responsible Use of Generative {AI} in Research",
+      "doi": null,
+      "url": "https://research-and-innovation.ec.europa.eu/document/download/2b6cf7e5-36ac-41cb-aab5-0d32050143dc_en",
+      "http_check": {
+        "status": 200,
+        "url": "https://research-and-innovation.ec.europa.eu/document/download/2b6cf7e5-36ac-41cb-aab5-0d32050143dc_en"
+      },
+      "authors": "{European Commission, Directorate-General for Research and Innovation}",
+      "year": "2026"
+    },
+    {
+      "key": "aamc2025principles",
+      "title": "Principles for the Responsible Use of Artificial Intelligence in and for Medical Education",
+      "doi": null,
+      "url": "https://www.aamc.org/about-us/mission-areas/medical-education/principles-ai-use",
+      "http_check": {
+        "status": 200,
+        "url": "https://www.aamc.org/about-us/mission-areas/medical-education/principles-ai-use",
+        "title": "Client Challenge"
+      },
+      "authors": "{Association of American Medical Colleges}",
+      "year": "2025"
+    },
+    {
+      "key": "teqsa2024genai",
+      "title": "Gen {AI} Strategies for Australian Higher Education: Emerging Practice",
+      "doi": null,
+      "url": "https://www.teqsa.gov.au/guides-resources/resources/corporate-publications/gen-ai-strategies-australian-higher-education-emerging-practice",
+      "http_check": {
+        "status": null,
+        "error": "The read operation timed out",
+        "url": "https://www.teqsa.gov.au/guides-resources/resources/corporate-publications/gen-ai-strategies-australian-higher-education-emerging-practice"
+      },
+      "authors": "{Tertiary Education Quality and Standards Agency}",
+      "year": "2024"
+    },
+    {
+      "key": "hea2025framework",
+      "title": "Generative {AI} in Higher Education in Teaching \\& Learning: Policy Framework",
+      "doi": "10.82110/073e-hg66",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.datacite.org/dois/10.82110/073e-hg66",
+        "title": "Generative AI in Higher Education in Teaching & Learning: Policy Framework",
+        "authors": [
+          "O'Sullivan, James",
+          "Lowry, Colin",
+          "Woods, Ross",
+          "Conlon, Tim"
+        ],
+        "published": 2025
+      },
+      "authors": "O'Sullivan, James and Lowry, Colin and Woods, Ross and Conlon, Tim",
+      "year": "2025"
+    },
+    {
+      "key": "iaedu2025",
+      "title": "{IAedu}: Plataforma de Inteligência Artificial para o Ensino Superior e Investigação em Portugal",
+      "doi": null,
+      "url": "https://iaedu.pt/",
+      "http_check": {
+        "status": 200,
+        "url": "https://iaedu.pt/pt",
+        "title": "IAedu FCT | IAedu"
+      },
+      "authors": "{Fundação para a Ciência e a Tecnologia}",
+      "year": "2025"
+    },
+    {
+      "key": "ichikawa2025genai",
+      "title": "Generative Artificial Intelligence in Medical Education --- Policies and Training at {US} Osteopathic Medical Schools: Descriptive Cross-Sectional Survey",
+      "doi": "10.2196/58766",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.2196/58766",
+        "title": "Generative Artificial Intelligence in Medical Education—Policies and Training at US Osteopathic Medical Schools: Descriptive Cross-Sectional Survey",
+        "authors": [
+          "Tsunagu Ichikawa",
+          "Elizabeth Olsen",
+          "Arathi Vinod",
+          "Noah Glenn",
+          "Karim Hanna",
+          "Gregg C Lund",
+          "Stacey Pierce-Talsma"
+        ],
+        "published": [
+          [
+            2025,
+            2,
+            11
+          ]
+        ]
+      },
+      "authors": "Ichikawa, Tsunagu and Olsen, Elizabeth and Vinod, Arathi and Glenn, Noah and Hanna, Karim and Lund, Gregg C and Pierce-Talsma, Stacey",
+      "year": "2025"
+    },
+    {
+      "key": "humble2025policies",
+      "title": "Higher Education {AI} Policies --- A Document Analysis of University Guidelines",
+      "doi": "10.1111/ejed.70214",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.1111/ejed.70214",
+        "title": "Higher Education\n                    <scp>AI</scp>\n                    Policies—A Document Analysis of University Guidelines",
+        "authors": [
+          "Niklas Humble"
+        ],
+        "published": [
+          [
+            2025,
+            8,
+            21
+          ]
+        ]
+      },
+      "authors": "Humble, Niklas",
+      "year": "2025"
+    },
+    {
+      "key": "wilson2025ukpolicies",
+      "title": "The Development of Policies on Generative Artificial Intelligence in {UK} Universities",
+      "doi": "10.1177/03400352251333796",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.1177/03400352251333796",
+        "title": "The development of policies on generative artificial intelligence in UK universities",
+        "authors": [
+          "Thomas D Wilson"
+        ],
+        "published": [
+          [
+            2025,
+            5,
+            8
+          ]
+        ]
+      },
+      "authors": "Wilson, Thomas D",
+      "year": "2025"
+    },
+    {
+      "key": "jin2025global",
+      "title": "Generative {AI} in Higher Education: A Global Perspective of Institutional Adoption Policies and Guidelines",
+      "doi": "10.1016/j.caeai.2024.100348",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.1016/j.caeai.2024.100348",
+        "title": "Generative AI in higher education: A global perspective of institutional adoption policies and guidelines",
+        "authors": [
+          "Yueqiao Jin",
+          "Lixiang Yan",
+          "Vanessa Echeverria",
+          "Dragan Gašević",
+          "Roberto Martinez-Maldonado"
+        ],
+        "published": [
+          [
+            2025,
+            6
+          ]
+        ]
+      },
+      "authors": "Jin, Yueqiao and Yan, Lixiang and Echeverria, Vanessa and Gašević, Dragan and Martinez-Maldonado, Roberto",
+      "year": "2025"
+    },
+    {
+      "key": "mcdonald2025policies",
+      "title": "Generative Artificial Intelligence in Higher Education: Evidence from an Analysis of Institutional Policies and Guidelines",
+      "doi": "10.1016/j.chbah.2025.100121",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.1016/j.chbah.2025.100121",
+        "title": "Generative artificial intelligence in higher education: Evidence from an analysis of institutional policies and guidelines",
+        "authors": [
+          "Nora McDonald",
+          "Aditya Johri",
+          "Areej Ali",
+          "Aayushi Hingle Collier"
+        ],
+        "published": [
+          [
+            2025,
+            3
+          ]
+        ]
+      },
+      "authors": "McDonald, Nora and Johri, Aditya and Ali, Areej and Collier, Aayushi Hingle",
+      "year": "2025"
+    },
+    {
+      "key": "orfanidis2025moral",
+      "title": "Moral Diversity in Institutional Policies Governing the Student Usage of Generative {AI}: An International Comparison",
+      "doi": "10.1111/hequ.70051",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.1111/hequ.70051",
+        "title": "Moral Diversity in Institutional Policies Governing the Student Usage of Generative\n                    <scp>AI</scp>\n                    : An International Comparison",
+        "authors": [
+          "Christos Orfanidis"
+        ],
+        "published": [
+          [
+            2025,
+            8,
+            6
+          ]
+        ]
+      },
+      "authors": "Orfanidis, Christos",
+      "year": "2025"
+    },
+    {
+      "key": "chan2023framework",
+      "title": "A Comprehensive {AI} Policy Education Framework for University Teaching and Learning",
+      "doi": "10.1186/s41239-023-00408-3",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.1186/s41239-023-00408-3",
+        "title": "A comprehensive AI policy education framework for university teaching and learning",
+        "authors": [
+          "Cecilia Ka Yuk Chan"
+        ],
+        "published": [
+          [
+            2023,
+            7,
+            7
+          ]
+        ]
+      },
+      "authors": "Chan, Cecilia Ka Yuk",
+      "year": "2023"
+    },
+    {
+      "key": "boscardin2024chatgpt",
+      "title": "{ChatGPT} and Generative Artificial Intelligence for Medical Education: Potential Impact and Opportunity",
+      "doi": "10.1097/ACM.0000000000005439",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.1097/ACM.0000000000005439",
+        "title": "ChatGPT and Generative Artificial Intelligence for Medical Education: Potential Impact and Opportunity",
+        "authors": [
+          "Christy K Boscardin",
+          "Brian Gin",
+          "Polo Black Golde",
+          "Karen E Hauer"
+        ],
+        "published": [
+          [
+            2023,
+            8,
+            31
+          ]
+        ]
+      },
+      "authors": "Boscardin, Christy K and Gin, Brian and Golde, Polo Black and Hauer, Karen E",
+      "year": "2024"
+    },
+    {
+      "key": "ng2023aieducation",
+      "title": "Artificial Intelligence Education: An Evidence-Based Medicine Approach for Consumers, Translators, and Developers",
+      "doi": "10.1016/j.xcrm.2023.101230",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.1016/j.xcrm.2023.101230",
+        "title": "Artificial intelligence education: An evidence-based medicine approach for consumers, translators, and developers",
+        "authors": [
+          "Faye Yu Ci Ng",
+          "Arun James Thirunavukarasu",
+          "Haoran Cheng",
+          "Ting Fang Tan",
+          "Laura Gutierrez",
+          "Yanyan Lan",
+          "Jasmine Chiat Ling Ong",
+          "Yap Seng Chong",
+          "Kee Yuan Ngiam",
+          "Dean Ho",
+          "Tien Yin Wong",
+          "Kenneth Kwek",
+          "Finale Doshi-Velez",
+          "Catherine Lucey",
+          "Thomas Coffman",
+          "Daniel Shu Wei Ting"
+        ],
+        "published": [
+          [
+            2023,
+            10
+          ]
+        ]
+      },
+      "authors": "Ng, Faye Yu Ci and Thirunavukarasu, Arun James and Cheng, Haoran and Tan, Ting Fang and Gutierrez, Laura and Lan, Yanyan and Ong, Jasmine Chiat Ling and Chong, Yap Seng and Ngiam, Kee Yuan and Ho, Dean and Wong, Tien Yin and Kwek, Kenneth and Doshi-Velez, Finale and Lucey, Catherine and Coffman, Thomas and Ting, Daniel Shu Wei",
+      "year": "2023"
+    },
+    {
+      "key": "moorhouse2023assessment",
+      "title": "Generative {AI} Tools and Assessment: Guidelines of the World's Top-Ranking Universities",
+      "doi": "10.1016/j.caeo.2023.100151",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.1016/j.caeo.2023.100151",
+        "title": "Generative AI tools and assessment: Guidelines of the world's top-ranking universities",
+        "authors": [
+          "Benjamin Luke Moorhouse",
+          "Marie Alina Yeo",
+          "Yuwei Wan"
+        ],
+        "published": [
+          [
+            2023,
+            12
+          ]
+        ]
+      },
+      "authors": "Moorhouse, Benjamin Luke and Yeo, Marie Alina and Wan, Yuwei",
+      "year": "2023"
+    },
+    {
+      "key": "peters2025aicai",
+      "title": "Redefining Assessment Tasks to Promote Students' Creativity and Integrity in the Age of Generative Artificial Intelligence",
+      "doi": "10.1007/s40979-025-00201-x",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.1007/s40979-025-00201-x",
+        "title": "Redefining assessment tasks to promote students’ creativity and integrity in the age of generative artificial intelligence",
+        "authors": [
+          "Martine Peters",
+          "Dimitar Angelov"
+        ],
+        "published": [
+          [
+            2025,
+            9,
+            23
+          ]
+        ]
+      },
+      "authors": "Peters, Martine and Angelov, Dimitar",
+      "year": "2025"
+    },
+    {
+      "key": "chan2024book",
+      "title": "Generative {AI} in Higher Education: The {ChatGPT} Effect",
+      "doi": "10.4324/9781003459026",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.4324/9781003459026",
+        "title": "Generative AI in Higher Education",
+        "authors": [
+          "Cecilia Ka Yuk Chan",
+          "Tom Colloton"
+        ],
+        "published": [
+          [
+            2024,
+            3,
+            11
+          ]
+        ]
+      },
+      "authors": "Chan, Cecilia Ka Yuk and Colloton, Tom",
+      "year": "2024"
+    },
+    {
+      "key": "leondominguez2024cognitive",
+      "title": "Potential Cognitive Risks of Generative Transformer-Based {AI} Chatbots on Higher Order Executive Functions",
+      "doi": "10.1037/neu0000948",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.1037/neu0000948",
+        "title": "Potential cognitive risks of generative transformer-based AI chatbots on higher order executive functions.",
+        "authors": [
+          "Umberto León-Domínguez"
+        ],
+        "published": [
+          [
+            2024,
+            5
+          ]
+        ]
+      },
+      "authors": "León-Domínguez, Umberto",
+      "year": "2024"
+    },
+    {
+      "key": "shin2024impact",
+      "title": "The Impact of Artificial Intelligence-Assisted Learning on Nursing Students' Ethical Decision-Making and Clinical Reasoning in Pediatric Care: A Quasi-Experimental Study",
+      "doi": "10.1097/CIN.0000000000001177",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.1097/CIN.0000000000001177",
+        "title": "The Impact of Artificial Intelligence-Assisted Learning on Nursing Students' Ethical Decision-making and Clinical Reasoning in Pediatric Care",
+        "authors": [
+          "Hyewon Shin",
+          "Jennie C. De Gagne",
+          "Sang Suk Kim",
+          "Minjoo Hong"
+        ],
+        "published": [
+          [
+            2024,
+            8,
+            15
+          ]
+        ]
+      },
+      "authors": "Shin, Hyewon and De Gagne, Jennie C. and Kim, Sang Suk and Hong, Minjoo",
+      "year": "2024"
+    },
+    {
+      "key": "alkaissi2023hallucinations",
+      "title": "Artificial Hallucinations in {ChatGPT}: Implications in Scientific Writing",
+      "doi": "10.7759/cureus.35179",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.7759/cureus.35179",
+        "title": "Artificial Hallucinations in ChatGPT: Implications in Scientific Writing",
+        "authors": [
+          "Hussam Alkaissi",
+          "Samy I McFarlane"
+        ],
+        "published": [
+          [
+            2023,
+            2,
+            19
+          ]
+        ]
+      },
+      "authors": "Alkaissi, Hussam and McFarlane, Samy I",
+      "year": "2023"
+    },
+    {
+      "key": "cheng2025aiwriting",
+      "title": "Artificial Intelligence-Assisted Academic Writing: Recommendations for Ethical Use",
+      "doi": "10.1186/s41077-025-00350-6",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.1186/s41077-025-00350-6",
+        "title": "Artificial intelligence-assisted academic writing: recommendations for ethical use",
+        "authors": [
+          "Adam Cheng",
+          "Aaron Calhoun",
+          "Gabriel Reedy"
+        ],
+        "published": [
+          [
+            2025,
+            4,
+            18
+          ]
+        ]
+      },
+      "authors": "Cheng, Adam and Calhoun, Aaron and Reedy, Gabriel",
+      "year": "2025"
+    },
+    {
+      "key": "lim2025peerreview",
+      "title": "Generative {AI} in Peer Review Process for Occupational Health",
+      "doi": "10.1093/occmed/kqaf051",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.1093/occmed/kqaf051",
+        "title": "Generative AI in peer review process for occupational health",
+        "authors": [
+          "G H Lim",
+          "M L Tan",
+          "V C W Hoe",
+          "D Koh"
+        ],
+        "published": [
+          [
+            2025,
+            6
+          ]
+        ]
+      },
+      "authors": "Lim, G H and Tan, M L and Hoe, V C W and Koh, D",
+      "year": "2025"
+    },
+    {
+      "key": "maerz2024legal",
+      "title": "Legal Aspects of Generative Artificial Intelligence and Large Language Models in Examinations and Theses",
+      "doi": "10.3205/zma001702",
+      "url": "https://www.egms.de/static/en/journals/zma/2024-41/zma001702.shtml",
+      "registry": {
+        "status": 200,
+        "url": "https://api.datacite.org/dois/10.3205/zma001702",
+        "title": "Legal aspects of generative artificial intelligence and large language models in examinations and theses",
+        "authors": [
+          "März, Maren",
+          "Himmelbauer, Monika",
+          "Boldt, Kevin",
+          "Oksche, Alexander"
+        ],
+        "published": 2024
+      },
+      "http_check": {
+        "status": 200,
+        "url": "https://www.egms.de/static/en/journals/zma/2024-41/zma001702.shtml",
+        "title": "GMS | GMS Journal for Medical Education | Legal aspects of generative artificial intelligence and large language models in examinations and theses"
+      },
+      "authors": "März, Maren and Himmelbauer, Monika and Boldt, Kevin and Oksche, Alexander",
+      "year": "2024"
+    },
+    {
+      "key": "boman2025scaffolding",
+      "title": "Scaffolding for Success: Blending Learning with and about Generative {AI} in Medical Education",
+      "doi": "10.1080/0142159X.2025.2571041",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.1080/0142159X.2025.2571041",
+        "title": "Scaffolding for success: Blending learning with and about Generative AI in medical education",
+        "authors": [
+          "Magnus Boman",
+          "Paul Jhun",
+          "Mike Schaekermann"
+        ],
+        "published": [
+          [
+            2025,
+            12,
+            2
+          ]
+        ]
+      },
+      "authors": "Boman, Magnus and Jhun, Paul and Schaekermann, Mike",
+      "year": "2025"
+    },
+    {
+      "key": "illich1973tools",
+      "title": "Tools for Conviviality",
+      "doi": null,
+      "url": "https://search.worldcat.org/title/Tools-for-conviviality/oclc/631886",
+      "http_check": {
+        "status": 403,
+        "error": "HTTP Error 403: Forbidden",
+        "url": "https://search.worldcat.org/title/Tools-for-conviviality/oclc/631886"
+      },
+      "authors": "Illich, Ivan",
+      "year": "1973"
+    },
+    {
+      "key": "franklin1989realworld",
+      "title": "The Real World of Technology",
+      "doi": null,
+      "url": "https://houseofanansi.com/products/the-real-world-of-technology",
+      "http_check": {
+        "status": 429,
+        "error": "HTTP Error 429: Too Many Requests",
+        "url": "https://houseofanansi.com/products/the-real-world-of-technology"
+      },
+      "authors": "Franklin, Ursula",
+      "year": "1999"
+    },
+    {
+      "key": "tran2025survey",
+      "title": "Perceptions and Use of Generative Artificial Intelligence in Medical Students: A Multicenter Survey",
+      "doi": "10.1177/23821205251391969",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.1177/23821205251391969",
+        "title": "Perceptions and Use of Generative Artificial Intelligence in Medical Students: A Multicenter Survey",
+        "authors": [
+          "Cecilia Tran",
+          "Brett N. Hryciw",
+          "Sean William Moore",
+          "Alan Chaput",
+          "Andrew John Ervine Seely"
+        ],
+        "published": [
+          [
+            2025,
+            10
+          ]
+        ]
+      },
+      "authors": "Tran, Cecilia and Hryciw, Brett N. and Moore, Sean William and Chaput, Alan and Seely, Andrew John Ervine",
+      "year": "2025"
+    },
+    {
+      "key": "alkhaaldi2023students",
+      "title": "Medical Student Experiences and Perceptions of {ChatGPT} and Artificial Intelligence: Cross-Sectional Study",
+      "doi": "10.2196/51302",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.2196/51302",
+        "title": "Medical Student Experiences and Perceptions of ChatGPT and Artificial Intelligence: Cross-Sectional Study",
+        "authors": [
+          "Saif M I Alkhaaldi",
+          "Carl H Kassab",
+          "Zakia Dimassi",
+          "Leen Oyoun Alsoud",
+          "Maha Al Fahim",
+          "Cynthia Al Hageh",
+          "Halah Ibrahim"
+        ],
+        "published": [
+          [
+            2023,
+            12,
+            22
+          ]
+        ]
+      },
+      "authors": "Alkhaaldi, Saif M I and Kassab, Carl H and Dimassi, Zakia and Oyoun Alsoud, Leen and Al Fahim, Maha and Al Hageh, Cynthia and Ibrahim, Halah",
+      "year": "2023"
+    },
+    {
+      "key": "chanhu2023voices",
+      "title": "Students' Voices on Generative {AI}: Perceptions, Benefits, and Challenges in Higher Education",
+      "doi": "10.1186/s41239-023-00411-8",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.1186/s41239-023-00411-8",
+        "title": "Students’ voices on generative AI: perceptions, benefits, and challenges in higher education",
+        "authors": [
+          "Cecilia Ka Yuk Chan",
+          "Wenjie Hu"
+        ],
+        "published": [
+          [
+            2023,
+            7,
+            17
+          ]
+        ]
+      },
+      "authors": "Chan, Cecilia Ka Yuk and Hu, Wenjie",
+      "year": "2023"
+    },
+    {
+      "key": "preiksaitis2023scoping",
+      "title": "Opportunities, Challenges, and Future Directions of Generative Artificial Intelligence in Medical Education: Scoping Review",
+      "doi": "10.2196/48785",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.2196/48785",
+        "title": "Opportunities, Challenges, and Future Directions of Generative Artificial Intelligence in Medical Education: Scoping Review",
+        "authors": [
+          "Carl Preiksaitis",
+          "Christian Rose"
+        ],
+        "published": [
+          [
+            2023,
+            10,
+            20
+          ]
+        ]
+      },
+      "authors": "Preiksaitis, Carl and Rose, Christian",
+      "year": "2023"
+    },
+    {
+      "key": "iqbal2025metacog",
+      "title": "Generative {AI} Tool Use Enhances Academic Achievement in Sustainable Education through Shared Metacognition and Cognitive Offloading among Preservice Teachers",
+      "doi": "10.1038/s41598-025-01676-x",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.1038/s41598-025-01676-x",
+        "title": "Generative AI tool use enhances academic achievement in sustainable education through shared metacognition and cognitive offloading among preservice teachers",
+        "authors": [
+          "Javed Iqbal",
+          "Zarqa Farooq Hashmi",
+          "Muhammad Zaheer Asghar",
+          "Muhammad Naseem Abid"
+        ],
+        "published": [
+          [
+            2025,
+            5,
+            13
+          ]
+        ]
+      },
+      "authors": "Iqbal, Javed and Hashmi, Zarqa Farooq and Asghar, Muhammad Zaheer and Abid, Muhammad Naseem",
+      "year": "2025"
+    },
+    {
+      "key": "levingston2024literacy",
+      "title": "From Theory to Practice: Artificial Intelligence ({AI}) Literacy Course for First-Year Medical Students",
+      "doi": "10.7759/cureus.70706",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.7759/cureus.70706",
+        "title": "From Theory to Practice: Artificial Intelligence (AI) Literacy Course for First-Year Medical Students",
+        "authors": [
+          "Hunter Levingston",
+          "Max C Anderson",
+          "Monzurul A Roni"
+        ],
+        "published": [
+          [
+            2024,
+            10,
+            2
+          ]
+        ]
+      },
+      "authors": "Levingston, Hunter and Anderson, Max C and Roni, Monzurul A",
+      "year": "2024"
+    },
+    {
+      "key": "toohey2025implementation",
+      "title": "Integrating Generative {AI} in Health Education: A Scoping Review and Implementation Framework",
+      "doi": "10.1007/s40670-025-02578-3",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.1007/s40670-025-02578-3",
+        "title": "Integrating Generative AI in Health Education: A Scoping Review and Implementation Framework",
+        "authors": [
+          "Kellie Toohey",
+          "Zach Quince",
+          "Felicity Walker",
+          "Linda Furness",
+          "Michelle Bissett",
+          "Carlie Daley",
+          "Kachina Allen",
+          "Natalie Munro",
+          "Andy Smidt",
+          "Jodie Cochrane Wilkie",
+          "Louise Horstmanshof",
+          "Kathryn Baltrotsky",
+          "Fiona Naumann"
+        ],
+        "published": [
+          [
+            2025,
+            12,
+            12
+          ]
+        ]
+      },
+      "authors": "Toohey, Kellie and Quince, Zach and Walker, Felicity and Furness, Linda and Bissett, Michelle and Daley, Carlie and Allen, Kachina and Munro, Natalie and Smidt, Andy and Wilkie, Jodie Cochrane and Horstmanshof, Louise and Baltrotsky, Kathryn and Naumann, Fiona",
+      "year": "2025"
+    },
+    {
+      "key": "samuel2025reflective",
+      "title": "Enhancing Reflective Practice with {ChatGPT}: A New Approach to Assignment Design",
+      "doi": "10.1080/0142159X.2025.2461534",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.1080/0142159X.2025.2461534",
+        "title": "Enhancing reflective practice with ChatGPT: A new approach to assignment design",
+        "authors": [
+          "Anita Samuel",
+          "Michael Soh",
+          "Eulho Jung"
+        ],
+        "published": [
+          [
+            2025,
+            2,
+            6
+          ]
+        ]
+      },
+      "authors": "Samuel, Anita and Soh, Michael and Jung, Eulho",
+      "year": "2025"
+    },
+    {
+      "key": "thesen2025firstpatient",
+      "title": "Generative {AI} as the First Patient: Practice, Feedback, and Confidence",
+      "doi": "10.1007/s40670-025-02473-x",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.1007/s40670-025-02473-x",
+        "title": "Generative AI as the First Patient: Practice, Feedback, and Confidence",
+        "authors": [
+          "Thomas Thesen",
+          "Wade N. O’Brien",
+          "Simon Stone",
+          "Roshini Pinto-Powell"
+        ],
+        "published": [
+          [
+            2025,
+            8,
+            12
+          ]
+        ]
+      },
+      "authors": "Thesen, Thomas and O’Brien, Wade N. and Stone, Simon and Pinto-Powell, Roshini",
+      "year": "2025"
+    },
+    {
+      "key": "feigerlova2026teaching",
+      "title": "How to Teach Generative Artificial Intelligence in Undergraduate Medical Education",
+      "doi": "10.1111/tct.70420",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.1111/tct.70420",
+        "title": "How to Teach Generative Artificial Intelligence in Undergraduate Medical Education",
+        "authors": [
+          "Eva Feigerlova"
+        ],
+        "published": [
+          [
+            2026,
+            4,
+            9
+          ]
+        ]
+      },
+      "authors": "Feigerlova, Eva",
+      "year": "2026"
+    },
+    {
+      "key": "jones2025slop",
+      "title": "{AI}-Generated ``Slop'' in Online Biomedical Science Educational Videos: Mixed Methods Study of Prevalence, Characteristics, and Hazards to Learners and Teachers",
+      "doi": "10.2196/80084",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.2196/80084",
+        "title": "AI-Generated “Slop” in Online Biomedical Science Educational Videos: Mixed Methods Study of Prevalence, Characteristics, and Hazards to Learners and Teachers",
+        "authors": [
+          "Eric M Jones",
+          "Jane D Newman",
+          "Boyun Kim",
+          "Emily J Fogle"
+        ],
+        "published": [
+          [
+            2025,
+            11,
+            20
+          ]
+        ]
+      },
+      "authors": "Jones, Eric M and Newman, Jane D and Kim, Boyun and Fogle, Emily J",
+      "year": "2025"
+    },
+    {
+      "key": "ning2024checklist",
+      "title": "Generative Artificial Intelligence and Ethical Considerations in Health Care: A Scoping Review and Ethics Checklist",
+      "doi": "10.1016/S2589-7500(24)00143-2",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.1016/S2589-7500(24)00143-2",
+        "title": "Generative artificial intelligence and ethical considerations in health care: a scoping review and ethics checklist",
+        "authors": [
+          "Yilin Ning",
+          "Salinelat Teixayavong",
+          "Yuqing Shang",
+          "Julian Savulescu",
+          "Vaishaanth Nagaraj",
+          "Di Miao",
+          "Mayli Mertens",
+          "Daniel Shu Wei Ting",
+          "Jasmine Chiat Ling Ong",
+          "Mingxuan Liu",
+          "Jiuwen Cao",
+          "Michael Dunn",
+          "Roger Vaughan",
+          "Marcus Eng Hock Ong",
+          "Joseph Jao-Yiu Sung",
+          "Eric J Topol",
+          "Nan Liu"
+        ],
+        "published": [
+          [
+            2024,
+            11
+          ]
+        ]
+      },
+      "authors": "Ning, Yilin and Teixayavong, Salinelat and Shang, Yuqing and Savulescu, Julian and Nagaraj, Vaishaanth and Miao, Di and Mertens, Mayli and Ting, Daniel Shu Wei and Ong, Jasmine Chiat Ling and Liu, Mingxuan and Cao, Jiuwen and Dunn, Michael and Vaughan, Roger and Ong, Marcus Eng Hock and Sung, Joseph Jao-Yiu and Topol, Eric J and Liu, Nan",
+      "year": "2024"
+    },
+    {
+      "key": "nist2023airmf",
+      "title": "Artificial Intelligence Risk Management Framework ({AI} {RMF} 1.0)",
+      "doi": "10.6028/NIST.AI.100-1",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.6028/NIST.AI.100-1",
+        "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+        "authors": [
+          "Elham Tabassi"
+        ],
+        "published": [
+          [
+            2023,
+            1,
+            26
+          ]
+        ]
+      },
+      "authors": "{National Institute of Standards and Technology}",
+      "year": "2023"
+    },
+    {
+      "key": "iso2023aims",
+      "title": "{ISO/IEC} 42001:2023 --- Information Technology --- Artificial Intelligence --- Management System",
+      "doi": null,
+      "url": "https://www.iso.org/standard/81230.html",
+      "http_check": {
+        "status": 403,
+        "error": "HTTP Error 403: Forbidden",
+        "url": "https://www.iso.org/standard/81230.html"
+      },
+      "authors": "{International Organization for Standardization}",
+      "year": "2023"
+    },
+    {
+      "key": "temper2025heatai",
+      "title": "Higher Education Act for {AI} ({HEAT-AI}): A Framework to Regulate the Usage of {AI} in Higher Education Institutions",
+      "doi": "10.3389/feduc.2025.1505370",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.3389/feduc.2025.1505370",
+        "title": "Higher Education Act for AI (HEAT-AI): a framework to regulate the usage of AI in higher education institutions",
+        "authors": [
+          "Marlies Temper",
+          "Simon Tjoa",
+          "Lisa David"
+        ],
+        "published": [
+          [
+            2025,
+            2,
+            20
+          ]
+        ]
+      },
+      "authors": "Temper, Marlies and Tjoa, Simon and David, Lisa",
+      "year": "2025"
+    },
+    {
+      "key": "aamc2025competencies",
+      "title": "CGEA Artificial Intelligence Framework for Educators",
+      "doi": null,
+      "url": "https://www.aamc.org/about-us/mission-areas/medical-education/advancing-ai-resource-collection/cgea-artificial-intelligence-framework-educators",
+      "http_check": {
+        "status": 200,
+        "url": "https://www.aamc.org/about-us/mission-areas/medical-education/advancing-ai-resource-collection/cgea-artificial-intelligence-framework-educators",
+        "title": "Client Challenge"
+      },
+      "authors": "{Association of American Medical Colleges}",
+      "year": "2025"
+    },
+    {
+      "key": "ania2026",
+      "title": "Agenda Nacional de Inteligência Artificial ({ANIA}) e Plano de Acção 2026-2030",
+      "doi": null,
+      "url": "https://diariodarepublica.pt/dr/detalhe/resolucao-conselho-ministros/2-2026-1000882016",
+      "http_check": {
+        "status": 200,
+        "url": "https://diariodarepublica.pt/dr/detalhe/resolucao-conselho-ministros/2-2026-1000882016"
+      },
+      "authors": "{Conselho de Ministros}",
+      "year": "2026"
+    },
+    {
+      "key": "stogiannos2023imaging",
+      "title": "Black box no more: a scoping review of {AI} governance frameworks to guide procurement and adoption of {AI} in medical imaging and radiotherapy in the {UK}",
+      "doi": "10.1259/bjr.20221157",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.1259/bjr.20221157",
+        "title": "Black box no more: a scoping review of AI governance frameworks to guide procurement and adoption of AI in medical imaging and radiotherapy in the UK",
+        "authors": [
+          "Nikolaos Stogiannos",
+          "Rizwan Malik",
+          "Amrita Kumar",
+          "Anna Barnes",
+          "Michael Pogose",
+          "Hugh Harvey",
+          "Mark F McEntee",
+          "Christina Malamateniou"
+        ],
+        "published": [
+          [
+            2023,
+            10,
+            3
+          ]
+        ]
+      },
+      "authors": "Stogiannos, Nikolaos and Malik, Rizwan and Kumar, Amrita and Barnes, Anna and Pogose, Michael and Harvey, Hugh and McEntee, Mark F and Malamateniou, Christina",
+      "year": "2023"
+    },
+    {
+      "key": "coe2024framework",
+      "title": "Framework Convention on Artificial Intelligence and Human Rights, Democracy and the Rule of Law",
+      "doi": null,
+      "url": "https://www.coe.int/en/web/artificial-intelligence/the-framework-convention-on-artificial-intelligence",
+      "http_check": {
+        "status": 403,
+        "error": "HTTP Error 403: Forbidden",
+        "url": "https://www.coe.int/en/web/artificial-intelligence/the-framework-convention-on-artificial-intelligence"
+      },
+      "authors": "{Council of Europe}",
+      "year": "2024"
+    },
+    {
+      "key": "cnipes2026",
+      "title": "Inteligência Artificial no Ensino Superior em Portugal: Diagnóstico nacional para governação institucional",
+      "doi": "10.5281/zenodo.19555760",
+      "url": "https://doi.org/10.5281/zenodo.19555760",
+      "registry": {
+        "status": 200,
+        "url": "https://api.datacite.org/dois/10.5281/zenodo.19555760",
+        "title": "INTELIGÊNCIA ARTIFICIAL NO ENSINO SUPERIOR EM PORTUGAL - Diagnóstico nacional para governação institucional",
+        "authors": [
+          "Zagalo, Nelson",
+          "Silva, Filipe",
+          "Khurrum, Syeda"
+        ],
+        "published": 2026
+      },
+      "http_check": {
+        "status": 200,
+        "url": "https://zenodo.org/records/19555760",
+        "title": "INTELIGÊNCIA ARTIFICIAL NO ENSINO SUPERIOR EM PORTUGAL - Diagnóstico nacional para governação institucional | Zenodo"
+      },
+      "note": "PDF: Syeda Faryal; registo DataCite: Syeda Khurrum. Bibliografia segue a ficha técnica. Conferidos N=68, adopção e maturidade de políticas.",
+      "authors": "Zagalo, Nelson and Silva, Filipe and Faryal, Syeda",
+      "year": "2026",
+      "pdf": {
+        "sha256": "7a04f9d92bb57968349a336f9832cbc9e5183eac2e73432c2e56041d70a27e39",
+        "pages": 74,
+        "verified": "Ficha técnica e passagens citadas sobre diagnóstico nacional e educação."
+      }
+    },
+    {
+      "key": "cne2026ia",
+      "title": "Inteligência Artificial em Contexto Educativo",
+      "doi": null,
+      "url": "https://www.cnedu.pt/pt/publicacoes/estudos/inteligencia-artificial-em-contexto-educativo",
+      "http_check": {
+        "status": 200,
+        "url": "https://www.cnedu.pt/pt/publicacoes/estudos/inteligencia-artificial-em-contexto-educativo",
+        "title": "Inteligência Artificial em Contexto Educativo – Conselho Nacional de Educação"
+      },
+      "authors": "{CNE}",
+      "year": "2026",
+      "pdf": {
+        "sha256": "61e8f18971b59b39f8c5dce445377c7dcdf39b78295f71f2f2fe1d4fc3ddefaa",
+        "pages": 29,
+        "verified": "Ficha técnica e passagens citadas sobre diagnóstico nacional e educação."
+      }
+    },
+    {
+      "key": "postman1992technopoly",
+      "title": "Technopoly: The Surrender of Culture to Technology",
+      "doi": null,
+      "url": "https://www.penguinrandomhouse.com/books/132784/technopoly-by-neil-postman/",
+      "http_check": {
+        "status": null,
+        "error": "The read operation timed out",
+        "url": "https://www.penguinrandomhouse.com/books/132784/technopoly-by-neil-postman/"
+      },
+      "authors": "Postman, Neil",
+      "year": "1993"
+    },
+    {
+      "key": "cefmup2023integridade",
+      "title": "Integridade Cient{\\'\\i}fica --- White Paper",
+      "doi": null,
+      "url": "https://upbioetica.org/wp-content/uploads/2023/09/Relatorio-Integridade-Cientifica-Final-Comissao-Etica-FMUP.pdf",
+      "http_check": {
+        "status": 200,
+        "url": "https://upbioetica.org/wp-content/uploads/2023/09/Relatorio-Integridade-Cientifica-Final-Comissao-Etica-FMUP.pdf"
+      },
+      "authors": "Falc{\\~a}o-Pires, In{\\^e}s and Duarte, Ivone and Oliva Teles, Nat{\\'a}lia and Ribeiro, Patr{\\'\\i}cia and Negr{\\~a}o, Rita and Monteiro, Ros{\\'a}rio",
+      "year": "2023"
+    },
+    {
+      "key": "cne2026recomendacao",
+      "title": "Recomenda{\\c c}{\\~a}o n.{\\textordmasculine} 4/2026: Integra{\\c c}{\\~a}o da Intelig{\\^e}ncia Artificial no sistema educativo portugu{\\^e}s",
+      "doi": null,
+      "url": "https://diariodarepublica.pt/dr/detalhe/recomendacao/4-2026-1124911989",
+      "http_check": {
+        "status": 200,
+        "url": "https://diariodarepublica.pt/dr/detalhe/recomendacao/4-2026-1124911989"
+      },
+      "authors": "{Conselho Nacional de Educa{\\c c}{\\~a}o}",
+      "year": "2026"
+    },
+    {
+      "key": "jacinto2026quadro",
+      "title": "{FMUP} \\textperiodcentered{} {IA} --- Quadro de refer{\\^e}ncia institucional para a utiliza{\\c c}{\\~a}o de intelig{\\^e}ncia artificial generativa na {FMUP}",
+      "doi": null,
+      "url": "https://tiagojacinto.eu/fmup-ia/",
+      "http_check": {
+        "status": 200,
+        "url": "https://tiagojacinto.eu/fmup-ia/",
+        "title": "FMUP · IA"
+      },
+      "authors": "Jacinto, Tiago",
+      "year": "2026"
+    },
+    {
+      "key": "jacinto2026themis",
+      "title": "Themis --- Ferramenta de declara{\\c c}{\\~a}o de uso de {GenAI}",
+      "doi": null,
+      "url": "https://tiagojacinto.eu/fmup-ia/themis/",
+      "http_check": {
+        "status": 200,
+        "url": "https://tiagojacinto.eu/fmup-ia/themis/",
+        "title": "Themis — FMUP · IA"
+      },
+      "authors": "Jacinto, Tiago",
+      "year": "2026"
+    },
+    {
+      "key": "uporto2026orientacoes",
+      "title": "Inteligência artificial generativa no domínio educativo: Orientações para uso e adoção responsável",
+      "doi": null,
+      "url": "https://www.up.pt/portal/documents/2333/01_Orientacoes_Adocao_Responsavel.pdf",
+      "http_check": {
+        "status": 200,
+        "url": "https://www.up.pt/portal/documents/2333/01_Orientacoes_Adocao_Responsavel.pdf"
+      },
+      "pdf": {
+        "sha256": "e6abf7949ecbb6b6c0415cb9d4954d57b28db4d866593708937ec140557d2724",
+        "pages": 33,
+        "verified": "Metadados e passagens sobre declarações, governação, ferramentas e disciplina."
+      },
+      "authors": "{Universidade do Porto, Grupo IA no domínio educativo}",
+      "year": "2026"
+    },
+    {
+      "key": "uporto2026guiabase",
+      "title": "Guia de boas práticas para o uso de inteligência artificial generativa no contexto académico",
+      "doi": null,
+      "url": "https://www.up.pt/portal/documents/2334/02_Guia_base_Boas_Praticas_IA_UPorto_FINAL.pdf",
+      "http_check": {
+        "status": 200,
+        "url": "https://www.up.pt/portal/documents/2334/02_Guia_base_Boas_Praticas_IA_UPorto_FINAL.pdf"
+      },
+      "pdf": {
+        "sha256": "cba244146aa52c1c54829684940adc09830482d744e8b6ad746fe65088c5729b",
+        "pages": 38,
+        "verified": "Metadados e passagens sobre declarações, governação, ferramentas e disciplina."
+      },
+      "authors": "Figueira, Álvaro",
+      "year": "2026"
+    },
+    {
+      "key": "uporto2026guiadocentes",
+      "title": "Guia prático para docentes",
+      "doi": null,
+      "url": "https://www.up.pt/portal/documents/2335/03_Guia_pratico_para_docentes.pdf",
+      "http_check": {
+        "status": 200,
+        "url": "https://www.up.pt/portal/documents/2335/03_Guia_pratico_para_docentes.pdf"
+      },
+      "pdf": {
+        "sha256": "aa2722bb4b3c94b3d4cc048ea76cd2bba8eddf4c776f091c093151dec7c73097",
+        "pages": 5,
+        "verified": "Metadados e passagens sobre declarações, governação, ferramentas e disciplina."
+      },
+      "authors": "Figueira, Álvaro",
+      "year": "2026"
+    },
+    {
+      "key": "uporto2026guiaestudantes",
+      "title": "Guia prático para estudantes",
+      "doi": null,
+      "url": "https://www.up.pt/portal/documents/2336/04_Guia_pratico_para_estudantes.pdf",
+      "http_check": {
+        "status": 200,
+        "url": "https://www.up.pt/portal/documents/2336/04_Guia_pratico_para_estudantes.pdf"
+      },
+      "pdf": {
+        "sha256": "ee2cbc8ef1f27cf95fb423f20af38e66111b13eb46a861ff36e1da443ebfba5a",
+        "pages": 5,
+        "verified": "Metadados e passagens sobre declarações, governação, ferramentas e disciplina."
+      },
+      "authors": "Figueira, Álvaro",
+      "year": "2026"
+    },
+    {
+      "key": "uporto2026perfis",
+      "title": "Caderno complementar de perfis disciplinares",
+      "doi": null,
+      "url": "https://www.up.pt/portal/documents/2337/05_Caderno_complementar_de_perfis_disciplinares.pdf",
+      "http_check": {
+        "status": 200,
+        "url": "https://www.up.pt/portal/documents/2337/05_Caderno_complementar_de_perfis_disciplinares.pdf"
+      },
+      "pdf": {
+        "sha256": "94565c0813695a0277aab80cd122de30c85837ce1a01c7c39bf7cc68cde7acef",
+        "pages": 15,
+        "verified": "Metadados e passagens sobre declarações, governação, ferramentas e disciplina."
+      },
+      "authors": "Figueira, Álvaro",
+      "year": "2026"
+    },
+    {
+      "key": "uporto2026posgrad",
+      "title": "Caderno de Pós-graduação e Investigação com Inteligência Artificial Generativa",
+      "doi": null,
+      "url": "https://www.up.pt/portal/documents/2338/06_Caderno_complementar_PG_Investigacao.PDF",
+      "http_check": {
+        "status": 200,
+        "url": "https://www.up.pt/portal/documents/2338/06_Caderno_complementar_PG_Investigacao.PDF"
+      },
+      "pdf": {
+        "sha256": "e4329cf1b0375bf1b777202da8819e8fc0e6592ddc7ab96e27dd615970b7fe78",
+        "pages": 11,
+        "verified": "Metadados e passagens sobre declarações, governação, ferramentas e disciplina."
+      },
+      "authors": "Figueira, Álvaro",
+      "year": "2026"
+    },
+    {
+      "key": "uporto2026promptario",
+      "title": "Promptário de estudo com Inteligência Artificial Generativa",
+      "doi": null,
+      "url": "https://www.up.pt/portal/documents/2339/07_Promptario_de_estudo_com_Inteligencia_Artificial_Generativa.pdf",
+      "http_check": {
+        "status": 200,
+        "url": "https://www.up.pt/portal/documents/2339/07_Promptario_de_estudo_com_Inteligencia_Artificial_Generativa.pdf"
+      },
+      "pdf": {
+        "sha256": "070d087870f67aace08d9919befd9d70bbb9b562e005c5eab063c87e748e5fe9",
+        "pages": 5,
+        "verified": "Metadados e passagens sobre declarações, governação, ferramentas e disciplina."
+      },
+      "authors": "Figueira, Álvaro",
+      "year": "2026"
+    },
+    {
+      "key": "suchikova2026gaidet",
+      "title": "{GAIDeT} ({Generative AI Delegation Taxonomy}): A Taxonomy for Humans to Delegate Tasks to Generative Artificial Intelligence in Scientific Research and Publishing",
+      "doi": "10.1080/08989621.2025.2544331",
+      "url": null,
+      "registry": {
+        "status": 200,
+        "url": "https://api.crossref.org/works/10.1080/08989621.2025.2544331",
+        "title": "GAIDeT (Generative AI Delegation Taxonomy): A taxonomy for humans to delegate tasks to generative artificial intelligence in scientific research and publishing",
+        "authors": [
+          "Yana Suchikova",
+          "Natalia Tsybuliak",
+          "Jaime A. Teixeira da Silva",
+          "Serhii Nazarovets"
+        ],
+        "published": [
+          [
+            2025,
+            8,
+            8
+          ]
+        ]
+      },
+      "authors": "Suchikova, Yana and Tsybuliak, Natalia and Teixeira da Silva, Jaime A. and Nazarovets, Serhii",
+      "year": "2026"
+    }
+  ],
+  "external_links": [
+    {
+      "source_url": "https://creativecommons.org/licenses/by/4.0/",
+      "files": [
+        "quadro/index.qmd",
+        "sobre.qmd",
+        "training/sobre.qmd"
+      ],
+      "status": 200,
+      "url": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "Deed - Attribution 4.0 International - Creative Commons"
+    },
+    {
+      "source_url": "https://rise-health.pt/",
+      "files": [
+        "sobre.qmd",
+        "training/sobre.qmd"
+      ],
+      "status": 200,
+      "url": "https://rise-health.pt/",
+      "title": "Landing Page - RISE Health"
+    },
+    {
+      "source_url": "https://github.com/tiagojct/fmup-ia",
+      "files": [
+        "apresentacoes/medcids.qmd",
+        "recursos.qmd",
+        "sobre.qmd",
+        "training/sobre.qmd"
+      ],
+      "status": 200,
+      "url": "https://github.com/tiagojct/fmup-ia",
+      "title": "GitHub - tiagojct/fmup-ia: FMUP · IA — Quadro de referência institucional para a utilização de IA generativa na FMUP + ferramenta operacional Atlas · GitHub"
+    },
+    {
+      "source_url": "https://quarto.org/",
+      "files": [
+        "sobre.qmd"
+      ],
+      "status": 200,
+      "url": "https://quarto.org/",
+      "title": "Quarto"
+    },
+    {
+      "source_url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj",
+      "files": [
+        "recursos.qmd",
+        "themis/policy.json"
+      ],
+      "status": 202,
+      "url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj"
+    },
+    {
+      "source_url": "https://health.ec.europa.eu/ehealth-digital-health-and-care/european-health-data-space_en",
+      "files": [
+        "recursos.qmd"
+      ],
+      "status": 200,
+      "url": "https://health.ec.europa.eu/ehealth-digital-health-and-care/european-health-data-space-regulation-ehds_en",
+      "title": "European Health Data Space Regulation (EHDS) - Public Health"
+    },
+    {
+      "source_url": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "files": [
+        "recursos.qmd",
+        "themis/policy.json"
+      ],
+      "status": 202,
+      "url": "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+    },
+    {
+      "source_url": "https://eur-lex.europa.eu/eli/reg/2017/745/oj",
+      "files": [
+        "recursos.qmd"
+      ],
+      "status": 202,
+      "url": "https://eur-lex.europa.eu/eli/reg/2017/745/oj"
+    },
+    {
+      "source_url": "https://eur-lex.europa.eu/eli/reg/2017/746/oj",
+      "files": [
+        "recursos.qmd"
+      ],
+      "status": 202,
+      "url": "https://eur-lex.europa.eu/eli/reg/2017/746/oj"
+    },
+    {
+      "source_url": "https://research-and-innovation.ec.europa.eu/document/download/2b6cf7e5-36ac-41cb-aab5-0d32050143dc_en",
+      "files": [
+        "quadro/D-guia.qmd",
+        "quadro/guias/guia-investigadores.qmd",
+        "recursos.qmd"
+      ],
+      "status": 200,
+      "url": "https://research-and-innovation.ec.europa.eu/document/download/2b6cf7e5-36ac-41cb-aab5-0d32050143dc_en"
+    },
+    {
+      "source_url": "https://www.unesco.org/en/artificial-intelligence/recommendation-ethics",
+      "files": [
+        "recursos.qmd"
+      ],
+      "status": 200,
+      "url": "https://www.unesco.org/en/artificial-intelligence/recommendation-ethics",
+      "title": "Ethics of Artificial Intelligence - AI | UNESCO"
+    },
+    {
+      "source_url": "https://unesdoc.unesco.org/ark:/48223/pf0000386693",
+      "files": [
+        "recursos.qmd"
+      ],
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "url": "https://unesdoc.unesco.org/ark:/48223/pf0000386693"
+    },
+    {
+      "source_url": "https://oecd.ai/en/ai-principles",
+      "files": [
+        "quadro/13-frameworks-supranacionais.qmd",
+        "recursos.qmd"
+      ],
+      "status": 200,
+      "url": "https://oecd.ai/en/ai-principles",
+      "title": "AI Principles Overview - OECD.AI"
+    },
+    {
+      "source_url": "https://www.coe.int/en/web/artificial-intelligence/the-framework-convention-on-artificial-intelligence",
+      "files": [
+        "recursos.qmd"
+      ],
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "url": "https://www.coe.int/en/web/artificial-intelligence/the-framework-convention-on-artificial-intelligence"
+    },
+    {
+      "source_url": "https://www.nist.gov/itl/ai-risk-management-framework",
+      "files": [
+        "recursos.qmd"
+      ],
+      "status": 200,
+      "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+      "title": "AI Risk Management Framework | NIST"
+    },
+    {
+      "source_url": "https://www.iso.org/standard/81230.html",
+      "files": [
+        "recursos.qmd"
+      ],
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "url": "https://www.iso.org/standard/81230.html"
+    },
+    {
+      "source_url": "https://www.who.int/publications/i/item/9789240029200",
+      "files": [
+        "recursos.qmd"
+      ],
+      "status": 200,
+      "url": "https://www.who.int/publications/i/item/9789240029200",
+      "title": "Ethics and governance of artificial intelligence for health"
+    },
+    {
+      "source_url": "https://www.aamc.org/about-us/mission-areas/medical-education/principles-ai-use",
+      "files": [
+        "quadro/D-guia.qmd",
+        "quadro/guias/guia-docentes.qmd",
+        "recursos.qmd"
+      ],
+      "status": 200,
+      "url": "https://www.aamc.org/about-us/mission-areas/medical-education/principles-ai-use",
+      "title": "Client Challenge"
+    },
+    {
+      "source_url": "https://www.icmje.org/recommendations/",
+      "files": [
+        "recursos.qmd"
+      ],
+      "status": 200,
+      "url": "https://www.icmje.org/recommendations/",
+      "title": "ICMJE | Recommendations"
+    },
+    {
+      "source_url": "https://wame.org/",
+      "files": [
+        "recursos.qmd"
+      ],
+      "status": 200,
+      "url": "https://wame.org/",
+      "title": "WAME - A global association of editors of peer-reviewed medical journals"
+    },
+    {
+      "source_url": "https://publicationethics.org/",
+      "files": [
+        "recursos.qmd"
+      ],
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "url": "https://publicationethics.org/"
+    },
+    {
+      "source_url": "https://diariodarepublica.pt/dr/detalhe/recomendacao/4-2026-1124911989",
+      "files": [
+        "recursos.qmd",
+        "themis/policy.json"
+      ],
+      "status": 200,
+      "url": "https://diariodarepublica.pt/dr/detalhe/recomendacao/4-2026-1124911989"
+    },
+    {
+      "source_url": "https://diariodarepublica.pt/",
+      "files": [
+        "recursos.qmd"
+      ],
+      "status": 200,
+      "url": "https://diariodarepublica.pt/dr/home"
+    },
+    {
+      "source_url": "https://iaedu.pt/",
+      "files": [
+        "recursos.qmd",
+        "themis/policy.json"
+      ],
+      "status": 200,
+      "url": "https://iaedu.pt/pt",
+      "title": "IAedu FCT | IAedu"
+    },
+    {
+      "source_url": "https://www.a3es.pt/",
+      "files": [
+        "recursos.qmd"
+      ],
+      "status": 200,
+      "url": "https://a3es.pt/pt/",
+      "title": "A3ES"
+    },
+    {
+      "source_url": "https://www.up.pt/portal/pt/inovacao-educativa/recursos/documentos-orientadores/",
+      "files": [
+        "nota-integracao-uporto.qmd",
+        "quadro/H-articulacao-uporto.qmd"
+      ],
+      "status": 200,
+      "url": "https://www.up.pt/portal/pt/inovacao-educativa/recursos/documentos-orientadores/",
+      "title": "Documentos orientadores - Inovação Educativa"
+    },
+    {
+      "source_url": "https://www.cnedu.pt",
+      "files": [
+        "apresentacoes/medcids.qmd",
+        "quadro/C-recursos.qmd"
+      ],
+      "status": 200,
+      "url": "https://www.cnedu.pt/pt/",
+      "title": "Conselho Nacional de Educação"
+    },
+    {
+      "source_url": "https://iaedu.pt",
+      "files": [
+        "quadro/D-guia.qmd",
+        "quadro/guias/guia-docentes.qmd",
+        "quadro/guias/guia-estudantes.qmd",
+        "quadro/guias/guia-investigadores.qmd",
+        "quadro/guias/guia-servicos.qmd",
+        "training/fichas/index.qmd",
+        "training/index.qmd",
+        "training/regras.qmd"
+      ],
+      "status": 200,
+      "url": "https://iaedu.pt/pt",
+      "title": "IAedu FCT | IAedu"
+    },
+    {
+      "source_url": "https://arxiv.org/abs/2503.05793v2",
+      "files": [
+        "training/recursos.qmd"
+      ],
+      "status": 200,
+      "url": "https://arxiv.org/abs/2503.05793v2",
+      "title": "[2503.05793v2] MedSimAI: Simulation and Formative Feedback Generation to Enhance Deliberate Practice in Medical Education"
+    },
+    {
+      "source_url": "https://news.cornell.edu/stories/2025/03/medical-students-use-ai-practice-communication-skills",
+      "files": [
+        "training/fichas/1-doente-virtual.qmd",
+        "training/recursos.qmd"
+      ],
+      "status": 200,
+      "url": "https://news.cornell.edu/stories/2025/03/medical-students-use-ai-practice-communication-skills",
+      "title": "Medical students use AI to practice communication skills | Cornell Chronicle"
+    },
+    {
+      "source_url": "https://teaching.pitt.edu/resources/chatgpt-in-the-classroom/",
+      "files": [
+        "training/fichas/2-critica-de-outputs.qmd",
+        "training/recursos.qmd"
+      ],
+      "status": 200,
+      "url": "https://teaching.pitt.edu/resources/chatgpt-in-the-classroom/",
+      "title": "ChatGPT in the Classroom - University Center for Teaching and Learning"
+    },
+    {
+      "source_url": "https://teaching.pitt.edu/generative-ai-resources-for-faculty/",
+      "files": [
+        "training/fichas/2-critica-de-outputs.qmd",
+        "training/recursos.qmd"
+      ],
+      "status": 200,
+      "url": "https://teaching.pitt.edu/the-prompt/",
+      "title": "The Prompt: Teaching with AI - University Center for Teaching and Learning"
+    },
+    {
+      "source_url": "https://www.timeshighereducation.com/campus/three-ways-use-chatgpt-enhance-students-critical-thinking-classroom",
+      "files": [
+        "training/fichas/4-advogado-do-diabo.qmd",
+        "training/recursos.qmd"
+      ],
+      "status": 200,
+      "url": "https://www.timeshighereducation.com/campus/three-ways-use-chatgpt-enhance-students-critical-thinking-classroom",
+      "title": "3 ways to use ChatGPT to enhance students’ critical thinking | THE Campus Learn, Share, Connect"
+    },
+    {
+      "source_url": "https://www.harvardmagazine.com/teaching-learning/harvard-redesigning-assignments-ai",
+      "files": [
+        "training/fichas/5-fazer-e-comparar.qmd",
+        "training/recursos.qmd"
+      ],
+      "status": 200,
+      "url": "https://www.harvardmagazine.com/teaching-learning/harvard-redesigning-assignments-ai",
+      "title": "Harvard’s New Playbook for Teaching with AI | Harvard Magazine"
+    },
+    {
+      "source_url": "https://www.aamc.org/news/medical-schools-move-worrying-about-ai-teaching-it",
+      "files": [
+        "training/recursos.qmd"
+      ],
+      "status": 200,
+      "url": "https://www.aamc.org/news/medical-schools-move-worrying-about-ai-teaching-it",
+      "title": "Client Challenge"
+    },
+    {
+      "source_url": "https://magazine.hms.harvard.edu/articles/how-generative-ai-transforming-medical-education",
+      "files": [
+        "training/recursos.qmd"
+      ],
+      "status": 200,
+      "url": "https://magazine.hms.harvard.edu/articles/how-generative-ai-transforming-medical-education",
+      "title": "How Generative AI Is Transforming Medical Education | Harvard Medicine Magazine"
+    },
+    {
+      "source_url": "https://arxiv.org/abs/2503.05793",
+      "files": [
+        "training/fichas/1-doente-virtual.qmd"
+      ],
+      "status": 200,
+      "url": "https://arxiv.org/abs/2503.05793",
+      "title": "[2503.05793] MedSimAI: Simulation and Formative Feedback Generation to Enhance Deliberate Practice in Medical Education"
+    },
+    {
+      "source_url": "https://panbibliotekar.github.io/gaidet-declaration/",
+      "files": [
+        "quadro/A-declaracao.qmd",
+        "quadro/H-articulacao-uporto.qmd"
+      ],
+      "status": 200,
+      "url": "https://panbibliotekar.github.io/gaidet-declaration/",
+      "title": "GAIDeT Declaration Generator"
+    },
+    {
+      "source_url": "https://aidisclose.org/",
+      "files": [
+        "quadro/A-declaracao.qmd",
+        "quadro/H-articulacao-uporto.qmd"
+      ],
+      "status": 200,
+      "url": "https://aidisclose.org/",
+      "title": "AIDisclose Statement Generator"
+    },
+    {
+      "source_url": "https://wellcome.org/research-funding/guidance/policies-grant-conditions/use-of-generative-ai",
+      "files": [
+        "quadro/05-investigadores.qmd"
+      ],
+      "status": 200,
+      "url": "https://wellcome.org/research-funding/guidance/policies-grant-conditions/use-of-generative-ai",
+      "title": "Use of generative AI - Funding Policy | Wellcome"
+    },
+    {
+      "source_url": "https://www.coe.int/en-GB/web/conventions/full-list2?module=treaty-detail&treatynum=225",
+      "files": [
+        "quadro/13-frameworks-supranacionais.qmd"
+      ],
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "url": "https://www.coe.int/en-GB/web/conventions/full-list2?module=treaty-detail&treatynum=225"
+    },
+    {
+      "source_url": "https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force",
+      "files": [
+        "quadro/06-infraestrutura.qmd",
+        "quadro/14-camada-medica.qmd"
+      ],
+      "status": 200,
+      "url": "https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force",
+      "title": "AI Omnibus enters into force | Shaping Europe’s digital future"
+    },
+    {
+      "source_url": "https://health.ec.europa.eu/ehealth-digital-health-and-care/european-health-data-space-regulation-ehds_en",
+      "files": [
+        "quadro/06-infraestrutura.qmd",
+        "quadro/14-camada-medica.qmd"
+      ],
+      "status": 200,
+      "url": "https://health.ec.europa.eu/ehealth-digital-health-and-care/european-health-data-space-regulation-ehds_en",
+      "title": "European Health Data Space Regulation (EHDS) - Public Health"
+    },
+    {
+      "source_url": "https://chatgpt.com",
+      "files": [
+        "quadro/D-guia.qmd",
+        "quadro/guias/guia-docentes.qmd",
+        "quadro/guias/guia-estudantes.qmd",
+        "quadro/guias/guia-investigadores.qmd",
+        "quadro/guias/guia-servicos.qmd"
+      ],
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "url": "https://chatgpt.com"
+    },
+    {
+      "source_url": "https://claude.ai",
+      "files": [
+        "quadro/D-guia.qmd",
+        "quadro/guias/guia-docentes.qmd",
+        "quadro/guias/guia-estudantes.qmd",
+        "quadro/guias/guia-investigadores.qmd",
+        "quadro/guias/guia-servicos.qmd"
+      ],
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "url": "https://claude.ai"
+    },
+    {
+      "source_url": "https://www.deepl.com",
+      "files": [
+        "quadro/D-guia.qmd",
+        "quadro/guias/guia-estudantes.qmd"
+      ],
+      "status": 200,
+      "url": "https://www.deepl.com/en",
+      "title": "DeepL AI Platform: Translation, Voice &amp; API"
+    },
+    {
+      "source_url": "https://notebooklm.google.com",
+      "files": [
+        "quadro/D-guia.qmd",
+        "quadro/guias/guia-docentes.qmd",
+        "quadro/guias/guia-estudantes.qmd"
+      ],
+      "status": 200,
+      "url": "https://accounts.google.com/v3/signin/identifier?continue=https://notebook.google.com/login?continue%3Dhttps://notebook.google.com/&followup=https://notebook.google.com/login?continue%3Dhttps://notebook.google.com/&osid=1&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-1440236892:1791010682758824",
+      "title": "Sign in - Google Accounts"
+    },
+    {
+      "source_url": "https://www.perplexity.ai",
+      "files": [
+        "quadro/D-guia.qmd",
+        "quadro/guias/guia-docentes.qmd"
+      ],
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "url": "https://www.perplexity.ai"
+    },
+    {
+      "source_url": "https://www.teqsa.gov.au/guides-resources/higher-education-good-practice-hub/gen-ai-knowledge-hub",
+      "files": [
+        "quadro/D-guia.qmd",
+        "quadro/guias/guia-docentes.qmd"
+      ],
+      "status": null,
+      "error": "The read operation timed out",
+      "url": "https://www.teqsa.gov.au/guides-resources/higher-education-good-practice-hub/gen-ai-knowledge-hub"
+    },
+    {
+      "source_url": "https://hea.ie",
+      "files": [
+        "quadro/D-guia.qmd",
+        "quadro/guias/guia-docentes.qmd"
+      ],
+      "status": 200,
+      "url": "https://hea.ie",
+      "title": "Higher Education Authority"
+    },
+    {
+      "source_url": "https://www.icmje.org/recommendations",
+      "files": [
+        "quadro/C-recursos.qmd",
+        "quadro/D-guia.qmd",
+        "quadro/guias/guia-investigadores.qmd"
+      ],
+      "status": 200,
+      "url": "https://www.icmje.org/recommendations/",
+      "title": "ICMJE | Recommendations"
+    },
+    {
+      "source_url": "https://wame.org",
+      "files": [
+        "quadro/C-recursos.qmd",
+        "quadro/D-guia.qmd",
+        "quadro/guias/guia-investigadores.qmd"
+      ],
+      "status": 200,
+      "url": "https://wame.org",
+      "title": "WAME - A global association of editors of peer-reviewed medical journals"
+    },
+    {
+      "source_url": "https://publicationethics.org",
+      "files": [
+        "quadro/C-recursos.qmd",
+        "quadro/D-guia.qmd",
+        "quadro/guias/guia-investigadores.qmd"
+      ],
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "url": "https://publicationethics.org"
+    },
+    {
+      "source_url": "https://writefull.com",
+      "files": [
+        "quadro/D-guia.qmd",
+        "quadro/guias/guia-investigadores.qmd"
+      ],
+      "status": 308,
+      "error": "HTTP Error 308: Permanent Redirect",
+      "url": "https://writefull.com"
+    },
+    {
+      "source_url": "https://edpb.europa.eu",
+      "files": [
+        "quadro/C-recursos.qmd",
+        "quadro/D-guia.qmd",
+        "quadro/guias/guia-investigadores.qmd"
+      ],
+      "status": 200,
+      "url": "https://www.edpb.europa.eu/home_en",
+      "title": "Home | European Data Protection Board"
+    },
+    {
+      "source_url": "https://www.cnpd.pt",
+      "files": [
+        "quadro/C-recursos.qmd",
+        "quadro/D-guia.qmd",
+        "quadro/guias/guia-investigadores.qmd",
+        "quadro/guias/guia-servicos.qmd"
+      ],
+      "status": 200,
+      "url": "https://www.cnpd.pt",
+      "title": "CNPD"
+    },
+    {
+      "source_url": "https://www.icmje.org/",
+      "files": [
+        "quadro/A-declaracao.qmd"
+      ],
+      "status": 200,
+      "url": "https://www.icmje.org/",
+      "title": "ICMJE | Home"
+    },
+    {
+      "source_url": "https://www.sns.min-saude.pt/expansao-do-projeto/uls-sao-joao/",
+      "files": [
+        "quadro/06-infraestrutura.qmd"
+      ],
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "url": "https://www.sns.min-saude.pt/expansao-do-projeto/uls-sao-joao/"
+    },
+    {
+      "source_url": "https://enisa.europa.eu",
+      "files": [
+        "quadro/C-recursos.qmd"
+      ],
+      "status": 200,
+      "url": "https://www.enisa.europa.eu/",
+      "title": "Home | ENISA"
+    },
+    {
+      "source_url": "https://ordemdosmedicos.pt",
+      "files": [
+        "quadro/C-recursos.qmd"
+      ],
+      "status": 200,
+      "url": "https://ordemdosmedicos.pt",
+      "title": "Home Page | Ordem dos Médicos"
+    },
+    {
+      "source_url": "https://www.a3es.pt",
+      "files": [
+        "quadro/C-recursos.qmd"
+      ],
+      "status": 200,
+      "url": "https://a3es.pt/pt/",
+      "title": "A3ES"
+    },
+    {
+      "source_url": "https://www.dges.gov.pt",
+      "files": [
+        "quadro/C-recursos.qmd"
+      ],
+      "status": 200,
+      "url": "https://www.dges.gov.pt/pt",
+      "title": "DGES"
+    },
+    {
+      "source_url": "https://stopsloppypasta.ai",
+      "files": [
+        "quadro/C-recursos.qmd"
+      ],
+      "status": 200,
+      "url": "https://stopsloppypasta.ai",
+      "title": "Redirecting…"
+    },
+    {
+      "source_url": "https://simonwillison.net/2023/Aug/27/wordcamp-llms/#personal-ai-ethics",
+      "files": [
+        "quadro/C-recursos.qmd"
+      ],
+      "status": 200,
+      "url": "https://simonwillison.net/2023/Aug/27/wordcamp-llms/#personal-ai-ethics",
+      "title": "Making Large Language Models work for you"
+    },
+    {
+      "source_url": "https://ai-manifesto.dev",
+      "files": [
+        "quadro/C-recursos.qmd"
+      ],
+      "status": 200,
+      "url": "https://ai-manifesto.dev",
+      "title": "BAYAR77 | Manifesto Kemenangan Terbesar dengan Server Pintar Ai-Manifesto.dev"
+    },
+    {
+      "source_url": "https://noellevandijk.com/ai-manifesto/",
+      "files": [
+        "quadro/C-recursos.qmd"
+      ],
+      "status": 200,
+      "url": "https://noellevandijk.com/ai-manifesto/",
+      "title": "AI Manifesto &#8211; Studio Noëlle van Dijk"
+    },
+    {
+      "source_url": "https://deepl.com",
+      "files": [
+        "quadro/guias/guia-investigadores.qmd",
+        "quadro/guias/guia-servicos.qmd"
+      ],
+      "status": 200,
+      "url": "https://www.deepl.com/en",
+      "title": "DeepL AI Platform: Translation, Voice &amp; API"
+    },
+    {
+      "source_url": "https://www.up.pt/portal/pt/updigital/software/sistemas-inteligencia-artificial-generativa/",
+      "files": [
+        "themis/policy.json"
+      ],
+      "status": 200,
+      "url": "https://www.up.pt/portal/pt/updigital/software/sistemas-inteligencia-artificial-generativa/",
+      "title": "Sistemas de Inteligência Artificial generativa - UPDIGITAL"
+    },
+    {
+      "source_url": "https://openai.com/chatgpt/enterprise/",
+      "files": [
+        "themis/policy.json"
+      ],
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "url": "https://openai.com/chatgpt/enterprise/"
+    },
+    {
+      "source_url": "https://www.anthropic.com/enterprise",
+      "files": [
+        "themis/policy.json"
+      ],
+      "status": 200,
+      "url": "https://claude.com/solutions/enterprise",
+      "title": "Claude Enterprise Plan | Claude by Anthropic"
+    },
+    {
+      "source_url": "https://www.deepl.com/pro",
+      "files": [
+        "themis/policy.json"
+      ],
+      "status": 200,
+      "url": "https://www.deepl.com/en/pro",
+      "title": "DeepL Pro | Translate Text, Word Docs &amp; Other Docs Securely"
+    },
+    {
+      "source_url": "https://writefull.com/",
+      "files": [
+        "themis/policy.json"
+      ],
+      "status": 308,
+      "error": "HTTP Error 308: Permanent Redirect",
+      "url": "https://writefull.com/"
+    },
+    {
+      "source_url": "https://notebooklm.google.com/",
+      "files": [
+        "themis/policy.json"
+      ],
+      "status": 200,
+      "url": "https://accounts.google.com/v3/signin/identifier?continue=https://notebook.google.com/login?continue%3Dhttps://notebook.google.com/&followup=https://notebook.google.com/login?continue%3Dhttps://notebook.google.com/&osid=1&passive=1209600&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-1659494989:1791010695393358",
+      "title": "Sign in - Google Accounts"
+    },
+    {
+      "source_url": "https://www.perplexity.ai/",
+      "files": [
+        "themis/policy.json"
+      ],
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "url": "https://www.perplexity.ai/"
+    },
+    {
+      "source_url": "https://chatgpt.com/",
+      "files": [
+        "themis/policy.json"
+      ],
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "url": "https://chatgpt.com/"
+    },
+    {
+      "source_url": "https://claude.ai/",
+      "files": [
+        "themis/policy.json"
+      ],
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "url": "https://claude.ai/"
+    },
+    {
+      "source_url": "https://diariodarepublica.pt/dr/detalhe/resolucao-conselho-ministros/2-2026-1000882016",
+      "files": [
+        "themis/policy.json"
+      ],
+      "status": 200,
+      "url": "https://diariodarepublica.pt/dr/detalhe/resolucao-conselho-ministros/2-2026-1000882016"
+    }
+  ],
+  "training_dois": [
+    {
+      "doi": "10.2196/53961",
+      "registry_url": "https://api.crossref.org/works/10.2196/53961",
+      "status": 200,
+      "title": "A Generative Pretrained Transformer (GPT)–Powered Chatbot as a Simulated Patient to Practice History Taking: Prospective, Mixed Methods Study"
+    },
+    {
+      "doi": "10.1080/03075070600572090",
+      "registry_url": "https://api.crossref.org/works/10.1080/03075070600572090",
+      "status": 200,
+      "title": "Formative assessment and self‐regulated learning: a model and seven principles of good feedback practice"
+    },
+    {
+      "doi": "10.1038/s41746-025-02022-1",
+      "registry_url": "https://api.crossref.org/works/10.1038/s41746-025-02022-1",
+      "status": 200,
+      "title": "A generative AI teaching assistant for personalized learning in medical education"
+    },
+    {
+      "doi": "10.2196/89815",
+      "registry_url": "https://api.crossref.org/works/10.2196/89815",
+      "status": 200,
+      "title": "Design and Evaluation of a Faculty Development Workshop Series on Integrating Generative Artificial Intelligence in Medical Education: Mixed Methods Pilot Study"
+    }
+  ],
+  "training_preprint": {
+    "url": "https://arxiv.org/abs/2503.05793v2",
+    "version_date": "2026-01-22",
+    "note": "Versão 2 confirma 410 estudantes e três escolas; primeira versão de Março de 2025."
+  },
+  "corrected_pmid": {
+    "pmid": "37852174",
+    "title": "Artificial intelligence education: An evidence-based medicine approach for consumers, translators, and developers.",
+    "doi": "10.1016/j.xcrm.2023.101230",
+    "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=SRC:MED%20AND%20EXT_ID:37852174&format=json"
+  }
+}

@@ -26,7 +26,7 @@ Termos usados neste quadro de referência, organizados alfabeticamente. As entra
 
 **ENISA** --- _European Union Agency for Cybersecurity_. Agência da UE para cibersegurança; publica orientações sobre segurança de sistemas de IA.
 
-**ERA Forum** --- _European Research Area Forum_. Órgão que integra estados-membros e actores do sistema europeu de investigação; publicou as _Living Guidelines on Responsible Use of Generative AI in Research_ (2024, revisão 2025).
+**ERA Forum** --- _European Research Area Forum_. Órgão que integra estados-membros e actores do sistema europeu de investigação; publicou as _Living Guidelines on Responsible Use of Generative AI in Research_ (2024; terceira edição em Maio de 2026).
 
 **GenAI (IA generativa)** --- sistemas capazes de produzir conteúdo novo (texto, código, imagem, som, vídeo) a partir de instruções em linguagem natural. Abrange modelos de linguagem de grande dimensão (LLMs), modelos de difusão (imagem, vídeo) e modelos multimodais.
 

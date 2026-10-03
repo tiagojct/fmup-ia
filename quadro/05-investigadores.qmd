@@ -29,7 +29,7 @@ A GenAI é hoje utilizada em várias fases da análise de dados: geração de c�
 
 ## Revisão por pares e avaliação
 
-As _Living Guidelines_ recomendam que os investigadores se abstenham de utilizar GenAI em actividades sensíveis como a revisão por pares ou a avaliação de candidaturas [@ec2024livingguidelines]. Os primeiros estudos empíricos sobre a utilização de GenAI na revisão por pares sugerem limitações significativas [@lim2025peerreview]. A FMUP deve adoptar esta posição.
+As _Living Guidelines_ (3.ª edição, Maio de 2026) recomendam que os investigadores se abstenham de usos substantivos de GenAI na revisão por pares ou na avaliação de candidaturas [@ec2024livingguidelines]. Os primeiros estudos empíricos sobre a utilização de GenAI na revisão por pares sugerem limitações significativas [@lim2025peerreview]. O Quadro propõe adoptar esta posição, distinguindo-a de tarefas auxiliares com informação pública e sem exposição de materiais confidenciais.
 
 ## Revisão sistemática e síntese de evidências {#sec-revisao-sistematica}
 
@@ -86,12 +86,12 @@ A obrigação de declaração varia em forma e detalhe consoante o destinatário
 
 Para submissão a revista científica, vale a recomendação do ICMJE -- adoptada pela maioria das revistas médicas internacionais --: a contribuição da GenAI declara-se em Métodos ou em Agradecimentos, e a ferramenta nunca é listada como co-autora. As políticas da WAME e da COPE coincidem neste ponto. As referências práticas estão no [Anexo C](C-recursos.qmd).
 
-Para candidatura à Fundação para a Ciência e a Tecnologia (FCT), distingue-se o apoio linguístico (revisão e tradução da candidatura) --- regime análogo ao cenário 3 para manuscritos, com declaração em campo adequado --- da contribuição substantiva (formulação de hipóteses, secção de inovação, síntese do estado da arte). No segundo caso, a declaração é obrigatória e a responsabilidade intelectual pelos conteúdos permanece exclusivamente humana. À data de redacção deste Quadro, a FCT não publicou directrizes formais sobre GenAI em candidaturas; o investigador deve verificar os termos da chamada específica antes de submeter. A FCT mantém a IAedu como infraestrutura institucional de referência [@iaedu2025]. O [cenário 12 do Anexo E](E-cenarios.qmd#cenario-12) ilustra ambos os casos.
+Para candidatura à Fundação para a Ciência e a Tecnologia (FCT), distingue-se o apoio linguístico (revisão e tradução da candidatura) --- regime análogo ao cenário 3 para manuscritos, com declaração em campo adequado --- da contribuição substantiva (formulação de hipóteses, secção de inovação, síntese do estado da arte). No segundo caso, a declaração é obrigatória e a responsabilidade intelectual pelos conteúdos permanece exclusivamente humana. O investigador deve verificar os termos e as orientações da chamada específica da FCT antes de submeter; as regras propostas neste Quadro não substituem essas condições. A FCT mantém a IAedu como infraestrutura institucional de referência [@iaedu2025]. O [cenário 12 do Anexo E](E-cenarios.qmd#cenario-12) ilustra ambos os casos.
 
-Para projectos do Horizonte Europa, a referência são as _Living Guidelines on the Responsible Use of Generative AI in Research_ da Comissão Europeia e do ERA Forum [@ec2024livingguidelines; @bockting2023living], com obrigações específicas para investigadores, organizações de investigação e entidades financiadoras.
+Para projectos do Horizonte Europa, a referência são as _Living Guidelines on the Responsible Use of Generative AI in Research_ da Comissão Europeia e do ERA Forum [@ec2024livingguidelines; @bockting2023living], com recomendações não vinculativas dirigidas a investigadores, organizações de investigação e entidades financiadoras, sem substituição das condições contratuais aplicáveis.
 
-Para o Wellcome Trust, a política sobre o uso de IA generativa em projectos por si financiados aplica-se da candidatura à publicação dos resultados e exige declaração explícita das ferramentas e tarefas envolvidas.
+Na [política de candidaturas do Wellcome, actualizada em 8 de Abril de 2026](https://wellcome.org/research-funding/guidance/policies-grant-conditions/use-of-generative-ai), declara-se o uso substantivo; tradução, melhoria linguística e formatação mínima estão dispensadas. Revisores não podem introduzir candidaturas confidenciais nas ferramentas. A política admite tarefas auxiliares que não exponham esse conteúdo. Para publicações, verificam-se ainda as condições do financiamento e da revista.
 
 Para resumos de conferência e para relatórios institucionais, aplica-se um regime análogo ao das revistas, adaptado ao formato curto do resumo ou ao âmbito interno do relatório.
 
-A ferramenta [**Themis**](../themis/) gera, para cada um destes destinatários, uma declaração coerente com o regime aplicável.
+A ferramenta [**Themis**](../themis/) gera, para cada um destes destinatários, um rascunho de declaração adaptado ao destinatário, que deve ser revisto face às suas exigências actuais.

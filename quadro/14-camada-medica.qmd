@@ -1,6 +1,6 @@
 # Enquadramento médico {#sec-camada-medica}
 
-Este capítulo cobre o enquadramento clínico-académico específico, com foco primário no Mestrado Integrado em Medicina. O perfil específico da licenciatura em Saúde Digital e Inovação Biomédica --- onde a GenAI é simultaneamente ferramenta de trabalho e objecto de estudo --- está desenvolvido no [capítulo 1](01-enquadramento.qmd); a investigação epidemiológica em Saúde Pública, no [capítulo 5](05-investigadores.qmd). A aplicação diferenciada por ciclo de estudos está sintetizada no [capítulo 1](01-enquadramento.qmd). O Quadro é construído para vigorar como instrumento da FMUP; a articulação formal com hospitais universitários afiliados (em particular o Centro Hospitalar Universitário de São João, CHUSJ) é objectivo de integração futura, não pressuposto operacional.
+Este capítulo cobre o enquadramento clínico-académico específico, com foco primário no Mestrado Integrado em Medicina. O perfil específico da licenciatura em Saúde Digital e Inovação Biomédica --- onde a GenAI é simultaneamente ferramenta de trabalho e objecto de estudo --- está desenvolvido no [capítulo 1](01-enquadramento.qmd); a investigação epidemiológica em Saúde Pública, no [capítulo 5](05-investigadores.qmd). A aplicação diferenciada por ciclo de estudos está sintetizada no [capítulo 1](01-enquadramento.qmd). O Quadro é construído para vigorar como instrumento da FMUP; a articulação formal com hospitais universitários afiliados (em particular a Unidade Local de Saúde de São João, ULS São João) é objectivo de integração futura, não pressuposto operacional.
 
 A integração de GenAI no Mestrado Integrado em Medicina envolve três domínios parcialmente distintos: o educacional (regime do ensino superior, RGPD, EU AI Act), o clínico-académico (faculdade-hospital sob regime de cuidados de saúde) e o de *Software as a Medical Device* (SaMD/AIaMD, sob MDR/IVDR e o EU AI Act enquanto produto regulado). A articulação destes três domínios requer mecanismos institucionais específicos. A tripartição académica genérica está em [Parte II](02-principios.qmd); aqui detalha-se o enquadramento clínico.
 
@@ -37,8 +37,11 @@ Para faculdades de medicina europeias, o quadro regulatório clínico combina:
 | Reg. (UE) 2017/745 (MDR) | Em vigor |
 | Reg. (UE) 2017/746 (IVDR) | Em vigor |
 | Reg. (UE) 2024/1689 (AI Act) — modelos GPAI | Agosto 2025 |
-| Reg. (UE) 2024/1689 (AI Act) — sistemas de alto risco (incl. educação e saúde) | Agosto 2026 |
-| EHDS | Março 2027 |
+| AI Act — alto risco do Anexo III (incl. usos educativos) | 2 de Dezembro de 2027 |
+| AI Act — alto risco associado a produtos regulados, Anexo I | 2 de Agosto de 2028 |
+| EHDS — principais obrigações de utilização primária e secundária | Março de 2029; categorias adicionais em Março de 2031 |
+
+Os prazos do AI Act reflectem a [actualização publicada pela Comissão Europeia em Julho de 2026](https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force). No [EHDS](https://health.ec.europa.eu/ehealth-digital-health-and-care/european-health-data-space-regulation-ehds_en), Março de 2027 é um marco para actos de execução da Comissão; não é o prazo geral para operacionalizar o uso secundário de dados.
 
 A *TEHDAS2 Joint Action* (Maio 2024 -- Dezembro 2026), coordenada pela Sitra com 29 países, prepara o uso secundário de dados. Hospitais universitários precisam de *Trusted Research Environments* (TREs) compatíveis com EHDS, com pseudonimização integrada. Sete projectos europeus (IDERHA, EUCAIM, ASCAPE, iHelp, Bigpicture, HealthData@EU pilot, INCISIVE) definem a interoperabilidade prática. A FMUP prepara-se para esta arquitectura num prazo estimado de 18-24 meses --- coincidente com o [capítulo 7](07-implementacao.qmd) ---, com articulação hospitalar a definir em diálogo posterior.
 
@@ -53,10 +56,10 @@ Para o investigador clínico da FMUP, a GenAI é ferramenta de trabalho tanto em
 Quatro usos frequentes e o seu enquadramento:
 
 - **Formulação de hipóteses e revisão de literatura** --- compatível com o quadro, desde que as referências sejam verificadas contra fontes primárias e o processo seja declarado em métodos.
-- **Análise de dados de saúde electrónicos** --- compatível em ambiente com garantias RGPD (IAedu ou equivalente); dados pseudonimizados só em plataforma institucional; dados identificáveis: proibido em plataformas comerciais.
+- **Análise de dados de saúde electrónicos** --- dependente de base legal, autorização institucional e ambiente aprovado para esses dados; pseudonimização não equivale a anonimização. A disponibilidade de IAedu não constitui, por si só, autorização para carregar dados de saúde; não se introduzem dados identificáveis em serviços públicos de consumo.
 - **Escrita e revisão de protocolos e SAPs** --- compatível para apoio linguístico e estrutural; génese de decisões analíticas requer controlo humano rastreável nos termos do ICH E6(R3).
 - **Interpretação de biomarcadores e dados de imagem** --- a GenAI não substitui análise especializada; o risco de confabulação em terminologia técnica específica é documentado [@alkaissi2023hallucinations].
 
 ## Síntese
 
-Três obrigações operacionais que a Parte II incorpora. A articulação académica-clínica é definida como integração futura com a unidade hospitalar afiliada --- naturalmente o CHUSJ ---, sem que o Quadro dela dependa para vigorar dentro da FMUP. A governação de IA em especialidades com uso intensivo de imagem e dados estruturados segue um modelo de validação faseada e supervisão contínua. A preparação para o EHDS e a coordenação TEHDAS2 são obrigações estruturais até Março de 2027.
+Três obrigações operacionais que a Parte II incorpora. A articulação académica-clínica é definida como integração futura com a unidade hospitalar afiliada --- naturalmente a ULS São João ---, com adopção institucional do Quadro ainda dependente de decisão formal da FMUP. A governação de IA em especialidades com uso intensivo de imagem e dados estruturados segue um modelo de validação faseada e supervisão contínua. Propõe-se acompanhar os resultados da TEHDAS2 e preparar o EHDS segundo o calendário faseado de 2029 e 2031, sem antecipar esses prazos como obrigações legais em 2027.

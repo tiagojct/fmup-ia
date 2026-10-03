@@ -117,7 +117,7 @@ all editable as plain text. To create a derivative for another institution:
 1. Fork the repository.
 2. In `index.html` and `style.css`, change brand text and accent colours.
 3. In `i18n/pt.js` and `i18n/en.js`, update institutional names and any
-   wording specific to your context. Bump `APP_VERSION` in `app.js` whenever
+   wording specific to your context. Bump `themis.versao` in `_variables.yml` and run `python3 scripts/sync-versions.py` whenever
    statement wording changes.
 4. In `policy.json`, edit `framework_version`, `framework_url`, the four
    risk levels, and the rules list. Each rule has:
@@ -126,9 +126,9 @@ all editable as plain text. To create a derivative for another institution:
      rule — supported keys, mirroring `matchesTrigger()` in `app.js`:
      `role`, `submission`, `modification`, `policy`, `policy_any`, `level`,
      `activity`, `activity_any`, `target`, `target_any`, `assignment_any`,
-     `tasks_any`, `tools_regex`; keys not in this list are silently
-     ignored, so adding a new trigger key requires editing
-     `matchesTrigger()`);
+     `tasks_any`, `tools_regex`, `riskFlags_any`; unsupported keys disable the
+     policy, so adding a new trigger key requires editing both
+     `validatePolicy()` and `matchesTrigger()`);
    - `risk` (1 = minimal, 2 = limited, 3 = high, 4 = unacceptable);
    - `principle_ref`, `scenario_ref` (informational anchors);
    - `message_pt`, `message_en` (user-visible guidance).
@@ -143,9 +143,8 @@ The tool follows two independent semver streams:
   framework reference. Bumped whenever rules, levels, or framework version
   change.
 
-Both versions appear in the footer and are referenced in generated
-declarations, so a declaration can always be traced to the exact wording and
-ruleset that produced it.
+App, policy and framework versions are included in each generated declaration.
+The page footer shows the app and framework; the declaration carries the ruleset version too.
 
 ## Privacy
 
@@ -153,7 +152,9 @@ ruleset that produced it.
 - No cookies; only `localStorage` is used, and only to remember the language
   preference (`fmup-ai-lang`).
 - The URL hash encodes the user's selections (base64 of a small JSON), so
-  copying the page URL produces a shareable link that reproduces the form.
+  copying the page URL produces a shareable link that restores the choices for review.
+  Schema v3 includes source versions; legacy v2 links are accepted but must be reviewed.
+  The link does not archive the original statement: regeneration uses current wording, policy and date.
   Anyone with the link can reconstruct the selections; do not paste links
   containing sensitive free-text into channels you do not control.
 
@@ -165,3 +166,13 @@ The tool is distributed under the same licence as the FMUP framework book:
 ## Contact
 
 Tiago Jacinto — Faculdade de Medicina da Universidade do Porto.
+
+## Validation and confirmation
+
+When AI was used, tasks, tool names, scope and acknowledgement of the context questions are required. Substantive use also requires affected sections, human checks (including pending checks) and a description/reference of prompts. Both students and researchers can declare no use. Optional privacy, review and group-contribution confirmations enter the text only when explicitly selected.
+
+The five explicit prohibited-context choices activate risk level 4. No-use declarations have no use-related risk assessment. Systematic reviews of public literature are distinguished from confidential peer review. Alerts remain advisory and do not prevent disclosure of a prohibited use.
+
+The form stores text in the URL fragment as it is edited. It is not encrypted and may remain in browser history. No form content is sent to a server.
+
+Run `npm ci && npm test` in `themis/test/`. The tests exercise both languages, all roles, validation, risk contexts, recovery, clipboard failure and the training timer.

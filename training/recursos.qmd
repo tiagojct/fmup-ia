@@ -17,7 +17,7 @@ Holderried F, Stegemann-Philipps C, Herschbach L, Moldt JA, Nevins A, Griewatz J
 
 O estudo que fundamenta a ficha 1 e o mais útil de ler na íntegra antes de a aplicar. Tübingen Institute for Medical Education, 28 estudantes, 826 pares pergunta-resposta analisados quantitativa e qualitativamente. Dois resultados são directamente operacionais: 97,9% das respostas foram classificadas como plausíveis, mas em perguntas não cobertas pelo guião o modelo recorreu a informação fictícia em 56,4% dos casos. A estrutura de prompt usada, guião de doença mais componente comportamental, é a que a ficha reproduz.
 
-Hicke Y, Geathers J, Vu K, Sewell J, Cardie C, Talwalkar J, Shung D, Jack AG, Cornes S, Preston M, Kizilcec R. MedSimAI: Simulation and Formative Feedback Generation to Enhance Deliberate Practice in Medical Education. [arXiv:2503.05793](https://arxiv.org/abs/2503.05793), 2025.
+Hicke Y, Geathers J, Vu K, Sewell J, Cardie C, Talwalkar J, Shung D, Jack AG, Cornes S, Preston M, Kizilcec R. MedSimAI: Simulation and Formative Feedback Generation to Enhance Deliberate Practice in Medical Education. [arXiv:2503.05793v2](https://arxiv.org/abs/2503.05793v2), 22 de Janeiro de 2026 (primeira versão: Março de 2025). Versão revista aceite na LAK 2026, segundo o registo dos autores.
 
 Implementação institucional do mesmo princípio, com avaliação automática segundo rubrica de OSCE e retorno imediato. Desenvolvida pela Cornell Bowers College of Computing and Information Science em colaboração com a Weill Cornell Medicine, Yale e UCSF, com 410 estudantes em três faculdades de medicina. Relevante para quem pondere passar da actividade pontual a um serviço com avaliação estruturada. Divulgação acessível na [Cornell Chronicle](https://news.cornell.edu/stories/2025/03/medical-students-use-ai-practice-communication-skills).
 
@@ -55,7 +55,7 @@ Implementação de um assistente baseado em *retrieval-augmented generation*, re
 
 Anand R, Bowers N, Manyama MF. Design and Evaluation of a Faculty Development Workshop Series on Integrating Generative Artificial Intelligence in Medical Education: Mixed Methods Pilot Study. *JMIR Medical Education*. 2026;12:e89815. DOI: [10.2196/89815](https://doi.org/10.2196/89815). PMID: 42090298.
 
-A referência mais próxima desta sessão, e a única publicada sobre este tipo de formação. Estudo-piloto de métodos mistos no Weill Cornell Medical College do Qatar, com uma série de cinco *workshops* de uma hora, síncronos e em linha, fundada na Experiential Learning Theory e no enquadramento TPACK (*Technological Pedagogical Content Knowledge*). Dez docentes participaram.
+Uma referência directamente pertinente para esta sessão sobre formação de docentes em GenAI. Estudo-piloto de métodos mistos no Weill Cornell Medical College do Qatar, com uma série de cinco *workshops* de uma hora, síncronos e em linha, fundada na Experiential Learning Theory e no enquadramento TPACK (*Technological Pedagogical Content Knowledge*). Dez docentes participaram.
 
 Três razões para constar aqui, e não em leitura adicional.
 
@@ -85,4 +85,4 @@ Não se reproduzem aqui. As ligações directas mais usadas durante a sessão es
 
 ## Nota sobre verificação
 
-As referências desta página foram verificadas na fonte: os DOI através do registo Crossref, os artigos indexados através da PubMed, e os recursos institucionais através da página do editor. Onde a atribuição corrente diverge da fonte, prevalece a fonte, e a divergência é assinalada na ficha correspondente.
+Revalidação em 2–3 de Outubro de 2026: os quatro artigos com DOI desta página foram cotejados com metadados editoriais; os três PMID correspondentes foram confirmados. As restantes ligações foram verificadas quanto à disponibilidade, sem nova revisão integral de cada reportagem. Na preparação original, a verificação usou os DOI através do registo Crossref, os artigos indexados através da PubMed, e os recursos institucionais através da página do editor. Onde a atribuição corrente diverge da fonte, prevalece a fonte, e a divergência é assinalada na ficha correspondente.

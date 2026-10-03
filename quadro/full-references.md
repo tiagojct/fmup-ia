@@ -1,6 +1,6 @@
 # Peer-reviewed references for a generative AI policy proposal in medical education
 
-**This reference compendium provides 75+ verified academic references and official institutional publications** to support a formal proposal for generative AI use at a Faculty of Medicine. Every citation below has been verified through PubMed, publisher websites, or official institutional sources. References span seven thematic areas — from AI literacy frameworks and assessment redesign to GDPR compliance and comparative institutional policies — and cover the period 2022–2026.
+**Historical research notes — superseded, not an independently validated bibliography.** This file is excluded from the published site. The maintained bibliography is `references.bib`; the October 2026 audit and its limitations are documented in `../audits/referencias-2026-10-03.md`. Verification labels in the notes below describe the original drafting process and must not be interpreted as current verification. References span seven thematic areas — from AI literacy frameworks and assessment redesign to GDPR compliance and comparative institutional policies — and cover the period 2022–2026.
 
 ---
 

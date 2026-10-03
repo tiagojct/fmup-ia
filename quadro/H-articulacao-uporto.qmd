@@ -43,11 +43,11 @@ Os dois instrumentos **não são isomorfos e não devem ser tratados como tal**:
 
 | Semáforo U.Porto | Regime do [Anexo B](B-clausula.qmd) | Nível HEAT-AI típico | Condições mínimas |
 |---|---|---|---|
-| 🟩 Permitido | Permitido (B.1) | 1 --- Mínimo | Verificação do _output_; declaração recomendada |
+| 🟩 Permitido | Permitido (B.1) | 1 --- Mínimo | Verificação do _output_; declaração obrigatória nos trabalhos submetidos (B.1); recomendada em exercícios exploratórios não submetidos |
 | 🟨 Permitido com condições | Condicionado (B.2) | 2 --- Limitado; 3 --- Alto | Declaração obrigatória; rasto de processo; verificação; controlo pedagógico proporcional |
 | 🟥 Proibido | Proibido (B.3) | 4 --- Inaceitável, **ou** qualquer nível quando a competência avaliada exige produção integralmente humana | --- |
 
-**Recomendação operacional.** As cláusulas do [Anexo B](B-clausula.qmd) e as três secções da [vertente Estudantes](03-estudantes.qmd) devem passar a exibir o marcador de semáforo a par do regime, para que um docente da FMUP possa usar o guia da U.Porto e o Quadro sem tradução mental. A [Themis](../themis/) deve emitir o marcador no texto da cláusula gerada para a vertente Docentes.
+**Recomendação operacional.** As cláusulas do [Anexo B](B-clausula.qmd) e as três secções da [vertente Estudantes](03-estudantes.qmd) devem passar a exibir o marcador de semáforo a par do regime, para que um docente da FMUP possa usar o guia da U.Porto e o Quadro sem tradução mental. A [Themis](../themis/) emite o marcador no texto da cláusula gerada para a vertente Docentes.
 
 ## Declaração de uso: dois níveis e taxonomia GAIDeT
 
@@ -64,7 +64,7 @@ Define ainda um limiar operacional de materialidade, que o Quadro adopta:
 
 > Considera-se uso material quando a IAGen influencia substantivamente o conteúdo intelectual do trabalho, nomeadamente: geração de texto, estruturação de argumentos, síntese de literatura, desenho metodológico, análise de dados, produção de código nuclear ou formulação de conclusões. Não se considera material, em regra, a revisão linguística, a tradução, a formatação ou a organização de referências, salvo quando estas tarefas alterem o sentido ou a estrutura do trabalho. [@uporto2026guiabase]
 
-A declaração estruturada acrescenta um eixo que o [Anexo A](A-declaracao.qmd) não possui --- o **âmbito** do uso, em três graus: *apoio técnico* (tarefas operacionais ou formais, sem influência relevante no conteúdo intelectual), *apoio auxiliar com impacto limitado* (organização, compreensão, revisão ou exploração inicial, mantendo-se decisões e argumentos sob autoria do estudante) e *contributo substantivo* (influência relevante na conceptualização, metodologia, revisão da literatura, análise, código, interpretação, escrita de resultados ou conclusões).
+A declaração estruturada inclui o eixo de **âmbito**, também presente no [Anexo A](A-declaracao.qmd) --- o **âmbito** do uso, em três graus: *apoio técnico* (tarefas operacionais ou formais, sem influência relevante no conteúdo intelectual), *apoio auxiliar com impacto limitado* (organização, compreensão, revisão ou exploração inicial, mantendo-se decisões e argumentos sob autoria do estudante) e *contributo substantivo* (influência relevante na conceptualização, metodologia, revisão da literatura, análise, código, interpretação, escrita de resultados ou conclusões).
 
 ### Mapeamento das tarefas
 
@@ -165,3 +165,9 @@ O pacote é explicitamente extensível. Três contributos estão ao alcance imed
 **Promptário clínico.** O Promptário [@uporto2026promptario] não contém conteúdo clínico. O [Anexo J](J-promptario-clinico.qmd) é o suplemento correspondente: padrões para treino de anamnese, exercício de raciocínio diferencial, preparação de OSCE e leitura crítica de literatura clínica, com a invariante de não introdução de dados de doentes e com uma secção própria para docentes. É matéria em que a FMUP tem competência que as restantes unidades orgânicas não têm.
 
 **Gerador institucional de declarações.** O guia base recomenda, como acção futura, que "a Universidade do Porto deverá considerar o desenvolvimento ou a adaptação de um gerador institucional de declarações de uso de IA, alojado em domínio próprio, que incorpore a taxonomia de referência e a extensão operacional definidas neste pacote" [@uporto2026guiabase], remetendo entretanto para duas ferramentas externas. A [Themis](../themis/) responde a essa especificação: a integração da taxonomia GAIDeT descrita neste anexo está concluída. A sua candidatura a esse papel pressupõe a transição descrita em [Sobre · Estatuto editorial](../sobre.qmd#estatuto-editorial): revisão de segurança independente, avaliação de impacto sobre a protecção de dados, registo no inventário de aplicações da Universidade e responsável técnico designado. Enquanto demonstrador prototípico, a Themis serve para demonstrar viabilidade e para calibrar requisitos --- não para ser adoptada como aplicação institucional no estado actual.
+
+## Revalidação de Outubro de 2026
+
+Os sete documentos estão identificados na página pública de [Documentos orientadores da Inovação Educativa da U.Porto](https://www.up.pt/portal/pt/inovacao-educativa/recursos/documentos-orientadores/). As ligações directas foram acrescentadas à bibliografia. Os sete PDFs foram consultados: confirmaram-se a edição de Junho de 2026 e as passagens sobre declaração em dois níveis, materialidade, governação, aprovação de ferramentas e procedimento perante incidentes. A disponibilização pública destes documentos orientadores não demonstra, por si só, aprovação regulamentar desta proposta FMUP.
+
+Na Themis v{{< var themis.versao >}}, a declaração de não-utilização está disponível para estudantes e investigadores; o âmbito deixa de ser presumido e a declaração estruturada recolhe partes afectadas, verificações e registo de prompts. As confirmações de privacidade e de autoria colectiva dependem de resposta explícita.
