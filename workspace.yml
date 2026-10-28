@@ -1,0 +1,16 @@
+# Quarterdeck project metadata. See ~/quarterdeck/templates/project/workspace.yml for the fields.
+name: fmup-ia
+category: teaching
+type: other
+status: active
+build: actions
+deploy_target: rokovoko
+deploy_method: ""
+url: https://tiagojacinto.eu/fmup-ia/
+host: tiagojacinto.eu
+build_command: quarto render
+artifact: static
+remote_path: /opt/vps/caddy/srv/fmup-ia
+service: ""
+checks:
+  - curl -fsS -o /dev/null https://tiagojacinto.eu/fmup-ia/
