@@ -1,16 +1,20 @@
 # Glossário {#sec-anexo-f}
 
-Termos usados neste quadro de referência, organizados alfabeticamente. As entradas em itálico correspondem a anglicismos de uso corrente na literatura, que o documento mantém por ausência de tradução consensual em português europeu médico.
+Termos usados neste Quadro, organizados alfabeticamente. As entradas em itálico correspondem a anglicismos de uso corrente na literatura, que o documento mantém por ausência de tradução consensual em português europeu médico.
 
 **A3ES** --- Agência de Avaliação e Acreditação do Ensino Superior. Entidade nacional responsável pela avaliação e acreditação de instituições e ciclos de estudo do ensino superior português.
 
 **AAMC** --- _Association of American Medical Colleges_. Associação das faculdades de medicina dos Estados Unidos. Publicou, em 2025, sete princípios para a utilização responsável de IA em educação médica.
 
-**AI Act** --- Regulamento Europeu da Inteligência Artificial (Regulamento UE 2024/1689), adoptado em 2024 e com aplicação escalonada com prazos de alto risco em 2027-2028 (ver capítulo [14](14-camada-medica.qmd#eu-mdrivdr-ai-act-e-ehds)). Classifica sistemas de IA por nível de risco, com obrigações diferenciadas, e aplica-se directamente às instituições de ensino superior enquanto utilizadoras.
+**AI Act** --- Regulamento Europeu da Inteligência Artificial (Regulamento UE 2024/1689), adoptado em 2024, com aplicação escalonada e prazos de alto risco em 2027-2028 (ver capítulo [14](14-camada-medica.qmd#sec-calendario-regulatorio)). Classifica sistemas de IA por nível de risco, com obrigações diferenciadas, e aplica-se directamente às instituições de ensino superior enquanto utilizadoras.
 
 **AICAI** --- modelo proposto por Peters e Angelov (2025) para redesenho de trabalhos de avaliação académica perante a disponibilidade de GenAI. Articula três eixos: criatividade, autenticidade e integridade.
 
+**ANIA** --- Agenda Nacional de Inteligência Artificial, aprovada pela Resolução do Conselho de Ministros n.º 2/2026. Ver ENIA 2030.
+
 **_Chatbot_** --- sistema conversacional baseado em IA, acessível por interface de texto ou voz. Em contexto académico, o termo é frequentemente usado como sinónimo aproximado de aplicação de LLM (ChatGPT, Claude, Gemini).
+
+**CNIPES** --- Conselho Nacional para a Inovação Pedagógica no Ensino Superior. Publicou em Abril de 2026 o diagnóstico *Inteligência Artificial no Ensino Superior em Portugal*; ver o capítulo [Portugal: diagnóstico e referenciais nacionais](12b-panorama-portugal.qmd) e o [Anexo G](G-maturidade-cnipes.qmd).
 
 **CNPD** --- Comissão Nacional de Protecção de Dados. Autoridade nacional portuguesa competente para o RGPD.
 
@@ -24,29 +28,39 @@ Termos usados neste quadro de referência, organizados alfabeticamente. As entra
 
 **EDPB** --- _European Data Protection Board_. Órgão europeu que coordena as autoridades nacionais de RGPD.
 
+**ENIA 2030** --- Estratégia Nacional para a Inteligência Artificial. A Recomendação n.º 4/2026 do CNE invoca a ENIA 2030, instrumento distinto da **ANIA (Agenda Nacional de Inteligência Artificial)** aprovada pela Resolução do Conselho de Ministros n.º 2/2026 [@ania2026] e citada no capítulo [7](07-implementacao.qmd). A ENIA é a estratégia de longo prazo (até 2030) que orienta o investimento estatal em IA; a ANIA é o instrumento operacional 2026-2030 que dela emerge, com Plano de Acção e Quadro Nacional de Competências Inteligentes. O Quadro FMUP articula-se com a ANIA no calendário de implementação e adopta os referenciais europeus (DigComp 3.0, DigCompEdu) que tanto a ENIA como a Recomendação 4/2026 reconhecem.
+
 **ENISA** --- _European Union Agency for Cybersecurity_. Agência da UE para cibersegurança; publica orientações sobre segurança de sistemas de IA.
 
 **ERA Forum** --- _European Research Area Forum_. Órgão que integra estados-membros e actores do sistema europeu de investigação; publicou as _Living Guidelines on Responsible Use of Generative AI in Research_ (2024; terceira edição em Maio de 2026).
 
+**GAIDeT** --- taxonomia de declaração da delegação de tarefas em IA generativa, organizada em oito macrodomínios; a U.Porto acrescenta duas categorias por razões operativas. Ver o [Anexo H](H-articulacao-uporto.qmd).
+
 **GenAI (IA generativa)** --- sistemas capazes de produzir conteúdo novo (texto, código, imagem, som, vídeo) a partir de instruções em linguagem natural. Abrange modelos de linguagem de grande dimensão (LLMs), modelos de difusão (imagem, vídeo) e modelos multimodais.
+
+**HEAT-AI** --- taxonomia de risco em quatro níveis proposta por Temper et al. (2025) na St. Pölten University. Usada na grelha de avaliação da Themis e no capítulo [Infraestrutura e governação](06-infraestrutura.qmd).
 
 **IAedu** --- plataforma institucional portuguesa, desenvolvida pela FCCN (serviços digitais da FCT), lançada em 2025. Oferece acesso centralizado a LLMs para o ensino superior e investigação, com autenticação federada institucional e garantia de não-utilização dos dados para treino.
 
 **ICMJE** --- _International Committee of Medical Journal Editors_. Emite recomendações para a publicação médica; deve consultar-se também a política da revista destinatária.
 
-**LLM (_Large Language Model_)** --- modelo de linguagem de grande dimensão, treinado em volumes massivos de texto para prever unidades de texto (_tokens_) e, por extensão, gerar texto coerente a partir de instruções. Exemplos correntes: GPT (OpenAI), Claude (Anthropic), Gemini (Google), Llama (Meta), DeepSeek.
-
 **_Living Guidelines_** --- _Living Guidelines on the Responsible Use of Generative AI in Research_, documento do ERA Forum. "Vivo" porque sujeito a actualizações regulares à medida que a tecnologia evolui.
+
+**LLM (_Large Language Model_)** --- modelo de linguagem de grande dimensão, treinado em volumes massivos de texto para prever unidades de texto (_tokens_) e, por extensão, gerar texto coerente a partir de instruções. Exemplos correntes: GPT (OpenAI), Claude (Anthropic), Gemini (Google), Llama (Meta), DeepSeek.
 
 **_Prompt_** --- instrução em linguagem natural dada ao modelo. **_Prompting_** --- prática de formular _prompts_; componente central da literacia em IA na sua dimensão prática.
 
 **RGPD** --- Regulamento Geral sobre a Protecção de Dados (Regulamento UE 2016/679). Aplica-se a qualquer tratamento de dados pessoais na União Europeia; o artigo 22.º estabelece o direito a não ficar sujeito a decisões exclusivamente automatizadas com efeitos jurídicos ou semelhantes, com as excepções e salvaguardas previstas no próprio regulamento.
 
+**SaMD / AIaMD** --- *Software as a Medical Device* / *AI as a Medical Device*. Sistemas de IA com estatuto regulado de dispositivo médico; ver o capítulo [Enquadramento médico](14-camada-medica.qmd).
+
+**SARPS** --- _Six Assessment Redesign Pivotal Strategies_. _Framework_ proposto por Chan e Colloton (2024) para redesenho de avaliação perante a disponibilidade de GenAI.
+
 **_Scaffolding_** --- estratégia pedagógica em que o apoio ao estudante é progressivamente reduzido à medida que a competência é adquirida. Boman et al. (2025) propõem um modelo de _scaffolding_ específico para integração de GenAI em educação médica.
 
 **_Scoping review_** --- revisão exploratória de literatura, com método sistemático mas âmbito mais amplo do que uma revisão sistemática clássica. Mapeia a natureza e a extensão da evidência disponível sobre um tema.
 
-**SARPS** --- _Six Assessment Redesign Pivotal Strategies_. _Framework_ proposto por Chan e Colloton (2024) para redesenho de avaliação perante a disponibilidade de GenAI.
+**Semáforo** --- marcador por actividade usado pelo pacote U.Porto: 🟩 permitido, 🟨 permitido com condições, 🟥 proibido. Ver o [Anexo B](B-clausula.qmd) e o [Anexo H](H-articulacao-uporto.qmd).
 
 **_Slop_** --- conteúdo gerado por IA de baixa qualidade, publicado sem curadoria humana, com pouco valor acrescentado. Palavra do Ano 2025 do _Merriam-Webster_. Jones et al. (2025) propuseram uma definição académica do termo em meios educacionais [@jones2025slop].
 

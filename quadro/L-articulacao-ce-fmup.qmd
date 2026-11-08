@@ -1,0 +1,22 @@
+# Articulação com a Comissão de Ética da FMUP {#sec-anexo-l}
+
+Este anexo detalha a articulação entre o presente Quadro e o *White Paper* **Integridade Científica** da Comissão de Ética da FMUP (CE-FMUP) [@cefmup2023integridade]. A posição do Quadro sobre autoria, plágio, conflitos de interesse, relação orientador-orientando e procedimento perante incidente está na [vertente Investigadores](05-investigadores.qmd#sec-articulacao-ce-fmup).
+
+## Mapeamento Quadro ↔ White Paper CE-FMUP
+
+| Quadro FMUP·IA | White Paper CE-FMUP | Articulação |
+|---|---|---|
+| Princípio 2 (Integridade académica e científica) | §5.a (Autoria, critérios ICMJE); §5.d (Plágio) | O Quadro acolhe os critérios ICMJE e amplia-os à declaração obrigatória do uso de GenAI; não cria regras de autoria paralelas. |
+| Princípio 3 (Protecção de dados e confidencialidade) | §3.a (RGPD, DPO, Lei 58/2019) | Sem divergência; o Quadro acrescenta a proibição de introdução de dados sensíveis em plataformas comerciais. |
+| Princípio 4 (Transparência) | §6 (Conflitos de interesse, Anexo III) | O modelo CE-FMUP de declaração de conflitos é integralmente acolhido; o Quadro recomenda extensão para conflitos relativos a ferramentas de GenAI (consultoria, _equity_, _grants_). |
+| Vertente Investigadores — relação orientador-orientando ([Posição explícita](05-investigadores.qmd#sec-articulacao-ce-fmup)) | §3.b, §5.a (responsabilidades dos orientadores e orientandos) | A relação orientador-orientando segue o instrumento formal CE-FMUP (Anexo II, *Formulário de Aferição de Expectativas*) e deve incluir, quando relevante, o uso previsto de GenAI. |
+| [Enquadramento médico](14-camada-medica.qmd) (MDR/IVDR/AI Act/EHDS) | (Não coberto pelo *White Paper*) | O Quadro **estende** a referência ética com matéria que o *White Paper* não trata: GenAI em SaMD/AIaMD, deveres de _deployer_ no âmbito do AI Act, articulação com EHDS. |
+
+## Recomendação de formação para a CE-FMUP
+
+O White Paper da CE-FMUP é uma referência para a integridade da investigação na FMUP. Para que a Comissão possa avaliar protocolos contendo componente de GenAI ao nível de profundidade que a sua função exige, recomenda-se:
+
+- Sessão de formação dedicada ao **EU AI Act** com ênfase em sistemas de alto risco aplicáveis a contexto clínico e educativo, em articulação com o capítulo [Enquadramento médico](14-camada-medica.qmd).
+- Sessão de formação sobre **MDR/IVDR**, **SaMD**/AIaMD e **EHDS**, em articulação com a unidade hospitalar parceira.
+- Inclusão na agenda de revisão de protocolos de uma rubrica específica: "Uso previsto de GenAI no estudo (sim/não); se sim, ferramenta, função e plano de declaração."
+- Acompanhamento da articulação com a CNPD e a Direcção Jurídica da U.Porto em casos limítrofes.

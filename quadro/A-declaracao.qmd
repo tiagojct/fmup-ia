@@ -5,7 +5,7 @@
 
 O demonstrador [Themis](../themis/) recolhe ferramentas, tarefas, âmbito, partes afectadas, verificações e referência dos prompts. Gera rascunhos de declarações para estudantes e investigadores, adaptados ao destinatário, e cláusulas para docentes. Cada texto identifica a versão do Quadro usada como referência. A ferramenta não certifica conformidade nem substitui a revisão das exigências do destinatário. O modelo abaixo permite preenchimento manual.
 
-A Themis rotula as tarefas declaradas pelos macrodomínios GAIDeT descritos abaixo, nas vertentes Estudantes e Investigadores. Permanecem alternativas válidas as ferramentas indicadas pela Universidade do Porto [@uporto2026posgrad], designadamente enquanto a Themis for demonstrador prototípico e não aplicação institucional certificada: o *GAIDeT Declaration Generator* (<https://panbibliotekar.github.io/gaidet-declaration/>) ou, para teses em LaTeX, o pacote `aidisclose` (<https://aidisclose.org/>).
+A Themis rotula as tarefas declaradas pelos macrodomínios GAIDeT descritos abaixo, nas vertentes Estudantes e Investigadores. Permanecem alternativas válidas as ferramentas indicadas pela Universidade do Porto [@uporto2026posgrad], enquanto a Themis for demonstrador prototípico e não aplicação institucional certificada: o *GAIDeT Declaration Generator* (<https://panbibliotekar.github.io/gaidet-declaration/>) ou, para teses em LaTeX, o pacote `aidisclose` (<https://aidisclose.org/>).
 :::
 
 ## Dois níveis de declaração

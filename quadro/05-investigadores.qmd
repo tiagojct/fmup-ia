@@ -33,7 +33,7 @@ As _Living Guidelines_ (3.ª edição, Maio de 2026) recomendam que os investiga
 
 ## Revisão sistemática e síntese de evidências {#sec-revisao-sistematica}
 
-A GenAI pode apoiar revisões sistemáticas em várias fases: pesquisa inicial de literatura, _screening_ de títulos e _abstracts_, extracção preliminar de dados e síntese narrativa assistida. O [cenário 9 do Anexo E](E-cenarios.qmd#cenario-9) descreve o enquadramento operacional: o _screening_ assistido por GenAI é compatível com o quadro desde que a decisão de inclusão seja validada por revisor humano, os critérios e _prompts_ sejam documentados na secção de métodos, e o processo seja reprodutível. Recomenda-se alinhamento com o PRISMA 2020 nos relatórios correntes e consulta às _guidelines_ PRISMA-AI quando publicadas.
+A GenAI pode apoiar revisões sistemáticas em várias fases: pesquisa inicial de literatura, _screening_ de títulos e _abstracts_, extracção preliminar de dados e síntese narrativa assistida. O [cenário 9 do Anexo E](E-cenarios.qmd#cenario-9) descreve o enquadramento operacional: o _screening_ assistido por GenAI é compatível com o Quadro desde que a decisão de inclusão seja validada por revisor humano, os critérios e _prompts_ sejam documentados na secção de métodos, e o processo seja reprodutível. Recomenda-se alinhamento com o PRISMA 2020 nos relatórios correntes e consulta às _guidelines_ PRISMA-AI quando publicadas.
 
 O registo prévio do protocolo --- em PROSPERO, OSF ou plataforma equivalente --- é prática que documenta o desenho da revisão antes de qualquer _screening_ assistido. Este registo cumpre duas funções: permite comparar as decisões realizadas com o plano previamente registado, e torna o protocolo auditável.
 
@@ -41,23 +41,24 @@ O registo prévio do protocolo --- em PROSPERO, OSF ou plataforma equivalente --
 
 A investigação com intervenção humana regulada --- ensaios clínicos, estudos de fase I a IV, estudos de dispositivos --- está sujeita a _Good Clinical Practice_ (GCP, ICH E6(R3)). A documentação essencial de um ensaio inclui o protocolo, os formulários de consentimento informado, o _Statistical Analysis Plan_ (SAP) e o _Clinical Study Report_ (CSR). O uso de GenAI nestes documentos levanta questões regulatórias específicas que acrescem às exigências gerais de integridade e de protecção de dados também aplicáveis à investigação observacional.
 
-**O que é compatível com declaração.** O apoio linguístico (revisão gramatical, melhoria estilística, tradução) e o apoio estrutural (gerar uma estrutura-tipo de protocolo ou SAP a partir de modelos publicados) são compatíveis com o quadro, desde que declarados na documentação do ensaio, coerentes com os registos de controlo de versão do documento, e verificáveis por auditor ou inspector. O [cenário 11 do Anexo E](E-cenarios.qmd#cenario-11) ilustra este uso.
+**O que é compatível com declaração.** O apoio linguístico (revisão gramatical, melhoria estilística, tradução) e o apoio estrutural (gerar uma estrutura-tipo de protocolo ou SAP a partir de modelos publicados) são compatíveis com o Quadro, desde que declarados na documentação do ensaio, coerentes com os registos de controlo de versão do documento, e verificáveis por auditor ou inspector. O [cenário 11 do Anexo E](E-cenarios.qmd#cenario-11) ilustra este uso.
 
 **O que exige cautela regulatória.** A génese de decisões analíticas substantivas --- definição de _endpoints_ primários e secundários, escolha de testes estatísticos, regras de descontinuação, análise intermédia --- deve permanecer sob controlo humano com rastreabilidade explícita. O ICH E6(R3) exige que qualquer alteração à documentação essencial seja identificável no histórico de versões, como qualquer outra alteração; contribuições de GenAI não são excepção. Dados de doentes --- em qualquer fase do ensaio --- só podem ser processados em ambiente com garantias contratuais RGPD e, quando aplicável, MDR/IVDR.
 
+## Investigação clínica: usos e limites {#sec-investigacao-clinica}
+
+Para o investigador clínico da FMUP, a GenAI é ferramenta de trabalho tanto em investigação observacional como experimental. O que varia é o enquadramento regulatório. Em investigação observacional sem intervenção (registos electrónicos de saúde, bases de dados administrativas, coortes retrospectivas), aplicam-se as regras gerais desta vertente, com atenção especial ao regime de dados, à pseudonimização e à declaração metodológica. Em investigação com intervenção, acresce o enquadramento GCP (ICH E6(R3)), tratado na [secção anterior](#sec-gcp). O enquadramento regulatório clínico (MDR/IVDR, AI Act, EHDS) está no capítulo [Enquadramento médico](14-camada-medica.qmd).
+
+Quatro usos frequentes e o seu enquadramento:
+
+- **Formulação de hipóteses e revisão de literatura** --- compatível com o Quadro, desde que as referências sejam verificadas contra fontes primárias e o processo seja declarado em métodos.
+- **Análise de dados de saúde electrónicos** --- dependente de base legal, autorização institucional e ambiente aprovado para esses dados; pseudonimização não equivale a anonimização. A disponibilidade de IAedu não constitui, por si só, autorização para carregar dados de saúde; não se introduzem dados identificáveis em serviços públicos de consumo.
+- **Escrita e revisão de protocolos e SAPs** --- compatível para apoio linguístico e estrutural; génese de decisões analíticas requer controlo humano rastreável nos termos do ICH E6(R3).
+- **Interpretação de biomarcadores e dados de imagem** --- a GenAI não substitui análise especializada; o risco de confabulação em terminologia técnica específica é documentado [@alkaissi2023hallucinations].
+
 ## Articulação com a Comissão de Ética da FMUP {#sec-articulacao-ce-fmup}
 
-A Comissão de Ética da FMUP (CE-FMUP) publicou em Agosto de 2023 o *White Paper* **Integridade Científica** [@cefmup2023integridade], com a autoria das Conselheiras Inês Falcão-Pires, Ivone Duarte, Natália Oliva Teles, Patrícia Ribeiro, Rita Negrão e Rosário Monteiro, sob a presidência de Rui Nunes e a vice-presidência de Guilhermina Rêgo. Este documento constitui a **referência ética institucional** da FMUP em matéria de integridade científica e cobre as três fases da investigação (planeamento, desenvolvimento, divulgação) e as quatro formas canónicas de má conduta tipificadas (enviesamento, fabrico, falsificação, plágio). O presente Quadro **articula-se** com o *White Paper* sem o substituir nem com ele conflituar.
-
-### Mapeamento Quadro ↔ White Paper CE-FMUP
-
-| Quadro FMUP·IA | White Paper CE-FMUP | Articulação |
-|---|---|---|
-| Princípio 2 (Integridade académica e científica) | §5.a (Autoria, critérios ICMJE); §5.d (Plágio) | O Quadro acolhe os critérios ICMJE e amplia-os à declaração obrigatória do uso de GenAI; não cria regras de autoria paralelas. |
-| Princípio 3 (Protecção de dados e confidencialidade) | §3.a (RGPD, DPO, Lei 58/2019) | Sem divergência; o Quadro acrescenta a proibição de introdução de dados sensíveis em plataformas comerciais. |
-| Princípio 4 (Transparência) | §6 (Conflitos de interesse, Anexo III) | O modelo CE-FMUP de declaração de conflitos é integralmente acolhido; o Quadro recomenda extensão para conflitos relativos a ferramentas de GenAI (consultoria, _equity_, _grants_). |
-| Cap. 5 — Documentação de ensaios clínicos (GCP) | §3.b, §5.a (responsabilidades dos orientadores e orientandos) | A relação orientador-orientando segue o instrumento formal CE-FMUP (Anexo II, *Formulário de Aferição de Expectativas*) e deve incluir, quando relevante, o uso previsto de GenAI. |
-| Cap. 14 — Camada médica (MDR/IVDR/AI Act/EHDS) | (Não coberto pelo *White Paper*) | O Quadro **estende** a referência ética com matéria que o *White Paper* não trata: GenAI em SaMD/AIaMD, deveres de _deployer_ no âmbito do AI Act, articulação com EHDS. |
+A Comissão de Ética da FMUP (CE-FMUP) publicou em Agosto de 2023 o *White Paper* **Integridade Científica** [@cefmup2023integridade], com a autoria das Conselheiras Inês Falcão-Pires, Ivone Duarte, Natália Oliva Teles, Patrícia Ribeiro, Rita Negrão e Rosário Monteiro, sob a presidência de Rui Nunes e a vice-presidência de Guilhermina Rêgo. Este documento constitui a **referência ética institucional** da FMUP em matéria de integridade científica e cobre as três fases da investigação (planeamento, desenvolvimento, divulgação) e as quatro formas canónicas de má conduta tipificadas (enviesamento, fabrico, falsificação, plágio). O presente Quadro **articula-se** com o *White Paper* sem o substituir nem com ele conflituar. O mapeamento entre os dois documentos e a recomendação de formação para a CE-FMUP estão no [Anexo L](L-articulacao-ce-fmup.qmd).
 
 ### Posição explícita
 
@@ -67,22 +68,9 @@ A Comissão de Ética da FMUP (CE-FMUP) publicou em Agosto de 2023 o *White Pape
 - **Relação orientador-orientando.** O Anexo II do *White Paper* (Formulário de Aferição de Expectativas) é o instrumento de eleição para formalizar, no início de cada projecto de mestrado, doutoramento ou pós-doutoramento, **o que se espera quanto ao uso de GenAI**: ferramentas permitidas, regimes de declaração interna, formato dos registos de _prompts_ e regras de revisão por par.
 - **Procedimento perante incidente.** Casos suspeitos de má conduta envolvendo GenAI (manuscritos com texto não declarado de GenAI, _datasets_ duvidosos, código não verificável) devem ser encaminhados para a CE-FMUP, que articula com o orientador e com a Direcção da FMUP segundo o regime previsto. O presente Quadro não substitui o procedimento ético-disciplinar.
 
-### Recomendação de formação para a CE-FMUP
+## Declaração de uso e destinatários
 
-O White Paper da CE-FMUP é uma referência para a integridade da investigação na FMUP. Para que a Comissão possa avaliar protocolos contendo componente de GenAI ao nível de profundidade que a sua função exige, recomenda-se:
-
-- Sessão de formação dedicada ao **EU AI Act** com ênfase em sistemas de alto risco aplicáveis a contexto clínico e educativo, em articulação com o capítulo [14](14-camada-medica.qmd).
-- Sessão de formação sobre **MDR/IVDR**, **SaMD**/AIaMD e **EHDS**, em articulação com a unidade hospitalar parceira.
-- Inclusão na agenda de revisão de protocolos de uma rubrica específica: "Uso previsto de GenAI no estudo (sim/não); se sim, ferramenta, função e plano de declaração."
-- Acompanhamento da articulação com a CNPD e a Direcção Jurídica da U.Porto em casos limítrofes.
-
-## Protecção de dados e declaração em publicações
-
-Dados sensíveis não podem ser introduzidos em serviços não autorizados; qualquer tratamento exige as condições descritas acima. Qualquer utilização de GenAI na produção de um manuscrito deve ser declarada, em conformidade com as políticas das revistas e com as _Living Guidelines_ do ERA Forum [@ec2024livingguidelines]. A GenAI não pode ser listada como autora.
-
-## Destinatários da declaração
-
-A obrigação de declaração varia em forma e detalhe consoante o destinatário do manuscrito, da candidatura ou do relatório. O quadro adopta, sem prejuízo de exigências mais restritivas que cada destinatário possa formular, as seguintes referências.
+Qualquer utilização de GenAI na produção de um manuscrito deve ser declarada; o conteúdo mínimo da declaração está no [Anexo A](A-declaracao.qmd). A obrigação de declaração varia em forma e detalhe consoante o destinatário do manuscrito, da candidatura ou do relatório. O Quadro adopta, sem prejuízo de exigências mais restritivas que cada destinatário possa formular, as seguintes referências.
 
 Para submissão a revista científica, vale a recomendação do ICMJE -- aplicável às revistas que a adoptam --: a contribuição da GenAI declara-se em Métodos ou em Agradecimentos, e a ferramenta nunca é listada como co-autora. As políticas da WAME e da COPE coincidem neste ponto. As referências práticas estão no [Anexo C](C-recursos.qmd).
 
@@ -94,4 +82,4 @@ Na [política de candidaturas do Wellcome, actualizada em 8 de Abril de 2026](ht
 
 Para resumos de conferência e para relatórios institucionais, aplica-se um regime análogo ao das revistas, adaptado ao formato curto do resumo ou ao âmbito interno do relatório.
 
-A ferramenta [**Themis**](../themis/) gera, para cada um destes destinatários, um rascunho de declaração adaptado ao destinatário, que deve ser revisto face às suas exigências actuais.
+A ferramenta [**Themis**](../themis/) gera, para cada um destes destinatários, um rascunho de declaração que deve ser revisto face às suas exigências actuais.

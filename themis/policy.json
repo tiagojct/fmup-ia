@@ -1,11 +1,11 @@
 {
-  "version": "1.7.1",
-  "framework_version": "FMUP Quadro de Referência v1.6 (2026-10-03)",
-  "framework_short_pt": "Quadro FMUP v1.6",
-  "framework_short_en": "FMUP Framework v1.6",
+  "version": "1.7.2",
+  "framework_version": "FMUP Quadro de Referência v1.7 (2026-10-20)",
+  "framework_short_pt": "Quadro FMUP v1.7",
+  "framework_short_en": "FMUP Framework v1.7",
   "framework_url": "https://tiagojacinto.eu/fmup-ia/quadro/",
   "issued": "2026-04-21",
-  "revised": "2026-10-03",
+  "revised": "2026-10-20",
   "gaidet": {
     "order": [
       "conceptualisation",

@@ -11,7 +11,7 @@
 
   // Derived from _variables.yml by scripts/sync-versions.py.
   // Bump themis.versao there when statement content changes.
-  const APP_VERSION = '1.3.1';
+  const APP_VERSION = '1.3.2';
 
   // Schema version for the URL hash payload. Bump when state shape
   // changes incompatibly. Hashes with a different `v` are rejected.
@@ -154,6 +154,12 @@
     return b64encode(JSON.stringify(persisted));
   }
 
+  function isValidDate(value) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+    const d = new Date(value + 'T00:00:00Z');
+    return !Number.isNaN(d.getTime()) && d.toISOString().slice(0, 10) === value;
+  }
+
   function decodeState(hash) {
     const m = String(hash || '').match(/(?:^#?|[#&])s=([^&]+)/);
     if (!m) return null;
@@ -195,7 +201,7 @@
         if (!Array.isArray(obj[k]) || obj[k].length > values.length || obj[k].some(v => !values.includes(v))) return { __invalid: true };
         s[k] = [...new Set(obj[k])];
       }
-      if (s.useDate && !/^\d{4}-\d{2}-\d{2}$/.test(s.useDate)) return { __invalid: true };
+      if (s.useDate && !isValidDate(s.useDate)) return { __invalid: true };
       if (obj.versions && typeof obj.versions.app === 'string' &&
           (obj.versions.policy === null || typeof obj.versions.policy === 'string')) {
         s.sourceVersions = { app: obj.versions.app.slice(0, 40), policy: obj.versions.policy && obj.versions.policy.slice(0, 40) };
@@ -203,6 +209,29 @@
       // A link restores choices, never certifies a historical declaration.
       // Force a fresh review, even for a link saved on the output screen.
       s.sourceVersions = s.sourceVersions || { app: 'legacy', policy: null };
+
+      // A link can carry fields from another branch. Keep only the fields
+      // that belong to the restored role, so a crafted teacher link cannot
+      // show a student no-use panel or student risk flags.
+      const keep = {
+        student: ['submission', 'assignment', 'assignmentOther', 'tasks', 'tasksOther', 'tools', 'modification', 'useDate', 'scope', 'noUse', 'affectedSections', 'verifications', 'promptsRef', 'privacyConfirmed', 'reviewConfirmed', 'groupConfirmed', 'contextReviewed', 'riskFlags'],
+        teacher: ['level', 'assignment', 'assignmentOther', 'policy', 'skills', 'skillsOther', 'courseType'],
+        researcher: ['tasks', 'tasksOther', 'tools', 'scope', 'noUse', 'activity', 'target', 'promptsRef', 'affectedSections', 'verifications', 'privacyConfirmed', 'reviewConfirmed', 'contextReviewed', 'riskFlags', 'useDate'],
+      };
+      const enumKeys = ['submission', 'modification', 'scope', 'level', 'courseType', 'policy', 'activity', 'target'];
+      for (const key of Object.keys(s)) {
+        if (['lang', 'role', 'done', 'sourceVersions'].includes(key)) continue;
+        if (!keep[s.role] || !keep[s.role].includes(key)) {
+          if (['noUse', 'groupConfirmed', 'privacyConfirmed', 'reviewConfirmed', 'contextReviewed'].includes(key)) s[key] = false;
+          else if (enumKeys.includes(key)) s[key] = null;
+          else if (Array.isArray(s[key])) s[key] = [];
+          else if (typeof s[key] === 'string') s[key] = '';
+          else s[key] = null;
+        }
+      }
+      if (s.submission !== 'group') s.groupConfirmed = false;
+      if ((s.riskFlags || []).includes('sensitive_public')) s.privacyConfirmed = false;
+
       s.done = false;
       return s;
     } catch (_e) {
@@ -211,12 +240,14 @@
   }
 
   let suppressHashListener = false;
+  let lastHandledHash = null;
 
   function syncHash(replace) {
     if (!state.role) {
       if (location.hash) {
         suppressHashListener = true;
         history.replaceState(null, '', location.pathname + location.search);
+        lastHandledHash = location.hash;
         setTimeout(() => { suppressHashListener = false; }, 0);
       }
       return;
@@ -226,6 +257,7 @@
     suppressHashListener = true;
     if (replace) history.replaceState(null, '', newHash);
     else history.pushState(null, '', newHash);
+    lastHandledHash = newHash;
     setTimeout(() => { suppressHashListener = false; }, 0);
   }
 
@@ -430,13 +462,6 @@
     return { matches: matches, maxRisk: maxRisk };
   }
 
-  function policyText(key) {
-    if (!POLICY) return null;
-    const lang = state.lang || DEFAULT_LANG;
-    const keyL = key + '_' + lang;
-    return POLICY[keyL] || POLICY[key + '_pt'] || POLICY[key];
-  }
-
   function levelMeta(level) {
     if (!POLICY || !POLICY.risk_levels) return null;
     const entry = POLICY.risk_levels[String(level)];
@@ -452,18 +477,6 @@
     const lang = state.lang || DEFAULT_LANG;
     return rule['message_' + lang] || rule.message_pt || '';
   }
-
-  // Canonical principle names (pré-AO90, with accents) keyed by the slug
-  // used in policy.json. Mirrors the H2 anchors in quadro/02-principios.qmd.
-  const PRINCIPLE_NAMES = {
-    'principio-1-agencia-humana':   { pt: 'Agência humana', en: 'Human agency' },
-    'principio-2-integridade':      { pt: 'Integridade académica e científica', en: 'Academic and scientific integrity' },
-    'principio-3-protecao-dados':   { pt: 'Protecção de dados', en: 'Data protection' },
-    'principio-4-transparencia':    { pt: 'Transparência', en: 'Transparency' },
-    'principio-5-equidade':         { pt: 'Equidade de acesso', en: 'Equity of access' },
-    'principio-6-literacia':        { pt: 'Literacia crítica', en: 'Critical literacy' },
-    'principio-7-revisao':          { pt: 'Revisão contínua', en: 'Continuous revision' },
-  };
 
   // The task-key → GAIDeT-macrodomain map lives in policy.json
   // (`policy.gaidet`), because it is institutional taxonomy — data, not
@@ -492,8 +505,8 @@
     const m = String(ref).match(/^principi[oa]-(\d+)-/i);
     if (!m) return null;
     const number = m[1];
-    const entry = PRINCIPLE_NAMES[ref];
-    const name = entry ? (entry[lang] || entry.pt) : '';
+    const names = (I18N[lang] || t()).principles || {};
+    const name = names[ref] || '';
     const href = '../quadro/02-principios.html#' + ref;
     return { number: number, name: name, href: href };
   }
@@ -517,7 +530,6 @@
     const lang = state.lang || DEFAULT_LANG;
     if (!showOnEmpty && !hasAnyFormSelection()) return null;
     if (!POLICY) {
-      if (!showOnEmpty) return null;
       return el('div',
         { class: 'risk-panel risk-na', role: 'note' },
         el('h3', { class: 'risk-heading', text: i.risk.unavailableHeading }),
@@ -945,15 +957,27 @@
 
     if (!state.noUse) {
       screen.appendChild(stepHeader(2, total, i.researcher.step2, i.researcher.step2Help));
+      const tasksOtherWrap = el('div', { id: 'tasks-other-wrap', hidden: state.tasks.indexOf('other') === -1 });
+      tasksOtherWrap.appendChild(textInputRow(
+        'tasks-other-input',
+        i.student.tasksOtherLabel,
+        state.tasksOther,
+        v => { state.tasksOther = v; syncHash(true); refreshGenerate(screen); },
+        i.student.tasksOtherLabel
+      ));
       screen.appendChild(checkboxGroup(
         'tasks',
         asOptions(i.researcher.tasks),
         state.tasks,
-        (v) => { state.tasks = v; syncHash(true); refreshGenerate(screen); }
+        (v) => {
+          state.tasks = v;
+          tasksOtherWrap.hidden = v.indexOf('other') === -1;
+          syncHash(true);
+          refreshGenerate(screen);
+        }
       ));
+      screen.appendChild(tasksOtherWrap);
 
-      screen.appendChild(textInputRow('tasks-other-input', i.student.tasksOtherLabel, state.tasksOther,
-        v => { state.tasksOther = v; syncHash(true); refreshGenerate(screen); }, i.student.tasksOtherLabel));
       screen.appendChild(stepHeader(3, total, i.researcher.step3, i.researcher.step3Help));
       const researcherChips = renderToolChips('tools-input');
       if (researcherChips) screen.appendChild(researcherChips);
@@ -1114,6 +1138,12 @@
     }
     const i = t();
     const isPt = state.lang === 'pt';
+    const validTools = POLICY.recommended_tools.filter((tool) =>
+      tool && typeof tool === 'object' &&
+      typeof tool.name === 'string' && tool.name.trim() &&
+      typeof tool.tier === 'string'
+    );
+    if (!validTools.length) return null;
     const tierLabels = {
       institutional: i.ui.toolsTierInstitutional,
       enterprise_optout: i.ui.toolsTierEnterprise,
@@ -1121,18 +1151,10 @@
       consumer_warning: i.ui.toolsTierConsumerWarning,
     };
     const tierBlurbs = {
-      institutional: isPt
-        ? 'Acesso institucional. Confirme as condições de utilização e a adequação aos dados tratados.'
-        : 'Institutional access. Check the terms of use and suitability for the data processed.',
-      enterprise_optout: isPt
-        ? 'Verifique o contrato, a configuração da conta e a autorização institucional. A designação comercial não garante adequação a dados sensíveis.'
-        : 'Check the contract, account settings and institutional authorisation. A commercial name does not establish suitability for sensitive data.',
-      specialised: isPt
-        ? 'Ferramentas com função específica (tradução, revisão, leitura assistida). Confirme política de dados antes de usar.'
-        : 'Tools with a specific function (translation, language polishing, assisted reading). Confirm data policy before use.',
-      consumer_warning: isPt
-        ? 'Contas de consumo. Verifique retenção e utilização para treino; não introduza informação sensível nestes serviços públicos.'
-        : 'Consumer accounts. Check retention and training use; do not enter sensitive information in these public services.',
+      institutional: i.ui.toolsTierInstitutionalBlurb,
+      enterprise_optout: i.ui.toolsTierEnterpriseBlurb,
+      specialised: i.ui.toolsTierSpecialisedBlurb,
+      consumer_warning: i.ui.toolsTierConsumerWarningBlurb,
     };
     const wrap = el('div', { class: 'tool-chips-wrap' });
     if (i.ui.toolsSuggestedHeader) {
@@ -1149,7 +1171,7 @@
 
     const tiers = ['institutional', 'enterprise_optout', 'specialised', 'consumer_warning'];
     tiers.forEach((tier) => {
-      const tools = POLICY.recommended_tools.filter((tool) => tool.tier === tier);
+      const tools = validTools.filter((tool) => tool.tier === tier);
       if (!tools.length) return;
       const tierKey = tier.replace(/_/g, '-');
       const tierBlock = el('div', { class: 'tool-chips-tier tool-chips-tier-' + tierKey });
@@ -1161,7 +1183,7 @@
       }
       const row = el('div', { class: 'tool-chips' });
       tools.forEach((tool) => {
-        const privacy = isPt ? tool.privacy_pt : tool.privacy_en;
+        const privacy = isPt ? (tool.privacy_pt || tool.privacy_en || '') : (tool.privacy_en || tool.privacy_pt || '');
         const added = chipIsAdded(tool.name);
         const chipClasses = ['tool-chip', 'tool-chip-' + tierKey];
         if (added) chipClasses.push('tool-chip-added');
@@ -1252,7 +1274,6 @@
         key: 'student',
         heading: i.ui.outputHeading,
         text: i.statements.student(state, APP_VERSION, POLICY),
-        markdownTitle: i.ui.outputHeading,
         printTarget: true,
       });
     } else if (state.role === 'teacher') {
@@ -1260,14 +1281,12 @@
         key: 'syllabus',
         heading: i.ui.outputHeadingSyllabus,
         text: i.statements.teacherSyllabus(state, APP_VERSION, POLICY),
-        markdownTitle: i.ui.outputHeadingSyllabus,
         printTarget: true,
       });
       out.push({
         key: 'disclosure',
         heading: i.ui.outputHeadingTeacherDisclosure,
         text: i.statements.teacherDisclosure(state, APP_VERSION, POLICY),
-        markdownTitle: i.ui.outputHeadingTeacherDisclosure,
         printTarget: true,
       });
     } else if (state.role === 'researcher') {
@@ -1277,7 +1296,6 @@
         key: 'researcher-note',
         heading: i.ui.outputHeadingShortNote,
         text: i.statements.shortNote(state, APP_VERSION, POLICY),
-        markdownTitle: i.ui.outputHeadingShortNote,
         printTarget: true,
       });
       // Level 2 is only meaningful when there is a use to describe.
@@ -1286,14 +1304,12 @@
           key: 'researcher-full',
           heading: i.ui.outputHeadingResearcherFull,
           text: i.statements.researcherFull(state, APP_VERSION, POLICY),
-          markdownTitle: i.ui.outputHeadingResearcherFull,
           printTarget: true,
         });
         out.push({
           key: 'researcher-inline',
           heading: i.ui.outputHeadingResearcherInline,
           text: i.statements.researcherInline(state, APP_VERSION, POLICY),
-          markdownTitle: i.ui.outputHeadingResearcherInline,
           printTarget: true,
         });
       }
@@ -1355,7 +1371,7 @@
 
   function makeSelectionsSummary() {
     const i = t();
-    const wrap = el('section', { class: 'selections-summary' });
+    const wrap = el('section', { class: 'selections-summary print-target' });
     wrap.appendChild(el('h3', { text: i.ui.yourSelections }));
     const dl = el('dl');
     const rows = [];
@@ -1374,9 +1390,12 @@
       pushRow(rows, i.student.step5, (i.student.modification[state.modification] || {}).label || '');
       pushRow(rows, i.shared.stepScope, (i.shared.scope[state.scope] || {}).label || '');
       pushRow(rows, i.shared.gaidetLabel, gaidetDomains(state).map((d) => i.shared.gaidet[d]).filter(Boolean).join(', '));
+      if (state.noUse) pushRow(rows, i.shared.noUseLabel, i.shared.noUseSummary);
     } else if (state.role === 'teacher') {
       pushRow(rows, i.teacher.step0CourseType, i.teacher.courseType[state.courseType]);
-      pushRow(rows, i.teacher.step2, (state.assignment || []).map((k) => i.teacher.assignment[k]).filter(Boolean).join(', '));
+      pushRow(rows, i.teacher.step2, (state.assignment || []).map((k) =>
+        k === 'other' && (state.assignmentOther || '').trim() ? state.assignmentOther.trim() : i.teacher.assignment[k]
+      ).filter(Boolean).join(', '));
       pushRow(rows, i.teacher.step3, (i.teacher.policy[state.policy] || {}).label || '');
       const skills = (state.skills || []).map((k) => i.teacher.skills[k]).filter(Boolean);
       if ((state.skillsOther || '').trim()) skills.push(state.skillsOther.trim());
@@ -1386,7 +1405,9 @@
       if (state.noUse) {
         pushRow(rows, i.shared.noUseLabel, i.shared.noUseSummary);
       } else {
-        pushRow(rows, i.researcher.step2, (state.tasks || []).map((k) => i.researcher.tasks[k]).filter(Boolean).join(', '));
+        pushRow(rows, i.researcher.step2, (state.tasks || []).map((k) =>
+          k === 'other' && (state.tasksOther || '').trim() ? state.tasksOther.trim() : i.researcher.tasks[k]
+        ).filter(Boolean).join(', '));
         pushRow(rows, i.researcher.step3, state.tools);
         pushRow(rows, i.shared.stepScope, (i.shared.scope[state.scope] || {}).label || '');
         pushRow(rows, i.shared.gaidetLabel, gaidetDomains(state).map((d) => i.shared.gaidet[d]).filter(Boolean).join(', '));
@@ -1463,11 +1484,7 @@
   function copyLink() {
     const i = t();
     syncHash(true);
-    let url = location.href;
-    if (location.protocol === 'file:') {
-      url = location.href;
-    }
-    copyText(url, i.ui.linkCopied);
+    copyText(location.href, i.ui.linkCopied);
   }
 
   function triggerPrint() {
@@ -1514,12 +1531,22 @@
       if (location.hash) {
         suppressHashListener = true;
         history.replaceState(null, '', location.pathname + location.search);
+        lastHandledHash = location.hash;
         setTimeout(() => { suppressHashListener = false; }, 0);
       }
       return;
     }
     if (restored) state = restored;
     else state = freshState();
+  }
+
+  function handleLocationChange() {
+    if (suppressHashListener) return;
+    if (location.hash === lastHandledHash) return;
+    const next = decodeState(location.hash);
+    applyRestoredState(next, true);
+    lastHandledHash = location.hash;
+    render();
   }
 
   function init() {
@@ -1551,21 +1578,11 @@
       state.lang = detectLang();
     }
 
-    // Listen for back/forward.
-    window.addEventListener('hashchange', () => {
-      if (suppressHashListener) return;
-      const next = decodeState(location.hash);
-      applyRestoredState(next, true);
-      render();
-    });
-
-    // Listen for popstate as a backup (covers history.pushState navigation).
-    window.addEventListener('popstate', () => {
-      if (suppressHashListener) return;
-      const next = decodeState(location.hash);
-      applyRestoredState(next, true);
-      render();
-    });
+    // Listen for back/forward. Both events can fire for one hash
+    // navigation, so the handler deduplicates by hash.
+    lastHandledHash = location.hash;
+    window.addEventListener('hashchange', handleLocationChange);
+    window.addEventListener('popstate', handleLocationChange);
 
     // First render happens immediately; if policy fetch succeeds later,
     // re-render so the institutional risk panel appears.

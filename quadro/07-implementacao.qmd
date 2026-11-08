@@ -2,13 +2,15 @@
 
 ## Calibração temporal
 
-O calendário de implementação é deliberadamente alinhado com quatro marcos externos. O primeiro é o calendário faseado do Regulamento (UE) 2024/1689 (EU AI Act), com marcos relevantes em 2025-2028 para modelos de uso geral, sistemas de alto risco e obrigações de _deployer_ em contextos educativos. O segundo é a entrada em aplicação faseada do _European Health Data Space_ (EHDS), com principais obrigações em 2029 e 2031 e actos de execução previstos para 2027, que antecipa a necessidade de _Trusted Research Environments_ compatíveis, em articulação a estabelecer com a unidade hospitalar afiliada (ver capítulo [14](14-camada-medica.qmd)). O terceiro é o ciclo da Agenda Nacional de Inteligência Artificial (ANIA), aprovada pela Resolução do Conselho de Ministros n.º 2/2026 [@ania2026], que estabelece o Plano de Acção 2026-2030 e cria o Quadro Nacional de Competências Inteligentes (QNCI), com o qual o programa de literacia em IA da FMUP se deve articular. O quarto é a **Recomendação n.º 4/2026 do Conselho Nacional de Educação** [@cne2026recomendacao], publicada em Diário da República (2.ª série, n.º 98) a 21 de Maio de 2026, que define 31 recomendações endereçadas ao sistema educativo português, com calendarização própria (medidas urgentes, de médio prazo e de longo prazo) e relevância directa para o ensino superior em três recomendações específicas (1.6, 2.13, 3.5), além dos seus princípios transversais. A coordenação com a Universidade do Porto e com o Deucalion (em alinhamento com EuroHPC) deve começar cedo no calendário, e não em reacção tardia a cada marco regulatório.
+O calendário de implementação é deliberadamente alinhado com quatro marcos externos. O primeiro é o calendário faseado do Regulamento (UE) 2024/1689 (EU AI Act), com marcos relevantes em 2025-2028 para modelos de uso geral, sistemas de alto risco e obrigações de _deployer_ em contextos educativos. O segundo é a entrada em aplicação faseada do _European Health Data Space_ (EHDS), com principais obrigações em 2029 e 2031 e actos de execução previstos para 2027, que antecipa a necessidade de _Trusted Research Environments_ compatíveis, em articulação a estabelecer com a unidade hospitalar afiliada (ver capítulo [14](14-camada-medica.qmd)). O terceiro é o ciclo da Agenda Nacional de Inteligência Artificial (ANIA), aprovada pela Resolução do Conselho de Ministros n.º 2/2026 [@ania2026], que estabelece o Plano de Acção 2026-2030 e cria o Quadro Nacional de Competências Inteligentes (QNCI), com o qual o programa de literacia em IA da FMUP se deve articular. O quarto é a **Recomendação n.º 4/2026 do Conselho Nacional de Educação** [@cne2026recomendacao], publicada em Diário da República (2.ª série, n.º 98) a 21 de Maio de 2026. Define 31 recomendações endereçadas ao sistema educativo português, com calendarização própria (medidas urgentes, de médio prazo e de longo prazo) e relevância directa para o ensino superior em três delas (1.6, 2.13, 3.5), além dos seus princípios transversais. A coordenação com a Universidade do Porto e com o Deucalion (em alinhamento com EuroHPC) deve começar cedo no calendário, e não em reacção tardia a cada marco regulatório.
 
 ## Fases
 
-**Fase 1 (2026-2027):** discussão e aprovação do quadro de referência, formação inicial para docentes, piloto num programa de mestrado, e adopção operacional do modelo HEAT-AI de categorização de risco em quatro níveis (capítulo [6](06-infraestrutura.qmd)).
+**Fase 1 (2026-2027):** discussão e aprovação do Quadro, formação inicial para docentes, piloto num programa de mestrado, adopção operacional do modelo HEAT-AI de categorização de risco em quatro níveis (capítulo [6](06-infraestrutura.qmd)) e identificação, em cada ciclo de estudos, de pelo menos uma UC com momento avaliativo sem IA ([vertente Docentes](04-docentes.qmd)).
 
 **Fase 2 (2027-2028):** extensão a todos os ciclos de estudo, plataforma institucional (IAedu como primeira linha), módulos de literacia em IA articulados com o QNCI, e operacionalização do _Trusted Research Environment_, com início da coordenação com a unidade hospitalar afiliada.
+
+**Fase 3 (2028-2029):** avaliação de impacto, revisão do Quadro, publicação dos resultados e ponderação de certificação ISO/IEC 42001 [@iso2023aims] como meta organizacional verificável.
 
 ### Módulo de entrada no 1.º ciclo
 
@@ -16,9 +18,7 @@ As orientações da U.Porto recomendam, no 1.º ano do 1.º ciclo, um módulo de
 
 Na FMUP, o módulo aplica-se directamente à Licenciatura em Saúde Digital e Inovação Biomédica e à Licenciatura em Ciências da Saúde Pública. Para o Mestrado Integrado em Medicina, que não tem 1.º ciclo autónomo, o equivalente é a integração dos mesmos conteúdos no 1.º ano do ciclo integrado. A articulação com as quatro dimensões de literacia do [capítulo 2](02-principios.qmd#principio-6-literacia) e com os eixos da Recomendação 2.1 do CNE deve ser explícita no desenho do módulo, para evitar duplicação com a formação prevista nos ciclos seguintes.
 
-**Fase 3 (2028-2029):** avaliação de impacto, revisão do quadro, publicação dos resultados e ponderação de certificação ISO/IEC 42001 [@iso2023aims] como meta organizacional verificável.
-
-## Adopção mínima viável
+## Adopção mínima viável {#sec-adopcao-minima}
 
 Antes da adopção integral, a FMUP pode aprovar um conjunto mínimo de medidas para reduzir a heterogeneidade entre unidades curriculares e criar evidência local. Este conjunto não altera regulamentos pedagógicos, não transforma a Themis em aplicação institucional e não substitui parecer jurídico nas matérias sensíveis; funciona como piloto governado.
 
@@ -32,7 +32,9 @@ Antes da adopção integral, a FMUP pode aprovar um conjunto mínimo de medidas 
 
 O piloto deve terminar com uma decisão explícita: adoptar, rever ou suspender cada medida. A ausência de decisão no fim do piloto não deve converter medidas experimentais em prática institucional permanente por inércia.
 
-O quadro será revisto anualmente, com revisões extraordinárias quando necessário. Para sustentar a avaliação, propõem-se os seguintes indicadores, inspirados nos _frameworks_ da TEQSA e da HEA Irlanda [@teqsa2024genai; @hea2025framework]:
+## Avaliação e indicadores
+
+O Quadro será revisto anualmente, com revisões extraordinárias quando necessário. Para sustentar a avaliação, propõem-se os seguintes indicadores, inspirados nos _frameworks_ da TEQSA e da HEA Irlanda [@teqsa2024genai; @hea2025framework]:
 
 - **Cobertura curricular:** percentagem de unidades curriculares cujos programas incluem cláusula explícita sobre GenAI (meta Fase 2: 100 %).
 - **Formação docente:** percentagem de docentes que completaram formação introdutória em GenAI (meta Fase 2: 75 %; Fase 3: 90 %).
@@ -41,6 +43,6 @@ O quadro será revisto anualmente, com revisões extraordinárias quando necess�
 - **Incidentes de integridade académica:** número e natureza de casos envolvendo GenAI, comparado com o período pré-2026, com análise qualitativa das decisões tomadas.
 - **Adesão a plataformas institucionais:** proporção de utilizadores activos da IAedu ou equivalente, face à utilização declarada de plataformas comerciais.
 
-Os indicadores devem ser reportados no relatório anual do grupo de trabalho e servir de base à revisão do quadro.
+Os indicadores devem ser reportados no relatório anual do grupo de trabalho e servir de base à revisão do Quadro.
 
 A este painel quantitativo acrescenta-se uma leitura por **critérios de maturidade institucional**, adoptada do diagnóstico nacional CNIPES [@cnipes2026, secção 6.3]: mediação humana, verificação, transparência, literacia afectiva, e decisão baseada em evidências. Esta grelha permite uma auto-avaliação qualitativa anual da prontidão institucional da FMUP, distinta dos indicadores quantitativos acima e complementar a eles. O detalhe operacional, com 2-3 indicadores específicos para cada critério articulados com os sete princípios e as três vertentes, está desenvolvido no [Anexo G](G-maturidade-cnipes.qmd).

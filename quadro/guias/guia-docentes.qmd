@@ -2,7 +2,7 @@
 title: "Guia prático: utilização de IA generativa"
 subtitle: "Docentes da FMUP"
 author: "Tiago Jacinto — contributo individual para discussão"
-date: "2026-10-03"
+date: "2026-10-20"
 date-format: "D [de] MMMM [de] YYYY"
 lang: pt-PT
 # CSL colocado nesta pasta de propósito. O Typst do Quarto 1.10+
@@ -19,41 +19,13 @@ format:
       y: 2cm
     fontsize: 10.5pt
     section-numbering: ""
+    shift-heading-level-by: -1
 ---
 
-## Enquadramento mínimo
+{{< include _docentes.qmd >}}
 
-O uso de GenAI documentado em inquéritos exige explicitar o regime de cada actividade e verificar competências individuais: raciocínio presencial, reflexão fundamentada, apresentação com arguição ou prova prática.
+### Mais informação
 
-## Regras essenciais
-
-1. **Experimente antes de regular.** Use pelo menos uma ferramenta de GenAI em tarefas concretas do seu trabalho. Sem experiência directa, é muito mais difícil desenhar política, detectar uso e conversar com estudantes.
-2. **Inclua no programa da UC uma cláusula explícita sobre GenAI.** Permitido, condicionado ou proibido -- e em que termos. O modelo do Anexo B tem três exemplos trabalhados.
-3. **Redesenhe a avaliação onde for necessário.** Privilegie formatos em que a autoria é verificável: apresentação oral com arguição, raciocínio clínico presencial, reflexão pessoal com dados do próprio percurso, avaliação prática de competências.
-4. **Se usar GenAI para preparar materiais, reveja tudo e declare.** Verifique exactidão clínica e terminológica; explicite aos estudantes o uso e o método de verificação -- a declaração é pedagógica, não apenas formal.
-5. **Não submeta trabalhos de estudantes a serviços não autorizados.** O apoio à avaliação exige protecção dos dados e revisão humana substantiva; a decisão final é do docente.
-6. **Distinga apoio pedagógico positivo de substituição cognitiva.** GenAI pode ser instrumento de _reflective practice_, simulador de "primeiro doente" para treino de anamnese, gerador de vinhetas clínicas auditadas -- usos que tornam o processo de raciocínio _mais_ visível, não menos.
-7. **Participe na formação e na partilha.** O quadro institucional é um documento vivo: as práticas que funcionam na sua UC podem servir de calibração às outras.
-
-## Ideias concretas de integração
-
-- **Trabalhos reflexivos com _shadow AI_:** o estudante resolve, depois confronta com um _prompt_ à ferramenta e escreve um comentário crítico sobre diferenças e erros.
-- **Vinhetas clínicas co-construídas:** gerar o esqueleto com GenAI, rever com par docente, apresentar em tutorial.
-- **Preparação de questões socráticas:** usar GenAI para gerar _pools_ de perguntas, seleccionar e adaptar manualmente.
-- **Tradução e adaptação de conteúdos:** materiais em inglês traduzidos com declaração, para discussão pedagógica sobre fidelidade terminológica.
-
-## Ferramentas e condições de uso
-
-- **IAedu** — <https://iaedu.pt>. Institucional, conta `@up.pt`. Primeira opção sempre que possível.
-- **ChatGPT** — <https://chatgpt.com> e **Claude** — <https://claude.ai>. Para testar capacidades e limitações. Usar apenas materiais autorizados para a conta e o serviço; o opt-out de treino não substitui essa autorização.
-- **NotebookLM** — <https://notebooklm.google.com>. Pode apoiar o estudo a partir de materiais curriculares (com as cautelas de protecção de dados).
-- **Perplexity** — <https://www.perplexity.ai>. Útil para respostas com citações verificáveis -- mas verifique sempre as referências.
-
-## Recursos de consulta
-
-- **AAMC Principles for Responsible Use of AI in Medical Education** — <https://www.aamc.org/about-us/mission-areas/medical-education/principles-ai-use>.
-- **TEQSA Gen AI Knowledge Hub (Austrália)** — <https://www.teqsa.gov.au/guides-resources/higher-education-good-practice-hub/gen-ai-knowledge-hub>. Incluindo o _toolkit_ sobre redesenho de avaliação.
-- **HEA Ireland _policy framework_** — <https://hea.ie>. Abordagem europeia baseada em valores.
 - **Proposta institucional da FMUP:** consultar Vertente Docentes (capítulo 4) e Anexos A, B, E.
 
 ---

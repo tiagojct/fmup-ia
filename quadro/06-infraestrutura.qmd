@@ -1,4 +1,4 @@
-# Infraestrutura e governança
+# Infraestrutura e governação
 
 ## Plataformas institucionais
 
@@ -7,18 +7,22 @@ A FMUP deve avaliar a viabilidade de uma solução institucional: plataforma _op
 ::: {.callout-important appearance="simple"}
 ## Regra prudencial na ausência de lista aprovada
 
-A avaliação e aprovação de ferramentas é competência dos serviços digitais, de segurança e do encarregado de protecção de dados da Universidade, com prazo indicativo de resposta de 30 dias úteis, e a lista de ferramentas aprovadas é publicada e mantida pela U.Porto e por cada unidade orgânica [@uporto2026guiabase]. **Enquanto não existir lista formal, as ferramentas públicas não estão autorizadas** para dados pessoais, dados sensíveis, informação confidencial, material de avaliação não publicado ou conteúdos institucionais não públicos. A FMUP adopta esta regra e não mantém lista paralela: a lista aplicável é a da Universidade.
+A avaliação e aprovação de ferramentas é competência dos serviços digitais, de segurança e do encarregado de protecção de dados da Universidade, com prazo indicativo de resposta de 30 dias úteis; a lista de ferramentas aprovadas é publicada e mantida pela U.Porto e por cada unidade orgânica [@uporto2026guiabase]. **Enquanto não existir lista formal, as ferramentas públicas não estão autorizadas** para dados pessoais, dados sensíveis, informação confidencial, material de avaliação não publicado ou conteúdos institucionais não públicos. A FMUP adopta esta regra e não mantém lista paralela: a lista aplicável é a da Universidade.
 :::
 
 A Recomendação n.º 4/2026 do CNE reforça esta hierarquia ao recomendar, como medida urgente, "a adopção preferencial de aplicações em código aberto e auditáveis na infraestrutura digital educativa, com rastreabilidade e explicabilidade dos modelos de IA integrados e com capacidade de configuração pelos docentes" [@cne2026recomendacao, Recomendação 1.4]. A médio prazo, a Recomendação aponta para a criação de uma _cloud_ nacional educativa [@cne2026recomendacao, Recomendação 1.5], trajectória com a qual a IAedu se articula, e para modelos de _edge computing_ "em articulação com instituições de ensino superior e centros de investigação" [@cne2026recomendacao, Recomendação 1.6] --- vector em que a FMUP, no âmbito da Universidade do Porto e do Deucalion, pode contribuir.
 
-## Governança
+## Governação
 
 A estrutura de governação da Universidade do Porto define cinco níveis de decisão --- unidade curricular, curso/ciclo de estudos, unidade orgânica, Universidade e ferramentas digitais --- com atribuição explícita de responsabilidades em cada um [@uporto2026guiabase]. O grupo de trabalho aqui proposto situa-se no nível da unidade orgânica e articula-se com o Grupo de Trabalho da Universidade, que mantém as orientações transversais e o modelo de semáforo. A correspondência completa está no [Anexo H](H-articulacao-uporto.qmd).
 
 Propõe-se a criação de um grupo de trabalho para GenAI na FMUP, com representação de docentes, investigadores, estudantes e serviços de informática. O grupo reportaria à direcção e publicaria um relatório anual que inclua, no mínimo: (i) um levantamento do uso declarado em trabalhos académicos, manuscritos e materiais pedagógicos; (ii) a actualização do mapeamento de riscos por vertente; (iii) a revisão das plataformas institucionais disponíveis; (iv) um balanço da formação ministrada; (v) dados agregados sobre a utilização da ferramenta Themis: estimativa do número de declarações geradas por papel institucional, distribuição pelos níveis de risco e ferramentas mais declaradas — com metodologia de recolha voluntária ou amostral a definir pelo grupo de trabalho na Fase 1, garantindo não-identificação dos utilizadores.
 
-Ning et al. (2024), no _The Lancet Digital Health_, propuseram uma _ethics checklist_ especificamente desenhada para instituições de saúde que integram sistemas de GenAI, estruturada em domínios que incluem propósito, dados, modelos, intervenção humana, responsabilidade e supervisão contínua [@ning2024checklist]. Recomenda-se a sua adopção como instrumento operacional de auditoria interna pelo grupo de trabalho. O quadro de referência deve manter-se alinhado com a legislação europeia (RGPD e AI Act), as políticas da Universidade do Porto e as recomendações nacionais, com especial atenção às obrigações aplicáveis a sistemas de IA classificados como de alto risco pelo AI Act -- nomeadamente, sistemas que participem em decisões de avaliação ou admissão de estudantes [@maerz2024legal].
+Ning et al. (2024), no _The Lancet Digital Health_, propuseram uma _ethics checklist_ especificamente desenhada para instituições de saúde que integram sistemas de GenAI, estruturada em domínios que incluem propósito, dados, modelos, intervenção humana, responsabilidade e supervisão contínua [@ning2024checklist]. Recomenda-se a sua adopção como instrumento operacional de auditoria interna pelo grupo de trabalho. O Quadro deve manter-se alinhado com a legislação europeia (RGPD e AI Act), as políticas da Universidade do Porto e as recomendações nacionais, com especial atenção às obrigações aplicáveis a sistemas de IA classificados como de alto risco pelo AI Act -- nomeadamente, sistemas que participem em decisões de avaliação ou admissão de estudantes [@maerz2024legal].
+
+### *Procurement* e dependência de fornecedores
+
+A escolha das plataformas cria compromissos contratuais com efeitos sobre dados, continuidade de serviço e capacidade de negociação. Os exemplos dos [Estados Unidos](10-panorama-eua.qmd) mostram adopção por projectos e avaliação de ferramentas; não se dividem entre instituições capturadas e instituições independentes. Para a FMUP, propõe-se a IAedu [@iaedu2025] como primeira linha para usos autorizados e avaliação das alternativas nacionais e comerciais. Cada serviço exige análise do contrato, da retenção, do uso para treino e das categorias de dados permitidas.
 
 ### Cláusula institucional de transparência algorítmica em contratos
 
@@ -41,12 +45,12 @@ Recomenda-se, por isso, que a explicabilidade conte como critério na avaliaçã
 
 ## Categorização de risco e standards de alinhamento
 
-A operacionalização da governança beneficia da adopção de uma taxonomia de risco em quatro níveis, segundo o modelo HEAT-AI desenvolvido por Temper e colaboradores na St. Pölten University of Applied Sciences [@temper2025heatai] e descrito no capítulo [11](11-panorama-europa.qmd). Os quatro níveis adoptados pelo quadro são:
+A operacionalização da governação beneficia da adopção de uma taxonomia de risco em quatro níveis, segundo o modelo HEAT-AI desenvolvido por Temper e colaboradores na St. Pölten University of Applied Sciences [@temper2025heatai] e descrito no capítulo [11](11-panorama-europa.qmd). Os quatro níveis adoptados pelo Quadro são:
 
 - **Nível 1 — Mínimo:** exploração pessoal não submetida, com baixo impacto institucional. Nos trabalhos submetidos aplica-se o regime da actividade; os trabalhos finais exigem nota curta mesmo sem uso.
 - **Nível 2 — Limitado:** uso documentado com supervisão humana em tarefas de apoio (revisão linguística, exploração bibliográfica, análise preliminar). Declaração obrigatória.
 - **Nível 3 — Alto:** uso com impacto formativo, clínico ou administrativo (avaliação, materiais pedagógicos, comunicação institucional). Exige declaração explícita, registo central e, em casos limítrofes, parecer do grupo de trabalho.
-- **Nível 4 — Inaceitável:** uso proibido pelo quadro -- dados pessoais, sensíveis ou confidenciais em serviços não autorizados; decisão clínica delegada em contexto de cuidados; classificação exclusivamente por IA sem revisão humana substantiva; GenAI listada como autora; manuscritos confidenciais de revisão por pares carregados em plataformas públicas.
+- **Nível 4 — Inaceitável:** uso proibido pelo Quadro -- dados pessoais, sensíveis ou confidenciais em serviços não autorizados; decisão clínica delegada em contexto de cuidados; classificação exclusivamente por IA sem revisão humana substantiva; GenAI listada como autora; manuscritos confidenciais de revisão por pares carregados em plataformas públicas.
 
 O demonstrador prototípico de declaração [**Themis**](../themis/), descrito no [Anexo D](D-guia.qmd), aplica directamente esta categorização: para cada combinação de papel, tarefa e ferramenta, devolve o nível de risco e remete para o princípio e o cenário do [Anexo E](E-cenarios.qmd) que o sustentam.
 
@@ -56,33 +60,6 @@ Em paralelo, o grupo de trabalho deve manter alinhamento explícito com dois sta
 
 ## Enquadramento clínico e articulação hospitalar
 
-Em qualquer questão que envolva dados clínicos, prática supervisionada ou *Software as a Medical Device* (SaMD/AIaMD), o Quadro pressupõe articulação com a unidade hospitalar onde a actividade clínica é executada. Esta articulação é uma extensão futura --- a [Unidade Local de Saúde de São João](https://www.sns.min-saude.pt/expansao-do-projeto/uls-sao-joao/) (ULS São João) é o interlocutor evidente para a FMUP ---, mantendo-se o Quadro como proposta sujeita a adopção formal pela Faculdade. Para este domínio, o grupo de trabalho adopta como referência operacional o *framework* de Stogiannos e colaboradores [@stogiannos2023imaging] --- validação multi-fase, monitorização contínua, conformidade com organismos de acreditação --- transponível para especialidades intensivas em dados (patologia digital, dermatologia, oftalmologia).
+Em qualquer questão que envolva dados clínicos, prática supervisionada ou *Software as a Medical Device* (SaMD/AIaMD), o Quadro pressupõe articulação com a unidade hospitalar onde a actividade clínica é executada. Esta articulação é uma extensão futura --- a [Unidade Local de Saúde de São João](https://www.sns.min-saude.pt/expansao-do-projeto/uls-sao-joao/) (ULS São João) é o interlocutor evidente para a FMUP ---, mantendo-se o Quadro como proposta sujeita a adopção formal pela Faculdade. Para este domínio, o grupo de trabalho adopta como referência operacional o modelo de governação descrito no capítulo [Enquadramento médico](14-camada-medica.qmd), transponível para especialidades intensivas em dados (patologia digital, dermatologia, oftalmologia).
 
-A articulação académica-clínica exige avaliar os regulamentos aplicáveis a cada sistema e utilização. O MDR e o IVDR têm âmbitos distintos; a qualificação como dispositivo depende da finalidade prevista. O uso pedagógico de uma ferramenta não a torna automaticamente um dispositivo médico:
-
-| Regulamento | Âmbito | Aplicação |
-|---|---|---|
-| Reg. (UE) 2017/745 (MDR) | Dispositivos médicos | Em vigor |
-| Reg. (UE) 2017/746 (IVDR) | Diagnóstico *in vitro* | Em vigor |
-| Reg. (UE) 2024/1689 (AI Act) — modelos GPAI | Modelos de IA de uso geral | Agosto 2025 |
-| AI Act — alto risco, Anexo III (incl. usos educativos) | Sistemas abrangidos pelo Anexo III | 2 de Dezembro de 2027 |
-| AI Act — alto risco associado a produtos regulados, Anexo I | Inclui dispositivos quando preenchidos os critérios legais | 2 de Agosto de 2028 |
-| EHDS | Espaço europeu de dados de saúde | Implementação faseada; principais obrigações em 2029 e 2031 |
-
-Calendário actualizado segundo a [Comissão Europeia: AI Omnibus](https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force) e o [calendário do EHDS](https://health.ec.europa.eu/ehealth-digital-health-and-care/european-health-data-space-regulation-ehds_en), consultados em 3 de Outubro de 2026. A preparação de ambientes seguros de tratamento de dados e o acompanhamento dos resultados da TEHDAS2 são propostas de implementação; não equivalem a uma obrigação geral de conformidade EHDS em Março de 2027. Detalhe no capítulo [14](14-camada-medica.qmd).
-
-## Processo disciplinar e direito de defesa {#processo-disciplinar-e-direito-de-defesa}
-
-::: {.callout-important appearance="simple"}
-A presente secção propõe princípios operacionais e não se substitui ao regime disciplinar aplicável aos estudantes e aos docentes da Universidade do Porto, definido em legislação geral, no Regulamento Disciplinar dos Estudantes da U.Porto, no Estatuto da Carreira Docente Universitária (ECDU) e em demais instrumentos legais. Qualquer adopção institucional desta secção carece de **parecer prévio da Direcção Jurídica da Universidade do Porto** e de articulação com a Direcção da FMUP e o Conselho Pedagógico.
-:::
-
-A detecção de violações às regras estabelecidas neste quadro deve seguir, na sua forma de apuramento, os procedimentos regulares da FMUP em matéria de integridade académica. O documento de orientações da Universidade do Porto fixa o fluxo processual aplicável às unidades orgânicas [@uporto2026orientacoes]: (1.º) o docente que identifique indícios de fraude reporta o caso ao conselho pedagógico da unidade orgânica, instruindo a comunicação com os elementos de facto disponíveis; (2.º) o conselho pedagógico aprecia os factos e delibera sobre a proposta de abertura de inquérito; (3.º) o director da unidade orgânica decide, com base nessa deliberação, a instauração de processo de inquérito; (4.º) o instrutor nomeado conduz as diligências previstas no regulamento aplicável. O mesmo documento tipifica como uso fraudulento a omissão da declaração quando obrigatória, a submissão de trabalho elaborado com recurso substancial a GenAI sem atribuição, e a utilização de GenAI para falsificar, fabricar ou deturpar dados, resultados, referências ou citações.
-
-Os princípios operacionais que se seguem aplicam-se **dentro** desse fluxo, e não em alternativa a ele: acrescentam a especificidade técnica das questões envolvendo GenAI e estão em pleno alinhamento com a Recomendação n.º 4/2026 do CNE, segundo a qual "nenhuma decisão com impacto significativo na vida dos alunos --- retenção, colocação, encaminhamento, avaliação sumativa --- possa ser tomada com base exclusiva em sistemas automatizados de IA, garantindo sempre a validação humana qualificada e o direito de recurso" [@cne2026recomendacao, Recomendação 3.3]:
-
-- **Proporcionalidade pedagógica antes de sancionatória.** Em casos de primeira infracção ou de uso inadvertido, a resposta deve ser primeiro formativa -- conversa com o estudante ou docente, clarificação das regras, refazer o trabalho com declaração adequada. Reserva-se a via disciplinar para casos de reincidência, má-fé manifesta ou dano efectivo (clínico, de protecção de dados, ou de integridade).
-- **Direito de defesa e contraditório.** Quem seja acusado de violação tem direito a explicar o seu fluxo de trabalho, apresentar prova do uso (ou da sua ausência) e ser ouvido em contraditório. A omissão de declaração constitui infracção quando a declaração era obrigatória e os pressupostos dessa obrigação estão demonstrados; a prova positiva do uso indevido pode ser difícil e não deve assentar exclusivamente em ferramentas de detecção automática, cujos falsos positivos estão documentados.
-- **Parecer técnico do grupo de trabalho.** Casos estruturais ou limítrofes -- novos tipos de uso, ferramentas emergentes, dúvidas interpretativas -- devem ser encaminhados ao grupo de trabalho para IA generativa, que contribui com parecer técnico para o processo disciplinar regular, sem o substituir.
-- **Articulação com a Comissão de Ética da FMUP.** Casos suspeitos de má conduta científica envolvendo investigação (manuscritos, _datasets_, código) são encaminhados à CE-FMUP, em conformidade com o *White Paper* [@cefmup2023integridade] e com o detalhe na subsecção [Articulação com a Comissão de Ética da FMUP](05-investigadores.qmd#sec-articulacao-ce-fmup) do capítulo 5.
-- **Revisão periódica das decisões.** Os casos tratados alimentam a revisão anual do quadro, permitindo ajustes finos às regras com base em jurisprudência interna. A anonimização e divulgação ponderada destes casos (com consentimento quando aplicável) serve a comunidade académica enquanto recurso formativo.
+A qualificação como dispositivo depende da finalidade prevista; o uso pedagógico de uma ferramenta não a torna automaticamente um dispositivo médico. O calendário do MDR, do IVDR, do AI Act e do EHDS está no capítulo [Enquadramento médico](14-camada-medica.qmd#sec-calendario-regulatorio).

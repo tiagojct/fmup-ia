@@ -17,8 +17,10 @@ Em ciclos de estudo não-clínicos, os mesmos princípios traduzem-se em context
 
 ## Redesenho da avaliação
 
-A disponibilidade de GenAI exige uma revisão das práticas de avaliação. A resposta institucional não deve ser a proibição generalizada, mas o redesenho de métodos que valorizem competências que a GenAI não substitui: raciocínio clínico em tempo real, reflexão crítica fundamentada, apresentação oral com arguição, e avaliação prática de competências. O _framework_ do HEA irlandês identifica a avaliação como a área de maior pressão imediata [@hea2025framework]. Peters e Angelov (2025) propuseram o modelo AICAI, que articula a criatividade, a autenticidade e a integridade como eixos de redesenho [@peters2025aicai]. Chan e Colloton (2024) formularam as Six Assessment Redesign Pivotal Strategies (SARPS) [@chan2024book].
+A disponibilidade de GenAI obriga a rever as práticas de avaliação. A resposta institucional não deve ser a proibição generalizada, mas o redesenho de métodos que valorizem competências que a GenAI não substitui: raciocínio clínico em tempo real, reflexão crítica fundamentada, apresentação oral com arguição, e avaliação prática de competências. O _framework_ do HEA irlandês identifica a avaliação como a área de maior pressão imediata [@hea2025framework]. Peters e Angelov (2025) propuseram o modelo AICAI, que articula a criatividade, a autenticidade e a integridade como eixos de redesenho [@peters2025aicai]. Chan e Colloton (2024) formularam as Six Assessment Redesign Pivotal Strategies (SARPS) [@chan2024book].
 O _toolkit_ da TEQSA australiana acrescenta uma perspectiva programática: a reforma da avaliação deve ser pensada ao nível do programa de estudos, garantindo coerência progressiva e alinhamento com as competências de saída [@teqsa2024genai]. Os docentes devem explicitar nos programas a política de utilização de GenAI aplicável à avaliação (ver modelos de cláusula em [Anexo B](B-clausula.qmd)).
+
+Cada ciclo de estudos deve identificar pelo menos uma unidade curricular com momento avaliativo sem IA, articulado com a competência avaliada. A fundamentação, ligada ao pilar *Ser sem IA*, está no capítulo [Portugal: diagnóstico e referenciais nacionais](12b-panorama-portugal.qmd#sec-tres-pilares); o indicador correspondente está no [Anexo G](G-maturidade-cnipes.qmd).
 
 ### Ponderação dos elementos produzidos com GenAI
 
@@ -28,7 +30,7 @@ Quando o regime da unidade curricular permita GenAI em peças avaliativas, as or
 
 As orientações da U.Porto identificam a sobrecarga curricular como um factor que pode favorecer uso apressado e pouco construtivo de GenAI [@uporto2026orientacoes]. Recomenda-se coordenar as tarefas das unidades curriculares do mesmo semestre, com participação de docentes e estudantes. A análise da carga de trabalho complementa o apuramento de eventuais infracções; não permite concluir, por si só, a sua causa.
 
-A observação é particularmente pertinente no Mestrado Integrado em Medicina, pela densidade curricular característica dos anos com componente clínica. Recomenda-se que a coordenação de cada ciclo de estudos inclua esta verificação no seu ciclo anual, e que o Grupo de Trabalho para GenAI (capítulo [6](06-infraestrutura.qmd)) a considere ao interpretar os dados de utilização declarada: uma concentração de declarações num período de elevada carga é indício de desenho curricular a rever, não necessariamente de má-fé.
+A observação aplica-se sobretudo ao Mestrado Integrado em Medicina, pela densidade curricular dos anos com componente clínica. Propõe-se que a coordenação de cada ciclo de estudos inclua esta verificação no seu ciclo anual, e que o Grupo de Trabalho para GenAI (capítulo [6](06-infraestrutura.qmd)) a considere ao interpretar os dados de utilização declarada: uma concentração de declarações num período de elevada carga é indício de desenho curricular a rever, não necessariamente de má-fé.
 
 ### Evidência de processo sem pressupor infraestrutura
 

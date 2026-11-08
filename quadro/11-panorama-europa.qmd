@@ -4,11 +4,11 @@ A Europa é regulada e heterogénea: o EU AI Act, o RGPD e os instrumentos secto
 
 ## O EU AI Act como factor regulatório principal
 
-O Regulamento (UE) 2024/1689, com aplicação faseada e prazos de alto risco actualizados para 2027-2028 (ver [calendário no capítulo 14](14-camada-medica.qmd#eu-mdrivdr-ai-act-e-ehds)), classifica como alto risco (Anexo III, ponto 3) os sistemas que determinam acesso e admissão, avaliam resultados de aprendizagem ou detectam comportamentos durante avaliações (_proctoring_). Para as universidades, o papel jurídico mais relevante é o de _deployer_ (artigos 26.º e 14.º): utilização conforme as instruções do fornecedor, supervisão humana por pessoal formado, controlo dos dados, monitorização operacional, notificação de incidentes graves. März e colaboradores [@maerz2024legal] sublinham que a classificação automática sem revisão humana é incompatível com o RGPD --- ponto com implicações directas para o princípio 3 (protecção de dados) no capítulo [2](02-principios.qmd). O detalhe do regulamento é tratado no capítulo [13](13-frameworks-supranacionais.qmd).
+O Regulamento (UE) 2024/1689, com aplicação faseada e prazos de alto risco actualizados para 2027-2028 (ver [calendário no capítulo 14](14-camada-medica.qmd#sec-calendario-regulatorio)), classifica como alto risco (Anexo III, ponto 3) os sistemas que determinam acesso e admissão, avaliam resultados de aprendizagem ou detectam comportamentos durante avaliações (_proctoring_). Para as universidades, o papel jurídico mais relevante é o de _deployer_ (artigos 26.º e 14.º): utilização conforme as instruções do fornecedor, supervisão humana por pessoal formado, controlo dos dados, monitorização operacional, notificação de incidentes graves. März e colaboradores [@maerz2024legal] sublinham que a classificação automática sem revisão humana é incompatível com o RGPD --- ponto com implicações directas para o princípio 3 (protecção de dados) no capítulo [2](02-principios.qmd). O calendário de aplicação e a articulação com o MDR, o IVDR e o EHDS estão no capítulo [Enquadramento médico](14-camada-medica.qmd#sec-calendario-regulatorio).
 
 ## Russell Group: cinco princípios e a tradução britânica
 
-Os cinco princípios do Russell Group (Julho de 2023) abrangem literacia em IA, capacitação docente, adaptação do ensino e da avaliação, rigor académico e partilha de boas práticas. Wilson [@wilson2025ukpolicies] analisa a sua tradução em políticas universitárias britânicas. A publicação de princípios não demonstra, por si só, que a formação tenha sido concluída ou que a sua aplicação seja uniforme.
+Os cinco princípios do Russell Group (Julho de 2023) abrangem literacia em IA, capacitação docente, adaptação do ensino e da avaliação, rigor académico e partilha de boas práticas. Wilson [@wilson2025ukpolicies] analisa a sua tradução em políticas universitárias britânicas. A publicação de princípios não garante, por si só, que a formação tenha sido concluída ou que a sua aplicação seja uniforme.
 
 ## Detecção e desenho da avaliação
 
@@ -18,7 +18,7 @@ A discussão britânica sobre trabalhos realizados com LLMs salienta dificuldade
 
 O _Higher Education Act for AI_ (HEAT-AI), de Temper e colaboradores na St. Pölten [@temper2025heatai], é um exemplo de operacionalização universitária do _risk-based approach_. Classifica o uso em quatro níveis em função do impacto sobre integridade, ética e privacidade, e prescreve medidas correspondentes --- da utilização livre documentada à proibição. Foi aprovado pelo conselho universitário em Setembro de 2024 e está em avaliação contínua. Para a FMUP a relevância é dupla: oferece um modelo institucional adoptável e mostra que transpor o _risk-based approach_ é viável com mecanismos administrativos já existentes. O capítulo [6](06-infraestrutura.qmd) propõe a sua adopção.
 
-## Outras experiências europeias e comparadas
+## Outras experiências europeias e internacionais
 
 - **Irlanda.** O quadro da *Higher Education Authority* [@hea2025framework] relaciona integridade, bem-estar, capacitação, equidade e revisão das práticas. A tradução em regras operacionais cabe às instituições.
 - **Suécia.** O Karolinska Institutet disponibiliza [orientações e exemplos por programa](https://staff.ki.se/tools-and-support/ai-at-ki/generative-ai-education/communicating-with-students-about-ai). Os seus recursos distinguem aconselhamento pedagógico de regras aplicáveis à avaliação. Humble [@humble2025policies] analisa políticas suecas; os resultados dessa amostra não devem ser generalizados a todos os países nórdicos.

@@ -141,3 +141,222 @@ test('timer measures elapsed time after throttling and preserves pause', () => {
   assert.equal(w.document.querySelector('.cronometro-display').textContent, '-00:01');
   assert.equal(w.document.querySelector('.cronometro-estado').textContent, 'Tempo esgotado.'); dom.window.close();
 });
+
+test('invalid calendar dates are rejected from shared links', async t => {
+  for (const useDate of ['2026-02-30', '2026-13-01', '2026-00-10']) {
+    const a = await boot(t, { state: { v: 3, role: 'student', lang: 'pt', submission: 'individual', assignment: ['report'], tasks: ['editing'], tools: 'X', scope: 'auxiliary', modification: 'edited', contextReviewed: true, useDate } });
+    assert.ok(a.$('.role-card'));
+    assert.equal(a.w.location.hash, '');
+  }
+});
+
+test('teacher shared links cannot inject student no-use or risk context', async t => {
+  const a = await boot(t, { state: { v: 3, role: 'teacher', lang: 'pt', courseType: 'uc_master', assignment: ['essay'], policy: 'with_disclosure', noUse: true, riskFlags: ['sensitive_public'] } });
+  assert.ok(a.$('input[name=courseType]:checked'));
+  assert.equal(a.$('#no-use'), null);
+  assert.equal(a.$('.risk-4'), null);
+  assert.doesNotMatch(a.$('main').textContent, /Não foi declarada utilização|No AI use was declared/);
+});
+
+test('teacher share links survive a second round trip', async t => {
+  const first = await boot(t, { state: { v: 3, role: 'teacher', lang: 'pt', courseType: 'uc_master', assignment: ['essay'], policy: 'with_disclosure' } });
+  first.pick('assignment', 'report');
+  const payload = JSON.parse(Buffer.from(first.w.location.hash.slice(3), 'base64url'));
+  assert.equal(payload.noUse, false);
+  const second = await boot(t, { state: payload });
+  assert.ok(second.$('input[name=courseType]:checked'));
+  assert.equal(second.$('.role-card'), null);
+});
+
+test('cross-role enum fields are cleared to null and links stay valid', async t => {
+  const first = await boot(t, { state: { v: 3, role: 'teacher', lang: 'pt', courseType: 'uc_master', assignment: ['essay'], policy: 'with_disclosure', submission: 'individual', modification: 'edited', activity: 'manuscript', target: 'journal' } });
+  first.pick('assignment', 'report');
+  const payload = JSON.parse(Buffer.from(first.w.location.hash.slice(3), 'base64url'));
+  assert.equal(payload.submission, null);
+  assert.equal(payload.modification, null);
+  assert.equal(payload.activity, null);
+  assert.equal(payload.target, null);
+  const second = await boot(t, { state: payload });
+  assert.ok(second.$('input[name=courseType]:checked'));
+  assert.equal(second.$('.role-card'), null);
+
+  const student = await boot(t, { state: { v: 3, role: 'student', lang: 'pt', submission: 'individual', assignment: ['report'], policy: 'with_disclosure', activity: 'manuscript', target: 'journal' } });
+  student.pick('submission', 'group');
+  const studentPayload = JSON.parse(Buffer.from(student.w.location.hash.slice(3), 'base64url'));
+  assert.equal(studentPayload.policy, null);
+  assert.equal(studentPayload.activity, null);
+  assert.equal(studentPayload.target, null);
+  const studentAgain = await boot(t, { state: studentPayload });
+  assert.ok(studentAgain.$('input[name=submission]:checked'));
+  assert.equal(studentAgain.$('.role-card'), null);
+});
+
+test('student and researcher share links survive a round trip', async t => {
+  const student = await boot(t, { state: { v: 3, role: 'student', lang: 'pt', submission: 'individual', assignment: ['report'], noUse: true } });
+  student.pick('submission', 'group');
+  const studentPayload = JSON.parse(Buffer.from(student.w.location.hash.slice(3), 'base64url'));
+  const studentAgain = await boot(t, { state: studentPayload });
+  assert.equal(studentAgain.$('.role-card'), null);
+  assert.equal(studentAgain.$('#no-use').checked, true);
+
+  const researcher = await boot(t, { state: { v: 3, role: 'researcher', lang: 'pt', activity: 'manuscript', target: 'journal', noUse: true } });
+  researcher.pick('activity', 'manuscript');
+  const researcherPayload = JSON.parse(Buffer.from(researcher.w.location.hash.slice(3), 'base64url'));
+  const researcherAgain = await boot(t, { state: researcherPayload });
+  assert.equal(researcherAgain.$('.role-card'), null);
+  assert.equal(researcherAgain.$('#no-use').checked, true);
+
+  const legacy = await boot(t, { state: { v: 2, role: 'researcher', lang: 'pt', activity: 'manuscript', target: 'journal' } });
+  legacy.pick('activity', 'manuscript');
+  const legacyPayload = JSON.parse(Buffer.from(legacy.w.location.hash.slice(3), 'base64url'));
+  assert.equal(legacyPayload.v, 3);
+  const legacyAgain = await boot(t, { state: legacyPayload });
+  assert.ok(legacyAgain.$('input[name=activity]:checked'));
+  assert.equal(legacyAgain.$('.role-card'), null);
+});
+
+test('one navigation event pair renders once', async t => {
+  const a = await boot(t);
+  let focusCount = 0;
+  const originalFocus = a.w.HTMLElement.prototype.focus;
+  a.w.HTMLElement.prototype.focus = function (...args) {
+    focusCount += 1;
+    return originalFocus.apply(this, args);
+  };
+  a.w.history.pushState(null, '', hash({ v: 3, role: 'researcher', lang: 'pt', activity: 'manuscript', target: 'journal' }));
+  a.w.dispatchEvent(new a.w.Event('hashchange'));
+  a.w.dispatchEvent(new a.w.Event('popstate'));
+  assert.equal(focusCount, 1);
+  assert.ok(a.$('input[name=activity]:checked'));
+});
+
+test('malformed optional policy data does not break the form', async t => {
+  const a = await boot(t, { loadedPolicy: { ...policy, recommended_tools: [null, { name: 'IAedu', tier: 'institutional', privacy_pt: 'Local', privacy_en: 'Local' }] } });
+  a.role('student');
+  assert.ok(a.$('input[name=submission]'));
+  assert.ok(a.$('.tool-chips-wrap'));
+  assert.match(a.$('.tool-chips-wrap').textContent, /IAedu/);
+});
+
+test('unavailable policy is announced on the form after a selection', async t => {
+  for (const role of ['student', 'teacher', 'researcher']) {
+    const a = await boot(t, { loadedPolicy: null });
+    a.role(role);
+    if (role === 'student') a.pick('submission', 'individual');
+    else if (role === 'teacher') a.pick('courseType', 'uc_master');
+    else a.pick('activity', 'manuscript');
+    assert.ok(a.$('.risk-panel'), role);
+    assert.match(a.$('.risk-panel').textContent, /indisponível|unavailable/);
+  }
+});
+
+test('researcher other-task input is hidden until selected', async t => {
+  const a = await boot(t);
+  a.role('researcher');
+  assert.ok(a.$('#tasks-other-wrap'));
+  assert.equal(a.$('#tasks-other-wrap').hidden, true);
+  a.pick('tasks', 'other');
+  assert.equal(a.$('#tasks-other-wrap').hidden, false);
+  a.change('input[name="tasks"][value="other"]', false);
+  assert.equal(a.$('#tasks-other-wrap').hidden, true);
+});
+
+test('selection summaries preserve custom task and assignment text', async t => {
+  const researcher = await boot(t);
+  researcher.role('researcher');
+  researcher.pick('activity', 'manuscript');
+  researcher.pick('target', 'journal');
+  fillUse(researcher);
+  researcher.pick('tasks', 'other');
+  researcher.type('tasks-other-input', 'custom task');
+  researcher.generate();
+  assert.match(researcher.$('.selections-summary').textContent, /custom task/);
+
+  const teacher = await boot(t);
+  teacher.role('teacher');
+  teacher.pick('courseType', 'uc_master');
+  teacher.pick('assignment', 'other');
+  teacher.type('teacher-assignment-other-input', 'video educativo');
+  teacher.pick('policy', 'with_disclosure');
+  teacher.generate();
+  assert.match(teacher.$('.selections-summary').textContent, /video educativo/);
+});
+
+test('student no-use output includes a no-use summary and print target', async t => {
+  const a = await boot(t);
+  a.role('student');
+  a.pick('submission', 'individual');
+  a.pick('assignment', 'report');
+  a.check('no-use');
+  a.generate();
+  assert.match(a.$('.selections-summary').textContent, /não-utilização|non-use/i);
+  assert.ok(a.$('.selections-summary.print-target'));
+});
+
+test('Portuguese UI uses pt-PT vocabulary', async t => {
+  const a = await boot(t);
+  assert.doesNotMatch(a.w.I18N_PT.ui.restoredChoices, /arquivo/i);
+  assert.match(a.w.I18N_PT.ui.restoredChoices, /ficheiro/i);
+});
+
+test('the page makes no third-party font request', () => {
+  const css = fs.readFileSync(path.join(ROOT, 'style.css'), 'utf8');
+  const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+  assert.doesNotMatch(css, /fonts\.googleapis\.com|fonts\.gstatic\.com|@import\s+url\(['"]https?:/i);
+  assert.doesNotMatch(css, /@font-face[\s\S]*?url\(['"]https?:/i);
+  assert.doesNotMatch(html, /(?:src|href)=["']https?:\/\//i);
+  assert.match(css, /@font-face/);
+  for (const file of ['AtkinsonHyperlegibleNext-Variable-Latin.woff2', 'AtkinsonHyperlegibleNext-Variable-Italic-Latin.woff2', 'GeistMono-Variable-Latin.woff2', 'OFL-Atkinson.txt', 'OFL-Geist.txt']) {
+    assert.ok(fs.existsSync(path.join(ROOT, 'fonts', file)), file);
+  }
+});
+
+test('page metadata declares CSP, referrer and color scheme', () => {
+  const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+  assert.match(html, /http-equiv="Content-Security-Policy"/i);
+  for (const directive of ["default-src 'self'", "script-src 'self'", "style-src 'self' 'unsafe-inline'", "img-src 'self' data:", "font-src 'self'", "connect-src 'self'", "object-src 'none'", "base-uri 'none'", "form-action 'none'"]) {
+    assert.ok(html.includes(directive), directive);
+  }
+  assert.match(html, /name="referrer" content="no-referrer"/i);
+  assert.match(html, /name="color-scheme" content="light dark"/i);
+});
+
+test('dark-mode navigation links do not use dark text on dark background', () => {
+  const css = fs.readFileSync(path.join(ROOT, 'style.css'), 'utf8');
+  assert.doesNotMatch(css, /\.back-bar \.back-link\s*\{[^}]*color:\s*#1A1A1A/i);
+});
+
+test('dark palette is screen-only so printed output stays light', () => {
+  const css = fs.readFileSync(path.join(ROOT, 'style.css'), 'utf8');
+  assert.doesNotMatch(css, /@media \(prefers-color-scheme: dark\)/);
+  assert.match(css, /@media screen and \(prefers-color-scheme: dark\)/);
+  assert.match(css, /@media print[\s\S]*\.selections-summary/);
+  assert.match(css, /@media print[\s\S]*\.output-block textarea[\s\S]*background:\s*#fff/);
+});
+
+test('policy schema is complete and unique', async t => {
+  const a = await boot(t);
+  assert.match(policy.version, /^\d+\.\d+\.\d+$/);
+  assert.match(policy.framework_version, /FMUP Quadro/);
+  const ids = new Set();
+  for (const rule of policy.rules) {
+    assert.ok(rule.id);
+    assert.equal(ids.has(rule.id), false, rule.id);
+    ids.add(rule.id);
+    assert.ok(rule.message_pt, rule.id);
+    assert.ok(rule.message_en, rule.id);
+  }
+  assert.equal(new Set(policy.gaidet.order).size, policy.gaidet.order.length);
+  for (const domain of policy.gaidet.order) assert.ok(a.w.I18N_PT.shared.gaidet[domain], domain);
+  assert.equal(Object.keys(a.w.I18N_PT.principles).length, 7);
+  for (const ref of Object.keys(a.w.I18N_PT.principles)) assert.ok(a.w.I18N_EN.principles[ref], ref);
+  for (const tool of policy.recommended_tools) {
+    assert.ok(tool.name);
+    assert.ok(tool.tier);
+    assert.ok(tool.privacy_pt);
+    assert.ok(tool.privacy_en);
+  }
+  for (const meta of Object.values(policy.risk_levels)) {
+    assert.ok(meta.label_pt && meta.label_en && meta.description_pt && meta.description_en);
+  }
+});

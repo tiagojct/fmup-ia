@@ -2,7 +2,7 @@
 
 Em Junho de 2026, a Universidade do Porto publicou um pacote de sete documentos sobre a utilização de IA generativa no domínio educativo, produzido pelo Grupo de Trabalho constituído pelo Despacho N.º GR. 08/05/2025, sob a Unidade de Inovação Educativa e com colaboração do Serviço de Apoio Jurídico da Universidade [@uporto2026orientacoes; @uporto2026guiabase; @uporto2026guiadocentes; @uporto2026guiaestudantes; @uporto2026perfis; @uporto2026posgrad; @uporto2026promptario]. O pacote qualifica-se a si próprio como «_soft law_ académico», declara não restringir as opções das unidades orgânicas e estabelece critérios comuns "susceptíveis de adaptação à especificidade das diferentes áreas científicas".
 
-A FMUP é uma das quinze unidades orgânicas abrangidas. Este anexo propõe, por isso, a articulação entre o presente Quadro e aquele pacote, no mesmo registo em que o [capítulo 5](05-investigadores.qmd#sec-articulacao-ce-fmup) estabelece a relação com o *White Paper* da Comissão de Ética da FMUP e o [capítulo 12b](12b-panorama-portugal.qmd) a relação com o diagnóstico CNIPES e a Recomendação n.º 4/2026 do CNE.
+A FMUP é uma das quinze unidades orgânicas abrangidas. Este anexo propõe, por isso, a articulação entre o presente Quadro e aquele pacote, no mesmo registo em que o [Anexo L](L-articulacao-ce-fmup.qmd) estabelece a relação com o *White Paper* da Comissão de Ética da FMUP e o [Anexo K](K-alinhamento-cne.qmd) a relação com a Recomendação n.º 4/2026 do CNE.
 
 ## Regra de precedência
 
@@ -31,7 +31,7 @@ Os sete princípios do [capítulo 2](02-principios.qmd) não conflituam com os c
 
 Duas convergências merecem registo autónomo.
 
-**Os Três Pilares e o princípio vii.** A estrutura Saber sobre IA / Fazer com IA / Ser sem IA, adoptada a partir do CNIPES, é compatível com o princípio vii da U.Porto, que prevê aprendizagem sobre, com e sem IA. Esta correspondência apoia a proposta de momentos avaliativos sem IA; não demonstra que os documentos tenham sido elaborados de forma independente.
+**Os Três Pilares e o princípio vii.** A estrutura Saber sobre IA / Fazer com IA / Ser sem IA, adoptada a partir do CNIPES, é compatível com o princípio vii da U.Porto, que prevê aprendizagem sobre, com e sem IA. Esta correspondência apoia a proposta de momentos avaliativos sem IA; não permite afirmar que os documentos tenham sido elaborados de forma independente.
 
 **A ausência de declaração como violação autónoma.** O [cenário 1 do Anexo E](E-cenarios.qmd#cenario-1) e o Exemplo B.1 do [Anexo B](B-clausula.qmd) sustentam que a omissão da declaração constitui, por si, violação de integridade, independentemente da qualidade do conteúdo. O documento de orientações tipifica exactamente essa conduta como a primeira das três formas de uso fraudulento: "a omissão da declaração de utilização de ferramentas de IAGen quando tal declaração é obrigatória nos termos definidos pela unidade curricular" [@uporto2026orientacoes].
 
@@ -87,7 +87,7 @@ O mapa tarefa → macrodomínio vive em `policy.json` (`gaidet.order` e `gaidet.
 
 **Estado da execução.** As cinco alterações recomendadas por este anexo estão concluídas: a Themis (i) rotula as tarefas declaradas pelos macrodomínios GAIDeT --- na vertente Investigadores desde a versão `1.1.1`, na vertente Estudantes desde a `1.2.0` ---, (ii) acrescentou os macrodomínios em falta, (iii) acrescentou o eixo de âmbito, (iv) emite a nota curta normalizada, incluindo a variante de não-utilização, e (v) mantém o [Anexo A](A-declaracao.qmd) como formulário de preenchimento manual equivalente. A vertente Docentes produz uma cláusula para o programa e um requisito de divulgação, pelo que a taxonomia não lhe é aplicável.
 
-As ferramentas indicadas no Caderno de Pós-graduação e Investigação --- o *GAIDeT Declaration Generator* (<https://panbibliotekar.github.io/gaidet-declaration/>) ou, para teses em LaTeX, o pacote `aidisclose` (<https://aidisclose.org/>) [@uporto2026posgrad] --- permanecem alternativas válidas, designadamente enquanto a Themis for demonstrador prototípico e não aplicação institucional certificada.
+As ferramentas indicadas no Caderno de Pós-graduação e Investigação --- o *GAIDeT Declaration Generator* (<https://panbibliotekar.github.io/gaidet-declaration/>) ou, para teses em LaTeX, o pacote `aidisclose` (<https://aidisclose.org/>) [@uporto2026posgrad] --- permanecem alternativas válidas enquanto a Themis for demonstrador prototípico e não aplicação institucional certificada.
 
 ## Governação
 
@@ -105,14 +105,14 @@ O pacote U.Porto define cinco níveis de decisão, com um ponto focal por unidad
 
 ## Processo disciplinar
 
-O [capítulo 6](06-infraestrutura.qmd#processo-disciplinar-e-direito-de-defesa) enuncia princípios operacionais --- proporcionalidade pedagógica antes de sancionatória, direito de defesa e contraditório, parecer técnico do Grupo de Trabalho, articulação com a CE-FMUP, revisão periódica --- e remete para o procedimento aplicável da Universidade. As orientações da U.Porto descrevem o seguinte fluxo [@uporto2026orientacoes]:
+O capítulo [Processo disciplinar e direito de defesa](05b-processo-disciplinar.qmd) enuncia princípios operacionais --- proporcionalidade pedagógica antes de sancionatória, direito de defesa e contraditório, parecer técnico do Grupo de Trabalho, articulação com a CE-FMUP, revisão periódica --- e remete para o procedimento aplicável da Universidade. As orientações da U.Porto descrevem o seguinte fluxo [@uporto2026orientacoes]:
 
 1. O docente que identifique indícios de fraude reporta o caso ao conselho pedagógico da unidade orgânica, instruindo a comunicação com os elementos de facto disponíveis.
 2. O conselho pedagógico aprecia os factos e delibera sobre a proposta de abertura de inquérito.
 3. O director da unidade orgânica decide, com base nessa deliberação, a instauração de processo de inquérito.
 4. O instrutor nomeado conduz as diligências previstas no regulamento aplicável.
 
-Os princípios do capítulo 6 aplicam-se **dentro** deste fluxo, não em alternativa a ele. Propõe-se apoio técnico na preparação e apreciação dos factos, quando necessário, sem alterar as competências de decisão ou de instrução do procedimento. A articulação com a CE-FMUP deve atender à sua competência nos casos de investigação.
+Esses princípios aplicam-se **dentro** deste fluxo, não em alternativa a ele. O pacote da Universidade teve colaboração do Serviço de Apoio Jurídico, e o fluxo processual disciplinar que fixa é citado pelo Quadro em vez de ser por ele proposto, o que reduz o âmbito do parecer jurídico necessário. Propõe-se apoio técnico na preparação e apreciação dos factos, quando necessário, sem alterar as competências de decisão ou de instrução do procedimento. A articulação com a CE-FMUP deve atender à sua competência nos casos de investigação.
 
 ## O que este Quadro acrescenta
 
@@ -166,8 +166,20 @@ O pacote é explicitamente extensível. Três contributos estão ao alcance imed
 
 **Gerador institucional de declarações.** O guia base recomenda, como acção futura, que "a Universidade do Porto deverá considerar o desenvolvimento ou a adaptação de um gerador institucional de declarações de uso de IA, alojado em domínio próprio, que incorpore a taxonomia de referência e a extensão operacional definidas neste pacote" [@uporto2026guiabase], remetendo entretanto para duas ferramentas externas. A [Themis](../themis/) responde a essa especificação: a integração da taxonomia GAIDeT descrita neste anexo está concluída. A sua candidatura a esse papel pressupõe a transição descrita em [Sobre · Estatuto editorial](../sobre.qmd#estatuto-editorial): revisão de segurança independente, avaliação de impacto sobre a protecção de dados, registo no inventário de aplicações da Universidade e responsável técnico designado. Enquanto demonstrador prototípico, a Themis serve para demonstrar viabilidade e para calibrar requisitos --- não para ser adoptada como aplicação institucional no estado actual.
 
+### Próximos passos {#como-prosseguir}
+
+Os passos seguintes estão ordenados por precedência lógica, não por prioridade.
+
+1. **Validação interna dos perfis disciplinares.** Os perfis do [Anexo I](I-perfis-disciplinares.qmd) fazem afirmações pedagógicas sobre famílias de unidades curriculares que devem ser confirmadas por quem as lecciona. São propostas de calibração, não descrições validadas. **Antes de qualquer submissão externa**, cada perfil deve ser revisto pela coordenação do ciclo de estudos correspondente e ancorado numa unidade curricular concreta, com ligação à respectiva ficha no SIGARRA --- que é o formato usado pelo caderno da Universidade.
+2. **Apresentação aos membros da FMUP no Grupo de Trabalho da U.Porto.** Antes de qualquer submissão formal, o Quadro e os dois anexos-contributo devem ser apresentados a **Laura Ribeiro** e **Ricardo Correia**, docentes da FMUP que integram o Grupo de Trabalho da Universidade. A razão não é protocolar. É de eficiência: o pacote tem ciclo de revisão anual em curso, e há risco real de duplicação de trabalho já em curso na estrutura da Universidade. A via interna existe e deve ser usada antes da via formal.
+3. **Submissão dos contributos ao Grupo de Trabalho da U.Porto.** Depois de validados, os perfis disciplinares podem ser propostos para inclusão no *Caderno complementar de perfis disciplinares*, o contributo de menor atrito, porque o caderno os convida expressamente e define a estrutura a seguir; o promptário clínico pode ser proposto como suplemento ao *Promptário de estudo*.
+4. **Posicionamento da Themis.** Além dos requisitos de transição indicados acima, a candidatura da Themis a gerador institucional exige a transferência ou a abertura do desenvolvimento a terceiros, dado o conflito de interesses declarado do autor.
+5. **Alinhamento do ciclo de revisão.** O pacote da Universidade prevê revisão anual, convocada pela estrutura responsável pela inovação pedagógica e coordenada pelo seu Grupo de Trabalho. O Quadro prevê igualmente revisão anual. Os dois ciclos devem ser alinhados, de modo a que a revisão do Quadro ocorra depois da revisão do pacote e possa incorporá-la, e não em paralelo.
+
+O parecer jurídico e a decisão de processo pedidos aos órgãos da FMUP estão na [Síntese](../sintese.qmd#sec-pedido).
+
 ## Revalidação de Outubro de 2026
 
-Os sete documentos estão identificados na página pública de [Documentos orientadores da Inovação Educativa da U.Porto](https://www.up.pt/portal/pt/inovacao-educativa/recursos/documentos-orientadores/). As ligações directas foram acrescentadas à bibliografia. Os sete PDFs foram consultados: confirmaram-se a edição de Junho de 2026 e as passagens sobre declaração em dois níveis, materialidade, governação, aprovação de ferramentas e procedimento perante incidentes. A disponibilização pública destes documentos orientadores não demonstra, por si só, aprovação regulamentar desta proposta FMUP.
+Os sete documentos estão identificados na página pública de [Documentos orientadores da Inovação Educativa da U.Porto](https://www.up.pt/portal/pt/inovacao-educativa/recursos/documentos-orientadores/). As ligações directas foram acrescentadas à bibliografia. Os sete PDFs foram consultados: confirmaram-se a edição de Junho de 2026 e as passagens sobre declaração em dois níveis, materialidade, governação, aprovação de ferramentas e procedimento perante incidentes. A disponibilização pública destes documentos orientadores não equivale, por si só, a aprovação regulamentar desta proposta FMUP.
 
 Na Themis v{{< var themis.versao >}}, a declaração de não-utilização está disponível para estudantes e investigadores; o âmbito deixa de ser presumido e a declaração estruturada recolhe partes afectadas, verificações e registo de prompts. As confirmações de privacidade e de autoria colectiva dependem de resposta explícita.

@@ -3,12 +3,8 @@
 Os exemplos ibero-americanos combinam iniciativas nacionais e políticas universitárias. Portugal e Espanha também estão sujeitos ao enquadramento da UE; a CRUE-TIC é uma estrutura espanhola, não um organismo supranacional. Para a FMUP, interessam a adaptação linguística dos recursos, a governação universitária e a articulação com a ANIA. Esta selecção de casos não constitui um levantamento representativo da região.
 
 ::: {.callout-note}
-O retrato específico do ensino superior português em 2026 -- com o diagnóstico empírico CNIPES (68 IES inquiridas), os Três Pilares e os cinco critérios de maturidade institucional -- está desenvolvido no [capítulo seguinte](12b-panorama-portugal.qmd).
+O retrato específico do ensino superior português em 2026 -- com o diagnóstico empírico CNIPES (68 IES inquiridas), os Três Pilares e os cinco critérios de maturidade institucional -- está no capítulo [Portugal: diagnóstico e referenciais nacionais](12b-panorama-portugal.qmd), com a ANIA, a IAedu e o pacote da U.Porto.
 :::
-
-## Portugal: enquadramento e reenvio para o capítulo seguinte
-
-No espaço ibero-americano, Portugal distingue-se pela existência de um instrumento nacional estruturante --- a Agenda Nacional de Inteligência Artificial (ANIA, aprovada pela Resolução do Conselho de Ministros n.º 2/2026 [@ania2026]) --- e de uma infraestrutura de acesso institucional a modelos de larga escala com garantia contratual de protecção de dados --- a plataforma IAedu (FCT/FCCN [@iaedu2025]) --- relevante para a preparação institucional portuguesa. O retrato detalhado --- maturidade das políticas nas IES portuguesas, iniciativas universitárias específicas, diagnóstico empírico do CNIPES e alinhamento com os critérios de maturidade institucional --- está desenvolvido no [capítulo seguinte](12b-panorama-portugal.qmd).
 
 ## Brasil
 
@@ -20,4 +16,4 @@ A UNAM anunciou em Março de 2026 a criação de um [Consejo Coordinador de Inte
 
 ## Síntese para o contexto FMUP
 
-Para a FMUP, a articulação com a ANIA e o QNCI deve considerar os instrumentos que estejam efectivamente disponíveis. A IAedu reduz a barreira financeira e oferece acesso institucional, sujeito às condições de cada tarefa e categoria de dados. O pacote U.Porto de Junho de 2026 [@uporto2026orientacoes; @uporto2026guiabase] fornece orientação transversal às unidades orgânicas; esta proposta desenvolve os requisitos biomédicos, clínicos e de investigação. Os exemplos da Unicamp e da UNAM ajudam a discutir coordenação e apoio técnico, sem estabelecer uma classificação de maturidade entre universidades. A articulação com a U.Porto está no [Anexo H](H-articulacao-uporto.qmd).
+Para a FMUP, os exemplos da Unicamp e da UNAM ajudam a discutir coordenação e apoio técnico, sem estabelecer uma classificação de maturidade entre universidades.

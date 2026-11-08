@@ -97,24 +97,6 @@
     return 'in this piece of work (' + fmtAssignmentNoun(a, otherText) + ')';
   };
 
-  const LEVEL_LABEL = {
-    undergraduate: 'undergraduate course unit',
-    postgraduate: 'postgraduate (master’s) course unit',
-    doctoral: 'doctoral course unit',
-  };
-
-  const LEVEL_STUDENT = {
-    undergraduate: 'students',
-    postgraduate: 'students',
-    doctoral: 'doctoral candidates',
-  };
-
-  const LEVEL_STUDENT_SG = {
-    undergraduate: 'the student',
-    postgraduate: 'the student',
-    doctoral: 'the doctoral candidate',
-  };
-
   const SKILL_PHRASES = {
     critical_thinking: 'critical thinking and argumentation',
     clinical_reasoning: 'clinical reasoning',
@@ -359,7 +341,6 @@
     const tools = trim(s.tools) || 'unspecified generative artificial intelligence tools';
     const tasks = (s.tasks || []).map((k) => k === 'other' && trim(s.tasksOther) ? trim(s.tasksOther) : TASK_PHRASES[k]).filter(Boolean);
     const tasksClause = tasks.length ? ' for the following tasks: ' + list(tasks) : ' for ancillary preparatory tasks';
-    const subj = s.activity === 'manuscript' ? 'the authors' : 'the researcher(s)';
 
     const domainsClause = gaidetClause(s, policy);
     const scopeClause = SCOPE_SENTENCE[s.scope] ? ' ' + SCOPE_SENTENCE[s.scope] : '';
@@ -450,6 +431,10 @@
       toolsTierEnterprise: 'Enterprise tiers (contract + training opt-out)',
       toolsTierSpecialised: 'Specialised tools',
       toolsTierConsumerWarning: 'Consumer versions — mind the data',
+      toolsTierInstitutionalBlurb: 'Institutional access. Check the terms of use and suitability for the data processed.',
+      toolsTierEnterpriseBlurb: 'Check the contract, account settings and institutional authorisation. A commercial name does not establish suitability for sensitive data.',
+      toolsTierSpecialisedBlurb: 'Tools with a specific function (translation, language polishing, assisted reading). Confirm data policy before use.',
+      toolsTierConsumerWarningBlurb: 'Consumer accounts. Check retention and training use; do not enter sensitive information in these public services.',
       studentUCPolicyReminder: 'Before submitting this declaration, check your course unit\'s policy — the course syllabus or <a href="../quadro/B-clausula.html" target="_blank">Appendix B</a> specify the applicable regime (permitted, conditioned or prohibited). This declaration is based on the FMUP proposal. Completing it does not demonstrate compliance with the specific course-unit policy.',
       teacherAdaptReminder: 'This text is a template. Adapt it to the specific pedagogical design of your course unit before including it in the syllabus — in particular, specify the course name, semester, and any specific conditions. <a href="../quadro/B-clausula.html" target="_blank">Appendix B</a> contains additional examples by regime.',
       landingPrivacyNote: 'This tool runs entirely in your browser — no form data is sent to a server and no cookies are used. Choices and free text are encoded in the browser address and may remain in its history; anyone with the link can recover them. Do not enter personal, clinical or identifiable information in any free-text field. The risk assessment is advisory; the final decision always belongs to the user.',
@@ -463,6 +448,15 @@
       student: 'Generate a statement to accompany a submitted assignment',
       teacher: 'Define an AI-use policy for a course unit',
       researcher: 'Disclose the use of AI in a manuscript, application, or communication',
+    },
+    principles: {
+      'principio-1-agencia-humana': 'Human agency',
+      'principio-2-integridade': 'Academic and scientific integrity',
+      'principio-3-protecao-dados': 'Data protection',
+      'principio-4-transparencia': 'Transparency',
+      'principio-5-equidade': 'Equity of access',
+      'principio-6-literacia': 'Critical literacy',
+      'principio-7-revisao': 'Continuous revision',
     },
     student: {
       step1: 'Is this individual or group work?',

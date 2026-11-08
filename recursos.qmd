@@ -35,12 +35,42 @@ Lista de referenciais, regulamentos e documentos institucionais referenciados ao
 - **[WAME](https://wame.org/)** --- _World Association of Medical Editors_, posições sobre uso de GenAI em manuscritos.
 - **[COPE](https://publicationethics.org/)** --- _Committee on Publication Ethics_, recomendações sobre IA na publicação.
 
+## Universidade do Porto (Junho de 2026)
+
+O referencial hierarquicamente mais próximo da FMUP. Sete documentos publicados em Junho de 2026 pela Unidade de Inovação Educativa da U.Porto, produzidos pelo Grupo de Trabalho constituído pelo Despacho N.º GR. 08/05/2025, com colaboração do Serviço de Apoio Jurídico da Universidade. O pacote qualifica-se a si próprio como «_soft law_ académico» e aplica-se às quinze unidades orgânicas, entre as quais a FMUP. A articulação integral com o presente Quadro consta do [Anexo H](quadro/H-articulacao-uporto.qmd).
+
+- **Doc. 01** -- *Inteligência artificial generativa no domínio educativo: Orientações para uso e adoção responsável* [@uporto2026orientacoes]. Enquadramento estratégico: missão, cinco valores, oito princípios, análise de riscos e oportunidades, seis eixos de recomendações, fluxo processual disciplinar, glossário.
+- **Doc. 02** -- *Guia de boas práticas para o uso de inteligência artificial generativa no contexto académico* [@uporto2026guiabase]. Núcleo operacional: sete regras mínimas transversais, modelo de semáforo por actividade, estrutura de governação em cinco níveis, dez situações-tipo, _checklists_ e modelos de declaração.
+- **Doc. 03** -- *Guia prático para docentes* [@uporto2026guiadocentes]. Fluxo de decisão em seis passos e texto-modelo para enunciados.
+- **Doc. 04** -- *Guia prático para estudantes* [@uporto2026guiaestudantes]. Leitura do semáforo, bom _versus_ mau uso, níveis de declaração.
+- **Doc. 05** -- *Caderno complementar de perfis disciplinares* [@uporto2026perfis]. Dez perfis de unidades curriculares, um por unidade orgânica; o perfil 7 corresponde à unidade curricular *Medicina Clínica e Serviços de Saúde I* da FMUP. O caderno é explicitamente extensível por proposta das unidades orgânicas.
+- **Doc. 06** -- *Caderno de Pós-graduação e Investigação com Inteligência Artificial Generativa* [@uporto2026posgrad]. Adopta o **GAIDeT** [@suchikova2026gaidet] como taxonomia-base de delegação de tarefas, com extensão operacional U.Porto para visuais/multimédia e controlo de qualidade; define o regime de declaração em dois níveis.
+- **Doc. 07** -- *Promptário de estudo com Inteligência Artificial Generativa* [@uporto2026promptario]. Padrões de _prompt_ por objectivo de aprendizagem e por área, e lista de _prompts_ a evitar.
+
+Os sete documentos e as ligações directas aos PDFs foram confirmados em 3 de Outubro de 2026 na página de [Documentos orientadores da U.Porto](https://www.up.pt/portal/pt/inovacao-educativa/recursos/documentos-orientadores/). As entradas bibliográficas incluem esses endereços.
+
 ## Portugal
 
-- **[Recomendação n.º 4/2026 do CNE](https://diariodarepublica.pt/dr/detalhe/recomendacao/4-2026-1124911989)** --- Conselho Nacional de Educação, _Integração da Inteligência Artificial no sistema educativo português_, publicada em DR 2.ª série, n.º 98, 21 de Maio de 2026. 31 recomendações em três eixos (Infraestrutura e Soberania Digital; Pedagogia, Currículo, Literacia e Formação; Ética, Responsabilidade, Governança e Monitorização), com calendarização (medidas urgentes / médio prazo / longo prazo). Aplicação ao ensino superior em três recomendações específicas (1.6 _edge computing_, 2.13 _RAG_, 3.5 governança nacional); princípios transversais aplicáveis a todo o sistema educativo público.
+- **[Recomendação n.º 4/2026 do CNE](https://diariodarepublica.pt/dr/detalhe/recomendacao/4-2026-1124911989)** --- Conselho Nacional de Educação, _Integração da Inteligência Artificial no sistema educativo português_, publicada em DR 2.ª série, n.º 98, 21 de Maio de 2026. 31 recomendações em três eixos (Infraestrutura e Soberania Digital; Pedagogia, Currículo, Literacia e Formação; Ética, Responsabilidade, Governança e Monitorização), com calendarização (medidas urgentes / médio prazo / longo prazo). Aplicação ao ensino superior em três recomendações específicas (1.6 _edge computing_, 2.13 _RAG_, 3.5 governação nacional); princípios transversais aplicáveis a todo o sistema educativo público.
 - **[Resolução do Conselho de Ministros n.º 2/2026](https://diariodarepublica.pt/dr/detalhe/resolucao-conselho-ministros/2-2026-1000882016)** --- Agenda Nacional de Inteligência Artificial (ANIA) e Plano de Acção 2026-2030. Quatro eixos; Quadro Nacional de Competências Inteligentes (QNCI); reforço do Deucalion.
 - **[IAedu](https://iaedu.pt/)** --- Plataforma da FCT/FCCN para acesso institucional federado a modelos de larga escala, com garantia contratual de que os dados dos utilizadores não são usados para treino.
 - **[A3ES](https://www.a3es.pt/)** --- Agência de avaliação e acreditação do ensino superior; em discussão a integração de competências em IA nos referenciais.
+
+Dois documentos institucionais portugueses publicados em Abril de 2026, ambos contemporâneos da redacção do presente Quadro:
+
+- **CNIPES** -- *Inteligência Artificial no Ensino Superior em Portugal: Diagnóstico nacional para governação institucional*. Conselho Nacional para a Inovação Pedagógica no Ensino Superior, Grupo de Trabalho Digital e IA na Educação (Despacho n.º 10945/2025). Coordenação: Nelson Zagalo. DOI: [10.5281/zenodo.19555760](https://doi.org/10.5281/zenodo.19555760). Diagnóstico baseado em inquérito a 68 IES portuguesas. Documento estrutural para o ensino superior português. Articulado com o presente Quadro no capítulo [Portugal: diagnóstico e referenciais nacionais](quadro/12b-panorama-portugal.qmd) e no [Anexo G](quadro/G-maturidade-cnipes.qmd).
+
+- **CNE** -- *Inteligência Artificial em Contexto Educativo*. Conselho Nacional de Educação, Colecção Estudos e Relatórios, edição electrónica Abril de 2026 (ISSN 2967-0259). Autoria: António Lopes, António Correia, Ricardo Oliveira. Direcção: Domingos Fernandes. Documento mais amplo, com ênfase no sistema educativo geral (pré-escolar a secundário), de natureza consultiva. Disponível em <https://www.cnedu.pt>.
+
+## Protecção de dados e consulta regulatória
+
+Para questões de protecção de dados, conformidade com o AI Act e enquadramento deontológico, recomenda-se consulta regular a:
+
+- **EDPB** (_European Data Protection Board_): pareceres sobre a utilização de modelos de IA e a sua articulação com o RGPD, nomeadamente a Opinião 28/2024 sobre modelos de IA e dados pessoais (<https://edpb.europa.eu>).
+- **ENISA** (_European Union Agency for Cybersecurity_): orientações sobre segurança de sistemas de IA, incluindo o _Multilayer Framework for Good Cybersecurity Practices for AI_ (<https://enisa.europa.eu>).
+- **CNPD** (Comissão Nacional de Protecção de Dados): autoridade nacional competente para questões de RGPD em Portugal, incluindo o tratamento de dados em contextos de investigação, ensino e saúde (<https://www.cnpd.pt>).
+- **Ordem dos Médicos**: enquadramento deontológico aplicável a médicos docentes e investigadores, incluindo dever de sigilo profissional e responsabilidade clínica em utilizações de IA (<https://ordemdosmedicos.pt>).
+- **DGES** (<https://www.dges.gov.pt>): acompanhamento, com a A3ES, de orientações futuras sobre integração de GenAI no ensino superior português.
 
 ## Imagiologia, radiologia e _SaMD_
 

@@ -4,7 +4,7 @@ As secções seguintes abordam questões transversais às três vertentes, com t
 
 ## Viés algorítmico em contextos clínicos
 
-Os modelos de GenAI herdam os vieses dos *corpora* em que foram treinados. A literatura documenta sub-representação de populações não-brancas em *datasets* de imagiologia, sub-representação histórica do sexo feminino em estudos clínicos de referência, e escassez de dados para condições que afectam populações minoritárias. Em contexto formativo ou de investigação, isto traduz-se em diferenciais de *performance* por tom de pele, raciocínios diferenciais que assumem o doente-tipo (homem, adulto, caucasiano), recomendações farmacológicas que ignoram variação farmacogenómica. A *ethics checklist* de Ning et al. [@ning2024checklist] inclui este domínio como obrigatório.
+Os modelos de GenAI herdam os vieses dos *corpora* em que foram treinados. A literatura documenta sub-representação de populações não-brancas em *datasets* de imagiologia [@daneshjou2022dermatology], sub-representação do sexo feminino em estudos clínicos de algumas áreas [@steinberg2021female], e escassez de dados representativos de populações minoritárias [@ibrahim2021datapoverty]. Em contexto formativo ou de investigação, isto traduz-se em diferenciais de *performance* (por tom de pele [@daneshjou2022dermatology]; por sexo e raça em radiografia do tórax [@seyyedkalantari2021underdiagnosis]), raciocínios diferenciais que assumem o doente-tipo (homem, adulto, caucasiano), recomendações farmacológicas que ignoram variação farmacogenómica. A *ethics checklist* de Ning et al. [@ning2024checklist] inclui este domínio como obrigatório.
 
 Implicações para a FMUP: docentes explicitam o viés em sessões formativas e exercitam a detecção em tutoriais; estudantes são treinados a reconhecer e questionar sugestões enviesadas em raciocínio diferencial; investigadores que usem GenAI em análise de dados clínicos documentam, na secção de limitações, os limites de representação demográfica.
 
@@ -19,10 +19,6 @@ Implicações para a FMUP: a verificação humana especializada é exigida (não
 A responsabilidade académica pelo trabalho e a protecção jurídica dos seus conteúdos são questões distintas. Declarar o uso de GenAI ou rever um texto não assegura, por si só, direitos de autor sobre todo o resultado. O [U.S. Copyright Office](https://www.copyright.gov/ai/) distingue a contribuição criativa humana do material inteiramente gerado por IA; essa posição refere-se ao direito norte-americano e não substitui a análise do regime aplicável em Portugal.
 
 Em trabalhos, manuscritos e materiais pedagógicos, mantém-se a responsabilidade humana e declara-se a assistência segundo as regras do destinatário. Antes de carregar ou publicar conteúdos, verifiquem-se os direitos de terceiros, a licença dos materiais e os termos da plataforma. Conteúdo inédito ou confidencial requer ainda autorização institucional e um ambiente adequado.
-
-## *Procurement* e dependência de fornecedores
-
-A escolha das plataformas cria compromissos contratuais com efeitos sobre dados, continuidade de serviço e capacidade de negociação. Os exemplos do [capítulo 10](10-panorama-eua.qmd) mostram adopção por projectos e avaliação de ferramentas; não se dividem entre instituições capturadas e instituições independentes. Para a FMUP, propõe-se a IAedu [@iaedu2025] como primeira linha para usos autorizados e avaliação das alternativas nacionais e comerciais. Cada serviço exige análise do contrato, da retenção, do uso para treino e das categorias de dados permitidas.
 
 ## Sustentabilidade organizacional e ambiental
 

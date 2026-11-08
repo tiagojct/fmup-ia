@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.3.2] — 2026-11-07
+
+- Self-host Atkinson Hyperlegible Next and Geist Mono; no third-party font request; ship their OFL texts.
+- Add CSP, referrer policy and `color-scheme: light dark`.
+- Fix dark-mode navigation contrast and focus visibility.
+- Validate real calendar dates and sanitise shared state by role.
+- Filter malformed optional policy data instead of crashing.
+- Show the policy-unavailable notice on forms after a first selection.
+- Hide the researcher other-task input until selected.
+- Preserve custom task and assignment text in summaries; add student no-use summary.
+- Include the selections summary in printed output.
+- Move remaining UI copy into i18n; correct the Portuguese "ficheiro" wording.
+- Policy 1.7.2 references framework v1.7. Rules are unchanged.
+
 ## [1.3.1] — 2026-10-03
 
 - Correct bilingual wording: teacher prohibition applies to the selected assessed work; open use retains data, integrity and disclosure requirements.

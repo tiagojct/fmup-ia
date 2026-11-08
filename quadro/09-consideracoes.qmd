@@ -2,4 +2,12 @@
 
 Este documento é uma proposta sujeita a apreciação institucional. O referencial da U.Porto oferece uma base comum; a adaptação à Faculdade deve explicitar responsabilidades por actividade e mecanismos de apoio. Os estudos de escolas médicas e universidades [@ichikawa2025genai; @jin2025global] documentam diferenças de orientação nas respectivas amostras, sem caracterizar todas as instituições ou o estado actual da FMUP.
 
+## O que o piloto deve testar
+
+A avaliação do piloto deve testar estes pressupostos: que actividades beneficiam de GenAI, que verificações são realmente realizadas, como se preserva a responsabilidade profissional e que dependências técnicas permanecem. As respostas do capítulo de [objecções](09b-objeccoes.qmd) são posições do autor sujeitas a revisão, não resultados de validação.
+
+## O que se pede
+
+O pedido aos órgãos competentes da FMUP (apreciação, mandato para um Grupo de Trabalho, articulação técnica e reconhecimento da Themis como demonstrador prototípico) está na [Síntese](../sintese.qmd#sec-pedido).
+
 Ursula Franklin, nas Massey Lectures de 1989, discutiu a dimensão política e social da tecnologia [@franklin1989realworld]. A decisão institucional sobre GenAI deve considerar os seus efeitos sobre aprendizagem, responsabilidade e relações de trabalho, além das capacidades técnicas.

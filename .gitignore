@@ -36,3 +36,6 @@ documentos up/
 
 # Python tooling
 __pycache__/
+
+# Cópias de segurança da revisão (working-draft)
+.working-draft/

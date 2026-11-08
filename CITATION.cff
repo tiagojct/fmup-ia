@@ -29,8 +29,8 @@ keywords:
 license: CC-BY-4.0
 repository-code: "https://github.com/tiagojct/fmup-ia"
 url: "https://tiagojacinto.eu/fmup-ia/"
-version: "1.6.0"
-date-released: "2026-10-03"
+version: "1.7.0"
+date-released: "2026-10-20"
 # CFF 1.2.0 só admite `software` ou `dataset` no campo `type`; o tipo
 # correcto (relatório/publicação) está declarado em .zenodo.json, que
 # suporta `publication/report`. A divergência entre os dois ficheiros

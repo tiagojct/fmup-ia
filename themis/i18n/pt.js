@@ -97,12 +97,6 @@
     return 'neste trabalho (' + fmtAssignmentNoun(a, otherText) + ')';
   };
 
-  const LEVEL_LABEL = {
-    undergraduate: 'unidade curricular de licenciatura',
-    postgraduate: 'unidade curricular de mestrado',
-    doctoral: 'unidade curricular de doutoramento',
-  };
-
   const SKILL_PHRASES = {
     critical_thinking: 'pensamento crítico e argumentação',
     clinical_reasoning: 'raciocínio clínico',
@@ -417,7 +411,7 @@
     htmlLang: 'pt-PT',
     ui: {
       copyFailed: "Não foi possível copiar. Seleccione e copie o texto manualmente.",
-      restoredChoices: "Escolhas recuperadas de uma ligação. Reveja os campos: a declaração será gerada com as versões e a data actuais; a ligação não é um arquivo do texto original.",
+      restoredChoices: "Escolhas recuperadas de uma ligação. Reveja os campos: a declaração será gerada com as versões e a data actuais; a ligação não é um ficheiro do texto original.",
 
       brand: 'FMUP',
       brandFull: 'Faculdade de Medicina da Universidade do Porto',
@@ -464,6 +458,10 @@
       toolsTierEnterprise: 'Versões empresariais (contrato + opt-out de treino)',
       toolsTierSpecialised: 'Ferramentas especializadas',
       toolsTierConsumerWarning: 'Versões públicas — atenção aos dados',
+      toolsTierInstitutionalBlurb: 'Acesso institucional. Confirme as condições de utilização e a adequação aos dados tratados.',
+      toolsTierEnterpriseBlurb: 'Verifique o contrato, a configuração da conta e a autorização institucional. A designação comercial não garante adequação a dados sensíveis.',
+      toolsTierSpecialisedBlurb: 'Ferramentas com função específica (tradução, revisão, leitura assistida). Confirme política de dados antes de usar.',
+      toolsTierConsumerWarningBlurb: 'Contas de consumo. Verifique retenção e utilização para treino; não introduza informação sensível nestes serviços públicos.',
       studentUCPolicyReminder: 'Antes de submeter esta declaração, verifique a política da sua unidade curricular — o programa da UC ou o <a href="../quadro/B-clausula.html" target="_blank">Anexo B</a> indicam o regime aplicável (permitido, condicionado ou proibido). Esta declaração baseia-se na proposta FMUP. O seu preenchimento não demonstra que o uso respeitou o regime específico da UC.',
       teacherAdaptReminder: 'Este texto é um modelo. Adapte-o ao desenho pedagógico concreto da sua unidade curricular antes de o incluir no programa — nomeadamente, especificando o nome da UC, o semestre e quaisquer condições específicas. O <a href="../quadro/B-clausula.html" target="_blank">Anexo B</a> contém exemplos adicionais por regime.',
       landingPrivacyNote: 'Esta ferramenta corre inteiramente no seu navegador — sem envio dos campos para um servidor e sem cookies. As escolhas e o texto livre ficam codificados no endereço do navegador e podem permanecer no histórico; qualquer pessoa com a ligação pode recuperá-los. Não introduza informação pessoal, clínica ou identificável nos campos de texto livre. A avaliação de risco é orientadora; a decisão final pertence sempre ao utilizador.',
@@ -477,6 +475,15 @@
       student: 'Gerar uma declaração para acompanhar um trabalho submetido',
       teacher: 'Definir uma política de uso de IA para uma unidade curricular',
       researcher: 'Declarar o uso de IA num manuscrito, candidatura ou comunicação',
+    },
+    principles: {
+      'principio-1-agencia-humana': 'Agência humana',
+      'principio-2-integridade': 'Integridade académica e científica',
+      'principio-3-protecao-dados': 'Protecção de dados',
+      'principio-4-transparencia': 'Transparência',
+      'principio-5-equidade': 'Equidade de acesso',
+      'principio-6-literacia': 'Literacia crítica',
+      'principio-7-revisao': 'Revisão contínua',
     },
     student: {
       step1: 'O trabalho é individual ou em grupo?',

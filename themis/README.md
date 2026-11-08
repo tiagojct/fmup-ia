@@ -42,8 +42,9 @@ documented in [Annex H](https://tiagojacinto.eu/fmup-ia/quadro/H-articulacao-upo
 of the FMUP framework.
 
 The tool is **client-side only** (HTML + vanilla JS + a single JSON policy
-file). It does not send any data to a server, does not use cookies for
-tracking, and does not require a build step.
+file). It does not transmit form data to a server, makes no third-party
+asset requests, and does not use cookies for tracking. Fonts and policy data
+are served from the same origin. It does not require a build step.
 
 ## Relationship to the FMUP framework
 
@@ -138,17 +139,20 @@ all editable as plain text. To create a derivative for another institution:
 The tool follows two independent semver streams:
 
 - `APP_VERSION` (in `app.js`) — covers UI behaviour, statement wording, and
-  i18n. Bumped whenever text in `i18n/*.js` changes.
+  i18n. It is generated from `themis.versao` in the repository
+  `_variables.yml`; run `python3 scripts/sync-versions.py` after editing.
 - `policy.version` (in `policy.json`) — covers the institutional rules and
-  framework reference. Bumped whenever rules, levels, or framework version
-  change.
+  framework reference. It is generated from `themis.regras`. The current
+  policy, `1.7.2`, references framework v1.7 with unchanged rules.
 
 App, policy and framework versions are included in each generated declaration.
 The page footer shows the app and framework; the declaration carries the ruleset version too.
 
 ## Privacy
 
-- No user input is sent to a server.
+- No form data is transmitted to a server.
+- All assets, including fonts, are served locally. The page makes no
+  third-party font request.
 - No cookies; only `localStorage` is used, and only to remember the language
   preference (`fmup-ai-lang`).
 - The URL hash encodes the user's selections (base64 of a small JSON), so
@@ -163,6 +167,11 @@ The page footer shows the app and framework; the declaration carries the ruleset
 The tool is distributed under the same licence as the FMUP framework book:
 **Creative Commons Attribution 4.0 (CC BY 4.0)**.
 
+The self-hosted fonts are distributed under the SIL Open Font License 1.1:
+Atkinson Hyperlegible Next (Braille Institute) and Geist Mono (Vercel).
+The licence texts are in `themis/fonts/OFL-Atkinson.txt` and
+`themis/fonts/OFL-Geist.txt`.
+
 ## Contact
 
 Tiago Jacinto — Faculdade de Medicina da Universidade do Porto.
@@ -173,6 +182,6 @@ When AI was used, tasks, tool names, scope and acknowledgement of the context qu
 
 The five explicit prohibited-context choices activate risk level 4. No-use declarations have no use-related risk assessment. Systematic reviews of public literature are distinguished from confidential peer review. Alerts remain advisory and do not prevent disclosure of a prohibited use.
 
-The form stores text in the URL fragment as it is edited. It is not encrypted and may remain in browser history. No form content is sent to a server.
+The form stores text in the URL fragment as it is edited. It is not encrypted and may remain in browser history. No form content is transmitted to a server.
 
-Run `npm ci && npm test` in `themis/test/`. The tests exercise both languages, all roles, validation, risk contexts, recovery, clipboard failure and the training timer.
+Run `npm ci && npm test` in `themis/test/`. The tests exercise both languages, all roles, validation, risk contexts, recovery, clipboard failure, static privacy and security checks, and the training timer.

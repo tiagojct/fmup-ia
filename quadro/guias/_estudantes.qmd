@@ -1,0 +1,24 @@
+### Utilizações permitidas
+
+- **Estudar e rever conceitos:** pedir explicações, resumos, esquemas, clarificação de terminologia médica.
+- **Melhorar a escrita:** revisão gramatical e estilística de textos da sua autoria, desde que o conteúdo intelectual permaneça seu.
+- **Preparar material de estudo:** a partir de material já estudado, pedir organização, mapas conceptuais, _flashcards_.
+- **Explorar cenários clínicos em abstracto:** casos fictícios, nunca casos reais ou com dados identificáveis.
+
+### Regras essenciais
+
+1. **Verifique tudo.** É responsável por qualquer conteúdo que submeta, independentemente da ferramenta usada. Erros factuais, referências inexistentes ou raciocínios errados que escaparem ao seu controlo são seus.
+2. **Declare o uso.** Em qualquer trabalho académico que envolva GenAI, inclua uma declaração com ferramenta, tipo de assistência, secções onde foi aplicada e _prompts_ utilizados ([Anexo A](https://tiagojacinto.eu/fmup-ia/quadro/A-declaracao.html)). Em teses, dissertações, relatórios finais e documentos equivalentes, inclua sempre a nota curta normalizada, mesmo sem utilização; se o uso foi material, acrescente a declaração estruturada.
+3. **Consulte o programa da unidade curricular.** Cada UC define o seu regime: permitido, condicionado ou proibido. Em caso de dúvida, pergunte ao docente antes.
+4. **Não use em avaliações sem autorização explícita.** Isto inclui exames, trabalhos de avaliação, apresentações orais e discussões tutoriais.
+5. **Nunca introduza dados de doentes.** Nem de processos clínicos, nem de imagens, nem de diários de estágio -- mesmo que os pense anonimizados. A anonimização informal não cumpre o RGPD.
+6. **Em raciocínio clínico, não delegue.** A utilização de GenAI para gerar diagnósticos diferenciais ou planos de gestão sobre casos discutidos em aula compromete o desenvolvimento da sua competência clínica.
+7. **Seja capaz de defender o que submete.** O docente pode pedir-lhe para explicar linha a linha o que entregou. Se não consegue, não o devia ter submetido.
+
+### Ferramentas e condições de uso
+
+- **IAedu** — <https://iaedu.pt>. Plataforma institucional portuguesa (FCT/FCCN), autenticação federada com conta `@up.pt`. Gratuita, com garantia de não-utilização dos dados para treino.
+- **ChatGPT** — <https://chatgpt.com>. Reveja treino e retenção nas definições da conta; isso não autoriza dados protegidos.
+- **Claude** — <https://claude.ai>. Ferramenta conversacional; confirme as referências e as condições de utilização.
+- **DeepL** — <https://www.deepl.com>. Para tradução, com revisão terminológica.
+- **NotebookLM** — <https://notebooklm.google.com>. Útil para estudar a partir de materiais próprios ou autorizados, mantendo o âmbito controlado.

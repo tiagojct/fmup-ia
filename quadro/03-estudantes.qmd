@@ -12,7 +12,7 @@ As três secções seguintes correspondem aos marcadores do semáforo adoptado p
 
 ## 🟩 Utilizações permitidas
 
-Os estudantes podem utilizar ferramentas de GenAI para apoio ao estudo individual, incluindo a revisão de conceitos, a geração de resumos a partir de material já estudado, a criação de material de estudo e a clarificação de terminologia médica. Podem também utilizar GenAI para revisão gramatical e estilística de textos da sua autoria, desde que o conteúdo intelectual permaneça do estudante. A condição essencial, documentada por Moorhouse et al. (2023) na sua análise das orientações das universidades com melhor posição nos _rankings_ mundiais, é que o utilizador tenha proficiência suficiente na área temática para verificar a exactidão do resultado gerado [@moorhouse2023assessment].
+Os estudantes podem utilizar ferramentas de GenAI para apoio ao estudo individual, incluindo a revisão de conceitos, a geração de resumos a partir de material já estudado, a criação de material de estudo e a clarificação de terminologia médica. Podem também utilizar GenAI para revisão gramatical e estilística de textos da sua autoria, desde que o conteúdo intelectual permaneça do estudante. O utilizador deve ter proficiência suficiente na área temática para verificar a exactidão do resultado gerado: esta condição essencial foi documentada por Moorhouse et al. (2023) na sua análise das orientações das universidades com melhor posição nos _rankings_ mundiais [@moorhouse2023assessment].
 
 ## 🟨 Utilizações condicionadas
 
@@ -38,7 +38,7 @@ Conta como informação identificável — e não pode ser enviada para serviço
 
 Todos os trabalhos académicos em que tenha sido utilizada GenAI devem incluir uma declaração de uso que especifique a ferramenta, o tipo de assistência obtida, as secções em que foi aplicada e os _prompts_ utilizados (ver [Anexo A](A-declaracao.qmd)). Todo o conteúdo gerado por GenAI deve ser lido, verificado e editado pelo estudante antes de ser submetido. O estudante deve ser capaz de explicar e defender qualquer conteúdo que submeta. Para preparar um rascunho de declaração segundo este Quadro, utilize a ferramenta [**Themis**](../themis/).
 
-Em teses, dissertações, relatórios finais e documentos equivalentes aplica-se o regime de dois níveis definido pela Universidade do Porto [@uporto2026guiabase; @uporto2026posgrad]: **nota curta normalizada em todos os casos** --- incluindo a declaração de não-utilização --- e **declaração estruturada** quando a utilização tenha sido material, segundo a taxonomia GAIDeT [@suchikova2026gaidet]. O limiar de materialidade e a taxonomia estão no [Anexo A](A-declaracao.qmd); a articulação com o regime U.Porto está no [Anexo H](H-articulacao-uporto.qmd).
+Em teses, dissertações, relatórios finais e documentos equivalentes aplica-se o regime de dois níveis definido pela Universidade do Porto [@uporto2026guiabase; @uporto2026posgrad], com **nota curta normalizada em todos os casos**, incluindo a declaração de não-utilização. Os dois níveis, o limiar de materialidade e a taxonomia GAIDeT estão no [Anexo A](A-declaracao.qmd).
 
 ## Trabalhos de grupo
 

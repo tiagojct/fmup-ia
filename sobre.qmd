@@ -3,6 +3,16 @@ title: "Sobre"
 toc: true
 ---
 
+## Autoria
+
+**Tiago Jacinto** --- Professor Auxiliar no MEDCIDS (Medicina da Comunidade, Informação e Decisão em Saúde), Faculdade de Medicina da Universidade do Porto. Lecciona na FMUP desde 2008. Investigador no [RISE-Health](https://rise-health.pt/), com trabalho em suporte à decisão clínica baseado em IA, *mobile health* e ciência de dados de saúde.
+
+Director do Mestrado em Informática da Saúde da FMUP; coordena unidades curriculares na Licenciatura em Saúde Digital e Inovação Biomédica. Associate Editor no *RISE Health Research Journal* (Lippincott/Wolters Kluwer) e no *Scientific Reports* (Nature Portfolio).
+
+Página pessoal: [tiagojct.eu](https://tiagojct.eu).
+
+Este Quadro foi redigido em pt-PT (pré-AO90) entre Abril e Maio de 2026, na sequência de um período de observação da adopção generalizada de GenAI por estudantes e docentes da FMUP. A ferramenta operacional [**Themis**](themis/) acompanha o Quadro desde a sua primeira versão pública.
+
 ## Estatuto editorial {#estatuto-editorial}
 
 Este documento é um **contributo individual** de Tiago Jacinto à reflexão sobre o uso responsável de inteligência artificial generativa na Faculdade de Medicina da Universidade do Porto. Não é, no presente estado, política institucional aprovada pelos órgãos competentes da FMUP, não foi mandatado por despacho ou deliberação, e não vincula a Faculdade.
@@ -13,19 +23,29 @@ O documento destina-se à apreciação pelos órgãos competentes da FMUP, no en
 
 A publicação online no domínio pessoal [tiagojacinto.eu/fmup-ia](https://tiagojacinto.eu/fmup-ia/) corresponde a publicação académica em nome individual, sob licença [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), para discussão pública. Não constitui presença institucional da FMUP nem dispensa os processos próprios para o efeito.
 
-## Declaração de conflitos de interesse {#declaracao-de-conflitos-de-interesse}
+## Conflitos, financiamento e uso de IA {#declaracao-de-conflitos-de-interesse}
 
 Por aplicação dos princípios de transparência que o próprio Quadro propõe, o autor declara os seguintes interesses materiais e profissionais com potencial relevância para o conteúdo:
 
 - **Direcção do Mestrado em Informática da Saúde** da FMUP. O Quadro propõe módulos de literacia em IA cuja implementação na licenciatura e em mestrados da FMUP é matéria curricular susceptível de envolver coordenação por docentes com perfil em informática da saúde.
-- **Docência em UCs da Licenciatura em Saúde Digital e Inovação Biomédica** da FMUP. As propostas de articulação curricular com a Recomendação 4/2026 do CNE incidem em conteúdos próximos das UCs leccionadas pelo autor.
-- **Investigação no [RISE-Health](https://rise-health.pt/)**, com linhas em IA aplicada ao suporte à decisão clínica, _mobile health_ e ciência de dados de saúde. Qualquer trabalho institucional sobre infraestrutura ou governança de IA na FMUP toca em domínios que se sobrepõem aos interesses do laboratório.
+- **Docência em UCs da Licenciatura em Saúde Digital e Inovação Biomédica** da FMUP. As propostas de articulação curricular com a Recomendação 4/2026 do CNE incidem em conteúdos próximos das unidades curriculares leccionadas pelo autor.
+- **Investigação no [RISE-Health](https://rise-health.pt/)**, com linhas em IA aplicada ao suporte à decisão clínica, _mobile health_ e ciência de dados de saúde. Qualquer trabalho institucional sobre infraestrutura ou governação de IA na FMUP toca em domínios que se sobrepõem aos interesses do laboratório.
 - **Editor associado** no _RISE Health Research Journal_ (Lippincott/Wolters Kluwer) e no _Scientific Reports_ (Nature Portfolio). Os princípios sobre uso de GenAI em publicação académica reflectem normas editoriais ICMJE/WAME/COPE com as quais o autor está editorialmente envolvido.
 - **Autoria da Themis** (anteriormente *Atlas*) e da extensão Quarto `tiagojct/quarto-fmup` (CC BY 4.0). Qualquer transição para aplicação institucional certificada irá requerer a transferência ou abertura do desenvolvimento a terceiros, em condições a definir pela FMUP.
 
 O autor **não recebeu financiamento dedicado** para a redacção do Quadro ou da Themis. Não há acordos comerciais, consultadoria, _equity_ ou outras relações financeiras com fornecedores de plataformas de IA generativa, e em particular com qualquer das ferramentas referenciadas no documento (IAedu, ChatGPT, Claude, NotebookLM, Perplexity, DeepL, Writefull). O uso pessoal das ferramentas comerciais é declarado em conta individual sem privilégios institucionais.
 
+A revisão editorial de Outubro de 2026 e a revisão estrutural da versão 1.7 foram realizadas com assistência de IA generativa, incluindo revisão de texto, coerência entre páginas e verificações automatizadas, registadas no repositório. Essa assistência não constitui validação ou aprovação institucional.
+
 Esta declaração será actualizada se alguma das condições materiais ou profissionais aqui descritas se alterar.
+
+## Licença
+
+Texto, código e dados publicados sob **[Creative Commons Attribution 4.0 (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)**. Reutilização permitida com atribuição. As marcas institucionais (logos FMUP e U.Porto) são propriedade das respectivas instituições e a sua utilização externa requer autorização própria.
+
+## Como citar
+
+A referência do Quadro, de cada capítulo e da Themis está na página [Convenções](convencoes.qmd#como-citar-o-quadro).
 
 ## Continuidade e plano de transição {#continuidade}
 
@@ -37,34 +57,6 @@ O Quadro e a Themis são, no presente estado, mantidos no espaço pessoal do aut
 - **Padrões abertos.** A _stack_ técnica (Quarto, Typst, Pandoc/CSL, JavaScript sem dependências para a Themis, BibTeX) é integralmente baseada em padrões abertos e ferramentas de código aberto, o que reduz o custo de migração entre infraestruturas.
 
 A infraestrutura actual permite testar os requisitos de uma eventual aplicação institucional e preparar a sua migração para uma equipa com mandato e recursos próprios.
-
-## Autoria
-
-**Tiago Jacinto** --- Professor Auxiliar no MEDCIDS (Medicina da Comunidade, Informação e Decisão em Saúde), Faculdade de Medicina da Universidade do Porto. Lecciona na FMUP desde 2008. Investigador no [RISE-Health](https://rise-health.pt/), com trabalho em suporte à decisão clínica baseado em IA, *mobile health* e ciência de dados de saúde.
-
-Director do Mestrado em Informática da Saúde da FMUP; coordena unidades curriculares na Licenciatura em Saúde Digital e Inovação Biomédica. Associate Editor no *RISE Health Research Journal* (Lippincott/Wolters Kluwer) e no *Scientific Reports* (Nature Portfolio).
-
-Página pessoal: [tiagojct.eu](https://tiagojct.eu).
-
-Este Quadro foi redigido em pt-PT (pré-AO90) entre Abril e Maio de 2026, na sequência de um período de observação da adopção generalizada de GenAI por estudantes e docentes da FMUP. A ferramenta operacional [**Themis**](themis/) acompanha o Quadro desde a sua primeira versão pública.
-
-## Como está organizado o Quadro
-
-O Quadro divide-se em dois momentos distintos.
-
-A **Parte I — Comparação** (capítulos 10 a 15) percorre referenciais externos: modelos anglo-americanos, europeus, ibero-americanos e supranacionais (UNESCO, ERA Forum, AI Act, Conselho da Europa), incluindo um enquadramento clínico específico para faculdades de medicina e uma análise de limites na aplicação dos referenciais existentes.
-
-A **Parte II — Proposta operacional** (capítulos 1 a 9) é a proposta para a FMUP. Assenta em sete princípios orientadores e organiza-se em três vertentes:
-
-- **Estudantes** — o que é permitido, condicionado e proibido; como declarar o uso.
-- **Docentes** — preparação de aulas, avaliação, materiais pedagógicos, limites com dados de estudantes.
-- **Investigadores** — escrita científica, análise de dados, revisão bibliográfica, conformidade com normas internacionais de publicação.
-
-A Parte II inclui ainda capítulos sobre infraestrutura e governança (incluindo processo disciplinar), implementação faseada (2026-2029) e questões transversais.
-
-Dez **Anexos** (A–J) acompanham a proposta com instrumentos prontos a usar: modelo de declaração de uso, cláusula-tipo para programas de unidades curriculares, recursos externos, guia prático, cenários com casos-limite resolvidos, glossário, grelha de maturidade institucional, articulação com o quadro institucional da Universidade do Porto, perfis disciplinares da FMUP e promptário clínico.
-
-Uma convenção tipográfica: o documento chama-se sempre **Quadro** (maiúscula), a ferramenta chama-se **Themis** (anteriormente *Atlas*, renomeada em Junho de 2026 para evitar colisão com o portal *Atlas U.Porto*). As convenções completas de terminologia estão na página [Convenções](convencoes.qmd).
 
 ## Como funciona a Themis
 
@@ -82,25 +74,13 @@ Para citar a ferramenta num trabalho académico, use a referência da página [C
 
 O Quadro e a Themis são publicados como um único sítio web estático, construído com [Quarto](https://quarto.org/) e alojado em <https://tiagojacinto.eu/fmup-ia/> no servidor pessoal. O repositório fonte é público em [github.com/tiagojct/fmup-ia](https://github.com/tiagojct/fmup-ia).
 
-**Quadro — website Quarto.** Os capítulos e anexos são ficheiros `.qmd` (Quarto Markdown) que o Quarto converte em HTML com navegação lateral, referências bibliográficas automáticas (formato Chicago Author-Date, via Pandoc/CSL) e tabela de conteúdos por página. A estrutura é de *website* (não de *book*): cada página é autónoma e os links cruzados são explícitos.
+**Quadro — website Quarto.** Os capítulos e anexos são ficheiros `.qmd` (Quarto Markdown) que o Quarto converte em HTML com navegação lateral, referências bibliográficas automáticas (formato Chicago Author-Date, via Pandoc/CSL) e tabela de conteúdos por página. A estrutura é de *website* (não de *book*): cada página é autónoma e as ligações cruzadas são explícitas.
 
-**Themis — demonstrador prototípico sem dependências.** O demonstrador é uma aplicação de página única escrita em JavaScript, HTML e CSS sem dependências externas ou passo de compilação. O Quarto copia-a como recurso estático. Corre inteiramente no browser do utilizador.
+**Themis — demonstrador prototípico sem dependências.** O demonstrador é uma aplicação de página única escrita em JavaScript, HTML e CSS sem dependências externas ou passo de compilação. O Quarto copia-a como recurso estático. Corre inteiramente no navegador do utilizador.
 
 **Guias PDF.** Quatro guias práticos em PDF (estudantes, docentes, investigadores, serviços) são gerados directamente pelo `quarto render` via `format: fmup-typst` declarado em cada `.qmd` de guia, partilhando a tipografia e a paleta institucional do resto do site.
 
 **Publicação contínua.** Um *workflow* de GitHub Actions (`publish.yml`) constrói o site e os guias a cada *push* para o ramo principal e publica o resultado em <https://tiagojacinto.eu/fmup-ia/>.
-
-## Como citar
-
-> Jacinto T. *FMUP · IA — Quadro de referência institucional para a utilização de inteligência artificial generativa na FMUP*. Faculdade de Medicina da Universidade do Porto, 2026. <https://tiagojacinto.eu/fmup-ia/>
-
-## Licença
-
-Texto, código e dados publicados sob **[Creative Commons Attribution 4.0 (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)**. Reutilização permitida com atribuição. As marcas institucionais (logos FMUP e U.Porto) são propriedade das respectivas instituições e a sua utilização externa requer autorização própria.
-
-## Financiamento e conflitos
-
-Este trabalho não recebeu financiamento dedicado. Os interesses profissionais e a autoria das ferramentas recomendadas estão identificados na [declaração de conflitos de interesse](#declaracao-de-conflitos-de-interesse). A revisão editorial de Outubro de 2026 foi realizada com assistência de IA generativa, incluindo revisão de texto, coerência entre páginas e verificações automatizadas, registadas no repositório. Essa assistência não constitui validação ou aprovação institucional.
 
 ## Estado de revisão {#estado-de-revisao}
 
@@ -116,10 +96,11 @@ O Quadro segue um esquema de versão própria (`v1.0`, `v1.1`, …), distinto do
 | 1.4 | 2026-09-07 | **Conclusão da integração da taxonomia GAIDeT na Themis.** A vertente Estudantes passa a nomear os macrodomínios delegados no texto da declaração, e não apenas no resumo de escolhas --- o elemento que o regime de dois níveis da U.Porto exige de uma declaração estruturada, e que até aqui se perdia quando o estudante colava a declaração numa dissertação. Actualização do estado da execução e da tabela de mapeamento no [Anexo H](quadro/H-articulacao-uporto.qmd) e do _callout_ do [Anexo A](quadro/A-declaracao.qmd), ambos desactualizados face ao estado real da ferramenta. Themis `v1.1.1` → `v1.2.0`: cláusula de macrodomínios partilhada pelas vertentes Estudantes e Investigadores, e correcção de uma duplicação na frase de abertura da declaração de estudante quando estavam seleccionados vários tipos de trabalho. `policy.version`: `1.6.1`. Revisão motivada pelo pedido de inclusão da Themis no manual de dissertação do MMED. |
 | 1.5 | 2026-10-03 | Correcção das declarações e da avaliação de risco da Themis `1.3.0` (regras `1.7.0`); recolha dos elementos da declaração estruturada, âmbito obrigatório, não-utilização para estudantes, confirmações explícitas e recuperação segura de ligações. Revalidação bibliográfica com correcções de DOI, PMID, autoria e edições; identificação dos URLs públicos do pacote U.Porto, com consulta dos sete PDFs e registo da evidência de revalidação. Testes em português e inglês integrados na publicação e sincronização automática de versões. |
 | 1.6 | 2026-10-03 | Revisão integral do texto, com remoção de formulações promocionais e generalizações sem suporte; harmonização de terminologia, contagens, regimes e limites da Themis em português e inglês. Correcção de instruções das fichas e actualização dos guias PDF e slides. Themis `1.3.1`, regras `1.7.1`, formação `v1.3`. Registo em [revisão editorial](https://github.com/tiagojct/fmup-ia/blob/main/audits/revisao-editorial-2026-10-03.md). |
+| 1.7 | 2026-10-20 | Revisão estrutural: uma fonte por tema (calendário regulatório no capítulo [Enquadramento médico](quadro/14-camada-medica.qmd), adopção mínima no capítulo [Implementação](quadro/07-implementacao.qmd), definições no [Anexo F](quadro/F-glossario.qmd), articulação U.Porto no [Anexo H](quadro/H-articulacao-uporto.qmd)); novo capítulo [Processo disciplinar e direito de defesa](quadro/05b-processo-disciplinar.qmd); novos [Anexo K](quadro/K-alinhamento-cne.qmd) (Recomendação n.º 4/2026 do CNE) e [Anexo L](quadro/L-articulacao-ce-fmup.qmd) (Comissão de Ética da FMUP); Anexo D e guias PDF com fonte única; nova ordem da barra lateral, sem mudança de URLs. |
 
-Revisões futuras (`v1.7`, `v2.0`, …) serão registadas neste quadro e no `CHANGELOG.md` do repositório, com correspondência explícita às versões da Themis e da `policy.json` que as acompanham.
+Revisões futuras (`v1.8`, `v2.0`, …) serão registadas neste quadro e no `CHANGELOG.md` do repositório, com correspondência explícita às versões da Themis e da `policy.json` que as acompanham.
 
-A revisão `v1.2` está descrita em detalhe na [Nota de integração com o quadro da Universidade do Porto](nota-integracao-uporto.qmd), que documenta o que foi corrigido, o que foi adoptado do pacote da Universidade, o que o Quadro acrescenta e como prosseguir.
+A [nota de revisão v1.2](nota-integracao-uporto.qmd) regista as correcções dessa revisão e os pontos então deixados para verificação; a articulação com o pacote da Universidade do Porto é mantida no [Anexo H](quadro/H-articulacao-uporto.qmd).
 
 ## Reportar erros e contribuir
 
@@ -130,3 +111,5 @@ O repositório do projecto é público em [github.com/tiagojct/fmup-ia](https://
 - [Quadro de referência](quadro/) --- documento principal.
 - [Themis](themis/) --- demonstrador prototípico (anteriormente *Atlas*).
 - [Recursos](recursos.qmd) --- *frameworks* externos e leitura adicional.
+- [Síntese](sintese.qmd) --- organização do Quadro e pedido aos órgãos competentes.
+- [Convenções](convencoes.qmd) --- terminologia, ortografia e citação.
