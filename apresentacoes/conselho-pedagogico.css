@@ -1,7 +1,7 @@
 /* Ajustes locais do deck do Conselho Pedagógico. O tema vem da extensão FMUP. */
 .reveal .slides section .columns { gap: 1.1em; align-items: stretch; margin-top: 0.4em; }
 .reveal .slides section .columns > .column { display: flex; flex-direction: column; gap: 0.7em; }
-.reveal .slides section .card { font-size: 0.9em; padding: 0.9em 1.1em; flex: 1; margin: 0; }
+.reveal .slides section .card { font-size: 0.9em; padding: 0.7em 1.1em; flex: 1; margin: 0; }
 .reveal .slides section .card h3 { margin-top: 0; font-size: 1.1em; }
 .reveal .slides section .card p { margin: 0.5em 0; }
 .reveal .slides section .card ul { margin: 0.3em 0 0 1em; }

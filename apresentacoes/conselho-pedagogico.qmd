@@ -11,7 +11,7 @@ format:
     slide-number: c/t
     footer: "FMUP · IA · Conselho Pedagógico · 10 de Novembro de 2026"
     controls: true
-    center: false
+    center: true
     width: 1120
     height: 630
     css: conselho-pedagogico.css
