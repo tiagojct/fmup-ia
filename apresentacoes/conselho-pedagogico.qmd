@@ -4,7 +4,7 @@ subtitle: "O Quadro de referência e a Themis"
 author: "Tiago Jacinto"
 institute: "MEDCIDS · Faculdade de Medicina da Universidade do Porto"
 date: 2026-11-10
-date-format: "D [de] MMMM [de] YYYY"
+date-format: "D [de Novembro de] YYYY"
 lang: pt-PT
 format:
   fmup-revealjs:
@@ -17,7 +17,7 @@ format:
     css: conselho-pedagogico.css
 ---
 
-## Faltam dados da FMUP; os indícios vêm de fora
+## As regras sobre IA ainda são raras no ensino superior
 
 ::: {.columns}
 ::: {.column width="42%"}
@@ -39,7 +39,7 @@ das 68 instituições de ensino superior inquiridas têm políticas sobre IA em 
 ::: {.notes}
 Antes de começar (15 s): apresento-me e digo o estado do trabalho. É um contributo individual, não é política da Faculdade.
 
-1 min. Sou claro sobre o limite: o número é sobre instituições, não sobre a FMUP. Não temos inquérito local. Por isso o piloto começa por medir, por exemplo quantas UCs já têm cláusula sobre IA. Fonte: diagnóstico CNIPES, Abril de 2026. Os inquéritos a estudantes de medicina estão citados no Quadro (Tran 2025, Alkhaaldi 2023). O EU AI Act, a Agenda Nacional de IA e o CNE já fixaram prazos e recomendações: alto risco em Dezembro de 2027 e Agosto de 2028.
+1 min. Começo pelo problema: a IA generativa já é usada e poucas instituições têm regras em prática. Sou claro sobre o limite: o número é sobre instituições, não sobre a FMUP. Não temos inquérito local. Por isso o piloto começa por medir, por exemplo quantas UCs já têm cláusula sobre IA. Fonte: diagnóstico CNIPES, Abril de 2026. Os inquéritos a estudantes de medicina estão citados no Quadro (Tran 2025, Alkhaaldi 2023). O EU AI Act, a Agenda Nacional de IA e o CNE já fixaram prazos e recomendações: alto risco em Dezembro de 2027 e Agosto de 2028.
 :::
 
 ## Três peças, publicadas e gratuitas
@@ -139,7 +139,7 @@ Exemplo: inserir dados de doentes num serviço de IA não autorizado é uso proi
 </div>
 
 ::: {.note-line}
-Corre no navegador, sem servidor e sem cookies. Cada texto indica a versão do Quadro e da ferramenta.
+Cada texto indica a versão do Quadro e a versão da ferramenta que o gerou.
 :::
 
 ::: {.notes}
@@ -171,9 +171,9 @@ Corre no navegador, sem servidor e sem cookies. Cada texto indica a versão do Q
 ::: {.card}
 <h3>O que faz hoje</h3>
 
-- Corre no navegador.
-- Sem servidor e sem cookies.
-- Avisos que não bloqueiam.
+- Gera declarações e cláusulas, em português e em inglês.
+- Corre no navegador, sem servidor e sem cookies.
+- Código e regras públicos, com licença CC BY 4.0.
 :::
 :::
 ::: {.column width="50%"}
@@ -270,14 +270,14 @@ Ficha de uma página no site. Resultados apresentados ao Conselho no fim do seme
 30 s. Quatro indicadores simples, sem inquérito aos estudantes nem dados pessoais. O primeiro responde à crítica de não termos dados locais. A ficha: tiagojacinto.eu/fmup-ia/quadro/guias/ficha-ponto-focal.pdf. Palpite de calendário, a confirmar: 2.º semestre de 2026/27. Voluntários criam enviesamento: o piloto mostra viabilidade, não eficácia. Digo-o já.
 :::
 
-# Proposta de deliberação {.center .fmup-dark background-color="#1A1A1A"}
+# Proposta ao Conselho {.center .fmup-dark background-color="#1A1A1A"}
 
 ::: {.columns}
 ::: {.column width="64%"}
-1. Toma conhecimento do Quadro e da Themis.
-2. Apoia um piloto de um semestre.
-3. Convida cada departamento a indicar um ponto focal.
-4. Recebe os resultados no fim do semestre.
+1. Tomar conhecimento do Quadro e da Themis.
+2. Apoiar um piloto de um semestre.
+3. Convidar cada departamento a indicar um ponto focal.
+4. Receber os resultados no fim do semestre.
 
 [tiagojacinto.eu/fmup-ia](https://tiagojacinto.eu/fmup-ia/)
 :::
@@ -289,7 +289,7 @@ Ficha de uma página no site. Resultados apresentados ao Conselho no fim do seme
 ::: {.notes}
 30 s. Repito a proposta em quatro verbos: tomar conhecimento, apoiar, convidar, receber. Nada disto aprova o Quadro nem a Themis. O QR code abre o site com o Quadro, a Themis, os guias e a ficha.
 
-Tempo total previsto: cerca de 9 minutos. Se faltar tempo, saltar o slide da estrutura do Quadro e o slide do nível de risco. Para abrir os slides de reserva, usar a seta para baixo neste slide. A seta para a direita não os abre.
+Tempo total previsto: cerca de 8 minutos. Versão de 5 minutos: dizer uma frase só nos slides 4 (estrutura do Quadro), 7 (nível de risco), 9 (limites do Quadro) e 11 (indicadores). Para saltar para um slide, premir G, escrever o número e premir Enter. Para abrir os slides de reserva, usar a seta para baixo neste slide. A seta para a direita não os abre.
 :::
 
 ## Reserva {.center .fmup-dark background-color="#1A1A1A"}
