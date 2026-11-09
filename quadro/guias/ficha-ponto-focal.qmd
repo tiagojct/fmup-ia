@@ -1,0 +1,89 @@
+---
+title: "Ficha de devolução do piloto"
+subtitle: "Ponto focal de departamento"
+suppress-bibliography: true
+lang: pt-PT
+# CSL local, como nos outros guias: o Typst rejeita caminhos com "..".
+csl: chicago-author-date.csl
+format:
+  fmup-typst:
+    toc: false
+    number-sections: false
+    margin:
+      x: 1.8cm
+      y: 1.1cm
+    fontsize: 9.5pt
+    section-numbering: ""
+    shift-heading-level-by: -1
+---
+
+Uma página por UC. Não inclua nomes de estudantes, nem dados pessoais ou clínicos. Devolva ao autor do piloto no fim do semestre.
+
+```{=typst}
+#let fields(..rows) = grid(
+  columns: (6.2cm, 1fr),
+  inset: 5pt,
+  stroke: 0.5pt + luma(170),
+  ..rows.pos().map(r => ([*#r.at(0)*], [#r.at(1)])).flatten(),
+)
+
+#fields(
+  ("Departamento", v(0.3cm)),
+  ("Ponto focal", v(0.3cm)),
+  ("Unidade curricular", v(0.3cm)),
+  ("Ciclo de estudos e semestre", v(0.3cm)),
+  ("N.º aproximado de estudantes", v(0.3cm)),
+  ("Data de preenchimento", v(0.3cm)),
+)
+```
+
+### 1. Cláusula
+
+```{=typst}
+#fields(
+  ("A UC tinha cláusula sobre IA generativa antes do piloto?", [( ) Sim #h(1cm) ( ) Não]),
+  ("Regime escolhido", [( ) Permitido #h(0.6cm) ( ) Permitido com condições #h(0.6cm) ( ) Proibido]),
+  ("Origem da cláusula", [( ) Anexo B #h(0.6cm) ( ) Themis, versão: #h(2cm)]),
+  ("Data de inclusão no programa", v(0.3cm)),
+)
+```
+
+### 2. Informação aos estudantes
+
+```{=typst}
+#fields(
+  ("Como foram informados?", v(0.65cm)),
+  ("Um representante dos estudantes leu a cláusula antes de ser aplicada?", [( ) Sim #h(1cm) ( ) Não]),
+)
+```
+
+### 3. Esforço
+
+```{=typst}
+#fields(
+  ("Tempo gasto, em minutos, a escolher e aplicar a cláusula", v(0.3cm)),
+  ("Dúvidas dos estudantes (número e tema)", v(0.65cm)),
+  ("Dificuldades encontradas", v(0.65cm)),
+)
+```
+
+### 4. Themis (só se foi usada)
+
+```{=typst}
+#fields(
+  ("Problemas técnicos", v(0.65cm)),
+  ("Confirmo que não introduzi dados pessoais ou clínicos", [( ) Sim #h(1cm) ( ) Não]),
+)
+```
+
+### 5. Apreciação
+
+```{=typst}
+#fields(
+  ("O que correu bem", v(0.65cm)),
+  ("O que mudaria", v(0.65cm)),
+  ("Recomenda continuar na UC?", [( ) Sim #h(0.8cm) ( ) Não #h(0.8cm) ( ) Com alterações]),
+)
+```
+
+*O piloto mostra viabilidade, não eficácia. Os resultados são apresentados ao Conselho Pedagógico no fim do semestre. Não é política institucional aprovada.*

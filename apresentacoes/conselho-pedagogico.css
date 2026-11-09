@@ -12,3 +12,5 @@
 .reveal .slides section .lead li { margin-bottom: 0.7em; }
 .reveal .slides section .stat-caption { font-size: 0.95em; margin-top: 0.8em; }
 .reveal .slides section.fmup-dark { padding-top: 1.2em; }
+.reveal .slides section .lead.lead-sm { font-size: 0.95em; }
+.reveal .slides section .lead.lead-sm li { margin-bottom: 0.5em; }
