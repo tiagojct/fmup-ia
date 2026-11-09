@@ -1,0 +1,177 @@
+---
+title: "IA generativa na FMUP: do quadro ao piloto"
+subtitle: "Pedido de apoio ao Conselho Pedagógico"
+author: "Tiago Jacinto"
+institute: "MEDCIDS · Faculdade de Medicina da Universidade do Porto"
+date: 2026-11-10
+date-format: "D [de] MMMM [de] YYYY"
+lang: pt-PT
+format:
+  fmup-revealjs:
+    slide-number: c/t
+    footer: "FMUP · IA · Conselho Pedagógico · 10 de Novembro de 2026"
+    controls: true
+---
+
+## Cada unidade curricular decide sozinha
+
+[14,7 %]{.stat}
+
+das 68 instituições de ensino superior inquiridas têm políticas sobre IA em prática (CNIPES, 2026).
+
+Na FMUP, os estudantes recebem sinais diferentes em cada UC.
+
+::: {.notes}
+Antes de começar (15 s): apresento-me e digo o estado do trabalho. É um contributo individual, não é política da Faculdade. Peço duas coisas no fim: apoio a um piloto e um ponto focal por departamento.
+
+1 min. O problema é de coerência pedagógica, por isso chega a este Conselho. O estudante que pergunta o que pode fazer recebe respostas diferentes conforme a UC. Fonte do número: diagnóstico CNIPES, Abril de 2026.
+:::
+
+## Três peças, publicadas e gratuitas
+
+::: {.columns}
+::: {.column width="33%"}
+::: {.card}
+<h3>Quadro</h3>
+
+Sete princípios.
+
+Três vertentes: estudantes, docentes, investigadores.
+
+Anexos prontos a usar.
+:::
+:::
+::: {.column width="33%"}
+::: {.card}
+<h3>Themis</h3>
+
+Gera declarações de uso e cláusulas para os programas de UC.
+
+Corre no navegador.
+:::
+:::
+::: {.column width="33%"}
+::: {.card}
+<h3>Formação</h3>
+
+Sessão de 120 minutos para docentes.
+
+Material completo.
+:::
+:::
+:::
+
+::: {.notes}
+1,5 min. Tudo em português europeu, licença CC BY 4.0, em tiagojacinto.eu/fmup-ia. O Anexo B tem três cláusulas-tipo para programas de UC: permitido, condicionado, proibido.
+:::
+
+## Subordina-se à U.Porto e acrescenta a camada biomédica
+
+::: {.columns}
+::: {.column width="50%"}
+::: {.card}
+<h3>Pacote da U.Porto</h3>
+
+Sete documentos de Junho de 2026, para as quinze unidades orgânicas.
+
+Prevalece nas matérias que cobre.
+:::
+:::
+::: {.column width="50%"}
+::: {.card}
+<h3>Camada FMUP</h3>
+
+- Dados clínicos identificáveis.
+- Ensaios clínicos.
+- Viés algorítmico em contexto clínico.
+- Terminologia médica em português europeu.
+:::
+:::
+:::
+
+::: {.notes}
+1 min. A primeira pergunta é sempre a relação com a Universidade. O Anexo H define a regra de precedência. Dois docentes da FMUP, Laura Ribeiro e Ricardo Correia, estão no Grupo de Trabalho da Universidade: a articulação passa por eles.
+:::
+
+## Em quatro passos, a Themis gera a cláusula da UC
+
+::: {.columns}
+::: {.column width="50%"}
+![As escolhas do docente](img/themis-escolhas.png)
+:::
+::: {.column width="50%"}
+![A avaliação indicativa de risco](img/themis-avaliacao.png)
+:::
+:::
+
+Demonstrador. Corre no navegador, sem servidor e sem cookies.
+
+::: {.notes}
+1,5 min. Captura real da Themis, versão 1.3.2. Esquerda: as escolhas do docente (tipo de oferta, trabalho avaliado, política, competências). Direita: a avaliação indicativa de risco e o texto para o programa da UC. A avaliação não bloqueia a declaração. A ferramenta é um demonstrador: não guarda dados e não é aplicação institucional. Se houver tempo e rede, abrir tiagojacinto.eu/fmup-ia/themis/.
+:::
+
+## Peço apoio ao piloto, não a aprovação do Quadro
+
+::: {.columns}
+::: {.column width="50%"}
+::: {.card}
+<h3>Peço</h3>
+
+- Que o Conselho apoie o piloto da cláusula e da Themis.
+- Que cada departamento indique um ponto focal.
+:::
+:::
+::: {.column width="50%"}
+::: {.card}
+<h3>Não peço</h3>
+
+- Aprovação do Quadro.
+- Adopção da Themis como aplicação institucional.
+- Alteração de regulamentos.
+:::
+:::
+:::
+
+::: {.notes}
+2 min. Este é o slide do pedido. Dois pedidos. Primeiro, apoio ao piloto: o Conselho toma conhecimento e apoia a recolha de evidência. Segundo, mobilização: cada departamento indica um docente. O que não peço: o Quadro continua a ser um contributo individual, a Themis continua demonstrador, e nada muda nos regulamentos.
+:::
+
+## O ponto focal escolhe a UC e verifica a implementação
+
+::: {.columns}
+::: {.column width="33%"}
+::: {.card}
+<h3>Passo 1: escolher</h3>
+
+Escolhe uma UC do seu departamento.
+:::
+:::
+::: {.column width="33%"}
+::: {.card}
+<h3>Passo 2: aplicar</h3>
+
+Inclui no programa a cláusula gerada pela Themis.
+:::
+:::
+::: {.column width="33%"}
+::: {.card}
+<h3>Passo 3: verificar</h3>
+
+Verifica a implementação e devolve uma ficha curta.
+:::
+:::
+:::
+
+::: {.notes}
+1 min. Tarefa pequena e definida. Palpite de calendário, a confirmar: piloto no 2.º semestre de 2026/27, com resposta dos departamentos até uma data a fixar com o Conselho. A ficha de devolução ainda não existe: preparo-a depois de o Conselho decidir.
+:::
+
+# Cada departamento, um ponto focal {.center .fmup-dark background-color="#1A1A1A"}
+
+Quadro, Themis e materiais: [tiagojacinto.eu/fmup-ia](https://tiagojacinto.eu/fmup-ia/)
+
+<img src="img/qr-fmup-ia.png" alt="QR code para tiagojacinto.eu/fmup-ia" style="width:200px;height:200px;border:0;box-shadow:none;margin:0.5em 0 0 0">
+
+::: {.notes}
+30 s. Repito o pedido numa frase. O QR code abre o site com o Quadro, a Themis e os guias.
+:::
