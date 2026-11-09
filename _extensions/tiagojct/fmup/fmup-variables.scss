@@ -30,6 +30,13 @@ $fmup-danger:         #B91C1C !default;
 $fmup-ink-on-yellow:  #1A1A1A !default;
 $fmup-ink-on-danger:  #FFFFFF !default;
 
+// ---- Links ----
+$fmup-link-underline:       $fmup-text !default;    // #1A1A1A (preto institucional)
+$fmup-link-underline-hover: $fmup-ink-on-yellow !default;  // #1A1A1A (visivel sobre o fundo amarelo do hover)
+
+// Callout icon fill, URL-encoded for use inside SVG data URIs.
+$fmup-callout-icon-fill: "%231A1A1A" !default;
+
 // ---- Typography ----
 // Default body / heading font. Inter (Rasmus Andersson, SIL OFL) -
 // a general-purpose UI sans with optical-sizing axis, used by
@@ -37,7 +44,7 @@ $fmup-ink-on-danger:  #FFFFFF !default;
 // stays in the stack as a named fallback so users who installed
 // it system-wide still get it. To swap the default back to
 // Atkinson, append `fmup-variables-atkinson.scss` to the theme
-// chain; that file includes the full HTML/reveal and Typst recipes.
+// chain (see docs/customise.qmd).
 $fmup-font-sans: "Inter", "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !default;
 $fmup-font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace !default;
 
