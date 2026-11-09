@@ -5,7 +5,7 @@
 .reveal .slides section .card h3 { margin-top: 0; font-size: 1.1em; }
 .reveal .slides section .card p { margin: 0.5em 0; }
 .reveal .slides section .card ul { margin: 0.3em 0 0 1em; }
-.reveal .slides section .small { font-size: 0.65em; color: #5B6470; margin-top: 1em; }
+.reveal .slides section .small { font-size: 0.75em; color: #5B6470; margin-top: 1em; }
 .reveal .slides section table { font-size: 0.85em; margin-top: 0.4em; }
 .reveal .slides section table td, .reveal .slides section table th { padding: 0.3em 0.7em; }
 .reveal .slides section .lead { font-size: 1.15em; }
@@ -14,3 +14,34 @@
 .reveal .slides section.fmup-dark { padding-top: 1.2em; }
 .reveal .slides section .lead.lead-sm { font-size: 0.95em; }
 .reveal .slides section .lead.lead-sm li { margin-bottom: 0.5em; }
+
+.reveal .slides section .note-line { font-size: 0.8em; color: #1A1A1A; margin-top: 0.8em; }
+
+/* Diagrama do Quadro */
+.reveal .slides section .qd { display: grid; grid-template-columns: 1fr 1.7fr; gap: 0.6em; margin-top: 0.4em; font-size: 0.78em; }
+.reveal .slides section .qd .band { grid-column: 1 / -1; background: #1A1A1A; color: #fff; padding: 0.5em 0.9em; border-radius: 6px; }
+.reveal .slides section .qd .box { background: #F7F7F7; border: 1px solid #E0E0E0; border-radius: 6px; padding: 0.6em 0.9em; }
+.reveal .slides section .qd .box h4 { margin: 0 0 0.4em 0; font-size: 1.1em; }
+.reveal .slides section .qd .chips { display: flex; flex-wrap: wrap; gap: 0.35em; margin: 0.35em 0; }
+.reveal .slides section .qd .chip { background: #fff; border: 1px solid #1A1A1A; border-radius: 4px; padding: 0.15em 0.6em; }
+.reveal .slides section .qd .chip.y { background: #FFCD00; border-color: #FFCD00; font-weight: 600; }
+.reveal .slides section .qd .annex { grid-column: 1 / -1; background: #FFCD00; color: #1A1A1A; padding: 0.5em 0.9em; border-radius: 6px; font-weight: 600; }
+
+/* Percurso em passos com setas */
+.reveal .slides section .flow { display: flex; align-items: stretch; margin-top: 0.5em; font-size: 0.85em; }
+.reveal .slides section .flow .step { flex: 1; background: #F7F7F7; border: 1px solid #E0E0E0; border-radius: 6px; padding: 0.7em 0.9em; }
+.reveal .slides section .flow .step h4 { margin: 0 0 0.4em 0; font-size: 1.05em; }
+.reveal .slides section .flow .num { display: inline-block; background: #FFCD00; color: #1A1A1A; font-weight: 700; width: 1.6em; height: 1.6em; line-height: 1.6em; text-align: center; border-radius: 3px; margin-right: 0.45em; }
+.reveal .slides section .flow .arrow { flex: 0 0 1.6em; display: flex; align-items: center; justify-content: center; }
+.reveal .slides section .flow .arrow::before { content: ""; border-left: 0.7em solid #1A1A1A; border-top: 0.45em solid transparent; border-bottom: 0.45em solid transparent; }
+.reveal .slides section .trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8em; margin-top: 0.9em; font-size: 0.78em; }
+.reveal .slides section .trio > div { border-top: 3px solid #1A1A1A; padding-top: 0.4em; }
+.reveal .slides section .trio h4 { margin: 0 0 0.2em 0; font-size: 1.05em; }
+
+/* Captura com destaques */
+.reveal .slides section .shotrow { display: flex; gap: 1em; align-items: flex-start; margin-top: 0.4em; }
+.reveal .slides section .shot { position: relative; width: 830px; flex: none; }
+.reveal .slides section .shot img { width: 100%; display: block; border: 1px solid #E0E0E0; margin: 0; max-height: none; }
+.reveal .slides section .shot .hl { position: absolute; border: 4px solid #FFCD00; border-radius: 4px; }
+.reveal .slides section .shotnotes { font-size: 0.85em; display: flex; flex-direction: column; gap: 1em; }
+.reveal .slides section .shotnotes .tag { border-top: 3px solid #FFCD00; padding-top: 0.3em; }

@@ -31,7 +31,6 @@ das 68 instituições de ensino superior inquiridas têm políticas sobre IA em 
 ::: {.lead}
 - Inquéritos internacionais a estudantes de medicina documentam o uso de IA generativa.
 - Na FMUP, ainda não medimos o uso nem as regras de cada unidade curricular.
-- O EU AI Act, a Agenda Nacional de IA e o CNE já fixaram prazos e recomendações.
 - O piloto começa por medir.
 :::
 :::
@@ -40,7 +39,7 @@ das 68 instituições de ensino superior inquiridas têm políticas sobre IA em 
 ::: {.notes}
 Antes de começar (15 s): apresento-me e digo o estado do trabalho. É um contributo individual, não é política da Faculdade.
 
-1 min. Sou claro sobre o limite: o número é sobre instituições, não sobre a FMUP. Não temos inquérito local. Por isso o piloto começa por medir, por exemplo quantas UCs já têm cláusula sobre IA. Fonte: diagnóstico CNIPES, Abril de 2026. Os inquéritos a estudantes de medicina estão citados no Quadro (Tran 2025, Alkhaaldi 2023). Prazos do AI Act para alto risco: Dezembro de 2027 e Agosto de 2028.
+1 min. Sou claro sobre o limite: o número é sobre instituições, não sobre a FMUP. Não temos inquérito local. Por isso o piloto começa por medir, por exemplo quantas UCs já têm cláusula sobre IA. Fonte: diagnóstico CNIPES, Abril de 2026. Os inquéritos a estudantes de medicina estão citados no Quadro (Tran 2025, Alkhaaldi 2023). O EU AI Act, a Agenda Nacional de IA e o CNE já fixaram prazos e recomendações: alto risco em Dezembro de 2027 e Agosto de 2028.
 :::
 
 ## Três peças, publicadas e gratuitas
@@ -71,48 +70,28 @@ Sessão de 120 minutos para docentes, com seis fichas de actividade.
 :::
 :::
 
-::: {.small}
-O autor é também autor da Themis e dirige o Mestrado em Informática da Saúde. Conflitos de interesse e uso de IA estão declarados no site, na página Sobre.
+::: {.note-line}
+O autor é também autor da Themis e dirige o Mestrado em Informática da Saúde. Conflitos de interesse e uso de IA estão declarados no site.
 :::
 
 ::: {.notes}
-40 s. Tudo em português europeu, licença CC BY 4.0, em tiagojacinto.eu/fmup-ia. Declaro já o meu interesse: sou autor da Themis, dirijo o Mestrado em Informática da Saúde, e a declaração completa está no site. Vou explicar o Quadro e a Themis. A formação fica só referida.
+40 s. Tudo em português europeu, licença CC BY 4.0, em tiagojacinto.eu/fmup-ia. Declaro já o meu interesse: sou autor da Themis, dirijo o Mestrado em Informática da Saúde, e a declaração completa está na página Sobre. Vou explicar o Quadro e a Themis. A formação fica só referida.
 :::
 
 ## O Quadro compara primeiro e propõe depois
 
-::: {.columns}
-::: {.column width="50%"}
-::: {.card}
-<h3>Parte I: comparação</h3>
-
-- Estados Unidos, Europa e Ibero-América.
-- Referenciais supranacionais.
-- Enquadramento médico.
-- Portugal.
-- Lacunas e desafios.
-:::
-:::
-::: {.column width="50%"}
-::: {.card}
-<h3>Parte II: proposta para a FMUP</h3>
-
-- Sete princípios.
-- Três vertentes: estudantes, docentes, investigadores.
-- Processo disciplinar.
-- Infraestrutura e governação.
-- Implementação, 2026 a 2029.
-- Objecções antecipadas.
-:::
-:::
-:::
-
-::: {.small}
-Versão 1.7, de 20 de Outubro de 2026. Contributo individual para apreciação dos órgãos da FMUP.
-:::
+<div class="qd">
+<div class="band">Quadro de referência · versão 1.7 · contributo individual para apreciação dos órgãos da FMUP</div>
+<div class="box"><h4>Parte I: comparação</h4>
+<div class="chips"><span class="chip">Estados Unidos</span><span class="chip">Europa</span><span class="chip">Ibero-América</span><span class="chip">Referenciais supranacionais</span><span class="chip">Enquadramento médico</span><span class="chip">Portugal</span></div></div>
+<div class="box"><h4>Parte II: proposta para a FMUP</h4>
+<div class="chips"><span class="chip y">7 princípios</span><span class="chip">Estudantes</span><span class="chip">Docentes</span><span class="chip">Investigadores</span></div>
+<div class="chips"><span class="chip">Processo disciplinar</span><span class="chip">Infraestrutura e governação</span><span class="chip">Implementação 2026 a 2029</span></div></div>
+<div class="annex">12 anexos: instrumentos prontos a usar</div>
+</div>
 
 ::: {.notes}
-45 s. A Parte I compara referenciais externos sem os importar acriticamente. A Parte II é a proposta operacional. Os sete princípios e as três vertentes estão no slide de reserva. O documento é um contributo individual: não é política aprovada e não vincula a Faculdade.
+45 s. A Parte I compara referenciais externos sem os importar acriticamente: Estados Unidos, Europa, Ibero-América, referenciais supranacionais (UNESCO, OCDE, Conselho da Europa), enquadramento médico, Portugal e as lacunas. A Parte II é a proposta operacional: sete princípios, três vertentes, processo disciplinar, infraestrutura e governação, implementação até 2029 e objecções antecipadas. Os doze anexos são o que se usa no dia-a-dia: declaração, cláusulas, guias, cenários. O documento é um contributo individual: não é política aprovada e não vincula a Faculdade.
 :::
 
 ## Subordina-se à U.Porto e acrescenta a camada biomédica
@@ -139,7 +118,7 @@ Em caso de conflito, prevalece o pacote.
 :::
 :::
 
-::: {.small}
+::: {.note-line}
 Exemplo: inserir dados de doentes num serviço de IA não autorizado é uso proibido.
 :::
 
@@ -147,63 +126,42 @@ Exemplo: inserir dados de doentes num serviço de IA não autorizado é uso proi
 40 s. A primeira pergunta é sempre a relação com a Universidade. O Anexo H define a regra de precedência: nas matérias que o pacote cobre, prevalece o pacote. Dois docentes da FMUP, Laura Ribeiro e Ricardo Correia, estão no Grupo de Trabalho da Universidade: a articulação passa por eles.
 :::
 
-## A Themis aplica o Quadro a cada papel
+## A Themis transforma escolhas em texto pronto
 
-::: {.columns}
-::: {.column width="33%"}
-::: {.card}
-<h3>Estudante</h3>
+<div class="flow">
+<div class="step"><h4><span class="num">1</span>Escolhas</h4>Papel: estudante, docente ou investigador.<br>Depois, o contexto: oferta, trabalho, política, competências.</div>
+<div class="arrow"></div>
+<div class="step"><h4><span class="num">2</span>Regras</h4>Regras do Quadro, num ficheiro público e com versão.</div>
+<div class="arrow"></div>
+<div class="step"><h4><span class="num">3</span>Risco</h4>Quatro níveis. Os avisos são indicativos e não bloqueiam.</div>
+<div class="arrow"></div>
+<div class="step"><h4><span class="num">4</span>Texto</h4>Declaração ou cláusula, em português e em inglês.</div>
+</div>
 
-Declaração para acompanhar um trabalho submetido.
-
-Indica as tarefas delegadas à IA e o grau de modificação.
-:::
-:::
-::: {.column width="33%"}
-::: {.card}
-<h3>Docente</h3>
-
-Cláusula para o programa da UC e requisito de divulgação para os estudantes.
-
-Segue o regime escolhido para a UC.
-:::
-:::
-::: {.column width="33%"}
-::: {.card}
-<h3>Investigador</h3>
-
-Nota curta para manuscritos e candidaturas.
-
-Declaração de métodos, com o que foi delegado à IA.
-:::
-:::
-:::
-
-::: {.small}
-Corre no navegador. Português e inglês. Cada texto indica a versão do Quadro e da ferramenta.
+::: {.note-line}
+Corre no navegador, sem servidor e sem cookies. Cada texto indica a versão do Quadro e da ferramenta.
 :::
 
 ::: {.notes}
-40 s. A Themis chama-se assim por Témis, deusa grega da ordem e da lei. Era Atlas até Junho de 2026; mudou de nome para não colidir com o Atlas U.Porto. Versão actual 1.3.2.
+45 s. O percurso em quatro passos. Primeiro, o papel: estudante (declaração para um trabalho), docente (cláusula para o programa da UC e requisito de divulgação) ou investigador (nota curta e declaração de métodos). Segundo, as regras do Quadro correm sobre as escolhas. Terceiro, a avaliação de risco. Quarto, o texto. A Themis chama-se assim por Témis, deusa grega da ordem e da lei. Era Atlas até Junho de 2026. Versão actual 1.3.2. Os slides de reserva mostram os três papéis e as escolhas do docente.
 :::
 
-## Em quatro passos, a Themis gera a cláusula da UC
+## A Themis mostra o nível de risco e explica porquê
 
-::: {.columns}
-::: {.column width="50%"}
-![Passos 1 e 2: tipo de oferta e trabalho avaliado](img/themis-escolhas.png)
-:::
-::: {.column width="50%"}
-![Resultado: avaliação de risco e texto para o programa](img/themis-avaliacao.png)
-:::
-:::
-
-::: {.small}
-Os quatro passos são o tipo de oferta formativa, o trabalho avaliado, a política de IA e as competências a proteger.
-:::
+<div class="shotrow">
+<div class="shot">
+<img src="img/themis-risco.png" alt="Captura da Themis: avaliação segundo a proposta, nível 1, mínimo, com aviso de que os avisos são indicativos e não bloqueiam a geração da declaração">
+<div class="hl" style="left:4.7%; top:6%; width:62%; height:9%"></div>
+<div class="hl" style="left:4.7%; top:80%; width:85%; height:12%"></div>
+</div>
+<div class="shotnotes">
+<div class="tag">Nível de risco e regra aplicada, com ligação ao princípio e ao cenário do Quadro.</div>
+<div class="tag">Os avisos são indicativos. A declaração é gerada na mesma.</div>
+</div>
+</div>
 
 ::: {.notes}
-45 s. Captura real da Themis. Esquerda: as escolhas do docente. Direita: a avaliação de risco (quatro níveis, no slide de reserva) e o início do texto para o programa da UC. A ferramenta mostra de onde vem cada aviso, com ligação ao princípio e ao cenário do Quadro.
+45 s. Captura real da Themis, versão 1.3.2, para uma UC de mestrado com relatório e discussão de caso. O destaque de cima mostra o nível de risco. A ferramenta explica a regra e liga ao princípio e ao cenário do Quadro. O destaque de baixo: os avisos não bloqueiam a geração da declaração. A responsabilidade final é do utilizador.
 :::
 
 ## A Themis é um demonstrador, e sabemos o que falta
@@ -213,9 +171,9 @@ Os quatro passos são o tipo de oferta formativa, o trabalho avaliado, a políti
 ::: {.card}
 <h3>O que faz hoje</h3>
 
-- Corre no navegador, sem servidor e sem cookies.
-- Os avisos são indicativos e não bloqueiam.
-- Cada texto indica a versão do Quadro e da ferramenta.
+- Corre no navegador.
+- Sem servidor e sem cookies.
+- Avisos que não bloqueiam.
 :::
 :::
 ::: {.column width="50%"}
@@ -224,13 +182,13 @@ Os quatro passos são o tipo de oferta formativa, o trabalho avaliado, a políti
 
 - Avaliação de segurança independente.
 - Avaliação de impacto sobre a protecção de dados.
-- Inscrição no inventário de aplicações da U.Porto.
+- Inscrição no inventário da U.Porto.
 - Responsável técnico designado.
 :::
 :::
 :::
 
-::: {.small}
+::: {.note-line}
 As escolhas ficam no endereço e podem ficar no histórico do navegador. Não introduzir dados pessoais ou clínicos.
 :::
 
@@ -242,9 +200,9 @@ As escolhas ficam no endereço e podem ficar no histórico do navegador. Não in
 
 ::: {.lead}
 - Não substitui os regulamentos pedagógicos em vigor.
-- Não cria sanções. O procedimento disciplinar segue o regime da U.Porto e precisa de parecer prévio da Direcção Jurídica.
+- Não cria sanções. A disciplina segue o regime da U.Porto, com parecer jurídico.
 - Não impõe um regime à UC. Cada docente escolhe entre três cláusulas-tipo.
-- Não aceita detectores automáticos como prova única de uso indevido.
+- Não aceita detectores automáticos como prova única.
 :::
 
 ::: {.notes}
@@ -253,33 +211,19 @@ As escolhas ficam no endereço e podem ficar no histórico do navegador. Não in
 
 ## Piloto: um ponto focal por departamento
 
-::: {.columns}
-::: {.column width="33%"}
-::: {.card}
-<h3>Passo 1: escolher</h3>
+<div class="flow">
+<div class="step"><h4><span class="num">1</span>Escolher</h4>O ponto focal escolhe uma UC do seu departamento.</div>
+<div class="arrow"></div>
+<div class="step"><h4><span class="num">2</span>Aplicar</h4>A UC inclui no programa a cláusula do Anexo B. A Themis é opcional.</div>
+<div class="arrow"></div>
+<div class="step"><h4><span class="num">3</span>Verificar</h4>O ponto focal devolve a ficha de uma página.</div>
+</div>
 
-O ponto focal escolhe uma UC do seu departamento.
-:::
-:::
-::: {.column width="33%"}
-::: {.card}
-<h3>Passo 2: aplicar</h3>
-
-A UC inclui no programa a cláusula do Anexo B. A Themis é opcional.
-:::
-:::
-::: {.column width="33%"}
-::: {.card}
-<h3>Passo 3: verificar</h3>
-
-O ponto focal verifica a implementação e devolve a ficha de uma página.
-:::
-:::
-:::
-
-::: {.small}
-Cada UC convida um representante dos estudantes a ler a cláusula antes de a aplicar. O ponto focal recebe a cláusula pronta e o apoio do autor. Tempo estimado: poucas horas (estimativa por confirmar).
-:::
+<div class="trio">
+<div><h4>Estudantes</h4>Um representante lê a cláusula antes de ser aplicada.</div>
+<div><h4>Apoio</h4>O ponto focal recebe a cláusula pronta e o apoio do autor.</div>
+<div><h4>Tempo</h4>Poucas horas. Estimativa por confirmar.</div>
+</div>
 
 ::: {.notes}
 50 s. Proposta, não pedido: um piloto pequeno, com tarefa definida. Nível A, obrigatório: a cláusula do Anexo B no programa da UC. Nível B, opcional: testar a Themis. Os estudantes são ouvidos antes da aplicação. O tempo estimado é palpite meu e ainda não foi confirmado com nenhum docente.
@@ -318,12 +262,12 @@ Quanto tempo levou? Que dúvidas surgiram?
 :::
 :::
 
-::: {.small}
-Ficha de uma página: tiagojacinto.eu/fmup-ia/quadro/guias/ficha-ponto-focal.pdf. Resultados apresentados ao Conselho no fim do semestre. Calendário a fixar com o Conselho.
+::: {.note-line}
+Ficha de uma página no site. Resultados apresentados ao Conselho no fim do semestre. Calendário a fixar com o Conselho.
 :::
 
 ::: {.notes}
-30 s. Quatro indicadores simples, sem inquérito aos estudantes nem dados pessoais. O primeiro responde à crítica de não termos dados locais. A ficha está no site. Palpite de calendário, a confirmar: 2.º semestre de 2026/27. Voluntários criam enviesamento: o piloto mostra viabilidade, não eficácia. Digo-o já.
+30 s. Quatro indicadores simples, sem inquérito aos estudantes nem dados pessoais. O primeiro responde à crítica de não termos dados locais. A ficha: tiagojacinto.eu/fmup-ia/quadro/guias/ficha-ponto-focal.pdf. Palpite de calendário, a confirmar: 2.º semestre de 2026/27. Voluntários criam enviesamento: o piloto mostra viabilidade, não eficácia. Digo-o já.
 :::
 
 # Proposta de deliberação {.center .fmup-dark background-color="#1A1A1A"}
@@ -345,12 +289,66 @@ Ficha de uma página: tiagojacinto.eu/fmup-ia/quadro/guias/ficha-ponto-focal.pdf
 ::: {.notes}
 30 s. Repito a proposta em quatro verbos: tomar conhecimento, apoiar, convidar, receber. Nada disto aprova o Quadro nem a Themis. O QR code abre o site com o Quadro, a Themis, os guias e a ficha.
 
-Tempo total previsto: cerca de 9 minutos. Se faltar tempo, saltar o slide da estrutura do Quadro e o slide dos passos da Themis. Para abrir os slides de reserva, usar a seta para baixo neste slide. A seta para a direita não os abre.
+Tempo total previsto: cerca de 9 minutos. Se faltar tempo, saltar o slide da estrutura do Quadro e o slide do nível de risco. Para abrir os slides de reserva, usar a seta para baixo neste slide. A seta para a direita não os abre.
 :::
 
 ## Reserva {.center .fmup-dark background-color="#1A1A1A"}
 
 Slides de apoio às perguntas. Seta para baixo para avançar.
+
+## A Themis aplica o Quadro a cada papel
+
+::: {.columns}
+::: {.column width="33%"}
+::: {.card}
+<h3>Estudante</h3>
+
+Declaração para acompanhar um trabalho submetido.
+
+Indica as tarefas delegadas à IA e o grau de modificação.
+:::
+:::
+::: {.column width="33%"}
+::: {.card}
+<h3>Docente</h3>
+
+Cláusula para o programa da UC e requisito de divulgação para os estudantes.
+
+Segue o regime escolhido para a UC.
+:::
+:::
+::: {.column width="33%"}
+::: {.card}
+<h3>Investigador</h3>
+
+Nota curta para manuscritos e candidaturas.
+
+Declaração de métodos, com o que foi delegado à IA.
+:::
+:::
+:::
+
+::: {.note-line}
+Corre no navegador. Português e inglês. Cada texto indica a versão do Quadro e da ferramenta.
+:::
+
+::: {.notes}
+Os três papéis da Themis. A vertente Estudantes inclui os macrodomínios GAIDeT. A vertente Investigadores tem três variantes: sem uso, uso não material e uso material.
+:::
+
+## A Themis recolhe as escolhas do docente
+
+<div class="shot" style="width:620px; margin:0.4em auto 0">
+<img src="img/themis-escolhas.png" alt="Captura da Themis: passo 1 de 4, tipo de oferta formativa, e passo 2 de 4, tipo de trabalho avaliado" style="width:100%; border:1px solid #E0E0E0; margin:0">
+</div>
+
+::: {.note-line}
+Os quatro passos: tipo de oferta formativa, trabalho avaliado, política de IA e competências a proteger.
+:::
+
+::: {.notes}
+Captura real da Themis. Mostra os passos 1 e 2. Os passos 3 e 4 são a política de IA e as competências que têm de ser dos estudantes.
+:::
 
 ## Sete princípios e três vertentes
 
@@ -400,7 +398,7 @@ Os sete princípios vêm do ERA Forum, de Chan e da AAMC. O regime em três nív
 | I | Seis perfis disciplinares da FMUP |
 | J | Promptário clínico, sem dados de doentes |
 
-::: {.small}
+::: {.note-line}
 Anexos C, F, G, H, K e L: leituras, glossário, maturidade e articulações.
 :::
 
@@ -441,8 +439,8 @@ Nível 4. Uso proibido pelo Quadro.
 :::
 :::
 
-::: {.small}
-Quatro níveis adaptados do modelo HEAT-AI (Temper et al., 2025). Os avisos são indicativos: a ferramenta assinala e explica, e a decisão fica com o utilizador.
+::: {.note-line}
+Quatro níveis adaptados do modelo HEAT-AI (Temper et al., 2025). Os avisos são indicativos: a decisão fica com o utilizador.
 :::
 
 ::: {.notes}
@@ -487,8 +485,8 @@ Nível 1: exploração pessoal, com nota curta nos trabalhos finais. Nível 2: a
 :::
 :::
 
-::: {.small}
-Calendário do capítulo Implementação e avaliação. Depende da apreciação dos órgãos da FMUP e da evolução da orientação europeia e nacional. Não é um compromisso.
+::: {.note-line}
+Calendário do capítulo Implementação e avaliação. Depende da apreciação dos órgãos da FMUP. Não é um compromisso.
 :::
 
 ::: {.notes}
@@ -505,7 +503,7 @@ Este calendário não é um plano aprovado. O piloto é o primeiro passo da Fase
 5. Formação inicial, com relatório anual.
 :::
 
-::: {.small}
+::: {.note-line}
 Cinco medidas de baixo risco, reversíveis e avaliáveis. Capítulo Implementação e avaliação.
 :::
 
