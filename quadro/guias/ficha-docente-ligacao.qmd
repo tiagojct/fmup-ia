@@ -1,6 +1,6 @@
 ---
 title: "Ficha de devolução do piloto"
-subtitle: "Ponto focal de departamento"
+subtitle: "Docente de ligação do departamento"
 suppress-bibliography: true
 lang: pt-PT
 # CSL local, como nos outros guias: o Typst rejeita caminhos com "..".
@@ -29,7 +29,7 @@ Uma página por UC. Não inclua nomes de estudantes, nem dados pessoais ou clín
 
 #fields(
   ("Departamento", v(0.3cm)),
-  ("Ponto focal", v(0.3cm)),
+  ("Docente de ligação", v(0.3cm)),
   ("Unidade curricular", v(0.3cm)),
   ("Ciclo de estudos e semestre", v(0.3cm)),
   ("N.º aproximado de estudantes", v(0.3cm)),
