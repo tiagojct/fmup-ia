@@ -1,0 +1,180 @@
+---
+title: "IA generativa na FMUP: o Quadro e a Themis"
+subtitle: "Documento de apoio · Conselho Pedagógico, 10 de Novembro de 2026"
+suppress-bibliography: true
+lang: pt-PT
+format:
+  fmup-typst:
+    toc: false
+    number-sections: false
+    papersize: a4
+    margin:
+      x: 1.4cm
+      y: 0.9cm
+    fontsize: 9pt
+    section-numbering: ""
+    shift-heading-level-by: -1
+---
+
+```{=typst}
+#let Y = rgb("#FFCD00")
+#let K = rgb("#1A1A1A")
+#let G = rgb("#F3F3F3")
+#let L = rgb("#D9D9D9")
+#let M = rgb("#5B6470")
+#set par(spacing: 0.5em, leading: 0.5em, justify: false)
+#set text(hyphenate: false)
+#show heading: it => block(above: 0.85em, below: 0.45em, sticky: true)[#box(width: 7pt, height: 7pt, fill: Y, baseline: 0pt) #h(5pt) #text(size: 11pt, weight: "bold", it.body)]
+
+#let card(title, body, fill: G, ink: K, stroke: 0.5pt + L) = block(
+  width: 100%, height: 100%, fill: fill, stroke: stroke, inset: 6pt, radius: 2pt,
+)[#text(weight: "bold", fill: ink, title) #v(-2pt) #text(fill: ink, body)]
+
+#let arrow = align(center + horizon, text(size: 13pt, weight: "bold", sym.arrow.r))
+
+#let flow(..items, dark-last: false, hh: 1.45cm) = {
+  let xs = items.pos()
+  let n = xs.len()
+  let cols = ()
+  let cells = ()
+  for (i, x) in xs.enumerate() {
+    cols.push(1fr)
+    let last = dark-last and i == n - 1
+    cells.push(card(
+      [#box(fill: Y, inset: (x: 3pt, y: 1pt), text(fill: K, str(i + 1))) #h(3pt) #x.at(0)],
+      x.at(1),
+      fill: if last { K } else { G },
+      ink: if last { white } else { K },
+      stroke: if last { none } else { 0.5pt + L },
+    ))
+    if i < n - 1 { cols.push(12pt); cells.push(arrow) }
+  }
+  grid(columns: cols, rows: hh, ..cells)
+}
+
+#let chip(t, fill: white, stroke: 0.6pt + K, bold: false) = box(
+  fill: fill, stroke: stroke, inset: (x: 4pt, y: 2pt), radius: 2pt,
+  text(weight: if bold { "bold" } else { "regular" }, t),
+)
+```
+
+```{=typst}
+#block(fill: K, inset: 7pt, radius: 2pt, width: 100%)[#grid(columns: (1fr, auto), column-gutter: 10pt, align: horizon,
+  text(fill: white)[Um quadro de referência para o uso de IA generativa na FMUP e uma ferramenta que o aplica. #text(fill: Y, weight: "bold")[Contributo individual, não é política aprovada.] Gratuito, licença CC BY 4.0. \ #v(1pt) Contexto: só 14,7 % de 68 instituições de ensino superior inquiridas têm políticas sobre IA em prática (CNIPES, 2026). Na FMUP ainda não há dados.],
+  box(fill: white, inset: 3pt, image("qr-fmup-ia.png", width: 1.7cm)),
+)]
+```
+
+### Quadro de referência, versão 1.7
+
+```{=typst}
+#grid(columns: (1fr, 12pt, 1fr, 12pt, 1fr), rows: 2.5cm,
+  card[Parte I: comparação][Estados Unidos, Europa, Ibero‑América, Portugal, referenciais supranacionais, medicina. Compara antes de propor.],
+  arrow,
+  card[Parte II: proposta][Sete princípios. Regras para estudantes, docentes e investigadores. Processo disciplinar. Implementação de 2026 a 2029.],
+  arrow,
+  card(fill: Y, stroke: none)[12 anexos][Instrumentos prontos a usar. A: declaração de uso. B: cláusula para a UC. D: guias. E: cenários. H: articulação com a U.Porto.],
+)
+#v(6pt)
+#grid(columns: (1fr, 1fr), column-gutter: 14pt,
+  [
+    *Cada UC escolhe o regime, por actividade avaliada*
+    #v(2pt)
+    #chip(fill: rgb("#DCEFD9"), stroke: none)[Permitido] #chip(fill: rgb("#FFF1B8"), stroke: none)[Permitido com condições] #chip(fill: rgb("#F6D5D2"), stroke: none)[Proibido]
+    #v(2pt)
+    #text(fill: M)[Segue o semáforo da U.Porto. O Quadro não impõe o regime.]
+  ],
+  [
+    *Relação com a U.Porto*
+    #v(2pt)
+    #grid(columns: (1fr, 14pt, 1fr), rows: 1.55cm,
+      card(fill: K, ink: white, stroke: none)[Pacote da U.Porto][Prevalece em caso de conflito.],
+      align(center + horizon, text(size: 12pt, weight: "bold", "+")),
+      card[Camada FMUP][Dados clínicos, ensaios, viés clínico.],
+    )
+  ],
+)
+```
+
+### Themis, versão 1.3.2
+
+```{=typst}
+#flow(
+  ([Escolhas], [Papel e contexto: oferta, trabalho, política, competências.]),
+  ([Regras], [As do Quadro, num ficheiro público.]),
+  ([Risco], [Quatro níveis. Os avisos não bloqueiam.]),
+  ([Texto], [Declaração ou cláusula, em português e em inglês.]),
+  dark-last: true, hh: 1.75cm,
+)
+#v(6pt)
+#grid(columns: (1.15fr, 1fr), column-gutter: 14pt,
+  [
+    *Níveis de risco* #text(fill: M)[(adaptados de HEAT-AI)]
+    #v(3pt)
+    #grid(columns: (1fr, 1fr, 1fr, 1fr), column-gutter: 3pt, align: bottom,
+      block(width: 100%, height: 0.9cm, fill: G, stroke: 0.5pt + L, inset: 4pt)[*1 Mínimo* \ #text(size: 7.5pt)[Uso pessoal]],
+      block(width: 100%, height: 1.2cm, fill: G, stroke: 0.5pt + L, inset: 4pt)[*2 Limitado* \ #text(size: 7.5pt)[Declarar]],
+      block(width: 100%, height: 1.5cm, fill: G, stroke: 0.5pt + L, inset: 4pt)[*3 Alto* \ #text(size: 7.5pt)[Declarar e registar]],
+      block(width: 100%, height: 1.8cm, fill: K, inset: 4pt)[#text(fill: Y)[*4 Inaceitável*] \ #text(size: 7.5pt, fill: white)[Proibido]],
+    )
+    #v(2pt)
+    #text(fill: M)[Nível 4: dados de doentes em serviços não autorizados, IA a decidir sozinha.]
+  ],
+  [
+    *É um demonstrador*
+    #v(2pt)
+    #grid(columns: (auto, 1fr), column-gutter: 5pt, row-gutter: 4pt,
+      chip(fill: Y, stroke: none, bold: true)[Faz], [Corre no navegador, sem cookies. Não envia dados a servidores. As escolhas ficam no endereço.],
+      chip(bold: true)[Falta], [Avaliação de segurança e de protecção de dados, inventário da U.Porto, responsável técnico.],
+    )
+    #v(2pt)
+    #text(fill: M)[Não introduzir dados pessoais ou clínicos.]
+  ],
+)
+```
+
+### Piloto proposto: um semestre, um docente de ligação por departamento
+
+```{=typst}
+#flow(
+  ([Escolher], [O docente de ligação escolhe uma UC.]),
+  ([Aplicar], [A cláusula do Anexo B entra no programa. Themis opcional.]),
+  ([Verificar], [O docente devolve a ficha de uma página.]),
+)
+#v(5pt)
+#grid(columns: (auto, 1fr, 1fr, 1fr, 1fr), column-gutter: 5pt, align: horizon,
+  text(weight: "bold")[O piloto mede:],
+  ..([*Ponto de partida:* UCs com cláusula], [*Cobertura:* cláusula no programa], [*Informação:* aos estudantes], [*Esforço:* tempo e dúvidas]).map(t => block(width: 100%, height: 0.95cm, stroke: 0.6pt + K, radius: 2pt, inset: 4pt, t)),
+)
+#v(2pt)
+#text(fill: M)[Mostra se é viável, não se é eficaz. Um representante dos estudantes lê a cláusula antes.]
+```
+
+### Proposta ao Conselho
+
+```{=typst}
+#grid(columns: (1fr, 1fr, 1fr, 1fr), column-gutter: 5pt, rows: 1.65cm,
+  card(fill: K, ink: white, stroke: none)[#text(fill: Y)[Tomar conhecimento]][Do Quadro e da Themis.],
+  card(fill: K, ink: white, stroke: none)[#text(fill: Y)[Apoiar]][Um piloto de um semestre.],
+  card(fill: K, ink: white, stroke: none)[#text(fill: Y)[Convidar]][Cada departamento a indicar um docente de ligação.],
+  card(fill: K, ink: white, stroke: none)[#text(fill: Y)[Receber]][Os resultados no fim do semestre.],
+)
+```
+
+### Perguntas frequentes
+
+```{=typst}
+#let qa(q, a) = (text(weight: "bold", q), a)
+#grid(columns: (auto, 1fr, auto, 1fr), column-gutter: 7pt, row-gutter: 5pt,
+  ..qa[Duplica a U.Porto?][Não. Subordina-se ao pacote.],
+  ..qa[Proíbe a IA?][Não. Cada UC escolhe o regime.],
+  ..qa[Altera regulamentos?][Não. Nem cria sanções.],
+  ..qa[E a prova de uso indevido?][Detectores automáticos não servem como prova única.],
+  ..qa[Quanto trabalho dá?][Poucas horas por semestre. Estimativa por confirmar.],
+  ..qa[A Themis é obrigatória?][Não. O piloto usa a cláusula do Anexo B.],
+)
+#v(5pt)
+#line(length: 100%, stroke: 0.5pt + L)
+#v(2pt)
+#text(size: 8pt, fill: M)[Tiago Jacinto, MEDCIDS, FMUP. Quadro, Themis, guias e ficha do piloto: tiagojacinto.eu/fmup-ia. Conflitos de interesse e uso de IA declarados em tiagojacinto.eu/fmup-ia/sobre.html.]
+```
