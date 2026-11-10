@@ -205,24 +205,6 @@ Cada texto indica a versão do Quadro e a versão da ferramenta que o gerou.
 30 s. O percurso em quatro passos. Primeiro, o papel e o contexto. Segundo, as regras do Quadro correm sobre as escolhas. Terceiro, a avaliação de risco. Quarto, o texto. A Themis chama-se assim por Témis, deusa grega da ordem e da lei. Era Atlas até Junho de 2026. Versão actual 1.3.2. O slide de reserva mostra as escolhas do docente.
 :::
 
-## A Themis mostra o nível de risco e explica porquê
-
-<div class="shotrow">
-<div class="shot">
-<img src="img/themis-risco.png" alt="Captura da Themis: avaliação segundo a proposta, nível 1, mínimo, com aviso de que os avisos são indicativos e não bloqueiam a geração da declaração">
-<div class="hl" style="left:4.7%; top:6%; width:62%; height:9%"></div>
-<div class="hl" style="left:4.7%; top:80%; width:85%; height:12%"></div>
-</div>
-<div class="shotnotes">
-<div class="tag">Nível de risco e regra aplicada, com ligação ao princípio e ao cenário do Quadro.</div>
-<div class="tag">Os avisos são indicativos. A declaração é gerada na mesma.</div>
-</div>
-</div>
-
-::: {.notes}
-30 s. Captura real da Themis, versão 1.3.2, para uma UC de mestrado com relatório e discussão de caso. O destaque de cima mostra o nível de risco. A ferramenta explica a regra e liga ao princípio e ao cenário do Quadro. O destaque de baixo: os avisos não bloqueiam a geração da declaração. A responsabilidade final é do utilizador.
-:::
-
 ## A avaliação de risco tem quatro níveis e não bloqueia
 
 ::: {.columns}
@@ -262,6 +244,24 @@ Quatro níveis adaptados do modelo HEAT-AI (Temper et al., 2025). Os avisos são
 
 ::: {.notes}
 30 s. Nível 1: exploração pessoal, com nota curta nos trabalhos finais. Nível 2: apoio como revisão linguística, com declaração. Nível 3: impacto formativo, clínico ou administrativo, com declaração explícita e registo. Nível 4: dados pessoais em serviços não autorizados, decisão clínica delegada, classificação só por IA, IA como autora.
+:::
+
+## A Themis mostra o nível de risco e explica porquê
+
+<div class="shotrow">
+<div class="shot">
+<img src="img/themis-risco.png" alt="Captura da Themis: avaliação segundo a proposta, nível 1, mínimo, com aviso de que os avisos são indicativos e não bloqueiam a geração da declaração">
+<div class="hl" style="left:4.7%; top:6%; width:62%; height:9%"></div>
+<div class="hl" style="left:4.7%; top:80%; width:85%; height:12%"></div>
+</div>
+<div class="shotnotes">
+<div class="tag">Nível de risco e regra aplicada, com ligação ao princípio e ao cenário do Quadro.</div>
+<div class="tag">Os avisos são indicativos. A declaração é gerada na mesma.</div>
+</div>
+</div>
+
+::: {.notes}
+30 s. Captura real da Themis, versão 1.3.2, para uma UC de mestrado com relatório e discussão de caso. O destaque de cima mostra o nível de risco. A ferramenta explica a regra e liga ao princípio e ao cenário do Quadro. O destaque de baixo: os avisos não bloqueiam a geração da declaração. A responsabilidade final é do utilizador.
 :::
 
 ## A Themis é um demonstrador
@@ -389,7 +389,7 @@ Ficha de uma página no site. Resultados apresentados ao Conselho no fim do seme
 ::: {.notes}
 30 s. Repito a proposta em quatro verbos: tomar conhecimento, apoiar, convidar, receber. Nada disto aprova o Quadro nem a Themis. O QR code abre o site com o Quadro, a Themis, os guias e a ficha.
 
-Tempo total previsto: cerca de 9 minutos. Versão curta, cerca de 6 minutos: dizer uma frase só nos slides 4 (estrutura do Quadro), 5 (anexos), 7 (papéis da Themis), 9 (captura), 10 (níveis de risco), 12 (limites do Quadro) e 14 (indicadores). Para saltar para um slide, premir G, escrever o número e premir Enter. Para abrir os slides de reserva, usar a seta para baixo neste slide. A seta para a direita não os abre.
+Tempo total previsto: cerca de 9 minutos. Versão curta, cerca de 6 minutos: dizer uma frase só nos slides 4 (estrutura do Quadro), 5 (anexos), 7 (papéis da Themis), 9 (níveis de risco), 10 (captura), 12 (limites do Quadro) e 14 (indicadores). Para saltar para um slide, premir G, escrever o número e premir Enter. Para abrir os slides de reserva, usar a seta para baixo neste slide. A seta para a direita não os abre.
 :::
 
 ## Reserva {.center .fmup-dark background-color="#1A1A1A"}
