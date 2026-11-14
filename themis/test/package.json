@@ -3,7 +3,7 @@
   "private": true,
   "description": "Headless test harness for Themis. Dev-only; the tool itself has no dependencies and no build step.",
   "scripts": {
-    "test": "node smoke.js"
+    "test": "node --test smoke.js rules.test.js"
   },
   "devDependencies": {
     "jsdom": "^24.0.0"

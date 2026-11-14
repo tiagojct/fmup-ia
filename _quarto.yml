@@ -24,6 +24,7 @@ project:
   resources:
     - "themis/index.html"
     - "themis/app.js"
+    - "themis/policy-rules.js"
     - "themis/style.css"
     - "themis/policy.json"
     - "themis/i18n/**"

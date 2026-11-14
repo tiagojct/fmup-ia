@@ -20,7 +20,7 @@ async function boot(t, { lang = 'pt', state, storageBlocked = false, loadedPolic
   w.requestAnimationFrame = fn => w.setTimeout(fn, 0);
   if (storageBlocked) Object.defineProperty(w, 'localStorage', { get() { throw new w.DOMException('blocked', 'SecurityError'); } });
   else w.localStorage.setItem('fmup-ai-lang', lang);
-  for (const f of ['i18n/pt.js', 'i18n/en.js', 'app.js']) w.eval(fs.readFileSync(path.join(ROOT, f), 'utf8'));
+  for (const f of ['i18n/pt.js', 'i18n/en.js', 'policy-rules.js', 'app.js']) w.eval(fs.readFileSync(path.join(ROOT, f), 'utf8'));
   await new Promise(r => setTimeout(r, 10));
   const $ = q => w.document.querySelector(q);
   const change = (q, value) => {
