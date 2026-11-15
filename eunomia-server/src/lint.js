@@ -165,17 +165,19 @@ function lintEmoji(text) {
   return dedupe(found, (w) => w.match);
 }
 
-// Bold at the start of a list item is allowed in two shapes only, as renderSection writes them:
-// the time label of a block in formato ("- **5 min.** ..." or "- **5 a 10 min.** ...") and the
-// lead-in phrase of an item in armadilhas ("- **Lead.** ..."). Each entry takes the text between
-// the ** marks and tells if the shape is allowed in that section.
+// Bold at the start of a list item is allowed in three shapes only: the time label of a block in
+// formato ("- **5 min.** ..." or "- **5 a 10 min.** ..."), the lead-in phrase of an item in armadilhas
+// ("- **Lead.** ..."), and the question that leads a numbered item in correccao ("1. **Pergunta?** ..."),
+// as in the reference fichas. Each entry takes the text between the ** marks and tells if the shape
+// is allowed in that section; numbered is true when the item has a number and not a bullet.
 const ALLOWED_BOLD = {
   formato: (lead) => /^\d+(?: a \d+)? min\.$/.test(lead),
   armadilhas: (lead) => lead.trim() !== '',
+  correccao: (lead, numbered) => numbered && lead.trim() !== '',
 };
-const BOLD_ITEM = /^[ \t]*(?:[-*+]|\d{1,3}[.)])[ \t]+(\*\*|__)(?=\S)(.+?)\1/;
+const BOLD_ITEM = /^[ \t]*([-*+]|\d{1,3}[.)])[ \t]+(\*\*|__)(?=\S)(.+?)\2/;
 const BOLD_MESSAGE =
-  'Negrito no início de um item de lista. Só se usa nos tempos de formato (por exemplo, "5 min.") e na frase de abertura de cada armadilha.';
+  'Negrito no início de um item de lista. Só se usa nos tempos de formato (por exemplo, "5 min."), na frase de abertura de cada armadilha e na pergunta de cada item numerado da correcção.';
 
 function lintBold(sectionId, text) {
   const allowed = ALLOWED_BOLD[sectionId];
@@ -183,8 +185,9 @@ function lintBold(sectionId, text) {
   for (const line of maskCode(text).split('\n')) {
     const m = line.match(BOLD_ITEM);
     if (!m) continue;
-    if (allowed && allowed(m[2])) continue;
-    found.push({ rule: 'estilo', match: `${m[1]}${m[2]}${m[1]}`, message: BOLD_MESSAGE });
+    const [, marker, bold, lead] = m;
+    if (allowed && allowed(lead, /^\d/.test(marker))) continue;
+    found.push({ rule: 'estilo', match: `${bold}${lead}${bold}`, message: BOLD_MESSAGE });
   }
   return dedupe(found);
 }

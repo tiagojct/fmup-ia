@@ -345,6 +345,22 @@ test('estilo: other bold in formato, and a time label outside formato, is flagge
   assert.equal(only('estilo', lintSection('correccao', '- **5 min.** texto', NO_CTX)).length, 1);
 });
 
+test('estilo: a numbered bold question lead in correccao is allowed, as in the reference fichas', () => {
+  assert.deepEqual(only('estilo', lintSection('correccao', '1. **Que erros escaparam aos grupos?** Normalmente os de raciocínio.', NO_CTX)), []);
+  assert.deepEqual(only('estilo', lintSection('correccao', '  12) **Onde falhou a ferramenta?** Na limitação.', NO_CTX)), []);
+  for (const n of [1, 2, 4]) {
+    const md = renderSection('correccao', load(n).correccao);
+    assert.deepEqual(only('estilo', lintSection('correccao', md, NO_CTX)), [], `ficha ${n}`);
+  }
+});
+
+test('estilo: a bold lead on a bullet in correccao, and a numbered one elsewhere, is still flagged', () => {
+  assert.equal(only('estilo', lintSection('correccao', '- **Pergunta?** texto', NO_CTX)).length, 1);
+  assert.equal(only('estilo', lintSection('correccao', '* **Pergunta?** texto', NO_CTX)).length, 1);
+  assert.equal(only('estilo', lintSection('papeis', '1. **Pergunta?** texto', NO_CTX)).length, 1);
+  assert.equal(only('estilo', lintSection('formato', '1. **Pergunta?** texto', NO_CTX)).length, 1);
+});
+
 test('estilo: the armadilhas list from renderSection passes', () => {
   const md = renderSection('armadilhas', [
     { lead: 'Saída de papel.', texto: 'Perante insistência, o doente simulado ajuda.' },
