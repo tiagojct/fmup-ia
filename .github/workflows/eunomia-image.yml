@@ -1,0 +1,48 @@
+# Quarterdeck template image-ghcr, for the Eunomia server.
+# Rokovoko pulls the image with quarterdeck-pull.timer (marker file .quarterdeck-pull in
+# /opt/vps/apps/eunomia).
+name: eunomia-image
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'eunomia-server/**'
+      - 'eunomia/*.json'
+      - 'themis/policy*.js*'
+      - 'themis/i18n/pt.js'
+      - '_variables.yml'
+      - '.dockerignore'
+      - '.github/workflows/eunomia-image.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  packages: write
+jobs:
+  image:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: eunomia-server/package-lock.json
+      - name: Test the server
+        run: |
+          npm ci --prefix eunomia-server
+          npm test --prefix eunomia-server
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: eunomia-server/Dockerfile
+          push: true
+          tags: |
+            ghcr.io/tiagojct/eunomia:latest
+            ghcr.io/tiagojct/eunomia:${{ github.sha }}
+          labels: org.opencontainers.image.revision=${{ github.sha }}

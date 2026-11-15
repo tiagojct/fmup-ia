@@ -1,0 +1,16 @@
+# Build context of eunomia-server/Dockerfile (the repository root). Everything is left out,
+# except the files the image copies.
+*
+!eunomia-server/package.json
+!eunomia-server/package-lock.json
+!eunomia-server/src
+!eunomia-server/src/**
+!eunomia-server/bin
+!eunomia-server/bin/**
+!eunomia-server/referencia
+!eunomia-server/referencia/**
+!eunomia/*.json
+!themis/policy.json
+!themis/policy-rules.js
+!themis/i18n/pt.js
+!_variables.yml

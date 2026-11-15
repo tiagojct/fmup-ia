@@ -1,0 +1,33 @@
+# Eunomia on Rokovoko: /opt/vps/apps/eunomia/docker-compose.yml
+# Next to it: .env (mode 600, owner 1000:1000), data/ (mode 700, owner 1000:1000) and the
+# .quarterdeck-pull marker. Caddy reaches the container as eunomia:3000 on the proxy network.
+services:
+  eunomia:
+    image: ghcr.io/tiagojct/eunomia:latest
+    container_name: eunomia
+    restart: unless-stopped
+    user: "1000:1000"
+    env_file: .env
+    volumes:
+      - ./data:/app/data
+    networks:
+      - proxy
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/fmup-ia/eunomia/api/saude"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  proxy:
+    external: true
