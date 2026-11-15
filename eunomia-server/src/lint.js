@@ -180,7 +180,7 @@ const BOLD_MESSAGE =
   'Negrito no início de um item de lista. Só se usa nos tempos de formato (por exemplo, "5 min."), na frase de abertura de cada armadilha e na pergunta de cada item numerado da correcção.';
 
 function lintBold(sectionId, text) {
-  const allowed = ALLOWED_BOLD[sectionId];
+  const allowed = Object.hasOwn(ALLOWED_BOLD, sectionId) ? ALLOWED_BOLD[sectionId] : undefined;
   const found = [];
   for (const line of maskCode(text).split('\n')) {
     const m = line.match(BOLD_ITEM);

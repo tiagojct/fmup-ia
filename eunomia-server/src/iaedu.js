@@ -13,6 +13,9 @@
 
 const DEFAULT_BASE_URL = 'https://api.iaedu.pt/agent-chat/api/v1';
 
+// A line of the stream longer than this is not a reply: the read stops with a service error.
+const MAX_LINE = 1024 * 1024;
+
 const MESSAGES = {
   auth: 'A chave IAedu indicada não é válida.',
   limite: 'A IAedu recusou o pedido por excesso de utilização. Tente daqui a alguns minutos.',
@@ -76,6 +79,7 @@ async function readReply(body) {
     pending += decoder.decode(chunk, { stream: true });
     const lines = pending.split('\n');
     pending = lines.pop();
+    if (pending.length > MAX_LINE) throw new IaeduError('servico');
     for (const line of lines) {
       if (handle(line)) {
         finished = true;

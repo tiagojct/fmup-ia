@@ -203,7 +203,7 @@ function validateFicha(ficha, profile) {
 
 // ficha (optional) gives the meta for the duration rule of the formato section.
 function validateSection(sectionId, data, profile, ficha) {
-  if (!CHECKED.includes(sectionId)) return [`Secção desconhecida: ${sectionId}.`];
+  if (typeof sectionId !== 'string' || !CHECKED.includes(sectionId)) return [`Secção desconhecida: ${sectionId}.`];
   checkProfile(profile);
   if (data === undefined) return [`Falta a secção ${sectionId}.`];
   const errors = schemaErrors(
@@ -316,7 +316,7 @@ function escapeAt(md) {
 }
 
 function renderSection(sectionId, data) {
-  if (!RENDER[sectionId]) throw new Error(`Secção desconhecida: ${sectionId}.`);
+  if (!Object.hasOwn(RENDER, sectionId)) throw new Error(`Secção desconhecida: ${sectionId}.`);
   return escapeAt(RENDER[sectionId](data));
 }
 

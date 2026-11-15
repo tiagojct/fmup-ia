@@ -23,12 +23,16 @@
 // own-key mode (headers X-Iaedu-*) are read for the request and never stored or logged.
 
 const http = require('node:http');
-const { COOKIE_NAME, SESSION_MS } = require('./auth.js');
+const net = require('node:net');
+const { COOKIE_NAME, SESSION_MS, CodeInputError } = require('./auth.js');
 const { IaeduError } = require('./iaedu.js');
 const { logRequest, logError } = require('./log.js');
 const { registerDraftRoutes } = require('./draft-routes.js');
 
 const MAX_BODY = 1024 * 1024;
+const PUBLIC_MAX_BODY = 8 * 1024; // public routes (login) take a small body only
+const ID_PARAM = /^[A-Za-z0-9_-]{1,64}$/;
+const BODY_READ = Symbol('bodyRead');
 const DEFAULT_BASE_PATH = '/fmup-ia/eunomia/api';
 const DEFAULT_COOKIE_PATH = '/fmup-ia/eunomia';
 const DEFAULT_LIMITS = { loginPerMinute: 5, requestsPerMinute: 120 };
@@ -73,12 +77,21 @@ function cookieValue(req) {
   return null;
 }
 
-// The address that counts for the login limit: the first entry of X-Forwarded-For (Caddy and
-// Cloudflare are in front of the server), else the address of the socket.
+// The address that counts for the login limit. Cloudflare sets CF-Connecting-IP and cloudflared
+// passes it on; Caddy replaces X-Forwarded-For with its own peer. So: CF-Connecting-IP first, then
+// the last entry of X-Forwarded-For (the one the nearest proxy wrote; the first entry is whatever
+// the client sent), then the address of the socket. A value that is not an IP address is skipped.
 function clientIp(req) {
+  const ip = (v) => (typeof v === 'string' && net.isIP(v.trim()) ? v.trim() : null);
   const forwarded = req.headers['x-forwarded-for'];
-  const first = typeof forwarded === 'string' ? forwarded.split(',')[0].trim() : '';
-  return (first || req.socket.remoteAddress || 'desconhecido').slice(0, 64);
+  const last = typeof forwarded === 'string' ? ip(forwarded.split(',').pop()) : null;
+  return (ip(req.headers['cf-connecting-ip']) || last || req.socket.remoteAddress || 'desconhecido').slice(0, 64);
+}
+
+// True when the request announces a body.
+function hasBody(req) {
+  const length = Number(req.headers['content-length']);
+  return (Number.isFinite(length) && length > 0) || req.headers['transfer-encoding'] !== undefined;
 }
 
 function sessionCookie(value, cookiePath, maxAge) {
@@ -140,8 +153,8 @@ function readBody(req, limit) {
 
 // The body as a JSON object. No body is {}. A body needs the JSON content type: a form post from
 // another site cannot send it without a preflight, which is a second guard next to SameSite.
-async function readJson(req) {
-  const buffer = await readBody(req, MAX_BODY);
+async function readJson(req, limit = MAX_BODY) {
+  const buffer = await readBody(req, limit);
   const text = buffer.toString('utf8');
   if (text.trim() === '') return {};
   if (!/^application\/json\s*(;|$)/i.test(req.headers['content-type'] || '')) {
@@ -170,7 +183,8 @@ function resolveCreds(req, query, env) {
     return typeof v === 'string' ? v.trim() : '';
   };
   const own = { key: header('x-iaedu-key'), agentId: header('x-iaedu-agent'), channelId: header('x-iaedu-channel') };
-  if (own.key || own.agentId || own.channelId) {
+  // Any of the three headers, even blank, is an own-key attempt.
+  if (['x-iaedu-key', 'x-iaedu-agent', 'x-iaedu-channel'].some((name) => req.headers[name] !== undefined)) {
     if (own.key && own.agentId && own.channelId) return { creds: { ...own, source: 'own' }, error: null };
     return { creds: null, error: new HttpError(400, 'Indique a chave, o ID do agente e o ID do canal IAedu.') };
   }
@@ -207,9 +221,6 @@ function registerRoutes(route, config) {
     'POST',
     '/login',
     async (req, res, ctx) => {
-      if (!auth.rateLimit(`login:${clientIp(req)}`, limits.loginPerMinute)) {
-        throw new HttpError(429, 'Demasiadas tentativas. Tente de novo daqui a um minuto.', { 'Retry-After': '60' });
-      }
       if (typeof ctx.body.codigo !== 'string' || ctx.body.codigo.trim() === '') {
         throw new HttpError(400, 'Indique o código de acesso.');
       }
@@ -219,6 +230,14 @@ function registerRoutes(route, config) {
       return person(user);
     },
     'public',
+    {
+      // The limit counts every attempt and runs before the body is read.
+      before(req) {
+        if (!auth.rateLimit(`login:${clientIp(req)}`, limits.loginPerMinute)) {
+          throw new HttpError(429, 'Demasiadas tentativas. Tente de novo daqui a um minuto.', { 'Retry-After': '60' });
+        }
+      },
+    },
   );
 
   // Sessions are signed, not stored: a logout removes the cookie from the browser. A code that is
@@ -255,7 +274,7 @@ function registerRoutes(route, config) {
       try {
         made = auth.addCode(nome, admin ? 'admin' : 'teacher');
       } catch (e) {
-        if (e instanceof TypeError) throw new HttpError(400, e.message); // the messages of addCode are for the user
+        if (e instanceof CodeInputError) throw new HttpError(400, e.message); // the messages of addCode are for the user
         throw e;
       }
       sendJson(res, 201, { id: made.id, codigo: made.code });
@@ -313,9 +332,12 @@ function createServer(config) {
   const errOut = cfg.errorStream || process.stderr;
 
   const routes = [];
-  const route = (method, pattern, handler, access = 'user') => {
+  // opts.before(req) runs after the session checks and before the body is read.
+  // opts.maxBody overrides the body limit (default: 8 KB on public routes, 1 MB on the others).
+  const route = (method, pattern, handler, access = 'user', opts = {}) => {
     if (!['public', 'user', 'admin'].includes(access)) throw new TypeError(`Acesso desconhecido: ${access}`);
-    routes.push({ method, access, handler, ...compile(pattern) });
+    const maxBody = opts.maxBody ?? (access === 'public' ? PUBLIC_MAX_BODY : MAX_BODY);
+    routes.push({ method, access, handler, before: opts.before, maxBody, ...compile(pattern) });
   };
   registerRoutes(route, cfg);
   if (typeof cfg.routes === 'function') cfg.routes(route, cfg);
@@ -336,6 +358,8 @@ function createServer(config) {
         } catch {
           return { found: null, allowed: [] }; // a bad percent sequence matches nothing
         }
+        // An id that reaches the store must look like one: no dots, slashes or spaces.
+        if (Object.hasOwn(params, 'id') && !ID_PARAM.test(params.id)) return { found: null, allowed: [] };
         return { found: r, params };
       }
       allowed.push(r.method);
@@ -361,7 +385,9 @@ function createServer(config) {
       }
     }
 
-    const body = await readJson(req);
+    if (found.before) await found.before(req);
+    const body = await readJson(req, found.maxBody);
+    req[BODY_READ] = true;
     const { creds, error: credsError } = resolveCreds(req, query, cfg.env);
     const result = await found.handler(req, res, { user, params, body, creds, credsError, query });
 
@@ -369,15 +395,18 @@ function createServer(config) {
     else if (!res.headersSent) throw new Error('A rota não respondeu.');
   }
 
-  function fail(res, e) {
+  function fail(req, res, e) {
     if (res.headersSent) {
       res.destroy(); // too late for a JSON error
       return;
     }
-    if (e instanceof HttpError) return sendJson(res, e.status, { ...e.extra, erro: e.erro }, e.headers);
-    if (e instanceof IaeduError) return sendJson(res, IAEDU_STATUS[e.code] || 502, { erro: e.messagePt, motivo: e.code });
+    // An error before the body was read (or a body over the limit) leaves bytes on the connection:
+    // close it, so that they are not read as the next request.
+    const close = !req[BODY_READ] && hasBody(req) ? { Connection: 'close' } : {};
+    if (e instanceof HttpError) return sendJson(res, e.status, { ...e.extra, erro: e.erro }, { ...e.headers, ...close });
+    if (e instanceof IaeduError) return sendJson(res, IAEDU_STATUS[e.code] || 502, { erro: e.messagePt, motivo: e.code }, close);
     logError(e, errOut);
-    sendJson(res, 500, { erro: 'Erro interno do servidor.' });
+    sendJson(res, 500, { erro: 'Erro interno do servidor.' }, close);
   }
 
   const server = http.createServer((req, res) => {
@@ -390,7 +419,7 @@ function createServer(config) {
     };
     res.on('finish', () => done(res.statusCode));
     res.on('close', () => done(499)); // the client left before the reply was sent
-    handle(req, res).catch((e) => fail(res, e));
+    handle(req, res).catch((e) => fail(req, res, e));
   });
   // Caddy keeps connections to the upstream open for a long time; a shorter timeout here gives 502s.
   server.keepAliveTimeout = 65000;

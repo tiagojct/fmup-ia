@@ -55,6 +55,14 @@ function userOf(entry) {
   return { id: entry.id, name: entry.name, role: entry.role };
 }
 
+// Wrong input to addCode. The message is for the user (the server sends it with a 400).
+class CodeInputError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = 'CodeInputError';
+  }
+}
+
 function createAuth({ store, secret, dailyLimit = 200, now = Date.now } = {}) {
   if (!store) throw new TypeError('O armazenamento é obrigatório.');
   if (typeof secret !== 'string' || secret.length < 32) {
@@ -73,10 +81,10 @@ function createAuth({ store, secret, dailyLimit = 200, now = Date.now } = {}) {
   }
 
   function addCode(name, role = 'teacher') {
-    if (typeof name !== 'string' || name.trim() === '') throw new TypeError('O nome é obrigatório.');
+    if (typeof name !== 'string' || name.trim() === '') throw new CodeInputError('O nome é obrigatório.');
     const clean = name.trim().replace(/\s+/g, ' ');
-    if (clean.length > MAX_NAME_LENGTH) throw new TypeError(`O nome tem de ter no máximo ${MAX_NAME_LENGTH} caracteres.`);
-    if (!ROLES.includes(role)) throw new TypeError(`Perfil inválido. Perfis: ${ROLES.join(', ')}.`);
+    if (clean.length > MAX_NAME_LENGTH) throw new CodeInputError(`O nome tem de ter no máximo ${MAX_NAME_LENGTH} caracteres.`);
+    if (!ROLES.includes(role)) throw new CodeInputError(`Perfil inválido. Perfis: ${ROLES.join(', ')}.`);
 
     const file = readCodes();
     let id = crypto.randomBytes(4).toString('hex');
@@ -217,4 +225,4 @@ function createAuth({ store, secret, dailyLimit = 200, now = Date.now } = {}) {
   return { addCode, revoke, list, login, sign, verify, countModelCall, rateLimit };
 }
 
-module.exports = { createAuth, COOKIE_NAME, SESSION_MS, ALPHABET };
+module.exports = { createAuth, CodeInputError, COOKIE_NAME, SESSION_MS, ALPHABET };

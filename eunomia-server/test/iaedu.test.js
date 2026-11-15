@@ -307,6 +307,21 @@ test('send: a stream that stalls after the headers gives tempo', async () => {
   );
 });
 
+test('send: a line longer than 1 MB gives servico at once, without waiting for the time limit', async () => {
+  await withMock(
+    (req, res) => {
+      res.writeHead(200, { 'content-type': 'application/x-ndjson' });
+      res.write('{"type":"token","content":"' + 'a'.repeat(1024 * 1024 + 10)); // no newline, then nothing
+    },
+    async (client) => {
+      const started = Date.now();
+      await assert.rejects(client.send(opts()), isError('servico', MSG.servico));
+      assert.ok(Date.now() - started < 4000);
+    },
+    { timeoutMs: 5000 },
+  );
+});
+
 test('send: a refused connection gives servico', async () => {
   const mock = await startMock(() => {});
   const url = mock.url;

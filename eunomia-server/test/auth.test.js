@@ -8,7 +8,7 @@ const path = require('node:path');
 const { spawnSync } = require('node:child_process');
 
 const { createStore } = require('../src/store.js');
-const { createAuth, COOKIE_NAME, SESSION_MS } = require('../src/auth.js');
+const { createAuth, COOKIE_NAME, SESSION_MS, CodeInputError } = require('../src/auth.js');
 
 const SECRET = 'segredo-de-teste-com-mais-de-32-caracteres!';
 const ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
@@ -313,4 +313,11 @@ test('bin/codes.js: wrong usage prints a Portuguese message on stderr and exits 
     assert.equal(r.out, '');
   }
   assert.deepEqual(fs.readdirSync(dir), []);
+});
+
+test('addCode: wrong input throws CodeInputError, with a message for the user', (t) => {
+  const { auth } = setup(t);
+  for (const [name, role] of [['', 'teacher'], ['x'.repeat(101), 'teacher'], ['Ana', 'chefe']]) {
+    assert.throws(() => auth.addCode(name, role), (e) => e instanceof CodeInputError && typeof e.message === 'string' && e.message !== '');
+  }
 });

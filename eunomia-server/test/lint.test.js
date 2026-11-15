@@ -662,3 +662,10 @@ test('the pasted prompts of the reference fichas raise no number warning (they s
     assert.deepEqual(only('numero', lintSection('prompt_base', md, NO_CTX)), [], `ficha ${n}`);
   }
 });
+
+test('a section id that is an Object.prototype name gets no allowed bold', () => {
+  for (const id of ['constructor', '__proto__', 'toString']) {
+    const found = lintSection(id, '- **Negrito.** Texto.', NO_CTX).filter((w) => w.rule === 'estilo');
+    assert.equal(found.length, 1, id);
+  }
+});

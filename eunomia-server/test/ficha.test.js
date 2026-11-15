@@ -675,3 +675,10 @@ test('EUNOMIA_REPO_ROOT overrides the repository root', () => {
   ).toString();
   assert.equal(out, path.join('/tmp/raiz', 'x', 'y'));
 });
+
+test('section ids that are Object.prototype names are unknown sections', () => {
+  for (const id of ['constructor', '__proto__', 'toString', 'hasOwnProperty']) {
+    assert.throws(() => renderSection(id, {}), /Secção desconhecida/, id);
+    assert.deepEqual(validateSection(id, {}, 'new'), [`Secção desconhecida: ${id}.`], id);
+  }
+});

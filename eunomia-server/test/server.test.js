@@ -227,15 +227,56 @@ test('the sixth login attempt in a minute from one address returns 429', async (
   assert.equal((await app.call('POST', '/login', { body: { codigo: code } })).status, 429);
 });
 
-test('the login limit counts by the first entry of X-Forwarded-For', async (t) => {
+test('the login limit counts by CF-Connecting-IP first, then the last X-Forwarded-For entry, then the socket', async (t) => {
   const app = await startApp(t);
-  const attempt = (xff) => app.call('POST', '/login', { body: { codigo: 'AAAAAAAAAAAA' }, headers: { 'x-forwarded-for': xff } });
-  for (let i = 0; i < 5; i += 1) assert.equal((await attempt(`203.0.113.7, 10.0.0.${i}`)).status, 401);
-  assert.equal((await attempt('203.0.113.7, 10.0.0.99')).status, 429); // same client, another proxy
-  assert.equal((await attempt('203.0.113.8, 10.0.0.1')).status, 401); // another client
-  // without the header the socket address counts
-  for (let i = 0; i < 5; i += 1) assert.equal((await app.call('POST', '/login', { body: { codigo: 'AAAAAAAAAAAA' } })).status, 401);
-  assert.equal((await app.call('POST', '/login', { body: { codigo: 'AAAAAAAAAAAA' } })).status, 429);
+  const attempt = (headers) => app.call('POST', '/login', { body: { codigo: 'AAAAAAAAAAAA' }, headers });
+
+  // Cloudflare's header wins over X-Forwarded-For.
+  for (let i = 0; i < 5; i += 1) assert.equal((await attempt({ 'cf-connecting-ip': '203.0.113.7', 'x-forwarded-for': `10.0.0.${i}` })).status, 401);
+  assert.equal((await attempt({ 'cf-connecting-ip': '203.0.113.7', 'x-forwarded-for': '10.0.0.99' })).status, 429);
+  assert.equal((await attempt({ 'cf-connecting-ip': '203.0.113.8' })).status, 401); // another client
+
+  // Without it (or with a value that is not an address), the last X-Forwarded-For entry counts: a
+  // rotating first entry, which the client controls, does not open a new bucket.
+  for (let i = 0; i < 5; i += 1) {
+    assert.equal((await attempt({ 'cf-connecting-ip': 'nao-e-ip', 'x-forwarded-for': `192.0.2.${i}, 198.51.100.4` })).status, 401);
+  }
+  assert.equal((await attempt({ 'x-forwarded-for': '192.0.2.200, 198.51.100.4' })).status, 429);
+
+  // An X-Forwarded-For whose last entry is not an address falls back to the socket.
+  for (let i = 0; i < 5; i += 1) assert.equal((await attempt({ 'x-forwarded-for': `198.51.100.${i}, lixo` })).status, 401);
+  assert.equal((await attempt({})).status, 429); // the socket bucket (127.0.0.1) is the same
+});
+
+test('the login limit runs before the body is read; login takes at most 8 KB', async (t) => {
+  const app = await startApp(t);
+  const headers = { 'cf-connecting-ip': '203.0.113.50', 'content-type': 'application/json' };
+  for (let i = 0; i < 5; i += 1) assert.equal((await app.call('POST', '/login', { raw: '{"codigo":"AAAAAAAAAAAA"}', headers })).status, 401);
+  const limited = await app.call('POST', '/login', { raw: 'isto não é JSON', headers });
+  assert.equal(limited.status, 429);
+
+  const big = JSON.stringify({ codigo: 'A'.repeat(9000) });
+  const r = await app.call('POST', '/login', { raw: big, headers: { 'cf-connecting-ip': '203.0.113.51', 'content-type': 'application/json' } });
+  assert.equal(r.status, 413);
+  assert.equal(r.headers.get('connection'), 'close');
+});
+
+test('an early error on a request with a body closes the connection', async (t) => {
+  const app = await startApp(t);
+  const r = await app.call('POST', '/codigos', { body: { nome: 'X' } }); // no session: 401 before the body is read
+  assert.equal(r.status, 401);
+  assert.equal(r.headers.get('connection'), 'close');
+  const plain = await app.call('GET', '/me');
+  assert.equal(plain.status, 401);
+  assert.notEqual(plain.headers.get('connection'), 'close'); // no body: the connection can stay
+});
+
+test('a route param named id must look like an id', async (t) => {
+  const app = await startApp(t, { routes: (route) => route('GET', '/_eco/:id', (req, res, ctx) => ({ id: ctx.params.id }), 'public') });
+  assert.equal((await app.call('GET', '/_eco/abc_DEF-123')).status, 200);
+  for (const bad of ['..', 'a.b', '%2E%2E%2Fcodes', 'a%20b', 'x'.repeat(65)]) {
+    assert.equal((await app.call('GET', `/_eco/${bad}`)).status, 404, bad);
+  }
 });
 
 test('an authenticated user is limited to requestsPerMinute', async (t) => {
@@ -373,29 +414,43 @@ test('logRequest writes one JSON line and nothing from the headers or the body',
 
 // ---------------------------------------------------------------- the body
 
-test('a body over 1 MB returns 413, and a body of exactly 1 MB is read', async (t) => {
-  const app = await startApp(t);
+// A private route that reports the size of the body it read.
+function sizeRoute(route) {
+  route('POST', '/_tamanho', (req, res, ctx) => ({ n: String(ctx.body.x || '').length }));
+}
+
+test('a body over 1 MB returns 413 with Connection: close, and a body of exactly 1 MB is read', async (t) => {
+  const app = await startApp(t, { routes: sizeRoute });
+  const { cookie } = await app.person('Ana');
   const LIMIT = 1024 * 1024;
-  const wrap = (size) => `{"codigo":"${'A'.repeat(size - '{"codigo":""}'.length)}"}`;
+  const wrap = (size) => `{"x":"${'A'.repeat(size - '{"x":""}'.length)}"}`;
   const ok = wrap(LIMIT);
   assert.equal(Buffer.byteLength(ok), LIMIT);
-  assert.equal((await app.call('POST', '/login', { raw: ok, headers: { 'content-type': 'application/json' } })).status, 401);
+  const read = await app.call('POST', '/_tamanho', { cookie, raw: ok, headers: { 'content-type': 'application/json' } });
+  assert.equal(read.status, 200);
+  assert.equal(read.json.n, LIMIT - 8);
   const big = wrap(LIMIT + 1);
   assert.equal(Buffer.byteLength(big), LIMIT + 1);
-  const r = await app.call('POST', '/login', { raw: big, headers: { 'content-type': 'application/json', 'x-forwarded-for': '198.51.100.9' } });
+  const r = await app.call('POST', '/_tamanho', { cookie, raw: big, headers: { 'content-type': 'application/json' } });
   assert.equal(r.status, 413);
+  assert.equal(r.headers.get('connection'), 'close');
   assert.ok(typeof r.json.erro === 'string');
-  // the connection still works after a 413
+  // the server still answers after a 413
   assert.equal((await app.call('GET', '/saude')).status, 200);
 });
 
 test('a chunked body over 1 MB, with no Content-Length, returns 413', async (t) => {
-  const app = await startApp(t);
+  const app = await startApp(t, { routes: sizeRoute });
+  const { cookie } = await app.person('Ana');
   const status = await new Promise((resolve, reject) => {
-    const req = http.request(`${app.url}${BASE}/login`, { method: 'POST', headers: { 'content-type': 'application/json', 'transfer-encoding': 'chunked' } }, (res) => {
-      res.resume();
-      res.on('end', () => resolve(res.statusCode));
-    });
+    const req = http.request(
+      `${app.url}${BASE}/_tamanho`,
+      { method: 'POST', headers: { cookie: `eunomia=${cookie}`, 'content-type': 'application/json', 'transfer-encoding': 'chunked' } },
+      (res) => {
+        res.resume();
+        res.on('end', () => resolve(res.statusCode));
+      },
+    );
     req.on('error', reject);
     const chunk = Buffer.alloc(600 * 1024, 'a');
     req.write(chunk);
@@ -453,6 +508,22 @@ test('credentials: own-key headers that are not all there are an error, not a fa
     assert.equal(r.status, 400, JSON.stringify(partial));
     assert.ok(!r.text.includes('sk-usr-own'));
     assert.equal((await app.call('GET', '/_creds', { headers: partial })).json.creds, null);
+  }
+});
+
+test('credentials: blank or whitespace own-key headers are an own-key attempt and give 400', async (t) => {
+  const app = await startApp(t, { env: ENV, routes: credsRoutes });
+  const cases = [
+    { 'x-iaedu-key': '' },
+    { 'x-iaedu-key': '', 'x-iaedu-agent': '', 'x-iaedu-channel': '' },
+    { 'x-iaedu-key': '   ', 'x-iaedu-agent': '  ', 'x-iaedu-channel': ' ' },
+    { 'x-iaedu-key': 'sk-usr-own', 'x-iaedu-agent': 'a', 'x-iaedu-channel': '   ' },
+  ];
+  for (const headers of cases) {
+    const r = await app.call('GET', '/_need', { headers });
+    assert.equal(r.status, 400, JSON.stringify(headers));
+    assert.equal(r.json.erro, 'Indique a chave, o ID do agente e o ID do canal IAedu.');
+    assert.equal((await app.call('GET', '/_creds', { headers })).json.creds, null);
   }
 });
 
