@@ -18,6 +18,7 @@ project:
     - "quadro/guias/*.qmd"
     - "!quadro/full-references.md"
     - "!themis/**"
+    - "!eunomia-server/**"
     # Projecto Quarto autónomo, com _quarto.yml próprio e construção
     # separada, agregada pelo workflow antes da publicação no VPS.
     - "!training/**"

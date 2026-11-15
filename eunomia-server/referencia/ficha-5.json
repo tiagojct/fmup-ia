@@ -1,0 +1,90 @@
+{
+  "meta": {
+    "titulo": "Ficha 5. Fazer primeiro, comparar depois",
+    "subtitulo": "Esforço deliberado e reflexão metacognitiva",
+    "competencia": "Metacognição, autoavaliação, raciocínio autónomo",
+    "formato": "Individual, com discussão em pares no fim",
+    "duracao": {
+      "min": 40,
+      "max": 40,
+      "texto": "40 minutos, ou dividida entre trabalho de casa e aula"
+    },
+    "ano": "Qualquer ano",
+    "areas": "Todas, sem alteração de estrutura",
+    "ferramenta": "IAedu, usada pelo estudante depois de resolver"
+  },
+  "objectivo": {
+    "texto": "No fim da actividade, o estudante compara a sua própria resolução com a de uma ferramenta generativa, identifica em que pontos diverge e porquê, e enuncia o que aprendeu sobre o seu próprio processo de raciocínio.",
+    "competencia_protegida": "A competência protegida é o esforço deliberado. Esta é a única das seis fichas cujo objectivo principal não é o produto mas o hábito: estabelecer, desde cedo, a sequência tentar primeiro, consultar depois. Uma vez invertida, a sequência é difícil de recuperar."
+  },
+  "formato": {
+    "introducao": "A sequência é rígida e é o que define a actividade.",
+    "blocos": [
+      {
+        "minutos": 15,
+        "texto": "Resolução individual, sem qualquer consulta. Nem ferramenta, nem apontamentos, nem colegas."
+      },
+      {
+        "minutos": 5,
+        "texto": "O estudante entrega ou fotografa a sua resolução. Este passo não é burocrático: sem ele, a comparação posterior contamina a memória do que tinha feito."
+      },
+      {
+        "minutos": 10,
+        "texto": "Resolução com a ferramenta, com o prompt abaixo."
+      },
+      {
+        "minutos": 10,
+        "texto": "Comparação escrita e discussão em pares."
+      }
+    ],
+    "texto": "Funciona bem repartida: as duas primeiras fases como trabalho preparatório, as duas últimas em aula. Só resulta se a entrega da primeira resolução for verificável."
+  },
+  "prompt_base": {
+    "texto": "Usado pelo estudante, depois de ter a sua própria resolução escrita e entregue.\n\n```text\nJá resolvi este problema sozinho. Agora quero comparar o meu\nraciocínio com o teu, para perceber onde divergimos e porquê.\n\nNão quero que me digas se estou certo ou errado antes de teres\nexplicado o teu próprio raciocínio. Segue esta ordem.\n\nPRIMEIRO\nResolve o problema abaixo do zero, sem veres a minha resolução.\nMostra o raciocínio passo a passo, e em cada passo indica que\ninformação usaste e que hipótese estás a assumir.\n\nPROBLEMA\n\"Mulher de 34 anos recorre ao serviço de urgência por dispneia de\ninício súbito há seis horas, com dor torácica pleurítica à direita.\nSem febre. Frequência cardíaca 112 bpm, frequência respiratória 24\ncpm, SpO2 93% em ar ambiente, tensão arterial 118/74 mmHg.\nAntecedentes: contraceptivo oral combinado. Viagem de avião de sete\nhoras há três dias. Auscultação pulmonar sem alterações. Explique a\nsua abordagem diagnóstica inicial e justifique cada passo.\"\n\nDEPOIS DE TERES RESOLVIDO\nVou colar a minha resolução. Aí sim, quero que faças três coisas,\npor esta ordem:\n1. Identifica os pontos em que o meu raciocínio e o teu divergem.\n   Lista apenas as divergências, sem julgar qual está correcta.\n2. Para cada divergência, explica o que a pode originar: um dado\n   que eu valorizei e tu não, uma hipótese diferente, um erro meu,\n   ou um erro teu.\n3. Só no fim, e claramente separado, indica quais das divergências\n   correspondem a erro meu e quais correspondem a erro teu ou a\n   opção legítima diferente.\n\nNão reformules a minha resolução. Não escrevas uma versão melhorada.\nQuero perceber as diferenças, não receber um texto corrigido.\n```\n\n::: {.callout-note appearance=\"simple\"}\n## Porque é que o prompt proíbe a versão melhorada\n\nSem essa instrução, a ferramenta devolve um texto reescrito, o estudante lê-o, acha-o melhor, e a actividade converte-se em substituição. A proibição mantém o estudante na posição de quem compara, não na de quem recebe.\n:::",
+    "variantes": "Muda só o bloco `PROBLEMA`. A sequência das quatro fases, a proibição da versão melhorada e a nota de comparação mantêm-se sem alteração, e é nelas que está a actividade.\n\nO critério de escolha do problema é o mesmo em todas as áreas: tem de haver decisão sob incerteza, com mais de uma abordagem defensável. Um problema com resposta única e directa não produz divergências para comparar.\n\n**Ciências básicas:**\n\n```text\nPROBLEMA\n\"Uma cultura de células em meio com glucose apresenta, após duas\nhoras em condições de hipoxia, aumento de lactato no meio e queda do\npH intracelular, sem alteração significativa do consumo total de\nglucose. Explique que vias metabólicas estão envolvidas, que\nmecanismo compensatório esperaria observar a seguir, e como o\nverificaria experimentalmente. Justifique cada passo.\"\n```\n\n**Ciência de dados e informática médica:**\n\n```text\nPROBLEMA\n\"Um conjunto de dados clínicos fictício tem 1200 observações, 14\nvariáveis e 18% de valores ausentes concentrados em três variáveis,\numa das quais é o desfecho. Explique a sua abordagem ao tratamento\ndos valores ausentes, que pressupostos cada opção exige, e por que\nordem faria as verificações. Justifique cada passo.\"\n```\n\nO segundo é particularmente adequado a esta ficha, porque a resolução gerada tende a propor imputação sem verificar o mecanismo de ausência, que é exactamente o tipo de divergência que a comparação deve fazer aparecer.\n\n**Ficha 6.** Se a sua unidade curricular é de ciências básicas com corpo documental estável, veja também a [ficha 6](6-tutor-restringido.qmd): o estudo que a fundamenta foi conduzido precisamente nesse contexto."
+  },
+  "papeis": {
+    "estudante": "Resolve primeiro, sozinho, e entrega antes de consultar. Esta é a única regra que não admite excepção.\n\nDepois da comparação, escreve uma nota curta, de cinco a dez linhas, com três elementos: os pontos de concordância ou divergência que verificou e a respectiva justificação; eventuais erros seus ou da ferramenta, se os encontrou; e uma frase sobre o que faria de outro modo da próxima vez.",
+    "docente": "Garante a entrega da primeira resolução antes de qualquer consulta. Esse controlo permite observar o raciocínio anterior à consulta.\n\nRecolhe as notas de comparação, que são o produto avaliável, e usa-as para identificar os erros de raciocínio recorrentes na turma, que são material directo para a aula seguinte."
+  },
+  "correccao": {
+    "texto": "Avalie a nota de comparação, não a resolução inicial. A resolução inicial pode estar errada sem prejuízo: o objectivo é que o estudante identifique porquê.\n\nA discussão em pares, nos últimos dez minutos, organiza-se por uma pergunta única: **que pontos confirmaram ou corrigiram, e com que fundamento?** Obriga a que o estudante verifique em vez de aceitar, e é a pergunta que mais rapidamente revela quem fez a comparação a sério.\n\nNo plenário, se houver tempo, recolha dois ou três casos em que a ferramenta errou e discuta-os. Os erros típicos são da mesma família em qualquer área: subvalorizar um dado do enunciado que altera a abordagem, e propor os passos por uma ordem que não corresponde à sua utilidade informativa. No problema clínico acima, traduzem-se em subvalorizar o contexto de risco tromboembólico e em pedir exames sem atender à probabilidade pré-teste."
+  },
+  "armadilhas": [
+    {
+      "lead": "Inversão da sequência.",
+      "texto": "É a armadilha principal e é fatal para a actividade. Se o estudante consultar primeiro, a comparação não existe e o exercício vira cópia. A entrega verificável da primeira resolução é uma salvaguarda a combinar com discussão do processo e observação docente."
+    },
+    {
+      "lead": "Comparação superficial.",
+      "texto": "\"A IA disse o mesmo que eu\" é uma nota insuficiente sem comparação fundamentada. Exija pelo menos dois pontos concretos de comparação, com fontes ou raciocínio que sustentem a concordância ou a divergência. Não é obrigatório encontrar erros."
+    },
+    {
+      "lead": "Deferência à ferramenta.",
+      "texto": "Perante divergência, o estudante assume que o erro é seu. A instrução do prompt que separa erro meu de erro teu contraria a tendência, mas convém reforçá-la em aula: o estudante deve verificar os pontos de concordância e divergência sem presumir qual das respostas está correcta."
+    },
+    {
+      "lead": "Reescrita disfarçada.",
+      "texto": "Mesmo com a proibição, o modelo tende a produzir uma versão melhorada. Se acontecer, o estudante deve responder na conversa \"não reescrevas, lista apenas as divergências\"."
+    },
+    {
+      "lead": "Problemas fáceis demais.",
+      "texto": "Se o problema tiver resposta única e directa, não há divergências para comparar. Escolha problemas com decisão sob incerteza, com mais de uma abordagem defensável."
+    }
+  ],
+  "plano_b": {
+    "texto": "Gere previamente a resolução do problema pela ferramenta e imprima-a, sem a mostrar antes.\n\nA sequência mantém-se: os estudantes resolvem, entregam, e só depois recebem a folha com a resolução gerada. Perde-se a fase 2 do prompt, ou seja, a análise automática das divergências, que passa a ser feita pelo próprio estudante. Na versão em papel, o estudante faz directamente a comparação e fundamenta-a nas fontes disponíveis."
+  },
+  "referencias": [
+    {
+      "id": "tan-harvard-2024",
+      "texto": "Tan T, citada em: *Harvard's New Playbook for Teaching with AI*. Harvard Magazine. Disponível em <https://www.harvardmagazine.com/teaching-learning/harvard-redesigning-assignments-ai>.\n\nTari Tan é *lecturer on neurobiology* e *assistant dean for educational scholarship and innovation* na Harvard Medical School. O exercício descrito no artigo tem esta estrutura: os estudantes anotam primeiro os seus próprios materiais de estudo, submetem-nos depois a uma ferramenta generativa e comparam os resultados, reflectindo sobre a qualidade dos seus prompts, sobre potencial enviesamento no resultado e sobre o alinhamento com os seus objectivos. Tan sublinha a metacognição como elemento central: quando os estudantes conseguem articular como estão a usar a ferramenta, distinguem melhor os momentos em que estão a aprender daqueles em que estão a externalizar o pensamento.\n\n::: {.callout-note appearance=\"simple\"}\n## Nota sobre a atribuição\n\nEsta actividade é por vezes atribuída a \"Kristina Tan\". O nome que consta da fonte é **Tari Tan**. A ficha usa o nome verificado.\n:::\n\nPara o enquadramento institucional, ver o terceiro pilar do [Quadro FMUP · IA](https://tiagojacinto.eu/fmup-ia/quadro/02-principios.html), *Ser sem IA*: a capacidade de decidir quando não usar a ferramenta, que o Quadro trata como exigência pedagógica e não como restrição.",
+      "origem": "curada"
+    }
+  ],
+  "meta_eunomia": {
+    "autor": "Tiago Jacinto",
+    "versao": 1,
+    "estado": "aprovada"
+  }
+}

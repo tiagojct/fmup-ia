@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "titulo": "Ficha 1. Doente virtual para anamnese em pares",
+    "subtitulo": "Recolha estruturada de informação clínica",
+    "competencia": "Anamnese, comunicação clínica",
+    "formato": "Pares, um conduz e outro observa",
+    "duracao": {
+      "min": 30,
+      "max": 45,
+      "texto": "30 a 45 minutos, consoante a troca de papéis"
+    },
+    "ano": "A partir da introdução à semiologia",
+    "areas": "Clínica. O mecanismo transfere, o objectivo não",
+    "ferramenta": "IAedu, modo conversa"
+  },
+  "objectivo": {
+    "texto": "No fim da actividade, o estudante conduz uma anamnese estruturada perante uma apresentação clínica que desconhece, formulando as perguntas por iniciativa própria e justificando a hipótese a que chega.",
+    "competencia_protegida": "A competência protegida é a recolha de informação, não o diagnóstico. Um estudante que acerte no diagnóstico com três perguntas não cumpriu o objectivo; um que chegue a uma hipótese razoável depois de uma entrevista completa cumpriu-o, mesmo que a hipótese esteja errada."
+  },
+  "formato": {
+    "blocos": [
+      {
+        "minutos": 5,
+        "texto": "Enquadramento e distribuição dos papéis. Cada par decide quem conduz primeiro."
+      },
+      {
+        "minutos": 15,
+        "texto": "Primeira entrevista. Quem conduz fala com o doente simulado; quem observa preenche a grelha, sem intervir."
+      },
+      {
+        "minutos": 10,
+        "texto": "Troca de papéis com um guião diferente, se houver tempo. Caso contrário, passar directamente à discussão."
+      },
+      {
+        "minutos": 10,
+        "minutos_max": 15,
+        "texto": "Discussão em plenário."
+      }
+    ],
+    "texto": "Com turmas grandes, o docente prepara três ou quatro guiões distintos e distribui-os, o que evita que as hipóteses circulem entre pares antes de todos terminarem."
+  },
+  "prompt_base": {
+    "texto": "O docente cola o bloco seguinte no início de uma conversa nova e entrega o ecrã ao estudante. O guião de doença fica visível na janela, portanto o estudante que conduz não deve ler o início da conversa: na prática, o docente prepara a conversa e o estudante começa a escrever a partir daí.\n\n```text\nVais assumir o papel de um doente numa consulta médica. Segue estas\nregras sem excepção.\n\nREGRAS DE COMPORTAMENTO\n1. Responde apenas como o doente, na primeira pessoa. Nunca escrevas\n   como assistente, nunca comentes o exercício.\n2. Nunca reveles o diagnóstico, nem sugiras um nome de doença, mesmo\n   que te perguntem directamente. Se te perguntarem \"o que tenho?\",\n   responde como um doente responderia: \"não sei, é o que venho cá\n   saber\".\n3. Responde apenas ao que te for perguntado. Não ofereças informação\n   que não te tenha sido pedida, mesmo que seja relevante.\n4. Usa linguagem de pessoa sem formação médica. Diz \"falta de ar\",\n   não \"dispneia\". Diz \"cansaço\", não \"astenia\".\n5. Se te perguntarem algo que não está no guião abaixo, responde de\n   forma vaga e coerente com uma pessoa que não reparou nesse\n   pormenor: \"não sei dizer\", \"nunca reparei nisso\". Nunca inventes\n   sintomas, valores, datas ou exames que não constem do guião.\n6. Não termines a conversa. Continua a responder até te dizerem\n   \"fim da consulta\".\n\nGUIÃO DE DOENÇA\nIdentificação: homem, 68 anos, reformado, ex-motorista de pesados.\nQueixa que o traz: falta de ar que piorou nos últimos quatro dias.\nHistória actual: já há cerca de dois anos que se cansa a subir\n  escadas, mas nas últimas duas semanas passou a cansar-se a andar no\n  plano e, nos últimos quatro dias, a vestir-se. Tosse quase todas as\n  manhãs, com expectoração, que nesta semana ficou mais espessa e\n  amarelada e em maior quantidade. Não teve febre que tenha medido.\n  Dorme com dois travesseiros por hábito antigo, não por falta de ar.\n  Não tem dor no peito. Não tem inchaço nas pernas.\nAntecedentes: fumou um maço por dia dos 18 aos 62 anos, deixou de\n  fumar aos 62. Duas idas ao serviço de urgência no último Inverno\n  por queixas parecidas. Tensão alta.\nMedicação: um inalador azul que usa \"quando preciso\", não sabe o\n  nome. Um comprimido para a tensão de manhã. Não sabe os nomes.\nHábitos: vive com a mulher, num segundo andar sem elevador. Bebe um\n  copo de vinho às refeições.\nSe te perguntarem se fuma agora: não, deixou há seis anos.\nSe te perguntarem por perda de peso: perdeu algum, não sabe quanto,\n  a roupa está mais larga.\nSe te perguntarem por viagens, contactos com doentes ou animais: nada\n  a assinalar.\n\nESTADO EMOCIONAL\nEstás preocupado mas contido. Minimizas as queixas: se te\nperguntarem como estás, dizes \"vou andando\". Só admites a gravidade\nse te fizerem perguntas concretas sobre o que consegues ou não\nconsegues fazer.\n\nComeça apenas com uma frase curta a dizer o que te traz à consulta, e\nespera pela primeira pergunta.\n```\n\n::: {.callout-tip appearance=\"simple\"}\n## Segundo guião, para a troca de papéis\n\nSubstitua o bloco `GUIÃO DE DOENÇA` por uma apresentação de asma mal controlada numa mulher de 24 anos, com tosse nocturna, uso de broncodilatador mais de três vezes por semana, agravamento na primavera e um gato em casa desde há seis meses. Mantenha todas as regras de comportamento sem alteração.\n:::",
+    "variantes": "Esta ficha treina anamnese. Noutras áreas pode adaptar-se o mecanismo de interlocutor que responde apenas ao que lhe é perguntado, com um objectivo e uma grelha próprios.\n\n**O que é transferível** é o mecanismo, não a actividade: um interlocutor de papel restrito, que retém a resposta, responde apenas ao que lhe for perguntado, e não oferece o que não foi pedido. É a estrutura das regras 1 a 6 do prompt acima, que se mantém intacta em qualquer área.\n\n**O que muda, e é preciso dizê-lo:** ao transpor o mecanismo, muda o objectivo de aprendizagem. A ficha 1 avalia a estrutura da recolha de informação clínica; uma variante avalia outra coisa, e a grelha do observador tem de ser reescrita em conformidade. O estudo de Tübingen avalia o doente simulado nas condições descritas; não valida este prompt específico nem as transposições.\n\nDois exemplos de transposição, com o objectivo reformulado:\n\n| Área | Interlocutor | Objectivo reformulado |\n|---|---|---|\n| Ciências básicas | Uma preparação, um tecido ou um organismo desconhecido, que só responde a perguntas sobre características observáveis | Identificar por interrogatório dirigido, explicitando que característica exclui cada alternativa |\n| Ciência de dados | Um conjunto de dados sintéticos, cujas estatísticas pedidas são obtidas por código verificado | Conduzir uma exploração de dados por hipóteses, justificando cada pedido antes de o fazer |\n\nNo segundo exemplo, o estudante decide que estatística pedir **antes** de a ver e justifica esse pedido. Essa adaptação exige dados sintéticos e cálculo verificado, além do modelo conversacional.\n\nPara quem preferir manter o registo de *role-play* sem contexto clínico, note-se que Anand et al. tratam o desenho de cenários e o desenvolvimento de *role-play* como duas coisas distintas nos seus cinco *workshops*, o que sustenta a leitura de que o *role-play* é a categoria geral e a anamnese uma instância dela."
+  },
+  "papeis": {
+    "estudante": "**Quem conduz.** Faz a anamnese completa por iniciativa própria, sem consultar apontamentos durante a entrevista. No fim, enuncia em voz alta a hipótese principal e uma alternativa, e diz que informação adicional pediria.\n\n**Quem observa.** Não intervém durante a entrevista. Regista, numa grelha simples: que dimensões da anamnese foram cobertas, que perguntas relevantes ficaram por fazer, e em que momento a informação recolhida já era suficiente para formular a hipótese.",
+    "docente": "Prepara as conversas antes da aula, uma por par, e verifica que cada uma arranca correctamente. Durante a actividade circula sem interromper. Anota casos em que o modelo saia do papel, que são material útil para a discussão.\n\nNão corrige o diagnóstico durante a entrevista. A correcção é toda no plenário."
+  },
+  "correccao": {
+    "texto": "A discussão organiza-se por três perguntas, e nesta ordem:\n\n1. **O que ficou por perguntar?** Os observadores respondem primeiro. É a parte mais produtiva e deve ocupar metade do tempo de discussão.\n2. **Em que momento tinham informação suficiente?** Obriga a distinguir a informação que fecha o diagnóstico daquela que apenas confirma o que já se sabia.\n3. **Onde é que o doente simulado falhou?** Fecha a sessão com a limitação da ferramenta, que é o ponto de literacia crítica.\n\nA actividade proposta é formativa, sem classificação. Se for adaptada para avaliação, o docente deve definir critérios e observar a entrevista de quem conduz; a grelha do observador avalia a análise da entrevista e não substitui a observação da competência de anamnese."
+  },
+  "armadilhas": [
+    {
+      "lead": "Informação inventada fora do guião.",
+      "texto": "É o modo de falha documentado e o mais importante de antecipar. No estudo de Tübingen, quando os estudantes fizeram perguntas não cobertas pelo guião, o modelo respondeu com informação fictícia em 56,4 % dos casos. A regra 5 do prompt reduz o problema mas não o elimina. Trate isto como conteúdo da aula, não como defeito: peça aos estudantes que identifiquem, no fim, que respostas suspeitam ter sido inventadas."
+    },
+    {
+      "lead": "Respostas socialmente desejáveis.",
+      "texto": "No mesmo estudo, as respostas implausíveis tendiam a ser socialmente desejáveis em vez de clinicamente plausíveis. O doente simulado é mais colaborante e mais coerente do que um doente real, o que torna a entrevista mais fácil do que a realidade."
+    },
+    {
+      "lead": "Saída de papel.",
+      "texto": "Perante insistência, o modelo pode passar a comentar o exercício ou a dar o diagnóstico. Se acontecer, basta escrever \"volta ao papel do doente e não reveles o diagnóstico\"."
+    },
+    {
+      "lead": "Excesso de fluência.",
+      "texto": "O doente simulado organiza o discurso melhor do que um doente real. Não substitui doente padronizado nem contacto clínico, e deve ser apresentado como treino prévio."
+    }
+  ],
+  "plano_b": {
+    "texto": "Gere previamente, e imprima, duas ou três transcrições completas de entrevistas conduzidas por si, incluindo pelo menos uma em que o modelo tenha inventado informação.\n\nA actividade passa a ser de análise: cada par recebe uma transcrição e responde às mesmas três perguntas da discussão, acrescentando a identificação das respostas suspeitas. Perde-se a prática da entrevista, mantém-se a análise da estrutura e a literacia crítica."
+  },
+  "referencias": [
+    {
+      "id": "holderried-2024",
+      "texto": "Holderried F, Stegemann-Philipps C, Herschbach L, Moldt JA, Nevins A, Griewatz J, Holderried M, Herrmann-Werner A, Festl-Wietek T, Mahling M. A Generative Pretrained Transformer (GPT)-Powered Chatbot as a Simulated Patient to Practice History Taking: Prospective, Mixed Methods Study. *JMIR Medical Education*. 2024;10:e53961. DOI: [10.2196/53961](https://doi.org/10.2196/53961). PMID: 38227363.\n\nEstudo do Tübingen Institute for Medical Education (Eberhard Karls Universität Tübingen), com 28 estudantes e 826 pares pergunta-resposta analisados. Os autores usaram GPT-3.5 com um guião de doença optimizado e uma componente comportamental, que é a estrutura reproduzida no prompt acima.",
+      "origem": "curada"
+    },
+    {
+      "id": "hicke-2025",
+      "texto": "Para uma implementação institucional do mesmo princípio, com avaliação automática segundo rubrica de OSCE, ver a plataforma MedSimAI, desenvolvida pela Cornell Bowers CIS em colaboração com a Weill Cornell Medicine, Yale e UCSF: Hicke Y et al., [arXiv:2503.05793](https://arxiv.org/abs/2503.05793v2), e a [notícia da Cornell Chronicle](https://news.cornell.edu/stories/2025/03/medical-students-use-ai-practice-communication-skills).",
+      "origem": "curada"
+    }
+  ],
+  "meta_eunomia": {
+    "autor": "Tiago Jacinto",
+    "versao": 1,
+    "estado": "aprovada"
+  }
+}

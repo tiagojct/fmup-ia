@@ -1,0 +1,274 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tiagojacinto.eu/fmup-ia/eunomia/ficha.schema.json",
+  "title": "Ficha de actividade do Eunomia",
+  "description": "A ficha é o JSON de uma actividade de ensino com IA, no formato das fichas de formação do FMUP · IA. Dois perfis: new (fichas feitas no Eunomia: regime_ia e declaracao obrigatórias, 3 a 6 armadilhas) e reference (as seis fichas de formação e fichas anteriores ao Eunomia: regime_ia e declaracao opcionais, 1 ou mais armadilhas). validateFicha injecta $profile; a ficha guardada não tem esse campo. As regras que dependem de vários campos (soma dos blocos, posição dos extras, plano B) estão no código, em src/ficha.js.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "meta",
+    "objectivo",
+    "formato",
+    "papeis",
+    "correccao",
+    "armadilhas",
+    "referencias",
+    "meta_eunomia"
+  ],
+  "properties": {
+    "$profile": { "enum": ["new", "reference"] },
+    "meta": { "$ref": "#/$defs/meta" },
+    "objectivo": { "$ref": "#/$defs/objectivo" },
+    "formato": { "$ref": "#/$defs/formato" },
+    "prompt_base": { "$ref": "#/$defs/prompt_base" },
+    "extras": { "$ref": "#/$defs/extras" },
+    "papeis": { "$ref": "#/$defs/papeis" },
+    "correccao": { "$ref": "#/$defs/correccao" },
+    "armadilhas": { "$ref": "#/$defs/armadilhas" },
+    "plano_b": { "$ref": "#/$defs/plano_b" },
+    "regime_ia": { "$ref": "#/$defs/regime_ia" },
+    "referencias": { "$ref": "#/$defs/referencias" },
+    "declaracao": { "$ref": "#/$defs/declaracao" },
+    "derived_from": { "$ref": "#/$defs/derived_from" },
+    "runtime": { "$ref": "#/$defs/runtime" },
+    "meta_eunomia": { "$ref": "#/$defs/meta_eunomia" }
+  },
+  "if": {
+    "properties": { "$profile": { "const": "new" } },
+    "required": ["$profile"]
+  },
+  "then": {
+    "required": ["regime_ia", "declaracao"],
+    "properties": {
+      "regime_ia": true,
+      "declaracao": true,
+      "armadilhas": { "type": "array", "minItems": 3, "maxItems": 6 }
+    }
+  },
+  "else": {
+    "properties": {
+      "armadilhas": { "type": "array", "minItems": 1 }
+    }
+  },
+  "$defs": {
+    "texto": {
+      "type": "string",
+      "minLength": 1
+    },
+    "minutos": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "titulo",
+        "subtitulo",
+        "competencia",
+        "formato",
+        "duracao",
+        "ano",
+        "areas",
+        "ferramenta"
+      ],
+      "properties": {
+        "titulo": { "$ref": "#/$defs/texto" },
+        "subtitulo": { "$ref": "#/$defs/texto" },
+        "competencia": { "$ref": "#/$defs/texto" },
+        "formato": { "$ref": "#/$defs/texto" },
+        "duracao": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["texto"],
+          "properties": {
+            "min": { "$ref": "#/$defs/minutos" },
+            "max": { "$ref": "#/$defs/minutos" },
+            "texto": { "$ref": "#/$defs/texto" }
+          },
+          "dependentRequired": {
+            "min": ["max"],
+            "max": ["min"]
+          }
+        },
+        "ano": { "$ref": "#/$defs/texto" },
+        "areas": { "$ref": "#/$defs/texto" },
+        "ferramenta": { "$ref": "#/$defs/texto" }
+      }
+    },
+    "objectivo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["texto", "competencia_protegida"],
+      "properties": {
+        "texto": { "$ref": "#/$defs/texto" },
+        "competencia_protegida": { "$ref": "#/$defs/texto" }
+      }
+    },
+    "formato": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "introducao": { "$ref": "#/$defs/texto" },
+        "blocos": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["minutos", "texto"],
+            "properties": {
+              "minutos": { "$ref": "#/$defs/minutos" },
+              "minutos_max": { "$ref": "#/$defs/minutos" },
+              "texto": { "$ref": "#/$defs/texto" }
+            }
+          }
+        },
+        "texto": { "$ref": "#/$defs/texto" }
+      }
+    },
+    "prompt_base": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["texto"],
+      "properties": {
+        "texto": { "$ref": "#/$defs/texto" },
+        "variantes": { "$ref": "#/$defs/texto" }
+      }
+    },
+    "extras": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["titulo", "texto", "position"],
+        "properties": {
+          "titulo": { "$ref": "#/$defs/texto" },
+          "texto": { "$ref": "#/$defs/texto" },
+          "position": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "before": { "type": "string" },
+              "after": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "papeis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["estudante", "docente"],
+      "properties": {
+        "estudante": { "$ref": "#/$defs/texto" },
+        "docente": { "$ref": "#/$defs/texto" }
+      }
+    },
+    "correccao": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["texto"],
+      "properties": {
+        "texto": { "$ref": "#/$defs/texto" }
+      }
+    },
+    "armadilhas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["lead", "texto"],
+        "properties": {
+          "lead": { "$ref": "#/$defs/texto" },
+          "texto": { "$ref": "#/$defs/texto" }
+        }
+      }
+    },
+    "plano_b": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "texto": { "type": "string" },
+        "sem_plano_b_motivo": { "$ref": "#/$defs/texto" }
+      }
+    },
+    "regime_ia": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["papel", "regime"],
+      "properties": {
+        "papel": { "enum": ["nenhum", "contraparte", "ferramenta", "objecto_de_critica"] },
+        "regime": { "enum": ["permitido", "condicionado", "proibido"] },
+        "condicoes": { "$ref": "#/$defs/texto" },
+        "themis": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["clausula"],
+          "properties": {
+            "clausula": { "$ref": "#/$defs/texto" },
+            "avisos": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/texto" }
+            }
+          }
+        }
+      },
+      "if": {
+        "properties": { "regime": { "const": "condicionado" } },
+        "required": ["regime"]
+      },
+      "then": {
+        "required": ["condicoes"],
+        "properties": { "condicoes": true }
+      }
+    },
+    "referencias": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["texto", "origem"],
+        "properties": {
+          "id": { "$ref": "#/$defs/texto" },
+          "texto": { "$ref": "#/$defs/texto" },
+          "origem": { "enum": ["curada", "docente"] }
+        }
+      }
+    },
+    "declaracao": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["texto"],
+      "properties": {
+        "texto": { "$ref": "#/$defs/texto" }
+      }
+    },
+    "derived_from": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["slug", "autor"],
+      "properties": {
+        "slug": { "$ref": "#/$defs/texto" },
+        "autor": { "$ref": "#/$defs/texto" }
+      }
+    },
+    "runtime": {
+      "type": "object"
+    },
+    "meta_eunomia": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["autor", "versao", "estado"],
+      "properties": {
+        "autor": { "$ref": "#/$defs/texto" },
+        "versao": { "type": "integer", "minimum": 1 },
+        "modelo": { "$ref": "#/$defs/texto" },
+        "estado": {
+          "enum": ["rascunho", "submetida", "devolvida", "aprovada", "rejeitada", "substituida"]
+        }
+      }
+    }
+  }
+}

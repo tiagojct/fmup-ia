@@ -1,0 +1,88 @@
+{
+  "meta": {
+    "titulo": "Ficha 4. Debate com advogado do diabo",
+    "subtitulo": "Argumentação e antecipação de objecções",
+    "competencia": "Argumentação fundamentada, raciocínio ético, decisão sob controvérsia",
+    "formato": "Pares ou grupos de três, seguidos de plenário",
+    "duracao": {
+      "min": 40,
+      "max": 50,
+      "texto": "40 a 50 minutos"
+    },
+    "ano": "Qualquer ano, ajustando a controvérsia ao programa",
+    "areas": "Todas, mudando apenas a controvérsia",
+    "ferramenta": "IAedu, usada pelos estudantes em aula"
+  },
+  "objectivo": {
+    "texto": "No fim da actividade, o estudante sustenta uma posição sobre uma questão controversa, antecipa as objecções mais fortes a essa posição, e responde-lhes com fundamentação, distinguindo os argumentos que o obrigam a rever a posição daqueles que não o obrigam.",
+    "competencia_protegida": "A competência protegida é a argumentação. O uso da ferramenta é deliberadamente adversarial: gera os contra-argumentos que os estudantes têm de enfrentar, o que resolve o problema habitual das discussões em aula, em que a turma converge cedo para o consenso confortável."
+  },
+  "formato": {
+    "blocos": [
+      {
+        "minutos": 5,
+        "texto": "O docente enuncia a questão e cada grupo toma posição por escrito, numa frase."
+      },
+      {
+        "minutos": 10,
+        "texto": "Cada grupo obtém da ferramenta os contra-argumentos à sua própria posição."
+      },
+      {
+        "minutos": 15,
+        "texto": "O grupo responde por escrito aos contra-argumentos, classificando cada um."
+      },
+      {
+        "minutos": 15,
+        "texto": "Plenário, com confronto entre grupos que tomaram posições opostas."
+      }
+    ],
+    "texto": "A ordem importa. A posição é tomada **antes** de a ferramenta ser consultada, para que os estudantes tenham algo que defender e não adoptem a posição que a ferramenta apresentar melhor."
+  },
+  "prompt_base": {
+    "texto": "```text\nVais actuar como advogado do diabo. A tua função é atacar a posição\nque te vou apresentar, com os melhores argumentos disponíveis contra\nela. Não é para equilibrar, não é para apresentar os dois lados: é\npara atacar.\n\nA POSIÇÃO A ATACAR\n\"Um médico deve informar sempre o doente do diagnóstico completo,\nincluindo prognóstico reservado, mesmo quando a família pede\nexpressamente que não o faça.\"\n\nO QUE PRECISO\n1. Apresenta os cinco contra-argumentos mais fortes contra esta\n   posição. Ordena-os do mais forte para o mais fraco, e diz porque\n   ordenaste assim.\n2. Para cada contra-argumento, indica em que assenta: um princípio\n   ético, evidência empírica, enquadramento legal, consenso\n   metodológico, ou prática estabelecida na área.\n3. Identifica o pressuposto mais frágil da posição que te apresentei,\n   ou seja, aquilo que ela dá como assente e que pode ser\n   questionado.\n\nREGRAS\n- Não suavizes. Não escrevas \"por outro lado\" nem \"é importante\n  reconhecer que ambos os lados\". A tua função aqui é adversarial.\n- Não inventes referências, estudos, números ou casos de\n  jurisprudência. Se um argumento depende de evidência empírica que\n  não consegues citar com segurança, diz explicitamente \"este\n  argumento depende de evidência que eu não posso confirmar\".\n- Distingue claramente o que é argumento ético do que é\n  constrangimento legal. Não os apresentes misturados.\n- No fim, indica qual dos cinco contra-argumentos consideras que a\n  posição original consegue rebater com mais facilidade, e porquê.\n```\n\n::: {.callout-tip appearance=\"simple\"}\n## Outras questões que funcionam\n\nAjuste a controvérsia ao programa. A questão tem de ter dois lados defensáveis, caso contrário o exercício é retórico.\n\n**Clínicas e de saúde pública:** a obrigatoriedade da vacinação em profissionais de saúde; o rastreio populacional com baixa especificidade; a atribuição de recursos escassos por critério de idade; o dever de reportar um colega com desempenho comprometido.\n\n**Ciências básicas:** se um resultado obtido em modelo animal justifica extrapolação para humano na ausência de alternativa; se a investigação em linhas celulares imortalizadas exige consentimento rastreável à origem; se um achado não replicado deve constar do ensino de licenciatura; onde está o limite entre simplificação didáctica e ensinar algo que se sabe ser incorrecto.\n\n**Ciência de dados e informática médica:** se um modelo mais exacto e não interpretável é preferível a um menos exacto e explicável em contexto clínico; se dados de saúde pseudonimizados devem poder ser reutilizados sem novo consentimento; se um algoritmo de apoio à decisão deve mostrar a sua incerteza ao utilizador ou apenas a recomendação; se a correcção de enviesamento num modelo deve ser feita nos dados ou no resultado.\n\nEstas últimas duas famílias são as mais produtivas com esta ficha, e por uma razão específica: são controvérsias em que a resposta socialmente esperada é conhecida, e o modelo tende a produzi-la. Isso torna visível o viés de conformidade que a actividade existe para expor.\n:::"
+  },
+  "papeis": {
+    "estudante": "Regista a posição inicial antes de consultar a ferramenta. Se a rever, identifica o argumento e a evidência que motivaram a mudança.\n\nResponde a cada contra-argumento classificando-o numa de três categorias, e esta classificação é o produto da actividade:\n\n| Categoria | Significado |\n|---|---|\n| Rebatível | O contra-argumento tem resposta, e o grupo escreve-a |\n| Obriga a qualificar | A posição mantém-se, mas com uma condição ou excepção explícita |\n| Obriga a rever | O contra-argumento é decisivo e a posição inicial não se sustenta |\n\nTodas as categorias exigem justificação. Um grupo pode manter a posição inicial se rebater os argumentos com fundamento; mudar de opinião não é, por si só, critério de qualidade.",
+    "docente": "Escolhe a questão e não toma posição. Se o docente sinalizar a sua posição, os grupos alinham por ela.\n\nNo plenário, confronta grupos com posições opostas e centra a discussão nos contra-argumentos classificados como decisivos, não nos rebatidos."
+  },
+  "correccao": {
+    "texto": "O plenário organiza-se por quatro perguntas:\n\n1. **Que contra-argumento foi classificado como decisivo por mais grupos?** Normalmente identifica o ponto genuinamente difícil da questão.\n2. **Algum grupo mudou de posição?** Se sim, o que o motivou. Se nenhum mudou, peça que explicitem as razões para manter a posição.\n3. **Que contra-argumentos vinham sem fundamentação verificável?** A instrução do prompt pede à ferramenta que os assinale, mas não garante que o faça, e é o momento de literacia crítica da actividade.\n4. **O que a ferramenta não conseguiu produzir?** Tipicamente, o argumento ancorado no contexto local: legislação portuguesa concreta, prática da instituição, particularidade cultural.\n\nSe avaliar, avalie a resposta escrita aos contra-argumentos, com peso maior para as classificações justificadas. Não avalie a posição tomada."
+  },
+  "armadilhas": [
+    {
+      "lead": "Deriva para o consenso.",
+      "texto": "O modelo tende, por defeito, a produzir texto equilibrado e a fechar com uma síntese conciliadora. A instrução explícita de não suavizar pode ajudar, mas pode ter de ser repetida na conversa."
+    },
+    {
+      "lead": "Argumentos com evidência inventada.",
+      "texto": "É o risco principal desta actividade, porque um contra-argumento ganha força aparente quando invoca um estudo. A instrução de assinalar a evidência não confirmável reduz o problema; a verificação no plenário ajuda a identificar o que permanece sem suporte."
+    },
+    {
+      "lead": "Adopção da posição da ferramenta.",
+      "texto": "Se a posição não for tomada antes, os estudantes adoptam a que lhes for apresentada com mais fluência. A ordem das fases não é negociável."
+    },
+    {
+      "lead": "Questões sem dois lados.",
+      "texto": "Se a controvérsia escolhida tiver uma resposta claramente correcta, os contra-argumentos saem artificiais e os estudantes percebem-no."
+    },
+    {
+      "lead": "Confusão entre ético e legal.",
+      "texto": "O modelo mistura os dois registos com facilidade. A instrução separa-os, e a distinção deve ser retomada no plenário."
+    }
+  ],
+  "plano_b": {
+    "texto": "Gere previamente os cinco contra-argumentos para duas ou três posições, e imprima-os.\n\nA actividade quase não perde: os grupos tomam posição, recebem o conjunto de contra-argumentos em papel, e classificam-nos na mesma. Perde-se apenas a possibilidade de os grupos tomarem posições divergentes, já que os contra-argumentos impressos pressupõem uma posição definida. Distribua-os pelos dois lados: metade dos grupos defende a posição, metade defende a contrária, e cada metade recebe os contra-argumentos correspondentes."
+  },
+  "referencias": [
+    {
+      "id": "dietis-2024",
+      "texto": "Dietis N. Three ways to use ChatGPT to enhance students' critical thinking in the classroom. *Times Higher Education*, THE Campus, 8 de Janeiro de 2024. Disponível em <https://www.timeshighereducation.com/campus/three-ways-use-chatgpt-enhance-students-critical-thinking-classroom>.\n\nNikolas Dietis é professor auxiliar de Farmacologia na Faculdade de Medicina da Universidade de Chipre. O artigo descreve o exercício em que os estudantes escolhem um tema, solicitam à ferramenta argumentos a favor e contra, sintetizam-nos e apresentam-nos em aula com a sua própria perspectiva, seguindo-se comentário dos colegas. A ficha acima acrescenta duas alterações ao formato original: a posição é tomada antes da consulta à ferramenta, e os contra-argumentos são classificados em três categorias em vez de apenas sintetizados.",
+      "origem": "curada"
+    }
+  ],
+  "meta_eunomia": {
+    "autor": "Tiago Jacinto",
+    "versao": 1,
+    "estado": "aprovada"
+  }
+}

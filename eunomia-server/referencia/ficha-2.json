@@ -1,0 +1,86 @@
+{
+  "meta": {
+    "titulo": "Ficha 2. Crítica estruturada de outputs",
+    "subtitulo": "Detecção de erro em texto plausível",
+    "competencia": "Leitura crítica, verificação, detecção de erro",
+    "formato": "Grupos de três, com rubrica",
+    "duracao": {
+      "min": 30,
+      "max": 40,
+      "texto": "30 a 40 minutos"
+    },
+    "ano": "Qualquer ano, com base suficiente no tema escolhido",
+    "areas": "Todas, com exemplo próprio da área",
+    "ferramenta": "IAedu, preparação prévia pelo docente"
+  },
+  "objectivo": {
+    "texto": "No fim da actividade, o estudante identifica erros factuais e de raciocínio num texto tecnicamente bem escrito da sua área, classifica-os por gravidade e justifica cada identificação com uma fonte.",
+    "competencia_protegida": "A competência protegida é a detecção de erro em texto plausível, que é exactamente aquilo que a fluência dos modelos de linguagem torna difícil. Um texto mal escrito levanta suspeitas; um texto bem escrito e errado não."
+  },
+  "formato": {
+    "blocos": [
+      {
+        "minutos": 5,
+        "texto": "Distribuição do texto e da rubrica. O docente diz quantos erros existem, mas não de que tipo."
+      },
+      {
+        "minutos": 15,
+        "texto": "Trabalho em grupos de três. Cada grupo assinala os erros que encontra e classifica-os."
+      },
+      {
+        "minutos": 10,
+        "texto": "Confronto com a chave de correcção, erro a erro."
+      },
+      {
+        "minutos": 5,
+        "minutos_max": 10,
+        "texto": "Discussão dos erros que nenhum grupo encontrou, que são os mais instrutivos."
+      }
+    ],
+    "texto": "Dizer o número de erros é uma decisão deliberada: sem essa informação, os grupos param cedo demais. Numa segunda utilização com a mesma turma, omita o número."
+  },
+  "prompt_base": {
+    "texto": "O docente gera o material antes da aula. O prompt produz duas coisas: a nota clínica que os estudantes recebem e a chave que fica com o docente.\n\n```text\nPreciso de material para um exercício de leitura crítica com\nestudantes de Medicina. Vais escrever uma nota clínica de admissão,\nfictícia, sobre um doente com dor torácica, e vais plantar nela erros\ndeliberados para os estudantes encontrarem.\n\nCASO\nHomem de 57 anos, admitido no serviço de urgência por dor torácica\nretroesternal com duas horas de evolução, opressiva, com irradiação\npara o membro superior esquerdo, acompanhada de sudorese. Factores de\nrisco: hipertensão, dislipidemia, fumador activo.\n\nO QUE PRECISO\nEscreve a nota clínica completa, com as secções habituais: motivo de\nadmissão, história da doença actual, antecedentes, medicação\nhabitual, exame objectivo, exames complementares com valores, e\navaliação com plano.\n\nERROS A PLANTAR\nPlanta exactamente seis erros, distribuídos assim:\n- Dois erros factuais de valores (um valor laboratorial ou vital\n  incompatível com o quadro descrito, ou com as unidades trocadas).\n- Dois erros de raciocínio (uma conclusão que não decorre dos dados\n  apresentados, ou um diagnóstico diferencial que ignora um dado\n  relevante da própria nota).\n- Um erro de aplicação de norma ou procedimento (em contexto\n  clínico, uma dose, via, frequência ou contra-indicação ignorada\n  face aos antecedentes descritos).\n- Uma incoerência interna (uma afirmação numa secção que contradiz\n  outra secção da mesma nota).\n\nREGRAS\n- Os erros têm de ser plausíveis. Nada de absurdos evidentes: um\n  estudante desatento deve conseguir passar por eles sem reparar.\n- Não assinales os erros no texto da nota. Sem asteriscos, sem\n  negrito, sem notas de rodapé.\n- O resto da nota tem de estar clinicamente correcto.\n\nFORMATO DA RESPOSTA\nPrimeiro, a nota clínica completa, sob o título \"NOTA CLÍNICA\".\nDepois, uma linha com dez tracejados.\nDepois, sob o título \"CHAVE DE CORRECÇÃO\", a lista dos seis erros,\nnumerados, cada um com: a citação exacta do trecho errado, o tipo de\nerro, a explicação do que está errado, e o que estaria correcto.\n```\n\n::: {.callout-warning appearance=\"simple\"}\n## Verificação obrigatória antes da aula\n\nO docente verifica a nota **e** a chave antes de distribuir. Duas falhas são frequentes: o modelo planta menos erros do que os pedidos, e o modelo introduz erros adicionais que não constam da chave. Ambos os casos comprometem o exercício se não forem corrigidos, e ambos devem ser procurados na revisão.\n:::",
+    "variantes": "O prompt acima corre como está, e o exemplo é clínico porque é o mais imediato para parte da sala. A estrutura não é clínica: um texto fluente com erros plantados, uma rubrica de cinco colunas, e a exigência de uma fonte por identificação. Para adaptar, substituem-se três blocos e mantém-se tudo o resto.\n\n**Ciências básicas.** Substituir os blocos `CASO`, `O QUE PRECISO` e `ERROS A PLANTAR` por:\n\n```text\nCASO\nDescrição de um protocolo de coloração de um corte histológico de\ntecido epitelial, com os passos, os tempos, as concentrações dos\nreagentes e a interpretação das estruturas observadas.\n\nO QUE PRECISO\nEscreve o protocolo completo e o relatório de observação, com as\nsecções habituais: objectivo, material e reagentes, procedimento\npasso a passo com tempos e concentrações, observação descritiva das\nestruturas, e conclusão sobre o tipo de tecido.\n\nERROS A PLANTAR\nPlanta exactamente seis erros, distribuídos assim:\n- Dois erros factuais de valores (uma concentração, um tempo de\n  incubação ou uma temperatura incompatível com o resultado\n  descrito, ou com as unidades trocadas).\n- Dois erros de raciocínio (uma conclusão sobre o tipo de tecido que\n  não decorre das estruturas descritas, ou a omissão de uma\n  estrutura que contraria a identificação proposta).\n- Um erro de aplicação de procedimento (um passo fora de ordem, ou\n  um reagente incompatível com o passo anterior).\n- Uma incoerência interna (uma estrutura descrita na observação que\n  não poderia ser visível com a coloração usada).\n```\n\n**Ciência de dados e informática médica.** Substituir os mesmos três blocos por:\n\n```text\nCASO\nRelatório de uma análise que investiga a associação entre duas\nvariáveis num conjunto de dados de 240 observações, com estatística\ndescritiva, o modelo ajustado, os pressupostos verificados e a\ninterpretação dos resultados.\n\nO QUE PRECISO\nEscreve o relatório completo, com as secções habituais: pergunta,\ndados e limpeza, estatística descritiva com valores, modelo e\njustificação da escolha, verificação de pressupostos, resultados com\nestimativas e intervalos, e interpretação.\n\nERROS A PLANTAR\nPlanta exactamente seis erros, distribuídos assim:\n- Dois erros factuais de valores (um intervalo de confiança\n  incompatível com a estimativa apresentada, ou um n que não bate\n  certo entre secções).\n- Dois erros de raciocínio (uma conclusão causal a partir de um\n  desenho que não a sustenta, ou uma interpretação de significância\n  que ignora o tamanho do efeito).\n- Um erro de aplicação de procedimento (um modelo escolhido sem que\n  os seus pressupostos estejam verificados nos dados descritos).\n- Uma incoerência interna (uma afirmação sobre os dados que\n  contradiz a estatística descritiva da própria secção anterior).\n```\n\nNa variante de dados, os erros plantados permitem discutir também respostas estatísticas plausíveis mas incorrectas produzidas sem essa intenção. Verifique os valores e a coerência do relatório antes da aula.\n\n**A fonte exigida muda com a área.** Onde o exemplo clínico admite a norma da Direcção-Geral da Saúde ou o resumo das características do medicamento, a variante de ciências básicas admite o protocolo de laboratório ou o manual da unidade curricular, e a de dados admite a documentação do método ou um texto de referência de estatística. A regra mantém-se: identificação sem fonte não conta.\n\n### Rubrica para distribuir\n\nFaz parte do material a preparar. Distribua esta grelha com o texto. Cada erro encontrado preenche uma linha.\n\n| Trecho citado | Tipo de erro | Porque está errado | Fonte que o confirma | Gravidade |\n|---|---|---|---|---|\n| | Factual / raciocínio / norma ou procedimento / incoerência | | | Alta, média ou baixa |\n\nA coluna da gravidade é a que gera mais discussão e é a que interessa: obriga a distinguir um erro de transcrição de um erro que resultaria em dano."
+  },
+  "papeis": {
+    "estudante": "Lê o texto, assinala os erros, preenche a rubrica. Para cada erro, tem de indicar uma fonte que o confirme: o manual da unidade curricular, o protocolo de laboratório, a documentação do método, ou, em contexto clínico, uma norma da Direcção-Geral da Saúde ou o resumo das características do medicamento. Uma identificação sem fonte não conta.\n\nNo confronto com a chave, o grupo defende as identificações que a chave não previu, em vez de as descartar.",
+    "docente": "Gera e verifica o material antes da aula. Durante a actividade, não confirma nem infirma identificações. Na fase de confronto, conduz erro a erro e reserva a maior parte do tempo para os erros que nenhum grupo encontrou.\n\nDeve também estar preparado para o caso em que um grupo encontre um erro real que o modelo introduziu sem intenção e que não consta da chave. Reconhecê-lo em voz alta é o melhor momento pedagógico da actividade."
+  },
+  "correccao": {
+    "texto": "A correcção faz-se por confronto com a chave, mas a discussão vale mais do que a contagem. Três perguntas de fecho:\n\n1. **Que erros escaparam a todos os grupos, e porquê?** Normalmente são os de raciocínio, não os de valores. Os erros numéricos saltam à vista; uma conclusão que não decorre dos dados passa despercebida porque está bem escrita.\n2. **Que identificações estavam certas e não constavam da chave?** Demonstra que a ferramenta introduz erros que não controla.\n3. **Como se detectaria isto fora da aula, num texto que ninguém plantou de propósito?** Liga o exercício ao contexto em que os estudantes vão encontrar estes textos: uma nota gerada por um sistema de documentação automática, um relatório de análise produzido por um colega com assistência de IA, um protocolo copiado de uma fonte não verificada."
+  },
+  "armadilhas": [
+    {
+      "lead": "Erros não solicitados.",
+      "texto": "O modelo introduz erros para além dos pedidos e não os declara na chave. É o problema mais frequente e obriga o docente a ler a nota com atenção antes da aula."
+    },
+    {
+      "lead": "Erros demasiado evidentes.",
+      "texto": "Sem a instrução de plausibilidade, o modelo produz erros grosseiros que qualquer estudante encontra em segundos, e o exercício perde valor. Se acontecer, peça uma nova versão com erros mais subtis."
+    },
+    {
+      "lead": "Fixação nos números.",
+      "texto": "Os grupos tendem a procurar apenas valores errados. A rubrica com quatro tipos de erro contraria a tendência, mas convém dizê-lo em voz alta no arranque."
+    },
+    {
+      "lead": "Contagem em vez de análise.",
+      "texto": "Se a actividade for avaliada pelo número de erros encontrados, os grupos passam a adivinhar. Avalie a qualidade da justificação e da fonte, não a contagem."
+    }
+  ],
+  "plano_b": {
+    "texto": "Esta actividade já é, por desenho, executada a partir de material pré-gerado. O plano B é apenas imprimir a nota clínica e a rubrica.\n\nConvém manter em arquivo duas ou três notas com chaves verificadas, de temas diferentes, prontas a usar. Uma vez construídas, servem vários anos, e um conjunto acumulado permite variar o caso entre turmas."
+  },
+  "referencias": [
+    {
+      "id": "pitt-chatgpt-in-the-classroom",
+      "texto": "University of Pittsburgh, University Center for Teaching and Learning. *ChatGPT in the Classroom*. Disponível em <https://teaching.pitt.edu/resources/chatgpt-in-the-classroom/>.\n\nO centro mantém também *The Prompt*, uma secção de recursos para ensino com IA generativa, em <https://teaching.pitt.edu/generative-ai-resources-for-faculty/>, com um repositório de trabalhos e actividades contribuídos por docentes.\n\nA lógica da actividade articula-se com o princípio 6 do Quadro FMUP · IA, literacia crítica, na sua dimensão avaliativa: identificar erros factuais, referências fabricadas e inconsistências, verificando contra fontes primárias.",
+      "origem": "curada"
+    }
+  ],
+  "meta_eunomia": {
+    "autor": "Tiago Jacinto",
+    "versao": 1,
+    "estado": "aprovada"
+  }
+}
