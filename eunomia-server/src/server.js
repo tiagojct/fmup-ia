@@ -26,19 +26,22 @@ const http = require('node:http');
 const { COOKIE_NAME, SESSION_MS } = require('./auth.js');
 const { IaeduError } = require('./iaedu.js');
 const { logRequest, logError } = require('./log.js');
+const { registerDraftRoutes } = require('./draft-routes.js');
 
 const MAX_BODY = 1024 * 1024;
 const DEFAULT_BASE_PATH = '/fmup-ia/eunomia/api';
 const DEFAULT_COOKIE_PATH = '/fmup-ia/eunomia';
 const DEFAULT_LIMITS = { loginPerMinute: 5, requestsPerMinute: 120 };
 
+// extra: more fields for the JSON body next to erro, for example { erros: [...] } or { motivo }.
 class HttpError extends Error {
-  constructor(status, erro, headers = {}) {
+  constructor(status, erro, headers = {}, extra = {}) {
     super(erro);
     this.name = 'HttpError';
     this.status = status;
     this.erro = erro;
     this.headers = headers;
+    this.extra = extra;
   }
 }
 
@@ -270,7 +273,9 @@ function registerRoutes(route, config) {
     'admin',
   );
 
-  // Later tasks add their routes here.
+  // The drafts, the interview and the sections (Tasks 7 and 9). The module gets the helpers it
+  // needs from here, so that it does not require this file.
+  registerDraftRoutes(route, config, { HttpError, requireCreds, sendJson });
 }
 
 // ---------------------------------------------------------------- the server
@@ -369,7 +374,7 @@ function createServer(config) {
       res.destroy(); // too late for a JSON error
       return;
     }
-    if (e instanceof HttpError) return sendJson(res, e.status, { erro: e.erro }, e.headers);
+    if (e instanceof HttpError) return sendJson(res, e.status, { ...e.extra, erro: e.erro }, e.headers);
     if (e instanceof IaeduError) return sendJson(res, IAEDU_STATUS[e.code] || 502, { erro: e.messagePt, motivo: e.code });
     logError(e, errOut);
     sendJson(res, 500, { erro: 'Erro interno do servidor.' });

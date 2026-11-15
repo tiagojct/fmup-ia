@@ -1,0 +1,45 @@
+{
+  "versao": 1,
+  "nota": "Verbos observáveis para objectivos de aprendizagem, no infinitivo, agrupados pelos seis níveis da taxonomia de Bloom revista. O servidor reconhece também a 3.ª pessoa do presente (conduz, identificam). As formas que não seguem a regra estão em formas. nao_observaveis lista verbos que não descrevem um comportamento que se observe.",
+  "niveis": [
+    {
+      "id": "recordar",
+      "rotulo": "Recordar",
+      "verbos": ["definir", "enumerar", "identificar", "nomear", "reconhecer", "reproduzir"]
+    },
+    {
+      "id": "compreender",
+      "rotulo": "Compreender",
+      "verbos": ["classificar", "descrever", "enunciar", "exemplificar", "explicar", "inferir", "interpretar", "parafrasear", "resumir"]
+    },
+    {
+      "id": "aplicar",
+      "rotulo": "Aplicar",
+      "verbos": ["aplicar", "calcular", "conduzir", "demonstrar", "examinar", "executar", "implementar", "realizar", "resolver", "utilizar"]
+    },
+    {
+      "id": "analisar",
+      "rotulo": "Analisar",
+      "verbos": ["analisar", "comparar", "contrastar", "detectar", "diferenciar", "distinguir", "esquematizar", "hierarquizar", "organizar", "priorizar", "relacionar"]
+    },
+    {
+      "id": "avaliar",
+      "rotulo": "Avaliar",
+      "verbos": ["argumentar", "avaliar", "criticar", "decidir", "defender", "fundamentar", "julgar", "justificar", "recomendar", "seleccionar", "sustentar", "validar", "verificar"]
+    },
+    {
+      "id": "criar",
+      "rotulo": "Criar",
+      "verbos": ["compor", "conceber", "construir", "criar", "elaborar", "formular", "gerar", "planear", "produzir", "propor", "redigir"]
+    }
+  ],
+  "formas": {
+    "compor": ["compõe", "compõem"],
+    "conduzir": ["conduz", "conduzem"],
+    "construir": ["constrói", "constroem"],
+    "produzir": ["produz", "produzem"],
+    "propor": ["propõe", "propõem"],
+    "planear": ["planeia", "planeiam"]
+  },
+  "nao_observaveis": ["compreender", "saber", "conhecer", "entender", "perceber", "aprender", "apreciar", "familiarizar"]
+}

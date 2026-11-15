@@ -1,0 +1,368 @@
+{
+  "versao": 1,
+  "nota": "Passos da entrevista do Eunomia (modo criar). O servidor valida as respostas com estes campos e o front end mostra-os tal como estão. Tipos de campo: texto, texto_longo, numero, escolha, escolha_multipla. obrigatorio_se torna um campo obrigatório quando outro campo do mesmo passo tem um valor (igual) ou o inclui (contem). opcoes: \"catalogo\" lê as opções de patterns.json. porque_area mostra o texto de um perfil do Anexo I quando a área do contexto tem perfil.",
+  "passos": [
+    {
+      "id": "contexto",
+      "titulo": "Contexto da actividade",
+      "porque": "O número de estudantes, o tempo e o lugar decidem que padrões são viáveis. A área indica se o Anexo I tem um perfil disciplinar que oriente a avaliação.",
+      "ligacao": {
+        "rotulo": "Anexo I. Perfis disciplinares da FMUP",
+        "url": "https://tiagojacinto.eu/fmup-ia/quadro/I-perfis-disciplinares.html"
+      },
+      "campos": [
+        {
+          "id": "uc",
+          "rotulo": "Unidade curricular",
+          "tipo": "texto",
+          "obrigatorio": true,
+          "max": 200,
+          "ajuda": "O nome da unidade curricular, como aparece no SIGARRA."
+        },
+        {
+          "id": "programa",
+          "rotulo": "Ciclo de estudos e ano",
+          "tipo": "texto",
+          "obrigatorio": true,
+          "max": 200,
+          "ajuda": "Por exemplo: Mestrado em Informática da Saúde, 1.º ano."
+        },
+        {
+          "id": "area",
+          "rotulo": "Área",
+          "tipo": "escolha",
+          "obrigatorio": true,
+          "opcoes": [
+            { "id": "cuidados_primarios", "rotulo": "Cuidados de saúde primários" },
+            { "id": "bioetica", "rotulo": "Bioética" },
+            { "id": "cuidados_paliativos", "rotulo": "Cuidados paliativos" },
+            { "id": "informatica", "rotulo": "Informática médica e da saúde" },
+            { "id": "saude_digital", "rotulo": "Saúde digital" },
+            { "id": "ia", "rotulo": "Inteligência artificial" },
+            { "id": "ats", "rotulo": "Avaliação de tecnologias da saúde" }
+          ]
+        },
+        {
+          "id": "nivel",
+          "rotulo": "Tipo de oferta formativa",
+          "tipo": "escolha",
+          "obrigatorio": true,
+          "ajuda": "Os mesmos tipos da Themis. A cláusula de uma actividade avaliada usa esta escolha.",
+          "opcoes": [
+            { "id": "uc_undergrad", "rotulo": "UC de licenciatura" },
+            { "id": "uc_master", "rotulo": "UC de mestrado" },
+            { "id": "uc_phd", "rotulo": "UC de doutoramento" },
+            { "id": "cpd", "rotulo": "Curso de Formação Contínua" },
+            { "id": "other", "rotulo": "Outra" }
+          ]
+        },
+        {
+          "id": "estudantes",
+          "rotulo": "Número de estudantes",
+          "tipo": "numero",
+          "obrigatorio": true,
+          "min": 1,
+          "max": 2000
+        },
+        {
+          "id": "modalidade",
+          "rotulo": "Onde decorre",
+          "tipo": "escolha",
+          "obrigatorio": true,
+          "opcoes": [
+            { "id": "em_aula", "rotulo": "Em aula" },
+            { "id": "autonomo", "rotulo": "Trabalho autónomo" },
+            { "id": "misto", "rotulo": "Misto: parte em aula, parte autónomo" }
+          ]
+        },
+        {
+          "id": "duracao_min",
+          "rotulo": "Duração (minutos)",
+          "tipo": "numero",
+          "obrigatorio": true,
+          "min": 5,
+          "max": 600,
+          "ajuda": "O tempo da actividade. Se variar, este é o mínimo."
+        },
+        {
+          "id": "duracao_max",
+          "rotulo": "Duração máxima (minutos)",
+          "tipo": "numero",
+          "obrigatorio": false,
+          "min": 5,
+          "max": 600,
+          "ajuda": "Deixe em branco se a duração for fixa."
+        }
+      ]
+    },
+    {
+      "id": "objectivo",
+      "titulo": "Objectivo de aprendizagem",
+      "porque": "Um verbo observável diz o que o estudante faz no fim, e é isso que a actividade treina e a avaliação verifica. A competência protegida é a parte que o estudante tem de fazer sem ajuda, como pede o pilar Ser sem IA do Quadro.",
+      "ligacao": {
+        "rotulo": "Princípios orientadores: os três pilares",
+        "url": "https://tiagojacinto.eu/fmup-ia/quadro/02-principios.html#tres-pilares"
+      },
+      "campos": [
+        {
+          "id": "texto",
+          "rotulo": "Objectivo",
+          "tipo": "texto_longo",
+          "obrigatorio": true,
+          "max": 1000,
+          "ajuda": "Escreva o que o estudante faz no fim da actividade, com um verbo observável: conduzir, identificar, justificar. Compreender, saber e conhecer não se observam."
+        },
+        {
+          "id": "competencia_protegida",
+          "rotulo": "Competência protegida",
+          "tipo": "texto_longo",
+          "obrigatorio": true,
+          "max": 1500,
+          "ajuda": "O que o estudante tem de fazer sem ajuda, nem da IA nem dos colegas."
+        },
+        {
+          "id": "competencia",
+          "rotulo": "Competência, em poucas palavras",
+          "tipo": "texto",
+          "obrigatorio": true,
+          "max": 150,
+          "ajuda": "Para a tabela da ficha. Por exemplo: anamnese, comunicação clínica."
+        }
+      ]
+    },
+    {
+      "id": "evidencia",
+      "titulo": "Evidência e avaliação",
+      "porque": "A evidência tem de mostrar o objectivo: se o objectivo é conduzir uma entrevista, um texto escrito em casa não o mostra. Uma actividade sumativa precisa ainda de uma cláusula para o enunciado, que um passo seguinte prepara.",
+      "ligacao": {
+        "rotulo": "Vertente Docentes: redesenho da avaliação",
+        "url": "https://tiagojacinto.eu/fmup-ia/quadro/04-docentes.html"
+      },
+      "porque_area": {
+        "bioetica": {
+          "perfil": "5. Bioética e integridade científica",
+          "texto": "Exigir excerto \"antes e depois\" com nota do que foi aceite e rejeitado, e porquê. Pedir mapa de fontes com justificação de inclusão. Momentos presenciais de escrita curta. Arguição oral centrada nas escolhas argumentativas. Um caso de estudo natural e disponível: o próprio Quadro e a Themis são objecto legítimo de análise crítica nestas unidades curriculares."
+        },
+        "informatica": {
+          "perfil": "4. Informática da saúde e engenharia de software clínico",
+          "texto": "Exigir rastreabilidade explícita entre requisitos, decisões e testes (issues, commits, registos de decisão de arquitectura). Marcos intercalares com demonstração. Defesa oral individual de cada membro do grupo, que é o instrumento decisivo para diferenciar contribuições. Declaração de uso por artefacto. Componente final em condições controladas, sem GenAI, para validar as competências nucleares individualmente."
+        },
+        "ia": {
+          "perfil": "2. Ciência de dados de saúde e bioestatística",
+          "texto": "Exigir notebook reprodutível com ambiente, semente aleatória e registos de execução. Pedir uma secção \"o que a ferramenta sugeriu e o que corrigi\". Incluir uma tarefa de interpretação em sala, com dados novos. Verificar um subresultado por cálculo manual."
+        }
+      },
+      "campos": [
+        {
+          "id": "descricao",
+          "rotulo": "Como vai saber que o objectivo foi atingido?",
+          "tipo": "texto_longo",
+          "obrigatorio": true,
+          "max": 1500,
+          "ajuda": "O que o estudante produz ou faz, e o que o docente observa."
+        },
+        {
+          "id": "avaliacao",
+          "rotulo": "Tipo de avaliação",
+          "tipo": "escolha",
+          "obrigatorio": true,
+          "opcoes": [
+            { "id": "formativa", "rotulo": "Formativa: sem classificação" },
+            { "id": "sumativa", "rotulo": "Sumativa: conta para a classificação" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "papel_ia",
+      "titulo": "Papel da IA",
+      "porque": "O papel da IA muda o desenho da actividade e as armadilhas a prever. As seis fichas de formação mostram um exemplo de cada papel.",
+      "ligacao": {
+        "rotulo": "Fichas de actividade",
+        "url": "https://tiagojacinto.eu/fmup-ia/training/fichas/index.html"
+      },
+      "campos": [
+        {
+          "id": "papel",
+          "rotulo": "Papel da IA nesta actividade",
+          "tipo": "escolha",
+          "obrigatorio": true,
+          "opcoes": [
+            { "id": "nenhum", "rotulo": "Nenhum: a actividade não usa IA" },
+            { "id": "contraparte", "rotulo": "Contraparte: a IA assume um papel, por exemplo um doente ou um oponente" },
+            { "id": "ferramenta", "rotulo": "Ferramenta: os estudantes usam a IA na tarefa" },
+            { "id": "objecto_de_critica", "rotulo": "Objecto de crítica: os estudantes avaliam texto gerado pela IA" }
+          ]
+        },
+        {
+          "id": "ferramenta",
+          "rotulo": "Ferramenta",
+          "tipo": "texto",
+          "obrigatorio": false,
+          "max": 150,
+          "ajuda": "Por omissão, IAedu. Indique outra só se a Universidade do Porto a tiver aprovado."
+        }
+      ]
+    },
+    {
+      "id": "regime",
+      "titulo": "Regime de IA para os estudantes",
+      "porque": "O regime diz o que os estudantes podem fazer com IA durante esta actividade. Segue o semáforo da U.Porto, que o Anexo B do Quadro traduz em cláusulas.",
+      "ligacao": {
+        "rotulo": "Anexo B. Modelo de cláusula",
+        "url": "https://tiagojacinto.eu/fmup-ia/quadro/B-clausula.html"
+      },
+      "campos": [
+        {
+          "id": "regime",
+          "rotulo": "Regime",
+          "tipo": "escolha",
+          "obrigatorio": true,
+          "opcoes": [
+            { "id": "permitido", "rotulo": "verde: permitido" },
+            { "id": "condicionado", "rotulo": "amarelo: permitido com condições" },
+            { "id": "proibido", "rotulo": "vermelho: proibido" }
+          ]
+        },
+        {
+          "id": "condicoes",
+          "rotulo": "Condições",
+          "tipo": "texto_longo",
+          "obrigatorio": false,
+          "obrigatorio_se": { "campo": "regime", "igual": "condicionado" },
+          "max": 1000,
+          "ajuda": "Por exemplo: só depois da resolução individual, com registo do prompt."
+        }
+      ]
+    },
+    {
+      "id": "regime_themis",
+      "titulo": "Cláusula para a avaliação",
+      "condicao": { "passo": "evidencia", "campo": "avaliacao", "igual": "sumativa" },
+      "porque": "Uma actividade sumativa precisa de uma cláusula no enunciado. A Eunomia gera-a com as regras da Themis, a partir do tipo de trabalho e da política que escolher, e junta os avisos da política.",
+      "ligacao": {
+        "rotulo": "Themis",
+        "url": "https://tiagojacinto.eu/fmup-ia/themis/"
+      },
+      "campos": [
+        {
+          "id": "assignment",
+          "rotulo": "Tipo de trabalho avaliado",
+          "tipo": "escolha_multipla",
+          "obrigatorio": true,
+          "opcoes": [
+            { "id": "essay", "rotulo": "Ensaio" },
+            { "id": "report", "rotulo": "Relatório" },
+            { "id": "data_analysis", "rotulo": "Análise de dados" },
+            { "id": "code", "rotulo": "Programação / código" },
+            { "id": "presentation", "rotulo": "Apresentação" },
+            { "id": "case_discussion", "rotulo": "Discussão de caso clínico" },
+            { "id": "clinical_simulation", "rotulo": "Simulação clínica" },
+            { "id": "portfolio", "rotulo": "Portefólio" },
+            { "id": "poster", "rotulo": "Poster" },
+            { "id": "reflective_journal", "rotulo": "Diário reflexivo" },
+            { "id": "other", "rotulo": "Outro" }
+          ]
+        },
+        {
+          "id": "assignmentOther",
+          "rotulo": "Especifique o tipo de trabalho",
+          "tipo": "texto",
+          "obrigatorio": false,
+          "obrigatorio_se": { "campo": "assignment", "contem": "other" },
+          "max": 150
+        },
+        {
+          "id": "policy",
+          "rotulo": "Política de uso de IA no trabalho avaliado",
+          "tipo": "escolha",
+          "obrigatorio": true,
+          "opcoes": [
+            { "id": "not_permitted", "rotulo": "Não permitido" },
+            { "id": "with_disclosure", "rotulo": "Permitido com divulgação integral" },
+            { "id": "without_restrictions", "rotulo": "Permitido sem restrições específicas" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "padrao",
+      "titulo": "Padrão de actividade",
+      "porque": "Um padrão é um mecanismo já usado, com armadilhas conhecidas. A Eunomia propõe dois ou três do catálogo, filtrados pelas respostas anteriores, e a escolha é sua.",
+      "ligacao": {
+        "rotulo": "Fichas de actividade",
+        "url": "https://tiagojacinto.eu/fmup-ia/training/fichas/index.html"
+      },
+      "campos": [
+        {
+          "id": "padrao",
+          "rotulo": "Padrão",
+          "tipo": "escolha",
+          "obrigatorio": true,
+          "opcoes": "catalogo"
+        },
+        {
+          "id": "formato_grupo",
+          "rotulo": "Formato de grupo",
+          "tipo": "texto",
+          "obrigatorio": false,
+          "max": 200,
+          "ajuda": "Por omissão, o do padrão. Por exemplo: pares, um conduz e outro observa."
+        }
+      ]
+    },
+    {
+      "id": "materiais",
+      "titulo": "Materiais (opcional)",
+      "porque": "Os materiais da unidade curricular dão ao modelo o vocabulário e os casos da sua área. O texto vai para a IAedu, por isso não pode ter dados de doentes nem de estudantes.",
+      "ligacao": {
+        "rotulo": "Princípio 3. Protecção de dados e confidencialidade",
+        "url": "https://tiagojacinto.eu/fmup-ia/quadro/02-principios.html#principio-3-protecao-dados"
+      },
+      "campos": [
+        {
+          "id": "texto",
+          "rotulo": "Texto dos materiais",
+          "tipo": "texto_longo",
+          "obrigatorio": false,
+          "max": 60000,
+          "ajuda": "Cole aqui o texto. Sem dados de doentes nem de estudantes: todos os casos devem ser fictícios."
+        }
+      ]
+    },
+    {
+      "id": "plano",
+      "titulo": "Plano",
+      "porque": "O plano reúne numa página as decisões dos passos anteriores. Nenhuma secção é escrita antes de o aprovar, porque o modelo escreve a partir das suas decisões e não as toma por si.",
+      "ligacao": {
+        "rotulo": "Vertente Docentes: integração no ensino",
+        "url": "https://tiagojacinto.eu/fmup-ia/quadro/04-docentes.html"
+      },
+      "campos": [
+        {
+          "id": "titulo",
+          "rotulo": "Título da ficha",
+          "tipo": "texto",
+          "obrigatorio": true,
+          "max": 150
+        },
+        {
+          "id": "subtitulo",
+          "rotulo": "Subtítulo",
+          "tipo": "texto",
+          "obrigatorio": true,
+          "max": 200,
+          "ajuda": "Uma linha sobre o que a actividade treina. Por exemplo: recolha estruturada de informação clínica."
+        },
+        {
+          "id": "notas",
+          "rotulo": "Notas para a redacção",
+          "tipo": "texto_longo",
+          "obrigatorio": false,
+          "max": 3000,
+          "ajuda": "Indicações para o modelo: casos a usar, termos a evitar, o que já correu mal noutros anos."
+        }
+      ]
+    }
+  ]
+}

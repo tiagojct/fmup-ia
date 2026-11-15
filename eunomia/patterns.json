@@ -1,0 +1,237 @@
+{
+  "versao": 1,
+  "nota": "Catálogo de padrões de actividade do Eunomia. Dono: Tiago Jacinto. Os seis mecanismos das fichas de formação têm estado revisto: as armadilhas e o formato de grupo vêm das fichas. Os seis padrões sem IA têm estado rascunho e aguardam revisão. papel_ia: nenhum, interlocutor (a IA assume um papel), ferramenta (os estudantes usam a IA), objecto (os estudantes avaliam o que a IA produz). duracao_tipica em minutos; null quando a actividade é contínua, fora da aula. areas: áreas da entrevista em que o padrão aparece primeiro.",
+  "padroes": [
+    {
+      "id": "interlocutor_restrito",
+      "nome": "Interlocutor restringido",
+      "estado": "revisto",
+      "mecanismo": "A IA assume um papel com um guião escrito pelo docente e só responde ao que lhe perguntam. O estudante tem de conduzir a conversa para obter a informação, enquanto um colega observa com uma grelha.",
+      "competencia": "Recolha de informação por iniciativa própria, como na anamnese.",
+      "quando_serve": "Quando o objectivo é fazer as perguntas certas e não chegar à resposta: entrevista clínica, levantamento de requisitos, entrevista a um informador.",
+      "quando_nao_serve": "Quando a actividade tem de treinar o contacto com um doente real. O doente simulado é mais colaborante e mais coerente do que um doente real, e não substitui o doente padronizado.",
+      "papel_ia": "interlocutor",
+      "duracao_tipica": { "min": 30, "max": 45 },
+      "formato_grupo": "Pares, um conduz e outro observa",
+      "ficha_exemplo": "https://tiagojacinto.eu/fmup-ia/training/fichas/1-doente-virtual.html",
+      "areas": ["cuidados_primarios", "cuidados_paliativos"],
+      "armadilhas": [
+        "Informação inventada fora do guião.",
+        "Respostas socialmente desejáveis.",
+        "Saída de papel.",
+        "Excesso de fluência."
+      ]
+    },
+    {
+      "id": "critica_outputs",
+      "nome": "Crítica de outputs com erros plantados",
+      "estado": "revisto",
+      "mecanismo": "O docente gera antes da aula um texto plausível da área com erros plantados, e verifica a chave de correcção. Os grupos procuram os erros, classificam-nos por gravidade e justificam cada um com uma fonte.",
+      "competencia": "Detecção de erro em texto plausível.",
+      "quando_serve": "Quando os estudantes já sabem o suficiente do tema para reconhecer um erro, e o objectivo é verificar em vez de aceitar.",
+      "quando_nao_serve": "No primeiro contacto com um tema: sem base suficiente, os estudantes não distinguem o erro plantado do texto correcto.",
+      "papel_ia": "objecto",
+      "duracao_tipica": { "min": 30, "max": 40 },
+      "formato_grupo": "Grupos de três, com rubrica",
+      "ficha_exemplo": "https://tiagojacinto.eu/fmup-ia/training/fichas/2-critica-de-outputs.html",
+      "areas": ["ats", "ia"],
+      "armadilhas": [
+        "Erros não solicitados.",
+        "Erros demasiado evidentes.",
+        "Fixação nos números.",
+        "Contagem em vez de análise."
+      ]
+    },
+    {
+      "id": "estudante_corrector",
+      "nome": "O estudante como corrector",
+      "estado": "revisto",
+      "mecanismo": "Os grupos constroem uma rubrica antes de ver qualquer texto gerado. Depois geram respostas de qualidade deliberadamente diferente, aplicam a rubrica às respostas de outro grupo e discutem os desacordos.",
+      "competencia": "Explicitação de critérios de qualidade.",
+      "quando_serve": "Quando os estudantes precisam de saber o que distingue uma resposta boa de uma medíocre: escrita académica, respostas de exame, resumos clínicos.",
+      "quando_nao_serve": "Quando não há tempo para construir a rubrica antes de ver as respostas, porque é essa ordem que define a actividade. Com pouco tempo, divida-a em duas sessões.",
+      "papel_ia": "objecto",
+      "duracao_tipica": { "min": 50, "max": 60 },
+      "formato_grupo": "Grupos de quatro, com produção colectiva de rubrica",
+      "ficha_exemplo": "https://tiagojacinto.eu/fmup-ia/training/fichas/3-aluno-corretor.html",
+      "areas": [],
+      "armadilhas": [
+        "Respostas com qualidade indistinguível.",
+        "Resposta fraca demasiado óbvia.",
+        "Rubricas genéricas.",
+        "Deriva para a discussão da matéria."
+      ]
+    },
+    {
+      "id": "advogado_diabo",
+      "nome": "Advogado do diabo",
+      "estado": "revisto",
+      "mecanismo": "Cada grupo toma posição por escrito antes de consultar a IA. Depois pede-lhe as objecções mais fortes à própria posição e responde-lhes, separando as que obrigam a rever a posição das que não obrigam.",
+      "competencia": "Argumentação fundamentada e antecipação de objecções.",
+      "quando_serve": "Em questões com dois lados defensáveis: dilemas éticos, decisões de política de saúde, escolhas de desenho de um sistema.",
+      "quando_nao_serve": "Quando a questão tem uma resposta claramente correcta: os contra-argumentos saem artificiais e os estudantes percebem-no.",
+      "papel_ia": "interlocutor",
+      "duracao_tipica": { "min": 40, "max": 50 },
+      "formato_grupo": "Pares ou grupos de três, seguidos de plenário",
+      "ficha_exemplo": "https://tiagojacinto.eu/fmup-ia/training/fichas/4-advogado-do-diabo.html",
+      "areas": ["bioetica"],
+      "armadilhas": [
+        "Deriva para o consenso.",
+        "Argumentos com evidência inventada.",
+        "Adopção da posição da ferramenta.",
+        "Questões sem dois lados.",
+        "Confusão entre ético e legal."
+      ]
+    },
+    {
+      "id": "fazer_comparar",
+      "nome": "Fazer primeiro, comparar depois",
+      "estado": "revisto",
+      "mecanismo": "O estudante resolve o problema sozinho e entrega a resolução. Só depois usa a IA no mesmo problema e compara por escrito as duas resoluções, ponto a ponto.",
+      "competencia": "Esforço deliberado e reflexão sobre o próprio raciocínio.",
+      "quando_serve": "Quando o objectivo é o hábito de tentar primeiro e consultar depois, em qualquer ano e em qualquer área.",
+      "quando_nao_serve": "Quando não é possível verificar que a primeira resolução foi entregue antes da consulta. Sem essa entrega, a comparação não existe.",
+      "papel_ia": "ferramenta",
+      "duracao_tipica": { "min": 40, "max": 40 },
+      "formato_grupo": "Individual, com discussão em pares no fim",
+      "ficha_exemplo": "https://tiagojacinto.eu/fmup-ia/training/fichas/5-fazer-e-comparar.html",
+      "areas": [],
+      "armadilhas": [
+        "Inversão da sequência.",
+        "Comparação superficial.",
+        "Deferência à ferramenta.",
+        "Reescrita disfarçada.",
+        "Problemas fáceis demais."
+      ]
+    },
+    {
+      "id": "tutor_restrito",
+      "nome": "Tutor restringido aos materiais da UC",
+      "estado": "revisto",
+      "mecanismo": "Um sistema responde às dúvidas dos estudantes só a partir dos materiais que o docente curou, e indica a fonte de cada resposta dentro desses materiais.",
+      "competencia": "Estudo autónomo com verificação na fonte.",
+      "quando_serve": "Em unidades curriculares com um corpo documental estável, quando há infraestrutura e um docente que cura os materiais antes do semestre.",
+      "quando_nao_serve": "Sem infraestrutura própria: o sistema não está disponível por omissão na IAedu. Também não serve quando os materiais mudam muito de ano para ano.",
+      "papel_ia": "ferramenta",
+      "duracao_tipica": null,
+      "formato_grupo": "Uso individual pelos estudantes, fora da aula",
+      "ficha_exemplo": "https://tiagojacinto.eu/fmup-ia/training/fichas/6-tutor-restringido.html",
+      "areas": [],
+      "armadilhas": [
+        "Tensão entre fiabilidade e abrangência.",
+        "Corpus desactualizado.",
+        "Falsa sensação de segurança.",
+        "Custo de manutenção subestimado.",
+        "Direitos de autor."
+      ]
+    },
+    {
+      "id": "discussao_caso",
+      "nome": "Discussão estruturada de caso",
+      "estado": "rascunho",
+      "mecanismo": "Os estudantes analisam um caso fictício por etapas, com a informação revelada aos poucos. Em cada etapa respondem por escrito a perguntas fixas antes de receber a informação seguinte.",
+      "competencia": "Decisão com informação incompleta: formular hipóteses e revê-las perante informação nova.",
+      "quando_serve": "Quando o objectivo é decidir sob incerteza, por exemplo em cuidados de saúde primários, cuidados paliativos ou bioética clínica.",
+      "quando_nao_serve": "Quando o objectivo é um gesto técnico ou uma competência de comunicação, que a discussão não treina.",
+      "papel_ia": "nenhum",
+      "duracao_tipica": { "min": 30, "max": 60 },
+      "formato_grupo": "Grupos de quatro a seis, seguidos de plenário",
+      "areas": ["cuidados_primarios", "cuidados_paliativos"],
+      "armadilhas": [
+        "Um estudante responde por todo o grupo.",
+        "O caso revela a resposta cedo demais.",
+        "A discussão fica na matéria e não chega à decisão."
+      ]
+    },
+    {
+      "id": "roleplay_observador",
+      "nome": "Role-play entre estudantes com grelha de observação",
+      "estado": "rascunho",
+      "mecanismo": "Em grupos de três, um estudante faz de profissional, outro faz de doente ou familiar a partir de um guião, e o terceiro observa com uma grelha. Os papéis rodam.",
+      "competencia": "Comunicação clínica observável, por exemplo dar uma má notícia ou pedir consentimento.",
+      "quando_serve": "Comunicação com doentes e famílias, conversas difíceis em cuidados paliativos, consentimento informado.",
+      "quando_nao_serve": "Quando a grelha de observação não está pronta antes da aula: sem ela, o observador dá uma impressão geral e não um registo.",
+      "papel_ia": "nenhum",
+      "duracao_tipica": { "min": 30, "max": 60 },
+      "formato_grupo": "Grupos de três, com rotação de papéis",
+      "areas": ["cuidados_paliativos", "bioetica", "cuidados_primarios"],
+      "armadilhas": [
+        "O observador comenta durante a cena.",
+        "O guião é demasiado aberto e o colega improvisa.",
+        "A grelha regista impressões e não comportamentos."
+      ]
+    },
+    {
+      "id": "apreciacao_checklist",
+      "nome": "Apreciação estruturada com lista de verificação",
+      "estado": "rascunho",
+      "mecanismo": "Os grupos apreciam um documento real, como um estudo ou um relatório de avaliação de tecnologia, com uma lista de verificação dada pelo docente. Cada item é justificado com a página onde foi encontrado.",
+      "competencia": "Leitura crítica estruturada de evidência.",
+      "quando_serve": "Em avaliação de tecnologias da saúde, em informática da saúde e na leitura crítica de estudos.",
+      "quando_nao_serve": "Quando os estudantes ainda não conhecem os conceitos da lista: preenchem os itens sem saber o que procuram.",
+      "papel_ia": "nenhum",
+      "duracao_tipica": { "min": 45, "max": 90 },
+      "formato_grupo": "Grupos de três ou quatro",
+      "areas": ["ats", "informatica"],
+      "armadilhas": [
+        "Preencher a lista sem ler o documento todo.",
+        "Responder sim ou não sem justificação.",
+        "Documento demasiado longo para o tempo da aula."
+      ]
+    },
+    {
+      "id": "debate_posicoes",
+      "nome": "Debate com posições atribuídas",
+      "estado": "rascunho",
+      "mecanismo": "O docente atribui as posições, sem ter em conta a opinião de cada estudante. Cada equipa prepara os argumentos e responde à equipa contrária, em tempos fixos.",
+      "competencia": "Argumentação e compreensão da posição contrária.",
+      "quando_serve": "Em controvérsias de bioética, de política de saúde ou de adopção de tecnologias.",
+      "quando_nao_serve": "Quando a questão tem uma resposta claramente correcta, ou quando a posição atribuída pode ferir estudantes com experiência pessoal do tema.",
+      "papel_ia": "nenhum",
+      "duracao_tipica": { "min": 45, "max": 90 },
+      "formato_grupo": "Duas equipas, com júri ou plenário",
+      "areas": ["bioetica", "ats"],
+      "armadilhas": [
+        "Estudantes que recusam a posição atribuída.",
+        "O debate premia a retórica e não a evidência.",
+        "Sem síntese final, fica a ideia de que tudo é opinião."
+      ]
+    },
+    {
+      "id": "jigsaw",
+      "nome": "Grupos de peritos (jigsaw)",
+      "estado": "rascunho",
+      "mecanismo": "Cada estudante estuda uma parte do tema num grupo de peritos. Depois forma um grupo novo, com um perito de cada parte, e explica a sua parte aos colegas.",
+      "competencia": "Explicar um tema a colegas e integrar as partes num todo.",
+      "quando_serve": "Em temas que se dividem em partes de dimensão semelhante, com turmas que permitam formar vários grupos.",
+      "quando_nao_serve": "Quando as partes dependem umas das outras numa ordem fixa, ou quando faltam estudantes e uma parte fica sem perito.",
+      "papel_ia": "nenhum",
+      "duracao_tipica": { "min": 60, "max": 90 },
+      "formato_grupo": "Grupos de peritos, depois grupos mistos",
+      "areas": ["saude_digital"],
+      "armadilhas": [
+        "Um perito mal preparado deixa o grupo sem essa parte.",
+        "Os grupos mistos lêem os apontamentos em vez de explicar.",
+        "Sem verificação final, ninguém sabe se as partes foram aprendidas."
+      ]
+    },
+    {
+      "id": "exercicio_dados",
+      "nome": "Exercício guiado com dados",
+      "estado": "rascunho",
+      "mecanismo": "Os estudantes trabalham um conjunto de dados sintético ou anonimizado com perguntas por etapas, da descrição à interpretação, e explicam cada decisão de análise.",
+      "competencia": "Interpretação de dados e justificação das decisões de análise.",
+      "quando_serve": "Em informática da saúde, ciência de dados, inteligência artificial e avaliação de tecnologias da saúde.",
+      "quando_nao_serve": "Quando os estudantes não têm computador na aula, ou quando o software exige uma instalação demorada.",
+      "papel_ia": "nenhum",
+      "duracao_tipica": { "min": 45, "max": 90 },
+      "formato_grupo": "Individual ou pares",
+      "areas": ["ia", "informatica", "saude_digital"],
+      "armadilhas": [
+        "Dados reais com risco de reidentificação.",
+        "O tempo vai todo para a instalação do software.",
+        "Perguntas que pedem o resultado e não a interpretação."
+      ]
+    }
+  ]
+}

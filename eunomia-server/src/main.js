@@ -7,8 +7,11 @@ const { createStore } = require('./store.js');
 const { createAuth } = require('./auth.js');
 const { createIaeduClient, DEFAULT_BASE_URL } = require('./iaedu.js');
 const { createServer } = require('./server.js');
+const { purgeOldDrafts } = require('./drafts.js');
+const { logError } = require('./log.js');
 
 const PORT = 3000;
+const DAY_MS = 24 * 60 * 60 * 1000;
 
 class ConfigError extends Error {
   constructor(message) {
@@ -81,6 +84,19 @@ async function start(env = process.env, { port = PORT, host, logStream } = {}) {
     server.once('error', reject);
     server.listen(port, host, resolve);
   });
+
+  // Drafts nobody opened for draftRetentionDays are removed at start and then once a day.
+  const purge = () => {
+    try {
+      purgeOldDrafts(store, Date.now(), cfg.draftRetentionDays);
+    } catch (e) {
+      logError(e);
+    }
+  };
+  purge();
+  const timer = setInterval(purge, DAY_MS);
+  timer.unref();
+  server.once('close', () => clearInterval(timer));
   return server;
 }
 
