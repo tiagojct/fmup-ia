@@ -318,7 +318,7 @@ function renderSection(sectionId, data) {
   return escapeAt(RENDER[sectionId](data));
 }
 
-// JSON for the front matter: no raw @ (check-content.py), no line separators.
+// Quoted string for title and subtitle: no raw @ (check-content.py), no line separators.
 const frontJson = (value) =>
   JSON.stringify(value).replace(/[@\u2028\u2029]/g, (c) => `\\u${c.charCodeAt(0).toString(16).padStart(4, '0')}`);
 
@@ -331,7 +331,7 @@ function renderQmd(ficha) {
     `subtitle: ${frontJson(ficha.meta.subtitulo)}`,
     'toc: true',
     'toc-depth: 2',
-    `eunomia: ${frontJson(ficha)}`,
+    `eunomia: "${Buffer.from(JSON.stringify(ficha), 'utf8').toString('base64')}"`,
     '---',
   ].join('\n');
   const extrasAt = (id) =>
@@ -347,6 +347,16 @@ function renderQmd(ficha) {
     blocks.push(...extrasAt(id));
   }
   return `${front}\n\n${blocks.join('\n\n')}\n`;
+}
+
+// The ficha travels in the front matter as base64 of its UTF-8 JSON, so that Pandoc
+// does not parse the ficha text as Markdown (a callout at the end of a string breaks it).
+function readEunomiaFrontMatter(qmdText) {
+  const front = String(qmdText).match(/^---\n([\s\S]*?)\n---(?:\n|$)/);
+  const line = front && front[1].split('\n').find((l) => l.startsWith('eunomia:'));
+  const value = line && line.slice('eunomia:'.length).trim().replace(/^"(.*)"$/, '$1');
+  if (!value) throw new Error('O ficheiro não tem a chave eunomia no cabeçalho.');
+  return JSON.parse(Buffer.from(value, 'base64').toString('utf8'));
 }
 
 function slugify(title) {
@@ -365,5 +375,6 @@ module.exports = {
   validateSection,
   renderQmd,
   renderSection,
+  readEunomiaFrontMatter,
   slugify,
 };

@@ -11,6 +11,7 @@ const {
   validateSection,
   renderQmd,
   renderSection,
+  readEunomiaFrontMatter,
   slugify,
   SECTION_ORDER,
 } = require('../src/ficha.js');
@@ -341,14 +342,29 @@ test('renderQmd has the section headings in order and the ficha-meta table', () 
   assert.ok(qmd.includes('| **Duração** | 30 a 45 minutos, consoante a troca de papéis |'));
 });
 
-test('renderQmd front matter keeps the ficha as JSON under eunomia', () => {
+test('renderQmd front matter keeps the ficha as base64 JSON under eunomia', () => {
   for (let n = 1; n <= 6; n += 1) {
     const ficha = load(n);
-    const { front } = splitQmd(renderQmd(ficha));
-    const line = front.split('\n').find((l) => l.startsWith('eunomia: '));
-    assert.ok(line, `ficha ${n}`);
-    assert.deepEqual(JSON.parse(line.slice('eunomia: '.length)), ficha);
+    const qmd = renderQmd(ficha);
+    const { front } = splitQmd(qmd);
+    const lines = front.split('\n').filter((l) => l.startsWith('eunomia:'));
+    assert.equal(lines.length, 1, `ficha ${n}`);
+    const m = lines[0].match(/^eunomia: "([A-Za-z0-9+/]+={0,2})"$/);
+    assert.ok(m, `ficha ${n}: one line, one quoted standard base64 string`);
+    assert.equal(Buffer.from(m[1], 'base64').toString('utf8'), JSON.stringify(ficha));
+    assert.deepEqual(readEunomiaFrontMatter(qmd), ficha);
   }
+});
+
+test('readEunomiaFrontMatter reads a library file and rejects a file without the key', () => {
+  const ficha = load(3);
+  ficha.correccao.texto = 'Acentuação, ç, õ, “aspas” e @ numa linha.';
+  assert.deepEqual(readEunomiaFrontMatter(renderQmd(ficha)), ficha);
+  assert.throws(
+    () => readEunomiaFrontMatter('---\ntitle: "x"\n---\n\nTexto.\n'),
+    /eunomia/,
+  );
+  assert.throws(() => readEunomiaFrontMatter('Sem front matter.'), /eunomia/);
 });
 
 test('renderQmd is built from renderSection', () => {
@@ -446,8 +462,7 @@ test('an @ in body text renders as \\@, except in code', () => {
   assert.ok(!front.includes('@'), 'no raw @ in the front matter');
   const outsideCode = body.replace(/```[\s\S]*?```|`[^`]*`/g, '');
   assert.ok(!/(?<!\\)@/.test(outsideCode), 'no bare @ outside code');
-  const line = front.split('\n').find((l) => l.startsWith('eunomia: '));
-  assert.deepEqual(JSON.parse(line.slice('eunomia: '.length)), f);
+  assert.deepEqual(readEunomiaFrontMatter(qmd), f);
 });
 
 test('a pipe in a meta cell is escaped', () => {
