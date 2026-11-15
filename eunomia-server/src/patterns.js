@@ -11,15 +11,6 @@ const CATALOGUE = JSON.parse(fs.readFileSync(repoPath('eunomia', 'patterns.json'
 
 const MAX_PROPOSALS = 3;
 
-// The AI roles of the interview (the values of regime_ia.papel in the ficha schema) and the roles of
-// the catalogue.
-const PAPEL_PADRAO = {
-  nenhum: 'nenhum',
-  contraparte: 'interlocutor',
-  ferramenta: 'ferramenta',
-  objecto_de_critica: 'objecto',
-};
-
 const isInt = Number.isInteger;
 
 // The time the teacher has, in minutes: [min, max]. Null when the answers do not say.
@@ -29,13 +20,14 @@ function available(contexto) {
   return [contexto.duracao_min, max];
 }
 
-// Up to three patterns for the answers. Hard filters: the AI role, a typical minimum that fits in the
+// Up to three patterns for the answers. The catalogue uses the AI role values of the interview and
+// of the ficha schema. Hard filters: the AI role, a typical minimum that fits in the
 // time, and no continuous pattern for an activity in class. Then the patterns that name the area come
 // first, then those whose typical duration overlaps the time; the catalogue order breaks ties.
 function filterPatterns(answers, catalogue = CATALOGUE) {
   const r = answers || {};
   const contexto = r.contexto || {};
-  const papel = r.papel_ia && PAPEL_PADRAO[r.papel_ia.papel];
+  const papel = r.papel_ia ? r.papel_ia.papel : undefined;
   const time = available(contexto);
   const inClass = contexto.modalidade === undefined || contexto.modalidade === 'em_aula';
 
@@ -63,4 +55,4 @@ function findPattern(id, catalogue = CATALOGUE) {
   return catalogue.find((p) => p.id === id) || null;
 }
 
-module.exports = { CATALOGUE, PAPEL_PADRAO, filterPatterns, findPattern };
+module.exports = { CATALOGUE, filterPatterns, findPattern };

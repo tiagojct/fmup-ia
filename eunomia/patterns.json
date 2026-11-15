@@ -1,6 +1,6 @@
 {
   "versao": 1,
-  "nota": "Catálogo de padrões de actividade do Eunomia. Dono: Tiago Jacinto. Os seis mecanismos das fichas de formação têm estado revisto: as armadilhas e o formato de grupo vêm das fichas. Os seis padrões sem IA têm estado rascunho e aguardam revisão. papel_ia: nenhum, interlocutor (a IA assume um papel), ferramenta (os estudantes usam a IA), objecto (os estudantes avaliam o que a IA produz). duracao_tipica em minutos; null quando a actividade é contínua, fora da aula. areas: áreas da entrevista em que o padrão aparece primeiro.",
+  "nota": "Catálogo de padrões de actividade do Eunomia. Dono: Tiago Jacinto. Os seis mecanismos das fichas de formação têm estado revisto: as armadilhas e o formato de grupo vêm das fichas. Os seis padrões sem IA têm estado rascunho e aguardam revisão. papel_ia: os valores da entrevista e de regime_ia.papel na ficha: nenhum, contraparte (a IA assume um papel), ferramenta (os estudantes usam a IA), objecto_de_critica (os estudantes avaliam o que a IA produz). duracao_tipica em minutos; null quando a actividade é contínua, fora da aula. areas: áreas da entrevista em que o padrão aparece primeiro.",
   "padroes": [
     {
       "id": "interlocutor_restrito",
@@ -10,7 +10,7 @@
       "competencia": "Recolha de informação por iniciativa própria, como na anamnese.",
       "quando_serve": "Quando o objectivo é fazer as perguntas certas e não chegar à resposta: entrevista clínica, levantamento de requisitos, entrevista a um informador.",
       "quando_nao_serve": "Quando a actividade tem de treinar o contacto com um doente real. O doente simulado é mais colaborante e mais coerente do que um doente real, e não substitui o doente padronizado.",
-      "papel_ia": "interlocutor",
+      "papel_ia": "contraparte",
       "duracao_tipica": { "min": 30, "max": 45 },
       "formato_grupo": "Pares, um conduz e outro observa",
       "ficha_exemplo": "https://tiagojacinto.eu/fmup-ia/training/fichas/1-doente-virtual.html",
@@ -30,7 +30,7 @@
       "competencia": "Detecção de erro em texto plausível.",
       "quando_serve": "Quando os estudantes já sabem o suficiente do tema para reconhecer um erro, e o objectivo é verificar em vez de aceitar.",
       "quando_nao_serve": "No primeiro contacto com um tema: sem base suficiente, os estudantes não distinguem o erro plantado do texto correcto.",
-      "papel_ia": "objecto",
+      "papel_ia": "objecto_de_critica",
       "duracao_tipica": { "min": 30, "max": 40 },
       "formato_grupo": "Grupos de três, com rubrica",
       "ficha_exemplo": "https://tiagojacinto.eu/fmup-ia/training/fichas/2-critica-de-outputs.html",
@@ -50,7 +50,7 @@
       "competencia": "Explicitação de critérios de qualidade.",
       "quando_serve": "Quando os estudantes precisam de saber o que distingue uma resposta boa de uma medíocre: escrita académica, respostas de exame, resumos clínicos.",
       "quando_nao_serve": "Quando não há tempo para construir a rubrica antes de ver as respostas, porque é essa ordem que define a actividade. Com pouco tempo, divida-a em duas sessões.",
-      "papel_ia": "objecto",
+      "papel_ia": "objecto_de_critica",
       "duracao_tipica": { "min": 50, "max": 60 },
       "formato_grupo": "Grupos de quatro, com produção colectiva de rubrica",
       "ficha_exemplo": "https://tiagojacinto.eu/fmup-ia/training/fichas/3-aluno-corretor.html",
@@ -70,7 +70,7 @@
       "competencia": "Argumentação fundamentada e antecipação de objecções.",
       "quando_serve": "Em questões com dois lados defensáveis: dilemas éticos, decisões de política de saúde, escolhas de desenho de um sistema.",
       "quando_nao_serve": "Quando a questão tem uma resposta claramente correcta: os contra-argumentos saem artificiais e os estudantes percebem-no.",
-      "papel_ia": "interlocutor",
+      "papel_ia": "contraparte",
       "duracao_tipica": { "min": 40, "max": 50 },
       "formato_grupo": "Pares ou grupos de três, seguidos de plenário",
       "ficha_exemplo": "https://tiagojacinto.eu/fmup-ia/training/fichas/4-advogado-do-diabo.html",

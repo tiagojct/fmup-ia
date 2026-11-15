@@ -8,7 +8,8 @@ const { CATALOGUE, filterPatterns } = require('../src/patterns.js');
 const { repoPath } = require('../src/paths.js');
 const { respostasCompletas } = require('./helpers.js');
 
-const PAPEIS = ['nenhum', 'interlocutor', 'ferramenta', 'objecto'];
+// The same values as the interview and regime_ia.papel in the ficha schema.
+const PAPEIS = ['nenhum', 'contraparte', 'ferramenta', 'objecto_de_critica'];
 
 function answers({ papel = 'contraparte', min = 40, max = 50, modalidade = 'em_aula', area = 'bioetica' } = {}) {
   const r = respostasCompletas();
@@ -62,10 +63,12 @@ test('filterPatterns with papel nenhum returns only patterns without AI', () => 
   assert.ok(found.every((p) => p.papel_ia === 'nenhum'));
 });
 
-test('filterPatterns maps the AI roles of the interview to the roles of the catalogue', () => {
-  assert.ok(filterPatterns(answers({ papel: 'contraparte' }), CATALOGUE).every((p) => p.papel_ia === 'interlocutor'));
-  assert.ok(filterPatterns(answers({ papel: 'objecto_de_critica', min: 60, max: 60 }), CATALOGUE).every((p) => p.papel_ia === 'objecto'));
-  assert.ok(filterPatterns(answers({ papel: 'ferramenta' }), CATALOGUE).every((p) => p.papel_ia === 'ferramenta'));
+test('filterPatterns keeps the patterns with the AI role of the interview', () => {
+  for (const [papel, min, max] of [['contraparte', 40, 50], ['objecto_de_critica', 60, 60], ['ferramenta', 40, 50]]) {
+    const found = filterPatterns(answers({ papel, min, max }), CATALOGUE);
+    assert.ok(found.length >= 1, papel);
+    assert.ok(found.every((p) => p.papel_ia === papel), papel);
+  }
 });
 
 test('filterPatterns with 30 minutes excludes patterns whose typical minimum is over 30', () => {
@@ -94,4 +97,11 @@ test('filterPatterns ranks the patterns that name the area first', () => {
 
 test('filterPatterns without answers returns at most 3 and does not throw', () => {
   assert.ok(filterPatterns({}, CATALOGUE).length <= 3);
+});
+
+test('the catalogue uses the AI role values of the ficha schema', () => {
+  const schema = JSON.parse(fs.readFileSync(repoPath('eunomia', 'ficha.schema.json'), 'utf8'));
+  const values = schema.$defs.regime_ia.properties.papel.enum;
+  assert.deepEqual(values, PAPEIS);
+  for (const p of CATALOGUE) assert.ok(values.includes(p.papel_ia), p.id);
 });
