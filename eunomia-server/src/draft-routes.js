@@ -8,11 +8,27 @@
 
 const drafts = require('./drafts.js');
 const { CATALOGUE, filterPatterns } = require('./patterns.js');
+const { IaeduError, parseJsonReply } = require('./iaedu.js');
+const { validateSection, validateFicha, renderSection, renderQmd, slugify, SECTION_HEADINGS } = require('./ficha.js');
+const { lintEmoji } = require('./lint.js');
+const { REFERENCES, buildMeta, assembleFicha, sectionsToAccept } = require('./assemble.js');
+const { generateSection, newThreadId } = require('./generate.js');
+const { renderMd, renderHtml } = require('./export.js');
+const prompts = require('./prompts.js');
 
 const CONFLICT = 'O rascunho foi alterado noutra janela. Recarregue a página.';
 const LOCKED = 'A ficha foi submetida e não pode ser alterada.';
+const LIMIT = 'Atingiu o limite diário de pedidos ao modelo.';
+const CODE_SECTIONS = ['meta', 'regime_ia', 'referencias', 'declaracao'];
+const MAX_REFERENCES = 20;
+const MAX_COMMENT = 2000;
+const EXPORTS = {
+  qmd: { type: 'text/plain; charset=utf-8', body: renderQmd },
+  md: { type: 'text/markdown; charset=utf-8', body: renderMd },
+  html: { type: 'text/html; charset=utf-8', body: renderHtml },
+};
 
-function registerDraftRoutes(route, config, { HttpError, sendJson }) {
+function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds }) {
   const { store } = config;
   const now = () => (config.now ? config.now() : Date.now());
 
@@ -42,6 +58,72 @@ function registerDraftRoutes(route, config, { HttpError, sendJson }) {
   }
 
   const save = (d) => drafts.saveDraft(store, d, now());
+
+  // The author's draft in an editable state, for a model call that does not change it.
+  function owned(ctx) {
+    const d = readable(ctx);
+    if (d.autor.id !== ctx.user.id) throw new HttpError(403, 'Só o autor pode alterar este rascunho.');
+    if (!drafts.isEditable(d)) throw new HttpError(409, LOCKED);
+    return d;
+  }
+
+  // The section of the route: a model section, or 400 for a section that code writes.
+  function modelSection(ctx) {
+    const sec = ctx.params.sec;
+    if (CODE_SECTIONS.includes(sec)) throw new HttpError(400, `A secção ${sec} é escrita pelo código, não pelo modelo.`);
+    if (!drafts.MODEL_SECTIONS.includes(sec)) throw new HttpError(404, 'Secção desconhecida.');
+    return sec;
+  }
+
+  function planGate(d, what) {
+    if (!d.plano_aprovado) throw new HttpError(409, `Aprove o plano antes de ${what}.`);
+  }
+
+  function applicable(d, sec) {
+    if (!drafts.applicableSections(d.respostas).includes(sec)) {
+      throw new HttpError(400, `A secção ${sec} não se aplica a esta actividade.`);
+    }
+  }
+
+  // A model call: the credentials of the request, the daily count before each call, and the own-key
+  // error. A wrong own key is 401 with motivo "auth" (the session is fine); the shared key is never
+  // tried in its place. A wrong shared key stays a 502 (server.js), because the teacher cannot fix it.
+  async function withModel(ctx, fn) {
+    const creds = requireCreds(ctx);
+    const count = () => {
+      if (!config.auth.countModelCall(ctx.user.id).ok) throw new HttpError(429, LIMIT);
+    };
+    try {
+      return await fn(creds, count);
+    } catch (e) {
+      if (e instanceof IaeduError && e.code === 'auth' && creds.source === 'own') {
+        throw new HttpError(401, e.messagePt, {}, { motivo: 'auth' });
+      }
+      throw e;
+    }
+  }
+
+  async function askOnce(ctx, message) {
+    return withModel(ctx, async (creds, count) => {
+      count();
+      const reply = await config.iaedu.send({
+        key: creds.key,
+        agentId: creds.agentId,
+        channelId: creds.channelId,
+        threadId: newThreadId(),
+        message,
+      });
+      return { data: parseJsonReply(reply.text), modelo: reply.model || null };
+    });
+  }
+
+  function optionalText(value, max, name) {
+    if (value === undefined || value === null || value === '') return undefined;
+    if (typeof value !== 'string') throw new HttpError(400, `O campo ${name} tem de ser texto.`);
+    const v = value.trim();
+    if (v.length > max) throw new HttpError(400, `O campo ${name} tem no máximo ${max} caracteres.`);
+    return v || undefined;
+  }
 
   route('POST', '/rascunhos', (req, res, ctx) => {
     const modo = ctx.body.modo === undefined ? 'criar' : ctx.body.modo;
@@ -104,6 +186,176 @@ function registerDraftRoutes(route, config, { HttpError, sendJson }) {
     if (!d) throw new HttpError(404, 'Rascunho não encontrado.');
     return { padroes: filterPatterns(d.respostas, CATALOGUE) };
   });
+
+  // ---------------------------------------------------------------- the model tasks (Task 9)
+
+  route('GET', '/referencias', () => ({ referencias: REFERENCES }));
+
+  // Up to two sharper versions of the outcome. The teacher picks one or keeps their own: nothing is
+  // saved here.
+  route('POST', '/rascunhos/:id/objectivo/sugerir', async (req, res, ctx) => {
+    const d = owned(ctx);
+    const texto = optionalText(ctx.body.texto, 1000, 'texto') || (d.respostas.objectivo && d.respostas.objectivo.texto);
+    if (!texto) throw new HttpError(400, 'Escreva primeiro o objectivo.');
+    const respostas = { ...d.respostas, objectivo: { ...(d.respostas.objectivo || {}), texto } };
+    const { data, modelo } = await askOnce(ctx, prompts.sharpenOutcome(respostas));
+    const list = Array.isArray(data.sugestoes) ? data.sugestoes : [];
+    const sugestoes = list
+      .filter((x) => typeof x === 'string' && x.trim() !== '')
+      .slice(0, 2)
+      .map((x) => {
+        const t = x.trim().slice(0, 1000);
+        const v = drafts.checkOutcomeVerb(t);
+        return { texto: t, ok: v.ok, verbo: v.verbo };
+      });
+    return { sugestoes, modelo };
+  });
+
+  // Why each proposed pattern fits. The code chooses the patterns; explanations for other ids are
+  // dropped.
+  route('POST', '/rascunhos/:id/padroes/explicar', async (req, res, ctx) => {
+    const d = owned(ctx);
+    const padroes = filterPatterns(d.respostas, CATALOGUE);
+    if (padroes.length === 0) return { padroes: [], modelo: null };
+    const { data, modelo } = await askOnce(ctx, prompts.explainPatterns(d.respostas, padroes));
+    const byId = new Map();
+    for (const x of Array.isArray(data.explicacoes) ? data.explicacoes : []) {
+      if (x && typeof x.id === 'string' && typeof x.texto === 'string') byId.set(x.id, x.texto.trim().slice(0, 1000));
+    }
+    return { padroes: padroes.map((p) => ({ ...p, explicacao: byId.get(p.id) || null })), modelo };
+  });
+
+  route('POST', '/rascunhos/:id/seccoes/:sec/gerar', async (req, res, ctx) => {
+    const sec = modelSection(ctx);
+    const d = writable(ctx);
+    planGate(d, 'gerar secções');
+    applicable(d, sec);
+    const comentario = optionalText(ctx.body.comentario, MAX_COMMENT, 'comentario');
+    const out = await withModel(ctx, (creds, count) =>
+      generateSection({ draft: d, sectionId: sec, client: config.iaedu, creds, comentario, beforeCall: count }),
+    );
+    // The call takes seconds: the draft must not have changed meanwhile.
+    const fresh = drafts.findDraft(store, ctx.user, d.id);
+    if (!fresh || fresh.rev !== d.rev) throw new HttpError(409, CONFLICT);
+    fresh.seccoes[sec] = {
+      dados: out.dados,
+      estado: 'gerada',
+      avisos: out.avisos,
+      modelo: out.modelo,
+      origem: 'modelo',
+      gerado: new Date(now()).toISOString(),
+    };
+    fresh.threads = { ...(fresh.threads || {}), [sec]: out.threadId };
+    return view(save(fresh));
+  });
+
+  // The teacher's own text: schema validation and the emoji rule only. The other lints are for model
+  // text (design, 6.8). The text is the teacher's, so the section counts as accepted.
+  route('PUT', '/rascunhos/:id/seccoes/:sec', (req, res, ctx) => {
+    const sec = modelSection(ctx);
+    const d = writable(ctx);
+    planGate(d, 'editar secções');
+    applicable(d, sec);
+    const dados = ctx.body.dados;
+    const erros = validateSection(sec, dados, 'new', { meta: buildMeta(d) });
+    if (erros.length > 0) throw new HttpError(400, 'A secção tem erros.', {}, { erros });
+    const avisos = lintEmoji(renderSection(sec, dados)).map((w) => ({ regra: w.rule, texto: w.message, trecho: w.match }));
+    const prev = d.seccoes[sec] || {};
+    d.seccoes[sec] = {
+      dados,
+      estado: 'aceite',
+      avisos,
+      modelo: prev.modelo || null,
+      origem: 'docente',
+      editado: new Date(now()).toISOString(),
+    };
+    return view(save(d));
+  });
+
+  route('POST', '/rascunhos/:id/seccoes/:sec/aceitar', (req, res, ctx) => {
+    const sec = modelSection(ctx);
+    const d = writable(ctx);
+    planGate(d, 'aceitar secções');
+    applicable(d, sec);
+    const s = d.seccoes[sec];
+    if (!s || s.dados === undefined) throw new HttpError(409, 'A secção ainda não tem texto.');
+    s.estado = 'aceite';
+    return view(save(d));
+  });
+
+  // References: an id from references.json, or a text typed by the teacher (origem docente, checked
+  // in the review). The model never writes a reference.
+  route('PUT', '/rascunhos/:id/referencias', (req, res, ctx) => {
+    const d = writable(ctx);
+    const list = ctx.body.referencias;
+    if (!Array.isArray(list)) throw new HttpError(400, 'Indique a lista de referências.');
+    if (list.length > MAX_REFERENCES) throw new HttpError(400, `No máximo ${MAX_REFERENCES} referências.`);
+    const out = [];
+    const seen = new Set();
+    for (const item of list) {
+      if (item && typeof item.id === 'string') {
+        const ref = REFERENCES.find((r) => r.id === item.id);
+        if (!ref) throw new HttpError(400, `Referência desconhecida: ${item.id}.`);
+        if (seen.has(ref.id)) continue;
+        seen.add(ref.id);
+        out.push({ id: ref.id, texto: ref.texto, origem: 'curada' });
+      } else if (item && typeof item.texto === 'string' && item.texto.trim() !== '') {
+        const texto = item.texto.trim();
+        if (texto.length > 2000) throw new HttpError(400, 'Cada referência tem no máximo 2000 caracteres.');
+        out.push({ texto, origem: 'docente' });
+      } else {
+        throw new HttpError(400, 'Cada referência tem um id da lista ou um texto.');
+      }
+    }
+    d.referencias = out;
+    return view(save(d));
+  });
+
+  // ---------------------------------------------------------------- export
+
+  function readyFicha(d) {
+    planGate(d, 'exportar a ficha');
+    const missing = sectionsToAccept(d);
+    if (missing.length > 0) {
+      const names = missing.map((id) => SECTION_HEADINGS[id] || id).join(', ');
+      throw new HttpError(409, `Faltam aceitar estas secções: ${names}.`, {}, { seccoes: missing });
+    }
+    return assembleFicha(d);
+  }
+
+  // The schema problems of the whole ficha do not block the download: the teacher decides. Their
+  // number goes in X-Eunomia-Avisos and the list in verificacao-final.
+  route('GET', '/rascunhos/:id/exportar', (req, res, ctx) => {
+    const formato = ctx.query.get('formato') || 'qmd';
+    const kind = EXPORTS[formato];
+    if (!kind) throw new HttpError(400, 'Formato desconhecido. Use qmd, md ou html.');
+    const ficha = readyFicha(readable(ctx));
+    const erros = validateFicha(ficha, 'new');
+    const body = kind.body(ficha);
+    const slug = slugify(ficha.meta.titulo || '') || 'ficha';
+    const headers = {
+      'Content-Type': kind.type,
+      'Content-Length': Buffer.byteLength(body),
+      'Content-Disposition': `attachment; filename="${slug}.${formato}"`,
+      'X-Eunomia-Avisos': String(erros.length),
+      'Cache-Control': 'no-store',
+      'X-Content-Type-Options': 'nosniff',
+    };
+    if (formato === 'html') headers['Content-Security-Policy'] = "default-src 'none'; style-src 'unsafe-inline'; img-src data:";
+    res.writeHead(200, headers);
+    res.end(body);
+  });
+
+  route('GET', '/rascunhos/:id/verificacao-final', (req, res, ctx) => {
+    const d = readable(ctx);
+    planGate(d, 'verificar a ficha');
+    const ficha = assembleFicha(d);
+    return {
+      erros: validateFicha(ficha, 'new'),
+      seccoes_em_falta: sectionsToAccept(d),
+      referencias_a_verificar: ficha.referencias.filter((r) => r.origem === 'docente').length,
+    };
+  });
 }
 
-module.exports = { registerDraftRoutes, CONFLICT, LOCKED };
+module.exports = { registerDraftRoutes, CONFLICT, LOCKED, LIMIT };

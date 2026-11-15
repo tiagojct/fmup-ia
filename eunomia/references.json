@@ -1,0 +1,118 @@
+{
+  "versao": 1,
+  "nota": "Referências curadas que o docente pode escolher para a secção Referência. Vêm das seis fichas de formação (primeiro parágrafo da referência, o mesmo id) e de quadro/references.bib (id igual à chave BibTeX). O modelo nunca escreve referências. Uma referência escrita pelo docente fica com origem docente e é verificada na revisão.",
+  "referencias": [
+    {
+      "id": "holderried-2024",
+      "texto": "Holderried F, Stegemann-Philipps C, Herschbach L, Moldt JA, Nevins A, Griewatz J, Holderried M, Herrmann-Werner A, Festl-Wietek T, Mahling M. A Generative Pretrained Transformer (GPT)-Powered Chatbot as a Simulated Patient to Practice History Taking: Prospective, Mixed Methods Study. *JMIR Medical Education*. 2024;10:e53961. DOI: [10.2196/53961](https://doi.org/10.2196/53961). PMID: 38227363.",
+      "doi": "10.2196/53961",
+      "pmid": "38227363",
+      "fonte": "ficha-1"
+    },
+    {
+      "id": "hicke-2025",
+      "texto": "Hicke Y et al. Plataforma MedSimAI, desenvolvida pela Cornell Bowers CIS em colaboração com a Weill Cornell Medicine, Yale e UCSF, com avaliação automática segundo rubrica de OSCE. [arXiv:2503.05793](https://arxiv.org/abs/2503.05793v2).",
+      "url": "https://arxiv.org/abs/2503.05793v2",
+      "fonte": "ficha-1"
+    },
+    {
+      "id": "pitt-chatgpt-in-the-classroom",
+      "texto": "University of Pittsburgh, University Center for Teaching and Learning. *ChatGPT in the Classroom*. Disponível em <https://teaching.pitt.edu/resources/chatgpt-in-the-classroom/>.",
+      "url": "https://teaching.pitt.edu/resources/chatgpt-in-the-classroom/",
+      "fonte": "ficha-2"
+    },
+    {
+      "id": "nicol-2006",
+      "texto": "Nicol DJ, Macfarlane-Dick D. Formative assessment and self-regulated learning: a model and seven principles of good feedback practice. *Studies in Higher Education*. 2006;31(2):199-218. DOI: [10.1080/03075070600572090](https://doi.org/10.1080/03075070600572090).",
+      "doi": "10.1080/03075070600572090",
+      "fonte": "ficha-3"
+    },
+    {
+      "id": "dietis-2024",
+      "texto": "Dietis N. Three ways to use ChatGPT to enhance students' critical thinking in the classroom. *Times Higher Education*, THE Campus, 8 de Janeiro de 2024. Disponível em <https://www.timeshighereducation.com/campus/three-ways-use-chatgpt-enhance-students-critical-thinking-classroom>.",
+      "url": "https://www.timeshighereducation.com/campus/three-ways-use-chatgpt-enhance-students-critical-thinking-classroom",
+      "fonte": "ficha-4"
+    },
+    {
+      "id": "tan-harvard-2024",
+      "texto": "Tan T, citada em: *Harvard's New Playbook for Teaching with AI*. Harvard Magazine. Disponível em <https://www.harvardmagazine.com/teaching-learning/harvard-redesigning-assignments-ai>.",
+      "url": "https://www.harvardmagazine.com/teaching-learning/harvard-redesigning-assignments-ai",
+      "fonte": "ficha-5"
+    },
+    {
+      "id": "thesen-2025",
+      "texto": "Thesen T, Park SH. A generative AI teaching assistant for personalized learning in medical education. *npj Digital Medicine*. 2025;8(1):627. DOI: [10.1038/s41746-025-02022-1](https://doi.org/10.1038/s41746-025-02022-1). PMID: 41188616.",
+      "doi": "10.1038/s41746-025-02022-1",
+      "pmid": "41188616",
+      "fonte": "ficha-6"
+    },
+    {
+      "id": "thesen2025firstpatient",
+      "texto": "Thesen T, O'Brien WN, Stone S, Pinto-Powell R. Generative AI as the First Patient: Practice, Feedback, and Confidence. *Medical Science Educator*. 2025;35(5):2555-2560. DOI: [10.1007/s40670-025-02473-x](https://doi.org/10.1007/s40670-025-02473-x).",
+      "doi": "10.1007/s40670-025-02473-x",
+      "fonte": "quadro/references.bib"
+    },
+    {
+      "id": "samuel2025reflective",
+      "texto": "Samuel A, Soh M, Jung E. Enhancing Reflective Practice with ChatGPT: A New Approach to Assignment Design. *Medical Teacher*. 2025;47(9):1438-1440. DOI: [10.1080/0142159X.2025.2461534](https://doi.org/10.1080/0142159X.2025.2461534). PMID: 39912565.",
+      "doi": "10.1080/0142159X.2025.2461534",
+      "pmid": "39912565",
+      "fonte": "quadro/references.bib"
+    },
+    {
+      "id": "boman2025scaffolding",
+      "texto": "Boman M, Jhun P, Schaekermann M. Scaffolding for Success: Blending Learning with and about Generative AI in Medical Education. *Medical Teacher*. 2025;47(12):1911-1917. DOI: [10.1080/0142159X.2025.2571041](https://doi.org/10.1080/0142159X.2025.2571041).",
+      "doi": "10.1080/0142159X.2025.2571041",
+      "fonte": "quadro/references.bib"
+    },
+    {
+      "id": "feigerlova2026teaching",
+      "texto": "Feigerlova E. How to Teach Generative Artificial Intelligence in Undergraduate Medical Education. *The Clinical Teacher*. 2026;23(3):e70420. DOI: [10.1111/tct.70420](https://doi.org/10.1111/tct.70420).",
+      "doi": "10.1111/tct.70420",
+      "fonte": "quadro/references.bib"
+    },
+    {
+      "id": "toohey2025implementation",
+      "texto": "Toohey K, Quince Z, Walker F, Furness L, Bissett M, Daley C, et al. Integrating Generative AI in Health Education: A Scoping Review and Implementation Framework. *Medical Science Educator*. 2025;35(6):2751-2762. DOI: [10.1007/s40670-025-02578-3](https://doi.org/10.1007/s40670-025-02578-3).",
+      "doi": "10.1007/s40670-025-02578-3",
+      "fonte": "quadro/references.bib"
+    },
+    {
+      "id": "peters2025aicai",
+      "texto": "Peters M, Angelov D. Redefining Assessment Tasks to Promote Students' Creativity and Integrity in the Age of Generative Artificial Intelligence. *International Journal for Educational Integrity*. 2025;21(1):25. DOI: [10.1007/s40979-025-00201-x](https://doi.org/10.1007/s40979-025-00201-x). PMID: 41019941.",
+      "doi": "10.1007/s40979-025-00201-x",
+      "pmid": "41019941",
+      "fonte": "quadro/references.bib"
+    },
+    {
+      "id": "chan2024book",
+      "texto": "Chan CKY, Colloton T. *Generative AI in Higher Education: The ChatGPT Effect*. London: Routledge; 2024. DOI: [10.4324/9781003459026](https://doi.org/10.4324/9781003459026).",
+      "doi": "10.4324/9781003459026",
+      "fonte": "quadro/references.bib"
+    },
+    {
+      "id": "uporto2026orientacoes",
+      "texto": "Universidade do Porto, Grupo IA no domínio educativo. *Inteligência artificial generativa no domínio educativo: Orientações para uso e adoção responsável*. Porto: Unidade de Inovação Educativa da Universidade do Porto; 2026. Disponível em <https://www.up.pt/portal/documents/2333/01_Orientacoes_Adocao_Responsavel.pdf>.",
+      "url": "https://www.up.pt/portal/documents/2333/01_Orientacoes_Adocao_Responsavel.pdf",
+      "fonte": "quadro/references.bib"
+    },
+    {
+      "id": "uporto2026guiadocentes",
+      "texto": "Figueira Á. *Guia prático para docentes*. Porto: Unidade de Inovação Educativa da Universidade do Porto; 2026. Disponível em <https://www.up.pt/portal/documents/2335/03_Guia_pratico_para_docentes.pdf>.",
+      "url": "https://www.up.pt/portal/documents/2335/03_Guia_pratico_para_docentes.pdf",
+      "fonte": "quadro/references.bib"
+    },
+    {
+      "id": "uporto2026perfis",
+      "texto": "Figueira Á. *Caderno complementar de perfis disciplinares*. Porto: Unidade de Inovação Educativa da Universidade do Porto; 2026. Disponível em <https://www.up.pt/portal/documents/2337/05_Caderno_complementar_de_perfis_disciplinares.pdf>.",
+      "url": "https://www.up.pt/portal/documents/2337/05_Caderno_complementar_de_perfis_disciplinares.pdf",
+      "fonte": "quadro/references.bib"
+    },
+    {
+      "id": "jacinto2026quadro",
+      "texto": "Jacinto T. *FMUP · IA. Quadro de referência institucional para a utilização de inteligência artificial generativa na FMUP*. Porto: Faculdade de Medicina da Universidade do Porto; 2026. Disponível em <https://tiagojacinto.eu/fmup-ia/>.",
+      "url": "https://tiagojacinto.eu/fmup-ia/",
+      "fonte": "quadro/references.bib"
+    }
+  ]
+}
