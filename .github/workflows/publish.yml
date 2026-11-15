@@ -21,13 +21,26 @@ jobs:
         with:
           node-version: '22'
           cache: npm
-          cache-dependency-path: themis/test/package-lock.json
+          cache-dependency-path: |
+            themis/test/package-lock.json
+            eunomia/test/package-lock.json
+            eunomia-server/package-lock.json
 
       - name: Install test dependencies
         run: npm ci --prefix themis/test
 
       - name: Test Themis and training timer
         run: npm test --prefix themis/test
+
+      - name: Test the Eunomia front end
+        run: |
+          npm ci --prefix eunomia/test
+          npm test --prefix eunomia/test
+
+      - name: Test the Eunomia server
+        run: |
+          npm ci --prefix eunomia-server
+          npm test --prefix eunomia-server
 
       - name: Check content and versions
         run: |

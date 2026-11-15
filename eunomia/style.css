@@ -1,0 +1,755 @@
+/*
+ * Eunomia (FMUP · IA). The tokens, fonts and components come from Themis; this file adds the
+ * Eunomia rules only. No build step.
+ */
+
+@import url('../themis/style.css');
+
+/* ---------- Shell ---------- */
+
+main {
+  max-width: 1100px;
+}
+
+main > .screen:not(.eu-rascunho) {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+main > .screen.eu-estreito {
+  max-width: 640px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.eu-saltar {
+  position: absolute;
+  left: 0.75rem;
+  top: -3rem;
+  z-index: 60;
+  background: var(--c-fmup-yellow);
+  color: #1A1A1A;
+  padding: 0.5rem 0.9rem;
+  font-weight: 700;
+}
+
+.eu-saltar:focus {
+  top: 0.5rem;
+}
+
+.brand {
+  cursor: default;
+}
+
+.header-actions {
+  align-items: center;
+}
+
+.eu-utilizador {
+  font-size: 0.88rem;
+  color: var(--c-text-muted);
+}
+
+h2.step-title:focus {
+  outline: none;
+}
+
+h2.step-title:focus-visible {
+  outline: 3px solid var(--c-text);
+  outline-offset: 4px;
+}
+
+.eu-anuncio {
+  position: fixed;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: min(90vw, 36rem);
+  background: var(--c-text);
+  color: var(--c-bg);
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius);
+  font-size: 0.92rem;
+  font-weight: 600;
+  z-index: 50;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms;
+}
+
+.eu-anuncio.is-visible {
+  opacity: 1;
+}
+
+/* ---------- Text blocks ---------- */
+
+.eu-ajuda,
+.eu-nota {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--c-text-muted);
+  line-height: 1.45;
+}
+
+.eu-req {
+  font-weight: 400;
+  color: var(--c-text-muted);
+  font-size: 0.85rem;
+}
+
+.eu-subtitulo {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 1rem 0 0.5rem;
+}
+
+.eu-seccao {
+  margin: 1.75rem 0;
+}
+
+.eu-seccao > h3 {
+  font-size: 1.05rem;
+  margin: 0 0 0.6rem;
+  border-left: 4px solid var(--c-fmup-yellow);
+  padding-left: 0.6rem;
+}
+
+.eu-cartao {
+  background: var(--c-surface);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.1rem 0.6rem;
+  margin: 0 0 1.5rem;
+}
+
+.eu-cartao > h3 {
+  margin: 0 0 0.8rem;
+  font-size: 1.05rem;
+}
+
+.eu-etiqueta {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 0.05rem 0.45rem;
+  border: 1px solid var(--c-border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--c-text);
+}
+
+.eu-fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0 0 1.5rem;
+  min-width: 0;
+}
+
+.eu-fieldset > legend {
+  font-weight: 700;
+  font-size: 0.92rem;
+  padding: 0;
+  margin-bottom: 0.4rem;
+}
+
+.eu-numero {
+  max-width: 10rem;
+}
+
+textarea.eu-mono,
+.eu-prompt {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+}
+
+.eu-contador {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--c-text-muted);
+  text-align: right;
+}
+
+.field-row[hidden],
+.eu-painel[hidden],
+.eu-catalogo[hidden] {
+  display: none;
+}
+
+/* ---------- Errors and notices ---------- */
+
+.eu-erro {
+  border-left: 4px solid #B42318;
+  background: #FDECEA;
+  color: #1A1A1A;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  margin: 0 0 1.25rem;
+  font-size: 0.93rem;
+}
+
+.eu-erro:focus {
+  outline: 3px solid var(--c-text);
+  outline-offset: 2px;
+}
+
+.eu-erro p {
+  margin: 0 0 0.4rem;
+}
+
+.eu-erro p:last-child {
+  margin-bottom: 0;
+}
+
+.eu-erro ul {
+  margin: 0.25rem 0 0.5rem;
+  padding-left: 1.25rem;
+}
+
+.eu-erro-texto {
+  font-weight: 700;
+}
+
+.eu-erro a {
+  color: #1A1A1A;
+}
+
+.eu-aviso-dados {
+  border-left: 4px solid var(--c-text);
+  background: var(--c-surface);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  margin: 0 0 1.25rem;
+}
+
+.eu-aviso-dados-login {
+  margin-top: 2rem;
+  border-top: 1px solid var(--c-border);
+  padding-top: 1rem;
+}
+
+.eu-aviso-dados-login h3 {
+  margin: 0 0 0.6rem;
+  font-size: 1.05rem;
+}
+
+.eu-aviso-dados-login h4 {
+  margin: 0.9rem 0 0.2rem;
+  font-size: 0.92rem;
+}
+
+.eu-aviso-dados-login p {
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+/* ---------- The "porque" box ---------- */
+
+.eu-porque {
+  border-left: 4px solid var(--c-fmup-yellow);
+  background: #FFFBEA;
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 1rem 0.8rem;
+  margin: 0 0 1.4rem;
+  font-size: 0.92rem;
+}
+
+.eu-porque h3 {
+  margin: 0 0 0.3rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+}
+
+.eu-porque p {
+  margin: 0 0 0.4rem;
+}
+
+.eu-porque p:last-child {
+  margin-bottom: 0;
+}
+
+.eu-perfil {
+  border-left-color: var(--c-border-strong);
+  background: var(--c-surface);
+}
+
+/* ---------- Draft layout ---------- */
+
+.eu-rascunho {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+}
+
+@media (min-width: 960px) {
+  .eu-rascunho {
+    grid-template-columns: 15rem minmax(0, 1fr);
+    gap: 2.25rem;
+    align-items: start;
+  }
+
+  .eu-etapas {
+    position: sticky;
+    top: 1rem;
+  }
+}
+
+.eu-conteudo {
+  min-width: 0;
+  max-width: 760px;
+}
+
+.eu-etapas {
+  font-size: 0.86rem;
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 0.75rem 0.9rem;
+}
+
+.eu-etapas ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.eu-etapas-raiz > li {
+  margin: 0 0 0.6rem;
+}
+
+.eu-etapas-raiz > li:last-child {
+  margin-bottom: 0;
+}
+
+.eu-etapas-lista {
+  margin: 0.25rem 0 0 0.6rem !important;
+  border-left: 1px solid var(--c-border);
+  padding-left: 0.6rem !important;
+}
+
+.eu-etapas-lista li {
+  margin: 0.15rem 0;
+}
+
+.eu-etapas-grupo {
+  font-weight: 700;
+  color: var(--c-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.75rem;
+}
+
+.eu-etapas a {
+  text-decoration-thickness: 1px;
+}
+
+.eu-etapas a[aria-current="page"] {
+  font-weight: 700;
+  text-decoration-thickness: 3px;
+}
+
+/* A tick drawn with borders: no glyph, so no emoji or dingbat in the page. */
+.eu-etapas li.is-feito > a::before {
+  content: "";
+  display: inline-block;
+  width: 0.3rem;
+  height: 0.6rem;
+  margin: 0 0.5rem 0.1rem 0.1rem;
+  border: solid var(--c-success);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.eu-etapa-estado {
+  color: var(--c-text-muted);
+}
+
+.eu-etapas-voltar {
+  margin: 0 0 0.75rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--c-border);
+}
+
+.eu-progresso {
+  margin: 0 0 0.5rem;
+}
+
+.eu-progresso progress {
+  width: 100%;
+  height: 0.5rem;
+  appearance: none;
+  border: 0;
+  border-radius: 999px;
+  background: var(--c-border);
+  overflow: hidden;
+}
+
+.eu-progresso progress::-webkit-progress-bar {
+  background: var(--c-border);
+}
+
+.eu-progresso progress::-webkit-progress-value {
+  background: var(--c-fmup-yellow);
+}
+
+.eu-progresso progress::-moz-progress-bar {
+  background: var(--c-fmup-yellow);
+}
+
+/* ---------- Home ---------- */
+
+.eu-rascunhos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.eu-rascunhos li {
+  border-bottom: 1px solid var(--c-border);
+  padding: 0.7rem 0;
+}
+
+.eu-rascunho-titulo {
+  margin: 0;
+  font-weight: 700;
+}
+
+.eu-rascunho-meta {
+  margin: 0.15rem 0 0;
+  font-size: 0.86rem;
+  color: var(--c-text-muted);
+}
+
+.eu-ligacoes {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.eu-ligacoes li {
+  margin: 0.25rem 0;
+}
+
+/* ---------- Interview helpers ---------- */
+
+.eu-ajuda-modelo {
+  margin: -0.75rem 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.eu-sugestoes {
+  width: 100%;
+}
+
+.eu-sugestao {
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 0.7rem 0.9rem;
+  margin: 0 0 0.6rem;
+}
+
+.eu-sugestao-texto {
+  margin: 0 0 0.25rem;
+}
+
+.eu-sugestao .btn-ghost {
+  margin-top: 0.5rem;
+}
+
+.eu-padrao,
+.eu-padrao-catalogo {
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 0.25rem 0.25rem 0.6rem;
+}
+
+.eu-padrao .option,
+.eu-padrao-catalogo .option {
+  background: transparent;
+}
+
+.eu-padrao-detalhe {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 0.2rem 0.8rem;
+  margin: 0.25rem 0.95rem 0.4rem 2.6rem;
+  font-size: 0.85rem;
+}
+
+.eu-padrao-detalhe dt {
+  color: var(--c-text-muted);
+  font-weight: 600;
+}
+
+.eu-padrao-detalhe dd {
+  margin: 0;
+}
+
+.eu-padrao > .eu-nota,
+.eu-padrao-catalogo > .eu-nota {
+  margin-left: 2.6rem;
+}
+
+.eu-explicacao {
+  margin: 0.5rem 0.95rem 0 2.6rem;
+  border-left: 3px solid var(--c-fmup-yellow);
+  padding-left: 0.6rem;
+  font-size: 0.9rem;
+}
+
+.eu-explicacao p {
+  margin: 0;
+}
+
+.eu-explicacao-titulo {
+  font-weight: 700;
+}
+
+@media (max-width: 479px) {
+  .eu-padrao-detalhe {
+    grid-template-columns: minmax(0, 1fr);
+    margin-left: 0.95rem;
+  }
+
+  .eu-padrao > .eu-nota,
+  .eu-padrao-catalogo > .eu-nota,
+  .eu-explicacao {
+    margin-left: 0.95rem;
+  }
+}
+
+.eu-depois {
+  margin-top: 1rem;
+}
+
+/* ---------- Section editor ---------- */
+
+.eu-estado {
+  margin: 0 0 0.25rem;
+  font-weight: 700;
+}
+
+.eu-texto {
+  font-size: 0.97rem;
+}
+
+.eu-texto:focus {
+  outline: 3px solid var(--c-text);
+  outline-offset: 2px;
+}
+
+.eu-texto > :first-child {
+  margin-top: 0;
+}
+
+.eu-texto > :last-child {
+  margin-bottom: 0;
+}
+
+.eu-texto .eu-subtitulo {
+  margin-top: 1rem;
+}
+
+.eu-prompt {
+  white-space: pre-wrap;
+  background: var(--c-surface);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem;
+  margin: 0;
+}
+
+.eu-avisos {
+  margin: 0 0 1.25rem;
+}
+
+.eu-avisos h3 {
+  font-size: 1rem;
+  margin: 0 0 0.4rem;
+}
+
+.eu-avisos ul {
+  margin: 0 0 0.5rem;
+  padding-left: 1.2rem;
+}
+
+.eu-avisos li {
+  margin: 0.3rem 0;
+}
+
+.eu-trecho {
+  color: var(--c-text-muted);
+}
+
+.eu-painel {
+  border-top: 1px dashed var(--c-border-strong);
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+}
+
+.eu-item {
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 0.75rem 0.9rem 0.6rem;
+  margin: 0 0 0.75rem;
+}
+
+.eu-item > legend {
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0 0.3rem;
+}
+
+.eu-item .field-row {
+  margin-bottom: 0.75rem;
+}
+
+.eu-lista-titulo {
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.eu-navegacao {
+  margin-top: 2rem;
+  border-top: 1px solid var(--c-border);
+  padding-top: 1rem;
+}
+
+/* ---------- References, preview ---------- */
+
+.eu-refs-docente {
+  padding-left: 1.4rem;
+}
+
+.eu-refs-docente li {
+  margin: 0 0 0.5rem;
+}
+
+.eu-previsao {
+  width: 100%;
+  min-height: 70vh;
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  background: #fff;
+}
+
+/* ---------- Codes ---------- */
+
+.eu-tabela {
+  overflow-x: auto;
+}
+
+.eu-tabela table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.eu-tabela th,
+.eu-tabela td {
+  text-align: left;
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--c-border);
+  vertical-align: top;
+}
+
+.eu-tabela th {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--c-text-muted);
+}
+
+.eu-tabela tr.is-revogado td {
+  color: var(--c-text-muted);
+}
+
+.eu-tabela td .eu-nota {
+  margin-bottom: 0.4rem;
+}
+
+.eu-codigo-novo {
+  border: 2px solid var(--c-text);
+  background: #FFFBEA;
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  margin: 0 0 1.5rem;
+}
+
+.eu-codigo-novo:focus {
+  outline: 3px solid var(--c-text);
+  outline-offset: 2px;
+}
+
+.eu-codigo-novo h3 {
+  margin: 0 0 0.4rem;
+}
+
+.eu-codigo {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.4rem;
+  user-select: all;
+}
+
+/* ---------- Dark mode ---------- */
+
+@media screen and (prefers-color-scheme: dark) {
+  .eu-porque,
+  .eu-codigo-novo {
+    background: #2A2200;
+  }
+
+  .eu-perfil {
+    background: var(--c-surface);
+  }
+
+  .eu-erro {
+    background: #2A1212;
+    color: var(--c-text);
+    border-left-color: #F87171;
+  }
+
+  .eu-erro a {
+    color: var(--c-text);
+  }
+
+  .eu-previsao {
+    background: #fff;
+  }
+}
+
+/* ---------- Print ---------- */
+
+@media print {
+  .eu-etapas,
+  .eu-anuncio,
+  .eu-saltar,
+  .eu-painel,
+  .eu-erro-slot {
+    display: none !important;
+  }
+
+  .eu-rascunho {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eu-anuncio {
+    transition: none;
+  }
+}

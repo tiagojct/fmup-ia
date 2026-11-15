@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Eunomia, FMUP · IA</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="stylesheet" href="style.css?v=0.1.0">
+</head>
+<body>
+  <noscript>
+    <p style="padding:1rem;font-family:system-ui,sans-serif">
+      &Eacute; necess&aacute;rio JavaScript para utilizar esta ferramenta.
+    </p>
+  </noscript>
+
+  <a class="eu-saltar" href="#main" id="skip-link"></a>
+
+  <nav class="back-bar" id="back-bar">
+    <a href="../quadro/" class="back-link" id="back-link-quadro"></a>
+    <a href="../" class="back-link" id="back-link-home"></a>
+  </nav>
+
+  <header class="site-header" role="banner">
+    <span class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <span class="brand-fmup">FM<br>UP</span>
+      </span>
+      <span class="brand-text">
+        <span class="brand-short" id="brand-short"></span>
+        <span class="brand-full" id="brand-full"></span>
+      </span>
+    </span>
+    <div class="header-actions">
+      <span class="eu-utilizador" id="user-name" hidden></span>
+      <button type="button" class="btn-ghost" id="logout-btn" hidden></button>
+    </div>
+    <div class="title-block">
+      <h1 id="app-title"></h1>
+      <p id="app-subtitle"></p>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1" data-pagina="a-carregar"></main>
+
+  <footer class="site-footer" role="contentinfo">
+    <span id="footer-name"></span>
+    <span class="dot" aria-hidden="true">&middot;</span>
+    <a href="../quadro/" id="footer-link-quadro"></a>
+    <span class="dot" aria-hidden="true">&middot;</span>
+    <a href="../themis/" id="footer-link-themis"></a>
+  </footer>
+
+  <div class="eu-anuncio" id="estado-pedido" role="status" aria-live="polite"></div>
+
+  <script src="i18n-pt.js?v=0.1.0"></script>
+  <script src="api.js?v=0.1.0"></script>
+  <script src="app.js?v=0.1.0"></script>
+</body>
+</html>

@@ -18,6 +18,7 @@ project:
     - "quadro/guias/*.qmd"
     - "!quadro/full-references.md"
     - "!themis/**"
+    - "!eunomia/**"
     - "!eunomia-server/**"
     # Projecto Quarto autónomo, com _quarto.yml próprio e construção
     # separada, agregada pelo workflow antes da publicação no VPS.
@@ -30,6 +31,10 @@ project:
     - "themis/policy.json"
     - "themis/i18n/**"
     - "themis/fonts/**"
+    - "eunomia/index.html"
+    - "eunomia/*.js"
+    - "eunomia/*.css"
+    - "eunomia/*.json"
     - "atlas/**"
     - "assets/**"
   preview:

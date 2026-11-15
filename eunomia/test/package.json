@@ -1,0 +1,11 @@
+{
+  "name": "eunomia-test",
+  "private": true,
+  "description": "Headless tests for the Eunomia front end. Dev-only; the front end has no dependencies and no build step.",
+  "scripts": {
+    "test": "node --test ui.test.js"
+  },
+  "devDependencies": {
+    "jsdom": "^24.0.0"
+  }
+}
