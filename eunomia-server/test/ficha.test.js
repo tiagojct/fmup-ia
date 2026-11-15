@@ -224,6 +224,24 @@ test('duration rule: min above max and a block range that is not a range', () =>
   );
 });
 
+test('profile new: blocks need min and max in the duration', () => {
+  const f = newProfileFicha();
+  f.meta.duracao = { texto: '30 a 45 minutos' };
+  const errors = validateFicha(f, 'new');
+  assert.ok(errors.includes('Falta o campo min em meta.duracao.'), errors.join(' | '));
+  assert.ok(errors.includes('Falta o campo max em meta.duracao.'), errors.join(' | '));
+  // The reference profile does not ask for them (the six fixtures stay valid).
+  assert.deepEqual(validateFicha(f, 'reference'), []);
+  // Without blocks, a free duration is fine in profile new.
+  const g = clone(f);
+  delete g.formato.blocos;
+  g.formato.texto = 'Serviço disponível ao longo do semestre.';
+  assert.deepEqual(validateFicha(g, 'new'), []);
+  // With min and max it is valid.
+  f.meta.duracao = { min: 30, max: 45, texto: '30 a 45 minutos' };
+  assert.deepEqual(validateFicha(f, 'new'), []);
+});
+
 test('formato needs blocks or text', () => {
   const f = load(1);
   f.formato = {};
@@ -356,6 +374,29 @@ test('renderQmd front matter keeps the ficha as base64 JSON under eunomia', () =
   }
 });
 
+test('readEunomiaFrontMatter accepts CRLF line ends', () => {
+  const ficha = load(2);
+  const qmd = renderQmd(ficha).replace(/\n/g, '\r\n');
+  assert.ok(qmd.includes('\r\n'));
+  assert.deepEqual(readEunomiaFrontMatter(qmd), ficha);
+});
+
+test('readEunomiaFrontMatter names eunomia when the value does not decode', () => {
+  const frontWith = (value) => `---\ntitle: "x"\neunomia: ${value}\n---\n\nTexto.\n`;
+  const b64 = (t) => Buffer.from(t, 'utf8').toString('base64');
+  const namesEunomia = (err) =>
+    err instanceof Error && !(err instanceof SyntaxError) && /eunomia/.test(err.message);
+  for (const value of [
+    '"!!! não é base64"',
+    `"${b64('isto não é JSON')}"`,
+    `"${b64('[1, 2]')}"`,
+    `"${b64('"texto"')}"`,
+    '""',
+  ]) {
+    assert.throws(() => readEunomiaFrontMatter(frontWith(value)), namesEunomia, value);
+  }
+});
+
 test('readEunomiaFrontMatter reads a library file and rejects a file without the key', () => {
   const ficha = load(3);
   ficha.correccao.texto = 'Acentuação, ç, õ, “aspas” e @ numa linha.';
@@ -367,12 +408,95 @@ test('readEunomiaFrontMatter reads a library file and rejects a file without the
   assert.throws(() => readEunomiaFrontMatter('Sem front matter.'), /eunomia/);
 });
 
-test('renderQmd is built from renderSection', () => {
-  const f = newProfileFicha();
+test('an @ in an extra title and text renders as \\@, except in code', () => {
+  const f = load(1);
+  f.extras = [
+    {
+      titulo: 'Contacte @docente',
+      texto: 'Escreva a ana@fmup.up.pt ou a @ana.\n\n```text\nx@y.pt\n```\n\nUse `@param`.',
+      position: { after: 'armadilhas' },
+    },
+  ];
   const qmd = renderQmd(f);
-  for (const id of SECTION_ORDER) {
-    assert.ok(qmd.includes(renderSection(id, f[id])), id);
+  assert.ok(qmd.includes('## Contacte \\@docente\n\nEscreva a ana\\@fmup.up.pt ou a \\@ana.'));
+  assert.ok(qmd.includes('```text\nx@y.pt\n```'));
+  assert.ok(qmd.includes('Use `@param`.'));
+  assert.equal(
+    renderSection('extras', f.extras).split('\n')[0],
+    '## Contacte \\@docente',
+  );
+  const { body } = splitQmd(qmd);
+  const outsideCode = body.replace(/```[\s\S]*?```|`[^`]*`/g, '');
+  assert.ok(!/(?<!\\)@/.test(outsideCode), 'no bare @ outside code');
+});
+
+test('extras render as sections, and renderSection agrees with validateSection', () => {
+  const f = newProfileFicha();
+  const extras = [
+    { titulo: 'Antes', texto: 'Texto antes.', position: { before: 'objectivo' } },
+    { titulo: 'Depois', texto: 'Texto depois.', position: { after: 'armadilhas' } },
+  ];
+  assert.equal(
+    renderSection('extras', extras),
+    '## Antes\n\nTexto antes.\n\n## Depois\n\nTexto depois.',
+  );
+  assert.equal(renderSection('extras', []), '');
+  assert.deepEqual(validateSection('extras', extras, 'new'), []);
+  // Every section id that validateSection accepts can be rendered.
+  const samples = { ...f, extras };
+  for (const id of [...SECTION_ORDER, 'extras']) {
+    assert.deepEqual(validateSection(id, samples[id], 'new', f), [], id);
+    assert.ok(renderSection(id, samples[id]).length > 0, id);
   }
+  // And both refuse an unknown id.
+  assert.deepEqual(validateSection('nada', {}, 'new'), ['Secção desconhecida: nada.']);
+  assert.throws(() => renderSection('nada', {}), /nada/);
+});
+
+test('extras with an unknown anchor render at the end of the document', () => {
+  const f = newProfileFicha();
+  f.extras = [
+    { titulo: 'Depois de nada', texto: 'T1.', position: { after: 'nada' } },
+    { titulo: 'Sem âncora', texto: 'T2.', position: {} },
+    { titulo: 'Antes errado', texto: 'T3.', position: { before: 'plano_b' } },
+    { titulo: 'Sem posição', texto: 'T4.' },
+    { titulo: 'Bem colocado', texto: 'T5.', position: { after: 'meta' } },
+  ];
+  assert.ok(validateFicha(f, 'new').length > 0);
+  const found = headings(renderQmd(f));
+  assert.deepEqual(found, [
+    'Bem colocado',
+    'Objectivo de aprendizagem',
+    'Formato e duração em aula',
+    'Prompt base',
+    'Papéis',
+    'Como se corrige ou discute',
+    'Armadilhas conhecidas',
+    'Plano B sem ligação à internet',
+    'Regime de IA',
+    'Referência',
+    'Declaração de uso de IA',
+    'Depois de nada',
+    'Sem âncora',
+    'Antes errado',
+    'Sem posição',
+  ]);
+});
+
+test('escapeAt limit: an @ inside an autolink is escaped too', () => {
+  // Known limit, kept on purpose. The escape works line by line on plain text. It knows
+  // code fences and inline code, but not autolinks or indented code blocks. So
+  // <https://x.org/@user> becomes <https://x.org/\@user>, which Pandoc does not read as an
+  // autolink. Write such a link as [text](https://x.org/@user): a backslash escape works
+  // inside the destination of a Markdown link.
+  assert.equal(
+    renderSection('correccao', { texto: 'Ver <https://x.org/@user>.' }),
+    'Ver <https://x.org/\\@user>.',
+  );
+  assert.equal(
+    renderSection('correccao', { texto: 'Ver [a página](https://x.org/@user).' }),
+    'Ver [a página](https://x.org/\\@user).',
+  );
 });
 
 test('renderSection: armadilhas and formato blocks follow the ficha style', () => {
@@ -465,6 +589,26 @@ test('an @ in body text renders as \\@, except in code', () => {
   assert.deepEqual(readEunomiaFrontMatter(qmd), f);
 });
 
+test('title and subtitle: an @ reaches Pandoc as \\@', () => {
+  const f = load(1);
+  f.meta.titulo = 'Contacte @docente';
+  f.meta.subtitulo = 'Já escapado \\@x e a@b.pt';
+  const qmd = renderQmd(f);
+  const { front } = splitQmd(qmd);
+  const yamlValue = (key) =>
+    front
+      .split('\n')
+      .find((l) => l.startsWith(`${key}: `))
+      .slice(key.length + 2);
+  // A YAML double-quoted string uses the same escapes as JSON, so JSON.parse decodes it.
+  assert.equal(JSON.parse(yamlValue('title')), 'Contacte \\@docente');
+  assert.equal(JSON.parse(yamlValue('subtitle')), 'Já escapado \\@x e a\\@b.pt');
+  assert.equal(yamlValue('title'), '"Contacte \\\\@docente"');
+  // The ficha itself keeps the text as typed.
+  assert.equal(readEunomiaFrontMatter(qmd).meta.titulo, 'Contacte @docente');
+  assert.equal(readEunomiaFrontMatter(qmd).meta.subtitulo, 'Já escapado \\@x e a@b.pt');
+});
+
 test('a pipe in a meta cell is escaped', () => {
   const f = load(1);
   f.meta.areas = 'Clínica | Básicas';
@@ -498,6 +642,13 @@ for (let n = 1; n <= 6; n += 1) {
 }
 
 // ---------------------------------------------------------------- slugify
+
+test('the sources keep combining marks and line separators as escapes', () => {
+  for (const file of ['ficha.js', 'paths.js']) {
+    const src = fs.readFileSync(path.join(__dirname, '..', 'src', file), 'utf8');
+    assert.ok(!/[\u0300-\u036f\u2028\u2029]/.test(src), `${file} has a raw combining or separator character`);
+  }
+});
 
 test('slugify lowercases, drops accents and uses hyphens', () => {
   assert.equal(

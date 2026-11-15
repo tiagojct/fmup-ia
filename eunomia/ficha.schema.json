@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://tiagojacinto.eu/fmup-ia/eunomia/ficha.schema.json",
   "title": "Ficha de actividade do Eunomia",
-  "description": "A ficha é o JSON de uma actividade de ensino com IA, no formato das fichas de formação do FMUP · IA. Dois perfis: new (fichas feitas no Eunomia: regime_ia e declaracao obrigatórias, 3 a 6 armadilhas) e reference (as seis fichas de formação e fichas anteriores ao Eunomia: regime_ia e declaracao opcionais, 1 ou mais armadilhas). validateFicha injecta $profile; a ficha guardada não tem esse campo. As regras que dependem de vários campos (soma dos blocos, posição dos extras, plano B) estão no código, em src/ficha.js.",
+  "description": "A ficha é o JSON de uma actividade de ensino com IA, no formato das fichas de formação do FMUP · IA. Dois perfis: new (fichas feitas no Eunomia: regime_ia e declaracao obrigatórias, 3 a 6 armadilhas) e reference (as seis fichas de formação e fichas anteriores ao Eunomia: regime_ia e declaracao opcionais, 1 ou mais armadilhas). No perfil new, formato.blocos exige meta.duracao.min e meta.duracao.max. validateFicha injecta $profile; a ficha guardada não tem esse campo. As regras que dependem de vários campos (soma dos blocos, posição dos extras, plano B) estão no código, em src/ficha.js.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -42,7 +42,33 @@
     "properties": {
       "regime_ia": true,
       "declaracao": true,
-      "armadilhas": { "type": "array", "minItems": 3, "maxItems": 6 }
+      "armadilhas": { "type": "array", "minItems": 3, "maxItems": 6 },
+      "meta": true,
+      "formato": true
+    },
+    "if": {
+      "properties": {
+        "formato": {
+          "type": "object",
+          "required": ["blocos"],
+          "properties": { "blocos": true }
+        }
+      },
+      "required": ["formato"]
+    },
+    "then": {
+      "properties": {
+        "meta": {
+          "type": "object",
+          "properties": {
+            "duracao": {
+              "type": "object",
+              "required": ["min", "max"],
+              "properties": { "min": true, "max": true }
+            }
+          }
+        }
+      }
     }
   },
   "else": {

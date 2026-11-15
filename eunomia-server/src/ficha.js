@@ -284,6 +284,8 @@ const RENDER = {
   regime_ia: regimeIa,
   referencias: (list) => list.map((r) => text(r.texto)).join('\n\n'),
   declaracao: (d) => text(d.texto),
+  // Unlike the other sections, an extra brings its own heading.
+  extras: (list) => list.map((x) => `## ${text(x.titulo)}\n\n${text(x.texto)}`).join('\n\n'),
 };
 
 // A bare @ is a citation key for Quarto. Escape it outside code fences and inline code.
@@ -318,26 +320,34 @@ function renderSection(sectionId, data) {
   return escapeAt(RENDER[sectionId](data));
 }
 
-// Quoted string for title and subtitle: no raw @ (check-content.py), no line separators.
-const frontJson = (value) =>
-  JSON.stringify(value).replace(/[@\u2028\u2029]/g, (c) => `\\u${c.charCodeAt(0).toString(16).padStart(4, '0')}`);
+// Quoted YAML string for title and subtitle. Pandoc reads it as Markdown, so an @ is
+// written \@ (as in the body). The ficha in the eunomia key keeps the text as typed.
+const frontString = (value) =>
+  JSON.stringify(String(value).replace(/(?<!\\)@/g, '\\@')).replace(
+    /[\u2028\u2029]/g,
+    (c) => `\\u${c.charCodeAt(0).toString(16).padStart(4, '0')}`,
+  );
 
-const extraSlot = (pos) => (pos && pos.before === 'objectivo' ? 'meta' : pos && pos.after);
+// The section after which an extra goes, or null when the anchor is not known.
+function extraSlot(extra) {
+  const pos = isObject(extra.position) ? extra.position : {};
+  const slot = pos.before === 'objectivo' ? 'meta' : pos.after;
+  return SECTION_ORDER.includes(slot) ? slot : null;
+}
 
 function renderQmd(ficha) {
   const front = [
     '---',
-    `title: ${frontJson(ficha.meta.titulo)}`,
-    `subtitle: ${frontJson(ficha.meta.subtitulo)}`,
+    `title: ${frontString(ficha.meta.titulo)}`,
+    `subtitle: ${frontString(ficha.meta.subtitulo)}`,
     'toc: true',
     'toc-depth: 2',
     `eunomia: "${Buffer.from(JSON.stringify(ficha), 'utf8').toString('base64')}"`,
     '---',
   ].join('\n');
+  const extras = Array.isArray(ficha.extras) ? ficha.extras.filter(isObject) : [];
   const extrasAt = (id) =>
-    (ficha.extras || [])
-      .filter((x) => extraSlot(x.position) === id)
-      .map((x) => escapeAt(`## ${text(x.titulo)}\n\n${text(x.texto)}`));
+    extras.filter((x) => extraSlot(x) === id).map((x) => renderSection('extras', [x]));
   const blocks = [];
   for (const id of SECTION_ORDER) {
     if (ficha[id] !== undefined) {
@@ -346,23 +356,34 @@ function renderQmd(ficha) {
     }
     blocks.push(...extrasAt(id));
   }
+  // An extra with an unknown anchor goes to the end, so that it does not vanish.
+  blocks.push(...extrasAt(null));
   return `${front}\n\n${blocks.join('\n\n')}\n`;
 }
 
 // The ficha travels in the front matter as base64 of its UTF-8 JSON, so that Pandoc
 // does not parse the ficha text as Markdown (a callout at the end of a string breaks it).
 function readEunomiaFrontMatter(qmdText) {
-  const front = String(qmdText).match(/^---\n([\s\S]*?)\n---(?:\n|$)/);
-  const line = front && front[1].split('\n').find((l) => l.startsWith('eunomia:'));
-  const value = line && line.slice('eunomia:'.length).trim().replace(/^"(.*)"$/, '$1');
-  if (!value) throw new Error('O ficheiro não tem a chave eunomia no cabeçalho.');
-  return JSON.parse(Buffer.from(value, 'base64').toString('utf8'));
+  const fail = (why) => new Error(`A chave eunomia do cabeçalho ${why}.`);
+  const front = String(qmdText).match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/);
+  const line = front && front[1].split(/\r?\n/).find((l) => l.startsWith('eunomia:'));
+  if (!line) throw new Error('O ficheiro não tem a chave eunomia no cabeçalho.');
+  const value = line.slice('eunomia:'.length).trim().replace(/^"(.*)"$/, '$1');
+  if (!/^[A-Za-z0-9+/]+={0,2}$/.test(value)) throw fail('não tem texto em base64');
+  let ficha;
+  try {
+    ficha = JSON.parse(Buffer.from(value, 'base64').toString('utf8'));
+  } catch (err) {
+    throw fail('não tem um JSON válido');
+  }
+  if (!isObject(ficha)) throw fail('não tem uma ficha (um objecto JSON)');
+  return ficha;
 }
 
 function slugify(title) {
   return String(title)
     .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '')
+    .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
