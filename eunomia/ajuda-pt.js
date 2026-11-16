@@ -148,8 +148,8 @@
       lista: [
         {
           id: 'rede',
-          pergunta: 'Apareceu «Não foi possível contactar o servidor». O que faço?',
-          resposta: 'O pedido não chegou ao servidor, ou a resposta perdeu-se no caminho. O texto que escreveu fica no ecrã e o que já guardou está no rascunho. Espere um momento e tente de novo; num pedido ao modelo, a Eunomia repete o pedido uma vez por si. Se o erro continuar, verifique a ligação à internet e, depois, contacte o responsável da Eunomia.',
+          pergunta: 'Apareceu «O pedido não chegou ao servidor». O que faço?',
+          resposta: 'A ligação entre o navegador e o servidor falhou, ou a resposta perdeu-se no caminho. O texto que escreveu continua nesta página e o que já guardou está no rascunho. Tente de novo daqui a um momento; num pedido ao modelo, a Eunomia repete o pedido uma vez por si. Se o erro se repetir, verifique a ligação à internet e, depois, contacte o responsável da Eunomia.',
         },
         {
           id: 'limite',

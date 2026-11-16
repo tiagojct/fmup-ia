@@ -149,7 +149,7 @@
       "minutos": 3,
       "erros_comuns": [
         "Indicar uma evidência que não mostra o objectivo, por exemplo um teste de escolha múltipla para avaliar a argumentação.",
-        "Marcar «Sumativa» numa actividade que não conta para a classificação. A sumativa pede a cláusula do passo seguinte.",
+        "Marcar «Sumativa» numa actividade que não conta para a classificação. A sumativa pede ainda a cláusula da avaliação, num passo mais à frente.",
         "Não dizer quem observa nem o que regista durante a actividade."
       ],
       "porque": "A evidência tem de mostrar o objectivo: se o objectivo é conduzir uma entrevista, um texto escrito em casa não o mostra. Uma actividade sumativa precisa ainda de uma cláusula para o enunciado, que um passo seguinte prepara.",
