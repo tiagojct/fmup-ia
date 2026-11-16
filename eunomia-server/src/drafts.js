@@ -15,6 +15,7 @@ const fs = require('node:fs');
 const crypto = require('node:crypto');
 const { repoPath } = require('./paths.js');
 const { CATALOGUE, findPattern } = require('./patterns.js');
+const { REGIMES, MISMATCH } = require('./regime.js');
 
 const INTERVIEW = JSON.parse(fs.readFileSync(repoPath('eunomia', 'interview.json'), 'utf8'));
 const VERBOS = JSON.parse(fs.readFileSync(repoPath('eunomia', 'verbos.json'), 'utf8'));
@@ -29,16 +30,20 @@ const EDITABLE = ['rascunho', 'devolvida'];
 const MODEL_SECTIONS = ['objectivo', 'formato', 'prompt_base', 'papeis', 'correccao', 'armadilhas', 'plano_b'];
 
 // The answers each section is written from. A change to one of them, after the plan is approved,
-// marks the section as to update.
+// marks the section as to update. 'plano.notas' is the notes field of the plan step: the title and
+// subtitle of the plan go to the meta table only.
 const SECTION_DEPENDS = {
-  objectivo: ['objectivo'],
-  formato: ['contexto', 'objectivo', 'padrao', 'materiais'],
-  prompt_base: ['contexto', 'papel_ia', 'padrao', 'materiais'],
-  papeis: ['contexto', 'papel_ia', 'padrao'],
-  correccao: ['objectivo', 'evidencia', 'padrao'],
-  armadilhas: ['objectivo', 'papel_ia', 'padrao'],
-  plano_b: ['contexto', 'papel_ia', 'padrao'],
+  objectivo: ['objectivo', 'plano.notas'],
+  formato: ['contexto', 'objectivo', 'padrao', 'materiais', 'plano.notas'],
+  prompt_base: ['contexto', 'papel_ia', 'regime', 'padrao', 'materiais', 'plano.notas'],
+  papeis: ['contexto', 'papel_ia', 'regime', 'padrao', 'plano.notas'],
+  correccao: ['objectivo', 'evidencia', 'padrao', 'plano.notas'],
+  armadilhas: ['objectivo', 'papel_ia', 'padrao', 'plano.notas'],
+  plano_b: ['contexto', 'papel_ia', 'regime', 'padrao', 'plano.notas'],
 };
+
+// States that the purge keeps: the work is under review or published.
+const KEPT_STATES = ['submetida', 'aprovada'];
 
 class DraftError extends Error {
   constructor(message, erros = []) {
@@ -161,7 +166,10 @@ function stepRules(stepId, v) {
 }
 
 // Warnings that do not block the answer.
-function stepWarnings(stepId, v) {
+function stepWarnings(stepId, v, respostas) {
+  if (stepId === 'regime_themis' && v.policy && respostas.regime && REGIMES[respostas.regime.regime]) {
+    return v.policy === REGIMES[respostas.regime.regime].policy ? [] : [MISMATCH];
+  }
   if (stepId === 'objectivo' && typeof v.texto === 'string' && !checkOutcomeVerb(v.texto).ok) {
     return [
       'O objectivo não tem um verbo observável (por exemplo conduzir, identificar ou justificar). Pode mantê-lo, mas a avaliação fica mais difícil de desenhar.',
@@ -193,13 +201,18 @@ function applyAnswer(draft, stepId, value) {
   if (errors.length > 0) return { draft, errors, avisos: [] };
 
   let out = clone(draft);
-  const changed = JSON.stringify(draft.respostas[stepId]) !== JSON.stringify(clean);
+  const old = draft.respostas[stepId];
+  // For the plan step only the notes reach the model; for the others, the whole answer.
+  const changed =
+    stepId === 'plano'
+      ? ((old && old.notas) || '') !== (clean.notas || '') ? ['plano.notas'] : []
+      : JSON.stringify(old) !== JSON.stringify(clean) ? [stepId] : [];
   out.respostas[stepId] = clean;
-  if (out.plano_aprovado && changed) {
-    out = markStale(out, [stepId]);
+  if (out.plano_aprovado && changed.length > 0) {
+    out = markStale(out, changed);
     syncSections(out);
   }
-  return { draft: out, errors: [], avisos: stepWarnings(stepId, clean) };
+  return { draft: out, errors: [], avisos: stepWarnings(stepId, clean, out.respostas) };
 }
 
 // ---------------------------------------------------------------- the plan gate and the sections
@@ -363,8 +376,8 @@ function listDrafts(store, userId) {
 
 const isEditable = (draft) => EDITABLE.includes(draft.estado);
 
-// Removes the drafts in state rascunho that nobody changed or opened for more than `days` days.
-// Submitted and reviewed drafts stay. Returns the number removed. A damaged file is left alone.
+// Removes the drafts that nobody changed or opened for more than `days` days, in any state except
+// submetida and aprovada. Returns the number removed. A damaged file is left alone.
 function purgeOldDrafts(store, now, days) {
   let removed = 0;
   const limit = days * DAY_MS;
@@ -378,7 +391,7 @@ function purgeOldDrafts(store, now, days) {
       } catch {
         continue;
       }
-      if (!d || d.estado !== 'rascunho') continue;
+      if (!d || KEPT_STATES.includes(d.estado)) continue;
       const last = Math.max(Date.parse(d.actualizado) || 0, Date.parse(d.aberto) || 0);
       if (now - last > limit && store.remove(rel)) removed += 1;
     }

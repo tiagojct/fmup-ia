@@ -15,6 +15,11 @@ function renderMd(ficha) {
 const escapeHtml = (s) =>
   String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 
+// C0 control characters other than tab, newline and carriage return. They have no place in a ficha,
+// and U+0000 is the placeholder marker of inline() below.
+const CONTROL = /[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g;
+const stripControl = (s) => String(s).replace(CONTROL, '');
+
 const SAFE_URL = /^(?:https?:\/\/|mailto:|#|\/|\.{1,2}\/|[^:/?#]+(?:[/?#]|$))/i;
 
 // Bold, italic and backslash escapes, on text that is already escaped.
@@ -41,8 +46,12 @@ function inline(text) {
     SAFE_URL.test(url) ? hold(`<a href="${escapeHtml(url)}">${emphasis(escapeHtml(label))}</a>`) : label,
   );
   s = emphasis(escapeHtml(s));
-  while (/\u0000\d+\u0000/.test(s)) s = s.replace(/\u0000(\d+)\u0000/g, (_, i) => held[Number(i)]);
-  return s;
+  // Held parts can hold other held parts (code inside a link label): a few passes, never more than
+  // the number of held parts. The input has no U+0000 of its own (markdownToHtml strips it).
+  for (let pass = 0; pass <= held.length && /\u0000\d+\u0000/.test(s); pass++) {
+    s = s.replace(/\u0000(\d+)\u0000/g, (_, i) => held[Number(i)] ?? '');
+  }
+  return s.replace(/\u0000/g, '');
 }
 
 const splitRow = (line) =>
@@ -56,7 +65,7 @@ const splitRow = (line) =>
 const LIST_ITEM = /^(\s*)([-*+]|\d{1,3}[.)])\s+(.*)$/;
 
 function markdownToHtml(md) {
-  const lines = String(md).replace(/\r\n?/g, '\n').split('\n');
+  const lines = stripControl(md).replace(/\r\n?/g, '\n').split('\n');
   const out = [];
   let para = [];
   const flush = () => {
@@ -151,7 +160,7 @@ a { color: #1a4f8b; }
 `;
 
 function renderHtml(ficha) {
-  const title = escapeHtml(ficha.meta.titulo);
+  const title = escapeHtml(stripControl(ficha.meta.titulo));
   return [
     '<!doctype html>',
     '<html lang="pt-PT">',
@@ -164,7 +173,7 @@ function renderHtml(ficha) {
     '<body>',
     '<main>',
     `<h1>${title}</h1>`,
-    `<p class="subtitulo">${escapeHtml(ficha.meta.subtitulo)}</p>`,
+    `<p class="subtitulo">${escapeHtml(stripControl(ficha.meta.subtitulo))}</p>`,
     markdownToHtml(renderMd(ficha)),
     '</main>',
     '</body>',
@@ -173,4 +182,4 @@ function renderHtml(ficha) {
   ].join('\n');
 }
 
-module.exports = { renderMd, renderHtml, markdownToHtml, escapeHtml };
+module.exports = { renderMd, renderHtml, markdownToHtml, escapeHtml, CONTROL };

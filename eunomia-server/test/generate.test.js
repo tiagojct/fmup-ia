@@ -295,21 +295,21 @@ test('every model call counts: a retry counts twice', async (t) => {
   assert.equal(app.store.read('usage.json')[day][ana.id], 2);
 });
 
-test('teacher edit: schema errors are 400; the emoji lint is the only lint; the section is accepted as the teacher text', async (t) => {
+test('teacher edit: schema errors are 400; the model lints do not run; the section is accepted as the teacher text', async (t) => {
   const { app, ana, draft } = await appWithDraft(t, fakeClient(reply({})));
   const url = `/rascunhos/${draft.id}/seccoes/armadilhas`;
   const bad = await app.call('PUT', url, { cookie: ana.cookie, body: { rev: draft.rev, dados: VALID.armadilhas.slice(0, 2) } });
   assert.equal(bad.status, 400);
   assert.ok(bad.json.erros.some((e) => /2 itens/.test(e)));
 
-  const smile = String.fromCodePoint(0x1f600);
-  const dados = [...VALID.armadilhas.slice(0, 2), { lead: 'O objetivo dos alunos.', texto: `Com 37 % de erros e um sorriso ${smile}. Ver doi:10.1000/x.` }];
+  // Language, number and reference lints are for model text only (an emoji is refused: see review-7-9.test.js).
+  const dados = [...VALID.armadilhas.slice(0, 2), { lead: 'O objetivo dos alunos.', texto: 'Com 37 % de erros. Ver doi:10.1000/x.' }];
   const ok = await app.call('PUT', url, { cookie: ana.cookie, body: { rev: draft.rev, dados } });
   assert.equal(ok.status, 200, ok.text);
   const sec = ok.json.rascunho.seccoes.armadilhas;
   assert.equal(sec.estado, 'aceite');
   assert.equal(sec.origem, 'docente');
-  assert.deepEqual(sec.avisos.map((a) => a.regra), ['estilo']);
+  assert.deepEqual(sec.avisos, []);
 
   for (const code of ['regime_ia', 'referencias', 'declaracao']) {
     const r = await app.call('PUT', `/rascunhos/${draft.id}/seccoes/${code}`, { cookie: ana.cookie, body: { rev: draft.rev + 1, dados: {} } });
@@ -356,7 +356,7 @@ test('objectivo/sugerir returns up to two suggestions with the verb check and do
   const r = await app.call('POST', `/rascunhos/${draft.id}/objectivo/sugerir`, { cookie: ana.cookie, body: {} });
   assert.equal(r.status, 200, r.text);
   assert.equal(r.json.sugestoes.length, 2);
-  assert.deepEqual(r.json.sugestoes[0], { texto: 'Conduzir uma anamnese estruturada.', ok: true, verbo: 'conduzir' });
+  assert.deepEqual(r.json.sugestoes[0], { texto: 'Conduzir uma anamnese estruturada.', ok: true, verbo: 'conduzir', avisos: [] });
   assert.equal(r.json.sugestoes[1].ok, false);
   assert.match(client.calls[0].message, /sustenta uma posição/);
   assert.equal(app.store.read(`rascunhos/${ana.id}/${draft.id}.json`).rev, draft.rev);

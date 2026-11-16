@@ -71,10 +71,13 @@ test('filterPatterns keeps the patterns with the AI role of the interview', () =
   }
 });
 
-test('filterPatterns with 30 minutes excludes patterns whose typical minimum is over 30', () => {
+test('filterPatterns with 30 minutes keeps patterns whose typical minimum is over 30 only as relaxed ones', () => {
   for (const papel of ['nenhum', 'contraparte', 'objecto_de_critica', 'ferramenta']) {
     const found = filterPatterns(answers({ papel, min: 30, max: null }), CATALOGUE);
-    assert.ok(found.every((p) => p.duracao_tipica && p.duracao_tipica.min <= 30), papel);
+    for (const p of found) {
+      const strict = p.duracao_tipica && p.duracao_tipica.min <= 30;
+      assert.ok(strict || p.ajuste === 'parcial', `${papel}: ${p.id}`);
+    }
   }
 });
 
@@ -85,7 +88,7 @@ test('filterPatterns never returns more than 3', () => {
 
 test('a continuous pattern (no typical duration) appears only outside class', () => {
   const inClass = filterPatterns(answers({ papel: 'ferramenta', min: 600, max: 600 }), CATALOGUE);
-  assert.ok(inClass.every((p) => p.duracao_tipica !== null));
+  assert.ok(inClass.every((p) => p.duracao_tipica !== null || p.ajuste === 'parcial'));
   const outside = filterPatterns(answers({ papel: 'ferramenta', modalidade: 'autonomo' }), CATALOGUE);
   assert.ok(outside.some((p) => p.duracao_tipica === null));
 });

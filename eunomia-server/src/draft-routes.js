@@ -10,15 +10,23 @@ const drafts = require('./drafts.js');
 const { CATALOGUE, filterPatterns } = require('./patterns.js');
 const { IaeduError, parseJsonReply } = require('./iaedu.js');
 const { validateSection, validateFicha, renderSection, renderQmd, slugify, SECTION_HEADINGS } = require('./ficha.js');
-const { lintEmoji } = require('./lint.js');
+const { lintEmoji, lintSection } = require('./lint.js');
+const { composeRegime } = require('./regime.js');
 const { REFERENCES, buildMeta, assembleFicha, sectionsToAccept } = require('./assemble.js');
-const { generateSection, newThreadId } = require('./generate.js');
+const { generateSection, newThreadId, hasControl, CONTROL_MESSAGE } = require('./generate.js');
 const { renderMd, renderHtml } = require('./export.js');
 const prompts = require('./prompts.js');
 
 const CONFLICT = 'O rascunho foi alterado noutra janela. Recarregue a página.';
 const LOCKED = 'A ficha foi submetida e não pode ser alterada.';
 const LIMIT = 'Atingiu o limite diário de pedidos ao modelo.';
+const NO_EMOJI = 'Retire os emojis do texto.';
+const FEW_PATTERNS = 'Há menos de dois padrões do catálogo para este papel da IA e este tempo. Veja o catálogo completo.';
+
+// Every 409 says why, so that the front end offers "Recarregar" only for a stale rev:
+// rev (another window changed the draft), bloqueado (submitted), plano (plan not approved),
+// passo (a step has no answer), incompleto (a section has no accepted text), invalido (the data
+// of a section breaks the schema).
 const CODE_SECTIONS = ['meta', 'regime_ia', 'referencias', 'declaracao'];
 const MAX_REFERENCES = 20;
 const MAX_COMMENT = 2000;
@@ -50,10 +58,10 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
   function writable(ctx) {
     const d = readable(ctx);
     if (d.autor.id !== ctx.user.id) throw new HttpError(403, 'Só o autor pode alterar este rascunho.');
-    if (!drafts.isEditable(d)) throw new HttpError(409, LOCKED);
+    if (!drafts.isEditable(d)) throw new HttpError(409, LOCKED, {}, { motivo: 'bloqueado' });
     const { rev } = ctx.body;
     if (!Number.isInteger(rev)) throw new HttpError(400, 'Indique a revisão do rascunho (rev).');
-    if (rev !== d.rev) throw new HttpError(409, CONFLICT);
+    if (rev !== d.rev) throw new HttpError(409, CONFLICT, {}, { motivo: 'rev' });
     return d;
   }
 
@@ -63,7 +71,7 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
   function owned(ctx) {
     const d = readable(ctx);
     if (d.autor.id !== ctx.user.id) throw new HttpError(403, 'Só o autor pode alterar este rascunho.');
-    if (!drafts.isEditable(d)) throw new HttpError(409, LOCKED);
+    if (!drafts.isEditable(d)) throw new HttpError(409, LOCKED, {}, { motivo: 'bloqueado' });
     return d;
   }
 
@@ -76,7 +84,7 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
   }
 
   function planGate(d, what) {
-    if (!d.plano_aprovado) throw new HttpError(409, `Aprove o plano antes de ${what}.`);
+    if (!d.plano_aprovado) throw new HttpError(409, `Aprove o plano antes de ${what}.`, {}, { motivo: 'plano' });
   }
 
   function applicable(d, sec) {
@@ -115,6 +123,16 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
       });
       return { data: parseJsonReply(reply.text), modelo: reply.model || null };
     });
+  }
+
+  // Lint avisos for model text that is shown to the teacher but does not go into the ficha.
+  function lintText(text, d) {
+    const materials = d.respostas.materiais && typeof d.respostas.materiais.texto === 'string' ? d.respostas.materiais.texto : '';
+    return lintSection('correccao', text, { referencias: d.referencias || [], materials }).map((w) => ({
+      regra: w.rule,
+      texto: w.message,
+      trecho: w.match,
+    }));
   }
 
   function optionalText(value, max, name) {
@@ -172,7 +190,7 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
     try {
       out = drafts.approvePlan(d);
     } catch (e) {
-      if (e instanceof drafts.DraftError) throw new HttpError(409, e.message, {}, { erros: e.erros });
+      if (e instanceof drafts.DraftError) throw new HttpError(409, e.message, {}, { erros: e.erros, motivo: 'passo' });
       throw e;
     }
     return view(save(out));
@@ -184,7 +202,8 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
     if (!id) return { padroes: CATALOGUE };
     const d = drafts.findDraft(store, ctx.user, id);
     if (!d) throw new HttpError(404, 'Rascunho não encontrado.');
-    return { padroes: filterPatterns(d.respostas, CATALOGUE) };
+    const padroes = filterPatterns(d.respostas, CATALOGUE);
+    return padroes.length < 2 ? { padroes, nota: FEW_PATTERNS } : { padroes };
   });
 
   // ---------------------------------------------------------------- the model tasks (Task 9)
@@ -206,7 +225,7 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
       .map((x) => {
         const t = x.trim().slice(0, 1000);
         const v = drafts.checkOutcomeVerb(t);
-        return { texto: t, ok: v.ok, verbo: v.verbo };
+        return { texto: t, ok: v.ok, verbo: v.verbo, avisos: lintText(t, d) };
       });
     return { sugestoes, modelo };
   });
@@ -222,7 +241,13 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
     for (const x of Array.isArray(data.explicacoes) ? data.explicacoes : []) {
       if (x && typeof x.id === 'string' && typeof x.texto === 'string') byId.set(x.id, x.texto.trim().slice(0, 1000));
     }
-    return { padroes: padroes.map((p) => ({ ...p, explicacao: byId.get(p.id) || null })), modelo };
+    return {
+      padroes: padroes.map((p) => {
+        const explicacao = byId.get(p.id) || null;
+        return { ...p, explicacao, avisos: explicacao ? lintText(explicacao, d) : [] };
+      }),
+      modelo,
+    };
   });
 
   route('POST', '/rascunhos/:id/seccoes/:sec/gerar', async (req, res, ctx) => {
@@ -236,7 +261,7 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
     );
     // The call takes seconds: the draft must not have changed meanwhile.
     const fresh = drafts.findDraft(store, ctx.user, d.id);
-    if (!fresh || fresh.rev !== d.rev) throw new HttpError(409, CONFLICT);
+    if (!fresh || fresh.rev !== d.rev) throw new HttpError(409, CONFLICT, {}, { motivo: 'rev' });
     fresh.seccoes[sec] = {
       dados: out.dados,
       estado: 'gerada',
@@ -249,8 +274,9 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
     return view(save(fresh));
   });
 
-  // The teacher's own text: schema validation and the emoji rule only. The other lints are for model
-  // text (design, 6.8). The text is the teacher's, so the section counts as accepted.
+  // The teacher's own text: schema validation, no control characters and no emoji (422). The other
+  // lints are for model text (design, 6.8). The text is the teacher's, so the section counts as
+  // accepted.
   route('PUT', '/rascunhos/:id/seccoes/:sec', (req, res, ctx) => {
     const sec = modelSection(ctx);
     const d = writable(ctx);
@@ -259,12 +285,14 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
     const dados = ctx.body.dados;
     const erros = validateSection(sec, dados, 'new', { meta: buildMeta(d) });
     if (erros.length > 0) throw new HttpError(400, 'A secção tem erros.', {}, { erros });
-    const avisos = lintEmoji(renderSection(sec, dados)).map((w) => ({ regra: w.rule, texto: w.message, trecho: w.match }));
+    if (hasControl(dados)) throw new HttpError(400, CONTROL_MESSAGE);
+    const emojis = lintEmoji(renderSection(sec, dados));
+    if (emojis.length > 0) throw new HttpError(422, NO_EMOJI, {}, { erros: emojis.map((w) => w.match) });
     const prev = d.seccoes[sec] || {};
     d.seccoes[sec] = {
       dados,
       estado: 'aceite',
-      avisos,
+      avisos: [],
       modelo: prev.modelo || null,
       origem: 'docente',
       editado: new Date(now()).toISOString(),
@@ -278,7 +306,13 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
     planGate(d, 'aceitar secções');
     applicable(d, sec);
     const s = d.seccoes[sec];
-    if (!s || s.dados === undefined) throw new HttpError(409, 'A secção ainda não tem texto.');
+    if (!s || s.dados === undefined) throw new HttpError(409, 'A secção ainda não tem texto.', {}, { motivo: 'incompleto' });
+    // Text that breaks the schema is not accepted: the teacher edits it first (PUT).
+    const erros = validateSection(sec, s.dados, 'new', { meta: buildMeta(d) });
+    if (hasControl(s.dados)) erros.push(CONTROL_MESSAGE);
+    if (erros.length > 0) {
+      throw new HttpError(409, 'A secção tem erros. Edite-a antes de a aceitar.', {}, { erros, motivo: 'invalido' });
+    }
     s.estado = 'aceite';
     return view(save(d));
   });
@@ -315,13 +349,37 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
 
   function readyFicha(d) {
     planGate(d, 'exportar a ficha');
+    // A step that became due after the plan was approved (evidencia changed to sumativa).
+    const steps = drafts.missingSteps(d).filter((s) => s.id !== 'plano');
+    if (steps.length > 0) {
+      throw new HttpError(409, `Responda primeiro a este passo: ${steps.map((s) => s.titulo).join(', ')}.`, {}, {
+        motivo: 'passo',
+        passos: steps.map((s) => s.id),
+      });
+    }
     const missing = sectionsToAccept(d);
     if (missing.length > 0) {
       const names = missing.map((id) => SECTION_HEADINGS[id] || id).join(', ');
-      throw new HttpError(409, `Faltam aceitar estas secções: ${names}.`, {}, { seccoes: missing });
+      throw new HttpError(409, `Faltam aceitar estas secções: ${names}.`, {}, { seccoes: missing, motivo: 'incompleto' });
     }
-    return assembleFicha(d);
+    const ficha = assembleFicha(d);
+    // Data that does not render (an old draft, a bug) is a 409 that names the section, never a 500.
+    for (const id of drafts.applicableSections(d.respostas)) {
+      try {
+        renderSection(id, ficha[id]);
+      } catch {
+        throw new HttpError(409, `A secção ${SECTION_HEADINGS[id] || id} tem dados inválidos. Edite-a antes de exportar.`, {}, {
+          seccoes: [id],
+          motivo: 'invalido',
+        });
+      }
+    }
+    return ficha;
   }
+
+  // The regime avisos (Themis policy warnings, a missing clause, a policy that differs from the
+  // regime). They count in X-Eunomia-Avisos with the schema problems.
+  const regimeAvisos = (d) => composeRegime(d.respostas).avisos;
 
   // The schema problems of the whole ficha do not block the download: the teacher decides. Their
   // number goes in X-Eunomia-Avisos and the list in verificacao-final.
@@ -329,8 +387,9 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
     const formato = ctx.query.get('formato') || 'qmd';
     const kind = EXPORTS[formato];
     if (!kind) throw new HttpError(400, 'Formato desconhecido. Use qmd, md ou html.');
-    const ficha = readyFicha(readable(ctx));
-    const erros = validateFicha(ficha, 'new');
+    const d = readable(ctx);
+    const ficha = readyFicha(d);
+    const erros = [...validateFicha(ficha, 'new'), ...regimeAvisos(d)];
     const body = kind.body(ficha);
     const slug = slugify(ficha.meta.titulo || '') || 'ficha';
     const headers = {
@@ -352,6 +411,8 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
     const ficha = assembleFicha(d);
     return {
       erros: validateFicha(ficha, 'new'),
+      avisos_regime: regimeAvisos(d),
+      passos_em_falta: drafts.missingSteps(d).filter((s) => s.id !== 'plano').map((s) => s.id),
       seccoes_em_falta: sectionsToAccept(d),
       referencias_a_verificar: ficha.referencias.filter((r) => r.origem === 'docente').length,
     };

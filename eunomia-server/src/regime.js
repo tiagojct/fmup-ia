@@ -47,6 +47,8 @@ const REGIMES = {
 const MARKER = /^\p{Extended_Pictographic}\s[^—]+—\s/u;
 const PICTOGRAPH = /\p{Extended_Pictographic}️?/gu;
 
+const MISMATCH = 'O regime da actividade e a política da avaliação são diferentes. Confirme que é intencional.';
+
 const MISSING_THEMIS =
   'A actividade é sumativa, mas faltam o tipo de trabalho e a política de uso de IA: sem eles, a ficha não tem a cláusula para o enunciado.';
 
@@ -79,9 +81,11 @@ function composeRegime(respostas) {
     out.avisos.push(MISSING_THEMIS);
     return out;
   }
+  // The policy defaults from the regime; the teacher may choose another one, with a warning.
+  const policy = t.policy || REGIMES[valor].policy;
   const state = {
     role: 'teacher',
-    policy: t.policy || REGIMES[valor].policy,
+    policy,
     assignment,
     assignmentOther: t.assignmentOther || '',
     courseType: isObject(r.contexto) ? r.contexto.nivel : undefined,
@@ -89,7 +93,11 @@ function composeRegime(respostas) {
   const full = I18N_PT.statements.teacherSyllabus(state, THEMIS_VERSION, POLICY);
   // A second pass catches a marker in another shape, so that no emoji reaches the ficha.
   out.clausula = full.replace(MARKER, '').replace(PICTOGRAPH, '').trim();
-  out.avisos = THEMIS_RULES.evaluateRisk(state, POLICY).matches.map((m) => m.message_pt);
+  // avisos_themis: the policy warnings of Themis, which the ficha prints next to the clause.
+  // avisos: those and the warnings for the teacher.
+  out.avisos_themis = THEMIS_RULES.evaluateRisk(state, POLICY).matches.map((m) => m.message_pt);
+  out.avisos = [...out.avisos_themis];
+  if (policy !== REGIMES[valor].policy) out.avisos.push(MISMATCH);
   return out;
 }
 
@@ -97,7 +105,7 @@ function composeRegime(respostas) {
 function toFichaRegime(r) {
   const data = { papel: r.papel, regime: r.regime.valor };
   if (r.regime.condicoes) data.condicoes = r.regime.condicoes;
-  if (r.clausula) data.themis = { clausula: r.clausula, avisos: r.avisos.slice() };
+  if (r.clausula) data.themis = { clausula: r.clausula, avisos: (r.avisos_themis || r.avisos).slice() };
   return data;
 }
 
@@ -106,4 +114,4 @@ function renderRegime(r) {
   return renderSection('regime_ia', toFichaRegime(r));
 }
 
-module.exports = { composeRegime, toFichaRegime, renderRegime, THEMIS_VERSION, REGIMES };
+module.exports = { composeRegime, toFichaRegime, renderRegime, THEMIS_VERSION, REGIMES, MISMATCH };

@@ -13,7 +13,21 @@ const { buildMeta } = require('./assemble.js');
 const prompts = require('./prompts.js');
 
 // Lint rules that make the server ask again. Numbers are only flagged: the teacher confirms them.
-const RETRY_RULES = new Set(['lingua', 'estilo', 'referencia']);
+const RETRY_RULES = new Set(['lingua', 'estilo', 'referencia', 'controlo']);
+
+// C0 control characters other than tab, newline and carriage return.
+const CONTROL = /[\u0000-\u0008\u000B\u000C\u000E-\u001F]/;
+const CONTROL_MESSAGE = 'O texto tem caracteres de controlo. Retire-os.';
+const MATERIALS_CUT = 'Os materiais foram cortados aos 20 000 caracteres no pedido ao modelo.';
+const RETRY_FAILED = 'A correcção pedida ao modelo falhou: a segunda resposta não era JSON válido. O texto é o da primeira resposta.';
+
+// True when a string anywhere in data has a control character.
+function hasControl(data) {
+  if (typeof data === 'string') return CONTROL.test(data);
+  if (Array.isArray(data)) return data.some(hasControl);
+  if (data && typeof data === 'object') return Object.values(data).some(hasControl);
+  return false;
+}
 
 const newThreadId = () => `thr-${crypto.randomUUID()}`;
 
@@ -34,6 +48,7 @@ function unwrap(sectionId, data) {
 // The problems of one reply: { errors: [texts for the retry], avisos: [{ regra, texto, trecho? }] }.
 function check(sectionId, data, draft) {
   const avisos = validateSection(sectionId, data, 'new', { meta: buildMeta(draft) }).map((texto) => ({ regra: 'esquema', texto }));
+  if (hasControl(data)) avisos.push({ regra: 'controlo', texto: CONTROL_MESSAGE });
   let lints = [];
   try {
     const md = renderSection(sectionId, data);
@@ -56,6 +71,14 @@ async function generateSection({ draft, sectionId, client, creds, comentario, be
   const anterior = comentario && current && current.dados !== undefined ? current.dados : undefined;
   const base = prompts.writeSection(sectionId, prompts.planText(draft), materialsOf(draft), comentario, anterior, draft);
   const threadId = newThreadId();
+  const extra = materialsOf(draft).trim().length > prompts.MAX_MATERIALS ? [{ regra: 'materiais', texto: MATERIALS_CUT }] : [];
+  const result = (r, chamadas, more = []) => ({
+    dados: r.data,
+    avisos: [...r.avisos, ...more, ...extra],
+    modelo: r.model || null,
+    threadId,
+    chamadas,
+  });
 
   const ask = async (message) => {
     const reply = await client.send({ key: creds.key, agentId: creds.agentId, channelId: creds.channelId, threadId, message });
@@ -71,30 +94,26 @@ async function generateSection({ draft, sectionId, client, creds, comentario, be
 
   await beforeCall();
   const first = await ask(base);
-  if (first.errors.length === 0) return result(first, threadId, 1);
+  if (first.errors.length === 0) return result(first, 1);
 
   try {
     await beforeCall();
   } catch (e) {
     if (first.data === undefined) throw e;
     const limite = { regra: 'limite', texto: 'Não foi possível pedir uma correcção ao modelo: atingiu o limite diário de pedidos.' };
-    return result({ ...first, avisos: [...first.avisos, limite] }, threadId, 1);
+    return result(first, 1, [limite]);
   }
   const retry = join(base, first.errors);
   const second = await ask(retry);
   if (second.data === undefined) {
     if (first.data === undefined) throw new IaeduError('formato');
-    return result(first, threadId, 2);
+    return result(first, 2, [{ regra: 'esquema', texto: RETRY_FAILED }]);
   }
-  return result(second, threadId, 2);
+  return result(second, 2);
 }
 
 function join(base, errors) {
   return `${base}\n\nA resposta anterior tinha estes problemas. Corrija-os e devolva só o JSON da secção:\n${errors.map((e) => `- ${e}`).join('\n')}`;
 }
 
-function result(r, threadId, chamadas) {
-  return { dados: r.data, avisos: r.avisos, modelo: r.model || null, threadId, chamadas };
-}
-
-module.exports = { generateSection, newThreadId, check };
+module.exports = { generateSection, newThreadId, check, hasControl, CONTROL_MESSAGE };

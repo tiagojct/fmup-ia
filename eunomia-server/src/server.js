@@ -106,8 +106,9 @@ function splitUrl(url) {
   return { pathname, query };
 }
 
-// Reads the body up to the limit. After the limit it answers at once and discards the rest of
-// the upload, so the connection stays usable and the client can read the 413.
+// Reads the body up to the limit. Over the limit it rejects at once (413) and drains the rest of
+// the upload; the error reply then carries Connection: close (see fail), so the client gets the 413
+// and the next request opens a new connection.
 function readBody(req, limit) {
   return new Promise((resolve, reject) => {
     const chunks = [];
@@ -153,8 +154,11 @@ function readBody(req, limit) {
 
 // The body as a JSON object. No body is {}. A body needs the JSON content type: a form post from
 // another site cannot send it without a preflight, which is a second guard next to SameSite.
+// The body-read flag is set as soon as the whole body is in, so that a 415 or a 400 after it keeps
+// the connection open.
 async function readJson(req, limit = MAX_BODY) {
   const buffer = await readBody(req, limit);
+  req[BODY_READ] = true;
   const text = buffer.toString('utf8');
   if (text.trim() === '') return {};
   if (!/^application\/json\s*(;|$)/i.test(req.headers['content-type'] || '')) {
@@ -387,7 +391,6 @@ function createServer(config) {
 
     if (found.before) await found.before(req);
     const body = await readJson(req, found.maxBody);
-    req[BODY_READ] = true;
     const { creds, error: credsError } = resolveCreds(req, query, cfg.env);
     const result = await found.handler(req, res, { user, params, body, creds, credsError, query });
 

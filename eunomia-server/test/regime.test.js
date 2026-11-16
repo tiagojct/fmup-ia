@@ -16,6 +16,8 @@ const POLICY = JSON.parse(fs.readFileSync(repoPath('themis', 'policy.json'), 'ut
 const sandbox = { window: {} };
 vm.runInNewContext(fs.readFileSync(repoPath('themis', 'i18n', 'pt.js'), 'utf8'), sandbox);
 const I18N_PT = sandbox.window.I18N_PT;
+// The Themis footer has the time of generation; two calls can fall in different minutes.
+const sameMinute = (s) => s.replace(/Declaração gerada a .+? através/, 'Declaração gerada a X através');
 const VERSAO = /\nthemis:\n(?:[ \t]+.*\n)*?[ \t]+versao:\s*"([^"]+)"/.exec(fs.readFileSync(repoPath('_variables.yml'), 'utf8'))[1];
 
 function respostas({ avaliacao = 'formativa', papel = 'nenhum', regime = 'proibido', condicoes, themis, nivel = 'uc_undergrad' } = {}) {
@@ -64,16 +66,20 @@ test('summative not_permitted: the clause is the Themis teacherSyllabus text wit
   const full = I18N_PT.statements.teacherSyllabus(state, VERSAO, POLICY);
   assert.ok(full.startsWith(String.fromCodePoint(0x1f7e5)), 'Themis puts the red marker first');
   const expected = full.replace(String.fromCodePoint(0x1f7e5) + ' Proibido — ', '');
-  assert.equal(r.clausula, expected);
+  assert.equal(sameMinute(r.clausula), sameMinute(expected));
   assert.ok(![...r.clausula].some((ch) => ch.codePointAt(0) >= 0x1f000 && ch.codePointAt(0) <= 0x1ffff));
   assert.deepEqual(lintEmoji(renderRegime(r)), []);
   assert.equal(THEMIS_VERSION, VERSAO);
 });
 
 test('the avisos are the message_pt of the Themis rules that the teacher state triggers', () => {
+  const regimeFor = { not_permitted: 'proibido', with_disclosure: 'condicionado', without_restrictions: 'permitido' };
   for (const policy of ['not_permitted', 'with_disclosure', 'without_restrictions']) {
     const assignment = ['data_analysis', 'essay'];
-    const r = composeRegime(respostas({ avaliacao: 'sumativa', nivel: 'uc_master', themis: { policy, assignment } }));
+    const regime = regimeFor[policy];
+    const r = composeRegime(
+      respostas({ avaliacao: 'sumativa', nivel: 'uc_master', regime, condicoes: regime === 'condicionado' ? 'Com declaração.' : undefined, themis: { policy, assignment } }),
+    );
     const ev = THEMIS_RULES.evaluateRisk({ role: 'teacher', policy, assignment, courseType: 'uc_master' }, POLICY);
     assert.ok(ev.matches.length > 0, policy);
     assert.deepEqual(r.avisos, ev.matches.map((m) => m.message_pt), policy);

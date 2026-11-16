@@ -276,7 +276,8 @@
           "id": "policy",
           "rotulo": "Política de uso de IA no trabalho avaliado",
           "tipo": "escolha",
-          "obrigatorio": true,
+          "obrigatorio": false,
+          "ajuda": "Por omissão, a política que corresponde ao regime da actividade. Escolha outra só se o trabalho avaliado tiver regras diferentes das da actividade.",
           "opcoes": [
             { "id": "not_permitted", "rotulo": "Não permitido" },
             { "id": "with_disclosure", "rotulo": "Permitido com divulgação integral" },

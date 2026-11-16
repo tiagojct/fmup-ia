@@ -188,7 +188,9 @@ test('exportar qmd equals renderQmd of the assembled ficha, as an attachment', a
   const r = await app.call('GET', `/rascunhos/${d.id}/exportar?formato=qmd`, { cookie: ana.cookie });
   assert.equal(r.status, 200);
   const stored = app.store.read(`rascunhos/${ana.id}/${d.id}.json`);
-  assert.equal(r.text, renderQmd(assembleFicha(stored)));
+  // The Themis footer (summative only) has the minute of generation: compare without it.
+  const sameMinute = (x) => x.replace(/Declaração gerada a .+? através/g, 'Declaração gerada a X através');
+  assert.equal(sameMinute(r.text), sameMinute(renderQmd(assembleFicha(stored))));
   assert.equal(r.headers.get('content-disposition'), 'attachment; filename="debate-sobre-o-fim-de-vida.qmd"');
   assert.equal(r.headers.get('x-eunomia-avisos'), '0');
   assert.equal(readEunomiaFrontMatter(r.text).meta.titulo, 'Debate sobre o fim de vida');
@@ -220,4 +222,35 @@ test('exportar works with teacher-edited sections and reports the schema problem
   assert.ok(v.json.erros.some((e) => /fora da duração/.test(e)));
   assert.ok(v.json.erros.some((e) => /referencias/.test(e)));
   assert.deepEqual(v.json.seccoes_em_falta, []);
+});
+
+// ---------------------------------------------------------------- control characters (fix round 7-9, item 1)
+
+test('a placeholder-like NUL sequence in a code span exports in under 1 s', () => {
+  // Run in a child process: an endless loop would block this runner.
+  const { spawnSync } = require('node:child_process');
+  const script = `
+    const drafts = require('./src/drafts.js');
+    const { assembleFicha } = require('./src/assemble.js');
+    const { renderHtml } = require('./src/export.js');
+    const { respostasCompletas } = require('./test/helpers.js');
+    let d = drafts.createDraft({ id: 'a1b2c3d4', name: 'Ana' }, 'criar');
+    for (const [s, v] of Object.entries(respostasCompletas())) d = drafts.applyAnswer(d, s, v).draft;
+    d = drafts.approvePlan(d);
+    d.seccoes.papeis = { dados: { estudante: 'Texto com \`\\u00000\\u0000\` no meio.', docente: 'x' }, estado: 'aceite', avisos: [] };
+    const ficha = assembleFicha(d);
+    const t0 = Date.now();
+    const html = renderHtml(ficha);
+    const ms = Date.now() - t0;
+    process.stdout.write((html.includes('\\u0000') ? 'nul ' : 'ok ') + ms);
+  `;
+  const r = spawnSync(process.execPath, ['-e', script], { cwd: path.join(__dirname, '..'), timeout: 5000, encoding: 'utf8' });
+  assert.equal(r.signal, null, 'o processo foi terminado por tempo');
+  const [state, ms] = r.stdout.split(' ');
+  assert.equal(state, 'ok', r.stderr);
+  assert.ok(Number(ms) < 1000, `${ms} ms`);
+});
+
+test('markdownToHtml drops C0 control characters except tab and newline', () => {
+  assert.equal(markdownToHtml('a\u0000b\u0007c\td'), '<p>abc\td</p>');
 });

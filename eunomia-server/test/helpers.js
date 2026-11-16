@@ -40,10 +40,10 @@ async function startApp(t, extra = {}) {
     fs.rmSync(dir, { recursive: true, force: true });
   });
 
-  async function call(method, route, { body, headers = {}, cookie } = {}) {
+  async function call(method, route, { body, headers = {}, cookie, raw } = {}) {
     const h = { ...headers };
     if (cookie) h.cookie = `eunomia=${cookie}`;
-    let payload;
+    let payload = raw;
     if (body !== undefined) {
       payload = JSON.stringify(body);
       h['content-type'] = 'application/json';
