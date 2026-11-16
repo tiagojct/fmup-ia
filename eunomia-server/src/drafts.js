@@ -8,8 +8,14 @@
 //           respostas: { [passo]: valor }, plano_aprovado, seccoes: { [id]: Seccao },
 //           referencias: [], threads: { [id]: threadId } }
 // Seccao = { dados?, estado: 'vazia' | 'gerada' | 'aceite' | 'a-actualizar', avisos: [], modelo,
-//            origem?: 'modelo' | 'docente', anterior?: Seccao without anterior }
+//            origem?: 'modelo' | 'docente', opiniao?: Opiniao, anterior?: Seccao without anterior }
 //   anterior is the text a "Nova versão" replaced; POST .../repor swaps it back.
+//   Opiniao = { util: boolean, comentario?: string, data: ISO time, modelo: string | null }: the
+//   "Foi útil?" answer of the author on the text of the model. It stays with the text it is about:
+//   a teacher edit keeps it in the section, a "Nova versão" moves it into anterior.
+// A draft also has submetida (ISO time of the last submission) and revisao = { decisao: 'aprovada' |
+// 'devolvida', comentario?, data, revisor } while it is under review or after the decision; a new
+// submission removes revisao. estado: rascunho, submetida, devolvida, aprovada, rejeitada, substituida.
 // Stored as rascunhos/<userId>/<draftId>.json. rev grows by one on each write. A deleted draft moves
 // to apagados/<userId>/<draftId>.json with apagado (ISO time) and is removed after DELETED_DAYS.
 
@@ -411,17 +417,33 @@ function saveDraft(store, draft, now = Date.now()) {
   return draft;
 }
 
-function listDrafts(store, userId) {
-  return store
+// A parsed file that has the two fields every reader of a draft needs.
+const isDraftLike = (d) => isObject(d) && typeof d.estado === 'string' && isObject(d.autor) && typeof d.autor.id === 'string';
+
+// The drafts of one user. A damaged file (not valid JSON) throws, as store.read does, so that the
+// author's own list does not hide it. With { skipDamaged: true } a damaged file is left out, and so
+// is valid JSON that is not a draft (no state or no author): for the pages that read every draft.
+function listDrafts(store, userId, { skipDamaged = false } = {}) {
+  const read = (name) => {
+    try {
+      return store.read(`rascunhos/${userId}/${name}`, null);
+    } catch (e) {
+      if (skipDamaged) return null;
+      throw e;
+    }
+  };
+  const list = store
     .list(`rascunhos/${userId}`)
     .filter((name) => name.endsWith('.json'))
-    .map((name) => store.read(`rascunhos/${userId}/${name}`, null))
+    .map(read)
     .filter(Boolean);
+  return skipDamaged ? list.filter(isDraftLike) : list;
 }
 
-// Every draft of every user, for the admin pages.
-function listAllDrafts(store) {
-  return store.list('rascunhos').flatMap((dir) => listDrafts(store, dir));
+// Every draft of every user, for the admin pages. Deleted drafts (apagados/) are not in it. The
+// options are those of listDrafts.
+function listAllDrafts(store, options) {
+  return store.list('rascunhos').flatMap((dir) => listDrafts(store, dir, options));
 }
 
 const isEditable = (draft) => EDITABLE.includes(draft.estado);

@@ -28,6 +28,7 @@ const { COOKIE_NAME, SESSION_MS, CodeInputError } = require('./auth.js');
 const { IaeduError } = require('./iaedu.js');
 const { logRequest, logError } = require('./log.js');
 const { registerDraftRoutes } = require('./draft-routes.js');
+const { registerReviewRoutes } = require('./review-routes.js');
 
 const MAX_BODY = 1024 * 1024;
 const PUBLIC_MAX_BODY = 8 * 1024; // public routes (login) take a small body only
@@ -319,8 +320,10 @@ function registerRoutes(route, config) {
   );
 
   // The drafts, the interview and the sections (Tasks 7 and 9). The module gets the helpers it
-  // needs from here, so that it does not require this file.
-  registerDraftRoutes(route, config, { HttpError, requireCreds, sendJson });
+  // needs from here, so that it does not require this file. The pilot routes (opinion, submission,
+  // review, usage) use the draft helpers that it returns.
+  const draftHelpers = registerDraftRoutes(route, config, { HttpError, requireCreds, sendJson });
+  registerReviewRoutes(route, config, { HttpError, sendJson, ...draftHelpers });
 }
 
 // ---------------------------------------------------------------- the server

@@ -51,7 +51,8 @@ const MODEL_BUDGET_MS = 90000;
 // Every 409 says why, so that the front end offers "Recarregar" only for a stale rev:
 // rev (another window changed the draft), bloqueado (submitted), plano (plan not approved),
 // passo (a step has no answer), incompleto (a section has no accepted text), invalido (the data
-// of a section breaks the schema), limite (the teacher has MAX_DRAFTS drafts).
+// of a section breaks the schema), limite (the teacher has MAX_DRAFTS drafts), estado (a review
+// action on a draft that is not submetida).
 const CODE_SECTIONS = ['meta', 'regime_ia', 'referencias', 'declaracao'];
 const MAX_REFERENCES = 20;
 const MAX_COMMENT = 2000;
@@ -404,6 +405,8 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
       modelo: prev.modelo || null,
       origem: 'docente',
       editado: new Date(now()).toISOString(),
+      // The "Foi útil?" opinion is about the model text and stays with the section.
+      ...(prev.opiniao ? { opiniao: prev.opiniao } : {}),
       ...(prev.anterior ? { anterior: prev.anterior } : {}),
     };
     return view(save(d));

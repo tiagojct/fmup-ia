@@ -215,6 +215,34 @@ test('countModelCall: the count restarts on the next UTC day', (t) => {
   assert.deepEqual(auth.countModelCall('u1'), { ok: true, used: 1, limit: 3 });
 });
 
+test('usageSummary counts today and the last 30 days; a day 30 days ago is dropped from usage.json', (t) => {
+  const { dir, store, auth } = setup(t, { dailyLimit: 50 });
+  // T0 is 2026-11-14. The 30 days are 2026-10-16 to 2026-11-14.
+  store.write('usage.json', {
+    '2026-10-14': { u1: 40, u3: 9 },
+    '2026-10-15': { u1: 50, u2: 50 },
+    '2026-10-16': { u1: 2 },
+    '2026-11-01': { u3: 2, u1: 'x' },
+    '2026-11-14': { u1: 3, u2: 1 },
+    '2026-11-20': { u1: 7 },
+  });
+  assert.deepEqual(auth.usageSummary(), {
+    limite: 50,
+    utilizadores: { u1: { hoje: 3, dias30: 5 }, u2: { hoje: 1, dias30: 1 }, u3: { hoje: 0, dias30: 2 } },
+  });
+  // The next call is written, and the days before the 30 are dropped.
+  assert.equal(auth.countModelCall('u1').ok, true);
+  const usage = JSON.parse(fs.readFileSync(path.join(dir, 'usage.json'), 'utf8'));
+  assert.deepEqual(Object.keys(usage), ['2026-10-16', '2026-11-01', '2026-11-14', '2026-11-20']);
+  assert.equal(usage['2026-11-14'].u1, 4);
+  assert.equal(auth.usageSummary().utilizadores.u1.dias30, 6);
+});
+
+test('usageSummary with no usage.json has no users and still names the limit', (t) => {
+  const { auth } = setup(t);
+  assert.deepEqual(auth.usageSummary(), { limite: 200, utilizadores: {} });
+});
+
 test('countModelCall: the count survives a restart (usage.json) and old days are dropped', (t) => {
   const { dir, auth, clock, make } = setup(t, { dailyLimit: 5 });
   for (let i = 0; i < 4; i += 1) auth.countModelCall('u1');

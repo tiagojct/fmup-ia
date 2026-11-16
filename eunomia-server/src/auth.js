@@ -7,7 +7,8 @@
 //                kept. A revoked entry keeps id, name, role, created and revoked; salt and hash go.
 //                The file is read on each call, so a code that bin/codes.js adds or revokes in
 //                another process works at once.
-//   usage.json   { "<YYYY-MM-DD>": { "<id>": <model calls> } }, UTC days, the last 31 days.
+//   usage.json   { "<YYYY-MM-DD>": { "<id>": <model calls> } }, UTC days, the last 30 days (today and
+//                the 29 days before). usageSummary() reads it for the usage page of the admin.
 //   Sessions     a cookie value "<base64url(payload)>.<base64url(hmac-sha256)>", payload { id, exp }.
 //                The user is read from codes.json on each verify: a revoked code ends its sessions.
 //   Rate limits  in memory, a sliding window of one minute.
@@ -30,7 +31,7 @@ const COOKIE_NAME = 'eunomia';
 const SESSION_MS = 12 * 60 * 60 * 1000;
 const WINDOW_MS = 60 * 1000;
 const DAY_MS = 24 * 60 * 60 * 1000;
-const USAGE_DAYS = 31;
+const USAGE_DAYS = 30;
 const MAX_NAME_LENGTH = 100;
 
 function generateCode() {
@@ -181,6 +182,11 @@ function createAuth({ store, secret, dailyLimit = 200, now = Date.now } = {}) {
     return new Date(now()).toISOString().slice(0, 10);
   }
 
+  // The first UTC day that usage.json keeps: today and the days before make USAGE_DAYS days.
+  function oldestUsageDay() {
+    return new Date(now() - (USAGE_DAYS - 1) * DAY_MS).toISOString().slice(0, 10);
+  }
+
   // Counts one model call for the user, unless the limit of the UTC day is reached. A refused call
   // is not counted. The count is written before the call goes ahead.
   function countModelCall(userId) {
@@ -192,12 +198,33 @@ function createAuth({ store, secret, dailyLimit = 200, now = Date.now } = {}) {
     if (used >= dailyLimit) return { ok: false, used, limit: dailyLimit };
 
     counts[userId] = used + 1;
-    const oldest = new Date(now() - (USAGE_DAYS - 1) * DAY_MS).toISOString().slice(0, 10);
+    const oldest = oldestUsageDay();
     const kept = {};
     for (const key of Object.keys(usage).sort()) if (key >= oldest) kept[key] = usage[key];
     kept[day] = counts;
     store.write('usage.json', kept);
     return { ok: true, used: used + 1, limit: dailyLimit };
+  }
+
+  // The model calls of the last USAGE_DAYS days, for the usage page: the daily limit and, per user
+  // with a count, the calls today and in the 30 days (today included). A day outside the 30 days, and
+  // a count that is not a whole number, is left out.
+  function usageSummary() {
+    const usage = store.read('usage.json', {}) || {};
+    const day = today();
+    const oldest = oldestUsageDay();
+    const users = new Map();
+    for (const [key, counts] of Object.entries(usage)) {
+      if (key < oldest || key > day || counts === null || typeof counts !== 'object') continue;
+      for (const [id, n] of Object.entries(counts)) {
+        if (!Number.isInteger(n) || n < 0) continue;
+        const entry = users.get(id) || { hoje: 0, dias30: 0 };
+        entry.dias30 += n;
+        if (key === day) entry.hoje += n;
+        users.set(id, entry);
+      }
+    }
+    return { limite: dailyLimit, utilizadores: Object.fromEntries(users) };
   }
 
   const hits = new Map();
@@ -222,7 +249,7 @@ function createAuth({ store, secret, dailyLimit = 200, now = Date.now } = {}) {
     return true;
   }
 
-  return { addCode, revoke, list, login, sign, verify, countModelCall, rateLimit };
+  return { addCode, revoke, list, login, sign, verify, countModelCall, usageSummary, rateLimit };
 }
 
 module.exports = { createAuth, CodeInputError, COOKIE_NAME, SESSION_MS, ALPHABET };
