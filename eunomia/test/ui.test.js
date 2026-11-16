@@ -162,7 +162,7 @@ class FakeApi {
     if (!d) return json(404, { erro: 'Rascunho não encontrado.' });
     const rest = m[2] || '';
     const write = () => {
-      if (body.rev !== d.rev) return json(409, { erro: 'O rascunho foi alterado noutra janela. Recarregue a página.' });
+      if (body.rev !== d.rev) return json(409, { erro: 'O rascunho foi alterado noutra janela. Recarregue a página.', motivo: 'rev' });
       return null;
     };
     if (method === 'GET' && rest === '') return json(200, this.view(d));
@@ -487,6 +487,72 @@ test('the plan page shows the summary and approves the plan', async (t) => {
 
 // ---------------------------------------------------------------- sections
 
+test('a relaxed pattern shows its partial fit and the reason; a note shows when fewer than two fit', async (t) => {
+  const r = { ...ANSWERS };
+  delete r.padrao;
+  delete r.materiais;
+  delete r.plano;
+  const api = new FakeApi({ user: TEACHER, draft: makeDraft({ respostas: r }) });
+  const [one, two] = PATTERNS.filter((x) => x.papel_ia === 'contraparte');
+  api.on('GET', /^\/padroes$/, (call) =>
+    json(200, call.query.get('rascunho')
+      ? { padroes: [one, { ...two, ajuste: 'parcial', ajuste_motivo: 'A duração típica deste padrão é maior do que o tempo indicado.' }], nota: 'Há menos de dois padrões do catálogo para este papel da IA e este tempo.' }
+      : { padroes: PATTERNS }));
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/passo/padrao` });
+  await a.page('passo');
+  const relaxed = a.$(`.eu-padrao[data-padrao="${two.id}"]`);
+  assert.ok(relaxed.querySelector('.eu-ajuste'));
+  assert.match(relaxed.textContent, /Adequação parcial/);
+  assert.match(relaxed.textContent, /maior do que o tempo indicado/);
+  assert.equal(a.$(`.eu-padrao[data-padrao="${one.id}"] .eu-ajuste`), null);
+  assert.match(a.text(), /menos de dois padrões/);
+});
+
+test('the section avisos name the new rules: cut materials and control characters', async (t) => {
+  const d = approvedDraft();
+  d.seccoes.papeis = {
+    dados: { estudante: 'Faz.', docente: 'Conduz.' }, estado: 'gerada', modelo: 'gpt-4o', origem: 'modelo',
+    avisos: [
+      { regra: 'materiais', texto: 'Os materiais foram cortados aos 20 000 caracteres no pedido ao modelo.' },
+      { regra: 'controlo', texto: 'O texto tem caracteres de controlo. Retire-os.' },
+    ],
+  };
+  const api = new FakeApi({ user: TEACHER, draft: d });
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/seccao/papeis` });
+  await a.page('seccao');
+  const box = a.$('#seccao-avisos').textContent;
+  assert.match(box, /cortados aos 20 000 caracteres/);
+  assert.match(box, /Materiais/);
+  assert.match(box, /Caracteres de controlo/);
+  assert.doesNotMatch(box, /materiais Os/);
+});
+
+test('the regime and policy mismatch aviso shows after the step and in the final check', async (t) => {
+  const MISMATCH = 'O regime da actividade e a política da avaliação são diferentes. Confirme que é intencional.';
+  const r = { ...ANSWERS, evidencia: { ...ANSWERS.evidencia, avaliacao: 'sumativa' } };
+  delete r.padrao;
+  delete r.materiais;
+  delete r.plano;
+  const api = new FakeApi({ user: TEACHER, draft: makeDraft({ respostas: r }) });
+  api.on('PUT', /\/respostas\/regime_themis$/, (call) => {
+    const d = api.drafts.get(DRAFT_ID);
+    d.respostas = { ...d.respostas, regime_themis: call.body.valor };
+    return json(200, api.view(api.save(d), { avisos: [MISMATCH] }));
+  });
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/passo/regime_themis` });
+  await a.page('passo');
+  a.set('input[value="essay"]', true);
+  a.$('#guardar-passo').click();
+  await a.waitFor(() => a.$('#continuar-passo'), 'avisos after the step');
+  assert.match(a.text(), /são diferentes/);
+
+  const api2 = new FakeApi({ user: TEACHER, draft: approvedDraft() });
+  api2.on('GET', /\/verificacao-final$/, () => json(200, { erros: [], avisos_regime: [MISMATCH], passos_em_falta: [], seccoes_em_falta: [], referencias_a_verificar: 0 }));
+  const b = await boot(t, { api: api2, hash: `#/rascunho/${DRAFT_ID}/previsao` });
+  await b.page('previsao');
+  await b.waitFor(() => /são diferentes/.test(b.$('#verificacao').textContent), 'regime aviso in the check');
+});
+
 test('the section editor shows the avisos and the three buttons', async (t) => {
   const api = new FakeApi({ user: TEACHER, draft: approvedDraft() });
   const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/seccao/objectivo` });
@@ -606,6 +672,18 @@ test('a 409 on a rev mismatch shows the server message and offers Recarregar', a
   await a.page('seccao');
   a.$('#aceitar').click();
   await a.waitFor(() => lastCall(api, 'POST', /\/aceitar$/).body.rev === 7, 'accept with the new rev');
+});
+
+test('a 409 with another motivo shows the message and the errors, without Recarregar', async (t) => {
+  const api = new FakeApi({ user: TEACHER, draft: approvedDraft() });
+  api.on('POST', /\/aceitar$/, () => json(409, { erro: 'A secção tem erros. Edite-a antes de a aceitar.', motivo: 'invalido', erros: ['O campo texto não pode estar vazio.'] }));
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/seccao/objectivo` });
+  await a.page('seccao');
+  a.$('#aceitar').click();
+  await a.waitFor(() => a.$('.eu-erro'), 'error');
+  assert.match(a.$('.eu-erro').textContent, /Edite-a antes de a aceitar/);
+  assert.match(a.$('.eu-erro').textContent, /não pode estar vazio/);
+  assert.equal(a.$('#recarregar'), null);
 });
 
 test('a model error shows the Portuguese message of the server', async (t) => {

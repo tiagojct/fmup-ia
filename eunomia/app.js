@@ -14,7 +14,9 @@
  * and one more page function; an unknown route goes to #/inicio, so no button points to them yet.
  *
  * Errors: a 401 with motivo "auth" is a wrong own IAedu key (the session is fine). Any other 401
- * ends the session. A 409 on a write offers "Recarregar". Model calls show a busy state.
+ * ends the session. A 409 on a write with motivo "rev" (another window saved the draft) offers
+ * "Recarregar"; other 409s (bloqueado, plano, passo, incompleto, invalido) show the message only.
+ * Model calls show a busy state.
  */
 (function () {
   'use strict';
@@ -190,7 +192,7 @@
     redirect('#/entrar');
   }
 
-  // Shows err in slot. opts.write: the request was a write (a 409 offers Recarregar).
+  // Shows err in slot. opts.write: the request was a write (a 409 with motivo rev offers Recarregar).
   // opts.login: a 401 is a wrong access code, not the end of a session.
   function report(slot, err, opts) {
     opts = opts || {};
@@ -210,7 +212,7 @@
     var box = el('div', { class: 'eu-erro', role: 'alert', tabindex: '-1' }, el('p', { class: 'eu-erro-texto', text: text }));
     if (err.erros.length) box.appendChild(el('ul', null, err.erros.map(function (e) { return el('li', { text: e }); })));
     if (err.status === 401 && err.motivo === 'auth') box.appendChild(el('p', null, link(S.erros.verDefinicoes, '#/definicoes')));
-    if (err.status === 409 && opts.write) {
+    if (err.status === 409 && opts.write && err.motivo === 'rev') {
       box.appendChild(el('p', { text: S.erros.conflito }));
       box.appendChild(button(S.comum.recarregar, { id: 'recarregar', class: 'btn-primary' }, function () { route(); }));
     }
@@ -803,6 +805,7 @@
   // The pattern step: the proposed patterns first, then (on request) the rest of the catalogue.
   function patternPicker(d, campo, value, patterns, slot) {
     var proposed = (patterns && patterns[0] && patterns[0].padroes) || [];
+    var nota = patterns && patterns[0] && patterns[0].nota;
     var all = (patterns && patterns[1] && patterns[1].padroes) || [];
     var proposedIds = proposed.map(function (p) { return p.id; });
     var others = all.filter(function (p) { return proposedIds.indexOf(p.id) === -1; });
@@ -814,6 +817,8 @@
           el('span', { class: 'option-text' },
             el('span', { class: 'option-label' }, p.nome, p.estado === 'rascunho' ? el('span', { class: 'eu-nota', text: ' ' + S.passo.rascunhoPadrao }) : null),
             el('span', { class: 'option-description', text: p.mecanismo }))),
+        // A pattern proposed with a relaxed filter (duration or setting): say so, with the reason.
+        p.ajuste === 'parcial' ? el('p', { class: 'eu-ajuste' }, el('strong', { text: S.passo.ajusteParcial }), ' ', p.ajuste_motivo || '') : null,
         el('dl', { class: 'eu-padrao-detalhe' },
           el('dt', { text: S.passo.quandoServe }), el('dd', { text: p.quando_serve || '' }),
           el('dt', { text: S.passo.quandoNaoServe }), el('dd', { text: p.quando_nao_serve || '' }),
@@ -863,6 +868,7 @@
     var row = el('fieldset', { class: 'field-row eu-fieldset', id: 'campo-' + campo.id },
       el('legend', null, labelText(campo)),
       el('p', { class: 'eu-ajuda', text: proposed.length ? S.passo.padroesNota : S.passo.semPadroes }),
+      nota ? el('p', { class: 'eu-nota', id: 'padroes-nota', text: nota }) : null,
       proposed.length ? el('h3', { class: 'eu-subtitulo', text: S.passo.padroesPropostos }) : null,
       proposedBox,
       explain ? el('div', { class: 'nav-row' }, explain, toggle) : null,
@@ -1378,6 +1384,18 @@
       return API.request('GET', '/rascunhos/' + id + '/verificacao-final').then(function (v) {
         if (!ctx.alive()) return;
         var missing = v.seccoes_em_falta || [];
+        var steps = v.passos_em_falta || [];
+        if (steps.length) {
+          check.appendChild(el('p', { text: S.previsao.passosFalta }));
+          check.appendChild(el('ul', null, steps.map(function (passo) {
+            var p = stepById(passo);
+            return el('li', null, link(p ? p.titulo : passo, stepHref(id, passo)));
+          })));
+        }
+        if ((v.avisos_regime || []).length) {
+          check.appendChild(el('p', { text: S.previsao.avisosRegime }));
+          check.appendChild(el('ul', { id: 'avisos-regime' }, v.avisos_regime.map(function (a) { return el('li', { text: a }); })));
+        }
         if (missing.length) {
           check.appendChild(el('p', { text: S.previsao.faltam }));
           check.appendChild(el('ul', null, missing.map(function (sec) {

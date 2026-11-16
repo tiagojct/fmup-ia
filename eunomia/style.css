@@ -503,6 +503,13 @@ textarea.eu-mono,
   margin-left: 2.6rem;
 }
 
+/* A pattern proposed with a relaxed filter: the reason, next to the pattern. */
+.eu-ajuste {
+  margin: 0.4rem 0.95rem 0 2.6rem;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
 .eu-explicacao {
   margin: 0.5rem 0.95rem 0 2.6rem;
   border-left: 3px solid var(--c-fmup-yellow);
@@ -526,6 +533,7 @@ textarea.eu-mono,
 
   .eu-padrao > .eu-nota,
   .eu-padrao-catalogo > .eu-nota,
+  .eu-ajuste,
   .eu-explicacao {
     margin-left: 0.95rem;
   }
