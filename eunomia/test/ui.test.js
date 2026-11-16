@@ -702,8 +702,19 @@ test('a model error shows the Portuguese message of the server', async (t) => {
 
 // ---------------------------------------------------------------- settings and own key
 
-test('own key with remember unticked: nothing in localStorage, the next request carries X-Iaedu-Key', async (t) => {
-  const api = new FakeApi({ user: TEACHER });
+// The own-key headers go only with the model calls (final fixes, item 3): the probe is a gerar
+// request on an empty section of the draft.
+async function modelCall(a, api) {
+  api.drafts.get(DRAFT_ID).seccoes.papeis = { estado: 'vazia', avisos: [], modelo: null };
+  await a.go(`#/rascunho/${DRAFT_ID}/seccao/papeis`, 'seccao');
+  const before = api.calls.length;
+  a.$('#gerar').click();
+  await a.waitFor(() => api.calls.slice(before).find((c) => c.method === 'POST' && /\/papeis\/gerar$/.test(c.path)), 'model call');
+  return api.calls.slice(before).find((c) => c.method === 'POST' && /\/papeis\/gerar$/.test(c.path));
+}
+
+test('own key with remember unticked: nothing in localStorage, the next model request carries X-Iaedu-Key', async (t) => {
+  const api = new FakeApi({ user: TEACHER, draft: approvedDraft() });
   const a = await boot(t, { api, hash: '#/definicoes' });
   await a.page('definicoes');
   a.set('#chave', 'sk-teste-123');
@@ -713,15 +724,14 @@ test('own key with remember unticked: nothing in localStorage, the next request 
   a.$('#guardar-chave').click();
   await a.waitFor(() => a.$('#modo-actual') && /sua chave/i.test(a.$('#modo-actual').textContent), 'own mode');
   assert.equal(a.w.localStorage.getItem('eunomia-chave'), null);
-  await a.go('#/inicio', 'inicio');
-  const call = lastCall(api, 'GET', /^\/rascunhos$/);
+  const call = await modelCall(a, api);
   assert.equal(call.headers.get('x-iaedu-key'), 'sk-teste-123');
   assert.equal(call.headers.get('x-iaedu-agent'), 'agente-1');
   assert.equal(call.headers.get('x-iaedu-channel'), 'canal-1');
 });
 
 test('own key with remember ticked is kept in localStorage and removed on request', async (t) => {
-  const api = new FakeApi({ user: TEACHER });
+  const api = new FakeApi({ user: TEACHER, draft: approvedDraft() });
   const a = await boot(t, { api, hash: '#/definicoes' });
   await a.page('definicoes');
   a.set('#chave', 'sk-teste-123');
@@ -733,38 +743,37 @@ test('own key with remember ticked is kept in localStorage and removed on reques
   assert.deepEqual(JSON.parse(a.w.localStorage.getItem('eunomia-chave')), { key: 'sk-teste-123', agent: 'agente-1', channel: 'canal-1', user: 'u1' });
   a.$('#remover-chave').click();
   await a.waitFor(() => a.w.localStorage.getItem('eunomia-chave') === null, 'removed');
-  await a.go('#/inicio', 'inicio');
-  assert.equal(lastCall(api, 'GET', /^\/rascunhos$/).headers.get('x-iaedu-key'), null);
+  assert.equal((await modelCall(a, api)).headers.get('x-iaedu-key'), null);
 });
 
 test('a remembered key is loaded at start', async (t) => {
-  const api = new FakeApi({ user: TEACHER });
+  const api = new FakeApi({ user: TEACHER, draft: approvedDraft() });
   const a = await boot(t, { api, hash: '#/inicio', stored: { key: 'sk-guardada', agent: 'a', channel: 'c', user: 'u1' } });
   await a.page('inicio');
-  assert.equal(lastCall(api, 'GET', /^\/rascunhos$/).headers.get('x-iaedu-key'), 'sk-guardada');
   assert.match(a.$('#modo-chave').textContent, /a sua chave IAedu/);
+  assert.equal((await modelCall(a, api)).headers.get('x-iaedu-key'), 'sk-guardada');
 });
 
 // Review 12+14, item 4: a remembered key belongs to one user.
 test('a remembered key of another user is not used, and stays stored', async (t) => {
-  const api = new FakeApi({ user: ADMIN });
+  const api = new FakeApi({ user: ADMIN, draft: approvedDraft() });
   const stored = { key: 'sk-da-ana', agent: 'a', channel: 'c', user: 'u1' };
   const a = await boot(t, { api, hash: '#/inicio', stored });
   await a.page('inicio');
-  assert.equal(lastCall(api, 'GET', /^\/rascunhos$/).headers.get('x-iaedu-key'), null);
   assert.match(a.$('#modo-chave').textContent, /chave partilhada/);
+  assert.equal((await modelCall(a, api)).headers.get('x-iaedu-key'), null);
   assert.deepEqual(JSON.parse(a.w.localStorage.getItem('eunomia-chave')), stored);
 });
 
 test('a stored key without a user is not used', async (t) => {
-  const api = new FakeApi({ user: TEACHER });
+  const api = new FakeApi({ user: TEACHER, draft: approvedDraft() });
   const a = await boot(t, { api, hash: '#/inicio', stored: { key: 'sk-antiga', agent: 'a', channel: 'c' } });
   await a.page('inicio');
-  assert.equal(lastCall(api, 'GET', /^\/rascunhos$/).headers.get('x-iaedu-key'), null);
+  assert.equal((await modelCall(a, api)).headers.get('x-iaedu-key'), null);
 });
 
 test('after logout, a remembered key is kept but not used for the next user; it comes back for its owner', async (t) => {
-  const api = new FakeApi({ user: TEACHER });
+  const api = new FakeApi({ user: TEACHER, draft: approvedDraft() });
   const a = await boot(t, { api, hash: '#/inicio', stored: { key: 'sk-da-ana', agent: 'a', channel: 'c', user: 'u1' } });
   await a.page('inicio');
   a.$('#logout-btn').click();
@@ -773,7 +782,7 @@ test('after logout, a remembered key is kept but not used for the next user; it 
   a.set('#codigo', 'ABCD-EFGH');
   a.$('#login-form button[type=submit]').click();
   await a.page('inicio');
-  assert.equal(lastCall(api, 'GET', /^\/rascunhos$/).headers.get('x-iaedu-key'), null);
+  assert.equal((await modelCall(a, api)).headers.get('x-iaedu-key'), null);
   assert.ok(a.w.localStorage.getItem('eunomia-chave'));
   a.$('#logout-btn').click();
   await a.page('entrar');
@@ -781,7 +790,7 @@ test('after logout, a remembered key is kept but not used for the next user; it 
   a.set('#codigo', 'ABCD-EFGH');
   a.$('#login-form button[type=submit]').click();
   await a.page('inicio');
-  assert.equal(lastCall(api, 'GET', /^\/rascunhos$/).headers.get('x-iaedu-key'), 'sk-da-ana');
+  assert.equal((await modelCall(a, api)).headers.get('x-iaedu-key'), 'sk-da-ana');
 });
 
 test('the home page shows the shared key mode by default', async (t) => {
@@ -1219,4 +1228,95 @@ test('4: personal data in the materials shows the findings and a confirmation th
   assert.equal(body.confirmo_sem_dados_pessoais, true);
   assert.equal(body.valor.texto, 'Contribuinte 123456789, data de nascimento 12/03/1950.');
   await a.waitFor(() => /\/passo\/plano$|\/plano$/.test(a.w.location.hash), 'next step');
+});
+
+test('3: the own-key headers go only with sugerir, explicar and gerar', async (t) => {
+  const api = new FakeApi({ user: TEACHER, draft: approvedDraft() });
+  const a = await boot(t, { api, hash: '#/inicio', stored: { key: 'sk-minha', agent: 'ag', channel: 'ca', user: 'u1' } });
+  await a.page('inicio');
+  await a.go(`#/rascunho/${DRAFT_ID}/passo/objectivo`, 'passo');
+  a.$('#sugerir-objectivo').click();
+  await a.waitFor(() => lastCall(api, 'POST', /\/objectivo\/sugerir$/), 'sugerir');
+  await a.go(`#/rascunho/${DRAFT_ID}/passo/padrao`, 'passo');
+  a.$('#explicar-padroes').click();
+  await a.waitFor(() => lastCall(api, 'POST', /\/padroes\/explicar$/), 'explicar');
+  await modelCall(a, api);
+  await a.go(`#/rascunho/${DRAFT_ID}/seccao/objectivo`, 'seccao');
+  a.$('#aceitar').click();
+  await a.waitFor(() => lastCall(api, 'POST', /\/aceitar$/), 'aceitar');
+  const model = /\/(objectivo\/sugerir|padroes\/explicar|seccoes\/[a-z_]+\/gerar)$/;
+  const withKey = api.calls.filter((c) => model.test(c.path));
+  const others = api.calls.filter((c) => !model.test(c.path));
+  assert.equal(withKey.length, 3);
+  assert.ok(others.length >= 5);
+  for (const c of withKey) {
+    assert.equal(c.headers.get('x-iaedu-key'), 'sk-minha', c.path);
+    assert.equal(c.headers.get('x-iaedu-agent'), 'ag', c.path);
+    assert.equal(c.headers.get('x-iaedu-channel'), 'ca', c.path);
+  }
+  for (const c of others) {
+    for (const h of ['x-iaedu-key', 'x-iaedu-agent', 'x-iaedu-channel']) assert.equal(c.headers.get(h), null, `${c.method} ${c.path} ${h}`);
+  }
+});
+
+test('16: after the session ends, a new login returns to the page the teacher was on', async (t) => {
+  const api = new FakeApi({ user: TEACHER, draft: approvedDraft() });
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/seccao/objectivo` });
+  await a.page('seccao');
+  api.user = null; // the session expires on the server
+  a.$('#aceitar').click();
+  await a.page('entrar');
+  a.set('#codigo', 'ABCD-EFGH');
+  a.$('#login-form button[type=submit]').click();
+  await a.page('seccao');
+  assert.equal(a.w.location.hash, `#/rascunho/${DRAFT_ID}/seccao/objectivo`);
+});
+
+test('16: a deep link opened without a session goes to its page after the login', async (t) => {
+  const api = new FakeApi({ draft: approvedDraft() });
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/seccao/objectivo` });
+  await a.page('entrar');
+  a.set('#codigo', 'ABCD-EFGH');
+  a.$('#login-form button[type=submit]').click();
+  await a.page('seccao');
+});
+
+test('16: another user who logs in after the end of a session goes to #/inicio, and a logout forgets the page', async (t) => {
+  const api = new FakeApi({ user: TEACHER, draft: approvedDraft() });
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/seccao/objectivo` });
+  await a.page('seccao');
+  api.user = null;
+  a.$('#aceitar').click();
+  await a.page('entrar');
+  api.user = ADMIN;
+  a.set('#codigo', 'ABCD-EFGH');
+  a.$('#login-form button[type=submit]').click();
+  await a.page('inicio');
+  // A logout from a page: the next login starts at #/inicio.
+  await a.go(`#/rascunho/${DRAFT_ID}/seccao/objectivo`, 'seccao');
+  a.$('#logout-btn').click();
+  await a.page('entrar');
+  a.set('#codigo', 'ABCD-EFGH');
+  a.$('#login-form button[type=submit]').click();
+  await a.page('inicio');
+});
+
+test('7: the avisos note says that structure problems block acceptance and the others do not', async (t) => {
+  const api = new FakeApi({ user: TEACHER, draft: approvedDraft() });
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/seccao/objectivo` });
+  await a.page('seccao');
+  const note = a.$('#seccao-avisos .eu-nota').textContent;
+  assert.match(note, /estrutura/);
+  assert.match(note, /antes de aceitar/);
+  assert.match(note, /outros avisos não impedem/i);
+});
+
+test('8: the copy promises no submission and no review of references in this version', () => {
+  const w = {};
+  new Function('window', fs.readFileSync(path.join(ROOT, 'i18n-pt.js'), 'utf8'))(w);
+  const S = w.EUNOMIA_PT;
+  assert.doesNotMatch(S.entrar.avisoServidor, /submet/);
+  assert.doesNotMatch(S.referencias.intro, /revisão/);
+  for (const n of [1, 2]) assert.doesNotMatch(S.previsao.refsVerificar(n), /revisão/);
+  assert.match(S.referencias.intro, /confirm/);
 });

@@ -60,6 +60,7 @@
     interview: null,
     refs: [],
     flash: null,
+    returnTo: null,
     token: 0,
   };
 
@@ -188,7 +189,17 @@
     return el('div', { class: 'eu-erro-slot' });
   }
 
+  // The page to open after the next login: { hash, user } (user null for a deep link opened without
+  // a session). Only the same user, or anyone after a deep link, goes back there.
+  function rememberPage(userId) {
+    var hash = window.location.hash || '';
+    var r = null;
+    for (var i = 0; i < ROUTES.length && !r; i++) if (ROUTES[i].re.test(hash)) r = ROUTES[i];
+    state.returnTo = r && !r.public ? { hash: hash, user: userId || null } : null;
+  }
+
   function sessionEnded() {
+    rememberPage(state.user ? state.user.id : null);
     setUser(null);
     state.flash = S.erros.sessaoTerminou;
     redirect('#/entrar');
@@ -285,7 +296,10 @@
       }
     }
     if (!found) return redirect(state.user ? '#/inicio' : '#/entrar');
-    if (!found.public && !state.user) return redirect('#/entrar');
+    if (!found.public && !state.user) {
+      if (!state.returnTo) rememberPage(null);
+      return redirect('#/entrar');
+    }
     if (found.public && state.user) return redirect('#/inicio');
     if (found.admin && state.user.perfil !== 'admin') return redirect('#/inicio');
 
@@ -365,6 +379,7 @@
     busy(btn, function () {
       return API.request('POST', '/logout').catch(function () { return null; });
     }, { label: S.app.terminarSessao }).then(function () {
+      state.returnTo = null;
       setUser(null);
       go('#/entrar');
     });
@@ -599,7 +614,9 @@
         .then(function (user) {
           input.value = '';
           setUser(user);
-          go('#/inicio');
+          var back = state.returnTo;
+          state.returnTo = null;
+          go(back && (back.user === null || back.user === user.id) ? back.hash : '#/inicio');
         })
         .catch(function (err) { report(slot, err, { login: true }); });
     });

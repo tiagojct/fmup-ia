@@ -483,3 +483,60 @@ test('4: a free-text answer over 200 characters is checked too; a short one is n
   const short = await app.call('PUT', `${url}/respostas/plano`, { cookie: ana.cookie, body: { rev: d.rev, valor: { titulo: 'T', subtitulo: 'S', notas: 'Contribuinte 123456789.' } } });
   assert.equal(short.status, 200, short.text);
 });
+
+// ---------------------------------------------------------------- 14 and 20. md export and references
+
+const { renderMd, renderHtml } = require('../src/export.js');
+const { renderQmd, validateFicha } = require('../src/ficha.js');
+const { assembleFicha } = require('../src/assemble.js');
+
+test('14: the md export starts with the title as a level-1 heading and the subtitle', () => {
+  const ficha = assembleFicha(accepted(build()));
+  const md = renderMd(ficha);
+  assert.ok(md.startsWith('# Debate sobre o fim de vida\n\nArgumentação e antecipação de objecções\n\n'), md.slice(0, 120));
+  // The HTML page has its own title block: one h1, one subtitle.
+  const html = renderHtml(ficha);
+  assert.equal(html.split('<h1>').length - 1, 1);
+  assert.equal(html.split('Argumentação e antecipação de objecções').length - 1, 1, 'the subtitle once');
+});
+
+test('14 and 20: an activity without references is valid in the new profile and has no Referência heading', () => {
+  const d = accepted(build());
+  d.referencias = [];
+  const ficha = assembleFicha(d);
+  assert.deepEqual(validateFicha(ficha, 'new'), []);
+  for (const text of [renderQmd(ficha), renderMd(ficha)]) {
+    assert.doesNotMatch(text, /## Referência/);
+    assert.match(text, /## Regime de IA[\s\S]*## Declaração de uso de IA/);
+  }
+  // With a reference the heading is there.
+  assert.match(renderMd(assembleFicha(accepted(build()))), /## Referência\n\nNicol DJ\. 2006\./);
+  // The reference profile still needs one reference or more.
+  assert.ok(validateFicha({ ...ficha, referencias: [] }, 'reference').some((e) => /referencias/.test(e)));
+});
+
+test('20: exporting an activity without references counts no aviso for them', async (t) => {
+  const d = accepted(build());
+  d.referencias = [];
+  const { app, ana, url } = await appWith(t, d);
+  const r = await app.call('GET', `${url}/exportar?formato=qmd`, { cookie: ana.cookie });
+  assert.equal(r.status, 200);
+  assert.equal(r.headers.get('x-eunomia-avisos'), '0');
+  const v = await app.call('GET', `${url}/verificacao-final`, { cookie: ana.cookie });
+  assert.deepEqual(v.json.erros, []);
+});
+
+// ---------------------------------------------------------------- 21. habilidade
+
+test('21: "habilidade" and "habilidades" are flagged, with "capacidade" and "capacidades"', () => {
+  const { lintSection } = require('../src/lint.js');
+  const lingua = (text) => lintSection('correccao', text, { referencias: [], materials: '' }).filter((w) => w.rule === 'lingua');
+  const one = lingua('O estudante mostra habilidade para invocar a regra.');
+  assert.equal(one.length, 1);
+  assert.equal(one[0].match, 'habilidade');
+  assert.equal(one[0].suggestion, 'capacidade');
+  const many = lingua('Habilidades de comunicação.');
+  assert.equal(many.length, 1);
+  assert.equal(many[0].match, 'Habilidades');
+  assert.equal(many[0].suggestion, 'Capacidades');
+});

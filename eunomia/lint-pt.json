@@ -3,6 +3,8 @@
   {"pattern":"aluno|aluna","flags":"i","replacement":"estudante","message":"Termo do Quadro: \"estudante\"."},
   {"pattern":"pacientes","flags":"i","replacement":"doentes","message":"Termo do Quadro: \"doentes\"."},
   {"pattern":"paciente","flags":"i","replacement":"doente","message":"Termo do Quadro: \"doente\"."},
+  {"pattern":"habilidades","flags":"i","replacement":"capacidades","message":"Em português europeu, preferir \"capacidade\"."},
+  {"pattern":"habilidade","flags":"i","replacement":"capacidade","message":"Em português europeu, preferir \"capacidade\"."},
   {"pattern":"aprendizados","flags":"i","replacement":"aprendizagens","message":"Termo do Quadro: \"aprendizagem\"."},
   {"pattern":"aprendizado","flags":"i","replacement":"aprendizagem","message":"Termo do Quadro: \"aprendizagem\"."},
   {"pattern":"vocês?","flags":"i","message":"Tratamento brasileiro. Usar a forma impessoal ou os termos \"estudante\" e \"docente\"."},

@@ -76,12 +76,16 @@
   ApiError.prototype = Object.create(Error.prototype);
   ApiError.prototype.constructor = ApiError;
 
+  // The routes that call the model: the only ones that get the own-key headers.
+  var MODEL_ROUTE = /^\/rascunhos\/[^/?]+\/(?:objectivo\/sugerir|padroes\/explicar|seccoes\/[^/?]+\/gerar)(?:\?|$)/;
+
   // X-Eunomia: 1 on every request: the server refuses a POST, PUT or DELETE that has neither this
-  // header nor the JSON content type (a form from another site can send neither).
-  function headers(withBody) {
+  // header nor the JSON content type (a form from another site can send neither). The own key goes
+  // only to the model routes, so that it travels as little as possible.
+  function headers(withBody, path) {
     var h = { Accept: 'application/json', 'X-Eunomia': '1' };
     if (withBody) h['Content-Type'] = 'application/json';
-    if (own) {
+    if (own && MODEL_ROUTE.test(path)) {
       h['X-Iaedu-Key'] = own.key;
       h['X-Iaedu-Agent'] = own.agent;
       h['X-Iaedu-Channel'] = own.channel;
@@ -90,7 +94,7 @@
   }
 
   function send(method, path, body) {
-    var init = { method: method, headers: headers(body !== undefined), credentials: 'same-origin', cache: 'no-store' };
+    var init = { method: method, headers: headers(body !== undefined, path), credentials: 'same-origin', cache: 'no-store' };
     if (body !== undefined) init.body = JSON.stringify(body);
     return Promise.resolve()
       .then(function () { return window.fetch(BASE + path, init); })

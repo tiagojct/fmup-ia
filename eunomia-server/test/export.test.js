@@ -124,12 +124,14 @@ test('the meta of an activity without AI names no tool, and its ficha has no pro
 
 // ---------------------------------------------------------------- formats
 
-test('renderMd is the qmd body without the front matter', () => {
+test('renderMd is the title, the subtitle and the qmd body without the front matter', () => {
   const ficha = assembleFicha(fullDraft());
   const qmd = renderQmd(ficha);
   const md = renderMd(ficha);
   assert.ok(!md.startsWith('---'));
-  assert.ok(qmd.endsWith(md));
+  const head = `# ${ficha.meta.titulo}\n\n${ficha.meta.subtitulo}\n\n`;
+  assert.ok(md.startsWith(head));
+  assert.ok(qmd.endsWith(md.slice(head.length)));
   assert.doesNotMatch(md, /eunomia:/);
 });
 
@@ -211,7 +213,9 @@ test('exportar qmd equals renderQmd of the assembled ficha, as an attachment', a
 test('exportar works with teacher-edited sections and reports the schema problems as a count; verificacao-final lists them', async (t) => {
   const d = fullDraft();
   d.seccoes.formato = { dados: { blocos: [{ minutos: 90, texto: 'Tudo.' }] }, estado: 'aceite', avisos: [], modelo: null, origem: 'docente' };
-  d.referencias = [];
+  // A teacher reference with an id that is too long: the second schema problem. (An empty list of
+  // references is valid since final fixes, item 20.)
+  d.referencias = [{ id: 'x'.repeat(501), texto: 'Autor. Título. 2020.', origem: 'docente' }];
   const { app, ana } = await appWith(t, d);
   const r = await app.call('GET', `/rascunhos/${d.id}/exportar?formato=qmd`, { cookie: ana.cookie });
   assert.equal(r.status, 200);

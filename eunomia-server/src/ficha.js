@@ -352,7 +352,9 @@ function renderQmd(ficha) {
     extras.filter((x) => extraSlot(x) === id).map((x) => renderSection('extras', [x]));
   const blocks = [];
   for (const id of SECTION_ORDER) {
-    if (ficha[id] !== undefined) {
+    // An activity may have no references: then there is no Referência heading either.
+    const empty = id === 'referencias' && Array.isArray(ficha[id]) && ficha[id].length === 0;
+    if (ficha[id] !== undefined && !empty) {
       const body = renderSection(id, ficha[id]);
       blocks.push(id === 'meta' ? body : `## ${SECTION_HEADINGS[id]}\n\n${body}`);
     }

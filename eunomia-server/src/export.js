@@ -1,6 +1,6 @@
 'use strict';
 
-// Downloads of a ficha: .md (the .qmd body without the front matter) and a printable HTML page with
+// Downloads of a ficha: .md (the title, the subtitle and the .qmd body without the front matter) and a printable HTML page with
 // inline CSS and no scripts. The HTML comes from a small Markdown converter that covers what the
 // fichas use: headings, paragraphs, lists, tables, code blocks, fenced divs (::: {.class}), bold,
 // italic, code, links and autolinks. All text is escaped first; links accept http(s), mailto,
@@ -9,8 +9,12 @@
 const { renderQmd } = require('./ficha.js');
 const { CONTROL, stripControl } = require('./control.js');
 
+// The .qmd body without the front matter.
+const body = (ficha) => renderQmd(ficha).replace(/^---\n[\s\S]*?\n---\n\n?/, '');
+
+// The .md file opens with the title and the subtitle, which the .qmd keeps in its front matter.
 function renderMd(ficha) {
-  return renderQmd(ficha).replace(/^---\n[\s\S]*?\n---\n\n?/, '');
+  return `# ${ficha.meta.titulo}\n\n${ficha.meta.subtitulo}\n\n${body(ficha)}`;
 }
 
 const escapeHtml = (s) =>
@@ -176,7 +180,7 @@ function renderHtml(ficha) {
     '<main>',
     `<h1>${title}</h1>`,
     `<p class="subtitulo">${escapeHtml(stripControl(ficha.meta.subtitulo))}</p>`,
-    markdownToHtml(renderMd(ficha)),
+    markdownToHtml(body(ficha)),
     '</main>',
     '</body>',
     '</html>',
