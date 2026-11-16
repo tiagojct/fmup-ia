@@ -234,6 +234,7 @@
     var box = el('div', { class: 'eu-erro', role: 'alert', tabindex: '-1' }, el('p', { class: 'eu-erro-texto', text: text }));
     if (err.erros.length) box.appendChild(el('ul', null, err.erros.map(function (e) { return el('li', { text: e }); })));
     if (err.status === 401 && err.motivo === 'auth') box.appendChild(el('p', null, link(S.erros.verDefinicoes, '#/definicoes')));
+    if (err.status === 0) box.appendChild(el('p', null, link(S.erros.verAjuda, '#/ajuda')));
     if (err.status === 409 && opts.write && err.motivo === 'rev') {
       box.appendChild(el('p', { text: S.erros.conflito }));
       box.appendChild(button(S.comum.recarregar, { id: 'recarregar', class: 'btn-primary' }, function () { route(); }));
@@ -480,9 +481,97 @@
       el('ol', { class: 'eu-etapas-raiz' }, items));
     var content = el('div', { class: 'eu-conteudo' });
     if (!isEditable(d)) content.appendChild(el('p', { class: 'review-note', text: S.rascunho.bloqueado }));
-    var wrap = el('div', { class: 'eu-rascunho screen' }, nav, content);
+    var panel = where.step || where.plano ? fichaPanel(d) : null;
+    var wrap = el('div', { class: 'eu-rascunho screen' + (panel ? ' com-painel' : '') }, nav, content, panel);
     main.appendChild(wrap);
     return content;
+  }
+
+  // ---------------------------------------------------------------- guidance and the side panel
+
+  // The minutes from this step to the plan: the minutos of this step and of the applicable steps
+  // after it, the plan left out.
+  function minutesToPlan(list, index) {
+    return list.slice(index).reduce(function (sum, p) {
+      return p.id === 'plano' || typeof p.minutos !== 'number' ? sum : sum + p.minutos;
+    }, 0);
+  }
+
+  // "Ver exemplo": the answers of the worked examples that exemplos.json por_passo names for this
+  // step, with the example title. Null when the step has none.
+  function exampleDisclosure(step) {
+    var porPasso = (state.exemplos && state.exemplos.por_passo) || {};
+    var list = (Array.isArray(porPasso[step.id]) ? porPasso[step.id] : []).map(function (n) {
+      return examples().filter(function (e) { return e.n === n; })[0];
+    }).filter(function (e) { return e && e.respostas && e.respostas[step.id] !== undefined; });
+    if (list.length === 0) return null;
+    return el('details', { class: 'eu-exemplo' },
+      el('summary', { text: S.passo.verExemplo }),
+      list.map(function (e) {
+        return el('div', { class: 'eu-exemplo-item' },
+          el('h4', { text: e.titulo }),
+          answerList(answerRows(step, e.respostas[step.id])));
+      }));
+  }
+
+  // "Erros comuns": the short items of interview.json erros_comuns for this step.
+  function commonErrors(step) {
+    var items = Array.isArray(step.erros_comuns) ? step.erros_comuns : [];
+    if (items.length === 0) return null;
+    return el('details', { class: 'eu-erros-comuns' },
+      el('summary', { text: S.passo.errosComuns }),
+      el('ul', null, items.map(function (t) { return el('li', { text: t }); })));
+  }
+
+  // The .ficha-meta data of a draft, from its answers, by the rules of the server
+  // (eunomia-server/src/assemble.js buildMeta). Fields with no answer are left out.
+  function draftMeta(respostas) {
+    var r = respostas || {};
+    var c = r.contexto || {};
+    var padrao = r.padrao ? state.patterns.filter(function (p) { return p.id === r.padrao.padrao; })[0] : null;
+    var papel = r.papel_ia ? r.papel_ia.papel : undefined;
+    var area = c.area ? optionText(stepById('contexto').campos.filter(function (x) { return x.id === 'area'; })[0], c.area) : undefined;
+    var meta = {
+      competencia: r.objectivo && r.objectivo.competencia,
+      formato: (r.padrao && r.padrao.formato_grupo) || (padrao && padrao.formato_grupo),
+      ano: c.programa,
+      areas: area,
+      ferramenta: papel === undefined ? undefined : papel === 'nenhum' ? S.painel.ferramentaNenhuma : (r.papel_ia.ferramenta || S.painel.ferramentaIaedu),
+    };
+    if (typeof c.duracao_min === 'number') meta.duracao = { texto: duracaoTexto(c) };
+    return meta;
+  }
+
+  // The side panel (S.painel.titulo): the meta table, the objective and the AI regime as the ficha shows
+  // them, built in the browser from the saved answers. No API request.
+  function fichaPanel(d) {
+    var r = d.respostas || {};
+    var titleId = nextId('painel-ficha');
+    var panel = el('aside', { class: 'eu-painel-ficha', 'aria-labelledby': titleId },
+      el('h3', { id: titleId, text: S.painel.titulo }));
+    var meta = draftMeta(r);
+    var hasMeta = Object.keys(meta).some(function (k) { return k === 'duracao' ? !!meta.duracao.texto : typeof meta[k] === 'string' && meta[k].trim() !== ''; });
+    var objectivo = r.objectivo && typeof r.objectivo.texto === 'string' ? r.objectivo.texto : '';
+    var papel = r.papel_ia && r.papel_ia.papel;
+    var regime = r.regime && r.regime.regime;
+    if (!hasMeta && !objectivo && !papel && !regime) {
+      panel.appendChild(el('p', { class: 'eu-nota', text: S.painel.vazio }));
+      return panel;
+    }
+    panel.appendChild(el('p', { class: 'eu-nota', text: S.painel.nota }));
+    if (hasMeta) panel.appendChild(metaTable(meta));
+    if (objectivo) {
+      panel.appendChild(el('h4', { text: S.seccao.titulos.objectivo }));
+      panel.appendChild(el('p', { class: 'eu-painel-texto', text: objectivo }));
+    }
+    if (papel || regime) {
+      panel.appendChild(el('h4', { text: S.painel.regime }));
+      if (papel && S.painel.papeis[papel]) panel.appendChild(el('p', { text: S.painel.papeis[papel] }));
+      if (regime) panel.appendChild(el('p', { text: S.painel.regimeFrase(S.painel.regimes[regime] || regime) }));
+      var condicoes = regime === 'condicionado' && typeof r.regime.condicoes === 'string' ? r.regime.condicoes.trim() : '';
+      if (condicoes) panel.appendChild(el('p', { text: S.painel.condicoes(condicoes) }));
+    }
+    return panel;
   }
 
   function porqueBox(step, respostas) {
@@ -1081,10 +1170,12 @@
 
     var progressId = nextId('progresso');
     content.appendChild(el('div', { class: 'eu-progresso' },
-      el('p', { class: 'step-progress', id: progressId, text: S.passo.progresso(index + 1, list.length) }),
+      el('p', { class: 'step-progress', id: progressId, text: S.passo.progresso(index + 1, list.length, minutesToPlan(list, index)) }),
       el('progress', { max: list.length, value: index + 1, 'aria-label': S.passo.progressoRotulo, 'aria-describedby': progressId })));
     content.appendChild(el('h2', { class: 'step-title', text: step.titulo }));
     append(content, porqueBox(step, d.respostas));
+    var guidance = [exampleDisclosure(step), commonErrors(step)].filter(Boolean);
+    if (guidance.length) content.appendChild(el('div', { class: 'eu-orientacao' }, guidance));
     if (step.id === 'materiais') content.appendChild(el('p', { class: 'eu-aviso-dados', role: 'note', text: S.passo.materiaisAviso }));
 
     var fields = [];
@@ -1337,6 +1428,8 @@
     var slot = errorSlot();
     content.appendChild(el('h2', { class: 'step-title', text: S.plano.titulo }));
     append(content, porqueBox(step, d.respostas));
+    var errors = commonErrors(step);
+    if (errors) content.appendChild(el('div', { class: 'eu-orientacao' }, errors));
 
     content.appendChild(el('section', { id: 'plano-resumo', class: 'selections-summary', 'aria-labelledby': 'resumo-titulo' },
       el('h3', { id: 'resumo-titulo', text: S.plano.resumo }),
@@ -1450,6 +1543,18 @@
         redraw(next, 'seccao-texto');
       }).catch(function (err) {
         if (isPersonalData(err)) return personalDataBox(slot, err, function (again) { generate(again, comentario, true); });
+        // The first request reached the server and only its answer was lost (status 0); the retry
+        // then found the draft changed. The new text is in the draft: load it, no error box.
+        if (err instanceof API.ApiError && err.retried && err.status === 409 && err.motivo === 'rev') {
+          return loadDraft(d.id).then(function (next) {
+            if (!ctx.alive()) return;
+            redraw(next, 'seccao-texto');
+            announce(S.seccao.recuperada);
+          }, function (again) {
+            if (!ctx.alive()) return;
+            report(slot, again);
+          });
+        }
         report(slot, err, { write: true });
       });
     };

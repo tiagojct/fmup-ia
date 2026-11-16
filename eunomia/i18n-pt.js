@@ -53,7 +53,8 @@
       chaveInvalida: 'A chave IAedu indicada não é válida.',
       verDefinicoes: 'Rever a chave nas definições',
       sessaoTerminou: 'A sessão terminou. Inicie sessão de novo.',
-      rede: 'Não foi possível contactar o servidor. Verifique a ligação e tente de novo.',
+      rede: 'O pedido não chegou ao servidor. O texto que escreveu continua nesta página. Tente de novo daqui a um momento. Se o erro se repetir, veja a Ajuda.',
+      verAjuda: 'Abrir a Ajuda',
       desconhecido: 'Ocorreu um erro inesperado. Tente de novo.',
       conflito: 'Recarregue para ver a versão mais recente do rascunho. O que não guardou nesta página perde-se.',
       dados: 'Não foi possível carregar os dados da Eunomia. Recarregue a página.',
@@ -164,7 +165,9 @@
     },
 
     passo: {
-      progresso: function (n, total) { return 'Passo ' + n + ' de ' + total; },
+      progresso: function (n, total, minutos) { return 'Passo ' + n + ' de ' + total + ' · cerca de ' + minutos + ' min até ao plano'; },
+      verExemplo: 'Ver exemplo',
+      errosComuns: 'Erros comuns',
       progressoRotulo: 'Progresso da entrevista',
       porqueTitulo: 'Porquê esta pergunta',
       perfilTitulo: function (perfil) { return 'Perfil disciplinar do Anexo I: ' + perfil; },
@@ -210,6 +213,29 @@
       continuar: 'Continuar com esta confirmação',
     },
 
+    painel: {
+      titulo: 'A sua ficha até agora',
+      nota: 'Feita a partir das respostas guardadas, como aparece na ficha. Não usa o modelo.',
+      vazio: 'Ainda não há respostas guardadas. O resumo aparece aqui à medida que avança.',
+      regime: 'Regime de IA',
+      ferramentaNenhuma: 'Nenhuma',
+      ferramentaIaedu: 'IAedu',
+      // The same texts as eunomia-server/src/ficha.js PAPEL_TEXTO and REGIME_TEXTO (test: painel.test.js).
+      papeis: {
+        nenhum: 'Esta actividade não usa IA.',
+        contraparte: 'Papel da IA nesta actividade: contraparte. A IA assume um papel na actividade.',
+        ferramenta: 'Papel da IA nesta actividade: ferramenta. Os estudantes usam a IA para produzir.',
+        objecto_de_critica: 'Papel da IA nesta actividade: objecto de crítica. Os estudantes avaliam o que a IA produz.',
+      },
+      regimes: {
+        permitido: 'verde: permitido',
+        condicionado: 'amarelo: permitido com condições',
+        proibido: 'vermelho: proibido',
+      },
+      regimeFrase: function (rotulo) { return 'Regime para os estudantes durante a actividade, ' + rotulo + '.'; },
+      condicoes: function (texto) { return 'Condições: ' + texto; },
+    },
+
     plano: {
       pagina: 'Plano',
       titulo: 'Plano da actividade',
@@ -248,6 +274,7 @@
         'a-actualizar': 'a actualizar',
       },
       aActualizar: 'O plano mudou depois desta versão. Peça uma nova versão ou edite o texto.',
+      recuperada: 'A ligação falhou, mas o pedido chegou ao servidor. Esta é a nova versão da secção.',
       origemModelo: function (modelo) { return 'Escrita pelo modelo' + (modelo ? ' (' + modelo + ')' : '') + '.'; },
       origemDocente: 'Texto editado por si.',
       vazia: 'Esta secção ainda não tem texto. O modelo escreve-a a partir do plano aprovado.',

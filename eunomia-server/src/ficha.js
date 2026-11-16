@@ -396,6 +396,8 @@ function slugify(title) {
 module.exports = {
   SECTION_ORDER,
   SECTION_HEADINGS,
+  PAPEL_TEXTO,
+  REGIME_TEXTO,
   validateFicha,
   validateSection,
   renderQmd,

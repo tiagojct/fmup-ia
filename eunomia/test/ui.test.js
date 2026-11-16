@@ -735,7 +735,7 @@ test('every string of i18n-pt.js is used by app.js', () => {
   const w = {};
   new Function('window', fs.readFileSync(path.join(ROOT, 'i18n-pt.js'), 'utf8'))(w);
   // Maps that app.js reads with a computed key.
-  const dynamic = new Set(['estados', 'seccao.titulos', 'seccao.estado', 'seccao.estadoCurto', 'seccao.regras', 'seccao.campos', 'codigos.perfis']);
+  const dynamic = new Set(['estados', 'seccao.titulos', 'seccao.estado', 'seccao.estadoCurto', 'seccao.regras', 'seccao.campos', 'codigos.perfis', 'painel.papeis', 'painel.regimes']);
   const computed = new Set(['previsao.qmd', 'previsao.md', 'previsao.html']);
   const unused = [];
   for (const [group, entries] of Object.entries(w.EUNOMIA_PT)) {

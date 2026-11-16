@@ -957,6 +957,109 @@ textarea.eu-mono,
   }
 }
 
+/* ---------- Step guidance and the side panel ---------- */
+
+.eu-orientacao {
+  margin: 0 0 1.4rem;
+}
+
+.eu-exemplo,
+.eu-erros-comuns {
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.9rem;
+  margin: 0 0 0.6rem;
+  font-size: 0.92rem;
+}
+
+.eu-exemplo summary,
+.eu-erros-comuns summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.eu-exemplo[open] summary,
+.eu-erros-comuns[open] summary {
+  margin-bottom: 0.5rem;
+}
+
+.eu-exemplo-item h4 {
+  font-size: 0.95rem;
+  margin: 0.8rem 0 0.3rem;
+}
+
+.eu-exemplo-item:first-of-type h4 {
+  margin-top: 0;
+}
+
+.eu-erros-comuns ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.eu-erros-comuns li {
+  margin: 0 0 0.3rem;
+}
+
+.eu-painel-ficha {
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 0.75rem 0.9rem;
+  font-size: 0.88rem;
+  min-width: 0;
+  max-width: 760px;
+}
+
+.eu-painel-ficha h3 {
+  margin: 0 0 0.4rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+}
+
+.eu-painel-ficha h4 {
+  font-size: 0.9rem;
+  margin: 0.8rem 0 0.3rem;
+}
+
+.eu-painel-ficha p {
+  margin: 0 0 0.4rem;
+}
+
+.eu-painel-ficha .ficha-meta {
+  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+}
+
+.eu-painel-ficha .ficha-meta th {
+  width: auto;
+}
+
+.eu-painel-texto {
+  white-space: pre-line;
+}
+
+/* Narrow and middle widths: the panel comes below the form. Wide: a third column beside it. */
+@media (min-width: 960px) {
+  .eu-rascunho.com-painel .eu-painel-ficha {
+    grid-column: 2;
+  }
+}
+
+@media (min-width: 1200px) {
+  .eu-rascunho.com-painel {
+    grid-template-columns: 13rem minmax(0, 1fr) 16rem;
+    gap: 1.75rem;
+  }
+
+  .eu-rascunho.com-painel .eu-painel-ficha {
+    grid-column: 3;
+    position: sticky;
+    top: 1rem;
+  }
+}
+
 /* ---------- Dark mode ---------- */
 
 @media screen and (prefers-color-scheme: dark) {
@@ -989,6 +1092,8 @@ textarea.eu-mono,
 
 @media print {
   .eu-etapas,
+  .eu-painel-ficha,
+  .eu-orientacao,
   .eu-anuncio,
   .eu-saltar,
   .eu-painel,

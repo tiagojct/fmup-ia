@@ -88,6 +88,12 @@ class FakeApi {
     this.codes = codes;
     this.calls = [];
     this.overrides = [];
+    this.statics = {};
+  }
+
+  // Serves obj in place of the static file name (for example exemplos.json).
+  static(name, obj) {
+    this.statics[name] = obj;
   }
 
   // Replaces one route: fn(call) returns a Response or a Promise of one.
@@ -108,14 +114,16 @@ class FakeApi {
     const method = (init.method || 'GET').toUpperCase();
     const u = new URL(url, 'https://example.test/fmup-ia/eunomia/');
     if (!u.pathname.startsWith(BASE)) {
-      const file = path.join(ROOT, path.basename(u.pathname));
+      const name = path.basename(u.pathname);
+      if (this.statics[name]) return new Response(JSON.stringify(this.statics[name]), { status: 200, headers: { 'Content-Type': 'application/json' } });
+      const file = path.join(ROOT, name);
       if (!fs.existsSync(file)) return new Response('', { status: 404 });
       return new Response(fs.readFileSync(file, 'utf8'), { status: 200, headers: { 'Content-Type': 'application/json' } });
     }
     const local = u.pathname.slice(BASE.length);
     const headers = new Headers(init.headers || {});
     const body = init.body ? JSON.parse(init.body) : undefined;
-    const call = { method, path: local, query: u.searchParams, headers, body };
+    const call = { method, path: local, query: u.searchParams, headers, body, at: Date.now() };
     this.calls.push(call);
     for (const o of this.overrides) if (o.method === method && o.pattern.test(local)) return o.fn(call);
     return this.route(call);
