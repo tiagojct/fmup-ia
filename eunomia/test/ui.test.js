@@ -1124,3 +1124,99 @@ test('1: a 300 KB adversarial section text renders in under 1 s', async (t) => {
   await a.go(`#/rascunho/${DRAFT_ID}/seccao/objectivo`, 'seccao');
   assert.ok(Date.now() - t0 < 1000, `${Date.now() - t0} ms`);
 });
+
+test('2: a section with an anterior offers "Repor a versão anterior", which posts the rev and shows the old text', async (t) => {
+  const d = approvedDraft();
+  d.seccoes.objectivo.anterior = { dados: { texto: 'Texto antigo do docente.', competencia_protegida: 'Antiga.' }, estado: 'aceite', avisos: [], modelo: null, origem: 'docente' };
+  const api = new FakeApi({ user: TEACHER, draft: d });
+  api.on('POST', /\/seccoes\/objectivo\/repor$/, (call) => {
+    if (call.body.rev !== d.rev) return json(409, { erro: 'x', motivo: 'rev' });
+    const s = d.seccoes.objectivo;
+    const { anterior, ...current } = s;
+    d.seccoes.objectivo = { ...anterior, anterior: current };
+    return json(200, api.view(api.save(d)));
+  });
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/seccao/objectivo` });
+  await a.page('seccao');
+  const btn = a.$('#repor');
+  assert.ok(btn, 'repor button');
+  assert.equal(btn.tagName, 'BUTTON');
+  assert.match(btn.textContent, /Repor a versão anterior/);
+  btn.click();
+  await a.waitFor(() => /Texto antigo do docente/.test(a.text()), 'old text back');
+  assert.equal(lastCall(api, 'POST', /\/repor$/).body.rev, 3);
+});
+
+test('2: without an anterior there is no Repor button', async (t) => {
+  const api = new FakeApi({ user: TEACHER, draft: approvedDraft() });
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/seccao/objectivo` });
+  await a.page('seccao');
+  assert.equal(a.$('#repor'), null);
+});
+
+for (const [name, over] of [['an accepted', { estado: 'aceite' }], ['a teacher-edited', { origem: 'docente', estado: 'aceite' }]]) {
+  test(`2: a new version of ${name} section asks for confirmation first`, async (t) => {
+    const d = approvedDraft();
+    Object.assign(d.seccoes.objectivo, over);
+    const api = new FakeApi({ user: TEACHER, draft: d });
+    const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/seccao/objectivo` });
+    await a.page('seccao');
+    a.$('#nova-versao').click();
+    a.$('#pedir-versao').click();
+    await a.waitFor(() => a.$('#confirmar-versao'), 'confirmation');
+    assert.match(a.text(), /substitui o texto actual/);
+    assert.equal(lastCall(api, 'POST', /\/gerar$/), undefined, 'no request before the confirmation');
+    // Cancel keeps the text; the confirmation sends the request.
+    a.$('#cancelar-versao').click();
+    assert.equal(a.$('#confirmar-versao'), null);
+    a.$('#pedir-versao').click();
+    await a.waitFor(() => a.$('#confirmar-versao'), 'confirmation again');
+    a.$('#confirmar-versao').click();
+    await a.waitFor(() => lastCall(api, 'POST', /\/gerar$/), 'gerar');
+    await a.waitFor(() => /Texto novo do modelo/.test(a.text()), 'new text');
+  });
+}
+
+test('2: a new version of a section the model wrote and nobody accepted needs no confirmation', async (t) => {
+  const api = new FakeApi({ user: TEACHER, draft: approvedDraft() });
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/seccao/objectivo` });
+  await a.page('seccao');
+  a.$('#nova-versao').click();
+  a.$('#pedir-versao').click();
+  await a.waitFor(() => lastCall(api, 'POST', /\/gerar$/), 'gerar');
+  assert.equal(a.$('#confirmar-versao'), null);
+});
+
+test('4: personal data in the materials shows the findings and a confirmation that resends with the flag', async (t) => {
+  const d = makeDraft({ respostas: { ...ANSWERS, materiais: undefined, plano: undefined } });
+  delete d.respostas.materiais;
+  delete d.respostas.plano;
+  const api = new FakeApi({ user: TEACHER, draft: d });
+  api.on('PUT', /\/respostas\/materiais$/, (call) => {
+    if (call.body.confirmo_sem_dados_pessoais === true) return api.route(call);
+    return json(422, {
+      erro: 'O texto pode ter dados pessoais de doentes ou estudantes. Retire-os, ou confirme que o texto não os tem.',
+      motivo: 'dados_pessoais',
+      achados: ['Possível NIF: 123456789', 'Possível data de nascimento: 12/03/1950'],
+    });
+  });
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/passo/materiais` });
+  await a.page('passo');
+  a.set('#campo-texto', 'Contribuinte 123456789, data de nascimento 12/03/1950.');
+  a.$('#guardar-passo').click();
+  await a.waitFor(() => a.$('#confirmo-dados'), 'confirmation checkbox');
+  assert.match(a.text(), /Possível NIF: 123456789/);
+  assert.match(a.text(), /Possível data de nascimento: 12\/03\/1950/);
+  const label = a.$('label[for="confirmo-dados"]') || a.$('#confirmo-dados').closest('label');
+  assert.match(label.textContent, /Confirmo que o texto não contém dados pessoais de doentes ou estudantes/);
+  const again = a.$('#guardar-confirmado');
+  assert.equal(again.disabled, true, 'disabled until ticked');
+  a.set('#confirmo-dados', true);
+  assert.equal(again.disabled, false);
+  again.click();
+  await a.waitFor(() => api.calls.filter((c) => c.method === 'PUT').length === 2, 'resend');
+  const body = lastCall(api, 'PUT', /\/respostas\/materiais$/).body;
+  assert.equal(body.confirmo_sem_dados_pessoais, true);
+  assert.equal(body.valor.texto, 'Contribuinte 123456789, data de nascimento 12/03/1950.');
+  await a.waitFor(() => /\/passo\/plano$|\/plano$/.test(a.w.location.hash), 'next step');
+});

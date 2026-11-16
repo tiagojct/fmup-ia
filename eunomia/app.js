@@ -16,7 +16,8 @@
  * Errors: a 401 with motivo "auth" is a wrong own IAedu key (the session is fine). Any other 401
  * ends the session. A 409 on a write with motivo "rev" (another window saved the draft) offers
  * "Recarregar"; other 409s (bloqueado, plano, passo, incompleto, invalido) show the message only.
- * Model calls show a busy state.
+ * A 422 with motivo "dados_pessoais" on a step shows the findings and a confirmation that sends the
+ * answer again with confirmo_sem_dados_pessoais. Model calls show a busy state.
  */
 (function () {
   'use strict';
@@ -750,8 +751,16 @@
           avisos.push(S.passo.materiaisCortado(max));
         }
       });
-      busy(save, function () {
-        return API.request('PUT', '/rascunhos/' + d.id + '/respostas/' + step.id, { rev: d.rev, valor: valor });
+      sendAnswer(save, valor, avisos, false);
+    });
+
+    // confirmed: the teacher ticked that the text has no personal data (a 422 with motivo
+    // dados_pessoais asks for it).
+    function sendAnswer(btn, valor, avisos, confirmed) {
+      var body = { rev: d.rev, valor: valor };
+      if (confirmed) body.confirmo_sem_dados_pessoais = true;
+      busy(btn, function () {
+        return API.request('PUT', '/rascunhos/' + d.id + '/respostas/' + step.id, body);
       }).then(function (next) {
         if (!ctx.alive()) return;
         d = next.rascunho;
@@ -764,8 +773,35 @@
           el('ul', null, avisos.map(function (a) { return el('li', { text: a }); })),
           el('p', null, link(S.passo.continuar, nextHref, { class: 'btn-primary', id: 'continuar-passo' }))));
         after.querySelector('a').focus();
-      }).catch(function (err) { report(slot, err, { write: true }); });
+      }).catch(function (err) {
+        if (err instanceof API.ApiError && err.status === 422 && err.motivo === 'dados_pessoais') {
+          personalDataBox(slot, err, function (again) { sendAnswer(again, valor, avisos, true); });
+          return;
+        }
+        report(slot, err, { write: true });
+      });
+    }
+  }
+
+  // The findings of the personal-data check, with the confirmation that sends the answer again.
+  function personalDataBox(slot, err, resend) {
+    var found = err.data && Array.isArray(err.data.achados) ? err.data.achados.filter(function (x) { return typeof x === 'string'; }) : [];
+    var check = el('input', { type: 'checkbox', id: 'confirmo-dados' });
+    var again = button(S.dadosPessoais.guardar, { id: 'guardar-confirmado', class: 'btn-primary', disabled: true }, function () {
+      if (check.checked) resend(again);
     });
+    on(check, 'change', function () { again.disabled = !check.checked; });
+    clear(slot);
+    var box = el('div', { class: 'eu-erro', role: 'alert', tabindex: '-1' },
+      el('p', { class: 'eu-erro-texto', text: err.erro || S.dadosPessoais.titulo }),
+      el('p', { text: S.dadosPessoais.titulo }),
+      el('ul', null, found.map(function (f) { return el('li', { text: f }); })),
+      el('p', { text: S.dadosPessoais.nota }),
+      el('div', { class: 'field-row' },
+        el('label', { class: 'option', for: 'confirmo-dados' }, check, el('span', { class: 'option-label', text: S.dadosPessoais.confirmo }))),
+      el('div', { class: 'nav-row' }, again));
+    slot.appendChild(box);
+    box.focus();
   }
 
   function followingStep(d, stepId) {
@@ -1006,6 +1042,16 @@
     };
     var generate = function (btn, comentario) {
       clearSlot(slot);
+      // Text the teacher accepted or wrote is replaced only after a confirmation (it stays as the
+      // anterior version, which "Repor" brings back).
+      if (hasText && (s.origem === 'docente' || s.estado === 'aceite') && !btn.dataset.confirmado) {
+        confirmNewVersion(slot, function () {
+          btn.dataset.confirmado = '1';
+          generate(btn, comentario);
+        });
+        return;
+      }
+      delete btn.dataset.confirmado;
       var body = { rev: d.rev };
       if (comentario) body.comentario = comentario;
       busy(btn, function () {
@@ -1055,11 +1101,20 @@
           }
         };
       };
+      var restore = !s.anterior ? null : button(S.seccao.repor, { id: 'repor' }, function () {
+        clearSlot(slot);
+        busy(restore, function () {
+          return API.request('POST', '/rascunhos/' + d.id + '/seccoes/' + sec + '/repor', { rev: d.rev });
+        }).then(function (next) {
+          announce(S.seccao.reposta);
+          redraw(next, 'seccao-texto');
+        }).catch(function (err) { report(slot, err, { write: true }); });
+      });
       var newVersion = button(S.seccao.novaVersao, { id: 'nova-versao', 'aria-controls': 'painel-versao', 'aria-expanded': 'false' });
       var edit = button(S.seccao.editar, { id: 'editar', 'aria-controls': 'painel-editar', 'aria-expanded': 'false' });
       on(newVersion, 'click', toggle(newVersion, commentPanel, editPanel, edit));
       on(edit, 'click', toggle(edit, editPanel, commentPanel, newVersion));
-      content.appendChild(el('div', { class: 'nav-row' }, accept, s.estado === 'aceite' ? el('p', { class: 'eu-nota', text: S.seccao.aceite }) : null, newVersion, edit));
+      content.appendChild(el('div', { class: 'nav-row' }, accept, s.estado === 'aceite' ? el('p', { class: 'eu-nota', text: S.seccao.aceite }) : null, newVersion, edit, restore));
 
       var comment = el('textarea', { id: 'comentario', rows: 3, maxlength: 2000, 'aria-describedby': 'comentario-ajuda' });
       var ask = button(S.seccao.pedirVersao, { id: 'pedir-versao', class: 'btn-primary' }, function () { generate(ask, comment.value.trim()); });
@@ -1087,6 +1142,25 @@
     }
     main.removeAttribute('aria-busy');
     main.dataset.pagina = 'seccao';
+  }
+
+  // The confirmation before a new version replaces accepted or edited text. ok runs on "confirm".
+  function confirmNewVersion(slot, ok) {
+    clear(slot);
+    var yes = button(S.seccao.confirmarVersao, { id: 'confirmar-versao', class: 'btn-primary' }, function () {
+      clear(slot);
+      ok();
+    });
+    var no = button(S.comum.cancelar, { id: 'cancelar-versao', class: 'btn-ghost' }, function () {
+      clear(slot);
+      var ask = document.getElementById('pedir-versao');
+      if (ask) ask.focus();
+    });
+    var box = el('div', { class: 'review-note', role: 'alert', tabindex: '-1' },
+      el('p', { text: S.seccao.confirmarVersaoNota }),
+      el('div', { class: 'nav-row' }, yes, no));
+    slot.appendChild(box);
+    yes.focus();
   }
 
   function avisosBox(avisos) {

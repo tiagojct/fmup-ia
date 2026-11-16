@@ -365,3 +365,121 @@ test('18: headersTimeout stays below requestTimeout', async (t) => {
   const app = await startApp(t);
   assert.ok(app.server.headersTimeout < app.server.requestTimeout, `${app.server.headersTimeout} / ${app.server.requestTimeout}`);
 });
+
+// ---------------------------------------------------------------- 2. lost work on "Nova versão"
+
+const NEW_PAPEIS = { estudante: 'Nova versão do estudante.', docente: 'Nova versão do docente.' };
+
+test('2: a new version keeps the previous text as anterior, with its origem, modelo and estado', async (t) => {
+  const d = accepted(build());
+  d.seccoes.papeis = { dados: { estudante: 'Texto do docente.', docente: 'Conduz.' }, estado: 'aceite', avisos: [], modelo: 'modelo-antigo', origem: 'docente' };
+  const client = fakeClient(reply(NEW_PAPEIS));
+  const { app, ana, url } = await appWith(t, d, { iaedu: client });
+  const r = await app.call('POST', `${url}/seccoes/papeis/gerar`, { cookie: ana.cookie, body: { rev: d.rev } });
+  assert.equal(r.status, 200, r.text);
+  const s = r.json.rascunho.seccoes.papeis;
+  assert.deepEqual(s.dados, NEW_PAPEIS);
+  assert.deepEqual(s.anterior.dados, { estudante: 'Texto do docente.', docente: 'Conduz.' });
+  assert.equal(s.anterior.origem, 'docente');
+  assert.equal(s.anterior.modelo, 'modelo-antigo');
+  assert.equal(s.anterior.estado, 'aceite');
+  assert.equal(s.anterior.anterior, undefined, 'one level only');
+  // A second new version keeps only the version just before it.
+  const r2 = await app.call('POST', `${url}/seccoes/papeis/gerar`, { cookie: ana.cookie, body: { rev: r.json.rascunho.rev } });
+  assert.deepEqual(r2.json.rascunho.seccoes.papeis.anterior.dados, NEW_PAPEIS);
+  assert.equal(r2.json.rascunho.seccoes.papeis.anterior.anterior, undefined);
+});
+
+test('2: an empty section has no anterior after its first text', async (t) => {
+  const d = build();
+  const client = fakeClient(reply(NEW_PAPEIS));
+  const { app, ana, url } = await appWith(t, d, { iaedu: client });
+  const r = await app.call('POST', `${url}/seccoes/papeis/gerar`, { cookie: ana.cookie, body: { rev: d.rev } });
+  assert.equal(r.status, 200, r.text);
+  assert.equal(r.json.rascunho.seccoes.papeis.anterior, undefined);
+});
+
+test('2: repor swaps the text and its anterior back, guarded by rev; without anterior it is 409', async (t) => {
+  const d = accepted(build());
+  const old = { estudante: 'Texto do docente.', docente: 'Conduz.' };
+  d.seccoes.papeis = {
+    dados: NEW_PAPEIS, estado: 'gerada', avisos: [{ regra: 'lingua', texto: 'x' }], modelo: MODEL, origem: 'modelo',
+    anterior: { dados: old, estado: 'aceite', avisos: [], modelo: null, origem: 'docente' },
+  };
+  const { app, ana, url } = await appWith(t, d);
+  const stale = await app.call('POST', `${url}/seccoes/papeis/repor`, { cookie: ana.cookie, body: { rev: d.rev - 1 } });
+  assert.equal(stale.status, 409);
+  assert.equal(stale.json.motivo, 'rev');
+  const r = await app.call('POST', `${url}/seccoes/papeis/repor`, { cookie: ana.cookie, body: { rev: d.rev } });
+  assert.equal(r.status, 200, r.text);
+  const s = r.json.rascunho.seccoes.papeis;
+  assert.deepEqual(s.dados, old);
+  assert.equal(s.origem, 'docente');
+  assert.equal(s.estado, 'aceite');
+  assert.deepEqual(s.anterior.dados, NEW_PAPEIS);
+  assert.equal(s.anterior.origem, 'modelo');
+  assert.equal(s.anterior.anterior, undefined);
+  // Without an anterior.
+  const r2 = await app.call('POST', `${url}/seccoes/formato/repor`, { cookie: ana.cookie, body: { rev: r.json.rascunho.rev } });
+  assert.equal(r2.status, 409);
+  assert.equal(r2.json.motivo, 'incompleto');
+  // A section that code writes is not a model section.
+  assert.equal((await app.call('POST', `${url}/seccoes/referencias/repor`, { cookie: ana.cookie, body: { rev: r.json.rascunho.rev } })).status, 400);
+});
+
+test('2: a teacher edit keeps the anterior, so that the regenerated text is not lost either', async (t) => {
+  const d = accepted(build());
+  d.seccoes.papeis = { dados: NEW_PAPEIS, estado: 'gerada', avisos: [], modelo: MODEL, origem: 'modelo', anterior: { dados: SECTIONS.papeis, estado: 'aceite', avisos: [], modelo: MODEL, origem: 'modelo' } };
+  const { app, ana, url } = await appWith(t, d);
+  const r = await app.call('PUT', `${url}/seccoes/papeis`, { cookie: ana.cookie, body: { rev: d.rev, dados: { estudante: 'Editado.', docente: 'Editado.' } } });
+  assert.equal(r.status, 200, r.text);
+  assert.deepEqual(r.json.rascunho.seccoes.papeis.anterior.dados, SECTIONS.papeis);
+});
+
+// ---------------------------------------------------------------- 4. personal data
+
+test('4: detectPersonalData finds an SNS number, a valid NIF and a date of birth', () => {
+  const { detectPersonalData } = require('../src/materials.js');
+  assert.deepEqual(detectPersonalData('Caso clínico de um doente com dispneia.'), []);
+  // 123456789 has a valid NIF check digit; 123456780 does not.
+  assert.deepEqual(detectPersonalData('Contribuinte 123456789.'), ['Possível NIF: 123456789']);
+  assert.deepEqual(detectPersonalData('Contribuinte 123456780.'), []);
+  assert.deepEqual(detectPersonalData('Número de utente 987 654 320, cama 4.'), ['Possível número de utente do SNS: 987 654 320']);
+  assert.deepEqual(detectPersonalData('SNS: 123456780'), ['Possível número de utente do SNS: 123456780']);
+  // An SNS word too far away does not count; the number is not a valid NIF either.
+  assert.deepEqual(detectPersonalData(`utente${' '.repeat(40)}123456780`), []);
+  assert.deepEqual(detectPersonalData('Data de nascimento: 12/03/1950.'), ['Possível data de nascimento: 12/03/1950']);
+  assert.deepEqual(detectPersonalData('Nasceu em 3 de março de 1950 no Porto.'), ['Possível data de nascimento: 3 de março de 1950']);
+  assert.deepEqual(detectPersonalData('A consulta foi a 12/03/2024.'), []);
+  assert.deepEqual(detectPersonalData('Ano 1950, sem dia.'), []);
+});
+
+test('4: PUT materiais with personal data is a 422 with the findings; the confirmation saves it', async (t) => {
+  const d = build(respostasCompletas(), { approve: false });
+  const { app, ana, url } = await appWith(t, d);
+  const texto = 'Doente de 70 anos, data de nascimento 01-02-1954, utente n.º 123456780.';
+  const r = await app.call('PUT', `${url}/respostas/materiais`, { cookie: ana.cookie, body: { rev: d.rev, valor: { texto } } });
+  assert.equal(r.status, 422);
+  assert.equal(r.json.motivo, 'dados_pessoais');
+  assert.deepEqual(r.json.achados, ['Possível data de nascimento: 01-02-1954', 'Possível número de utente do SNS: 123456780']);
+  assert.match(r.json.erro, /dados pessoais/);
+  assert.equal(app.store.read(`rascunhos/${ana.id}/${d.id}.json`).rev, d.rev, 'nothing saved');
+  const ok = await app.call('PUT', `${url}/respostas/materiais`, { cookie: ana.cookie, body: { rev: d.rev, valor: { texto }, confirmo_sem_dados_pessoais: true } });
+  assert.equal(ok.status, 200, ok.text);
+  assert.equal(ok.json.rascunho.respostas.materiais.texto, texto);
+  // Only true counts as the confirmation.
+  const again = await app.call('PUT', `${url}/respostas/materiais`, { cookie: ana.cookie, body: { rev: ok.json.rascunho.rev, valor: { texto }, confirmo_sem_dados_pessoais: 'sim' } });
+  assert.equal(again.status, 422);
+});
+
+test('4: a free-text answer over 200 characters is checked too; a short one is not', async (t) => {
+  const d = build(respostasCompletas(), { approve: false });
+  const { app, ana, url } = await appWith(t, d);
+  const long = `${'Notas para a redacção do caso. '.repeat(7)}Contribuinte 123456789.`;
+  assert.ok(long.length > 200);
+  const r = await app.call('PUT', `${url}/respostas/plano`, { cookie: ana.cookie, body: { rev: d.rev, valor: { titulo: 'T', subtitulo: 'S', notas: long } } });
+  assert.equal(r.status, 422);
+  assert.deepEqual(r.json.achados, ['Possível NIF: 123456789']);
+  const short = await app.call('PUT', `${url}/respostas/plano`, { cookie: ana.cookie, body: { rev: d.rev, valor: { titulo: 'T', subtitulo: 'S', notas: 'Contribuinte 123456789.' } } });
+  assert.equal(short.status, 200, short.text);
+});

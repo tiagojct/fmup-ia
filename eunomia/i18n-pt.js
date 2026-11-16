@@ -158,6 +158,13 @@
       ajusteParcial: 'Adequação parcial:',
     },
 
+    dadosPessoais: {
+      titulo: 'A Eunomia encontrou no texto:',
+      nota: 'Retire estes dados e guarde de novo. Se forem dados fictícios ou não forem dados pessoais, confirme.',
+      confirmo: 'Confirmo que o texto não contém dados pessoais de doentes ou estudantes',
+      guardar: 'Guardar com esta confirmação',
+    },
+
     plano: {
       pagina: 'Plano',
       titulo: 'Plano da actividade',
@@ -207,6 +214,10 @@
       comentario: 'O que deve mudar na nova versão?',
       comentarioAjuda: 'Por exemplo: mais curto, outro caso clínico, menos termos técnicos.',
       pedirVersao: 'Pedir nova versão',
+      confirmarVersaoNota: 'Esta secção foi aceite ou editada por si. A nova versão substitui o texto actual, que fica guardado como versão anterior e pode ser reposto.',
+      confirmarVersao: 'Pedir a nova versão',
+      repor: 'Repor a versão anterior',
+      reposta: 'A versão anterior foi reposta. A que estava passou a ser a anterior.',
       guardarEdicao: 'Guardar a edição',
       edicaoNota: 'O texto que editar conta como aceite.',
       avisosTitulo: 'Avisos',

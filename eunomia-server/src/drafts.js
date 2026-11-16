@@ -8,7 +8,8 @@
 //           respostas: { [passo]: valor }, plano_aprovado, seccoes: { [id]: Seccao },
 //           referencias: [], threads: { [id]: threadId } }
 // Seccao = { dados?, estado: 'vazia' | 'gerada' | 'aceite' | 'a-actualizar', avisos: [], modelo,
-//            origem?: 'modelo' | 'docente' }
+//            origem?: 'modelo' | 'docente', anterior?: Seccao without anterior }
+//   anterior is the text a "Nova versão" replaced; POST .../repor swaps it back.
 // Stored as rascunhos/<userId>/<draftId>.json. rev grows by one on each write.
 
 const fs = require('node:fs');

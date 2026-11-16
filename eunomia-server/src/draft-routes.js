@@ -16,6 +16,7 @@ const { REFERENCES, buildMeta, assembleFicha, sectionsToAccept } = require('./as
 const { generateSection, newThreadId } = require('./generate.js');
 const { hasControl, stripControl, strings, CONTROL_MESSAGE } = require('./control.js');
 const { renderMd, renderHtml } = require('./export.js');
+const { detectPersonalData } = require('./materials.js');
 const prompts = require('./prompts.js');
 
 const CONFLICT = 'O rascunho foi alterado noutra janela. Recarregue a página.';
@@ -24,6 +25,9 @@ const LIMIT = 'Atingiu o limite diário de pedidos ao modelo.';
 const NO_EMOJI = 'Retire os emojis do texto.';
 const FEW_PATTERNS = 'Há menos de dois padrões do catálogo para este papel da IA e este tempo. Veja o catálogo completo.';
 const SHARED_AUTH = 'A chave partilhada da IAedu falhou. Avise o responsável da Eunomia.';
+const PERSONAL_DATA = 'O texto pode ter dados pessoais de doentes ou estudantes. Retire-os, ou confirme que o texto não os tem.';
+// Free-text answers longer than this are checked for personal data; the materials always are.
+const PERSONAL_DATA_MIN = 200;
 const MAX_DRAFTS = 100;
 const TOO_MANY = `Atingiu o máximo de ${MAX_DRAFTS} rascunhos. Continue um dos rascunhos que já tem, ou peça ao responsável da Eunomia que apague os que já não usa.`;
 // The time budget of one request that calls the model, retry included: below the 100 s after which
@@ -203,6 +207,15 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
     checkText(ctx.body.valor);
     const r = drafts.applyAnswer(d, ctx.params.passo, ctx.body.valor);
     if (r.errors.length > 0) throw new HttpError(400, 'A resposta tem erros.', {}, { erros: r.errors });
+    // Personal data (design, 6.12): the materials, and any free text over PERSONAL_DATA_MIN
+    // characters. The teacher can confirm that the text has none (exactly true, nothing else).
+    if (ctx.body.confirmo_sem_dados_pessoais !== true) {
+      const texts = strings(r.draft.respostas[ctx.params.passo]).filter(
+        (t) => ctx.params.passo === 'materiais' || t.length > PERSONAL_DATA_MIN,
+      );
+      const achados = texts.flatMap(detectPersonalData);
+      if (achados.length > 0) throw new HttpError(422, PERSONAL_DATA, {}, { motivo: 'dados_pessoais', achados });
+    }
     return view(save(r.draft), { avisos: r.avisos });
   });
 
@@ -284,6 +297,8 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
     // The call takes seconds: the draft must not have changed meanwhile.
     const fresh = drafts.findDraft(store, ctx.user, d.id);
     if (!fresh || fresh.rev !== d.rev) throw new HttpError(409, CONFLICT, {}, { motivo: 'rev' });
+    // The text it replaces stays as anterior (one level), so that "Repor" can bring it back.
+    const anterior = previousVersion(fresh.seccoes[sec]);
     fresh.seccoes[sec] = {
       dados: out.dados,
       estado: 'gerada',
@@ -291,6 +306,7 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
       modelo: out.modelo,
       origem: 'modelo',
       gerado: new Date(now()).toISOString(),
+      ...(anterior ? { anterior } : {}),
     };
     fresh.threads = { ...(fresh.threads || {}), [sec]: out.threadId };
     return view(save(fresh));
@@ -318,9 +334,33 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
       modelo: prev.modelo || null,
       origem: 'docente',
       editado: new Date(now()).toISOString(),
+      ...(prev.anterior ? { anterior: prev.anterior } : {}),
     };
     return view(save(d));
   });
+
+  // Swaps the text of a section with the version before the last "Nova versão". A second call swaps
+  // back. Rev-guarded like every write.
+  route('POST', '/rascunhos/:id/seccoes/:sec/repor', (req, res, ctx) => {
+    const sec = modelSection(ctx);
+    const d = writable(ctx);
+    planGate(d, 'repor secções');
+    applicable(d, sec);
+    const s = d.seccoes[sec];
+    if (!s || !s.anterior || s.anterior.dados === undefined) {
+      throw new HttpError(409, 'Esta secção não tem uma versão anterior.', {}, { motivo: 'incompleto' });
+    }
+    const { anterior, ...current } = s;
+    d.seccoes[sec] = { ...anterior, anterior: previousVersion(current) };
+    return view(save(d));
+  });
+
+  // The part of a section that "Repor" brings back, or null when the section has no text.
+  function previousVersion(s) {
+    if (!s || s.dados === undefined) return null;
+    const { anterior, ...rest } = s;
+    return rest;
+  }
 
   route('POST', '/rascunhos/:id/seccoes/:sec/aceitar', (req, res, ctx) => {
     const sec = modelSection(ctx);
