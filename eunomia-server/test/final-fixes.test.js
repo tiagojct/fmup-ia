@@ -540,3 +540,60 @@ test('21: "habilidade" and "habilidades" are flagged, with "capacidade" and "cap
   assert.equal(many[0].match, 'Habilidades');
   assert.equal(many[0].suggestion, 'Capacidades');
 });
+
+// ---------------------------------------------------------------- re-review follow-ups A and B
+
+test('A: accept A, regenerate B, change the plan, repor: the section is a-actualizar and the export lists it', async (t) => {
+  const d = accepted(build());
+  const client = fakeClient(reply(NEW_PAPEIS));
+  const { app, ana, url } = await appWith(t, d, { iaedu: client });
+  let r = await app.call('POST', `${url}/seccoes/papeis/gerar`, { cookie: ana.cookie, body: { rev: d.rev } });
+  assert.equal(r.status, 200, r.text);
+  assert.equal(r.json.rascunho.seccoes.papeis.anterior.estado, 'aceite');
+  // papeis depends on the regime answer.
+  r = await app.call('PUT', `${url}/respostas/regime`, { cookie: ana.cookie, body: { rev: r.json.rascunho.rev, valor: { regime: 'proibido' } } });
+  assert.equal(r.status, 200, r.text);
+  const papeis = r.json.rascunho.seccoes.papeis;
+  assert.equal(papeis.estado, 'a-actualizar');
+  assert.equal(papeis.anterior.estado, 'a-actualizar');
+  r = await app.call('POST', `${url}/seccoes/papeis/repor`, { cookie: ana.cookie, body: { rev: r.json.rascunho.rev } });
+  assert.equal(r.status, 200, r.text);
+  assert.deepEqual(r.json.rascunho.seccoes.papeis.dados, SECTIONS.papeis);
+  assert.equal(r.json.rascunho.seccoes.papeis.estado, 'a-actualizar');
+  const x = await app.call('GET', `${url}/exportar?formato=qmd`, { cookie: ana.cookie });
+  assert.equal(x.status, 409);
+  assert.ok(x.json.seccoes.includes('papeis'), JSON.stringify(x.json));
+});
+
+test('B: sugerir with personal data in the unsaved outcome text is a 422 before any model call; the confirmation goes on', async (t) => {
+  const d = build();
+  const client = fakeClient(reply({ sugestoes: ['No fim da actividade, o estudante identifica os sinais de alarme.'] }));
+  const { app, ana, url } = await appWith(t, d, { iaedu: client });
+  const texto = 'O estudante identifica os sinais do doente com data de nascimento 01/02/1950.';
+  const r = await app.call('POST', `${url}/objectivo/sugerir`, { cookie: ana.cookie, body: { texto } });
+  assert.equal(r.status, 422);
+  assert.equal(r.json.motivo, 'dados_pessoais');
+  assert.deepEqual(r.json.achados, ['Possível data de nascimento: 01/02/1950']);
+  assert.equal(client.calls.length, 0);
+  const ok = await app.call('POST', `${url}/objectivo/sugerir`, { cookie: ana.cookie, body: { texto, confirmo_sem_dados_pessoais: true } });
+  assert.equal(ok.status, 200, ok.text);
+  assert.equal(client.calls.length, 1);
+});
+
+test('B: gerar with personal data in the comment is a 422 before any model call; the confirmation goes on', async (t) => {
+  const d = build();
+  const client = fakeClient(reply(SECTIONS.papeis));
+  const { app, ana, url } = await appWith(t, d, { iaedu: client });
+  const comentario = 'Use o caso do utente 123456780.';
+  const r = await app.call('POST', `${url}/seccoes/papeis/gerar`, { cookie: ana.cookie, body: { rev: d.rev, comentario } });
+  assert.equal(r.status, 422);
+  assert.equal(r.json.motivo, 'dados_pessoais');
+  assert.deepEqual(r.json.achados, ['Possível número de utente do SNS: 123456780']);
+  assert.equal(client.calls.length, 0);
+  const ok = await app.call('POST', `${url}/seccoes/papeis/gerar`, { cookie: ana.cookie, body: { rev: d.rev, comentario, confirmo_sem_dados_pessoais: true } });
+  assert.equal(ok.status, 200, ok.text);
+  assert.equal(client.calls.length, 1);
+  // A comment without personal data needs no confirmation.
+  const plain = await app.call('POST', `${url}/seccoes/papeis/gerar`, { cookie: ana.cookie, body: { rev: ok.json.rascunho.rev, comentario: 'Mais curto.' } });
+  assert.equal(plain.status, 200, plain.text);
+});

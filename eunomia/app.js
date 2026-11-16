@@ -16,8 +16,9 @@
  * Errors: a 401 with motivo "auth" is a wrong own IAedu key (the session is fine). Any other 401
  * ends the session. A 409 on a write with motivo "rev" (another window saved the draft) offers
  * "Recarregar"; other 409s (bloqueado, plano, passo, incompleto, invalido) show the message only.
- * A 422 with motivo "dados_pessoais" on a step shows the findings and a confirmation that sends the
- * answer again with confirmo_sem_dados_pessoais. Model calls show a busy state.
+ * A 422 with motivo "dados_pessoais" (an answer, the outcome text sent to sugerir, the comment of a
+ * new version) shows the findings and a confirmation that sends the request again with
+ * confirmo_sem_dados_pessoais. Model calls show a busy state.
  */
 (function () {
   'use strict';
@@ -791,7 +792,7 @@
           el('p', null, link(S.passo.continuar, nextHref, { class: 'btn-primary', id: 'continuar-passo' }))));
         after.querySelector('a').focus();
       }).catch(function (err) {
-        if (err instanceof API.ApiError && err.status === 422 && err.motivo === 'dados_pessoais') {
+        if (isPersonalData(err)) {
           personalDataBox(slot, err, function (again) { sendAnswer(again, valor, avisos, true); });
           return;
         }
@@ -800,11 +801,16 @@
     }
   }
 
-  // The findings of the personal-data check, with the confirmation that sends the answer again.
+  function isPersonalData(err) {
+    return err instanceof API.ApiError && err.status === 422 && err.motivo === 'dados_pessoais';
+  }
+
+  // The findings of the personal-data check, with the confirmation that sends the request again
+  // (an answer, the outcome text for sugerir, or the comment of a new version).
   function personalDataBox(slot, err, resend) {
     var found = err.data && Array.isArray(err.data.achados) ? err.data.achados.filter(function (x) { return typeof x === 'string'; }) : [];
     var check = el('input', { type: 'checkbox', id: 'confirmo-dados' });
-    var again = button(S.dadosPessoais.guardar, { id: 'guardar-confirmado', class: 'btn-primary', disabled: true }, function () {
+    var again = button(S.dadosPessoais.continuar, { id: 'guardar-confirmado', class: 'btn-primary', disabled: true }, function () {
       if (check.checked) resend(again);
     });
     on(check, 'change', function () { again.disabled = !check.checked; });
@@ -833,10 +839,16 @@
   function outcomeHelper(d, textarea, slot) {
     var results = el('div', { class: 'eu-sugestoes', 'aria-live': 'polite' });
     var btn = button(S.passo.sugerir, { id: 'sugerir-objectivo', 'aria-describedby': 'sugerir-ajuda' }, function () {
+      ask(btn, textarea.value, false);
+    });
+    // personal: the teacher confirmed that the text has no personal data (after a 422).
+    function ask(trigger, texto, personal) {
       clearSlot(slot);
       clear(results);
-      busy(btn, function () {
-        return API.request('POST', '/rascunhos/' + d.id + '/objectivo/sugerir', { texto: textarea.value });
+      var body = { texto: texto };
+      if (personal) body.confirmo_sem_dados_pessoais = true;
+      busy(trigger, function () {
+        return API.request('POST', '/rascunhos/' + d.id + '/objectivo/sugerir', body);
       }, { model: true }).then(function (data) {
         var list = (data && data.sugestoes) || [];
         if (list.length === 0) {
@@ -857,8 +869,11 @@
             })));
         });
         announce(S.comum.respostaModelo);
-      }).catch(function (err) { report(slot, err); });
-    });
+      }).catch(function (err) {
+        if (isPersonalData(err)) return personalDataBox(slot, err, function (again) { ask(again, texto, true); });
+        report(slot, err);
+      });
+    }
     return el('div', { class: 'eu-ajuda-modelo' },
       el('p', { class: 'eu-ajuda', id: 'sugerir-ajuda', text: S.passo.sugerirAjuda }),
       btn, results);
@@ -1057,11 +1072,12 @@
       drawSection(ctx, next, sec, focus);
       if (!focus) focusTitle();
     };
-    var generate = function (btn, comentario) {
+    // personal: the teacher confirmed that the comment has no personal data (after a 422).
+    var generate = function (btn, comentario, personal) {
       clearSlot(slot);
       // Text the teacher accepted or wrote is replaced only after a confirmation (it stays as the
       // anterior version, which "Repor" brings back).
-      if (hasText && (s.origem === 'docente' || s.estado === 'aceite') && !btn.dataset.confirmado) {
+      if (hasText && (s.origem === 'docente' || s.estado === 'aceite') && !btn.dataset.confirmado && !personal) {
         confirmNewVersion(slot, function () {
           btn.dataset.confirmado = '1';
           generate(btn, comentario);
@@ -1071,12 +1087,16 @@
       delete btn.dataset.confirmado;
       var body = { rev: d.rev };
       if (comentario) body.comentario = comentario;
+      if (personal) body.confirmo_sem_dados_pessoais = true;
       busy(btn, function () {
         return API.request('POST', '/rascunhos/' + d.id + '/seccoes/' + sec + '/gerar', body);
       }, { model: true }).then(function (next) {
         announce(S.comum.respostaModelo);
         redraw(next, 'seccao-texto');
-      }).catch(function (err) { report(slot, err, { write: true }); });
+      }).catch(function (err) {
+        if (isPersonalData(err)) return personalDataBox(slot, err, function (again) { generate(again, comentario, true); });
+        report(slot, err, { write: true });
+      });
     };
 
     content.appendChild(el('h2', { class: 'step-title', text: S.seccao.titulos[sec] }));

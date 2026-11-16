@@ -1320,3 +1320,43 @@ test('8: the copy promises no submission and no review of references in this ver
   for (const n of [1, 2]) assert.doesNotMatch(S.previsao.refsVerificar(n), /revisão/);
   assert.match(S.referencias.intro, /confirm/);
 });
+
+const PERSONAL = { erro: 'O texto pode ter dados pessoais de doentes ou estudantes. Retire-os, ou confirme que o texto não os tem.', motivo: 'dados_pessoais', achados: ['Possível NIF: 123456789'] };
+
+test('B: personal data in the outcome text sent to sugerir asks for the confirmation and resends with the flag', async (t) => {
+  const api = new FakeApi({ user: TEACHER, draft: approvedDraft() });
+  api.on('POST', /\/objectivo\/sugerir$/, (call) => (call.body.confirmo_sem_dados_pessoais === true ? api.route(call) : json(422, PERSONAL)));
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/passo/objectivo` });
+  await a.page('passo');
+  a.set('#campo-texto', 'Conduzir a anamnese do contribuinte 123456789.');
+  a.$('#sugerir-objectivo').click();
+  await a.waitFor(() => a.$('#confirmo-dados'), 'confirmation');
+  assert.match(a.text(), /Possível NIF: 123456789/);
+  a.set('#confirmo-dados', true);
+  a.$('#guardar-confirmado').click();
+  await a.waitFor(() => a.$('.eu-sugestao'), 'suggestions');
+  const calls = api.calls.filter((c) => /\/objectivo\/sugerir$/.test(c.path));
+  assert.equal(calls.length, 2);
+  assert.equal(calls[1].body.confirmo_sem_dados_pessoais, true);
+  assert.equal(calls[1].body.texto, 'Conduzir a anamnese do contribuinte 123456789.');
+});
+
+test('B: personal data in the comment of a new version asks for the confirmation and resends with the flag', async (t) => {
+  const api = new FakeApi({ user: TEACHER, draft: approvedDraft() });
+  api.on('POST', /\/seccoes\/objectivo\/gerar$/, (call) => (call.body.confirmo_sem_dados_pessoais === true ? api.route(call) : json(422, PERSONAL)));
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/seccao/objectivo` });
+  await a.page('seccao');
+  a.$('#nova-versao').click();
+  a.set('#comentario', 'Use o contribuinte 123456789.');
+  a.$('#pedir-versao').click();
+  await a.waitFor(() => a.$('#confirmo-dados'), 'confirmation');
+  assert.match(a.text(), /Possível NIF: 123456789/);
+  assert.equal(a.$('#guardar-confirmado').disabled, true);
+  a.set('#confirmo-dados', true);
+  a.$('#guardar-confirmado').click();
+  await a.waitFor(() => /Texto novo do modelo/.test(a.text()), 'new text');
+  const calls = api.calls.filter((c) => /\/gerar$/.test(c.path));
+  assert.equal(calls.length, 2);
+  assert.equal(calls[1].body.confirmo_sem_dados_pessoais, true);
+  assert.equal(calls[1].body.comentario, 'Use o contribuinte 123456789.');
+});

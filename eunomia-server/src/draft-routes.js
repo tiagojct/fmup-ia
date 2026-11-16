@@ -151,6 +151,14 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
     }));
   }
 
+  // Personal data (design, 6.12) in teacher text that is stored or sent to the model: 422 with the
+  // findings, unless the request confirms that there is none (exactly true, nothing else).
+  function personalDataGate(ctx, texts) {
+    if (ctx.body.confirmo_sem_dados_pessoais === true) return;
+    const achados = texts.filter((t) => typeof t === 'string').flatMap(detectPersonalData);
+    if (achados.length > 0) throw new HttpError(422, PERSONAL_DATA, {}, { motivo: 'dados_pessoais', achados });
+  }
+
   // Teacher text that is stored: no control characters (400) and no emoji (422), as for sections.
   function checkText(data) {
     if (hasControl(data)) throw new HttpError(400, CONTROL_MESSAGE);
@@ -207,15 +215,11 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
     checkText(ctx.body.valor);
     const r = drafts.applyAnswer(d, ctx.params.passo, ctx.body.valor);
     if (r.errors.length > 0) throw new HttpError(400, 'A resposta tem erros.', {}, { erros: r.errors });
-    // Personal data (design, 6.12): the materials, and any free text over PERSONAL_DATA_MIN
-    // characters. The teacher can confirm that the text has none (exactly true, nothing else).
-    if (ctx.body.confirmo_sem_dados_pessoais !== true) {
-      const texts = strings(r.draft.respostas[ctx.params.passo]).filter(
-        (t) => ctx.params.passo === 'materiais' || t.length > PERSONAL_DATA_MIN,
-      );
-      const achados = texts.flatMap(detectPersonalData);
-      if (achados.length > 0) throw new HttpError(422, PERSONAL_DATA, {}, { motivo: 'dados_pessoais', achados });
-    }
+    // The materials, and any free text over PERSONAL_DATA_MIN characters.
+    personalDataGate(
+      ctx,
+      strings(r.draft.respostas[ctx.params.passo]).filter((t) => ctx.params.passo === 'materiais' || t.length > PERSONAL_DATA_MIN),
+    );
     return view(save(r.draft), { avisos: r.avisos });
   });
 
@@ -249,8 +253,11 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
   // saved here.
   route('POST', '/rascunhos/:id/objectivo/sugerir', async (req, res, ctx) => {
     const d = owned(ctx);
-    const texto = optionalText(ctx.body.texto, 1000, 'texto') || (d.respostas.objectivo && d.respostas.objectivo.texto);
+    const unsaved = optionalText(ctx.body.texto, 1000, 'texto');
+    const texto = unsaved || (d.respostas.objectivo && d.respostas.objectivo.texto);
     if (!texto) throw new HttpError(400, 'Escreva primeiro o objectivo.');
+    // The unsaved text goes to the model without the check of PUT respostas.
+    personalDataGate(ctx, [unsaved]);
     const respostas = { ...d.respostas, objectivo: { ...(d.respostas.objectivo || {}), texto } };
     const { data, modelo } = await askOnce(ctx, prompts.sharpenOutcome(respostas));
     const list = Array.isArray(data.sugestoes) ? data.sugestoes : [];
@@ -291,6 +298,7 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
     planGate(d, 'gerar secções');
     applicable(d, sec);
     const comentario = optionalText(ctx.body.comentario, MAX_COMMENT, 'comentario');
+    personalDataGate(ctx, [comentario]);
     const out = await withModel(ctx, (creds, count, deadline) =>
       generateSection({ draft: d, sectionId: sec, client: config.iaedu, creds, comentario, beforeCall: count, deadline }),
     );

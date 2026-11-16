@@ -251,7 +251,12 @@ function markStale(draft, changedSteps) {
   const out = clone(draft);
   for (const [id, sec] of Object.entries(out.seccoes || {})) {
     if (!sec || sec.estado === 'vazia') continue;
-    if ((SECTION_DEPENDS[id] || []).some((s) => changedSteps.includes(s))) sec.estado = 'a-actualizar';
+    if ((SECTION_DEPENDS[id] || []).some((s) => changedSteps.includes(s))) {
+      sec.estado = 'a-actualizar';
+      // The previous version is stale too: "Repor" must not bring back an accepted text past the
+      // stale gate.
+      if (sec.anterior && sec.anterior.dados !== undefined) sec.anterior.estado = 'a-actualizar';
+    }
   }
   return out;
 }

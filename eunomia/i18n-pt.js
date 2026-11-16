@@ -162,7 +162,7 @@
       titulo: 'A Eunomia encontrou no texto:',
       nota: 'Retire estes dados e guarde de novo. Se forem dados fictícios ou não forem dados pessoais, confirme.',
       confirmo: 'Confirmo que o texto não contém dados pessoais de doentes ou estudantes',
-      guardar: 'Guardar com esta confirmação',
+      continuar: 'Continuar com esta confirmação',
     },
 
     plano: {
