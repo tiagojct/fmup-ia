@@ -14,7 +14,7 @@ const { JSDOM, VirtualConsole } = require('jsdom');
 
 const ROOT = path.join(__dirname, '..');
 const BASE = '/fmup-ia/eunomia/api';
-const SCRIPTS = ['i18n-pt.js', 'ajuda-pt.js', 'api.js', 'app.js'];
+const SCRIPTS = ['i18n-pt.js', 'ajuda-pt.js', 'api.js', 'themis-link.js', 'app.js'];
 const INTERVIEW = JSON.parse(fs.readFileSync(path.join(ROOT, 'interview.json'), 'utf8'));
 const PATTERNS = JSON.parse(fs.readFileSync(path.join(ROOT, 'patterns.json'), 'utf8')).padroes;
 const REFS = JSON.parse(fs.readFileSync(path.join(ROOT, 'references.json'), 'utf8')).referencias;

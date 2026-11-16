@@ -2102,8 +2102,11 @@
       content.appendChild(el('h2', { class: 'step-title', text: S.previsao.titulo }));
       content.appendChild(check);
       content.appendChild(slot);
+      // The Themis link comes after the downloads, and shows whenever the regime step is answered.
+      var themis = themisBox(d);
       if (!d.plano_aprovado) {
         check.appendChild(el('p', { class: 'review-note' }, S.rascunho.planoPrimeiro, ' ', link(S.rascunho.plano, '#/rascunho/' + id + '/plano')));
+        if (themis) content.appendChild(themis);
         return;
       }
       return API.request('GET', '/rascunhos/' + id + '/verificacao-final').then(function (v) {
@@ -2149,10 +2152,12 @@
         }
         if (missing.length) {
           content.appendChild(el('p', { class: 'eu-nota', text: S.previsao.semPrevisao }));
+          if (themis) content.appendChild(themis);
           return;
         }
         content.appendChild(exportBox(id, slot));
         if (!steps.length && !(v.erros || []).length && isEditable(d)) content.appendChild(submitBox(ctx, d, slot));
+        if (themis) content.appendChild(themis);
         var frameBox = el('section', { class: 'eu-seccao', 'aria-labelledby': 'previsao-ficha-titulo' },
           el('h3', { id: 'previsao-ficha-titulo', text: S.previsao.fichaTitulo }),
           el('p', { text: S.comum.aCarregar }));
@@ -2190,6 +2195,9 @@
       el('div', { class: 'nav-row' }, btn));
   }
 
+  // The file name when the server sends none; the formats of GET /rascunhos/:id/exportar.
+  var SUFIXOS = { folheto: '-folheto.html', 'folheto-md': '-folheto.md' };
+
   function exportBox(id, slot) {
     var make = function (formato) {
       var b = button(S.previsao[formato], { id: 'exportar-' + formato }, function () {
@@ -2197,7 +2205,7 @@
         busy(b, function () {
           return API.download('/rascunhos/' + id + '/exportar?formato=' + formato);
         }, { label: S.previsao.aDescarregar }).then(function (file) {
-          var name = file.filename || 'ficha.' + formato;
+          var name = file.filename || 'ficha' + (SUFIXOS[formato] || '.' + formato);
           saveFile(file.blob, name);
           announce(S.previsao.descarregado(name) + (file.avisos > 0 ? ' ' + S.previsao.avisosExportar(file.avisos) : ''));
         }).catch(function (err) { report(slot, err); });
@@ -2207,7 +2215,21 @@
     return el('section', { class: 'eu-seccao', 'aria-labelledby': 'exportar-titulo' },
       el('h3', { id: 'exportar-titulo', text: S.previsao.exportar }),
       el('p', { class: 'eu-nota', text: S.previsao.exportarNota }),
-      el('div', { class: 'nav-row' }, make('qmd'), make('md'), make('html')));
+      el('div', { class: 'nav-row' }, make('qmd'), make('md'), make('html'), make('docx'), make('folheto'), make('folheto-md')));
+  }
+
+  // The link to Themis (spec D9), for a draft whose regime step is answered. themis-link.js builds
+  // the state from the answers; the link makes no request.
+  function themisBox(d) {
+    var regime = (d.respostas || {}).regime;
+    if (!regime || typeof regime.regime !== 'string' || regime.regime === '') return null;
+    var a = externalLink(S.previsao.abrirThemis, window.EUNOMIA_THEMIS.href(d.respostas));
+    a.id = 'abrir-themis';
+    a.setAttribute('aria-describedby', 'abrir-themis-nota');
+    return el('section', { id: 'themis-seccao', class: 'eu-seccao', 'aria-labelledby': 'themis-titulo' },
+      el('h3', { id: 'themis-titulo', text: S.previsao.themisTitulo }),
+      el('p', { class: 'eu-nota', id: 'abrir-themis-nota', text: S.previsao.themisNota }),
+      el('p', null, a));
   }
 
   function saveFile(blob, name) {

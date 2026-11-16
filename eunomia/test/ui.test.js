@@ -736,7 +736,7 @@ test('every string of i18n-pt.js is used by app.js', () => {
   new Function('window', fs.readFileSync(path.join(ROOT, 'i18n-pt.js'), 'utf8'))(w);
   // Maps that app.js reads with a computed key.
   const dynamic = new Set(['estados', 'seccao.titulos', 'seccao.estado', 'seccao.estadoCurto', 'seccao.regras', 'seccao.campos', 'codigos.perfis', 'painel.papeis', 'painel.regimes']);
-  const computed = new Set(['previsao.qmd', 'previsao.md', 'previsao.html']);
+  const computed = new Set(['previsao.qmd', 'previsao.md', 'previsao.html', 'previsao.docx', 'previsao.folheto', 'previsao.folheto-md']);
   const unused = [];
   for (const [group, entries] of Object.entries(w.EUNOMIA_PT)) {
     if (dynamic.has(group)) continue;
@@ -825,8 +825,8 @@ test('front-end files have no emojis; app.js has no UI copy; the strings use the
   for (const f of ['index.html', 'style.css', ...SCRIPTS]) {
     assert.doesNotMatch(fs.readFileSync(path.join(ROOT, f), 'utf8'), emoji, f);
   }
-  // Portuguese copy has accents; app.js and api.js must not.
-  for (const f of ['app.js', 'api.js']) {
+  // Portuguese copy has accents; app.js, api.js and themis-link.js must not.
+  for (const f of ['app.js', 'api.js', 'themis-link.js']) {
     assert.doesNotMatch(fs.readFileSync(path.join(ROOT, f), 'utf8'), /[^\x00-\x7F]/, `${f} is ASCII only: copy goes in i18n-pt.js`);
   }
   const pt = fs.readFileSync(path.join(ROOT, 'i18n-pt.js'), 'utf8');
