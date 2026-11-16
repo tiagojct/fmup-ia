@@ -106,20 +106,24 @@ function splitUrl(url) {
   return { pathname, query };
 }
 
-// Reads the body up to the limit. Over the limit it rejects at once (413) and drains the rest of
-// the upload; the error reply then carries Connection: close (see fail), so the client gets the 413
-// and the next request opens a new connection.
+// Reads the body up to the limit. Over the limit the rest of the upload is read and dropped, up to
+// DRAIN_MAX bytes in all, and then the 413 goes out: a client that is still sending would otherwise
+// get a connection reset instead of the reply. An upload larger than DRAIN_MAX (declared or sent) is
+// refused at once. The error reply carries Connection: close (see fail).
+const DRAIN_MAX = 4 * 1024 * 1024;
+
 function readBody(req, limit) {
   return new Promise((resolve, reject) => {
     const chunks = [];
     let size = 0;
+    let over = false;
     const cleanup = () => {
       req.removeListener('data', onData);
       req.removeListener('end', onEnd);
       req.removeListener('error', onError);
       req.removeListener('close', onClose);
     };
-    const tooLarge = () => {
+    const refuse = () => {
       cleanup();
       req.resume();
       req.on('error', () => {});
@@ -127,10 +131,12 @@ function readBody(req, limit) {
     };
     const onData = (chunk) => {
       size += chunk.length;
-      if (size > limit) return tooLarge();
-      chunks.push(chunk);
+      if (size > DRAIN_MAX) return refuse();
+      if (size > limit) over = true;
+      if (!over) chunks.push(chunk);
     };
     const onEnd = () => {
+      if (over) return refuse();
       cleanup();
       resolve(Buffer.concat(chunks));
     };
@@ -144,7 +150,8 @@ function readBody(req, limit) {
     };
 
     const declared = Number(req.headers['content-length']);
-    if (Number.isFinite(declared) && declared > limit) return tooLarge();
+    if (Number.isFinite(declared) && declared > DRAIN_MAX) return refuse();
+    if (Number.isFinite(declared) && declared > limit) over = true;
     req.on('data', onData);
     req.on('end', onEnd);
     req.on('error', onError);

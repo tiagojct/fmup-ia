@@ -460,6 +460,26 @@ test('a chunked body over 1 MB, with no Content-Length, returns 413', async (t) 
   assert.equal(status, 413);
 });
 
+test('an upload declared over 4 MB is refused at once, before it is sent', async (t) => {
+  const app = await startApp(t, { routes: sizeRoute });
+  const { cookie } = await app.person('Ana');
+  const status = await new Promise((resolve, reject) => {
+    const req = http.request(
+      `${app.url}${BASE}/_tamanho`,
+      { method: 'POST', headers: { cookie: `eunomia=${cookie}`, 'content-type': 'application/json', 'content-length': String(5 * 1024 * 1024) } },
+      (res) => {
+        res.resume();
+        resolve(res.statusCode);
+        req.destroy();
+      },
+    );
+    req.on('error', () => {});
+    req.flushHeaders(); // headers only; the body never comes
+    setTimeout(() => reject(new Error('sem resposta')), 2000).unref();
+  });
+  assert.equal(status, 413);
+});
+
 // ---------------------------------------------------------------- credentials
 
 function credsRoutes(route) {
