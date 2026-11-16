@@ -5,6 +5,11 @@
 // fichas use: headings, paragraphs, lists, tables, code blocks, fenced divs (::: {.class}), bold,
 // italic, code, links and autolinks. All text is escaped first; links accept http(s), mailto,
 // anchors and relative paths only.
+//
+// The converter has two steps: parseBlocks reads the Markdown into blocks, and markdownToHtml writes
+// them as HTML. The Word export (docx.js) reads the same blocks and the same inline conversion, so
+// that the two downloads cannot disagree on what a line of Markdown is. htmlPage wraps an HTML body
+// in the printable page, for the ficha and for the student handout (folheto.js).
 
 const { renderQmd } = require('./ficha.js');
 const { CONTROL, stripControl } = require('./control.js');
@@ -70,12 +75,21 @@ const splitRow = (line) =>
 
 const LIST_ITEM = /^(\s*)([-*+]|\d{1,3}[.)])\s+(.*)$/;
 
-function markdownToHtml(md) {
+// The Markdown as blocks, in order:
+//   { type: 'code', text }                          a fenced code block (the text without the fences)
+//   { type: 'div', open: boolean, cls }             a ::: line (cls only when it opens)
+//   { type: 'heading', level, text }                # to ######
+//   { type: 'table', head: string[], hasHead, rows: string[][] }
+//   { type: 'list', ordered, items: string[] }      an item has its continuation lines joined by \n
+//   { type: 'para', text }                          the lines of a paragraph joined by \n
+// The text of a heading, a cell, an item and a paragraph is Markdown: inline() reads it. C0 control
+// characters are stripped first.
+function parseBlocks(md) {
   const lines = stripControl(md).replace(/\r\n?/g, '\n').split('\n');
   const out = [];
   let para = [];
   const flush = () => {
-    if (para.length) out.push(`<p>${inline(para.join('\n'))}</p>`);
+    if (para.length) out.push({ type: 'para', text: para.join('\n') });
     para = [];
   };
 
@@ -87,7 +101,7 @@ function markdownToHtml(md) {
       flush();
       const code = [];
       for (i += 1; i < lines.length && !new RegExp(`^\\s*${fence[1][0]}{${fence[1].length},}\\s*$`).test(lines[i]); i++) code.push(lines[i]);
-      out.push(`<pre><code>${escapeHtml(code.join('\n'))}</code></pre>`);
+      out.push({ type: 'code', text: code.join('\n') });
       continue;
     }
 
@@ -95,15 +109,14 @@ function markdownToHtml(md) {
     if (div) {
       flush();
       const cls = /\.([A-Za-z][\w-]*)/.exec(div[1]);
-      out.push(div[1].trim() === '' ? '</div>' : `<div class="${cls ? cls[1] : 'bloco'}">`);
+      out.push({ type: 'div', open: div[1].trim() !== '', cls: cls ? cls[1] : 'bloco' });
       continue;
     }
 
     const heading = /^(#{1,6})\s+(.*)$/.exec(line);
     if (heading) {
       flush();
-      const n = heading[1].length;
-      out.push(`<h${n}>${inline(heading[2])}</h${n}>`);
+      out.push({ type: 'heading', level: heading[1].length, text: heading[2] });
       continue;
     }
 
@@ -113,10 +126,7 @@ function markdownToHtml(md) {
       const rows = [];
       for (i += 2; i < lines.length && /^\s*\|/.test(lines[i]); i++) rows.push(splitRow(lines[i]));
       i -= 1;
-      const hasHead = head.some((c) => c !== '');
-      const thead = hasHead ? `<thead><tr>${head.map((c) => `<th>${inline(c)}</th>`).join('')}</tr></thead>` : '';
-      const tbody = rows.map((r) => `<tr>${r.map((c) => `<td>${inline(c)}</td>`).join('')}</tr>`).join('');
-      out.push(`<table>${thead}<tbody>${tbody}</tbody></table>`);
+      out.push({ type: 'table', head, hasHead: head.some((c) => c !== ''), rows });
       continue;
     }
 
@@ -136,8 +146,7 @@ function markdownToHtml(md) {
         } else break;
       }
       i -= 1;
-      const tag = ordered ? 'ol' : 'ul';
-      out.push(`<${tag}>${items.map((it) => `<li>${inline(it.join('\n'))}</li>`).join('')}</${tag}>`);
+      out.push({ type: 'list', ordered, items: items.map((it) => it.join('\n')) });
       continue;
     }
 
@@ -145,8 +154,32 @@ function markdownToHtml(md) {
     else para.push(line);
   }
   flush();
-  return out.join('\n');
+  return out;
 }
+
+function blockToHtml(b) {
+  switch (b.type) {
+    case 'code':
+      return `<pre><code>${escapeHtml(b.text)}</code></pre>`;
+    case 'div':
+      return b.open ? `<div class="${b.cls}">` : '</div>';
+    case 'heading':
+      return `<h${b.level}>${inline(b.text)}</h${b.level}>`;
+    case 'table': {
+      const thead = b.hasHead ? `<thead><tr>${b.head.map((c) => `<th>${inline(c)}</th>`).join('')}</tr></thead>` : '';
+      const tbody = b.rows.map((r) => `<tr>${r.map((c) => `<td>${inline(c)}</td>`).join('')}</tr>`).join('');
+      return `<table>${thead}<tbody>${tbody}</tbody></table>`;
+    }
+    case 'list': {
+      const tag = b.ordered ? 'ol' : 'ul';
+      return `<${tag}>${b.items.map((it) => `<li>${inline(it)}</li>`).join('')}</${tag}>`;
+    }
+    default:
+      return `<p>${inline(b.text)}</p>`;
+  }
+}
+
+const markdownToHtml = (md) => parseBlocks(md).map(blockToHtml).join('\n');
 
 const CSS = `
 :root { color-scheme: light; }
@@ -165,22 +198,24 @@ a { color: #1a4f8b; }
 @media print { main { max-width: none; padding: 0; } a { color: inherit; } h2 { break-after: avoid; } pre, table, li { break-inside: avoid; } }
 `;
 
-function renderHtml(ficha) {
-  const title = escapeHtml(stripControl(ficha.meta.titulo));
+// The printable page: inline CSS, no script. bodyMarkdown is the Markdown below the title and the
+// subtitle, which the page prints itself.
+function htmlPage(title, subtitle, bodyMarkdown) {
+  const heading = escapeHtml(stripControl(title));
   return [
     '<!doctype html>',
     '<html lang="pt-PT">',
     '<head>',
     '<meta charset="utf-8">',
     '<meta name="viewport" content="width=device-width, initial-scale=1">',
-    `<title>${title}</title>`,
+    `<title>${heading}</title>`,
     `<style>${CSS}</style>`,
     '</head>',
     '<body>',
     '<main>',
-    `<h1>${title}</h1>`,
-    `<p class="subtitulo">${escapeHtml(stripControl(ficha.meta.subtitulo))}</p>`,
-    markdownToHtml(body(ficha)),
+    `<h1>${heading}</h1>`,
+    `<p class="subtitulo">${escapeHtml(stripControl(subtitle))}</p>`,
+    markdownToHtml(bodyMarkdown),
     '</main>',
     '</body>',
     '</html>',
@@ -188,4 +223,6 @@ function renderHtml(ficha) {
   ].join('\n');
 }
 
-module.exports = { renderMd, renderHtml, markdownToHtml, escapeHtml, CONTROL };
+const renderHtml = (ficha) => htmlPage(ficha.meta.titulo, ficha.meta.subtitulo, body(ficha));
+
+module.exports = { renderMd, renderHtml, htmlPage, markdownBody: body, parseBlocks, markdownToHtml, inline, escapeHtml, CONTROL };

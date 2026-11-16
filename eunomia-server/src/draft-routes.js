@@ -26,6 +26,8 @@ const { REFERENCES, buildMeta, assembleFicha, sectionsToAccept } = require('./as
 const { generateSection, newThreadId } = require('./generate.js');
 const { hasControl, stripControl, strings, CONTROL_MESSAGE } = require('./control.js');
 const { renderMd, renderHtml } = require('./export.js');
+const { renderDocx } = require('./docx.js');
+const { renderFolhetoMd, renderFolhetoHtml } = require('./folheto.js');
 const { detectPersonalData } = require('./materials.js');
 const prompts = require('./prompts.js');
 const { findExample, referenceFicha, draftFromExample } = require('./exemplos.js');
@@ -56,12 +58,20 @@ const MODEL_BUDGET_MS = 90000;
 const CODE_SECTIONS = ['meta', 'regime_ia', 'referencias', 'declaracao'];
 const MAX_REFERENCES = 20;
 const MAX_COMMENT = 2000;
-// Control characters never reach a download (the HTML converter strips them too).
+// The downloads. The filename is the slug of the title plus suffix. body returns a string, or a
+// Promise of a Buffer for the Word file. Control characters never reach a text download (the HTML
+// converter and the Word export strip them too).
+const WORD = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
 const EXPORTS = {
-  qmd: { type: 'text/plain; charset=utf-8', body: (f) => stripControl(renderQmd(f)) },
-  md: { type: 'text/markdown; charset=utf-8', body: (f) => stripControl(renderMd(f)) },
-  html: { type: 'text/html; charset=utf-8', body: renderHtml },
+  qmd: { type: 'text/plain; charset=utf-8', suffix: '.qmd', body: (f) => stripControl(renderQmd(f)) },
+  md: { type: 'text/markdown; charset=utf-8', suffix: '.md', body: (f) => stripControl(renderMd(f)) },
+  html: { type: 'text/html; charset=utf-8', suffix: '.html', body: renderHtml },
+  docx: { type: WORD, suffix: '.docx', body: renderDocx },
+  folheto: { type: 'text/html; charset=utf-8', suffix: '-folheto.html', body: renderFolhetoHtml },
+  'folheto-md': { type: 'text/markdown; charset=utf-8', suffix: '-folheto.md', body: (f) => stripControl(renderFolhetoMd(f)) },
 };
+const UNKNOWN_FORMAT = 'Formato desconhecido. Use qmd, md, html, docx, folheto ou folheto-md.';
+const HTML_CSP = "default-src 'none'; style-src 'unsafe-inline'; img-src data:";
 
 function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds }) {
   const { store } = config;
@@ -535,25 +545,26 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
   }
 
   // The schema problems and the regime avisos do not block the download: the teacher decides. Their
-  // number (actionableCount) goes in X-Eunomia-Avisos and the list in verificacao-final.
-  route('GET', '/rascunhos/:id/exportar', (req, res, ctx) => {
+  // number (actionableCount) goes in X-Eunomia-Avisos and the list in verificacao-final. The gate and
+  // the header are the same for every format.
+  route('GET', '/rascunhos/:id/exportar', async (req, res, ctx) => {
     const formato = ctx.query.get('formato') || 'qmd';
+    if (!Object.hasOwn(EXPORTS, formato)) throw new HttpError(400, UNKNOWN_FORMAT);
     const kind = EXPORTS[formato];
-    if (!kind) throw new HttpError(400, 'Formato desconhecido. Use qmd, md ou html.');
     const d = readable(ctx);
     const ficha = readyFicha(d);
     const count = actionableCount(d, ficha);
-    const body = kind.body(ficha);
+    const body = await kind.body(ficha);
     const slug = slugify(ficha.meta.titulo || '') || 'ficha';
     const headers = {
       'Content-Type': kind.type,
       'Content-Length': Buffer.byteLength(body),
-      'Content-Disposition': `attachment; filename="${slug}.${formato}"`,
+      'Content-Disposition': `attachment; filename="${slug}${kind.suffix}"`,
       'X-Eunomia-Avisos': String(count),
       'Cache-Control': 'no-store',
       'X-Content-Type-Options': 'nosniff',
     };
-    if (formato === 'html') headers['Content-Security-Policy'] = "default-src 'none'; style-src 'unsafe-inline'; img-src data:";
+    if (kind.type.startsWith('text/html')) headers['Content-Security-Policy'] = HTML_CSP;
     res.writeHead(200, headers);
     res.end(body);
   });
