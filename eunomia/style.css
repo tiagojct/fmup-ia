@@ -1,9 +1,8 @@
 /*
- * Eunomia (FMUP · IA). The tokens, fonts and components come from Themis; this file adds the
- * Eunomia rules only. No build step.
+ * Eunomia (FMUP · IA). The tokens, fonts and components come from Themis: index.html links
+ * ../themis/style.css before this file, with the Themis version in ?v= (scripts/sync-versions.py).
+ * This file adds the Eunomia rules only. No build step.
  */
-
-@import url('../themis/style.css');
 
 /* ---------- Shell ---------- */
 

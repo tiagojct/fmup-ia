@@ -32,7 +32,7 @@ fmup-ia/
 │   ├── references.bib, chicago-author-date.csl
 │   └── guias/           # 4 handouts em format: fmup-typst (PDF)
 ├── apresentacoes/       # slides em format: fmup-revealjs
-├── themis/              # SPA: index.html, app.js, style.css, policy.json, i18n/
+├── themis/              # SPA: index.html, app.js, policy-rules.js, style.css, policy.json, i18n/
 ├── assets/
 │   ├── logos/           # logos institucionais FMUP / U.Porto
 │   └── favicon.svg

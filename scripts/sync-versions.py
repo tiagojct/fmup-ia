@@ -29,6 +29,13 @@ replace('_quarto.yml',r'Quadro v[\d.]+ · [^\n]+',f'Quadro {version} · {label}'
 replace('training/_quarto.yml',r'Sessão de formação v[\d.]+ · [^\n]+',f"Sessão de formação {tv['sessao.versao']} · {tv['sessao.data'].replace(' de ', ' ')}")
 replace('themis/app.js',r"const APP_VERSION = '[^']+';",f"const APP_VERSION = '{v['themis.versao']}';")
 p=ROOT/'themis/index.html';update('themis/index.html',re.sub(r'\?v=[\d.]+',f"?v={v['themis.versao']}",p.read_text()))
+# Eunomia: eunomia.versao drives the ?v= of its own files in eunomia/index.html; the link to the
+# Themis stylesheet carries the Themis version, so that a new Themis style.css is not served from
+# the cache.
+p=ROOT/'eunomia/index.html';t=re.sub(r'(?<=")(?!\.\./themis/)([^"?]+)\?v=[\d.]+',lambda m:f"{m[1]}?v={v['eunomia.versao']}",p.read_text())
+t,count=re.subn(r'\.\./themis/style\.css\?v=[\d.]+',f"../themis/style.css?v={v['themis.versao']}",t)
+if count!=1:raise ValueError(f'eunomia/index.html: expected one Themis stylesheet link, found {count}')
+update('eunomia/index.html',t)
 d=json.loads((ROOT/'themis/policy.json').read_text());d.update(version=v['themis.regras'],framework_version=framework,framework_short_pt=f'Quadro FMUP {version}',framework_short_en=f'FMUP Framework {version}',revised=date)
 update('themis/policy.json',json.dumps(d,ensure_ascii=False,indent=2)+'\n')
 replace('CITATION.cff',r'(?m)^version: .+$',f'version: "{version.removeprefix("v")}.0"')

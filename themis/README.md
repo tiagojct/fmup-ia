@@ -124,12 +124,12 @@ all editable as plain text. To create a derivative for another institution:
    risk levels, and the rules list. Each rule has:
    - `id` (stable identifier);
    - `trigger` (a small object describing the state predicate that fires the
-     rule — supported keys, mirroring `matchesTrigger()` in `app.js`:
+     rule — supported keys, mirroring `matchesTrigger()` in `policy-rules.js`:
      `role`, `submission`, `modification`, `policy`, `policy_any`, `level`,
      `activity`, `activity_any`, `target`, `target_any`, `assignment_any`,
      `tasks_any`, `tools_regex`, `riskFlags_any`; unsupported keys disable the
      policy, so adding a new trigger key requires editing both
-     `validatePolicy()` and `matchesTrigger()`);
+     `validatePolicy()` in `app.js` and `matchesTrigger()` in `policy-rules.js`);
    - `risk` (1 = minimal, 2 = limited, 3 = high, 4 = unacceptable);
    - `principle_ref`, `scenario_ref` (informational anchors);
    - `message_pt`, `message_en` (user-visible guidance).
