@@ -349,3 +349,28 @@ test('18: every 409 carries a motivo: rev, bloqueado, plano, incompleto, passo',
   const b = await lk.app.call('PUT', `${lk.url}/respostas/contexto`, { cookie: lk.ana.cookie, body: { rev: locked.rev, valor: respostasCompletas().contexto } });
   assert.equal(b.json.motivo, 'bloqueado');
 });
+
+// ---------------------------------------------------------------- data: 13, 15, 16
+
+test('13: nomeia counts for nomear; AO90 spellings typed by teachers count as the same verbs', () => {
+  assert.equal(drafts.checkOutcomeVerb('O estudante nomeia as estruturas da preparação.').verbo, 'nomear');
+  assert.equal(drafts.checkOutcomeVerb('Selecionar o teste adequado.').verbo, 'seleccionar');
+  assert.equal(drafts.checkOutcomeVerb('O estudante seleciona o teste adequado.').verbo, 'seleccionar');
+  assert.equal(drafts.checkOutcomeVerb('O estudante deteta os erros do texto.').verbo, 'detectar');
+  assert.equal(drafts.checkOutcomeVerb('Detetar erros.').verbo, 'detectar');
+  assert.equal(drafts.checkOutcomeVerb('O estudante planeia a entrevista.').verbo, 'planear');
+});
+
+test('15: the plan step links to the section "Integração no ensino" of chapter 4', () => {
+  const plano = drafts.INTERVIEW.passos.find((p) => p.id === 'plano');
+  assert.equal(plano.ligacao.url, 'https://tiagojacinto.eu/fmup-ia/quadro/04-docentes.html#integração-no-ensino');
+  const qmd = fs.readFileSync(require('../src/paths.js').repoPath('quadro', '04-docentes.qmd'), 'utf8');
+  assert.match(qmd, /^## Integração no ensino$/m);
+});
+
+test('16: hicke-2025 is the bare arXiv citation, with no invented title', () => {
+  const { REFERENCES } = require('../src/assemble.js');
+  const hicke = REFERENCES.find((r) => r.id === 'hicke-2025');
+  assert.equal(hicke.texto, 'Hicke Y et al. arXiv:2503.05793. 2025.');
+  assert.equal(hicke.url, 'https://arxiv.org/abs/2503.05793v2');
+});

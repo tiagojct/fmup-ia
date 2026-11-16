@@ -321,10 +321,17 @@ function verbForms(inf) {
   return [inf];
 }
 
+// The spelling of the 1990 agreement that a teacher may type: the c of cc, cç and ct and the p of
+// pt fall (seleccionar -> selecionar, detectar -> detetar). It counts as the same verb.
+const ao90 = (inf) => inf.replace(/c(?=[cçt])/g, '').replace(/p(?=t)/g, '');
+
 const FORM_TO_VERB = new Map();
 for (const nivel of VERBOS.niveis) {
   for (const inf of nivel.verbos) {
-    for (const form of verbForms(inf)) FORM_TO_VERB.set(form, { verbo: inf, nivel: nivel.id, infinitivo: form === inf });
+    const spellings = ao90(inf) === inf ? [inf] : [inf, ao90(inf)];
+    for (const spelling of spellings) {
+      for (const form of verbForms(spelling)) FORM_TO_VERB.set(form, { verbo: inf, nivel: nivel.id, infinitivo: form === spelling });
+    }
   }
 }
 
