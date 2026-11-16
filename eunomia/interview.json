@@ -5,6 +5,12 @@
     {
       "id": "contexto",
       "titulo": "Contexto da actividade",
+      "minutos": 3,
+      "erros_comuns": [
+        "Pôr na duração o tempo da aula inteira. Indique só o tempo desta actividade.",
+        "Contar todos os inscritos quando a actividade corre por turmas. Indique os estudantes de uma sessão.",
+        "Escolher «Em aula» para trabalho feito em casa: o catálogo deixa de propor os padrões de trabalho autónomo."
+      ],
       "porque": "O número de estudantes, o tempo e o lugar decidem que padrões são viáveis. A área indica se o Anexo I tem um perfil disciplinar que oriente a avaliação.",
       "ligacao": {
         "rotulo": "Anexo I. Perfis disciplinares da FMUP",
@@ -98,6 +104,13 @@
     {
       "id": "objectivo",
       "titulo": "Objectivo de aprendizagem",
+      "minutos": 5,
+      "erros_comuns": [
+        "Usar compreender, saber ou conhecer. Não se observam: escreva o que o estudante faz no fim, por exemplo identificar ou justificar.",
+        "Descrever o que o docente faz (apresentar um caso) e não o que o estudante faz.",
+        "Pôr na competência protegida tudo o que a actividade treina. É só a parte que o estudante faz sem ajuda.",
+        "Juntar vários objectivos numa frase. Uma actividade de uma aula treina um."
+      ],
       "porque": "Um verbo observável diz o que o estudante faz no fim, e é isso que a actividade treina e a avaliação verifica. A competência protegida é a parte que o estudante tem de fazer sem ajuda, como pede o pilar Ser sem IA do Quadro.",
       "ligacao": {
         "rotulo": "Princípios orientadores: os três pilares",
@@ -133,6 +146,12 @@
     {
       "id": "evidencia",
       "titulo": "Evidência e avaliação",
+      "minutos": 3,
+      "erros_comuns": [
+        "Indicar uma evidência que não mostra o objectivo, por exemplo um teste de escolha múltipla para avaliar a argumentação.",
+        "Marcar «Sumativa» numa actividade que não conta para a classificação. A sumativa pede a cláusula do passo seguinte.",
+        "Não dizer quem observa nem o que regista durante a actividade."
+      ],
       "porque": "A evidência tem de mostrar o objectivo: se o objectivo é conduzir uma entrevista, um texto escrito em casa não o mostra. Uma actividade sumativa precisa ainda de uma cláusula para o enunciado, que um passo seguinte prepara.",
       "ligacao": {
         "rotulo": "Vertente Docentes: redesenho da avaliação",
@@ -176,6 +195,12 @@
     {
       "id": "papel_ia",
       "titulo": "Papel da IA",
+      "minutos": 1,
+      "erros_comuns": [
+        "Confundir o papel com o regime. O papel diz o que a IA faz na actividade; o regime diz o que os estudantes podem fazer com ela.",
+        "Escolher «Ferramenta» quando os estudantes só lêem um texto gerado antes da aula. Esse papel é «Objecto de crítica».",
+        "Indicar uma ferramenta que a Universidade do Porto não aprovou. Por omissão, a IAedu."
+      ],
       "porque": "O papel da IA muda o desenho da actividade e as armadilhas a prever. As seis fichas de formação mostram um exemplo de cada papel.",
       "ligacao": {
         "rotulo": "Fichas de actividade",
@@ -207,6 +232,12 @@
     {
       "id": "regime",
       "titulo": "Regime de IA para os estudantes",
+      "minutos": 2,
+      "erros_comuns": [
+        "Escolher «permitido com condições» e escrever condições vagas, como uso moderado. Diga quando, para quê e com que registo.",
+        "Escolher «proibido» numa actividade em que os estudantes usam a IA por desenho.",
+        "Deixar o regime só na ficha do docente. Os estudantes têm de o ler no enunciado da actividade."
+      ],
       "porque": "O regime diz o que os estudantes podem fazer com IA durante esta actividade. Segue o semáforo da U.Porto, que o Anexo B do Quadro traduz em cláusulas.",
       "ligacao": {
         "rotulo": "Anexo B. Modelo de cláusula",
@@ -238,6 +269,12 @@
     {
       "id": "regime_themis",
       "titulo": "Cláusula para a avaliação",
+      "minutos": 3,
+      "erros_comuns": [
+        "Escolher uma política diferente do regime sem querer. A Eunomia avisa: confirme que é intencional.",
+        "Marcar todos os tipos de trabalho. Marque só os que esta avaliação pede.",
+        "Marcar «Outro» e deixar o tipo de trabalho por especificar."
+      ],
       "condicao": { "passo": "evidencia", "campo": "avaliacao", "igual": "sumativa" },
       "porque": "Uma actividade sumativa precisa de uma cláusula no enunciado. A Eunomia gera-a com as regras da Themis, a partir do tipo de trabalho e da política que escolher, e junta os avisos da política.",
       "ligacao": {
@@ -289,6 +326,12 @@
     {
       "id": "padrao",
       "titulo": "Padrão de actividade",
+      "minutos": 4,
+      "erros_comuns": [
+        "Escolher pelo nome sem ler «Quando não serve».",
+        "Ignorar a adequação parcial. O padrão pede mais tempo ou outro lugar, e as fases têm de ser adaptadas.",
+        "Mudar o formato de grupo sem rever o tempo de cada fase."
+      ],
       "porque": "Um padrão é um mecanismo já usado, com armadilhas conhecidas. A Eunomia propõe dois ou três do catálogo, filtrados pelas respostas anteriores, e a escolha é sua.",
       "ligacao": {
         "rotulo": "Fichas de actividade",
@@ -315,6 +358,11 @@
     {
       "id": "materiais",
       "titulo": "Materiais (opcional)",
+      "minutos": 2,
+      "erros_comuns": [
+        "Colar casos reais com nome, idade e datas. Use só casos fictícios.",
+        "Colar o programa inteiro da unidade curricular. Basta o texto que serve esta actividade."
+      ],
       "porque": "Os materiais da unidade curricular dão ao modelo o vocabulário e os casos da sua área. O texto vai para a IAedu, por isso não pode ter dados de doentes nem de estudantes.",
       "ligacao": {
         "rotulo": "Princípio 3. Protecção de dados e confidencialidade",
@@ -334,6 +382,12 @@
     {
       "id": "plano",
       "titulo": "Plano",
+      "minutos": 3,
+      "erros_comuns": [
+        "Aprovar o plano sem o ler. O modelo escreve a partir dele e não corrige uma decisão errada.",
+        "Pôr nas notas uma decisão que contradiz um passo, por exemplo outro regime. Volte ao passo e altere-o.",
+        "Dar um título genérico, como Actividade com IA. O título diz o que os estudantes fazem."
+      ],
       "porque": "O plano reúne numa página as decisões dos passos anteriores. Nenhuma secção é escrita antes de o aprovar, porque o modelo escreve a partir das suas decisões e não as toma por si.",
       "ligacao": {
         "rotulo": "Vertente Docentes: integração no ensino",

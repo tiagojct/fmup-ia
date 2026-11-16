@@ -1,0 +1,397 @@
+{
+  "versao": 1,
+  "nota": "Os seis exemplos da Eunomia: as respostas da entrevista que levam a cada uma das seis fichas de formação (training/fichas e eunomia-server/referencia). Cada conjunto de respostas passa a validação do servidor. porque explica cada resposta numa frase; nota marca uma resposta que a ficha não indica. por_passo diz que exemplos aparecem em Ver exemplo em cada passo.",
+  "exemplos": [
+    {
+      "n": 1,
+      "titulo": "Doente virtual para anamnese em pares",
+      "respostas": {
+        "contexto": {
+          "uc": "Semiologia Médica",
+          "programa": "Mestrado Integrado em Medicina, 3.º ano",
+          "area": "cuidados_primarios",
+          "nivel": "uc_undergrad",
+          "estudantes": 20,
+          "modalidade": "em_aula",
+          "duracao_min": 30,
+          "duracao_max": 45
+        },
+        "objectivo": {
+          "texto": "No fim da actividade, o estudante conduz uma anamnese estruturada perante uma apresentação clínica que desconhece, formulando as perguntas por iniciativa própria e justificando a hipótese a que chega.",
+          "competencia_protegida": "A competência protegida é a recolha de informação, não o diagnóstico. Um estudante que acerte no diagnóstico com três perguntas não cumpriu o objectivo; um que chegue a uma hipótese razoável depois de uma entrevista completa cumpriu-o, mesmo que a hipótese esteja errada.",
+          "competencia": "Anamnese, comunicação clínica"
+        },
+        "evidencia": {
+          "descricao": "Quem observa preenche uma grelha com as dimensões da anamnese cobertas e as perguntas que ficaram por fazer. No fim, quem conduz diz em voz alta a hipótese principal, uma alternativa e a informação que pediria a seguir.",
+          "avaliacao": "formativa"
+        },
+        "papel_ia": {
+          "papel": "contraparte",
+          "ferramenta": "IAedu, modo conversa"
+        },
+        "regime": {
+          "regime": "condicionado",
+          "condicoes": "Só na conversa com o doente simulado que o docente preparou. Quem conduz não usa outra ferramenta nem apontamentos durante a entrevista."
+        },
+        "padrao": {
+          "padrao": "interlocutor_restrito"
+        },
+        "materiais": {
+          "texto": "Segundo guião, para a troca de papéis. Caso fictício: mulher de 24 anos com asma mal controlada, tosse nocturna, uso de broncodilatador mais de três vezes por semana, agravamento na Primavera e um gato em casa desde há seis meses."
+        },
+        "plano": {
+          "titulo": "Doente virtual para anamnese em pares",
+          "subtitulo": "Recolha estruturada de informação clínica",
+          "notas": "Na primeira entrevista, o guião da ficha: homem de 68 anos, antigo fumador, com falta de ar que piorou nos últimos quatro dias. Na troca de papéis, o guião dos materiais. As regras de comportamento do doente são as mesmas nos dois guiões."
+        }
+      },
+      "porque": {
+        "contexto": "A duração vem da ficha (30 a 45 minutos, consoante haja troca de papéis) e a área de cuidados primários põe este padrão no topo das propostas.",
+        "objectivo": "Conduzir é um verbo observável, e a competência protegida separa a recolha de informação, que se treina, do diagnóstico, que não é o fim.",
+        "evidencia": "A grelha do observador mostra a estrutura da entrevista, que é o que o objectivo pede, e a actividade é formativa, como a ficha diz.",
+        "papel_ia": "A IA faz de doente, uma contraparte que o estudante tem de entrevistar.",
+        "regime": "Os estudantes usam a IA só na conversa preparada, porque uma segunda ferramenta daria a hipótese sem a entrevista.",
+        "padrao": "O interlocutor restringido só responde ao que lhe perguntam, que é o mecanismo da anamnese.",
+        "materiais": "O segundo guião da ficha dá ao modelo um caso fictício para a troca de papéis.",
+        "plano": "O título e o subtítulo são os da ficha, e as notas dizem ao modelo que guião usar em cada entrevista."
+      },
+      "nota": {
+        "contexto": "A ficha não indica a unidade curricular, o ano nem o número de estudantes: estes valores são um caso possível.",
+        "regime": "A ficha não diz o regime. O regime condicionado descreve o uso que ela prevê."
+      }
+    },
+    {
+      "n": 2,
+      "titulo": "Crítica estruturada de outputs",
+      "respostas": {
+        "contexto": {
+          "uc": "Inteligência Artificial em Saúde",
+          "programa": "Mestrado em Informática da Saúde, 1.º ano",
+          "area": "ia",
+          "nivel": "uc_master",
+          "estudantes": 30,
+          "modalidade": "em_aula",
+          "duracao_min": 30,
+          "duracao_max": 40
+        },
+        "objectivo": {
+          "texto": "No fim da actividade, o estudante identifica erros factuais e de raciocínio num texto tecnicamente bem escrito da sua área, classifica-os por gravidade e justifica cada identificação com uma fonte.",
+          "competencia_protegida": "A competência protegida é a detecção de erro em texto plausível, que é exactamente aquilo que a fluência dos modelos de linguagem torna difícil. Um texto mal escrito levanta suspeitas; um texto bem escrito e errado não.",
+          "competencia": "Leitura crítica, verificação, detecção de erro"
+        },
+        "evidencia": {
+          "descricao": "Cada grupo entrega a rubrica preenchida, com o trecho citado, o tipo de erro, porque está errado, a fonte que o confirma e a gravidade. O docente confronta-a com a chave de correcção, erro a erro.",
+          "avaliacao": "formativa"
+        },
+        "papel_ia": {
+          "papel": "objecto_de_critica",
+          "ferramenta": "IAedu, preparação prévia pelo docente"
+        },
+        "regime": {
+          "regime": "proibido"
+        },
+        "padrao": {
+          "padrao": "critica_outputs"
+        },
+        "materiais": {},
+        "plano": {
+          "titulo": "Crítica estruturada de outputs",
+          "subtitulo": "Detecção de erro em texto plausível"
+        }
+      },
+      "porque": {
+        "contexto": "A ficha indica 30 a 40 minutos, e numa unidade curricular de IA em saúde a leitura crítica de texto gerado faz parte do programa.",
+        "objectivo": "Identificar, classificar e justificar são verbos observáveis, e a competência protegida é a que a fluência do modelo torna difícil.",
+        "evidencia": "A rubrica com uma fonte por erro mostra a justificação e não só a contagem, que a ficha desaconselha avaliar.",
+        "papel_ia": "Os estudantes avaliam um texto que a IA escreveu, por isso a IA é objecto de crítica e não ferramenta.",
+        "regime": "Os estudantes não usam IA na actividade, porque procurar os erros com a ferramenta anularia o exercício.",
+        "padrao": "A crítica de outputs com erros plantados é o padrão da ficha e o único deste papel que cabe em 40 minutos.",
+        "materiais": "Fica vazio, porque o docente escolhe o caso da nota clínica quando gera o material antes da aula.",
+        "plano": "O título e o subtítulo são os da ficha."
+      },
+      "nota": {
+        "contexto": "A ficha serve todas as áreas, com um exemplo próprio de cada uma. O exemplo usa a inteligência artificial, uma das áreas do padrão; a unidade curricular e o número de estudantes são um caso possível.",
+        "evidencia": "A ficha só diz o que avaliar se a actividade for avaliada. O exemplo fica formativo.",
+        "regime": "A ficha não diz o regime. Os estudantes não usam IA: o docente gera o texto antes da aula, e encontrar o erro sem ajuda é o que se treina."
+      }
+    },
+    {
+      "n": 3,
+      "titulo": "O estudante como corrector",
+      "respostas": {
+        "contexto": {
+          "uc": "Medicina Geral e Familiar",
+          "programa": "Mestrado Integrado em Medicina, 5.º ano",
+          "area": "cuidados_primarios",
+          "nivel": "uc_master",
+          "estudantes": 24,
+          "modalidade": "em_aula",
+          "duracao_min": 50,
+          "duracao_max": 60
+        },
+        "objectivo": {
+          "texto": "No fim da actividade, o estudante enuncia por escrito os critérios que distinguem uma resposta boa de uma resposta medíocre no seu domínio, aplica-os a respostas que não escreveu, e reconhece a diferença entre uma resposta bem escrita e uma resposta correcta.",
+          "competencia_protegida": "A competência protegida é a explicitação de critérios. Um estudante que sabe corrigir sabe o que se espera dele, e a investigação sobre avaliação formativa identifica esta transferência de critérios como um dos mecanismos centrais da autorregulação.",
+          "competencia": "Critérios de qualidade, autorregulação, escrita académica"
+        },
+        "evidencia": {
+          "descricao": "A rubrica de cada grupo, com pelo menos três critérios e três níveis de desempenho com descritores observáveis, e a justificação por critério das classificações dadas às respostas de outro grupo.",
+          "avaliacao": "formativa"
+        },
+        "papel_ia": {
+          "papel": "objecto_de_critica",
+          "ferramenta": "IAedu, usada pelos estudantes em aula"
+        },
+        "regime": {
+          "regime": "condicionado",
+          "condicoes": "Só na fase 2, depois de a rubrica estar escrita, com o prompt da ficha. A rubrica e as classificações são feitas sem IA."
+        },
+        "padrao": {
+          "padrao": "estudante_corrector"
+        },
+        "materiais": {},
+        "plano": {
+          "titulo": "O estudante como corrector",
+          "subtitulo": "Explicitação de critérios de qualidade"
+        }
+      },
+      "porque": {
+        "contexto": "A ficha indica 50 a 60 minutos, e a pergunta de exame sobre espirometria do prompt da ficha cabe numa unidade curricular clínica.",
+        "objectivo": "Enunciar e aplicar critérios são acções observáveis, e a competência protegida é dizer o que distingue uma boa resposta.",
+        "evidencia": "A rubrica e a justificação das classificações são obra dos estudantes, ao contrário das respostas geradas, que a ficha manda não avaliar.",
+        "papel_ia": "Os estudantes geram respostas com a IA, mas o trabalho é corrigi-las, por isso o papel é objecto de crítica.",
+        "regime": "A condição fixa a ordem da ficha: a rubrica é construída antes de qualquer texto ser gerado.",
+        "padrao": "O padrão da ficha põe os estudantes a corrigir texto gerado com uma rubrica que eles próprios escreveram.",
+        "materiais": "Fica vazio, porque a pergunta de exame vai no prompt que os estudantes usam na fase 2.",
+        "plano": "O título e o subtítulo são os da ficha."
+      },
+      "nota": {
+        "contexto": "A ficha serve todas as áreas, mudando apenas a pergunta. A unidade curricular, o ano e o número de estudantes são um caso possível.",
+        "evidencia": "A ficha só diz o que avaliar se o docente quiser avaliar. O exemplo fica formativo.",
+        "regime": "A ficha não diz o regime. A condição descreve a ordem das fases que ela exige."
+      }
+    },
+    {
+      "n": 4,
+      "titulo": "Debate com advogado do diabo",
+      "respostas": {
+        "contexto": {
+          "uc": "Ética Clínica",
+          "programa": "Mestrado em Bioética, 1.º ano",
+          "area": "bioetica",
+          "nivel": "uc_master",
+          "estudantes": 18,
+          "modalidade": "em_aula",
+          "duracao_min": 40,
+          "duracao_max": 50
+        },
+        "objectivo": {
+          "texto": "No fim da actividade, o estudante sustenta uma posição sobre uma questão controversa, antecipa as objecções mais fortes a essa posição, e responde-lhes com fundamentação, distinguindo os argumentos que o obrigam a rever a posição daqueles que não o obrigam.",
+          "competencia_protegida": "A competência protegida é a argumentação. O uso da ferramenta é deliberadamente adversarial: gera os contra-argumentos que os estudantes têm de enfrentar, o que resolve o problema habitual das discussões em aula, em que a turma converge cedo para o consenso confortável.",
+          "competencia": "Argumentação fundamentada, raciocínio ético, decisão sob controvérsia"
+        },
+        "evidencia": {
+          "descricao": "A resposta escrita do grupo a cada contra-argumento, classificado como rebatível, obriga a qualificar ou obriga a rever, com a justificação. A posição tomada não é avaliada.",
+          "avaliacao": "formativa"
+        },
+        "papel_ia": {
+          "papel": "contraparte",
+          "ferramenta": "IAedu, usada pelos estudantes em aula"
+        },
+        "regime": {
+          "regime": "condicionado",
+          "condicoes": "Só depois de o grupo registar a sua posição por escrito, e só para obter os contra-argumentos com o prompt da ficha."
+        },
+        "padrao": {
+          "padrao": "advogado_diabo"
+        },
+        "materiais": {
+          "texto": "Posição a atacar: um médico deve informar sempre o doente do diagnóstico completo, incluindo prognóstico reservado, mesmo quando a família pede expressamente que não o faça."
+        },
+        "plano": {
+          "titulo": "Debate com advogado do diabo",
+          "subtitulo": "Argumentação e antecipação de objecções",
+          "notas": "Na resposta aos contra-argumentos, os grupos separam o argumento ético do constrangimento legal."
+        }
+      },
+      "porque": {
+        "contexto": "A ficha indica 40 a 50 minutos, e a área de bioética põe o advogado do diabo no topo das propostas.",
+        "objectivo": "Sustentar, antecipar e responder são verbos observáveis, e a competência protegida é a argumentação, que a IA ataca mas não faz.",
+        "evidencia": "A classificação justificada de cada contra-argumento mostra a argumentação, e a posição tomada não a mostra.",
+        "papel_ia": "A IA ataca a posição do grupo, por isso é uma contraparte, como o doente simulado da primeira ficha.",
+        "regime": "A condição obriga a tomar posição antes de consultar a ferramenta, a ordem que a ficha diz não ser negociável.",
+        "padrao": "O advogado do diabo é o padrão da ficha e gera os contra-argumentos que a turma, sozinha, não levantaria.",
+        "materiais": "A posição a atacar vai nos materiais para o modelo a pôr no prompt base.",
+        "plano": "As notas pedem a distinção entre ético e legal, que a ficha aponta como armadilha."
+      },
+      "nota": {
+        "contexto": "A ficha serve todas as áreas, mudando apenas a controvérsia. A unidade curricular e o número de estudantes são um caso possível.",
+        "evidencia": "A ficha só diz o que avaliar se o docente quiser avaliar. O exemplo fica formativo.",
+        "regime": "A ficha não diz o regime. A condição descreve a ordem das fases que ela exige."
+      }
+    },
+    {
+      "n": 5,
+      "titulo": "Fazer primeiro, comparar depois",
+      "respostas": {
+        "contexto": {
+          "uc": "Análise de Dados em Saúde",
+          "programa": "Mestrado em Informática da Saúde, 1.º ano",
+          "area": "informatica",
+          "nivel": "uc_master",
+          "estudantes": 25,
+          "modalidade": "em_aula",
+          "duracao_min": 40,
+          "duracao_max": 40
+        },
+        "objectivo": {
+          "texto": "No fim da actividade, o estudante compara a sua própria resolução com a de uma ferramenta generativa, identifica em que pontos diverge e porquê, e enuncia o que aprendeu sobre o seu próprio processo de raciocínio.",
+          "competencia_protegida": "A competência protegida é o esforço deliberado. Esta é a única das seis fichas cujo objectivo principal não é o produto mas o hábito: estabelecer, desde cedo, a sequência tentar primeiro, consultar depois. Uma vez invertida, a sequência é difícil de recuperar.",
+          "competencia": "Metacognição, autoavaliação, raciocínio autónomo"
+        },
+        "evidencia": {
+          "descricao": "A nota de comparação, de cinco a dez linhas: as concordâncias e divergências com o seu fundamento, os erros encontrados e o que faria de outro modo. A resolução inicial é entregue antes da consulta e não é classificada.",
+          "avaliacao": "sumativa"
+        },
+        "papel_ia": {
+          "papel": "ferramenta",
+          "ferramenta": "IAedu, usada pelo estudante depois de resolver"
+        },
+        "regime": {
+          "regime": "condicionado",
+          "condicoes": "Só depois de entregar a resolução individual, com o prompt da ficha, que pede as divergências e proíbe a versão melhorada."
+        },
+        "regime_themis": {
+          "assignment": [
+            "other"
+          ],
+          "assignmentOther": "Nota de comparação entre a resolução própria e a da ferramenta",
+          "policy": "with_disclosure"
+        },
+        "padrao": {
+          "padrao": "fazer_comparar"
+        },
+        "materiais": {
+          "texto": "Problema para resolver primeiro sem ajuda: um conjunto de dados clínicos fictício tem 1200 observações, 14 variáveis e 18% de valores ausentes concentrados em três variáveis, uma das quais é o desfecho. Explique a sua abordagem ao tratamento dos valores ausentes, que pressupostos cada opção exige e por que ordem faria as verificações."
+        },
+        "plano": {
+          "titulo": "Fazer primeiro, comparar depois",
+          "subtitulo": "Esforço deliberado e reflexão metacognitiva"
+        }
+      },
+      "porque": {
+        "contexto": "A ficha indica 40 minutos, e a sua variante de ciência de dados serve uma unidade curricular de análise de dados.",
+        "objectivo": "Comparar e identificar são verbos observáveis, e a competência protegida é o hábito de tentar primeiro e consultar depois.",
+        "evidencia": "A ficha manda avaliar a nota de comparação e não a resolução inicial, que pode estar errada sem prejuízo.",
+        "papel_ia": "O estudante usa a IA na tarefa, depois de resolver sozinho, por isso o papel é ferramenta.",
+        "regime": "A condição é a sequência da ficha, sem a qual a comparação não existe.",
+        "regime_themis": "O trabalho avaliado é a nota de comparação, e a divulgação integral é a política que corresponde ao regime condicionado.",
+        "padrao": "Fazer primeiro, comparar depois é o padrão da ficha, e o outro padrão deste papel decorre fora da aula.",
+        "materiais": "O problema da variante de dados admite mais de uma abordagem defensável, que é o que produz divergências para comparar.",
+        "plano": "O título e o subtítulo são os da ficha."
+      },
+      "nota": {
+        "contexto": "A ficha serve todas as áreas; o exemplo usa a sua variante de ciência de dados. A unidade curricular e o número de estudantes são um caso possível.",
+        "evidencia": "A ficha manda avaliar a nota de comparação, mas não diz se a avaliação conta para a classificação. O exemplo é sumativo para mostrar o passo da cláusula.",
+        "regime": "A ficha não diz o regime. A condição descreve a sequência que ela exige.",
+        "regime_themis": "A ficha não tem cláusula. O tipo de trabalho e a política seguem a escolha de uma avaliação sumativa."
+      }
+    },
+    {
+      "n": 6,
+      "titulo": "Tutor restringido aos materiais da UC",
+      "respostas": {
+        "contexto": {
+          "uc": "Biologia Celular e Molecular",
+          "programa": "Licenciatura em Saúde Digital e Inovação Biomédica, 1.º ano",
+          "area": "saude_digital",
+          "nivel": "uc_undergrad",
+          "estudantes": 40,
+          "modalidade": "autonomo",
+          "duracao_min": 30
+        },
+        "objectivo": {
+          "texto": "O estudante esclarece dúvidas sobre a matéria da unidade curricular a qualquer hora, com respostas ancoradas nos materiais que o docente curou, e verifica a fonte de cada resposta dentro desses materiais.",
+          "competencia_protegida": "A competência protegida é o estudo autónomo com verificação. A diferença face a um assistente genérico não é a qualidade da redacção: é a rastreabilidade. O estudante pode ir ao documento de origem confirmar.",
+          "competencia": "Estudo autónomo com fonte controlada"
+        },
+        "evidencia": {
+          "descricao": "A actividade não é avaliada. Quando uma resposta do tutor entra num trabalho avaliado, o estudante indica a fonte nos materiais e o docente pode confirmá-la.",
+          "avaliacao": "formativa"
+        },
+        "papel_ia": {
+          "papel": "ferramenta",
+          "ferramenta": "Sistema RAG sobre materiais curados, não disponível por omissão na IAedu"
+        },
+        "regime": {
+          "regime": "condicionado",
+          "condicoes": "Só o tutor configurado sobre os materiais da unidade curricular. A fonte indicada é verificada sempre que a resposta entra num trabalho avaliado."
+        },
+        "padrao": {
+          "padrao": "tutor_restrito"
+        },
+        "materiais": {},
+        "plano": {
+          "titulo": "Tutor restringido aos materiais da UC",
+          "subtitulo": "Opção avançada, com infraestrutura",
+          "notas": "A implementação passa pelos serviços da Universidade, com um responsável técnico. Os registos de utilização têm dados pessoais de estudantes e não se analisam sem base legal."
+        }
+      },
+      "porque": {
+        "contexto": "O tutor é usado fora da aula ao longo do semestre, por isso o lugar é trabalho autónomo e a duração marca só uma sessão de estudo.",
+        "objectivo": "O verbo verificar torna observável o que a ficha protege: ir ao documento de origem confirmar a resposta.",
+        "evidencia": "A ficha diz que não há correcção, e a única evidência é a fonte que o estudante indica num trabalho avaliado.",
+        "papel_ia": "Os estudantes usam o tutor para estudar, por isso o papel é ferramenta.",
+        "regime": "A condição limita o uso ao tutor curado, que é o que distingue esta actividade de um assistente genérico.",
+        "padrao": "O tutor restringido é o único padrão do catálogo que decorre fora da aula ao longo do semestre.",
+        "materiais": "Fica vazio, porque o corpus do tutor fica no sistema RAG e não vai para a IAedu.",
+        "plano": "As notas lembram ao modelo as duas condições da ficha: os serviços da Universidade e os dados dos registos."
+      },
+      "nota": {
+        "contexto": "A ficha não tem duração em minutos, porque o uso é contínuo ao longo do semestre. Os 30 minutos marcam uma sessão de estudo, só porque o campo é obrigatório. A ficha sugere uma unidade curricular de ciências básicas, e a lista de áreas não tem essa área: o exemplo usa a da licenciatura.",
+        "objectivo": "O objectivo da ficha usa esclarecer, que não está na lista de verbos observáveis, e a Eunomia avisaria. O exemplo acrescenta verificar, tirado do papel do estudante.",
+        "regime": "A ficha não diz o regime. A condição descreve o uso que ela prevê."
+      }
+    }
+  ],
+  "por_passo": {
+    "contexto": [
+      1,
+      5,
+      6
+    ],
+    "objectivo": [
+      1,
+      2,
+      5
+    ],
+    "evidencia": [
+      1,
+      4,
+      5
+    ],
+    "papel_ia": [
+      1,
+      2,
+      5
+    ],
+    "regime": [
+      2,
+      3,
+      5
+    ],
+    "regime_themis": [
+      5
+    ],
+    "padrao": [
+      1,
+      4,
+      6
+    ],
+    "materiais": [
+      1,
+      4,
+      5
+    ]
+  }
+}

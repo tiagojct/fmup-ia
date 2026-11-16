@@ -57,6 +57,17 @@ test('every step has a titulo, fields, a short porque and a link to a page of th
   }
 });
 
+test('every step has minutos and two to four erros_comuns', () => {
+  for (const step of INTERVIEW.passos) {
+    assert.ok(Number.isInteger(step.minutos) && step.minutos >= 1 && step.minutos <= 30, `${step.id}: minutos ${step.minutos}`);
+    assert.ok(Array.isArray(step.erros_comuns), `${step.id}: erros_comuns`);
+    assert.ok(step.erros_comuns.length >= 2 && step.erros_comuns.length <= 4, `${step.id}: ${step.erros_comuns.length} erros comuns`);
+    for (const item of step.erros_comuns) {
+      assert.ok(typeof item === 'string' && item.trim() !== '' && item.length <= 200, `${step.id}: ${item}`);
+    }
+  }
+});
+
 test('contexto has the seven areas and the Themis course types', () => {
   const contexto = INTERVIEW.passos.find((p) => p.id === 'contexto');
   const area = contexto.campos.find((c) => c.id === 'area');
