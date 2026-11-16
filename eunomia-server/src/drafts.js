@@ -10,7 +10,8 @@
 // Seccao = { dados?, estado: 'vazia' | 'gerada' | 'aceite' | 'a-actualizar', avisos: [], modelo,
 //            origem?: 'modelo' | 'docente', anterior?: Seccao without anterior }
 //   anterior is the text a "Nova versão" replaced; POST .../repor swaps it back.
-// Stored as rascunhos/<userId>/<draftId>.json. rev grows by one on each write.
+// Stored as rascunhos/<userId>/<draftId>.json. rev grows by one on each write. A deleted draft moves
+// to apagados/<userId>/<draftId>.json with apagado (ISO time) and is removed after DELETED_DAYS.
 
 const fs = require('node:fs');
 const crypto = require('node:crypto');
@@ -46,6 +47,11 @@ const SECTION_DEPENDS = {
 // States that the purge keeps: the work is under review or published.
 const KEPT_STATES = ['submetida', 'aprovada'];
 
+// Days a deleted draft stays in apagados/ before the purge removes it (spec D4).
+const DELETED_DAYS = 30;
+// The longest title of the plan step: a copy's "Cópia de " prefix is cut to it.
+const TITLE_MAX = 150;
+
 class DraftError extends Error {
   constructor(message, erros = []) {
     super(message);
@@ -80,6 +86,32 @@ function createDraft(user, modo = 'criar', now = Date.now()) {
     referencias: [],
     threads: {},
   };
+}
+
+// A new draft of user with the answers, the references and the accepted sections of source (spec
+// D3b). The plan stays approved when it was. The accepted sections lose their previous version and
+// opinion; the others start empty. No threads, no review, no submission. The title gets "Cópia de ".
+function duplicateDraft(source, user, now = Date.now()) {
+  const copy = createDraft(user, 'criar', now);
+  copy.respostas = clone(source.respostas || {});
+  copy.referencias = clone(source.referencias || []);
+  copy.plano_aprovado = source.plano_aprovado === true;
+  for (const [id, s] of Object.entries(source.seccoes || {})) {
+    if (!s || s.estado !== 'aceite') continue;
+    copy.seccoes[id] = {
+      dados: clone(s.dados),
+      estado: 'aceite',
+      avisos: clone(s.avisos || []),
+      modelo: s.modelo ?? null,
+      ...(s.origem ? { origem: s.origem } : {}),
+    };
+  }
+  if (copy.plano_aprovado) syncSections(copy);
+  const plano = copy.respostas.plano;
+  if (isObject(plano) && typeof plano.titulo === 'string' && plano.titulo !== '') {
+    plano.titulo = `Cópia de ${plano.titulo}`.slice(0, TITLE_MAX);
+  }
+  return copy;
 }
 
 // ---------------------------------------------------------------- steps
@@ -387,7 +419,46 @@ function listDrafts(store, userId) {
     .filter(Boolean);
 }
 
+// Every draft of every user, for the admin pages.
+function listAllDrafts(store) {
+  return store.list('rascunhos').flatMap((dir) => listDrafts(store, dir));
+}
+
 const isEditable = (draft) => EDITABLE.includes(draft.estado);
+
+// Soft delete (spec D4): marks the draft with the time, writes it, then moves the file to apagados/.
+// A request that still holds the draft finds no file in rascunhos/ and gets 404; nothing re-creates
+// it. Returns the time.
+function deleteDraft(store, draft, now = Date.now()) {
+  const t = iso(now);
+  draft.apagado = t;
+  const from = draftFile(draft.autor.id, draft.id);
+  store.write(from, draft);
+  store.move(from, `apagados/${draft.autor.id}/${draft.id}.json`);
+  return t;
+}
+
+// Removes the deleted drafts whose apagado is older than `days` days. Returns the number removed. A
+// damaged file, or one without a valid apagado, is kept.
+function purgeDeleted(store, now, days = DELETED_DAYS) {
+  let removed = 0;
+  for (const dir of store.list('apagados')) {
+    for (const name of store.list(`apagados/${dir}`)) {
+      if (!name.endsWith('.json')) continue;
+      const rel = `apagados/${dir}/${name}`;
+      let d;
+      try {
+        d = store.read(rel, null);
+      } catch {
+        continue;
+      }
+      const when = d && typeof d.apagado === 'string' ? Date.parse(d.apagado) : NaN;
+      if (Number.isNaN(when)) continue;
+      if (now - when > days * DAY_MS && store.remove(rel)) removed += 1;
+    }
+  }
+  return removed;
+}
 
 // Removes the drafts that nobody changed or opened for more than `days` days, in any state except
 // submetida and aprovada. Returns the number removed. A damaged file is left alone.
@@ -418,8 +489,10 @@ module.exports = {
   MODEL_SECTIONS,
   SECTION_DEPENDS,
   DRAFT_ID,
+  DELETED_DAYS,
   DraftError,
   createDraft,
+  duplicateDraft,
   applyAnswer,
   nextStep,
   missingSteps,
@@ -433,6 +506,9 @@ module.exports = {
   findDraft,
   saveDraft,
   listDrafts,
+  listAllDrafts,
   isEditable,
   purgeOldDrafts,
+  deleteDraft,
+  purgeDeleted,
 };

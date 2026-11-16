@@ -7,7 +7,7 @@ const { createStore } = require('./store.js');
 const { createAuth } = require('./auth.js');
 const { createIaeduClient, DEFAULT_BASE_URL } = require('./iaedu.js');
 const { createServer } = require('./server.js');
-const { purgeOldDrafts } = require('./drafts.js');
+const { purgeOldDrafts, purgeDeleted } = require('./drafts.js');
 const { logError } = require('./log.js');
 
 const PORT = 3000;
@@ -85,12 +85,15 @@ async function start(env = process.env, { port = PORT, host, logStream } = {}) {
     server.listen(port, host, resolve);
   });
 
-  // Drafts nobody opened for draftRetentionDays are removed at start and then once a day.
+  // Drafts nobody opened for draftRetentionDays, and deleted drafts older than DELETED_DAYS, are
+  // removed at start and then once a day.
   const purge = () => {
-    try {
-      purgeOldDrafts(store, Date.now(), cfg.draftRetentionDays);
-    } catch (e) {
-      logError(e);
+    for (const run of [() => purgeOldDrafts(store, Date.now(), cfg.draftRetentionDays), () => purgeDeleted(store, Date.now())]) {
+      try {
+        run();
+      } catch (e) {
+        logError(e);
+      }
     }
   };
   purge();

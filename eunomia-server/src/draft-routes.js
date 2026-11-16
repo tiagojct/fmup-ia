@@ -5,6 +5,16 @@
 //
 // Concurrency: every write sends the rev it read. A different rev is 409, so two windows on the same
 // draft cannot overwrite each other. Only the author writes a draft; an admin may read any draft.
+//
+// Lifecycle (spec D3, D4): POST /rascunhos makes an empty draft, or with { exemplo: 1..6 } a draft
+// with the answers of that example (plan not approved). POST /rascunhos/:id/duplicar copies the
+// author's own draft in any state; the source is not changed, so it needs no rev. DELETE
+// /rascunhos/:id with rev moves the draft to apagados/ (kept DELETED_DAYS days); a submitted draft
+// cannot be deleted. The three ways to make a draft share the cap of MAX_DRAFTS. GET /exemplos/:n is
+// public: the reference ficha of example n, for the walk-through.
+//
+// registerDraftRoutes returns the helpers that other route modules use: { readable, writable, save,
+// view, modelSection, personalDataGate, checkText, optionalText, readyFicha, now }.
 
 const drafts = require('./drafts.js');
 const { CATALOGUE, filterPatterns } = require('./patterns.js');
@@ -18,6 +28,7 @@ const { hasControl, stripControl, strings, CONTROL_MESSAGE } = require('./contro
 const { renderMd, renderHtml } = require('./export.js');
 const { detectPersonalData } = require('./materials.js');
 const prompts = require('./prompts.js');
+const { findExample, referenceFicha, draftFromExample } = require('./exemplos.js');
 
 const CONFLICT = 'O rascunho foi alterado noutra janela. Recarregue a página.';
 const LOCKED = 'A ficha foi submetida e não pode ser alterada.';
@@ -29,7 +40,10 @@ const PERSONAL_DATA = 'O texto pode ter dados pessoais de doentes ou estudantes.
 // Free-text answers longer than this are checked for personal data; the materials always are.
 const PERSONAL_DATA_MIN = 200;
 const MAX_DRAFTS = 100;
-const TOO_MANY = `Atingiu o máximo de ${MAX_DRAFTS} rascunhos. Continue um dos rascunhos que já tem, ou peça ao responsável da Eunomia que apague os que já não usa.`;
+const TOO_MANY = `Atingiu o máximo de ${MAX_DRAFTS} rascunhos. Continue um dos rascunhos que já tem, ou apague os que já não usa.`;
+const NOT_FOUND = 'Rascunho não encontrado.';
+const NO_EXAMPLE = 'Exemplo desconhecido.';
+const SUBMITTED = 'Uma actividade submetida para revisão não pode ser apagada.';
 // The time budget of one request that calls the model, retry included: below the 100 s after which
 // Cloudflare drops the request.
 const MODEL_BUDGET_MS = 90000;
@@ -62,7 +76,20 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
   // The draft for reading: the author's own, or any draft for an admin.
   function readable(ctx) {
     const d = drafts.findDraft(store, ctx.user, ctx.params.id);
-    if (!d) throw new HttpError(404, 'Rascunho não encontrado.');
+    if (!d) throw new HttpError(404, NOT_FOUND);
+    return d;
+  }
+
+  // The cap of MAX_DRAFTS drafts per teacher, for every way of making a draft.
+  function checkRoom(user) {
+    const own = store.list(`rascunhos/${user.id}`).filter((name) => name.endsWith('.json')).length;
+    if (own >= MAX_DRAFTS) throw new HttpError(409, TOO_MANY, {}, { motivo: 'limite' });
+  }
+
+  // The author's own draft, for duplicar and DELETE. An admin on another user's draft is 403.
+  function authorOnly(ctx, verb) {
+    const d = readable(ctx);
+    if (d.autor.id !== ctx.user.id) throw new HttpError(403, `Só o autor pode ${verb} este rascunho.`);
     return d;
   }
 
@@ -177,12 +204,45 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
   route('POST', '/rascunhos', (req, res, ctx) => {
     const modo = ctx.body.modo === undefined ? 'criar' : ctx.body.modo;
     if (modo !== 'criar') throw new HttpError(400, 'Modo desconhecido. Para melhorar uma actividade existente, use o modo refinar.');
-    const own = store.list(`rascunhos/${ctx.user.id}`).filter((name) => name.endsWith('.json')).length;
-    if (own >= MAX_DRAFTS) throw new HttpError(409, TOO_MANY, {}, { motivo: 'limite' });
-    const d = drafts.createDraft(ctx.user, 'criar', now());
+    const exemplo = ctx.body.exemplo;
+    if (exemplo !== undefined && !findExample(exemplo)) throw new HttpError(400, NO_EXAMPLE);
+    checkRoom(ctx.user);
+    const d = exemplo === undefined ? drafts.createDraft(ctx.user, 'criar', now()) : draftFromExample(ctx.user, exemplo, now());
     store.write(`rascunhos/${ctx.user.id}/${d.id}.json`, d);
     sendJson(res, 201, view(d));
   });
+
+  // A copy of the author's own draft, in any state (spec D3b).
+  route('POST', '/rascunhos/:id/duplicar', (req, res, ctx) => {
+    const source = authorOnly(ctx, 'duplicar');
+    checkRoom(ctx.user);
+    const copy = drafts.duplicateDraft(source, ctx.user, now());
+    store.write(`rascunhos/${ctx.user.id}/${copy.id}.json`, copy);
+    sendJson(res, 201, view(copy));
+  });
+
+  // Soft delete (spec D4): the author's own draft, at the same rev, not while it is under review.
+  route('DELETE', '/rascunhos/:id', (req, res, ctx) => {
+    const d = authorOnly(ctx, 'apagar');
+    if (d.estado === 'submetida') throw new HttpError(409, SUBMITTED, {}, { motivo: 'bloqueado' });
+    const { rev } = ctx.body;
+    if (!Number.isInteger(rev)) throw new HttpError(400, 'Indique a revisão do rascunho (rev).');
+    if (rev !== d.rev) throw new HttpError(409, CONFLICT, {}, { motivo: 'rev' });
+    return { ok: true, apagado: drafts.deleteDraft(store, d, now()) };
+  });
+
+  // The reference ficha of an example, for the walk-through. Public: the invitation email links to it.
+  route(
+    'GET',
+    '/exemplos/:n',
+    (req, res, ctx) => {
+      const n = /^[1-9][0-9]?$/.test(ctx.params.n) ? Number(ctx.params.n) : NaN;
+      const ficha = referenceFicha(n);
+      if (!ficha) throw new HttpError(404, 'Exemplo não encontrado.');
+      return { ficha };
+    },
+    'public',
+  );
 
   route('GET', '/rascunhos', (req, res, ctx) => {
     const list = drafts
@@ -304,7 +364,9 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
     );
     // The call takes seconds: the draft must not have changed meanwhile.
     const fresh = drafts.findDraft(store, ctx.user, d.id);
-    if (!fresh || fresh.rev !== d.rev) throw new HttpError(409, CONFLICT, {}, { motivo: 'rev' });
+    // Deleted in another window meanwhile: 404, never a re-created file.
+    if (!fresh) throw new HttpError(404, NOT_FOUND);
+    if (fresh.rev !== d.rev) throw new HttpError(409, CONFLICT, {}, { motivo: 'rev' });
     // The text it replaces stays as anterior (one level), so that "Repor" can bring it back.
     const anterior = previousVersion(fresh.seccoes[sec]);
     fresh.seccoes[sec] = {
@@ -505,6 +567,8 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
       referencias_a_verificar: ficha.referencias.filter((r) => r.origem === 'docente').length,
     };
   });
+
+  return { readable, writable, save, view, modelSection, personalDataGate, checkText, optionalText, readyFicha, now };
 }
 
 module.exports = { registerDraftRoutes, CONFLICT, LOCKED, LIMIT, MAX_DRAFTS, MODEL_BUDGET_MS };

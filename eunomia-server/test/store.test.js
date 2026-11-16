@@ -97,6 +97,21 @@ test('remove: deletes a file and says whether there was one', (t) => {
   assert.equal(store.read('a.json', 'gone'), 'gone');
 });
 
+test('move moves the file and creates the folder; a missing source is false; a .. path throws', (t) => {
+  const dir = tempDir(t);
+  const store = createStore(dir);
+  store.write('rascunhos/u1/d1.json', { id: 'd1' });
+  assert.equal(store.move('rascunhos/u1/d1.json', 'apagados/u1/d1.json'), true);
+  assert.equal(store.read('rascunhos/u1/d1.json', null), null);
+  assert.deepEqual(store.read('apagados/u1/d1.json'), { id: 'd1' });
+  assert.equal(store.move('rascunhos/u1/d1.json', 'apagados/u1/d1.json'), false);
+  assert.deepEqual(store.read('apagados/u1/d1.json'), { id: 'd1' });
+  assert.throws(() => store.move('../x.json', 'a.json'), /fora da pasta/);
+  assert.throws(() => store.move('apagados/u1/d1.json', '../fora.json'), /fora da pasta/);
+  assert.throws(() => store.move('apagados/u1/d1.json', ''), /fora da pasta/);
+  assert.ok(fs.existsSync(path.join(dir, 'apagados', 'u1', 'd1.json')));
+});
+
 test('createStore needs a folder name', () => {
   assert.throws(() => createStore(''), TypeError);
   assert.throws(() => createStore(undefined), TypeError);

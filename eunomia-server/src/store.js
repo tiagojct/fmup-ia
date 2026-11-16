@@ -112,7 +112,22 @@ function createStore(dir) {
     }
   }
 
-  return { read, write, list, remove };
+  // Moves a file to another path in the folder, making the target folder. One rename, so a reader
+  // sees the file in one place or the other. True when a file was moved, false when there was none.
+  function move(fromRel, toRel) {
+    const from = resolve(fromRel);
+    const to = resolve(toRel);
+    fs.mkdirSync(path.dirname(to), { recursive: true });
+    try {
+      fs.renameSync(from, to);
+      return true;
+    } catch (e) {
+      if (missing(e)) return false;
+      throw e;
+    }
+  }
+
+  return { read, write, list, remove, move };
 }
 
 module.exports = { createStore };
