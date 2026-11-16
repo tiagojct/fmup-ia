@@ -846,6 +846,117 @@ textarea.eu-mono,
   color: var(--c-text);
 }
 
+/* ---------- Worked examples, home row actions ---------- */
+
+.eu-rascunho-accoes {
+  margin: 0.4rem 0 0;
+}
+
+.eu-rascunho-accoes .eu-nota {
+  margin: 0 0 0.4rem;
+  color: var(--c-text);
+}
+
+.eu-exemplos {
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+}
+
+.eu-exemplos > li {
+  border-bottom: 1px solid var(--c-border);
+  padding: 0.7rem 0;
+}
+
+.eu-exemplo-meta,
+.eu-respostas {
+  display: grid;
+  grid-template-columns: minmax(8rem, max-content) 1fr;
+  gap: 0.2rem 1rem;
+  margin: 0.3rem 0 0;
+  font-size: 0.9rem;
+}
+
+.eu-exemplo-meta dt,
+.eu-respostas dt {
+  color: var(--c-text-muted);
+}
+
+.eu-exemplo-meta dd,
+.eu-respostas dd {
+  margin: 0;
+  white-space: pre-line;
+}
+
+.eu-respostas {
+  font-size: 0.95rem;
+  margin-bottom: 0.6rem;
+}
+
+.eu-respostas dt {
+  font-weight: 700;
+}
+
+.eu-exemplo-porque {
+  margin: 0 0 0.4rem;
+  line-height: 1.5;
+}
+
+.eu-comecar {
+  margin: 0 0 1.5rem;
+}
+
+.eu-comecar .eu-nota {
+  margin: 0 0 0.4rem;
+}
+
+.eu-exemplo-subtitulo {
+  margin: 0 0 0.6rem;
+  font-style: italic;
+}
+
+.ficha-meta {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin: 0 0 1rem;
+}
+
+.ficha-meta th,
+.ficha-meta td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.4rem 0.6rem;
+  border-bottom: 1px solid var(--c-border);
+}
+
+.ficha-meta th {
+  width: 9rem;
+  font-weight: 700;
+}
+
+.eu-exemplo-ficha h4 {
+  font-size: 1rem;
+  margin: 1.4rem 0 0.5rem;
+}
+
+.eu-exemplo-ficha h5 {
+  font-size: 0.95rem;
+  margin: 1rem 0 0.4rem;
+}
+
+@media (max-width: 560px) {
+  .eu-exemplo-meta,
+  .eu-respostas {
+    grid-template-columns: 1fr;
+  }
+
+  .eu-exemplo-meta dd,
+  .eu-respostas dd {
+    margin-bottom: 0.4rem;
+  }
+}
+
 /* ---------- Dark mode ---------- */
 
 @media screen and (prefers-color-scheme: dark) {

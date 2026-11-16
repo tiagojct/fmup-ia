@@ -6,12 +6,13 @@
  * interview (steps, fields, help, "porque" boxes) is data in interview.json. This file has no UI
  * copy and stays ASCII only.
  *
- * Hash routes (see ROUTES): #/entrar, #/ajuda, #/inicio, #/rascunho/:id,
- * #/rascunho/:id/passo/:passo, #/rascunho/:id/plano, #/rascunho/:id/seccao/:sec,
+ * Hash routes (see ROUTES): #/entrar, #/ajuda, #/exemplos, #/exemplos/:n, #/inicio,
+ * #/rascunho/:id, #/rascunho/:id/passo/:passo, #/rascunho/:id/plano, #/rascunho/:id/seccao/:sec,
  * #/rascunho/:id/referencias, #/rascunho/:id/previsao, #/definicoes, #/codigos (admin).
  * Route flags: public (no session needed; with a session, #/entrar goes to #/inicio), open (public
- * and shown with a session too: the help, which the invitation email links to), admin. The page
- * after the next login (rememberPage) is never a public one.
+ * and shown with a session too: the help and the worked examples, which the invitation email links
+ * to), admin. The page after the next login (rememberPage) is never a public one; only "Entrar para
+ * comecar" on an example sets it, so that the example opens again after the login.
  *
  * Not in this version (they come with the submission and review of Task 11): the submit dialog,
  * the review pages (#/revisao, #/revisao/:id) and the refine mode. Each is one more line in ROUTES
@@ -64,6 +65,8 @@
   var state = {
     user: null,
     interview: null,
+    exemplos: null,
+    patterns: [],
     refs: [],
     flash: null,
     returnTo: null,
@@ -269,6 +272,8 @@
   var ROUTES = [
     { re: /^#\/entrar$/, page: 'entrar', title: function () { return S.entrar.pagina; }, render: pageLogin, public: true },
     { re: /^#\/ajuda$/, page: 'ajuda', title: function () { return A.pagina; }, render: pageHelp, public: true, open: true },
+    { re: /^#\/exemplos$/, page: 'exemplos', title: function () { return S.exemplos.pagina; }, render: pageExamples, public: true, open: true },
+    { re: /^#\/exemplos\/([1-6])$/, page: 'exemplo', title: function () { return S.exemplos.paginaExemplo; }, render: pageExample, public: true, open: true },
     { re: /^#\/inicio$/, page: 'inicio', title: function () { return S.inicio.pagina; }, render: pageHome },
     { re: new RegExp('^#/rascunho/' + ID + '$'), page: 'rascunho', title: function () { return S.comum.aCarregar; }, render: pageResume },
     { re: new RegExp('^#/rascunho/' + ID + '/passo/([a-z_]+)$'), page: 'passo', title: function () { return S.rascunho.entrevista; }, render: pageStep },
@@ -652,6 +657,12 @@
 
   // ---------------------------------------------------------------- page: help (open)
 
+  // The way out of an open page: the drafts with a session, the login page without one.
+  function openBack() {
+    return el('p', { class: 'eu-ajuda-voltar' },
+      state.user ? link(S.rascunho.inicio, '#/inicio') : link(S.entrar.titulo, '#/entrar'));
+  }
+
   // The help, from ajuda-pt.js. Open: shown with or without a session, and no API request. Each
   // section has the anchor ajuda-<key>; headings are h2, then h3 only.
   function pageHelp() {
@@ -684,16 +695,207 @@
     }));
     var c = A.contacto;
     var contact = el('p', null, c.nome + ', ' + c.unidade + ', ', link(c.email, 'mailto:' + c.email), '.');
-    var back = state.user ? link(S.rascunho.inicio, '#/inicio') : link(S.entrar.titulo, '#/entrar');
     main.appendChild(el('div', { class: 'screen eu-ajuda-pagina' },
       el('h2', { class: 'step-title', text: A.titulo }),
-      el('p', { class: 'eu-ajuda-voltar' }, back),
+      openBack(),
       section('oQueE', paragraphs(A.oQueE.paragrafos)),
       section('antes', paragraphs(A.antes.paragrafos)),
       section('etapas', stages),
       section('glossario', glossary),
       section('perguntas', faq),
       section('contacto', contact)));
+  }
+
+  // ---------------------------------------------------------------- answers and meta as text
+
+  function optionText(campo, id) {
+    var o = (Array.isArray(campo.opcoes) ? campo.opcoes : []).filter(function (x) { return x.id === id; })[0];
+    return o ? o.rotulo : String(id);
+  }
+
+  function patternName(id) {
+    var p = state.patterns.filter(function (x) { return x.id === id; })[0];
+    return p ? p.nome : String(id);
+  }
+
+  // The answer of one step as rows { rotulo, texto }, in the order of its fields: option ids as their
+  // labels (a pattern id as its name), numbers as text. Blank fields are left out.
+  function answerRows(step, valor) {
+    var v = valor && typeof valor === 'object' ? valor : {};
+    var rows = [];
+    step.campos.forEach(function (campo) {
+      var x = v[campo.id];
+      if (x === undefined || x === null || x === '' || (Array.isArray(x) && x.length === 0)) return;
+      var texto;
+      if (campo.opcoes === 'catalogo') texto = patternName(x);
+      else if (campo.tipo === 'escolha') texto = optionText(campo, x);
+      else if (campo.tipo === 'escolha_multipla') texto = (Array.isArray(x) ? x : [x]).map(function (id) { return optionText(campo, id); }).join(', ');
+      else texto = String(x);
+      if (texto.trim() === '') return;
+      rows.push({ rotulo: campo.rotulo, texto: texto });
+    });
+    return rows;
+  }
+
+  function answerList(rows) {
+    return el('dl', { class: 'eu-respostas' }, rows.map(function (r) {
+      return [el('dt', { text: r.rotulo }), el('dd', { text: r.texto })];
+    }));
+  }
+
+  // The duration of a context answer, as in the ficha (server: drafts.duracaoTexto).
+  function duracaoTexto(contexto) {
+    var c = contexto || {};
+    if (typeof c.duracao_min !== 'number') return '';
+    var max = typeof c.duracao_max === 'number' && c.duracao_max !== c.duracao_min ? c.duracao_max : null;
+    return S.exemplos.duracaoTexto(c.duracao_min, max);
+  }
+
+  // The .ficha-meta table of a ficha, with the row labels of the ficha. Empty rows are left out.
+  function metaTable(meta) {
+    var m = meta && typeof meta === 'object' ? meta : {};
+    var rows = [
+      [S.meta.competencia, m.competencia],
+      [S.meta.formato, m.formato],
+      [S.meta.duracao, m.duracao && m.duracao.texto],
+      [S.meta.ano, m.ano],
+      [S.meta.areas, m.areas],
+      [S.meta.ferramenta, m.ferramenta],
+    ].filter(function (r) { return typeof r[1] === 'string' && r[1].trim() !== ''; });
+    return el('table', { class: 'ficha-meta' },
+      el('caption', { class: 'visually-hidden', text: S.meta.legenda }),
+      el('tbody', null, rows.map(function (r) {
+        return el('tr', null, el('th', { scope: 'row', text: r[0] }), el('td', null, inline(r[1])));
+      })));
+  }
+
+  // ---------------------------------------------------------------- pages: worked examples (open)
+
+  function examples() {
+    return (state.exemplos && state.exemplos.exemplos) || [];
+  }
+
+  function pageExamples() {
+    var area = stepById('contexto').campos.filter(function (c) { return c.id === 'area'; })[0];
+    var papel = stepById('papel_ia').campos.filter(function (c) { return c.id === 'papel'; })[0];
+    main.appendChild(el('div', { class: 'screen' },
+      el('h2', { class: 'step-title', text: S.exemplos.titulo }),
+      openBack(),
+      el('p', { class: 'step-help', text: S.exemplos.intro }),
+      el('ul', { id: 'lista-exemplos', class: 'eu-exemplos' }, examples().map(function (e) {
+        var r = e.respostas || {};
+        var c = r.contexto || {};
+        return el('li', null,
+          el('p', { class: 'eu-rascunho-titulo' }, link(e.titulo, '#/exemplos/' + e.n)),
+          el('dl', { class: 'eu-exemplo-meta' },
+            el('dt', { text: S.exemplos.area }), el('dd', { text: c.area ? optionText(area, c.area) : '' }),
+            el('dt', { text: S.exemplos.papel }), el('dd', { text: r.papel_ia ? optionText(papel, r.papel_ia.papel) : '' }),
+            el('dt', { text: S.exemplos.duracao }), el('dd', { text: duracaoTexto(c) })));
+      })),
+      el('p', null, link(A.pagina, '#/ajuda'))));
+  }
+
+  // One example: for each answered step, the question, the answers, why, and the note when the ficha
+  // does not state the answer; then the reference ficha (GET /exemplos/:n, public, no model call).
+  function pageExample(ctx, nText) {
+    var n = Number(nText);
+    var e = examples().filter(function (x) { return x.n === n; })[0];
+    if (!e) return redirect('#/exemplos');
+    var slot = errorSlot();
+    var start;
+    if (state.user) {
+      start = button(S.exemplos.comecar, { id: 'comecar-exemplo', class: 'btn-primary', 'aria-describedby': 'comecar-nota' }, function () {
+        clearSlot(slot);
+        busy(start, function () { return API.request('POST', '/rascunhos', { modo: 'criar', exemplo: n }); }, { label: S.inicio.aCriar })
+          .then(function (view) { go(stepHref(view.rascunho.id, 'contexto')); })
+          .catch(function (err) { report(slot, err); });
+      });
+    } else {
+      start = on(link(S.exemplos.entrarParaComecar, '#/entrar', { id: 'entrar-exemplo', class: 'btn-primary', 'aria-describedby': 'comecar-nota' }), 'click', function (ev) {
+        ev.preventDefault();
+        state.returnTo = { hash: '#/exemplos/' + n, user: null };
+        go('#/entrar');
+      });
+    }
+    var startBox = el('div', { class: 'eu-comecar' },
+      el('p', { class: 'eu-nota', id: 'comecar-nota', text: S.exemplos.comecarNota }),
+      el('div', { class: 'nav-row' }, start),
+      slot);
+
+    var respostas = e.respostas || {};
+    var porque = e.porque || {};
+    var nota = e.nota || {};
+    var stepsBox = steps().filter(function (p) { return respostas[p.id] !== undefined; }).map(function (p) {
+      var titleId = 'exemplo-passo-' + p.id + '-titulo';
+      return el('section', { id: 'exemplo-passo-' + p.id, class: 'eu-seccao eu-exemplo-passo', 'aria-labelledby': titleId },
+        el('h3', { id: titleId, text: p.titulo }),
+        answerList(answerRows(p, respostas[p.id])),
+        porque[p.id] ? el('p', { class: 'eu-exemplo-porque' }, el('strong', { text: S.exemplos.porque }), ' ', porque[p.id]) : null,
+        nota[p.id] ? el('p', { class: 'eu-nota' }, el('strong', { text: S.exemplos.nota }), ' ', nota[p.id]) : null);
+    });
+
+    var fichaSlot = errorSlot();
+    var fichaBody = el('div', { class: 'eu-exemplo-ficha' }, el('p', { text: S.comum.aCarregar }));
+    var fichaBox = el('section', { id: 'exemplo-ficha', class: 'eu-seccao', 'aria-labelledby': 'exemplo-ficha-titulo' },
+      el('h3', { id: 'exemplo-ficha-titulo', text: S.exemplos.fichaTitulo }),
+      fichaSlot,
+      fichaBody);
+
+    main.appendChild(el('div', { class: 'screen' },
+      el('h2', { class: 'step-title', text: e.titulo }),
+      el('p', { class: 'eu-ajuda-voltar' }, link(S.exemplos.todos, '#/exemplos')),
+      el('p', { class: 'step-help', text: S.exemplos.introExemplo }),
+      startBox,
+      stepsBox,
+      fichaBox));
+
+    return API.request('GET', '/exemplos/' + n).then(function (data) {
+      if (!ctx.alive()) return;
+      clear(fichaBody);
+      fichaBody.appendChild(fichaView((data && data.ficha) || {}));
+    }, function (err) {
+      if (!ctx.alive()) return;
+      clear(fichaBody);
+      report(fichaSlot, err);
+    });
+  }
+
+  // A reference ficha, read only: the meta table, the sections the model writes (h4, with h5
+  // subheadings), the extras where the ficha places them and the references.
+  function fichaView(ficha) {
+    var frag = document.createDocumentFragment();
+    var extras = (Array.isArray(ficha.extras) ? ficha.extras : []).filter(function (x) { return x && typeof x === 'object'; });
+    // As the server (ficha.js extraSlot): before the objective is after the meta table; an unknown
+    // anchor goes to the end.
+    var slotOf = function (x) {
+      var pos = x.position && typeof x.position === 'object' ? x.position : {};
+      var at = pos.before === 'objectivo' ? 'meta' : pos.after;
+      return at === 'meta' || MODEL_SECTIONS.indexOf(at) !== -1 || at === 'referencias' ? at : null;
+    };
+    var extrasAt = function (id) {
+      extras.filter(function (x) { return slotOf(x) === id; }).forEach(function (x) {
+        frag.appendChild(el('h4', { text: String(x.titulo || '') }));
+        frag.appendChild(markdown(x.texto));
+      });
+    };
+    if (ficha.meta && ficha.meta.subtitulo) frag.appendChild(el('p', { class: 'eu-exemplo-subtitulo', text: ficha.meta.subtitulo }));
+    frag.appendChild(metaTable(ficha.meta));
+    extrasAt('meta');
+    MODEL_SECTIONS.forEach(function (sec) {
+      if (ficha[sec] !== undefined) {
+        frag.appendChild(el('h4', { text: S.seccao.titulos[sec] }));
+        frag.appendChild(sectionView(sec, ficha[sec], 'h5'));
+      }
+      extrasAt(sec);
+    });
+    var refs = Array.isArray(ficha.referencias) ? ficha.referencias : [];
+    if (refs.length) {
+      frag.appendChild(el('h4', { text: S.exemplos.referencias }));
+      refs.forEach(function (r) { frag.appendChild(markdown(r && r.texto)); });
+    }
+    extrasAt('referencias');
+    extrasAt(null);
+    return frag;
   }
 
   // ---------------------------------------------------------------- page: home
@@ -739,30 +941,18 @@
     var user = state.user;
     var slot = errorSlot();
     var list = el('div', { id: 'lista-rascunhos', 'aria-live': 'polite' }, el('p', { text: S.comum.aCarregar }));
-    var newBtn = button(S.inicio.novo, { id: 'novo-rascunho', class: 'btn-primary' }, function () {
-      clearSlot(slot);
-      busy(newBtn, function () { return API.request('POST', '/rascunhos', { modo: 'criar' }); }, { label: S.inicio.aCriar })
-        .then(function (view) { go(stepHref(view.rascunho.id, steps()[0].id)); })
-        .catch(function (err) { report(slot, err); });
-    });
-    var tools = el('ul', { class: 'eu-ligacoes' },
-      el('li', null, link(S.inicio.definicoes, '#/definicoes')),
-      user.perfil === 'admin' ? el('li', null, link(S.inicio.codigos, '#/codigos')) : null);
-    main.appendChild(el('div', { class: 'screen' },
-      el('h2', { class: 'step-title', text: S.inicio.ola(user.nome) }),
-      welcomeBox(user),
-      el('p', { class: 'step-help', text: S.inicio.intro }),
-      el('p', { id: 'modo-chave', class: 'eu-nota' },
-        API.ownKey() ? S.inicio.modoProprio : S.inicio.modoPartilhado, ' ', link(S.inicio.mudarModo, '#/definicoes')),
-      el('div', { class: 'nav-row' }, newBtn),
-      slot,
-      el('section', { class: 'eu-seccao', 'aria-labelledby': 'meus-titulo' }, el('h3', { id: 'meus-titulo', text: S.inicio.meus }), list),
-      el('section', { class: 'eu-seccao', 'aria-labelledby': 'ferramentas-titulo' }, el('h3', { id: 'ferramentas-titulo', text: S.inicio.ferramentas }), tools)));
-
-    return API.request('GET', '/rascunhos').then(function (data) {
-      if (!ctx.alive()) return;
+    var load = function () {
+      return API.request('GET', '/rascunhos').then(function (data) {
+        if (!ctx.alive()) return;
+        drawList((data && data.rascunhos) || []);
+      }, function (err) {
+        if (!ctx.alive()) return;
+        clear(list);
+        report(slot, err);
+      });
+    };
+    var drawList = function (rows) {
       clear(list);
-      var rows = (data && data.rascunhos) || [];
       if (rows.length === 0) {
         list.appendChild(el('p', { text: S.inicio.nenhum }));
         return;
@@ -776,13 +966,79 @@
           el('p', { class: 'eu-rascunho-titulo' }, link(titulo, '#/rascunho/' + r.id, { 'aria-label': S.inicio.continuar(titulo) })),
           el('p', { class: 'eu-rascunho-meta' },
             el('span', { class: 'eu-etiqueta', text: S.estados[r.estado] || r.estado }), ' ',
-            S.inicio.actualizado(S.comum.data(r.actualizado)), '. ', nextText, '.'));
+            S.inicio.actualizado(S.comum.data(r.actualizado)), '. ', nextText, '.'),
+          rowActions(r, titulo));
       })));
-    }, function (err) {
-      if (!ctx.alive()) return;
-      clear(list);
-      report(slot, err);
+    };
+
+    // Duplicar opens the copy. Apagar (not for a submitted draft) asks in place, naming the title;
+    // the DELETE carries the rev of the list. After it, the list reloads and the status line says so.
+    var rowActions = function (r, titulo) {
+      var box = el('div', { class: 'eu-rascunho-accoes' });
+      var plain = function () {
+        clear(box);
+        var dup = button(S.inicio.duplicar, { class: 'btn-ghost duplicar', 'aria-label': S.inicio.duplicarDe(titulo) }, function () {
+          clearSlot(slot);
+          busy(dup, function () { return API.request('POST', '/rascunhos/' + r.id + '/duplicar'); }, { label: S.inicio.aDuplicar })
+            .then(function (view) { go('#/rascunho/' + view.rascunho.id); })
+            .catch(function (err) { report(slot, err); });
+        });
+        box.appendChild(dup);
+        if (r.estado === 'submetida') return;
+        var del = button(S.inicio.apagar, { class: 'btn-ghost apagar', 'aria-label': S.inicio.apagarDe(titulo) }, function () {
+          clear(box);
+          var noteId = nextId('apagar-nota');
+          var confirm = button(S.inicio.apagar, { class: 'btn-primary confirmar-apagar', 'aria-describedby': noteId }, function () {
+            clearSlot(slot);
+            busy(confirm, function () { return API.request('DELETE', '/rascunhos/' + r.id, { rev: r.rev }); }, { label: S.inicio.aApagar })
+              .then(function () { return load(); })
+              .then(function () {
+                if (!ctx.alive()) return;
+                announce(S.inicio.apagado(titulo));
+                statusLine.focus();
+              })
+              .catch(function (err) { report(slot, err, { write: true }); });
+          });
+          append(box, [
+            el('p', { class: 'eu-nota', id: noteId, text: S.inicio.confirmarApagar(titulo) }),
+            confirm, ' ',
+            button(S.comum.cancelar, { class: 'btn-ghost' }, function () {
+              plain();
+              var again = box.querySelector('.apagar');
+              if (again) again.focus();
+            }),
+          ]);
+          confirm.focus();
+        });
+        box.appendChild(document.createTextNode(' '));
+        box.appendChild(del);
+      };
+      plain();
+      return box;
+    };
+
+    var newBtn = button(S.inicio.novo, { id: 'novo-rascunho', class: 'btn-primary' }, function () {
+      clearSlot(slot);
+      busy(newBtn, function () { return API.request('POST', '/rascunhos', { modo: 'criar' }); }, { label: S.inicio.aCriar })
+        .then(function (view) { go(stepHref(view.rascunho.id, steps()[0].id)); })
+        .catch(function (err) { report(slot, err); });
     });
+    var tools = el('ul', { class: 'eu-ligacoes' },
+      el('li', null, link(S.inicio.exemplos, '#/exemplos')),
+      el('li', null, link(S.inicio.definicoes, '#/definicoes')),
+      user.perfil === 'admin' ? el('li', null, link(S.inicio.codigos, '#/codigos')) : null);
+    main.appendChild(el('div', { class: 'screen' },
+      el('h2', { class: 'step-title', text: S.inicio.ola(user.nome) }),
+      welcomeBox(user),
+      el('p', { class: 'step-help', text: S.inicio.intro }),
+      el('p', { id: 'modo-chave', class: 'eu-nota' },
+        API.ownKey() ? S.inicio.modoProprio : S.inicio.modoPartilhado, ' ', link(S.inicio.mudarModo, '#/definicoes')),
+      el('div', { class: 'nav-row' }, newBtn),
+      slot,
+      el('section', { class: 'eu-seccao', 'aria-labelledby': 'meus-titulo' }, el('h3', { id: 'meus-titulo', text: S.inicio.meus }), list),
+      el('section', { class: 'eu-seccao', 'aria-labelledby': 'ferramentas-titulo' }, el('h3', { id: 'ferramentas-titulo', text: S.inicio.ferramentas }), tools)));
+
+    return load();
   }
 
   // #/rascunho/:id goes to the place where the teacher stopped.
@@ -1329,13 +1585,13 @@
       })));
   }
 
-  // The read view of the data of one section.
-  function sectionView(sec, dados) {
+  // The read view of the data of one section. level: the tag of its subheadings (default h4).
+  function sectionView(sec, dados, level) {
     var C = S.seccao.campos;
     var frag = document.createDocumentFragment();
     var str = function (v) { return typeof v === 'string' ? v : (v === undefined || v === null ? '' : String(v)); };
     var obj = dados && typeof dados === 'object' ? dados : {};
-    var heading = function (t) { return el('h4', { class: 'eu-subtitulo', text: t }); };
+    var heading = function (t) { return el(level || 'h4', { class: 'eu-subtitulo', text: t }); };
     switch (sec) {
       case 'objectivo':
         frag.appendChild(markdown(str(obj.texto)));
@@ -1941,10 +2197,12 @@
       if (err.status === 401) return null;
       throw err;
     });
-    Promise.all([loadStatic('interview.json'), loadStatic('references.json'), me]).then(function (r) {
+    Promise.all([loadStatic('interview.json'), loadStatic('references.json'), me, loadStatic('exemplos.json'), loadStatic('patterns.json')]).then(function (r) {
       state.interview = r[0];
       state.refs = (r[1] && r[1].referencias) || [];
       setUser(r[2]);
+      state.exemplos = r[3];
+      state.patterns = (r[4] && r[4].padroes) || [];
       window.addEventListener('hashchange', route);
       route();
     }).catch(function (err) {

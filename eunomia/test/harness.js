@@ -15,6 +15,9 @@ const SCRIPTS = ['i18n-pt.js', 'ajuda-pt.js', 'api.js', 'app.js'];
 const INTERVIEW = JSON.parse(fs.readFileSync(path.join(ROOT, 'interview.json'), 'utf8'));
 const PATTERNS = JSON.parse(fs.readFileSync(path.join(ROOT, 'patterns.json'), 'utf8')).padroes;
 const REFS = JSON.parse(fs.readFileSync(path.join(ROOT, 'references.json'), 'utf8')).referencias;
+const EXEMPLOS = JSON.parse(fs.readFileSync(path.join(ROOT, 'exemplos.json'), 'utf8'));
+// The reference ficha of example n, as GET /exemplos/:n returns it.
+const referenceFicha = (n) => JSON.parse(fs.readFileSync(path.join(ROOT, '..', 'eunomia-server', 'referencia', `ficha-${n}.json`), 'utf8'));
 const DRAFT_ID = 'a1b2c3d4e5f6';
 const TEACHER = { id: 'u1', nome: 'Ana Silva', perfil: 'teacher' };
 const ADMIN = { id: 'u9', nome: 'Tiago Jacinto', perfil: 'admin' };
@@ -120,6 +123,13 @@ class FakeApi {
 
   route({ method, path: p, query, body }) {
     const anon = () => json(401, { erro: 'Sessão inválida ou expirada. Inicie sessão.' });
+    // Public, as on the server: the reference ficha of an example.
+    let ex = /^\/exemplos\/([^/]+)$/.exec(p);
+    if (method === 'GET' && ex) {
+      const n = /^[1-9][0-9]?$/.test(ex[1]) ? Number(ex[1]) : NaN;
+      if (!EXEMPLOS.exemplos.some((e) => e.n === n)) return json(404, { erro: 'Exemplo não encontrado.' });
+      return json(200, { ficha: referenceFicha(n) });
+    }
     if (method === 'POST' && p === '/login') {
       if (body.codigo === 'ABCD-EFGH') {
         this.user = this.user || TEACHER;
@@ -147,10 +157,18 @@ class FakeApi {
       return json(200, { ok: true });
     }
     if (method === 'GET' && p === '/rascunhos') {
-      return json(200, { rascunhos: [...this.drafts.values()].map((d) => ({ id: d.id, titulo: (d.respostas.contexto || {}).uc || null, modo: d.modo, estado: d.estado, rev: d.rev, actualizado: d.actualizado, proximo_passo: nextStep(d) })) });
+      const titulo = (d) => (d.respostas.plano || {}).titulo || (d.respostas.contexto || {}).uc || null;
+      return json(200, { rascunhos: [...this.drafts.values()].map((d) => ({ id: d.id, titulo: titulo(d), modo: d.modo, estado: d.estado, rev: d.rev, actualizado: d.actualizado, proximo_passo: nextStep(d) })) });
     }
     if (method === 'POST' && p === '/rascunhos') {
-      const d = makeDraft({ id: 'f0f0f0f0f0f0', rev: 1 });
+      // { modo: 'criar' } or { modo: 'criar', exemplo: 1..6 } (the answers of the example, plan not approved).
+      let respostas = {};
+      if (body.exemplo !== undefined) {
+        const e = EXEMPLOS.exemplos.find((x) => Number.isInteger(body.exemplo) && x.n === body.exemplo);
+        if (!e) return json(400, { erro: 'Exemplo desconhecido.' });
+        respostas = JSON.parse(JSON.stringify(e.respostas));
+      }
+      const d = makeDraft({ id: 'f0f0f0f0f0f0', rev: 1, respostas });
       this.drafts.set(d.id, d);
       return json(201, this.view(d));
     }
@@ -167,6 +185,33 @@ class FakeApi {
       return null;
     };
     if (method === 'GET' && rest === '') return json(200, this.view(d));
+    // duplicar and DELETE: the author's own draft only (another teacher's is 404, an admin gets 403).
+    const authorOnly = (verb) => {
+      if (d.autor.id === this.user.id) return null;
+      if (this.user.perfil === 'admin') return json(403, { erro: `Só o autor pode ${verb} este rascunho.` });
+      return json(404, { erro: 'Rascunho não encontrado.' });
+    };
+    if (method === 'POST' && rest === '/duplicar') {
+      const bad = authorOnly('duplicar');
+      if (bad) return bad;
+      const respostas = JSON.parse(JSON.stringify(d.respostas));
+      if (respostas.plano && respostas.plano.titulo) respostas.plano.titulo = `Cópia de ${respostas.plano.titulo}`;
+      const seccoes = {};
+      for (const [id, s] of Object.entries(d.seccoes)) if (s && s.estado === 'aceite') seccoes[id] = JSON.parse(JSON.stringify(s));
+      const copy = makeDraft({ id: 'c0c0c0c0c0c0', rev: 1, respostas, seccoes, plano_aprovado: d.plano_aprovado === true, referencias: JSON.parse(JSON.stringify(d.referencias)) });
+      this.drafts.set(copy.id, copy);
+      return json(201, this.view(copy));
+    }
+    if (method === 'DELETE' && rest === '') {
+      const bad = authorOnly('apagar');
+      if (bad) return bad;
+      if (d.estado === 'submetida') return json(409, { erro: 'Uma actividade submetida para revisão não pode ser apagada.', motivo: 'bloqueado' });
+      if (!Number.isInteger(body && body.rev)) return json(400, { erro: 'Indique a revisão do rascunho (rev).' });
+      const stale = write();
+      if (stale) return stale;
+      this.drafts.delete(d.id);
+      return json(200, { ok: true, apagado: '2026-11-16T10:00:00.000Z' });
+    }
     m = /^\/respostas\/(\w+)$/.exec(rest);
     if (method === 'PUT' && m) {
       const bad = write();
@@ -292,6 +337,6 @@ async function boot(t, { api = new FakeApi(), hash = '', storage = 'ok', stored 
 const lastCall = (api, method, re) => [...api.calls].reverse().find((c) => c.method === method && re.test(c.path));
 
 module.exports = {
-  ROOT, BASE, SCRIPTS, INTERVIEW, PATTERNS, REFS, DRAFT_ID, TEACHER, ADMIN, ANSWERS,
+  ROOT, BASE, SCRIPTS, INTERVIEW, PATTERNS, REFS, EXEMPLOS, referenceFicha, DRAFT_ID, TEACHER, ADMIN, ANSWERS,
   makeDraft, approvedDraft, nextStep, json, FakeApi, boot, lastCall,
 };
