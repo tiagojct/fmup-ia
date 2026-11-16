@@ -77,9 +77,18 @@ const SECTIONS = {
 
 // Text from the teacher (answers, notes, materials, comments, drafts of sections) goes between
 // markers, so that the model treats it as data. The marker word is removed from the text first, so
-// the text cannot close its block early.
+// the text cannot close its block early. The removal repeats until nothing changes: one pass on
+// "DADOS_DADOS_DOCENTEDOCENTE>>>" would leave a closing marker.
 const MARK = 'DADOS_DOCENTE';
-const clean = (text) => String(text ?? '').replace(/<*\s*DADOS_DOCENTE\s*>*/gi, '').trim();
+const MARKER = /<*\s*DADOS_DOCENTE\s*>*/gi;
+function clean(text) {
+  let s = String(text ?? '');
+  for (let before = null; before !== s; ) {
+    before = s;
+    s = s.replace(MARKER, '');
+  }
+  return s.trim();
+}
 
 function block(title, text) {
   return `${title}:\n<<<${MARK}\n${clean(text)}\n${MARK}>>>`;

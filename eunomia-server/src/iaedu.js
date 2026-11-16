@@ -16,6 +16,10 @@ const DEFAULT_BASE_URL = 'https://api.iaedu.pt/agent-chat/api/v1';
 // A line of the stream longer than this is not a reply: the read stops with a service error.
 const MAX_LINE = 1024 * 1024;
 
+// The longest wait for one call. A request with a retry makes two calls; the caller passes one
+// deadline for both (draft-routes.js), so that the request ends before the 100 s of Cloudflare.
+const DEFAULT_TIMEOUT_MS = 40000;
+
 const MESSAGES = {
   auth: 'A chave IAedu indicada não é válida.',
   limite: 'A IAedu recusou o pedido por excesso de utilização. Tente daqui a alguns minutos.',
@@ -104,12 +108,14 @@ function requireText(value, name) {
   return value;
 }
 
-function createIaeduClient({ baseUrl = DEFAULT_BASE_URL, timeoutMs = 60000 } = {}) {
+function createIaeduClient({ baseUrl = DEFAULT_BASE_URL, timeoutMs = DEFAULT_TIMEOUT_MS } = {}) {
   const base = String(baseUrl).replace(/\/+$/, '');
 
-  // opts = { key, agentId, channelId, threadId, message, userContext? }
+  // opts = { key, agentId, channelId, threadId, message, userContext?, deadline? }
+  // deadline (epoch ms) ends the call earlier than timeoutMs; a deadline already past is the tempo
+  // error, and nothing is sent.
   async function send(opts) {
-    const { key, agentId, channelId, threadId, message, userContext } = opts || {};
+    const { key, agentId, channelId, threadId, message, userContext, deadline } = opts || {};
     if (typeof key !== 'string' || key === '') throw new IaeduError('auth');
     requireText(agentId, 'agentId');
     requireText(channelId, 'channelId');
@@ -129,7 +135,9 @@ function createIaeduClient({ baseUrl = DEFAULT_BASE_URL, timeoutMs = 60000 } = {
     form.append('message', message);
     if (userContext !== undefined && userContext !== null) form.append('user_context', JSON.stringify(userContext));
 
-    const signal = AbortSignal.timeout(timeoutMs);
+    const left = Number.isFinite(deadline) ? deadline - Date.now() : Infinity;
+    if (left <= 0) throw new IaeduError('tempo');
+    const signal = AbortSignal.timeout(Math.min(timeoutMs, left));
     const failure = (e) => (e instanceof IaeduError ? e : new IaeduError(signal.aborted ? 'tempo' : 'servico'));
 
     let res;
@@ -187,4 +195,4 @@ function parseJsonReply(text) {
   return value;
 }
 
-module.exports = { createIaeduClient, parseJsonReply, IaeduError, DEFAULT_BASE_URL };
+module.exports = { createIaeduClient, parseJsonReply, IaeduError, DEFAULT_BASE_URL, DEFAULT_TIMEOUT_MS };

@@ -79,7 +79,18 @@
   "$defs": {
     "texto": {
       "type": "string",
-      "minLength": 1
+      "minLength": 1,
+      "maxLength": 20000
+    },
+    "rotulo": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "referencia": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
     },
     "minutos": {
       "type": "integer",
@@ -99,10 +110,10 @@
         "ferramenta"
       ],
       "properties": {
-        "titulo": { "$ref": "#/$defs/texto" },
-        "subtitulo": { "$ref": "#/$defs/texto" },
-        "competencia": { "$ref": "#/$defs/texto" },
-        "formato": { "$ref": "#/$defs/texto" },
+        "titulo": { "$ref": "#/$defs/rotulo" },
+        "subtitulo": { "$ref": "#/$defs/rotulo" },
+        "competencia": { "$ref": "#/$defs/rotulo" },
+        "formato": { "$ref": "#/$defs/rotulo" },
         "duracao": {
           "type": "object",
           "additionalProperties": false,
@@ -110,16 +121,16 @@
           "properties": {
             "min": { "$ref": "#/$defs/minutos" },
             "max": { "$ref": "#/$defs/minutos" },
-            "texto": { "$ref": "#/$defs/texto" }
+            "texto": { "$ref": "#/$defs/rotulo" }
           },
           "dependentRequired": {
             "min": ["max"],
             "max": ["min"]
           }
         },
-        "ano": { "$ref": "#/$defs/texto" },
-        "areas": { "$ref": "#/$defs/texto" },
-        "ferramenta": { "$ref": "#/$defs/texto" }
+        "ano": { "$ref": "#/$defs/rotulo" },
+        "areas": { "$ref": "#/$defs/rotulo" },
+        "ferramenta": { "$ref": "#/$defs/rotulo" }
       }
     },
     "objectivo": {
@@ -169,14 +180,14 @@
         "additionalProperties": false,
         "required": ["titulo", "texto", "position"],
         "properties": {
-          "titulo": { "$ref": "#/$defs/texto" },
+          "titulo": { "$ref": "#/$defs/rotulo" },
           "texto": { "$ref": "#/$defs/texto" },
           "position": {
             "type": "object",
             "additionalProperties": false,
             "properties": {
-              "before": { "type": "string" },
-              "after": { "type": "string" }
+              "before": { "type": "string", "maxLength": 500 },
+              "after": { "type": "string", "maxLength": 500 }
             }
           }
         }
@@ -206,7 +217,7 @@
         "additionalProperties": false,
         "required": ["lead", "texto"],
         "properties": {
-          "lead": { "$ref": "#/$defs/texto" },
+          "lead": { "$ref": "#/$defs/rotulo" },
           "texto": { "$ref": "#/$defs/texto" }
         }
       }
@@ -215,7 +226,7 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "texto": { "type": "string" },
+        "texto": { "type": "string", "maxLength": 20000 },
         "sem_plano_b_motivo": { "$ref": "#/$defs/texto" }
       }
     },
@@ -257,8 +268,8 @@
         "additionalProperties": false,
         "required": ["texto", "origem"],
         "properties": {
-          "id": { "$ref": "#/$defs/texto" },
-          "texto": { "$ref": "#/$defs/texto" },
+          "id": { "$ref": "#/$defs/rotulo" },
+          "texto": { "$ref": "#/$defs/referencia" },
           "origem": { "enum": ["curada", "docente"] }
         }
       }
@@ -276,8 +287,8 @@
       "additionalProperties": false,
       "required": ["slug", "autor"],
       "properties": {
-        "slug": { "$ref": "#/$defs/texto" },
-        "autor": { "$ref": "#/$defs/texto" }
+        "slug": { "$ref": "#/$defs/rotulo" },
+        "autor": { "$ref": "#/$defs/rotulo" }
       }
     },
     "runtime": {
@@ -288,9 +299,9 @@
       "additionalProperties": false,
       "required": ["autor", "versao", "estado"],
       "properties": {
-        "autor": { "$ref": "#/$defs/texto" },
+        "autor": { "$ref": "#/$defs/rotulo" },
         "versao": { "type": "integer", "minimum": 1 },
-        "modelo": { "$ref": "#/$defs/texto" },
+        "modelo": { "$ref": "#/$defs/rotulo" },
         "estado": {
           "enum": ["rascunho", "submetida", "devolvida", "aprovada", "rejeitada", "substituida"]
         }

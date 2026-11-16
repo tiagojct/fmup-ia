@@ -82,6 +82,8 @@ function schemaMessage(e) {
       return `O campo ${where} tem de ser ${TIPOS[p.type] || p.type}.`;
     case 'minLength':
       return `O campo ${where} não pode estar vazio.`;
+    case 'maxLength':
+      return `O campo ${where} tem ${Array.from(String(e.data)).length} caracteres; o máximo é ${p.limit}.`;
     case 'minimum':
       return `O campo ${where} tem de ser ${p.limit} ou mais.`;
     case 'enum':

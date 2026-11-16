@@ -13,7 +13,8 @@ const { validateSection, validateFicha, renderSection, renderQmd, slugify, SECTI
 const { lintEmoji, lintSection } = require('./lint.js');
 const { composeRegime } = require('./regime.js');
 const { REFERENCES, buildMeta, assembleFicha, sectionsToAccept } = require('./assemble.js');
-const { generateSection, newThreadId, hasControl, CONTROL_MESSAGE } = require('./generate.js');
+const { generateSection, newThreadId } = require('./generate.js');
+const { hasControl, stripControl, strings, CONTROL_MESSAGE } = require('./control.js');
 const { renderMd, renderHtml } = require('./export.js');
 const prompts = require('./prompts.js');
 
@@ -22,17 +23,24 @@ const LOCKED = 'A ficha foi submetida e não pode ser alterada.';
 const LIMIT = 'Atingiu o limite diário de pedidos ao modelo.';
 const NO_EMOJI = 'Retire os emojis do texto.';
 const FEW_PATTERNS = 'Há menos de dois padrões do catálogo para este papel da IA e este tempo. Veja o catálogo completo.';
+const SHARED_AUTH = 'A chave partilhada da IAedu falhou. Avise o responsável da Eunomia.';
+const MAX_DRAFTS = 100;
+const TOO_MANY = `Atingiu o máximo de ${MAX_DRAFTS} rascunhos. Continue um dos rascunhos que já tem, ou peça ao responsável da Eunomia que apague os que já não usa.`;
+// The time budget of one request that calls the model, retry included: below the 100 s after which
+// Cloudflare drops the request.
+const MODEL_BUDGET_MS = 90000;
 
 // Every 409 says why, so that the front end offers "Recarregar" only for a stale rev:
 // rev (another window changed the draft), bloqueado (submitted), plano (plan not approved),
 // passo (a step has no answer), incompleto (a section has no accepted text), invalido (the data
-// of a section breaks the schema).
+// of a section breaks the schema), limite (the teacher has MAX_DRAFTS drafts).
 const CODE_SECTIONS = ['meta', 'regime_ia', 'referencias', 'declaracao'];
 const MAX_REFERENCES = 20;
 const MAX_COMMENT = 2000;
+// Control characters never reach a download (the HTML converter strips them too).
 const EXPORTS = {
-  qmd: { type: 'text/plain; charset=utf-8', body: renderQmd },
-  md: { type: 'text/markdown; charset=utf-8', body: renderMd },
+  qmd: { type: 'text/plain; charset=utf-8', body: (f) => stripControl(renderQmd(f)) },
+  md: { type: 'text/markdown; charset=utf-8', body: (f) => stripControl(renderMd(f)) },
   html: { type: 'text/html; charset=utf-8', body: renderHtml },
 };
 
@@ -93,26 +101,29 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
     }
   }
 
-  // A model call: the credentials of the request, the daily count before each call, and the own-key
-  // error. A wrong own key is 401 with motivo "auth" (the session is fine); the shared key is never
-  // tried in its place. A wrong shared key stays a 502 (server.js), because the teacher cannot fix it.
+  // A model call: the credentials of the request, the daily count before each call, one deadline for
+  // all the calls of the request, and the auth errors. A wrong own key is 401 with motivo "auth" (the
+  // session is fine); the shared key is never tried in its place. A wrong shared key is a 502 with its
+  // own message: the teacher cannot fix it, the person in charge can.
   async function withModel(ctx, fn) {
     const creds = requireCreds(ctx);
+    const deadline = Date.now() + (config.modelBudgetMs ?? MODEL_BUDGET_MS);
     const count = () => {
       if (!config.auth.countModelCall(ctx.user.id).ok) throw new HttpError(429, LIMIT);
     };
     try {
-      return await fn(creds, count);
+      return await fn(creds, count, deadline);
     } catch (e) {
-      if (e instanceof IaeduError && e.code === 'auth' && creds.source === 'own') {
-        throw new HttpError(401, e.messagePt, {}, { motivo: 'auth' });
+      if (e instanceof IaeduError && e.code === 'auth') {
+        if (creds.source === 'own') throw new HttpError(401, e.messagePt, {}, { motivo: 'auth' });
+        throw new HttpError(502, SHARED_AUTH, {}, { motivo: 'chave_partilhada' });
       }
       throw e;
     }
   }
 
   async function askOnce(ctx, message) {
-    return withModel(ctx, async (creds, count) => {
+    return withModel(ctx, async (creds, count, deadline) => {
       count();
       const reply = await config.iaedu.send({
         key: creds.key,
@@ -120,6 +131,7 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
         channelId: creds.channelId,
         threadId: newThreadId(),
         message,
+        deadline,
       });
       return { data: parseJsonReply(reply.text), modelo: reply.model || null };
     });
@@ -135,6 +147,13 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
     }));
   }
 
+  // Teacher text that is stored: no control characters (400) and no emoji (422), as for sections.
+  function checkText(data) {
+    if (hasControl(data)) throw new HttpError(400, CONTROL_MESSAGE);
+    const emojis = strings(data).flatMap((t) => lintEmoji(t).map((w) => w.match));
+    if (emojis.length > 0) throw new HttpError(422, NO_EMOJI, {}, { erros: [...new Set(emojis)] });
+  }
+
   function optionalText(value, max, name) {
     if (value === undefined || value === null || value === '') return undefined;
     if (typeof value !== 'string') throw new HttpError(400, `O campo ${name} tem de ser texto.`);
@@ -146,6 +165,8 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
   route('POST', '/rascunhos', (req, res, ctx) => {
     const modo = ctx.body.modo === undefined ? 'criar' : ctx.body.modo;
     if (modo !== 'criar') throw new HttpError(400, 'Modo desconhecido. Para melhorar uma actividade existente, use o modo refinar.');
+    const own = store.list(`rascunhos/${ctx.user.id}`).filter((name) => name.endsWith('.json')).length;
+    if (own >= MAX_DRAFTS) throw new HttpError(409, TOO_MANY, {}, { motivo: 'limite' });
     const d = drafts.createDraft(ctx.user, 'criar', now());
     store.write(`rascunhos/${ctx.user.id}/${d.id}.json`, d);
     sendJson(res, 201, view(d));
@@ -179,6 +200,7 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
 
   route('PUT', '/rascunhos/:id/respostas/:passo', (req, res, ctx) => {
     const d = writable(ctx);
+    checkText(ctx.body.valor);
     const r = drafts.applyAnswer(d, ctx.params.passo, ctx.body.valor);
     if (r.errors.length > 0) throw new HttpError(400, 'A resposta tem erros.', {}, { erros: r.errors });
     return view(save(r.draft), { avisos: r.avisos });
@@ -256,8 +278,8 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
     planGate(d, 'gerar secções');
     applicable(d, sec);
     const comentario = optionalText(ctx.body.comentario, MAX_COMMENT, 'comentario');
-    const out = await withModel(ctx, (creds, count) =>
-      generateSection({ draft: d, sectionId: sec, client: config.iaedu, creds, comentario, beforeCall: count }),
+    const out = await withModel(ctx, (creds, count, deadline) =>
+      generateSection({ draft: d, sectionId: sec, client: config.iaedu, creds, comentario, beforeCall: count, deadline }),
     );
     // The call takes seconds: the draft must not have changed meanwhile.
     const fresh = drafts.findDraft(store, ctx.user, d.id);
@@ -324,6 +346,7 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
     const list = ctx.body.referencias;
     if (!Array.isArray(list)) throw new HttpError(400, 'Indique a lista de referências.');
     if (list.length > MAX_REFERENCES) throw new HttpError(400, `No máximo ${MAX_REFERENCES} referências.`);
+    checkText(list.map((item) => (item && typeof item.texto === 'string' && typeof item.id !== 'string' ? item.texto : '')));
     const out = [];
     const seen = new Set();
     for (const item of list) {
@@ -436,4 +459,4 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
   });
 }
 
-module.exports = { registerDraftRoutes, CONFLICT, LOCKED, LIMIT };
+module.exports = { registerDraftRoutes, CONFLICT, LOCKED, LIMIT, MAX_DRAFTS, MODEL_BUDGET_MS };

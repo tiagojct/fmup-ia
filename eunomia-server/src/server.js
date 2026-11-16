@@ -159,6 +159,21 @@ function readBody(req, limit) {
   });
 }
 
+// A request that changes something (any method but GET and HEAD) must say that it comes from the
+// app: the JSON content type, or the X-Eunomia: 1 header, empty bodies included. A plain HTML form
+// on another site can send neither without a CORS preflight, so a cross-site POST /logout or POST
+// /rascunhos is refused before the session is read: 415 for a form or text body, 403 without a body.
+const JSON_TYPE = /^application\/json\s*(;|$)/i;
+
+function checkOrigin(req) {
+  if (req.method === 'GET' || req.method === 'HEAD') return;
+  if (req.headers['x-eunomia'] === '1' || JSON_TYPE.test(req.headers['content-type'] || '')) return;
+  if (req.headers['content-type'] !== undefined) {
+    throw new HttpError(415, 'O pedido tem de ser JSON (Content-Type: application/json).');
+  }
+  throw new HttpError(403, 'Pedido recusado: não vem da aplicação Eunomia.');
+}
+
 // The body as a JSON object. No body is {}. A body needs the JSON content type: a form post from
 // another site cannot send it without a preflight, which is a second guard next to SameSite.
 // The body-read flag is set as soon as the whole body is in, so that a 415 or a 400 after it keeps
@@ -168,7 +183,7 @@ async function readJson(req, limit = MAX_BODY) {
   req[BODY_READ] = true;
   const text = buffer.toString('utf8');
   if (text.trim() === '') return {};
-  if (!/^application\/json\s*(;|$)/i.test(req.headers['content-type'] || '')) {
+  if (!JSON_TYPE.test(req.headers['content-type'] || '')) {
     throw new HttpError(415, 'O pedido tem de ser JSON (Content-Type: application/json).');
   }
   let value;
@@ -386,6 +401,7 @@ function createServer(config) {
       throw new HttpError(404, 'Não encontrado.');
     }
 
+    checkOrigin(req);
     let user = null;
     if (found.access !== 'public') {
       user = cfg.auth.verify(cookieValue(req));
@@ -433,6 +449,8 @@ function createServer(config) {
   });
   // Caddy keeps connections to the upstream open for a long time; a shorter timeout here gives 502s.
   server.keepAliveTimeout = 65000;
+  // headersTimeout must stay below requestTimeout (Node default 300 s). If headersTimeout ever has to
+  // grow past it, raise requestTimeout first.
   server.headersTimeout = 66000;
   return server;
 }

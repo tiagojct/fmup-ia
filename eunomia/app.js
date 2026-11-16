@@ -138,7 +138,9 @@
 
   // A small, safe Markdown subset for the texts of the ficha: paragraphs, lists, **bold**, *italic*,
   // `code`, [text](https://...) and <https://...>. Built with DOM nodes, never with innerHTML.
-  var INLINE = /(\*\*[^*]+\*\*)|(\*[^*\s][^*]*\*)|(`[^`]+`)|(\[[^\]]+\]\((https?:\/\/[^)\s]+)\))|(<(https?:\/\/[^>\s]+)>)/g;
+  // Every repeated group has an upper bound and link labels stop at a bracket: an unbounded group
+  // on a long text without its closing marker is quadratic (300 KB of "[a" froze the page).
+  var INLINE = /(\*\*[^*]{1,500}\*\*)|(\*[^*\s][^*]{0,500}\*)|(`[^`]{1,1000}`)|(\[[^[\]\n]{1,500}\]\((https?:\/\/[^()[\]\s]{1,2000})\))|(<(https?:\/\/[^<>\s]{1,2000})>)/g;
 
   function inline(text, opts) {
     var out = [];

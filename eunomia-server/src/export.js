@@ -7,6 +7,7 @@
 // anchors and relative paths only.
 
 const { renderQmd } = require('./ficha.js');
+const { CONTROL, stripControl } = require('./control.js');
 
 function renderMd(ficha) {
   return renderQmd(ficha).replace(/^---\n[\s\S]*?\n---\n\n?/, '');
@@ -15,20 +16,21 @@ function renderMd(ficha) {
 const escapeHtml = (s) =>
   String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 
-// C0 control characters other than tab, newline and carriage return. They have no place in a ficha,
-// and U+0000 is the placeholder marker of inline() below.
-const CONTROL = /[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g;
-const stripControl = (s) => String(s).replace(CONTROL, '');
-
+// U+0000 is the placeholder marker of inline() below: markdownToHtml strips the C0 control
+// characters (control.js) first.
 const SAFE_URL = /^(?:https?:\/\/|mailto:|#|\/|\.{1,2}\/|[^:/?#]+(?:[/?#]|$))/i;
 
-// Bold, italic and backslash escapes, on text that is already escaped.
+// Bold, italic and backslash escapes, on text that is already escaped. Every repeated group here and
+// in inline() has an upper bound (500 characters for emphasis and link labels, 1000 for code, 2000
+// for a URL): an unbounded group on a long line without its closing marker is quadratic, and 300 KB
+// of "[a" or " __x" took minutes. Link labels and URLs also stop at a bracket, so that each failed
+// link costs no more than the text up to the next one.
 function emphasis(s) {
   return s
-    .replace(/\*\*(?=\S)(.+?)\*\*/g, '<strong>$1</strong>')
-    .replace(/(^|[^\p{L}\p{N}_])__(?=\S)(.+?)__(?![\p{L}\p{N}])/gu, '$1<strong>$2</strong>')
-    .replace(/(^|[^*\\])\*(?=\S)([^*]+?)\*(?!\*)/g, '$1<em>$2</em>')
-    .replace(/(^|[^\p{L}\p{N}_\\])_(?=\S)([^_]+?)_(?![\p{L}\p{N}])/gu, '$1<em>$2</em>')
+    .replace(/\*\*(?=\S)(.{1,500}?)\*\*/g, '<strong>$1</strong>')
+    .replace(/(^|[^\p{L}\p{N}_])__(?=\S)(.{1,500}?)__(?![\p{L}\p{N}])/gu, '$1<strong>$2</strong>')
+    .replace(/(^|[^*\\])\*(?=\S)([^*]{1,500}?)\*(?!\*)/g, '$1<em>$2</em>')
+    .replace(/(^|[^\p{L}\p{N}_\\])_(?=\S)([^_]{1,500}?)_(?![\p{L}\p{N}])/gu, '$1<em>$2</em>')
     .replace(/\\([\\`*_{}[\]()#+\-.!@|])/g, '$1');
 }
 
@@ -40,9 +42,9 @@ function inline(text) {
     held.push(html);
     return `\u0000${held.length - 1}\u0000`;
   };
-  let s = String(text).replace(/(`+)(.+?)\1/g, (_, __, code) => hold(`<code>${escapeHtml(code)}</code>`));
-  s = s.replace(/<((?:https?:\/\/|mailto:)[^\s<>]+)>/gi, (_, url) => hold(`<a href="${escapeHtml(url)}">${escapeHtml(url)}</a>`));
-  s = s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, label, url) =>
+  let s = String(text).replace(/(`{1,10})(.{1,1000}?)\1/g, (_, __, code) => hold(`<code>${escapeHtml(code)}</code>`));
+  s = s.replace(/<((?:https?:\/\/|mailto:)[^\s<>]{1,2000})>/gi, (_, url) => hold(`<a href="${escapeHtml(url)}">${escapeHtml(url)}</a>`));
+  s = s.replace(/\[([^[\]\n]{1,500})\]\(([^()[\]\s]{1,2000})\)/g, (_, label, url) =>
     SAFE_URL.test(url) ? hold(`<a href="${escapeHtml(url)}">${emphasis(escapeHtml(label))}</a>`) : label,
   );
   s = emphasis(escapeHtml(s));

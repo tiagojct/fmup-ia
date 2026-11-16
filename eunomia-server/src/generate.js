@@ -11,23 +11,13 @@ const { validateSection, renderSection } = require('./ficha.js');
 const { lintSection } = require('./lint.js');
 const { buildMeta } = require('./assemble.js');
 const prompts = require('./prompts.js');
+const { CONTROL, CONTROL_MESSAGE, hasControl } = require('./control.js');
 
 // Lint rules that make the server ask again. Numbers are only flagged: the teacher confirms them.
 const RETRY_RULES = new Set(['lingua', 'estilo', 'referencia', 'controlo']);
 
-// C0 control characters other than tab, newline and carriage return.
-const CONTROL = /[\u0000-\u0008\u000B\u000C\u000E-\u001F]/;
-const CONTROL_MESSAGE = 'O texto tem caracteres de controlo. Retire-os.';
 const MATERIALS_CUT = 'Os materiais foram cortados aos 20 000 caracteres no pedido ao modelo.';
 const RETRY_FAILED = 'A correcção pedida ao modelo falhou: a segunda resposta não era JSON válido. O texto é o da primeira resposta.';
-
-// True when a string anywhere in data has a control character.
-function hasControl(data) {
-  if (typeof data === 'string') return CONTROL.test(data);
-  if (Array.isArray(data)) return data.some(hasControl);
-  if (data && typeof data === 'object') return Object.values(data).some(hasControl);
-  return false;
-}
 
 const newThreadId = () => `thr-${crypto.randomUUID()}`;
 
@@ -63,10 +53,11 @@ function check(sectionId, data, draft) {
   return { errors, avisos };
 }
 
-// opts = { draft, sectionId, client, creds, comentario?, beforeCall? }
+// opts = { draft, sectionId, client, creds, comentario?, beforeCall?, deadline? }
 // beforeCall runs before each model call (the daily count); if it throws before the retry, the first
-// result comes back with its avisos. Returns { dados, avisos, modelo, threadId, chamadas }.
-async function generateSection({ draft, sectionId, client, creds, comentario, beforeCall = () => {} }) {
+// result comes back with its avisos. deadline (epoch ms) is the time budget of the whole request: the
+// first call and the retry share it. Returns { dados, avisos, modelo, threadId, chamadas }.
+async function generateSection({ draft, sectionId, client, creds, comentario, beforeCall = () => {}, deadline }) {
   const current = draft.seccoes && draft.seccoes[sectionId];
   const anterior = comentario && current && current.dados !== undefined ? current.dados : undefined;
   const base = prompts.writeSection(sectionId, prompts.planText(draft), materialsOf(draft), comentario, anterior, draft);
@@ -81,7 +72,7 @@ async function generateSection({ draft, sectionId, client, creds, comentario, be
   });
 
   const ask = async (message) => {
-    const reply = await client.send({ key: creds.key, agentId: creds.agentId, channelId: creds.channelId, threadId, message });
+    const reply = await client.send({ key: creds.key, agentId: creds.agentId, channelId: creds.channelId, threadId, message, deadline });
     let data;
     try {
       data = unwrap(sectionId, parseJsonReply(reply.text));
@@ -116,4 +107,4 @@ function join(base, errors) {
   return `${base}\n\nA resposta anterior tinha estes problemas. Corrija-os e devolva só o JSON da secção:\n${errors.map((e) => `- ${e}`).join('\n')}`;
 }
 
-module.exports = { generateSection, newThreadId, check, hasControl, CONTROL_MESSAGE };
+module.exports = { generateSection, newThreadId, check, hasControl, CONTROL, CONTROL_MESSAGE };

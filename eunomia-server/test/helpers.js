@@ -40,8 +40,9 @@ async function startApp(t, extra = {}) {
     fs.rmSync(dir, { recursive: true, force: true });
   });
 
-  async function call(method, route, { body, headers = {}, cookie, raw } = {}) {
-    const h = { ...headers };
+  // Every call carries X-Eunomia: 1, as the front end does; csrf: false leaves it out.
+  async function call(method, route, { body, headers = {}, cookie, raw, csrf = true } = {}) {
+    const h = csrf ? { 'x-eunomia': '1', ...headers } : { ...headers };
     if (cookie) h.cookie = `eunomia=${cookie}`;
     let payload = raw;
     if (body !== undefined) {
@@ -66,7 +67,7 @@ async function startApp(t, extra = {}) {
     return { id, user, cookie: config.auth.sign(user) };
   }
 
-  return { url, call, person, config, store, dir };
+  return { url, call, person, config, store, dir, server };
 }
 
 // Answers for a complete create flow (formative, AI as counterpart).

@@ -1096,3 +1096,31 @@ test('front-end files have no emojis; app.js has no UI copy; the strings use the
   const pt = fs.readFileSync(path.join(ROOT, 'i18n-pt.js'), 'utf8');
   assert.doesNotMatch(pt, /\batividade|\bobjetivo|\balunos?\b|\bpacientes?\b|\bdireto\b|\bcorreção/i);
 });
+
+// ---------------------------------------------------------------- final fixes (final-fixes.md)
+
+test('12: every API request carries X-Eunomia: 1, GET and logout included', async (t) => {
+  const api = new FakeApi({ user: TEACHER, draft: approvedDraft() });
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/seccao/objectivo` });
+  await a.page('seccao');
+  a.$('#aceitar').click();
+  await a.waitFor(() => lastCall(api, 'POST', /\/aceitar$/), 'accept');
+  a.$('#logout-btn').click();
+  await a.page('entrar');
+  assert.ok(lastCall(api, 'POST', /^\/logout$/));
+  assert.ok(api.calls.length >= 4);
+  for (const c of api.calls) assert.equal(c.headers.get('x-eunomia'), '1', `${c.method} ${c.path}`);
+});
+
+test('1: a 300 KB adversarial section text renders in under 1 s', async (t) => {
+  const d = approvedDraft();
+  const big = '[a'.repeat(150 * 1024);
+  // Texts that never match: the cost is in the regex, not in the DOM nodes.
+  d.seccoes.objectivo.dados = { texto: big, competencia_protegida: '[a](https://'.repeat(25 * 1024) };
+  const api = new FakeApi({ user: TEACHER, draft: d });
+  const a = await boot(t, { api, hash: '#/inicio' });
+  await a.page('inicio');
+  const t0 = Date.now();
+  await a.go(`#/rascunho/${DRAFT_ID}/seccao/objectivo`, 'seccao');
+  assert.ok(Date.now() - t0 < 1000, `${Date.now() - t0} ms`);
+});

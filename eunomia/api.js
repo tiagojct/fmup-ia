@@ -76,8 +76,10 @@
   ApiError.prototype = Object.create(Error.prototype);
   ApiError.prototype.constructor = ApiError;
 
+  // X-Eunomia: 1 on every request: the server refuses a POST, PUT or DELETE that has neither this
+  // header nor the JSON content type (a form from another site can send neither).
   function headers(withBody) {
-    var h = { Accept: 'application/json' };
+    var h = { Accept: 'application/json', 'X-Eunomia': '1' };
     if (withBody) h['Content-Type'] = 'application/json';
     if (own) {
       h['X-Iaedu-Key'] = own.key;
