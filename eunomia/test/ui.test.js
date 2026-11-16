@@ -302,6 +302,9 @@ test('the login page shows the data notice of spec 6.12', async (t) => {
   assert.match(s, /12 meses/);
   assert.match(s, /doentes/);
   assert.match(s, /guarda/i);
+  // Review 12+14, item 1: the log rule does not depend on the key mode.
+  assert.match(s, /Os registos do servidor nunca guardam o texto dos rascunhos\./);
+  assert.match(s, /Se usar a sua própria chave IAedu, o servidor não a guarda\./);
 });
 
 test('without a session the app shows the login form; a valid code moves to #/inicio with the name', async (t) => {
@@ -547,7 +550,7 @@ test('the regime and policy mismatch aviso shows after the step and in the final
   assert.match(a.text(), /são diferentes/);
 
   const api2 = new FakeApi({ user: TEACHER, draft: approvedDraft() });
-  api2.on('GET', /\/verificacao-final$/, () => json(200, { erros: [], avisos_regime: [MISMATCH], passos_em_falta: [], seccoes_em_falta: [], referencias_a_verificar: 0 }));
+  api2.on('GET', /\/verificacao-final$/, () => json(200, { erros: [], avisos_regime: [{ texto: MISMATCH, tipo: 'aviso' }], passos_em_falta: [], seccoes_em_falta: [], referencias_a_verificar: 0 }));
   const b = await boot(t, { api: api2, hash: `#/rascunho/${DRAFT_ID}/previsao` });
   await b.page('previsao');
   await b.waitFor(() => /são diferentes/.test(b.$('#verificacao').textContent), 'regime aviso in the check');
@@ -727,7 +730,7 @@ test('own key with remember ticked is kept in localStorage and removed on reques
   a.set('#lembrar', true);
   a.$('#guardar-chave').click();
   await a.waitFor(() => a.w.localStorage.getItem('eunomia-chave') && a.$('#remover-chave'), 'stored');
-  assert.deepEqual(JSON.parse(a.w.localStorage.getItem('eunomia-chave')), { key: 'sk-teste-123', agent: 'agente-1', channel: 'canal-1' });
+  assert.deepEqual(JSON.parse(a.w.localStorage.getItem('eunomia-chave')), { key: 'sk-teste-123', agent: 'agente-1', channel: 'canal-1', user: 'u1' });
   a.$('#remover-chave').click();
   await a.waitFor(() => a.w.localStorage.getItem('eunomia-chave') === null, 'removed');
   await a.go('#/inicio', 'inicio');
@@ -736,9 +739,56 @@ test('own key with remember ticked is kept in localStorage and removed on reques
 
 test('a remembered key is loaded at start', async (t) => {
   const api = new FakeApi({ user: TEACHER });
-  const a = await boot(t, { api, hash: '#/inicio', stored: { key: 'sk-guardada', agent: 'a', channel: 'c' } });
+  const a = await boot(t, { api, hash: '#/inicio', stored: { key: 'sk-guardada', agent: 'a', channel: 'c', user: 'u1' } });
   await a.page('inicio');
   assert.equal(lastCall(api, 'GET', /^\/rascunhos$/).headers.get('x-iaedu-key'), 'sk-guardada');
+  assert.match(a.$('#modo-chave').textContent, /a sua chave IAedu/);
+});
+
+// Review 12+14, item 4: a remembered key belongs to one user.
+test('a remembered key of another user is not used, and stays stored', async (t) => {
+  const api = new FakeApi({ user: ADMIN });
+  const stored = { key: 'sk-da-ana', agent: 'a', channel: 'c', user: 'u1' };
+  const a = await boot(t, { api, hash: '#/inicio', stored });
+  await a.page('inicio');
+  assert.equal(lastCall(api, 'GET', /^\/rascunhos$/).headers.get('x-iaedu-key'), null);
+  assert.match(a.$('#modo-chave').textContent, /chave partilhada/);
+  assert.deepEqual(JSON.parse(a.w.localStorage.getItem('eunomia-chave')), stored);
+});
+
+test('a stored key without a user is not used', async (t) => {
+  const api = new FakeApi({ user: TEACHER });
+  const a = await boot(t, { api, hash: '#/inicio', stored: { key: 'sk-antiga', agent: 'a', channel: 'c' } });
+  await a.page('inicio');
+  assert.equal(lastCall(api, 'GET', /^\/rascunhos$/).headers.get('x-iaedu-key'), null);
+});
+
+test('after logout, a remembered key is kept but not used for the next user; it comes back for its owner', async (t) => {
+  const api = new FakeApi({ user: TEACHER });
+  const a = await boot(t, { api, hash: '#/inicio', stored: { key: 'sk-da-ana', agent: 'a', channel: 'c', user: 'u1' } });
+  await a.page('inicio');
+  a.$('#logout-btn').click();
+  await a.page('entrar');
+  api.user = ADMIN; // the next person on this computer
+  a.set('#codigo', 'ABCD-EFGH');
+  a.$('#login-form button[type=submit]').click();
+  await a.page('inicio');
+  assert.equal(lastCall(api, 'GET', /^\/rascunhos$/).headers.get('x-iaedu-key'), null);
+  assert.ok(a.w.localStorage.getItem('eunomia-chave'));
+  a.$('#logout-btn').click();
+  await a.page('entrar');
+  api.user = TEACHER;
+  a.set('#codigo', 'ABCD-EFGH');
+  a.$('#login-form button[type=submit]').click();
+  await a.page('inicio');
+  assert.equal(lastCall(api, 'GET', /^\/rascunhos$/).headers.get('x-iaedu-key'), 'sk-da-ana');
+});
+
+test('the home page shows the shared key mode by default', async (t) => {
+  const a = await boot(t, { api: new FakeApi({ user: TEACHER }), hash: '#/inicio' });
+  await a.page('inicio');
+  assert.match(a.$('#modo-chave').textContent, /chave partilhada/);
+  assert.ok(a.$('#modo-chave a[href="#/definicoes"]'));
 });
 
 test('the settings page asks for all three own-key fields', async (t) => {
@@ -835,6 +885,139 @@ test('routes outside the MVP (review) go to #/inicio', async (t) => {
 });
 
 // ---------------------------------------------------------------- accessibility and copy
+
+// ---------------------------------------------------------------- review 12+14 fixes
+
+test('a page that fails to load keeps the focus on the error box', async (t) => {
+  const api = new FakeApi({ user: TEACHER, draft: approvedDraft() });
+  api.on('GET', /\/verificacao-final$/, () => json(500, { erro: 'Erro interno do servidor.' }));
+  const a = await boot(t, { api, hash: '#/inicio' });
+  await a.page('inicio');
+  await a.go(`#/rascunho/${DRAFT_ID}/previsao`, 'previsao');
+  assert.ok(a.$('.eu-erro'));
+  assert.equal(a.w.document.activeElement, a.$('.eu-erro'));
+  await a.go('#/rascunho/0123456789ab/passo/contexto', 'passo');
+  assert.equal(a.w.document.activeElement, a.$('.eu-erro'));
+});
+
+test('the end of a session is announced and shown after the heading of the login page', async (t) => {
+  const api = new FakeApi({ user: TEACHER, draft: approvedDraft() });
+  api.on('POST', /\/aceitar$/, () => json(401, { erro: 'Sessão inválida ou expirada. Inicie sessão.' }));
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/seccao/objectivo` });
+  await a.page('seccao');
+  a.$('#aceitar').click();
+  await a.page('entrar');
+  assert.match(a.$('#estado-pedido').textContent, /A sessão terminou/);
+  const h2 = a.$('#main h2');
+  const note = [...a.$$('#main p')].find((p) => /sessão terminou/.test(p.textContent));
+  assert.ok(note);
+  assert.ok(h2.compareDocumentPosition(note) & a.w.Node.DOCUMENT_POSITION_FOLLOWING, 'the note comes after the heading');
+});
+
+test('after a revoke the focus goes to the status line', async (t) => {
+  const api = new FakeApi({ user: ADMIN, codes: [{ id: 'c1', nome: 'Ana Silva', perfil: 'teacher', criado: '2026-11-14T09:00:00.000Z', revogado: null }] });
+  const a = await boot(t, { api, hash: '#/codigos' });
+  await a.page('codigos');
+  a.$('#codigos-tabela .revogar').click();
+  a.$('#codigos-tabela .confirmar-revogar').click();
+  await a.waitFor(() => /revogado/i.test(a.$('#codigos-tabela').textContent), 'revoked');
+  await a.waitFor(() => a.w.document.activeElement === a.$('#estado-pedido'), 'focus on the status line');
+  assert.match(a.$('#estado-pedido').textContent, /Ana Silva/);
+});
+
+test('a pattern id with quotes from the server does not break the explanations', async (t) => {
+  const r = { ...ANSWERS };
+  delete r.padrao;
+  delete r.materiais;
+  delete r.plano;
+  const api = new FakeApi({ user: TEACHER, draft: makeDraft({ respostas: r }) });
+  const proposed = PATTERNS.filter((x) => x.papel_ia === 'contraparte').slice(0, 2);
+  api.on('POST', /\/padroes\/explicar$/, () => json(200, { padroes: [{ id: 'x"] , [id', explicacao: 'Estranho.' }, { ...proposed[0], explicacao: 'Serve bem.', avisos: [] }], modelo: 'gpt-4o' }));
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/passo/padrao` });
+  await a.page('passo');
+  a.$('#explicar-padroes').click();
+  await a.waitFor(() => a.$('.eu-explicacao'), 'explanation');
+  assert.match(a.$(`.eu-padrao[data-padrao="${proposed[0].id}"] .eu-explicacao`).textContent, /Serve bem/);
+  assert.equal(a.$('.eu-erro'), null);
+});
+
+test('the lint avisos of outcome suggestions and pattern explanations are shown next to them', async (t) => {
+  const r = { ...ANSWERS };
+  delete r.padrao;
+  delete r.materiais;
+  delete r.plano;
+  const api = new FakeApi({ user: TEACHER, draft: makeDraft({ respostas: r }) });
+  const proposed = PATTERNS.filter((x) => x.papel_ia === 'contraparte').slice(0, 2);
+  api.on('POST', /\/objectivo\/sugerir$/, () => json(200, { sugestoes: [
+    { texto: 'Conduzir a anamnese com os alunos.', ok: true, verbo: 'conduzir', avisos: [{ regra: 'lingua', texto: 'Use "estudantes", não "alunos".', trecho: 'alunos' }] },
+    { texto: 'Conduzir uma anamnese.', ok: true, verbo: 'conduzir', avisos: [] },
+  ], modelo: 'gpt-4o' }));
+  api.on('POST', /\/padroes\/explicar$/, () => json(200, { padroes: [
+    { ...proposed[0], explicacao: 'Em 87 % dos casos funciona.', avisos: [{ regra: 'numero', texto: 'Confirmar a fonte do número.', trecho: '87 %' }] },
+    { ...proposed[1], explicacao: 'Serve.', avisos: [] },
+  ], modelo: 'gpt-4o' }));
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/passo/objectivo` });
+  await a.page('passo');
+  a.set('#campo-texto', 'Saber fazer uma anamnese.');
+  a.$('#sugerir-objectivo').click();
+  await a.waitFor(() => a.$$('.eu-sugestao').length === 2, 'suggestions');
+  const [first, second] = a.$$('.eu-sugestao');
+  assert.match(first.querySelector('.eu-avisos-modelo').textContent, /Língua/);
+  assert.match(first.querySelector('.eu-avisos-modelo').textContent, /não "alunos"/);
+  assert.equal(second.querySelector('.eu-avisos-modelo'), null);
+
+  await a.go(`#/rascunho/${DRAFT_ID}/passo/padrao`, 'passo');
+  a.$('#explicar-padroes').click();
+  await a.waitFor(() => a.$('.eu-explicacao'), 'explanation');
+  const card = a.$(`.eu-padrao[data-padrao="${proposed[0].id}"]`);
+  assert.match(card.querySelector('.eu-avisos-modelo').textContent, /Número a confirmar/);
+  assert.match(card.querySelector('.eu-avisos-modelo').textContent, /87 %/);
+  assert.equal(a.$(`.eu-padrao[data-padrao="${proposed[1].id}"] .eu-avisos-modelo`), null);
+});
+
+test('the final check shows the regime avisos as warnings and the Themis messages as information', async (t) => {
+  const api = new FakeApi({ user: TEACHER, draft: approvedDraft() });
+  api.on('GET', /\/verificacao-final$/, () => json(200, {
+    erros: [], passos_em_falta: [], seccoes_em_falta: [], referencias_a_verificar: 0,
+    avisos_regime: [
+      { texto: 'O regime da actividade e a política da avaliação são diferentes. Confirme que é intencional.', tipo: 'aviso' },
+      { texto: 'A política exige declaração de uso.', tipo: 'informacao' },
+    ],
+  }));
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/previsao` });
+  await a.page('previsao');
+  await a.waitFor(() => a.$('#avisos-regime'), 'regime avisos');
+  assert.match(a.$('#avisos-regime').textContent, /são diferentes/);
+  assert.doesNotMatch(a.$('#avisos-regime').textContent, /exige declaração/);
+  assert.match(a.$('#informacao-regime').textContent, /exige declaração/);
+  assert.match(a.$('#verificacao').textContent, /Informação da política/);
+});
+
+test('the progress bar has its own label', async (t) => {
+  const a = await boot(t, { api: new FakeApi({ user: TEACHER, draft: makeDraft() }), hash: `#/rascunho/${DRAFT_ID}/passo/contexto` });
+  await a.page('passo');
+  assert.equal(a.$('progress').getAttribute('aria-label'), 'Progresso da entrevista');
+});
+
+test('every string of i18n-pt.js is used by app.js', () => {
+  const app = fs.readFileSync(path.join(ROOT, 'app.js'), 'utf8');
+  const w = {};
+  new Function('window', fs.readFileSync(path.join(ROOT, 'i18n-pt.js'), 'utf8'))(w);
+  // Maps that app.js reads with a computed key.
+  const dynamic = new Set(['estados', 'seccao.titulos', 'seccao.estado', 'seccao.estadoCurto', 'seccao.regras', 'seccao.campos', 'codigos.perfis']);
+  const computed = new Set(['previsao.qmd', 'previsao.md', 'previsao.html']);
+  const unused = [];
+  for (const [group, entries] of Object.entries(w.EUNOMIA_PT)) {
+    if (dynamic.has(group)) continue;
+    for (const [key, value] of Object.entries(entries)) {
+      const name = `${group}.${key}`;
+      if (dynamic.has(name) || computed.has(name)) continue;
+      if (typeof value === 'object') { unused.push(`${name} (unexpected map)`); continue; }
+      if (!app.includes(`S.${name}`)) unused.push(name);
+    }
+  }
+  assert.deepEqual(unused, []);
+});
 
 test('every interactive control is a labelled button, input, select or a; no click handlers on div or span', async (t) => {
   const d = approvedDraft();

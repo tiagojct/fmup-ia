@@ -71,8 +71,10 @@ Do these steps one time, in this order. Ask Tiago before each write on the serve
 runbook (`powerslave/systems/rokovoko.md`) is the reference for Caddy and the apps.
 
 1. Push the branch to main. Make sure that the workflows `eunomia-image` and `Publish` pass. The image
-   `ghcr.io/tiagojct/eunomia:latest` must exist, and `https://tiagojacinto.eu/fmup-ia/eunomia/` must
-   show the login page.
+   `ghcr.io/tiagojct/eunomia:latest` must exist. `https://tiagojacinto.eu/fmup-ia/eunomia/` must
+   answer HTTP 200 for `index.html`. Until the Caddy route of step 9 exists, the API is not reachable,
+   so the page shows its error page ("Não foi possível concluir o pedido."), not the login page. This
+   is correct at this step.
 2. Make the app folder (`/opt/vps/apps` belongs to root, so Tiago runs these with sudo):
 
    ```sh
@@ -99,7 +101,18 @@ runbook (`powerslave/systems/rokovoko.md`) is the reference for Caddy and the ap
    `IAEDU_CHANNEL_ID`. Leave `EUNOMIA_DATA` empty: the default is `/app/data`. Check with
    `ls -l .env`: `-rw------- 1 tiagojct tiagojct`.
 5. Add the pull marker: `touch /opt/vps/apps/eunomia/.quarterdeck-pull`.
-6. Start the container:
+6. Start the container. The GHCR package is private by default, so first make sure that the server
+   can pull it. The server is logged in to ghcr.io with the read-only token `GHCR_READ_TOKEN`, which
+   stays on the server (see "Build and deploy pipeline" in the infrastructure note and the Rokovoko
+   runbook). The login can be lost. Check it:
+
+   ```sh
+   docker pull ghcr.io/tiagojct/eunomia:latest
+   ```
+
+   If the pull fails with `denied` or `unauthorized`, log in again with the token kept on the server
+   (`docker login ghcr.io -u tiagojct --password-stdin`, the token on standard input), then pull again.
+   Do not copy the token to the Mac or into a file in the app folder. Then start:
 
    ```sh
    cd /opt/vps/apps/eunomia

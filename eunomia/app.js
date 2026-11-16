@@ -187,7 +187,6 @@
 
   function sessionEnded() {
     setUser(null);
-    API.forgetSessionKey();
     state.flash = S.erros.sessaoTerminou;
     redirect('#/entrar');
   }
@@ -300,6 +299,9 @@
       if (!ctx.alive()) return;
       main.removeAttribute('aria-busy');
       main.dataset.pagina = found.page;
+      // An error box that took the focus keeps it: the message matters more than the heading.
+      var active = document.activeElement;
+      if (active && main.contains(active) && active.classList.contains('eu-erro')) return;
       if (main.querySelector('h2')) focusTitle();
       else main.focus();
     };
@@ -344,8 +346,10 @@
     on(document.getElementById('logout-btn'), 'click', logout);
   }
 
+  // The user of the session. The API client uses it to pick the own key remembered for this user.
   function setUser(user) {
     state.user = user || null;
+    API.setUser(user ? user.id : null);
     var name = document.getElementById('user-name');
     var out = document.getElementById('logout-btn');
     name.textContent = user ? S.app.sessaoDe(user.nome) : '';
@@ -359,7 +363,6 @@
       return API.request('POST', '/logout').catch(function () { return null; });
     }, { label: S.app.terminarSessao }).then(function () {
       setUser(null);
-      API.forgetSessionKey();
       go('#/entrar');
     });
   }
@@ -605,11 +608,12 @@
       el('h4', { text: S.entrar.avisoPrazoTitulo }), el('p', { text: S.entrar.avisoPrazo }));
 
     main.appendChild(el('div', { class: 'screen eu-estreito' },
-      flash ? el('p', { class: 'review-note', role: 'status', text: flash }) : null,
       el('h2', { class: 'step-title', text: S.entrar.titulo }),
+      flash ? el('p', { class: 'review-note', text: flash }) : null,
       el('p', { class: 'step-help', text: S.entrar.intro }),
       form,
       notice));
+    if (flash) announce(flash);
   }
 
   function pageHome(ctx) {
@@ -628,6 +632,8 @@
     main.appendChild(el('div', { class: 'screen' },
       el('h2', { class: 'step-title', text: S.inicio.ola(user.nome) }),
       el('p', { class: 'step-help', text: S.inicio.intro }),
+      el('p', { id: 'modo-chave', class: 'eu-nota' },
+        API.ownKey() ? S.inicio.modoProprio : S.inicio.modoPartilhado, ' ', link(S.inicio.mudarModo, '#/definicoes')),
       el('div', { class: 'nav-row' }, newBtn),
       slot,
       el('section', { class: 'eu-seccao', 'aria-labelledby': 'meus-titulo' }, el('h3', { id: 'meus-titulo', text: S.inicio.meus }), list),
@@ -700,7 +706,7 @@
     var progressId = nextId('progresso');
     content.appendChild(el('div', { class: 'eu-progresso' },
       el('p', { class: 'step-progress', id: progressId, text: S.passo.progresso(index + 1, list.length) }),
-      el('progress', { max: list.length, value: index + 1, 'aria-labelledby': progressId })));
+      el('progress', { max: list.length, value: index + 1, 'aria-label': S.passo.progressoRotulo, 'aria-describedby': progressId })));
     content.appendChild(el('h2', { class: 'step-title', text: step.titulo }));
     append(content, porqueBox(step, d.respostas));
     if (step.id === 'materiais') content.appendChild(el('p', { class: 'eu-aviso-dados', role: 'note', text: S.passo.materiaisAviso }));
@@ -787,6 +793,7 @@
           results.appendChild(el('div', { class: 'eu-sugestao' },
             el('p', { class: 'eu-sugestao-texto', text: s.texto }),
             el('p', { class: 'eu-nota', text: s.ok ? S.passo.verboOk(s.verbo) : S.passo.verboFalta }),
+            modelAvisos(s.avisos),
             button(S.passo.usar, { class: 'btn-ghost' }, function () {
               textarea.value = s.texto;
               textarea.dispatchEvent(new Event('input', { bubbles: true }));
@@ -836,13 +843,18 @@
           return API.request('POST', '/rascunhos/' + d.id + '/padroes/explicar', {});
         }, { model: true }).then(function (data) {
           ((data && data.padroes) || []).forEach(function (p) {
-            var c = proposedBox.querySelector('[data-padrao="' + p.id + '"]');
+            // Compare the ids in a loop: an id from the server never becomes part of a selector.
+            var c = null;
+            Array.prototype.forEach.call(proposedBox.children, function (card) {
+              if (card.dataset.padrao === p.id) c = card;
+            });
             if (!c) return;
             var old = c.querySelector('.eu-explicacao');
             if (old) old.parentNode.removeChild(old);
             c.appendChild(el('div', { class: 'eu-explicacao' },
               el('p', { class: 'eu-explicacao-titulo', text: S.passo.explicacaoTitulo }),
-              el('p', { text: p.explicacao || S.passo.semExplicacao })));
+              el('p', { text: p.explicacao || S.passo.semExplicacao }),
+              modelAvisos(p.avisos)));
           });
           announce(S.comum.respostaModelo);
         }).catch(function (err) { report(slot, err); });
@@ -1091,6 +1103,18 @@
     }
     box.appendChild(inner);
     return box;
+  }
+
+  // The lint avisos of a model text that does not go into the ficha (a suggestion, an explanation).
+  function modelAvisos(avisos) {
+    if (!Array.isArray(avisos) || avisos.length === 0) return null;
+    return el('div', { class: 'eu-avisos-modelo' },
+      el('p', { class: 'eu-nota', text: S.passo.avisosModelo }),
+      el('ul', null, avisos.map(function (a) {
+        return el('li', null,
+          el('span', { class: 'eu-etiqueta', text: S.seccao.regras[a.regra] || a.regra }), ' ', a.texto,
+          a.trecho ? el('span', { class: 'eu-trecho', text: ' ' + S.seccao.trecho(a.trecho) }) : null);
+      })));
   }
 
   // The read view of the data of one section.
@@ -1392,9 +1416,18 @@
             return el('li', null, link(p ? p.titulo : passo, stepHref(id, passo)));
           })));
         }
-        if ((v.avisos_regime || []).length) {
+        // tipo 'aviso': for the teacher to act on. tipo 'informacao': the Themis policy messages,
+        // which the ficha prints next to the clause.
+        var notes = v.avisos_regime || [];
+        var warn = notes.filter(function (a) { return a.tipo !== 'informacao'; });
+        var info = notes.filter(function (a) { return a.tipo === 'informacao'; });
+        if (warn.length) {
           check.appendChild(el('p', { text: S.previsao.avisosRegime }));
-          check.appendChild(el('ul', { id: 'avisos-regime' }, v.avisos_regime.map(function (a) { return el('li', { text: a }); })));
+          check.appendChild(el('ul', { id: 'avisos-regime' }, warn.map(function (a) { return el('li', { text: a.texto }); })));
+        }
+        if (info.length) {
+          check.appendChild(el('p', { class: 'eu-nota', text: S.previsao.informacaoRegime }));
+          check.appendChild(el('ul', { id: 'informacao-regime', class: 'eu-informacao' }, info.map(function (a) { return el('li', { text: a.texto }); })));
         }
         if (missing.length) {
           check.appendChild(el('p', { text: S.previsao.faltam }));
@@ -1567,9 +1600,11 @@
               var confirm = button(S.codigos.confirmar, { class: 'btn-primary confirmar-revogar', 'aria-label': S.codigos.confirmarDe(c.nome) }, function () {
                 clearSlot(slot);
                 busy(confirm, function () { return API.request('DELETE', '/codigos/' + encodeURIComponent(c.id)); })
+                  .then(function () { return load(); })
                   .then(function () {
+                    // The row was redrawn: the focus goes to the status line that confirms it.
                     announce(S.codigos.revogadoOk(c.nome));
-                    return load();
+                    statusLine.focus();
                   })
                   .catch(function (err) { report(slot, err); });
               });

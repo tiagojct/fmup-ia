@@ -35,8 +35,6 @@
       obrigatorio: '(obrigatório)',
       opcional: '(opcional)',
       novaJanela: '(abre noutra janela)',
-      voltar: 'Voltar',
-      continuar: 'Continuar',
       cancelar: 'Cancelar',
       recarregar: 'Recarregar',
       semTitulo: 'Sem título',
@@ -58,7 +56,6 @@
       desconhecido: 'Ocorreu um erro inesperado. Tente de novo.',
       conflito: 'Recarregue para ver a versão mais recente do rascunho. O que não guardou nesta página perde-se.',
       dados: 'Não foi possível carregar os dados da Eunomia. Recarregue a página.',
-      rascunho: 'Não foi possível abrir o rascunho.',
     },
 
     entrar: {
@@ -74,7 +71,7 @@
       avisoIaeduTitulo: 'O que vai para a IAedu',
       avisoIaedu: 'Para escrever e rever texto, a Eunomia envia ao serviço IAedu, da FCT/FCCN, as suas respostas à entrevista, os materiais que colar e o texto das secções. Não escreva dados de doentes nem de estudantes: todos os casos devem ser fictícios.',
       avisoServidorTitulo: 'O que o servidor da Eunomia guarda',
-      avisoServidor: 'O seu nome e uma impressão digital (hash) do código de acesso, nunca o código. Os seus rascunhos e as fichas que submeter. O número de pedidos ao modelo em cada dia. Se usar a sua própria chave IAedu, o servidor não a guarda e os registos não guardam o texto dos rascunhos.',
+      avisoServidor: 'O seu nome e uma impressão digital (hash) do código de acesso, nunca o código. Os seus rascunhos e as fichas que submeter. O número de pedidos ao modelo em cada dia. Os registos do servidor nunca guardam o texto dos rascunhos. Se usar a sua própria chave IAedu, o servidor não a guarda.',
       avisoPrazoTitulo: 'Durante quanto tempo',
       avisoPrazo: 'Os rascunhos que ninguém abra durante 12 meses são apagados. O responsável pela Eunomia pode alterar este prazo. A sessão dura 12 horas.',
     },
@@ -94,6 +91,9 @@
       ferramentas: 'Outras páginas',
       definicoes: 'Definições do modelo (chave IAedu)',
       codigos: 'Códigos de acesso',
+      modoPartilhado: 'Modelo: chave partilhada da FMUP.',
+      modoProprio: 'Modelo: a sua chave IAedu.',
+      mudarModo: 'Mudar nas definições',
     },
 
     estados: {
@@ -113,7 +113,6 @@
       referencias: 'Referências',
       previsao: 'Pré-visualização e exportação',
       respondido: '(respondido)',
-      actual: '(página actual)',
       inicio: 'Os meus rascunhos',
       bloqueado: 'Esta ficha foi submetida e não pode ser alterada.',
       planoPrimeiro: 'As secções ficam disponíveis depois de aprovar o plano.',
@@ -144,11 +143,11 @@
       semPadroes: 'Nenhum padrão do catálogo corresponde a todas as respostas. Escolha um do catálogo completo.',
       explicar: 'Pedir ao modelo que explique porque servem',
       explicacaoTitulo: 'Porque serve, segundo o modelo:',
+      avisosModelo: 'Avisos sobre este texto:',
       semExplicacao: 'O modelo não explicou este padrão.',
       mostrarCatalogo: 'Mostrar todo o catálogo',
       esconderCatalogo: 'Esconder o resto do catálogo',
       catalogo: 'Outros padrões do catálogo',
-      mecanismo: 'Como funciona',
       quandoServe: 'Quando serve',
       quandoNaoServe: 'Quando não serve',
       duracao: 'Duração típica',
@@ -266,7 +265,6 @@
       removerRef: function (n) { return 'Remover a referência ' + n; },
       guardar: 'Guardar referências',
       guardadas: 'Referências guardadas.',
-      maximo: function (n) { return 'No máximo ' + n + ' referências.'; },
     },
 
     previsao: {
@@ -277,6 +275,7 @@
       erros: 'Problemas de estrutura da ficha:',
       passosFalta: 'Falta responder a estes passos da entrevista:',
       avisosRegime: 'Avisos do regime de IA:',
+      informacaoRegime: 'Informação da política de IA (Themis), que a ficha mostra junto da cláusula:',
       semErros: 'A ficha não tem problemas de estrutura.',
       refsVerificar: function (n) { return n + ' ' + plural(n, 'referência escrita por si vai ser verificada', 'referências escritas por si vão ser verificadas') + ' na revisão.'; },
       semReferencias: 'A ficha ainda não tem referências.',

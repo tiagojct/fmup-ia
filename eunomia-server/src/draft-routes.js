@@ -377,26 +377,43 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
     return ficha;
   }
 
-  // The regime avisos (Themis policy warnings, a missing clause, a policy that differs from the
-  // regime). They count in X-Eunomia-Avisos with the schema problems.
-  const regimeAvisos = (d) => composeRegime(d.respostas).avisos;
+  // The regime notes of the final check: { texto, tipo }. tipo 'aviso' is for the teacher to act on
+  // (a missing Themis clause, a policy that differs from the regime); tipo 'informacao' is a Themis
+  // policy message, which the ficha prints next to the clause. Only the avisos count in
+  // X-Eunomia-Avisos.
+  function regimeNotes(d) {
+    const r = composeRegime(d.respostas);
+    const info = r.avisos_themis || [];
+    return [
+      ...r.avisos.filter((a) => !info.includes(a)).map((texto) => ({ texto, tipo: 'aviso' })),
+      ...info.map((texto) => ({ texto, tipo: 'informacao' })),
+    ];
+  }
 
-  // The schema problems of the whole ficha do not block the download: the teacher decides. Their
-  // number goes in X-Eunomia-Avisos and the list in verificacao-final.
+  // The number of problems the teacher should act on: schema errors, regime avisos and steps still
+  // to answer. Policy information does not count.
+  function actionableCount(d, ficha) {
+    const steps = drafts.missingSteps(d).filter((s) => s.id !== 'plano').length;
+    const avisos = regimeNotes(d).filter((n) => n.tipo === 'aviso').length;
+    return validateFicha(ficha, 'new').length + avisos + steps;
+  }
+
+  // The schema problems and the regime avisos do not block the download: the teacher decides. Their
+  // number (actionableCount) goes in X-Eunomia-Avisos and the list in verificacao-final.
   route('GET', '/rascunhos/:id/exportar', (req, res, ctx) => {
     const formato = ctx.query.get('formato') || 'qmd';
     const kind = EXPORTS[formato];
     if (!kind) throw new HttpError(400, 'Formato desconhecido. Use qmd, md ou html.');
     const d = readable(ctx);
     const ficha = readyFicha(d);
-    const erros = [...validateFicha(ficha, 'new'), ...regimeAvisos(d)];
+    const count = actionableCount(d, ficha);
     const body = kind.body(ficha);
     const slug = slugify(ficha.meta.titulo || '') || 'ficha';
     const headers = {
       'Content-Type': kind.type,
       'Content-Length': Buffer.byteLength(body),
       'Content-Disposition': `attachment; filename="${slug}.${formato}"`,
-      'X-Eunomia-Avisos': String(erros.length),
+      'X-Eunomia-Avisos': String(count),
       'Cache-Control': 'no-store',
       'X-Content-Type-Options': 'nosniff',
     };
@@ -411,7 +428,7 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
     const ficha = assembleFicha(d);
     return {
       erros: validateFicha(ficha, 'new'),
-      avisos_regime: regimeAvisos(d),
+      avisos_regime: regimeNotes(d),
       passos_em_falta: drafts.missingSteps(d).filter((s) => s.id !== 'plano').map((s) => s.id),
       seccoes_em_falta: sectionsToAccept(d),
       referencias_a_verificar: ficha.referencias.filter((r) => r.origem === 'docente').length,

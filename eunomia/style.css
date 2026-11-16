@@ -503,6 +503,27 @@ textarea.eu-mono,
   margin-left: 2.6rem;
 }
 
+/* Lint avisos of a suggestion or an explanation, next to the text. */
+.eu-avisos-modelo {
+  margin: 0.4rem 0 0;
+  font-size: 0.86rem;
+}
+
+.eu-avisos-modelo ul {
+  margin: 0.2rem 0 0;
+  padding-left: 1.2rem;
+}
+
+.eu-avisos-modelo li {
+  margin: 0.2rem 0;
+}
+
+/* Themis policy messages in the final check: information, not warnings. */
+.eu-informacao {
+  color: var(--c-text-muted);
+  font-size: 0.9rem;
+}
+
 /* A pattern proposed with a relaxed filter: the reason, next to the pattern. */
 .eu-ajuste {
   margin: 0.4rem 0.95rem 0 2.6rem;

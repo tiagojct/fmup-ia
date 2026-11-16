@@ -6,13 +6,17 @@
  *                                 Rejects with an ApiError { status, erro, motivo, erros, data }.
  *                                 status 0 means the server could not be reached.
  *   download(path)                A file: resolves with { blob, filename, avisos }.
- *   setOwnKey({ key, agent, channel }, remember)  The own IAedu key of the teacher.
+ *   setUser(id)                   The user of the session (from /me or the login), or null.
+ *   setOwnKey({ key, agent, channel }, remember)  The own IAedu key of the user.
  *   clearOwnKey(), ownKey(), remembered()
  * }
  *
  * The own key lives in a module variable. It goes to localStorage['eunomia-chave'] only when the
- * teacher ticks "lembrar neste computador". Every localStorage access is in try/catch: a browser
- * that blocks storage still works, in memory. This file has no UI copy.
+ * teacher ticks "lembrar neste computador", with the id of the user. A remembered key is used only
+ * for that user: after a logout it stays stored, but another user on the same computer does not
+ * use it. A key that is not remembered leaves memory at logout. A stored key without a user id is
+ * ignored. Every localStorage access is in try/catch: a browser that blocks storage still works, in
+ * memory. This file has no UI copy.
  */
 (function () {
   'use strict';
@@ -22,6 +26,7 @@
 
   var own = null;
   var remember = false;
+  var user = null;
 
   function validKey(v) {
     return !!v && typeof v.key === 'string' && v.key !== '' && typeof v.agent === 'string' && v.agent !== '' &&
@@ -46,13 +51,18 @@
     }
   }
 
-  (function load() {
+  // The session user changes: use the key remembered for this user, if there is one.
+  function setUser(id) {
+    user = typeof id === 'string' && id !== '' ? id : null;
+    own = null;
+    remember = false;
+    if (!user) return;
     var v = storageGet();
-    if (validKey(v)) {
+    if (validKey(v) && v.user === user) {
       own = { key: v.key, agent: v.agent, channel: v.channel };
       remember = true;
     }
-  })();
+  }
 
   function ApiError(status, data) {
     this.name = 'ApiError';
@@ -125,20 +135,22 @@
     var v = { key: String(value.key || '').trim(), agent: String(value.agent || '').trim(), channel: String(value.channel || '').trim() };
     if (!validKey(v)) return false;
     own = v;
-    remember = !!keep;
-    storageSet(remember ? v : null);
+    remember = !!keep && user !== null;
+    if (remember) storageSet({ key: v.key, agent: v.agent, channel: v.channel, user: user });
+    else clearStoredForUser();
     return true;
+  }
+
+  // Removes the stored key only when it belongs to this user (never another user's key).
+  function clearStoredForUser() {
+    var v = storageGet();
+    if (v && v.user === user) storageSet(null);
   }
 
   function clearOwnKey() {
     own = null;
     remember = false;
-    storageSet(null);
-  }
-
-  // After logout: a key that is not remembered leaves memory too.
-  function forgetSessionKey() {
-    if (!remember) own = null;
+    clearStoredForUser();
   }
 
   window.EUNOMIA_API = {
@@ -147,9 +159,9 @@
     request: request,
     download: download,
     text: text,
+    setUser: setUser,
     setOwnKey: setOwnKey,
     clearOwnKey: clearOwnKey,
-    forgetSessionKey: forgetSessionKey,
     ownKey: function () { return own ? { key: own.key, agent: own.agent, channel: own.channel } : null; },
     remembered: function () { return remember; },
   };

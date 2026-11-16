@@ -213,15 +213,43 @@ test('6: materials over 20 000 characters give an aviso on the generated section
 
 // ---------------------------------------------------------------- 7. regime avisos in verification; steps due
 
-test('7: the regime avisos count in X-Eunomia-Avisos and appear in verificacao-final', async (t) => {
+// Review 12+14, item 11: only actionable avisos count in X-Eunomia-Avisos. The Themis policy
+// messages are listed as information (tipo informacao) and not counted.
+test('7: actionable regime avisos count in X-Eunomia-Avisos; the Themis policy messages are information', async (t) => {
   const d = accepted(build(summative('proibido', 'with_disclosure')));
   const { app, ana, url } = await appWith(t, d);
   const v = await app.call('GET', `${url}/verificacao-final`, { cookie: ana.cookie });
-  const expected = composeRegime(d.respostas).avisos;
-  assert.deepEqual(v.json.avisos_regime, expected);
+  const c = composeRegime(d.respostas);
+  assert.ok(c.avisos_themis.length > 0);
+  assert.deepEqual(v.json.avisos_regime, [
+    { texto: 'O regime da actividade e a política da avaliação são diferentes. Confirme que é intencional.', tipo: 'aviso' },
+    ...c.avisos_themis.map((texto) => ({ texto, tipo: 'informacao' })),
+  ]);
   const r = await app.call('GET', `${url}/exportar?formato=md`, { cookie: ana.cookie });
   assert.equal(r.status, 200);
-  assert.equal(r.headers.get('x-eunomia-avisos'), String(v.json.erros.length + expected.length));
+  assert.equal(r.headers.get('x-eunomia-avisos'), String(v.json.erros.length + 1));
+});
+
+test('7: with the policy of the regime, the Themis messages alone do not count', async (t) => {
+  const d = accepted(build(summative('permitido', undefined)));
+  const { app, ana, url } = await appWith(t, d);
+  const v = await app.call('GET', `${url}/verificacao-final`, { cookie: ana.cookie });
+  assert.ok(v.json.avisos_regime.length > 0);
+  assert.ok(v.json.avisos_regime.every((a) => a.tipo === 'informacao'));
+  const r = await app.call('GET', `${url}/exportar?formato=md`, { cookie: ana.cookie });
+  assert.equal(r.headers.get('x-eunomia-avisos'), String(v.json.erros.length));
+});
+
+test('7: a summative activity without the Themis clause counts as one aviso', async (t) => {
+  const respostas = summative('permitido', undefined);
+  const d = accepted(build(respostas));
+  d.respostas.regime_themis = { assignment: [] };
+  const { app, ana, url } = await appWith(t, d);
+  const v = await app.call('GET', `${url}/verificacao-final`, { cookie: ana.cookie });
+  assert.deepEqual(v.json.avisos_regime.map((a) => a.tipo), ['aviso']);
+  assert.match(v.json.avisos_regime[0].texto, /faltam o tipo de trabalho/);
+  const r = await app.call('GET', `${url}/exportar?formato=md`, { cookie: ana.cookie });
+  assert.equal(r.headers.get('x-eunomia-avisos'), String(v.json.erros.length + 1));
 });
 
 test('7: a step that became due after approval blocks the export with 409 naming the step', async (t) => {
