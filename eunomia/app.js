@@ -8,15 +8,21 @@
  *
  * Hash routes (see ROUTES): #/entrar, #/ajuda, #/exemplos, #/exemplos/:n, #/inicio,
  * #/rascunho/:id, #/rascunho/:id/passo/:passo, #/rascunho/:id/plano, #/rascunho/:id/seccao/:sec,
- * #/rascunho/:id/referencias, #/rascunho/:id/previsao, #/definicoes, #/codigos (admin).
+ * #/rascunho/:id/referencias, #/rascunho/:id/previsao, #/definicoes, and for the admin #/codigos,
+ * #/revisao, #/revisao/:id and #/uso.
  * Route flags: public (no session needed; with a session, #/entrar goes to #/inicio), open (public
  * and shown with a session too: the help and the worked examples, which the invitation email links
  * to), admin. The page after the next login (rememberPage) is never a public one; only "Entrar para
  * comecar" on an example sets it, so that the example opens again after the login.
  *
- * Not in this version (they come with the submission and review of Task 11): the submit dialog,
- * the review pages (#/revisao, #/revisao/:id) and the refine mode. Each is one more line in ROUTES
- * and one more page function; an unknown route goes to #/inicio, so no button points to them yet.
+ * The pilot (spec D6, D7, D10): "Foi util?" on a section the model wrote, Submeter para revisao on
+ * the preview of a complete draft, the review queue of the admin and the usage page. A draft that is
+ * not editable (submetida, aprovada, ...) is shown read only: no save or model buttons. A devolvida
+ * draft shows the comment of the review at the top of every draft page.
+ *
+ * A model request that fails with status 0 is sent once more by api.js. When that retry of gerar
+ * gets a 409 with motivo rev, the first request did reach the server: the draft is reloaded and the
+ * new text shown, with no error box.
  *
  * Errors: a 401 with motivo "auth" is a wrong own IAedu key (the session is fine). Any other 401
  * ends the session. A 409 on a write with motivo "rev" (another window saved the draft) offers
@@ -69,6 +75,7 @@
     patterns: [],
     refs: [],
     flash: null,
+    notice: null,
     returnTo: null,
     token: 0,
   };
@@ -284,6 +291,9 @@
     { re: new RegExp('^#/rascunho/' + ID + '/previsao$'), page: 'previsao', title: function () { return S.previsao.pagina; }, render: pagePreview },
     { re: /^#\/definicoes$/, page: 'definicoes', title: function () { return S.definicoes.pagina; }, render: pageSettings },
     { re: /^#\/codigos$/, page: 'codigos', title: function () { return S.codigos.pagina; }, render: pageCodes, admin: true },
+    { re: /^#\/revisao$/, page: 'revisao', title: function () { return S.revisao.pagina; }, render: pageReview, admin: true },
+    { re: new RegExp('^#/revisao/' + ID + '$'), page: 'revisao-item', title: function () { return S.revisao.paginaItem; }, render: pageReviewItem, admin: true },
+    { re: /^#\/uso$/, page: 'uso', title: function () { return S.uso.pagina; }, render: pageUsage, admin: true },
   ];
 
   function redirect(hash) {
@@ -447,6 +457,12 @@
     return EDITABLE.indexOf(d.estado) !== -1;
   }
 
+  // A draft that is not editable: its answers stay readable, the controls of the form are disabled
+  // (the save buttons are left out by the page).
+  function lockForm(form) {
+    Array.prototype.forEach.call(form.querySelectorAll('input, textarea, select, button'), function (c) { c.disabled = true; });
+  }
+
   // The page frame of a draft: the list of its stages and the content area.
   // where = { step } | { plano: true } | { sec } | { refs: true } | { previsao: true }
   function draftLayout(view, where) {
@@ -480,7 +496,15 @@
       el('p', { class: 'eu-etapas-voltar' }, link(S.rascunho.inicio, '#/inicio')),
       el('ol', { class: 'eu-etapas-raiz' }, items));
     var content = el('div', { class: 'eu-conteudo' });
-    if (!isEditable(d)) content.appendChild(el('p', { class: 'review-note', text: S.rascunho.bloqueado }));
+    var comentario = d.revisao && typeof d.revisao.comentario === 'string' ? d.revisao.comentario : '';
+    if (d.estado === 'devolvida' && comentario) {
+      content.appendChild(el('div', { class: 'review-note eu-nota-revisao' },
+        el('p', { text: S.rascunho.devolvida }),
+        el('p', { class: 'eu-comentario-revisao', text: comentario })));
+    } else if (!isEditable(d)) {
+      var lockNote = d.estado === 'submetida' ? S.rascunho.submetida : d.estado === 'aprovada' ? S.rascunho.aprovada : S.rascunho.bloqueado;
+      content.appendChild(el('p', { class: 'review-note', text: lockNote }));
+    }
     var panel = where.step || where.plano ? fichaPanel(d) : null;
     var wrap = el('div', { class: 'eu-rascunho screen' + (panel ? ' com-painel' : '') }, nav, content, panel);
     main.appendChild(wrap);
@@ -1112,13 +1136,30 @@
         .then(function (view) { go(stepHref(view.rascunho.id, steps()[0].id)); })
         .catch(function (err) { report(slot, err); });
     });
+    var admin = user.perfil === 'admin';
     var tools = el('ul', { class: 'eu-ligacoes' },
       el('li', null, link(S.inicio.exemplos, '#/exemplos')),
       el('li', null, link(S.inicio.definicoes, '#/definicoes')),
-      user.perfil === 'admin' ? el('li', null, link(S.inicio.codigos, '#/codigos')) : null);
+      admin ? el('li', null, link(S.inicio.codigos, '#/codigos')) : null,
+      admin ? el('li', null, link(S.inicio.revisao, '#/revisao')) : null,
+      admin ? el('li', null, link(S.inicio.uso, '#/uso')) : null);
+    // The admin: how many submitted activities wait for review (GET /revisao). A teacher: no call.
+    var queue = admin ? el('p', { class: 'eu-a-rever', 'aria-live': 'polite' }) : null;
+    var loadQueue = function () {
+      if (!admin) return null;
+      return API.request('GET', '/revisao').then(function (data) {
+        if (!ctx.alive()) return;
+        var n = ((data && data.revisao) || []).length;
+        queue.appendChild(link(S.inicio.aRever(n), '#/revisao', { id: 'a-rever' }));
+      }, function (err) {
+        if (!ctx.alive()) return;
+        report(slot, err);
+      });
+    };
     main.appendChild(el('div', { class: 'screen' },
       el('h2', { class: 'step-title', text: S.inicio.ola(user.nome) }),
       welcomeBox(user),
+      queue,
       el('p', { class: 'step-help', text: S.inicio.intro }),
       el('p', { id: 'modo-chave', class: 'eu-nota' },
         API.ownKey() ? S.inicio.modoProprio : S.inicio.modoPartilhado, ' ', link(S.inicio.mudarModo, '#/definicoes')),
@@ -1127,7 +1168,7 @@
       el('section', { class: 'eu-seccao', 'aria-labelledby': 'meus-titulo' }, el('h3', { id: 'meus-titulo', text: S.inicio.meus }), list),
       el('section', { class: 'eu-seccao', 'aria-labelledby': 'ferramentas-titulo' }, el('h3', { id: 'ferramentas-titulo', text: S.inicio.ferramentas }), tools)));
 
-    return load();
+    return Promise.all([load(), loadQueue()]);
   }
 
   // #/rascunho/:id goes to the place where the teacher stopped.
@@ -1194,15 +1235,17 @@
     });
     bindConditions(form, fields);
 
-    var save = el('button', { type: 'submit', id: 'guardar-passo', class: 'btn-primary', text: S.passo.guardar });
+    var save = isEditable(d) ? el('button', { type: 'submit', id: 'guardar-passo', class: 'btn-primary', text: S.passo.guardar }) : null;
     var prev = index > 0 ? link(S.passo.anterior, stepHref(d.id, list[index - 1].id), { class: 'btn-ghost' }) : null;
     form.appendChild(slot);
     form.appendChild(el('div', { class: 'nav-row' }, prev, el('span', { class: 'spacer' }), save));
+    if (!save) lockForm(form);
     content.appendChild(form);
     content.appendChild(after);
 
     on(form, 'submit', function (e) {
       e.preventDefault();
+      if (!save) return;
       clearSlot(slot);
       clear(after);
       var valor = collect(fields);
@@ -1446,19 +1489,21 @@
     var answer = d.respostas.plano || {};
     var fields = step.campos.map(function (c) { return makeField(c, answer[c.id]); });
     var form = el('form', { id: 'plano-form', novalidate: true }, fields.map(function (f) { return f.row; }));
-    var saveOnly = button(d.plano_aprovado ? S.plano.guardar : S.plano.guardarSemAprovar,
-      { id: 'guardar-plano', class: d.plano_aprovado ? 'btn-primary' : 'btn-secondary' });
-    var approve = d.plano_aprovado ? null : el('button', { type: 'submit', id: 'aprovar-plano', class: 'btn-primary', text: S.plano.aprovar });
+    var editable = isEditable(d);
+    var saveOnly = editable ? button(d.plano_aprovado ? S.plano.guardar : S.plano.guardarSemAprovar,
+      { id: 'guardar-plano', class: d.plano_aprovado ? 'btn-primary' : 'btn-secondary' }) : null;
+    var approve = d.plano_aprovado || !editable ? null : el('button', { type: 'submit', id: 'aprovar-plano', class: 'btn-primary', text: S.plano.aprovar });
     form.appendChild(slot);
     form.appendChild(el('div', { class: 'nav-row' },
       saveOnly, el('span', { class: 'spacer' }), approve,
       d.plano_aprovado ? link(S.plano.irSeccoes, sectionHref(d.id, applicableSections(d.respostas)[0]), { class: 'btn-ghost' }) : null));
+    if (!editable) lockForm(form);
     content.appendChild(form);
 
     var savePlan = function () {
       return API.request('PUT', '/rascunhos/' + d.id + '/respostas/plano', { rev: d.rev, valor: collect(fields) });
     };
-    on(saveOnly, 'click', function () {
+    if (saveOnly) on(saveOnly, 'click', function () {
       clearSlot(slot);
       busy(saveOnly, savePlan).then(function (next) {
         if (!ctx.alive()) return;
@@ -1566,8 +1611,15 @@
     if (!hasText) {
       content.appendChild(el('p', { text: S.seccao.vazia }));
       content.appendChild(slot);
-      var gen = button(S.seccao.gerar, { id: 'gerar', class: 'btn-primary' }, function () { generate(gen); });
-      content.appendChild(el('div', { class: 'nav-row' }, gen));
+      if (isEditable(d)) {
+        var gen = button(S.seccao.gerar, { id: 'gerar', class: 'btn-primary' }, function () { generate(gen); });
+        content.appendChild(el('div', { class: 'nav-row' }, gen));
+      }
+    } else if (!isEditable(d)) {
+      content.appendChild(el('p', { class: 'eu-nota', text: s.origem === 'docente' ? S.seccao.origemDocente : S.seccao.origemModelo(s.modelo) }));
+      content.appendChild(el('section', { id: 'seccao-texto', class: 'output-block eu-texto', tabindex: '-1', 'aria-label': S.seccao.titulos[sec] }, sectionView(sec, s.dados)));
+      content.appendChild(avisosBox(s.avisos || []));
+      content.appendChild(slot);
     } else {
       content.appendChild(el('p', { class: 'eu-nota', text: s.origem === 'docente' ? S.seccao.origemDocente : S.seccao.origemModelo(s.modelo) }));
       content.appendChild(el('section', { id: 'seccao-texto', class: 'output-block eu-texto', tabindex: '-1', 'aria-label': S.seccao.titulos[sec] }, sectionView(sec, s.dados)));
@@ -1625,6 +1677,7 @@
       editPanel.appendChild(sectionEditor(ctx, d, sec, s.dados, slot, redraw));
       content.appendChild(commentPanel);
       content.appendChild(editPanel);
+      append(content, feedbackBox(ctx, d, sec, s, slot, redraw));
     }
 
     var prev = i > 0 ? link(S.seccao.anterior(S.seccao.titulos[order[i - 1]]), sectionHref(d.id, order[i - 1]), { class: 'btn-ghost' }) : null;
@@ -1639,6 +1692,74 @@
     }
     main.removeAttribute('aria-busy');
     main.dataset.pagina = 'seccao';
+  }
+
+  // "Foi util?" on a section the model wrote, in an editable draft (spec D6): Sim or Nao, an optional
+  // comment, then Enviar. The POST carries the rev; a comment with personal data asks for the
+  // confirmation. A section with an opinion says so and allows a change.
+  function feedbackBox(ctx, d, sec, s, slot, redraw) {
+    if (!isEditable(d) || s.dados === undefined || s.dados === null || s.origem !== 'modelo') return null;
+    var given = s.opiniao && typeof s.opiniao.util === 'boolean' ? s.opiniao : null;
+    var choice = given ? given.util : null;
+    var box = el('div', { id: 'opiniao', class: 'eu-opiniao' });
+
+    var drawForm = function () {
+      clear(box);
+      var pick = function (v) {
+        choice = v;
+        yes.setAttribute('aria-pressed', String(v === true));
+        no.setAttribute('aria-pressed', String(v === false));
+      };
+      var yes = button(S.seccao.utilSim, { id: 'util-sim', 'aria-pressed': String(choice === true) }, function () { pick(true); });
+      var no = button(S.seccao.utilNao, { id: 'util-nao', 'aria-pressed': String(choice === false) }, function () { pick(false); });
+      var comment = el('textarea', { id: 'opiniao-comentario', rows: 2, maxlength: 500, 'aria-describedby': 'opiniao-ajuda' });
+      if (given && typeof given.comentario === 'string') comment.value = given.comentario;
+      // personal: the teacher confirmed that the comment has no personal data (after a 422).
+      var post = function (btn, personal) {
+        clearSlot(slot);
+        if (choice === null) {
+          report(slot, new API.ApiError(400, { erro: S.seccao.escolherUtil }));
+          return;
+        }
+        var body = { rev: d.rev, util: choice };
+        var c = comment.value.trim();
+        if (c) body.comentario = c;
+        if (personal) body.confirmo_sem_dados_pessoais = true;
+        busy(btn, function () {
+          return API.request('POST', '/rascunhos/' + d.id + '/seccoes/' + sec + '/opiniao', body);
+        }).then(function (next) {
+          announce(S.seccao.opiniaoGuardada);
+          redraw(next, 'opiniao-dada');
+        }).catch(function (err) {
+          if (isPersonalData(err)) return personalDataBox(slot, err, function (again) { post(again, true); });
+          report(slot, err, { write: true });
+        });
+      };
+      var send = button(S.seccao.enviarOpiniao, { id: 'enviar-opiniao', class: 'btn-primary' }, function () { post(send, false); });
+      box.appendChild(el('fieldset', { class: 'eu-fieldset eu-opiniao-form' },
+        el('legend', { text: S.seccao.foiUtil }),
+        el('div', { class: 'nav-row eu-opiniao-escolha' }, yes, no),
+        el('div', { class: 'field-row' },
+          el('label', { for: 'opiniao-comentario', text: S.seccao.opiniaoComentario }),
+          el('p', { class: 'eu-ajuda', id: 'opiniao-ajuda', text: S.seccao.opiniaoAjuda }),
+          comment),
+        el('div', { class: 'nav-row' }, send)));
+    };
+
+    var drawGiven = function () {
+      clear(box);
+      box.appendChild(el('p', { id: 'opiniao-dada', tabindex: '-1', text: S.seccao.opiniaoDada(given.util) }));
+      if (typeof given.comentario === 'string' && given.comentario !== '') box.appendChild(el('p', { class: 'eu-nota', text: given.comentario }));
+      box.appendChild(button(S.seccao.mudarOpiniao, { id: 'mudar-opiniao', class: 'btn-ghost' }, function () {
+        drawForm();
+        var first = box.querySelector(choice === false ? '#util-nao' : '#util-sim');
+        if (first) first.focus();
+      }));
+    };
+
+    if (given) drawGiven();
+    else drawForm();
+    return box;
   }
 
   // The confirmation before a new version replaces accepted or edited text. ok runs on "confirm".
@@ -1940,10 +2061,17 @@
         el('div', null, add)),
       slot,
       el('div', { class: 'nav-row' }, save, el('span', { class: 'spacer' }), link(S.rascunho.previsao, '#/rascunho/' + d.id + '/previsao', { class: 'btn-ghost' })));
+    var editable = isEditable(d);
+    if (!editable) {
+      save.parentNode.removeChild(save);
+      add.parentNode.removeChild(add);
+      lockForm(form);
+    }
     content.appendChild(form);
 
     on(form, 'submit', function (e) {
       e.preventDefault();
+      if (!editable) return;
       clearSlot(slot);
       var ids = Array.prototype.filter.call(form.querySelectorAll('input[name="ref"]'), function (i) { return i.checked; })
         .map(function (i) { return { id: i.value }; });
@@ -2024,6 +2152,7 @@
           return;
         }
         content.appendChild(exportBox(id, slot));
+        if (!steps.length && !(v.erros || []).length && isEditable(d)) content.appendChild(submitBox(ctx, d, slot));
         var frameBox = el('section', { class: 'eu-seccao', 'aria-labelledby': 'previsao-ficha-titulo' },
           el('h3', { id: 'previsao-ficha-titulo', text: S.previsao.fichaTitulo }),
           el('p', { text: S.comum.aCarregar }));
@@ -2040,6 +2169,25 @@
         });
       });
     });
+  }
+
+  // Submeter para revisao (spec D10): only for a complete, valid, editable draft. After it the draft
+  // is read only and the page shows the submitted note.
+  function submitBox(ctx, d, slot) {
+    var btn = button(S.previsao.submeter, { id: 'submeter', class: 'btn-primary', 'aria-describedby': 'submeter-nota' }, function () {
+      clearSlot(slot);
+      busy(btn, function () {
+        return API.request('POST', '/rascunhos/' + d.id + '/submeter', { rev: d.rev });
+      }, { label: S.previsao.aSubmeter }).then(function () {
+        if (!ctx.alive()) return;
+        route();
+        announce(S.previsao.submetidaOk);
+      }).catch(function (err) { report(slot, err, { write: true }); });
+    });
+    return el('section', { id: 'submeter-seccao', class: 'eu-seccao', 'aria-labelledby': 'submeter-titulo' },
+      el('h3', { id: 'submeter-titulo', text: S.previsao.revisao }),
+      el('p', { class: 'eu-nota', id: 'submeter-nota', text: S.previsao.submeterNota }),
+      el('div', { class: 'nav-row' }, btn));
   }
 
   function exportBox(id, slot) {
@@ -2285,6 +2433,197 @@
         el('h3', { id: 'lista-codigos-titulo', text: S.codigos.lista }),
         table)));
     return load();
+  }
+
+  // ---------------------------------------------------------------- pages: review and usage (admin)
+
+  function draftTitle(d) {
+    var r = d.respostas || {};
+    return (r.plano && r.plano.titulo) || (r.contexto && r.contexto.uc) || S.comum.semTitulo;
+  }
+
+  // The message of the previous page (a decision), shown once on the next one.
+  function takeNotice() {
+    var text = state.notice;
+    state.notice = null;
+    if (text) announce(text);
+    return text ? el('p', { class: 'review-note', text: text }) : null;
+  }
+
+  // The queue: the submitted activities, the one that waits longest first (the server's order).
+  function pageReview(ctx) {
+    var slot = errorSlot();
+    var list = el('div', { id: 'lista-revisao', 'aria-live': 'polite' }, el('p', { text: S.comum.aCarregar }));
+    main.appendChild(el('div', { class: 'screen' },
+      el('h2', { class: 'step-title', text: S.revisao.titulo }),
+      el('p', { class: 'eu-ajuda-voltar' }, link(S.rascunho.inicio, '#/inicio')),
+      takeNotice(),
+      el('p', { class: 'step-help', text: S.revisao.intro }),
+      slot,
+      list));
+    return API.request('GET', '/revisao').then(function (data) {
+      if (!ctx.alive()) return;
+      var rows = (data && data.revisao) || [];
+      clear(list);
+      if (rows.length === 0) {
+        list.appendChild(el('p', { text: S.revisao.nenhuma }));
+        return;
+      }
+      list.appendChild(el('ul', { class: 'eu-rascunhos' }, rows.map(function (r) {
+        var titulo = r.titulo || S.comum.semTitulo;
+        return el('li', null,
+          el('p', { class: 'eu-rascunho-titulo' }, link(titulo, '#/revisao/' + r.id, { 'aria-label': S.revisao.rever(titulo) })),
+          el('p', { class: 'eu-rascunho-meta', text: S.revisao.meta(r.autor || '', S.comum.data(r.submetida)) }));
+      })));
+    }, function (err) {
+      if (!ctx.alive()) return;
+      clear(list);
+      report(slot, err);
+    });
+  }
+
+  // One submitted activity: the ficha (the HTML export in a sandboxed frame, as on the preview
+  // page), Aprovar, and Devolver with a required comment. After a decision: back to the queue.
+  function pageReviewItem(ctx, id) {
+    return loadDraft(id).then(function (view) {
+      if (!ctx.alive()) return;
+      var d = view.rascunho;
+      var titulo = draftTitle(d);
+      var slot = errorSlot();
+      var waiting = d.estado === 'submetida';
+      var frameBox = el('section', { class: 'eu-seccao', 'aria-labelledby': 'previsao-ficha-titulo' },
+        el('h3', { id: 'previsao-ficha-titulo', text: S.previsao.fichaTitulo }),
+        el('p', { text: S.comum.aCarregar }));
+      main.appendChild(el('div', { class: 'screen' },
+        el('h2', { class: 'step-title', text: titulo }),
+        el('p', { class: 'eu-ajuda-voltar' }, link(S.revisao.voltar, '#/revisao')),
+        el('p', { class: 'eu-rascunho-meta', text: S.revisao.meta(d.autor && d.autor.nome ? d.autor.nome : '', S.comum.data(d.submetida)) }),
+        waiting ? decisionBox(ctx, d, titulo, slot) : el('p', { class: 'review-note', text: S.revisao.naoEspera }),
+        frameBox));
+      return API.text('/rascunhos/' + id + '/exportar?formato=html').then(function (html) {
+        if (!ctx.alive()) return;
+        frameBox.removeChild(frameBox.querySelector('p'));
+        // sandbox with no tokens: no scripts, no forms, no navigation of this page.
+        frameBox.appendChild(el('iframe', { id: 'previsao-ficha', class: 'eu-previsao', title: S.previsao.fichaTitulo, sandbox: '', srcdoc: html }));
+      }, function (err) {
+        if (!ctx.alive()) return;
+        frameBox.removeChild(frameBox.querySelector('p'));
+        report(slot, err);
+      });
+    });
+  }
+
+  function decisionBox(ctx, d, titulo, slot) {
+    var decided = function (text) {
+      if (!ctx.alive()) return;
+      state.notice = text;
+      go('#/revisao');
+    };
+    var approve = button(S.revisao.aprovar, { id: 'aprovar', class: 'btn-primary', 'aria-describedby': 'aprovar-nota' }, function () {
+      clearSlot(slot);
+      busy(approve, function () {
+        return API.request('POST', '/revisao/' + d.id + '/aprovar', { rev: d.rev });
+      }, { label: S.revisao.aAprovar }).then(function () { decided(S.revisao.aprovadaOk(titulo)); })
+        .catch(function (err) { report(slot, err, { write: true }); });
+    });
+    var comment = el('textarea', { id: 'devolver-comentario', rows: 5, maxlength: 2000, required: true, 'aria-describedby': 'devolver-ajuda' });
+    var giveBack = el('button', { type: 'submit', id: 'devolver', class: 'btn-secondary', text: S.revisao.devolver });
+    var form = el('form', { id: 'devolver-form', novalidate: true },
+      el('div', { class: 'field-row' },
+        el('label', { for: 'devolver-comentario' }, S.revisao.comentario, ' ', el('span', { class: 'eu-req', text: S.comum.obrigatorio })),
+        el('p', { class: 'eu-ajuda', id: 'devolver-ajuda', text: S.revisao.comentarioAjuda }),
+        comment),
+      el('div', { class: 'nav-row' }, giveBack));
+    // personal: the admin confirmed that the comment has no personal data (after a 422).
+    var send = function (btn, personal) {
+      clearSlot(slot);
+      var text = comment.value.trim();
+      if (text === '') {
+        report(slot, new API.ApiError(400, { erro: S.revisao.semComentario }));
+        return;
+      }
+      var body = { rev: d.rev, comentario: text };
+      if (personal) body.confirmo_sem_dados_pessoais = true;
+      busy(btn, function () {
+        return API.request('POST', '/revisao/' + d.id + '/devolver', body);
+      }, { label: S.revisao.aDevolver }).then(function () { decided(S.revisao.devolvidaOk(titulo)); })
+        .catch(function (err) {
+          if (isPersonalData(err)) return personalDataBox(slot, err, function (again) { send(again, true); });
+          report(slot, err, { write: true });
+        });
+    };
+    on(form, 'submit', function (e) {
+      e.preventDefault();
+      send(giveBack, false);
+    });
+    return el('section', { class: 'eu-seccao', 'aria-labelledby': 'decisao-titulo' },
+      el('h3', { id: 'decisao-titulo', text: S.revisao.decisao }),
+      el('p', { class: 'eu-nota', id: 'aprovar-nota', text: S.revisao.aprovarNota }),
+      el('div', { class: 'nav-row' }, approve),
+      form,
+      slot);
+  }
+
+  // Usage (GET /uso): per person, the drafts by state and the model calls; per section, the counts
+  // of "Foi util?" and the comments. Never the text of a section.
+  function pageUsage(ctx) {
+    var slot = errorSlot();
+    var users = el('div', { id: 'uso-utilizadores', class: 'eu-tabela' }, el('p', { text: S.comum.aCarregar }));
+    var sections = el('div', { id: 'uso-seccoes', class: 'eu-tabela' });
+    main.appendChild(el('div', { class: 'screen' },
+      el('h2', { class: 'step-title', text: S.uso.titulo }),
+      el('p', { class: 'eu-ajuda-voltar' }, link(S.rascunho.inicio, '#/inicio')),
+      el('p', { class: 'step-help', text: S.uso.intro }),
+      slot,
+      el('section', { class: 'eu-seccao', 'aria-labelledby': 'uso-utilizadores-titulo' },
+        el('h3', { id: 'uso-utilizadores-titulo', text: S.uso.utilizadores }), users),
+      el('section', { class: 'eu-seccao', 'aria-labelledby': 'uso-seccoes-titulo' },
+        el('h3', { id: 'uso-seccoes-titulo', text: S.uso.seccoes }), sections)));
+    var head = function (labels) {
+      return el('thead', null, el('tr', null, labels.map(function (t) { return el('th', { scope: 'col', text: t }); })));
+    };
+    var num = function (v) { return typeof v === 'number' ? String(v) : ''; };
+    var order = Object.keys(S.estados);
+    return API.request('GET', '/uso').then(function (data) {
+      if (!ctx.alive()) return;
+      data = data || {};
+      clear(users);
+      users.appendChild(el('table', null,
+        el('caption', { class: 'visually-hidden', text: S.uso.utilizadores }),
+        head([S.uso.nome, S.uso.rascunhos, S.uso.hoje, S.uso.dias30, S.uso.limite]),
+        el('tbody', null, (data.utilizadores || []).map(function (u) {
+          var counts = u.rascunhos && typeof u.rascunhos === 'object' ? u.rascunhos : {};
+          var states = order.concat(Object.keys(counts).filter(function (e) { return order.indexOf(e) === -1; }))
+            .filter(function (e) { return counts[e] > 0; })
+            .map(function (e) { return S.uso.contagem(S.estados[e] || e, counts[e]); });
+          return el('tr', { class: u.revogado ? 'is-revogado' : null },
+            el('th', { scope: 'row' }, u.nome, u.revogado ? ' ' + S.uso.revogado : null),
+            el('td', { text: states.length ? states.join(', ') : S.uso.semRascunhos }),
+            el('td', { text: num(u.pedidos_hoje) }),
+            el('td', { text: num(u.pedidos_30_dias) }),
+            el('td', { text: num(data.limite_diario) }));
+        }))));
+      sections.appendChild(el('table', null,
+        el('caption', { class: 'visually-hidden', text: S.uso.seccoes }),
+        head([S.uso.seccao, S.uso.sim, S.uso.nao, S.uso.comentarios]),
+        el('tbody', null, (data.seccoes || []).map(function (sx) {
+          var notes = Array.isArray(sx.comentarios) ? sx.comentarios : [];
+          return el('tr', null,
+            el('th', { scope: 'row', text: S.seccao.titulos[sx.id] || sx.id }),
+            el('td', { text: num(sx.sim) }),
+            el('td', { text: num(sx.nao) }),
+            el('td', null, notes.length
+              ? el('ul', { class: 'eu-uso-comentarios' }, notes.map(function (c) {
+                return el('li', null, el('span', { class: 'eu-etiqueta', text: S.uso.util(c.util) }), ' ', String(c.texto || ''),
+                  c.data ? el('span', { class: 'eu-nota', text: ' (' + S.comum.data(c.data) + (c.modelo ? ', ' + c.modelo : '') + ')' }) : null);
+              }))
+              : S.uso.semComentarios));
+        }))));
+    }, function (err) {
+      if (!ctx.alive()) return;
+      clear(users);
+      report(slot, err);
+    });
   }
 
   // ---------------------------------------------------------------- start

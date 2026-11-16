@@ -609,8 +609,8 @@ test('an admin sees the codes link; a teacher on #/codigos goes to #/inicio', as
   assert.equal(teacher.w.location.hash, '#/inicio');
 });
 
-test('routes outside the MVP (review) go to #/inicio', async (t) => {
-  const a = await boot(t, { api: new FakeApi({ user: ADMIN }), hash: '#/revisao' });
+test('a teacher on #/revisao goes to #/inicio', async (t) => {
+  const a = await boot(t, { api: new FakeApi({ user: TEACHER }), hash: '#/revisao' });
   await a.page('inicio');
   assert.equal(a.w.location.hash, '#/inicio');
 });
@@ -754,6 +754,7 @@ test('every interactive control is a labelled button, input, select or a; no cli
   const d = approvedDraft();
   d.seccoes.formato = { dados: { introducao: 'Uma aula.', blocos: [{ minutos: 10, texto: 'Abertura.' }, { minutos: 20, minutos_max: 30, texto: 'Entrevista.' }] }, estado: 'aceite', avisos: [], origem: 'docente' };
   const api = new FakeApi({ user: ADMIN, draft: d, codes: [{ id: 'c1', nome: 'Ana', perfil: 'teacher', criado: '2026-11-14T09:00:00.000Z', revogado: null }] });
+  api.drafts.set('bbbbbbbbbbb1', approvedDraft({ id: 'bbbbbbbbbbb1', estado: 'submetida', submetida: '2026-11-15T09:00:00.000Z' }));
   const a = await boot(t, { api, hash: '#/inicio' });
   const pages = [
     ['#/inicio', 'inicio'],
@@ -777,6 +778,10 @@ test('every interactive control is a labelled button, input, select or a; no cli
     [`#/rascunho/${DRAFT_ID}/previsao`, 'previsao'],
     ['#/definicoes', 'definicoes'],
     ['#/codigos', 'codigos'],
+    ['#/revisao', 'revisao'],
+    [`#/revisao/${DRAFT_ID}`, 'revisao-item'],
+    ['#/revisao/bbbbbbbbbbb1', 'revisao-item'],
+    ['#/uso', 'uso'],
   ];
   const labelOf = (el) => {
     if (el.getAttribute('aria-label')) return el.getAttribute('aria-label');
@@ -1033,11 +1038,14 @@ test('7: the avisos note says that structure problems block acceptance and the o
   assert.match(note, /outros avisos não impedem/i);
 });
 
-test('8: the copy promises no submission and no review of references in this version', () => {
+test('8: the data notice names the opinions and the submitted drafts and who sees them; no review of references', () => {
   const w = {};
   new Function('window', fs.readFileSync(path.join(ROOT, 'i18n-pt.js'), 'utf8'))(w);
   const S = w.EUNOMIA_PT;
-  assert.doesNotMatch(S.entrar.avisoServidor, /submet/);
+  assert.match(S.entrar.avisoServidor, /Tiago Jacinto/);
+  assert.match(S.entrar.avisoServidor, /responsável pela Eunomia/);
+  assert.match(S.entrar.avisoServidor, /«Foi útil\?»/);
+  assert.match(S.entrar.avisoServidor, /submeter para revisão/);
   assert.doesNotMatch(S.referencias.intro, /revisão/);
   for (const n of [1, 2]) assert.doesNotMatch(S.previsao.refsVerificar(n), /revisão/);
   assert.match(S.referencias.intro, /confirm/);

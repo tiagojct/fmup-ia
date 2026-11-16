@@ -1060,6 +1060,51 @@ textarea.eu-mono,
   }
 }
 
+/* ---------- Opinions, submission, review queue, usage ---------- */
+
+.eu-opiniao {
+  margin: 1.4rem 0 0;
+  border-top: 1px solid var(--c-border);
+  padding-top: 0.9rem;
+}
+
+.eu-opiniao-escolha button[aria-pressed="true"] {
+  border-color: var(--c-text);
+  box-shadow: inset 0 0 0 1px var(--c-text);
+  font-weight: 700;
+}
+
+.eu-opiniao textarea {
+  width: 100%;
+}
+
+.eu-nota-revisao p {
+  margin: 0 0 0.3rem;
+}
+
+.eu-comentario-revisao {
+  white-space: pre-line;
+  font-style: italic;
+}
+
+.eu-a-rever {
+  margin: 0 0 1rem;
+  font-weight: 700;
+}
+
+#devolver-form textarea {
+  width: 100%;
+}
+
+.eu-uso-comentarios {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.eu-uso-comentarios li {
+  margin: 0 0 0.3rem;
+}
+
 /* ---------- Dark mode ---------- */
 
 @media screen and (prefers-color-scheme: dark) {

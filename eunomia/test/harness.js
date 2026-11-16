@@ -1,7 +1,10 @@
 // The harness of the front-end tests: the real index.html and scripts in jsdom, with a fake API
 // server (FakeApi) behind a mocked fetch, and the fixtures that the test files share.
 // boot(t, { api, hash, storage, stored, local }) loads the page (local: localStorage items to set
-// before the scripts run); lastCall(api, method, re) finds a request.
+// before the scripts run); lastCall(api, method, re) finds a request. api.static(name, obj) serves
+// obj in place of a static file; each call records its time (at).
+// The pilot routes mimic eunomia-server/src/review-routes.js: opiniao, submeter, GET /revisao (autor
+// as the display name), aprovar, devolver (revisao.revisor as the display name) and GET /uso.
 'use strict';
 
 const assert = require('node:assert/strict');
@@ -80,12 +83,29 @@ function json(status, body, headers = {}) {
   return new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json', ...headers } });
 }
 
+// GET /uso, as the server answers it (review-routes.js).
+const USO = {
+  limite_diario: 50,
+  utilizadores: [
+    { id: 'u1', nome: 'Ana Silva', perfil: 'teacher', revogado: false, rascunhos: { rascunho: 2, submetida: 1 }, pedidos_hoje: 3, pedidos_30_dias: 41 },
+    { id: 'u2', nome: 'Rui Costa', perfil: 'teacher', revogado: true, rascunhos: {}, pedidos_hoje: 0, pedidos_30_dias: 0 },
+    { id: 'u9', nome: 'Tiago Jacinto', perfil: 'admin', revogado: false, rascunhos: { aprovada: 1 }, pedidos_hoje: 1, pedidos_30_dias: 7 },
+  ],
+  seccoes: ['objectivo', 'formato', 'prompt_base', 'papeis', 'correccao', 'armadilhas', 'plano_b'].map((id) => ({ id, sim: 0, nao: 0, comentarios: [] })),
+};
+USO.seccoes[0] = { id: 'objectivo', sim: 4, nao: 1, comentarios: [{ util: false, texto: 'O verbo ficou vago.', data: '2026-11-15T10:00:00.000Z', modelo: 'gpt-4o' }] };
+USO.seccoes[3] = { id: 'papeis', sim: 2, nao: 0, comentarios: [{ util: true, texto: 'Poupou-me tempo.', data: '2026-11-14T10:00:00.000Z', modelo: 'gpt-4o' }] };
+
+const EDITABLE = ['rascunho', 'devolvida'];
+const STAMP = '2026-11-16T09:00:00.000Z';
+
 class FakeApi {
-  constructor({ user = null, draft = null, codes = [] } = {}) {
+  constructor({ user = null, draft = null, codes = [], uso = USO } = {}) {
     this.user = user;
     this.drafts = new Map();
     if (draft) this.drafts.set(draft.id, draft);
     this.codes = codes;
+    this.uso = uso;
     this.calls = [];
     this.overrides = [];
     this.statics = {};
@@ -180,6 +200,33 @@ class FakeApi {
       this.drafts.set(d.id, d);
       return json(201, this.view(d));
     }
+    // The admin routes of the pilot (review-routes.js).
+    if ((p === '/uso' || p.startsWith('/revisao')) && this.user.perfil !== 'admin') return json(403, { erro: 'Sem permissão para esta operação.' });
+    if (method === 'GET' && p === '/uso') return json(200, this.uso);
+    if (method === 'GET' && p === '/revisao') {
+      const titulo = (d) => (d.respostas.plano || {}).titulo || (d.respostas.contexto || {}).uc || null;
+      const list = [...this.drafts.values()].filter((d) => d.estado === 'submetida')
+        .sort((a, b) => (Date.parse(a.submetida) || 0) - (Date.parse(b.submetida) || 0))
+        .map((d) => ({ id: d.id, titulo: titulo(d), autor: d.autor.nome, submetida: d.submetida || null, rev: d.rev }));
+      return json(200, { revisao: list });
+    }
+    let rv = /^\/revisao\/([0-9a-f]{12})\/(aprovar|devolver)$/.exec(p);
+    if (method === 'POST' && rv) {
+      const d = this.drafts.get(rv[1]);
+      if (!d) return json(404, { erro: 'Rascunho não encontrado.' });
+      if (d.estado !== 'submetida') return json(409, { erro: 'Esta actividade não está à espera de revisão.', motivo: 'estado' });
+      if (!Number.isInteger(body.rev)) return json(400, { erro: 'Indique a revisão do rascunho (rev).' });
+      if (body.rev !== d.rev) return json(409, { erro: 'O rascunho foi alterado noutra janela. Recarregue a página.', motivo: 'rev' });
+      const comentario = typeof body.comentario === 'string' ? body.comentario.trim() : '';
+      if (rv[2] === 'devolver') {
+        if (!comentario) return json(400, { erro: 'Escreva o comentário para o autor.' });
+        if (comentario.length > 2000) return json(400, { erro: 'O campo comentario é demasiado longo (máximo 2000 caracteres).' });
+      }
+      const decisao = rv[2] === 'aprovar' ? 'aprovada' : 'devolvida';
+      d.estado = decisao;
+      d.revisao = { decisao, ...(rv[2] === 'devolver' ? { comentario } : {}), data: STAMP, revisor: this.user.nome };
+      return json(200, this.view(this.save(d)));
+    }
     if (method === 'GET' && p === '/padroes') {
       return json(200, { padroes: query.get('rascunho') ? PATTERNS.filter((x) => x.papel_ia === 'contraparte').slice(0, 2) : PATTERNS });
     }
@@ -219,6 +266,31 @@ class FakeApi {
       if (stale) return stale;
       this.drafts.delete(d.id);
       return json(200, { ok: true, apagado: '2026-11-16T10:00:00.000Z' });
+    }
+    // The writes of the pilot: the author's own editable draft at the same rev.
+    const editable = () => {
+      if (!EDITABLE.includes(d.estado)) return json(409, { erro: 'Esta ficha foi submetida e não pode ser alterada.', motivo: 'bloqueado' });
+      return write();
+    };
+    m = /^\/seccoes\/(\w+)\/opiniao$/.exec(rest);
+    if (method === 'POST' && m) {
+      const bad = editable();
+      if (bad) return bad;
+      if (typeof body.util !== 'boolean') return json(400, { erro: 'Indique se a secção foi útil (sim ou não).' });
+      const comentario = typeof body.comentario === 'string' ? body.comentario.trim() : '';
+      if (comentario.length > 500) return json(400, { erro: 'O campo comentario é demasiado longo (máximo 500 caracteres).' });
+      const s = d.seccoes[m[1]];
+      if (!s || s.dados === undefined || s.origem !== 'modelo') return json(409, { erro: 'Só pode dar opinião sobre texto escrito pelo modelo.', motivo: 'incompleto' });
+      s.opiniao = { util: body.util, ...(comentario ? { comentario } : {}), data: STAMP, modelo: s.modelo ?? null };
+      return json(200, this.view(this.save(d)));
+    }
+    if (method === 'POST' && rest === '/submeter') {
+      const bad = editable();
+      if (bad) return bad;
+      d.estado = 'submetida';
+      d.submetida = STAMP;
+      delete d.revisao;
+      return json(200, this.view(this.save(d)));
     }
     m = /^\/respostas\/(\w+)$/.exec(rest);
     if (method === 'PUT' && m) {
@@ -345,6 +417,6 @@ async function boot(t, { api = new FakeApi(), hash = '', storage = 'ok', stored 
 const lastCall = (api, method, re) => [...api.calls].reverse().find((c) => c.method === method && re.test(c.path));
 
 module.exports = {
-  ROOT, BASE, SCRIPTS, INTERVIEW, PATTERNS, REFS, EXEMPLOS, referenceFicha, DRAFT_ID, TEACHER, ADMIN, ANSWERS,
+  ROOT, BASE, SCRIPTS, INTERVIEW, PATTERNS, REFS, EXEMPLOS, USO, referenceFicha, DRAFT_ID, TEACHER, ADMIN, ANSWERS,
   makeDraft, approvedDraft, nextStep, json, FakeApi, boot, lastCall,
 };
