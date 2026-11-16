@@ -22,6 +22,7 @@
       quadro: 'Quadro',
       themis: 'Themis',
       terminarSessao: 'Terminar sessão',
+      ajuda: 'Ajuda',
       sessaoDe: function (nome) { return 'Sessão de ' + nome; },
     },
 
@@ -67,6 +68,7 @@
       botao: 'Entrar',
       aEntrar: 'A entrar...',
       semCodigo: 'Escreva o código de acesso.',
+      ajuda: 'Antes de entrar, pode ler a ajuda: o que a Eunomia faz, quanto tempo leva e que dados usa.',
       avisoTitulo: 'Que dados usa a Eunomia',
       avisoIaeduTitulo: 'O que vai para a IAedu',
       avisoIaedu: 'Para escrever e rever texto, a Eunomia envia ao serviço IAedu, da FCT/FCCN, as suas respostas à entrevista, os materiais que colar e o texto das secções. Não escreva dados de doentes nem de estudantes: todos os casos devem ser fictícios.',
@@ -94,6 +96,10 @@
       modoPartilhado: 'Modelo: chave partilhada da FMUP.',
       modoProprio: 'Modelo: a sua chave IAedu.',
       mudarModo: 'Mudar nas definições',
+      primeiraVez: 'Primeira vez? Veja uma actividade de exemplo (5 min) ou leia a ajuda.',
+      verExemplo: 'Ver uma actividade de exemplo',
+      lerAjuda: 'Ler a ajuda',
+      fechar: 'Fechar esta mensagem',
     },
 
     estados: {
@@ -355,6 +361,30 @@
       copiar: 'Copiar o código',
       copiado: 'Código copiado.',
       naoCopiado: 'Não foi possível copiar. Seleccione o código e copie-o.',
+      conviteTitulo: 'Texto do convite',
+      convite: function (c) {
+        return [
+          'Olá, ' + c.nome + '.',
+          '',
+          'Já pode usar a Eunomia, a ferramenta do FMUP · IA que ajuda a desenhar uma actividade de ensino com IA, passo a passo, e escreve a ficha da actividade.',
+          '',
+          'Endereço: ' + c.app,
+          'Código de acesso: ' + c.codigo,
+          '',
+          'O código é pessoal: não o partilhe. A primeira actividade leva cerca de 45 minutos. Pode parar a meio, porque o rascunho fica guardado.',
+          '',
+          'Antes de começar, pode ler a ajuda ou ver uma actividade de exemplo. As duas páginas abrem sem o código.',
+          'Ajuda: ' + c.ajuda,
+          'Actividades de exemplo: ' + c.exemplos,
+          '',
+          'Não escreva dados de doentes nem de estudantes: os casos têm de ser fictícios.',
+          '',
+          'Em caso de dúvida, contacte ' + c.contacto.nome + ' (' + c.contacto.email + ').',
+        ].join('\n');
+      },
+      copiarConvite: 'Copiar o texto do convite',
+      conviteCopiado: 'Texto do convite copiado.',
+      conviteNaoCopiado: 'Não foi possível copiar. O texto do convite está seleccionado: copie-o.',
     },
   };
 })();

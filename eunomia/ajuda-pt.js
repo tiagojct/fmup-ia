@@ -29,6 +29,8 @@
 
     etapas: {
       titulo: 'As quatro etapas',
+      rotuloDocente: 'O que faz',
+      rotuloModelo: 'O que faz o modelo',
       lista: [
         {
           id: 'entrevista',

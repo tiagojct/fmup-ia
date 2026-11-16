@@ -733,10 +733,124 @@ textarea.eu-mono,
   user-select: all;
 }
 
+/* ---------- Help page, first-visit box, invitation ---------- */
+
+.header-actions #help-link {
+  text-decoration: none;
+}
+
+.header-actions #help-link[aria-current="page"] {
+  background: var(--c-fmup-yellow);
+  border-color: var(--c-text);
+}
+
+.eu-entrar-ajuda {
+  margin: 0 0 1.25rem;
+}
+
+.eu-ajuda-voltar {
+  margin: 0 0 0.5rem;
+  font-size: 0.92rem;
+}
+
+.eu-ajuda-seccao p {
+  line-height: 1.55;
+}
+
+.eu-ajuda-etapas {
+  margin: 0;
+  padding-left: 1.4rem;
+}
+
+.eu-ajuda-etapas > li {
+  margin: 0 0 1rem;
+}
+
+.eu-ajuda-etapa {
+  margin: 0 0 0.25rem;
+}
+
+.eu-ajuda-quem,
+.eu-glossario,
+.eu-perguntas {
+  margin: 0;
+}
+
+.eu-ajuda-quem dt {
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+}
+
+.eu-ajuda-quem dd {
+  margin: 0 0 0.5rem;
+}
+
+.eu-glossario dt,
+.eu-perguntas dt {
+  font-weight: 700;
+  margin-top: 1.1rem;
+}
+
+.eu-glossario dd,
+.eu-perguntas dd {
+  margin: 0.3rem 0 0;
+  line-height: 1.55;
+}
+
+.eu-glossario dd p {
+  margin: 0 0 0.4rem;
+}
+
+.eu-glossario dd ul {
+  margin: 0 0 0.4rem;
+  padding-left: 1.2rem;
+}
+
+.eu-primeira-vez {
+  border-left: 4px solid var(--c-fmup-yellow);
+  background: #FFFBEA;
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 1rem 0.8rem;
+  margin: 0 0 1.25rem;
+}
+
+.eu-primeira-vez p {
+  margin: 0 0 0.4rem;
+  font-weight: 600;
+}
+
+.eu-primeira-vez .eu-ligacoes {
+  margin-bottom: 0.6rem;
+}
+
+.eu-convite {
+  margin: 0 0 1.5rem;
+}
+
+.eu-convite h3 {
+  margin: 0 0 0.4rem;
+}
+
+.eu-convite-texto {
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--c-border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--c-bg);
+  color: var(--c-text);
+}
+
 /* ---------- Dark mode ---------- */
 
 @media screen and (prefers-color-scheme: dark) {
   .eu-porque,
+  .eu-primeira-vez,
   .eu-codigo-novo {
     background: #2A2200;
   }

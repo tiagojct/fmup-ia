@@ -2,12 +2,16 @@
  * Eunomia (FMUP IA): the front end.
  *
  * No build step, no dependencies, no CDN. All the text of the interface is in i18n-pt.js
- * (window.EUNOMIA_PT); the interview (steps, fields, help, "porque" boxes) is data in
- * interview.json. This file has no UI copy and stays ASCII only.
+ * (window.EUNOMIA_PT), the text of the help page in ajuda-pt.js (window.EUNOMIA_AJUDA); the
+ * interview (steps, fields, help, "porque" boxes) is data in interview.json. This file has no UI
+ * copy and stays ASCII only.
  *
- * Hash routes (see ROUTES): #/entrar, #/inicio, #/rascunho/:id, #/rascunho/:id/passo/:passo,
- * #/rascunho/:id/plano, #/rascunho/:id/seccao/:sec, #/rascunho/:id/referencias,
- * #/rascunho/:id/previsao, #/definicoes, #/codigos (admin).
+ * Hash routes (see ROUTES): #/entrar, #/ajuda, #/inicio, #/rascunho/:id,
+ * #/rascunho/:id/passo/:passo, #/rascunho/:id/plano, #/rascunho/:id/seccao/:sec,
+ * #/rascunho/:id/referencias, #/rascunho/:id/previsao, #/definicoes, #/codigos (admin).
+ * Route flags: public (no session needed; with a session, #/entrar goes to #/inicio), open (public
+ * and shown with a session too: the help, which the invitation email links to), admin. The page
+ * after the next login (rememberPage) is never a public one.
  *
  * Not in this version (they come with the submission and review of Task 11): the submit dialog,
  * the review pages (#/revisao, #/revisao/:id) and the refine mode. Each is one more line in ROUTES
@@ -24,6 +28,7 @@
   'use strict';
 
   var S = window.EUNOMIA_PT;
+  var A = window.EUNOMIA_AJUDA;
   var API = window.EUNOMIA_API;
 
   // The sections the model writes, in the ficha order (server: drafts.MODEL_SECTIONS).
@@ -263,6 +268,7 @@
   var ID = '([0-9a-f]{12})';
   var ROUTES = [
     { re: /^#\/entrar$/, page: 'entrar', title: function () { return S.entrar.pagina; }, render: pageLogin, public: true },
+    { re: /^#\/ajuda$/, page: 'ajuda', title: function () { return A.pagina; }, render: pageHelp, public: true, open: true },
     { re: /^#\/inicio$/, page: 'inicio', title: function () { return S.inicio.pagina; }, render: pageHome },
     { re: new RegExp('^#/rascunho/' + ID + '$'), page: 'rascunho', title: function () { return S.comum.aCarregar; }, render: pageResume },
     { re: new RegExp('^#/rascunho/' + ID + '/passo/([a-z_]+)$'), page: 'passo', title: function () { return S.rascunho.entrevista; }, render: pageStep },
@@ -301,8 +307,13 @@
       if (!state.returnTo) rememberPage(null);
       return redirect('#/entrar');
     }
-    if (found.public && state.user) return redirect('#/inicio');
+    if (found.public && !found.open && state.user) return redirect('#/inicio');
     if (found.admin && state.user.perfil !== 'admin') return redirect('#/inicio');
+    var help = document.getElementById('help-link');
+    if (help) {
+      if (found.page === 'ajuda') help.setAttribute('aria-current', 'page');
+      else help.removeAttribute('aria-current');
+    }
 
     state.token += 1;
     var token = state.token;
@@ -352,6 +363,7 @@
     text('footer-link-quadro', S.app.quadro);
     text('footer-link-themis', S.app.themis);
     text('logout-btn', S.app.terminarSessao);
+    text('help-link', S.app.ajuda);
     var nav = document.getElementById('back-bar');
     if (nav) nav.setAttribute('aria-label', S.app.navSitio);
     var skip = document.getElementById('skip-link');
@@ -632,9 +644,95 @@
       el('h2', { class: 'step-title', text: S.entrar.titulo }),
       flash ? el('p', { class: 'review-note', text: flash }) : null,
       el('p', { class: 'step-help', text: S.entrar.intro }),
+      el('p', { class: 'eu-entrar-ajuda' }, link(S.entrar.ajuda, '#/ajuda')),
       form,
       notice));
     if (flash) announce(flash);
+  }
+
+  // ---------------------------------------------------------------- page: help (open)
+
+  // The help, from ajuda-pt.js. Open: shown with or without a session, and no API request. Each
+  // section has the anchor ajuda-<key>; headings are h2, then h3 only.
+  function pageHelp() {
+    var section = function (key, body) {
+      var titleId = 'ajuda-' + key + '-titulo';
+      return el('section', { id: 'ajuda-' + key, class: 'eu-seccao eu-ajuda-seccao', 'aria-labelledby': titleId },
+        el('h3', { id: titleId, text: A[key].titulo }), body);
+    };
+    var paragraphs = function (list) {
+      return list.map(function (t) { return el('p', { text: t }); });
+    };
+    var stages = el('ol', { class: 'eu-ajuda-etapas' }, A.etapas.lista.map(function (e) {
+      return el('li', null,
+        el('p', { class: 'eu-ajuda-etapa' }, el('strong', { text: e.titulo })),
+        el('dl', { class: 'eu-ajuda-quem' },
+          el('dt', { text: A.etapas.rotuloDocente }), el('dd', { text: e.docente }),
+          el('dt', { text: A.etapas.rotuloModelo }), el('dd', { text: e.modelo })));
+    }));
+    var glossary = el('dl', { class: 'eu-glossario' }, A.glossario.termos.map(function (term) {
+      return [
+        el('dt', { id: 'ajuda-termo-' + term.id, text: term.termo }),
+        el('dd', null,
+          el('p', { text: term.texto }),
+          term.valores ? el('ul', null, term.valores.map(function (v) { return el('li', { text: v.rotulo }); })) : null,
+          el('p', null, externalLink(term.ligacao.rotulo, term.ligacao.url))),
+      ];
+    }));
+    var faq = el('dl', { class: 'eu-perguntas' }, A.perguntas.lista.map(function (q) {
+      return [el('dt', { id: 'ajuda-pergunta-' + q.id, text: q.pergunta }), el('dd', { text: q.resposta })];
+    }));
+    var c = A.contacto;
+    var contact = el('p', null, c.nome + ', ' + c.unidade + ', ', link(c.email, 'mailto:' + c.email), '.');
+    var back = state.user ? link(S.rascunho.inicio, '#/inicio') : link(S.entrar.titulo, '#/entrar');
+    main.appendChild(el('div', { class: 'screen eu-ajuda-pagina' },
+      el('h2', { class: 'step-title', text: A.titulo }),
+      el('p', { class: 'eu-ajuda-voltar' }, back),
+      section('oQueE', paragraphs(A.oQueE.paragrafos)),
+      section('antes', paragraphs(A.antes.paragrafos)),
+      section('etapas', stages),
+      section('glossario', glossary),
+      section('perguntas', faq),
+      section('contacto', contact)));
+  }
+
+  // ---------------------------------------------------------------- page: home
+
+  // The first-visit box is closed per user; the flag lives in localStorage, which may be blocked
+  // (then the box comes back on each visit).
+  function welcomeKey(user) {
+    return 'eunomia-boas-vindas:' + user.id;
+  }
+
+  function welcomeClosed(user) {
+    try {
+      return window.localStorage.getItem(welcomeKey(user)) === '1';
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function closeWelcome(user) {
+    try {
+      window.localStorage.setItem(welcomeKey(user), '1');
+    } catch (e) {
+      // storage blocked: the box shows again next time
+    }
+  }
+
+  function welcomeBox(user) {
+    if (welcomeClosed(user)) return null;
+    var box = el('section', { id: 'primeira-vez', class: 'eu-primeira-vez', 'aria-label': S.inicio.primeiraVez },
+      el('p', { text: S.inicio.primeiraVez }),
+      el('ul', { class: 'eu-ligacoes' },
+        el('li', null, link(S.inicio.verExemplo, '#/exemplos')),
+        el('li', null, link(S.inicio.lerAjuda, '#/ajuda'))));
+    box.appendChild(button(S.inicio.fechar, { id: 'fechar-primeira-vez', class: 'btn-ghost' }, function () {
+      closeWelcome(user);
+      if (box.parentNode) box.parentNode.removeChild(box);
+      focusTitle();
+    }));
+    return box;
   }
 
   function pageHome(ctx) {
@@ -652,6 +750,7 @@
       user.perfil === 'admin' ? el('li', null, link(S.inicio.codigos, '#/codigos')) : null);
     main.appendChild(el('div', { class: 'screen' },
       el('h2', { class: 'step-title', text: S.inicio.ola(user.nome) }),
+      welcomeBox(user),
       el('p', { class: 'step-help', text: S.inicio.intro }),
       el('p', { id: 'modo-chave', class: 'eu-nota' },
         API.ownKey() ? S.inicio.modoProprio : S.inicio.modoPartilhado, ' ', link(S.inicio.mudarModo, '#/definicoes')),
@@ -1788,7 +1887,31 @@
         el('p', { text: S.codigos.criadoNota }),
         copy);
       created.appendChild(box);
+      created.appendChild(invitation(nome, code));
       box.focus();
+    };
+
+    // The invitation email (spec E): the code, the app, the help and the examples, the contact.
+    // Like the code, it is only in this view.
+    var invitation = function (nome, code) {
+      var app = window.location.origin + window.location.pathname;
+      var text = S.codigos.convite({ nome: nome, codigo: code, app: app, ajuda: app + '#/ajuda', exemplos: app + '#/exemplos', contacto: A.contacto });
+      var area = el('textarea', { id: 'convite-texto', class: 'eu-convite-texto', readonly: true, rows: 14, 'aria-labelledby': 'convite-titulo', spellcheck: 'false' });
+      area.value = text;
+      var copy = button(S.codigos.copiarConvite, { id: 'copiar-convite', class: 'btn-ghost' }, function () {
+        var done = function () { announce(S.codigos.conviteCopiado); };
+        var fail = function () {
+          area.focus();
+          area.select();
+          announce(S.codigos.conviteNaoCopiado);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fail);
+        else fail();
+      });
+      return el('section', { id: 'convite', class: 'eu-convite', 'aria-labelledby': 'convite-titulo' },
+        el('h3', { id: 'convite-titulo', text: S.codigos.conviteTitulo }),
+        area,
+        el('div', { class: 'nav-row' }, copy));
     };
 
     main.appendChild(el('div', { class: 'screen' },
