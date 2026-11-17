@@ -428,7 +428,7 @@ test('devolver without a comment is 400; with one it sets devolvida and the comm
 // ---------------------------------------------------------------- usage
 
 test('GET /uso has, per user, the drafts by state, the calls today and in 30 days and the limit; per section, Sim and Não counts and the comments, and no section text', async (t) => {
-  const app = await startApp(t);
+  const app = await startApp(t, { now: () => T });
   const ana = await app.person('Ana Docente');
   const rui = await app.person('Rui Docente');
   const admin = await app.person('Tiago Jacinto', 'admin');
@@ -468,7 +468,7 @@ test('GET /uso has, per user, the drafts by state, the calls today and in 30 day
   app.store.write(`apagados/${ana.id}/${deleted.id}.json`, dd);
 
   // Calls: today, the 29th day before (counted) and the 30th (not counted).
-  const day = (n) => new Date(Date.now() - n * DAY_MS).toISOString().slice(0, 10);
+  const day = (n) => new Date(T - n * DAY_MS).toISOString().slice(0, 10);
   app.store.write('usage.json', {
     [day(0)]: { [ana.id]: 7, [rui.id]: 1 },
     [day(29)]: { [ana.id]: 5 },

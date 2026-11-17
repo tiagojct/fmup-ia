@@ -38,6 +38,9 @@ if count!=1:raise ValueError(f'eunomia/index.html: expected one Themis styleshee
 update('eunomia/index.html',t)
 # The server package carries the same version as the front end.
 replace('eunomia-server/package.json',r'"version": "[^"]*"',f'"version": "{v["eunomia.versao"]}"')
+# package-lock.json repeats it twice: the top-level version and the one of the root package.
+d=json.loads((ROOT/'eunomia-server/package-lock.json').read_text());d['version']=v['eunomia.versao'];d['packages']['']['version']=v['eunomia.versao']
+update('eunomia-server/package-lock.json',json.dumps(d,ensure_ascii=False,indent=2)+'\n')
 d=json.loads((ROOT/'themis/policy.json').read_text());d.update(version=v['themis.regras'],framework_version=framework,framework_short_pt=f'Quadro FMUP {version}',framework_short_en=f'FMUP Framework {version}',revised=date)
 update('themis/policy.json',json.dumps(d,ensure_ascii=False,indent=2)+'\n')
 replace('CITATION.cff',r'(?m)^version: .+$',f'version: "{version.removeprefix("v")}.0"')

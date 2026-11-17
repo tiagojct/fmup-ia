@@ -21,7 +21,7 @@ async function startApp(t, extra = {}) {
   const config = {
     basePath: BASE,
     store,
-    auth: createAuth({ store, secret: SECRET, dailyLimit: 200 }),
+    auth: createAuth({ store, secret: SECRET, dailyLimit: 200, now: extra.now }), // a test that injects now moves the usage days too
     iaedu: { send: async () => ({ text: '{}', model: null }) },
     github: null,
     now: Date.now,
