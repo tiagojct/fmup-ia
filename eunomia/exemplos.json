@@ -358,7 +358,7 @@
       "titulo": "Grupos de peritos no membro superior",
       "respostas": {
         "contexto": {
-          "uc": "Anatomia Humana I",
+          "uc": "Anatomia (unidade curricular fictícia)",
           "programa": "Mestrado Integrado em Medicina, 1.º ano",
           "area": "ciencias_basicas",
           "nivel": "uc_undergrad",
@@ -368,12 +368,12 @@
           "duracao_max": 90
         },
         "objectivo": {
-          "texto": "No fim da actividade, o estudante identifica em modelos anatómicos e em imagens as estruturas ósseas, musculares, nervosas e vasculares do membro superior que a aula trabalha, e descreve as relações entre elas numa região indicada pelo docente.",
-          "competencia_protegida": "A competência protegida é a identificação das estruturas e a descrição das suas relações, sem ajuda. Cada estudante estuda uma parte como perito, mas no relatório final identifica sozinho as estruturas das quatro partes, incluindo as que aprendeu com os colegas.",
-          "competencia": "Anatomia topográfica do membro superior, explicação a colegas"
+          "texto": "No fim da actividade, o estudante identifica em modelos anatómicos e em imagens as estruturas das quatro regiões do membro superior que a aula trabalha (ombro e axila, braço, antebraço, mão), e descreve as relações entre ossos, músculos, nervos e vasos numa região indicada pelo docente.",
+          "competencia_protegida": "A competência protegida é a identificação das estruturas e a descrição das suas relações, sem ajuda. Cada estudante estuda uma região como perito, mas no relatório final identifica sozinho as estruturas das quatro regiões, incluindo as que aprendeu com os colegas.",
+          "competencia": "Anatomia topográfica do membro superior por regiões, explicação a colegas"
         },
         "evidencia": {
-          "descricao": "Um relatório individual curto, escrito na aula sem consulta: o estudante identifica estruturas assinaladas por números em imagens que não viu na aula e descreve, numa região indicada, as relações entre um osso, um músculo, um nervo e um vaso. Durante os grupos mistos, o docente regista que peritos explicam sem ler os apontamentos.",
+          "descricao": "Um relatório individual curto, escrito na aula sem consulta: o estudante identifica estruturas assinaladas por números em imagens das quatro regiões que não viu na aula e descreve, numa região indicada, as relações entre um osso, um músculo, um nervo e um vaso. Durante os grupos mistos, o docente regista que peritos explicam sem ler os apontamentos.",
           "avaliacao": "sumativa"
         },
         "papel_ia": {
@@ -393,23 +393,23 @@
           "formato_grupo": "Quatro grupos de peritos de seis estudantes, depois seis grupos mistos de quatro"
         },
         "materiais": {
-          "texto": "As quatro partes do membro superior para os grupos de peritos. Parte 1, ossos e articulações: clavícula, escápula, úmero, rádio, ulna e ossos do carpo; articulações do ombro, do cotovelo e do punho. Parte 2, músculos: músculos do ombro e compartimentos anterior e posterior do braço e do antebraço. Parte 3, nervos: plexo braquial e nervos musculocutâneo, axilar, radial, mediano e ulnar. Parte 4, vasos: artérias axilar, braquial, radial e ulnar, e veias cefálica e basílica."
+          "texto": "As quatro regiões do membro superior para os grupos de peritos, cada uma com ossos, articulações, músculos, nervos e vasos. Região 1, ombro e axila: clavícula, escápula, articulação do ombro, músculos do ombro, incluindo os da coifa dos rotadores, plexo braquial, nervo axilar e artéria axilar. Região 2, braço: úmero, compartimentos anterior e posterior do braço, nervos musculocutâneo e radial no braço, artéria braquial e veias cefálica e basílica. Região 3, antebraço: rádio, ulna, articulação do cotovelo, compartimentos anterior e posterior do antebraço, nervos mediano, ulnar e radial no antebraço e artérias radial e ulnar. Região 4, mão: ossos do carpo, metacarpos e falanges, articulação do punho, músculos tenares, hipotenares e interósseos, ramos dos nervos mediano, ulnar e radial na mão e arcos palmares superficial e profundo."
         },
         "plano": {
           "titulo": "Grupos de peritos no membro superior",
           "subtitulo": "Identificação de estruturas anatómicas e explicação a colegas",
-          "notas": "Nenhuma fase usa IA. Cada grupo de peritos prepara a lista das estruturas da sua parte para mostrar no modelo. O relatório final usa imagens que os estudantes não viram na aula."
+          "notas": "Nenhuma fase usa IA. Cada grupo de peritos prepara a lista das estruturas da sua região para mostrar no modelo. O relatório final usa imagens que os estudantes não viram na aula."
         }
       },
       "porque": {
         "contexto": "Uma aula prática de 90 minutos e uma turma de 24 estudantes dão quatro grupos de peritos de seis e seis grupos mistos de quatro.",
         "objectivo": "Identificar e descrever são verbos observáveis, e a competência protegida é a identificação feita por cada estudante sem a ajuda do perito.",
-        "evidencia": "O relatório individual com imagens novas mostra se cada estudante aprendeu também as partes que não estudou como perito.",
+        "evidencia": "O relatório individual com imagens novas mostra se cada estudante aprendeu também as regiões que não estudou como perito.",
         "papel_ia": "O objectivo é reconhecer estruturas e explicá-las a colegas, e nenhuma fase precisa de IA para isso.",
         "regime": "Uma ferramenta de IA podia identificar as estruturas pelo estudante, que é a competência que o relatório verifica.",
         "regime_themis": "O trabalho avaliado é o relatório individual, e «não permitido» é a política que corresponde ao regime proibido.",
-        "padrao": "O membro superior divide-se em quatro partes de dimensão semelhante, que é a condição do padrão de grupos de peritos.",
-        "materiais": "A lista das estruturas de cada parte diz ao modelo o que cada grupo de peritos estuda, sem dados de doentes nem de estudantes.",
+        "padrao": "O membro superior divide-se em quatro regiões com uma quantidade de matéria semelhante, que se estudam em separado no modelo, e essa é a condição do padrão de grupos de peritos.",
+        "materiais": "A lista das estruturas de cada região diz ao modelo o que cada grupo de peritos estuda, sem dados de doentes nem de estudantes.",
         "plano": "As notas lembram ao modelo que nenhuma fase usa IA e que o relatório usa imagens novas."
       },
       "nota": {
@@ -440,12 +440,14 @@
     "papel_ia": [
       1,
       2,
-      5
+      5,
+      7
     ],
     "regime": [
       2,
       3,
-      5
+      5,
+      7
     ],
     "regime_themis": [
       5,

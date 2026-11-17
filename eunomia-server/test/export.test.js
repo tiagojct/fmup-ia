@@ -174,7 +174,7 @@ test('renderHtml is a standalone page with inline CSS, no script and escaped tex
 });
 
 test('markdownToHtml covers the constructs of the reference fichas', () => {
-  for (let n = 1; n <= 6; n++) {
+  for (let n = 1; n <= 7; n++) {
     const ficha = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'referencia', `ficha-${n}.json`), 'utf8'));
     const html = renderHtml(ficha);
     assert.doesNotMatch(html, /<script/i, `ficha ${n}`);

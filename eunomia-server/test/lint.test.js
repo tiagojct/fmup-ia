@@ -627,8 +627,8 @@ test('lint-pt.json: every entry has a pattern and a message and compiles', () =>
 
 // ---------------------------------------------------------------- the reference fichas
 
-test('the six reference fichas: house style passes the style and language lints', () => {
-  for (let n = 1; n <= 6; n += 1) {
+test('the seven reference fichas: house style passes the style and language lints', () => {
+  for (let n = 1; n <= 7; n += 1) {
     const ficha = load(n);
     const ctx = { referencias: ficha.referencias || [], materials: '' };
     for (const id of ['meta', 'objectivo', 'formato', 'prompt_base', 'papeis', 'armadilhas', 'plano_b']) {

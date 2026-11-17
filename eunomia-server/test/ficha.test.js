@@ -65,7 +65,7 @@ function newProfileFicha() {
 
 // ---------------------------------------------------------------- fixtures
 
-for (let n = 1; n <= 6; n += 1) {
+for (let n = 1; n <= 7; n += 1) {
   test(`ficha ${n} is valid in the reference profile`, () => {
     assert.deepEqual(validateFicha(load(n), 'reference'), []);
   });
@@ -361,7 +361,7 @@ test('renderQmd has the section headings in order and the ficha-meta table', () 
 });
 
 test('renderQmd front matter keeps the ficha as base64 JSON under eunomia', () => {
-  for (let n = 1; n <= 6; n += 1) {
+  for (let n = 1; n <= 7; n += 1) {
     const ficha = load(n);
     const qmd = renderQmd(ficha);
     const { front } = splitQmd(qmd);

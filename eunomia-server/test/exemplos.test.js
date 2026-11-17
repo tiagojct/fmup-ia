@@ -79,7 +79,8 @@ test('every answered step has a porque sentence, and por_passo names examples th
   const steps = drafts.INTERVIEW.passos.map((s) => s.id).filter((id) => id !== 'plano');
   assert.deepEqual(Object.keys(EXEMPLOS.por_passo).sort(), [...steps].sort());
   for (const [step, list] of Object.entries(EXEMPLOS.por_passo)) {
-    const [min, max] = step === 'regime_themis' ? [0, 3] : [2, 3];
+    // papel_ia and regime also name example 7, so that Ver exemplo shows an activity without AI.
+    const [min, max] = step === 'regime_themis' ? [0, 3] : ['papel_ia', 'regime'].includes(step) ? [2, 4] : [2, 3];
     assert.ok(list.length >= min && list.length <= max, `por_passo ${step}: ${list.length}`);
     for (const n of list) assert.ok(findExample(n).respostas[step] !== undefined, `por_passo ${step}: exemplo ${n}`);
   }
@@ -137,6 +138,8 @@ test('example 7 is marked as fictitious and as not one of the six training ficha
     assert.ok(e.nota && typeof e.nota[step] === 'string' && e.nota[step].trim() !== '', `nota ${step}`);
   }
   assert.match(e.nota.contexto, /inventad/);
+  assert.match(e.respostas.contexto.uc, /fictícia/);
+  assert.ok(EXEMPLOS.por_passo.papel_ia.includes(7) && EXEMPLOS.por_passo.regime.includes(7), 'Ver exemplo shows example 7');
   assert.match(e.nota.contexto, /não é uma das seis fichas de formação/);
   assert.match(EXEMPLOS.nota, /sete exemplos/i);
 });

@@ -195,10 +195,10 @@ test('renderDocx is a Promise of a Buffer that starts with PK, and a ficha witho
   assert.ok(!text(parts(buffer)['word/document.xml']).includes(SECTION_HEADINGS.referencias));
 });
 
-test('renderDocx works for the six reference fichas', async () => {
+test('renderDocx works for the seven reference fichas', async () => {
   const fs = require('node:fs');
   const path = require('node:path');
-  for (let n = 1; n <= 6; n++) {
+  for (let n = 1; n <= 7; n++) {
     const f = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'referencia', `ficha-${n}.json`), 'utf8'));
     const xml = await documentXml(f);
     assert.ok(xml.includes('<w:tbl>'), `ficha ${n}`);

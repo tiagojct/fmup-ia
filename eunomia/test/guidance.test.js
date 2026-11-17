@@ -66,6 +66,14 @@ test('Ver exemplo is a details element with the answers and titles of the exampl
   const name = PATTERNS.find((p) => p.id === first.respostas.padrao.padrao).nome;
   assert.ok(a.$('details.eu-exemplo').textContent.includes(name));
 
+  // papel_ia and regime: the last example is 7, the activity without AI.
+  for (const stepId of ['papel_ia', 'regime']) {
+    await a.go(`#/rascunho/${DRAFT_ID}/passo/${stepId}`, 'passo');
+    const list = EXEMPLOS.por_passo[stepId];
+    assert.equal(list[list.length - 1], 7, stepId);
+    assert.deepEqual([...a.$$('details.eu-exemplo h4')].map((h) => h.textContent), list.map((n) => EXEMPLOS.exemplos.find((e) => e.n === n).titulo), stepId);
+  }
+
   // regime_themis: examples 5 and 7 in the data; with an empty list, no disclosure at all.
   await a.go(`#/rascunho/${DRAFT_ID}/passo/regime_themis`, 'passo');
   assert.deepEqual(EXEMPLOS.por_passo.regime_themis, [5, 7]);
