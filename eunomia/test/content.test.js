@@ -210,3 +210,11 @@ test('the glossary adds the common-words title next to the Quadro term (spec 4)'
   }
   assert.equal(A.glossario.rotuloComum('X'), 'Na entrevista: «X».');
 });
+
+test('the login notice and the adapt page explain IAedu at its first mention (spec 4)', () => {
+  for (const [name, s] of [['S.entrar.avisoIaedu', S.entrar.avisoIaedu], ['S.adaptar.aviso', S.adaptar.aviso]]) {
+    assert.match(s, /para o ensino superior/, name);
+    assert.match(s, /não precisa de conta/i, name);
+    assert.match(s, /a Eunomia usa a chave da FMUP/, name);
+  }
+});

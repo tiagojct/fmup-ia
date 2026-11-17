@@ -7,7 +7,7 @@
 
   var plural = function (n, um, varios) { return n === 1 ? um : varios; };
   // The data rule of the materials step and of Adaptar: the same text in both places.
-  var AVISO_DADOS = 'Sem dados de doentes nem de estudantes. O texto vai para a IAedu: use só casos fictícios e materiais sem dados pessoais.';
+  var AVISO_DADOS = 'Sem dados de doentes nem de estudantes. O texto vai para a IAedu, o serviço de IA da FCT/FCCN para o ensino superior; não precisa de conta: a Eunomia usa a chave da FMUP. Use só casos fictícios e materiais sem dados pessoais.';
   // The status of the tool (login page, footer, help, invitation) and what Tiago sees (login data
   // notice, first-visit box, help): the same text in every place.
   var ESTADO = 'A Eunomia é uma ferramenta desenvolvida por Tiago Jacinto (MEDCIDS) como proposta, para testar, melhorar e construir com colegas. Não é uma ferramenta oficial da FMUP. O uso é voluntário.';
@@ -82,7 +82,7 @@
       themisLink: 'Abrir a Themis',
       avisoTitulo: 'Que dados usa a Eunomia',
       avisoIaeduTitulo: 'O que vai para a IAedu',
-      avisoIaedu: 'Para escrever e rever texto, a Eunomia envia ao serviço IAedu, da FCT/FCCN, as suas respostas à entrevista, os materiais que colar e o texto das secções. Não escreva dados de doentes nem de estudantes: todos os casos devem ser fictícios.',
+      avisoIaedu: 'Para escrever e rever texto, a Eunomia usa a IAedu, o serviço de IA da FCT/FCCN para o ensino superior; não precisa de conta: a Eunomia usa a chave da FMUP. A IAedu recebe as suas respostas à entrevista, os materiais que colar e o texto das secções. Não escreva dados de doentes nem de estudantes: todos os casos devem ser fictícios.',
       avisoServidorTitulo: 'O que o servidor da Eunomia guarda',
       avisoServidor: 'O seu nome e uma impressão digital (hash) do código de acesso, nunca o código. Os seus rascunhos. O número de pedidos ao modelo em cada dia. Os registos do servidor nunca guardam o texto dos rascunhos. Se usar a sua própria chave IAedu, o servidor não a guarda. ' + O_QUE_VE,
       avisoPrazoTitulo: 'Durante quanto tempo',
