@@ -300,7 +300,7 @@ test('routes: create, list, answer, approve; an old rev returns 409', async (t) 
   assert.match(early.json.erro, /objectivo/i);
 });
 
-test('routes: a teacher reading another teacher draft gets 404; an admin gets 200', async (t) => {
+test('routes: a teacher reading another teacher draft gets 404; an admin gets 200 only once it is submitted', async (t) => {
   const app = await startApp(t);
   const ana = await app.person('Ana Docente');
   const rui = await app.person('Rui Docente');
@@ -309,6 +309,10 @@ test('routes: a teacher reading another teacher draft gets 404; an admin gets 20
 
   assert.equal((await app.call('GET', `/rascunhos/${id}`, { cookie: rui.cookie })).status, 404);
   assert.equal((await app.call('PUT', `/rascunhos/${id}/respostas/contexto`, { cookie: rui.cookie, body: { rev: 1, valor: {} } })).status, 404);
+  // An admin does not see a draft in rascunho (0.3); once it is submitted the admin does.
+  assert.equal((await app.call('GET', `/rascunhos/${id}`, { cookie: tiago.cookie })).status, 404);
+  const stored = app.store.read(`rascunhos/${ana.id}/${id}.json`);
+  app.store.write(`rascunhos/${ana.id}/${id}.json`, { ...stored, estado: 'submetida' });
   const admin = await app.call('GET', `/rascunhos/${id}`, { cookie: tiago.cookie });
   assert.equal(admin.status, 200);
   assert.equal(admin.json.rascunho.id, id);

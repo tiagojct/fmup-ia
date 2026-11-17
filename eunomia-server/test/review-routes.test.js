@@ -158,7 +158,11 @@ test('opiniao follows the rules of every draft write: rev, author, state', async
   assert.equal(stale.status, 409);
   assert.equal(stale.json.motivo, 'rev');
   assert.equal((await app.call('POST', route, { cookie: rui.cookie, body: { rev: d.rev, util: true } })).status, 404);
-  assert.equal((await app.call('POST', route, { cookie: admin.cookie, body: { rev: d.rev, util: true } })).status, 403);
+  // An admin does not see a draft in rascunho (0.3): 404. A returned draft is visible to the admin, who is not the author: 403.
+  assert.equal((await app.call('POST', route, { cookie: admin.cookie, body: { rev: d.rev, util: true } })).status, 404);
+  const returned = put(app, ana, { estado: 'devolvida' });
+  const returnedRoute = `/rascunhos/${returned.id}/seccoes/objectivo/opiniao`;
+  assert.equal((await app.call('POST', returnedRoute, { cookie: admin.cookie, body: { rev: returned.rev, util: true } })).status, 403);
   assert.equal((await app.call('POST', route, { body: { rev: d.rev, util: true } })).status, 401);
   assert.equal((await app.call('POST', route, { cookie: ana.cookie, csrf: false })).status, 403);
 
@@ -334,19 +338,20 @@ test('GET /revisao lists the submitted drafts of every teacher, oldest first; a 
   assert.equal((await app.call('GET', '/revisao')).status, 401);
 });
 
-test('aprovar sets aprovada and revisao.decisao; a rascunho is 409 estado; a stale rev is 409 rev', async (t) => {
+test('aprovar sets aprovada and revisao.decisao; a draft that is not waiting is 409 estado; a stale rev is 409 rev', async (t) => {
   const app = await startApp(t, { now: () => T });
   const ana = await app.person('Ana Docente');
   const admin = await app.person('Tiago Jacinto', 'admin');
   const waiting = put(app, ana, { estado: 'submetida', submetida: NOW, rev: 3 });
-  const open = put(app, ana);
+  // Not waiting, and visible to the admin (a draft in rascunho is 404 for the admin: colegas.test.js).
+  const open = put(app, ana, { estado: 'devolvida' });
   const aprovar = (d, rev = d.rev) => app.call('POST', `/revisao/${d.id}/aprovar`, { cookie: admin.cookie, body: { rev } });
 
   const notWaiting = await aprovar(open);
   assert.equal(notWaiting.status, 409);
   assert.equal(notWaiting.json.motivo, 'estado');
   assert.equal(notWaiting.json.erro, 'Esta actividade não está à espera de revisão.');
-  assert.equal(stored(app, ana, open).estado, 'rascunho');
+  assert.equal(stored(app, ana, open).estado, 'devolvida');
 
   const stale = await aprovar(waiting, 2);
   assert.equal(stale.status, 409);

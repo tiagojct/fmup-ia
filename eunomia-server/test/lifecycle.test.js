@@ -149,6 +149,10 @@ test('another teacher gets 404 on duplicar and DELETE; an admin gets 403', async
   const d = storedDraft(app, ana);
   assert.equal((await app.call('POST', `/rascunhos/${d.id}/duplicar`, { cookie: rui.cookie })).status, 404);
   assert.equal((await app.call('DELETE', `/rascunhos/${d.id}`, { cookie: rui.cookie, body: { rev: d.rev } })).status, 404);
+  // An admin does not see a draft in rascunho (0.3): 404. After a return the admin sees it, and is not the author: 403.
+  assert.equal((await app.call('POST', `/rascunhos/${d.id}/duplicar`, { cookie: tiago.cookie })).status, 404);
+  assert.equal((await app.call('DELETE', `/rascunhos/${d.id}`, { cookie: tiago.cookie, body: { rev: d.rev } })).status, 404);
+  app.store.write(`rascunhos/${ana.user.id}/${d.id}.json`, { ...d, estado: 'devolvida' });
   const dup = await app.call('POST', `/rascunhos/${d.id}/duplicar`, { cookie: tiago.cookie });
   assert.equal(dup.status, 403);
   assert.equal(dup.json.erro, 'Só o autor pode duplicar este rascunho.');

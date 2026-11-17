@@ -6,8 +6,9 @@
 // that the rules of every draft write (rev, author only, editable state, text checks) stay in one
 // place.
 //
-// A submitted draft is read-only (isEditable). The admin reads any draft through the ordinary
-// routes (GET /rascunhos/:id, exportar); the routes below only decide. An approved draft stays
+// A submitted draft is read-only (isEditable). The admin reads a submitted draft through the
+// ordinary routes (GET /rascunhos/:id, exportar), and never a draft that is still in rascunho: that
+// is 404 (readable in draft-routes.js). The routes below only decide. An approved draft stays
 // read-only; a returned one is editable again and carries revisao.comentario until the next
 // submission removes it.
 //
@@ -99,7 +100,8 @@ function registerReviewRoutes(
     'admin',
   );
 
-  // The draft that a decision acts on: any author's, submitted, at the rev the admin saw.
+  // The draft that a decision acts on: any author's, submitted, at the rev the admin saw. A draft that
+  // the admin may not read yet (readable) is 404 here too.
   function reviewable(ctx) {
     const d = readable(ctx);
     if (d.estado !== 'submetida') throw new HttpError(409, NOT_WAITING, {}, { motivo: 'estado' });

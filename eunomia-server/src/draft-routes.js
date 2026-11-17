@@ -4,7 +4,8 @@
 // registerRoutes in server.js; helpers = { HttpError, requireCreds, sendJson }.
 //
 // Concurrency: every write sends the rev it read. A different rev is 409, so two windows on the same
-// draft cannot overwrite each other. Only the author writes a draft; an admin may read any draft.
+// draft cannot overwrite each other. Only the author writes a draft. An admin reads the draft of
+// another author only after the author has submitted it (see readable).
 //
 // Lifecycle (spec D3, D4): POST /rascunhos makes an empty draft, or with { exemplo: 1..6 } a draft
 // with the answers of that example (plan not approved). POST /rascunhos/:id/duplicar copies the
@@ -44,6 +45,9 @@ const PERSONAL_DATA_MIN = 200;
 const MAX_DRAFTS = 100;
 const TOO_MANY = `Atingiu o máximo de ${MAX_DRAFTS} rascunhos. Continue um dos rascunhos que já tem, ou apague os que já não usa.`;
 const NOT_FOUND = 'Rascunho não encontrado.';
+// The states in which an admin may read the draft of another author: the author has submitted it.
+// In any other state the admin gets 404, as for a draft that does not exist.
+const ADMIN_READS = ['submetida', 'aprovada', 'devolvida'];
 const NO_EXAMPLE = 'Exemplo desconhecido.';
 const SUBMITTED = 'Uma actividade submetida para revisão não pode ser apagada.';
 // The time budget of one request that calls the model, retry included: below the 100 s after which
@@ -84,10 +88,14 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
     ...extra,
   });
 
-  // The draft for reading: the author's own, or any draft for an admin.
+  // The draft for reading: the author's own, or for an admin the draft of another author once it is
+  // submitted (ADMIN_READS). Before that the admin gets the 404 of a missing draft, so that the admin
+  // cannot tell that it exists. Every route that reads or acts on a draft goes through this function,
+  // also through owned, writable and authorOnly.
   function readable(ctx) {
     const d = drafts.findDraft(store, ctx.user, ctx.params.id);
     if (!d) throw new HttpError(404, NOT_FOUND);
+    if ((d.autor || {}).id !== ctx.user.id && !ADMIN_READS.includes(d.estado)) throw new HttpError(404, NOT_FOUND);
     return d;
   }
 
@@ -310,8 +318,7 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
   route('GET', '/padroes', (req, res, ctx) => {
     const id = ctx.query.get('rascunho');
     if (!id) return { padroes: CATALOGUE };
-    const d = drafts.findDraft(store, ctx.user, id);
-    if (!d) throw new HttpError(404, 'Rascunho não encontrado.');
+    const d = readable({ user: ctx.user, params: { id } });
     const padroes = filterPatterns(d.respostas, CATALOGUE);
     return padroes.length < 2 ? { padroes, nota: FEW_PATTERNS } : { padroes };
   });
