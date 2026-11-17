@@ -107,7 +107,9 @@ test('Propor respostas: POST { texto }, then the first step with the note, the f
   assert.equal(a.$('#marca-proposto').textContent, S.adaptar.marca);
   assert.equal(a.$('#campo-uc').value, ANSWERS.contexto.uc, 'the proposed answer is in the form');
 
-  // Saving the step removes its mark; the other proposed step keeps it.
+  // Saving the step removes its mark; the other proposed step keeps it. The old page is also a
+  // "passo" page: mark it as gone, so that page('passo') waits for the new one (as harness go does).
+  a.$('#main').dataset.pagina = 'teste-a-navegar';
   a.$('#guardar-passo').click();
   await a.waitFor(() => /\/passo\/objectivo$/.test(a.w.location.hash), 'next step');
   await a.page('passo');
