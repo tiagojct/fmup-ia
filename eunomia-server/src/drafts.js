@@ -223,7 +223,7 @@ function stepWarnings(stepId, v, respostas) {
   }
   if (stepId === 'objectivo' && typeof v.texto === 'string' && !checkOutcomeVerb(v.texto).ok) {
     return [
-      'O objectivo não tem um verbo observável (por exemplo conduzir, identificar ou justificar). Pode mantê-lo, mas a avaliação fica mais difícil de desenhar.',
+      'Experimente começar o objectivo por um verbo que se observa, como identificar, explicar ou justificar. Pode manter o seu texto.',
     ];
   }
   return [];

@@ -88,12 +88,12 @@ test('Ver exemplo is a details element with the answers and titles of the exampl
   assert.equal(api.calls.filter((c) => /exemplos/.test(c.path)).length, 0);
 });
 
-test('Erros comuns lists the items of interview.json for the step', async (t) => {
+test('Dicas lists the items of interview.json for the step', async (t) => {
   const a = await boot(t, { api: new FakeApi({ user: TEACHER, draft: makeDraft() }), hash: `#/rascunho/${DRAFT_ID}/passo/objectivo` });
   await a.page('passo');
   const box = a.$('details.eu-erros-comuns');
   assert.ok(box);
-  assert.equal(box.querySelector('summary').textContent, 'Erros comuns');
+  assert.equal(box.querySelector('summary').textContent, 'Dicas');
   assert.equal(box.querySelector('summary').textContent, S.passo.errosComuns);
   assert.deepEqual([...box.querySelectorAll('ul > li')].map((li) => li.textContent), step('objectivo').erros_comuns);
   assert.equal(box.open, false, 'closed by default');

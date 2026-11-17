@@ -7,9 +7,10 @@
       "titulo": "Contexto da actividade",
       "minutos": 3,
       "erros_comuns": [
-        "Pôr na duração o tempo da aula inteira. Indique só o tempo desta actividade.",
-        "Contar todos os inscritos quando a actividade corre por turmas. Indique os estudantes de uma sessão.",
-        "Escolher «Em aula» para trabalho feito em casa: o catálogo deixa de propor os padrões de trabalho autónomo."
+        "Indique só o tempo desta actividade, não o da aula inteira.",
+        "Se a actividade corre por turmas, indique os estudantes de uma sessão.",
+        "Para trabalho que os estudantes fazem em casa, escolha «Trabalho autónomo» ou «Misto»: assim o catálogo propõe os padrões de trabalho autónomo.",
+        "Se a sua área não está na lista, escolha «Outra» e escreva qual é."
       ],
       "porque": "O número de estudantes, o tempo e o lugar decidem que padrões são viáveis. A área indica se o Anexo I tem um perfil disciplinar que oriente a avaliação.",
       "ligacao": {
@@ -119,10 +120,9 @@
       "titulo": "Objectivo de aprendizagem",
       "minutos": 5,
       "erros_comuns": [
-        "Usar compreender, saber ou conhecer. Não se observam: escreva o que o estudante faz no fim, por exemplo identificar ou justificar.",
-        "Descrever o que o docente faz (apresentar um caso) e não o que o estudante faz.",
-        "Pôr na competência protegida tudo o que a actividade treina. É só a parte que o estudante faz sem ajuda.",
-        "Juntar vários objectivos numa frase. Uma actividade de uma aula treina um."
+        "Escreva o objectivo do lado do estudante: o que ele faz no fim da actividade.",
+        "No campo do que o estudante tem de fazer sem ajuda, ponha só a parte que ele faz sozinho. O resto do que a actividade treina cabe no objectivo.",
+        "Fique com um objectivo por actividade: numa aula, há tempo para treinar um."
       ],
       "porque": "Um verbo observável diz o que o estudante faz no fim, e é isso que a actividade treina e a avaliação verifica. A competência protegida é a parte que o estudante tem de fazer sem ajuda, como pede o pilar Ser sem IA do Quadro.",
       "ligacao": {
@@ -136,15 +136,15 @@
           "tipo": "texto_longo",
           "obrigatorio": true,
           "max": 1000,
-          "ajuda": "Escreva o que o estudante faz no fim da actividade, com um verbo observável: conduzir, identificar, justificar. Compreender, saber e conhecer não se observam."
+          "ajuda": "Escreva o que o estudante faz no fim da actividade. Por exemplo: conduzir uma anamnese estruturada."
         },
         {
           "id": "competencia_protegida",
-          "rotulo": "Competência protegida",
+          "rotulo": "O que o estudante tem de fazer sem ajuda (competência protegida)",
           "tipo": "texto_longo",
           "obrigatorio": true,
           "max": 1500,
-          "ajuda": "O que o estudante tem de fazer sem ajuda, nem da IA nem dos colegas."
+          "ajuda": "A parte do objectivo que o estudante faz sozinho, sem a IA e sem os colegas."
         },
         {
           "id": "competencia",
@@ -161,11 +161,11 @@
       "titulo": "Evidência e avaliação",
       "minutos": 3,
       "erros_comuns": [
-        "Indicar uma evidência que não mostra o objectivo, por exemplo um teste de escolha múltipla para avaliar a argumentação.",
-        "Marcar «Sumativa» numa actividade que não conta para a classificação. A sumativa pede ainda a cláusula da avaliação, num passo mais à frente.",
-        "Não dizer quem observa nem o que regista durante a actividade."
+        "Escolha uma evidência que mostre o objectivo. Se o objectivo é argumentar, peça um argumento, oral ou escrito.",
+        "Marque «Sumativa» só se a actividade conta para a classificação. Nesse caso, a entrevista pede também a regra de IA para o enunciado.",
+        "Diga quem observa e o que regista durante a actividade."
       ],
-      "porque": "A evidência tem de mostrar o objectivo: se o objectivo é conduzir uma entrevista, um texto escrito em casa não o mostra. Uma actividade sumativa precisa ainda de uma cláusula para o enunciado, que um passo seguinte prepara.",
+      "porque": "A evidência tem de mostrar o objectivo: se o objectivo é conduzir uma entrevista, um texto escrito em casa não o mostra. Uma actividade sumativa precisa ainda de uma regra de IA no enunciado (cláusula), que um passo seguinte prepara.",
       "ligacao": {
         "rotulo": "Vertente Docentes: redesenho da avaliação",
         "url": "https://tiagojacinto.eu/fmup-ia/quadro/04-docentes.html"
@@ -207,12 +207,13 @@
     },
     {
       "id": "papel_ia",
-      "titulo": "Papel da IA",
+      "titulo": "O que a IA faz nesta actividade (papel da IA)",
       "minutos": 1,
       "erros_comuns": [
-        "Confundir o papel com o regime. O papel diz o que a IA faz na actividade; o regime diz o que os estudantes podem fazer com ela.",
-        "Escolher «Ferramenta» quando os estudantes só lêem um texto gerado antes da aula. Esse papel é «Objecto de crítica».",
-        "Indicar uma ferramenta que a Universidade do Porto não aprovou. Por omissão, a IAedu."
+        "Aqui, indique o que a IA faz na actividade. O que os estudantes podem fazer com ela escolhe-se no passo seguinte.",
+        "Se os estudantes só lêem e avaliam um texto que a IA gerou antes da aula, escolha «Objecto de crítica».",
+        "Se a actividade não usa IA, escolha «Nenhum». É um resultado tão válido como os outros.",
+        "Na ferramenta, deixe a IAedu, o serviço de IA da FCT/FCCN para o ensino superior, ou indique outra que a Universidade do Porto tenha aprovado."
       ],
       "porque": "O papel da IA muda o desenho da actividade e as armadilhas a prever. As seis fichas de formação mostram um exemplo de cada papel.",
       "ligacao": {
@@ -225,6 +226,7 @@
           "rotulo": "Papel da IA nesta actividade",
           "tipo": "escolha",
           "obrigatorio": true,
+          "ajuda": "Escolha o que a IA faz durante a actividade, ou «Nenhum» se a actividade não a usa.",
           "opcoes": [
             { "id": "nenhum", "rotulo": "Nenhum: a actividade não usa IA" },
             { "id": "contraparte", "rotulo": "Contraparte: a IA assume um papel, por exemplo um doente ou um oponente" },
@@ -244,12 +246,12 @@
     },
     {
       "id": "regime",
-      "titulo": "Regime de IA para os estudantes",
+      "titulo": "O que os estudantes podem fazer com IA (regime de IA)",
       "minutos": 2,
       "erros_comuns": [
-        "Escolher «permitido com condições» e escrever condições vagas, como uso moderado. Diga quando, para quê e com que registo.",
-        "Escolher «proibido» numa actividade em que os estudantes usam a IA por desenho.",
-        "Deixar o regime só na ficha do docente. Os estudantes têm de o ler no enunciado da actividade."
+        "Com «permitido com condições», escreva condições concretas: quando, para quê e com que registo os estudantes usam a IA.",
+        "Se a actividade pede aos estudantes que usem a IA, escolha «permitido» ou «permitido com condições».",
+        "Escreva o regime também no enunciado da actividade, para que os estudantes o leiam."
       ],
       "porque": "O regime diz o que os estudantes podem fazer com IA durante esta actividade. Segue o semáforo da U.Porto, que o Anexo B do Quadro traduz em cláusulas.",
       "ligacao": {
@@ -262,6 +264,7 @@
           "rotulo": "Regime",
           "tipo": "escolha",
           "obrigatorio": true,
+          "ajuda": "Escolha o que os estudantes podem fazer com IA durante esta actividade, segundo o semáforo da U.Porto: verde, amarelo ou vermelho.",
           "opcoes": [
             { "id": "permitido", "rotulo": "verde: permitido" },
             { "id": "condicionado", "rotulo": "amarelo: permitido com condições" },
@@ -281,15 +284,15 @@
     },
     {
       "id": "regime_themis",
-      "titulo": "Cláusula para a avaliação",
+      "titulo": "A regra de IA no enunciado da avaliação (cláusula)",
       "minutos": 3,
       "erros_comuns": [
-        "Escolher uma política diferente do regime sem querer. A Eunomia avisa: confirme que é intencional.",
-        "Marcar todos os tipos de trabalho. Marque só os que esta avaliação pede.",
-        "Marcar «Outro» e deixar o tipo de trabalho por especificar."
+        "Use a política que corresponde ao regime. Se escolher outra, a Eunomia avisa: confirme que é o que quer.",
+        "Marque só os tipos de trabalho que esta avaliação pede.",
+        "Se marcar «Outro», escreva qual é o tipo de trabalho."
       ],
       "condicao": { "passo": "evidencia", "campo": "avaliacao", "igual": "sumativa" },
-      "porque": "Uma actividade sumativa precisa de uma cláusula no enunciado. A Eunomia gera-a com as regras da Themis, a partir do tipo de trabalho e da política que escolher, e junta os avisos da política.",
+      "porque": "Uma actividade sumativa precisa de uma regra de IA no enunciado, a cláusula. A Eunomia gera-a com as regras da Themis (a outra ferramenta do FMUP · IA, que escreve a regra de IA para o enunciado de um trabalho), a partir do tipo de trabalho e da política que escolher, e junta os avisos da política.",
       "ligacao": {
         "rotulo": "Themis",
         "url": "https://tiagojacinto.eu/fmup-ia/themis/"
@@ -338,12 +341,12 @@
     },
     {
       "id": "padrao",
-      "titulo": "Padrão de actividade",
+      "titulo": "A forma da actividade (padrão)",
       "minutos": 4,
       "erros_comuns": [
-        "Escolher pelo nome sem ler «Quando não serve».",
-        "Ignorar a adequação parcial. O padrão pede mais tempo ou outro lugar, e as fases têm de ser adaptadas.",
-        "Mudar o formato de grupo sem rever o tempo de cada fase."
+        "Antes de escolher, leia «Quando não serve» de cada padrão.",
+        "Se um padrão tem «Adequação parcial», adapte as fases ao seu tempo ou ao lugar da actividade.",
+        "Se mudar o formato de grupo, reveja o tempo de cada fase."
       ],
       "porque": "Um padrão é um mecanismo já usado, com armadilhas conhecidas. A Eunomia propõe dois ou três do catálogo, filtrados pelas respostas anteriores, e a escolha é sua.",
       "ligacao": {
@@ -373,10 +376,10 @@
       "titulo": "Materiais (opcional)",
       "minutos": 2,
       "erros_comuns": [
-        "Colar casos reais com nome, idade e datas. Use só casos fictícios.",
-        "Colar o programa inteiro da unidade curricular. Basta o texto que serve esta actividade."
+        "Use só casos fictícios, sem nomes, idades ou datas reais.",
+        "Cole só o texto que serve esta actividade, por exemplo o caso e as perguntas aos estudantes."
       ],
-      "porque": "Os materiais da unidade curricular dão ao modelo o vocabulário e os casos da sua área. O texto vai para a IAedu, por isso não pode ter dados de doentes nem de estudantes.",
+      "porque": "Os materiais da unidade curricular dão ao modelo o vocabulário e os casos da sua área. O texto vai para a IAedu, o serviço de IA da FCT/FCCN para o ensino superior (não precisa de conta: a Eunomia usa a chave da FMUP), por isso não pode ter dados de doentes nem de estudantes.",
       "ligacao": {
         "rotulo": "Princípio 3. Protecção de dados e confidencialidade",
         "url": "https://tiagojacinto.eu/fmup-ia/quadro/02-principios.html#principio-3-protecao-dados"
@@ -397,9 +400,9 @@
       "titulo": "Plano",
       "minutos": 3,
       "erros_comuns": [
-        "Aprovar o plano sem o ler. O modelo escreve a partir dele e não corrige uma decisão errada.",
-        "Pôr nas notas uma decisão que contradiz um passo, por exemplo outro regime. Volte ao passo e altere-o.",
-        "Dar um título genérico, como Actividade com IA. O título diz o que os estudantes fazem."
+        "Leia o plano antes de o aprovar. O modelo escreve a partir dele e segue as decisões tal como estão.",
+        "Para mudar uma decisão, volte ao passo e altere-o. Use as notas para indicações de redacção.",
+        "Dê à ficha um título que diga o que os estudantes fazem."
       ],
       "porque": "O plano reúne numa página as decisões dos passos anteriores. Nenhuma secção é escrita antes de o aprovar, porque o modelo escreve a partir das suas decisões e não as toma por si.",
       "ligacao": {

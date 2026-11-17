@@ -241,7 +241,7 @@ test('an outcome without an observable verb is kept, with a warning', () => {
   const r = applyAnswer(d, 'objectivo', { texto: 'Compreender a anamnese', competencia_protegida: 'A recolha.', competencia: 'Anamnese' });
   assert.deepEqual(r.errors, []);
   assert.equal(r.draft.respostas.objectivo.texto, 'Compreender a anamnese');
-  assert.match(r.avisos.join(' '), /verbo observável/);
+  assert.deepEqual(r.avisos, ['Experimente começar o objectivo por um verbo que se observa, como identificar, explicar ou justificar. Pode manter o seu texto.']);
 });
 
 test('approvePlan refuses a draft with missing steps', () => {

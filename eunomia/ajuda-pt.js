@@ -5,6 +5,11 @@
 (function () {
   'use strict';
 
+  // The status of the tool and what Tiago sees: the same text as S.app.estado and S.app.oQueVe in
+  // i18n-pt.js (test: content.test.js). This file loads on its own, so it keeps its own copy.
+  var ESTADO = 'A Eunomia é uma ferramenta desenvolvida por Tiago Jacinto (MEDCIDS) como proposta, para testar, melhorar e construir com colegas. Não é uma ferramenta oficial da FMUP. O uso é voluntário.';
+  var O_QUE_VE = 'Tiago Jacinto vê o seu nome, quantos rascunhos tem e em que estado, quantos pedidos faz ao modelo e as opiniões que deixar em «Foi útil?». A Eunomia só lhe mostra o texto de uma actividade depois de a submeter para revisão. A revisão é opcional e não é uma avaliação do seu trabalho.';
+
   window.EUNOMIA_AJUDA = {
     pagina: 'Ajuda',
     titulo: 'Ajuda da Eunomia',
@@ -12,18 +17,25 @@
     oQueE: {
       titulo: 'O que é a Eunomia',
       paragrafos: [
-        'A Eunomia ajuda a desenhar uma actividade de ensino com IA, ou uma actividade que deixa a IA de fora por decisão sua. Faz as perguntas que um colega com experiência faria, propõe padrões de actividade já usados e escreve a ficha da actividade no formato das seis fichas de formação do FMUP · IA.',
+        'A Eunomia ajuda a desenhar uma actividade de ensino com IA, ou uma actividade que deixa a IA de fora por decisão sua. Uma actividade sem IA também é um resultado válido. A Eunomia faz as perguntas que um colega com experiência faria, propõe padrões de actividade já usados e escreve a ficha da actividade no formato das seis fichas de formação do FMUP · IA.',
         'As decisões são suas. O modelo de linguagem escreve o texto das secções a partir do plano que aprovar. O regime de IA, as referências e a declaração de uso vêm do código, nunca do modelo.',
         'Se nunca usou a Eunomia, veja primeiro uma actividade de exemplo: mostra, passo a passo, as respostas que levam a uma ficha e porque foram escolhidas. Há sete exemplos: seis seguem as fichas de formação e um mostra uma actividade sem IA.',
+        ESTADO,
       ],
     },
 
     antes: {
       titulo: 'Antes de começar',
+      // Shown first in this section, with a link to the Themis (../themis/).
+      themis: {
+        texto: 'Se só precisa da regra de IA para um trabalho avaliado, use a Themis, a outra ferramenta do FMUP · IA, que escreve a regra de IA para o enunciado de um trabalho. Leva cerca de 5 minutos, não pede código e não guarda nada.',
+        link: 'Abrir a Themis',
+        url: '../themis/',
+      },
       paragrafos: [
         'Precisa do código de acesso que recebeu por email. A sessão dura 12 horas; depois, entre de novo com o mesmo código.',
         'Reserve cerca de 45 minutos para a primeira actividade: perto de 25 para a entrevista e o plano, o resto para rever as secções e descarregar a ficha. Pode parar a meio, porque o rascunho fica guardado.',
-        'Não escreva dados de doentes nem de estudantes em nenhum campo. As respostas, os materiais e o texto das secções vão para a IAedu, o serviço de IA da FCT/FCCN, por isso os casos têm de ser fictícios. Quando um texto parece ter dados pessoais, a Eunomia mostra o que encontrou e pede confirmação antes de o guardar.',
+        'Não escreva dados de doentes nem de estudantes em nenhum campo. As respostas, os materiais e o texto das secções vão para a IAedu, o serviço de IA da FCT/FCCN para o ensino superior; não precisa de conta: a Eunomia usa a chave da FMUP. Por isso, os casos têm de ser fictícios. Quando um texto parece ter dados pessoais, a Eunomia mostra o que encontrou e pede confirmação antes de o guardar.',
       ],
     },
 
@@ -35,8 +47,8 @@
         {
           id: 'entrevista',
           titulo: 'Entrevista',
-          docente: 'Responde, passo a passo, sobre o contexto, o objectivo, a evidência, o papel da IA, o regime de IA, a cláusula da avaliação (só numa actividade sumativa), o padrão e os materiais. Cada passo diz porque pergunta, com erros comuns e respostas de exemplo.',
-          modelo: 'Só quando o pede: propõe versões mais precisas do objectivo e explica porque serve cada padrão proposto. Os padrões propostos são escolhidos pelo código, a partir das suas respostas.',
+          docente: 'Responde, passo a passo, sobre o contexto, o objectivo, a evidência, o que a IA faz (papel da IA), o que os estudantes podem fazer com IA (regime de IA), a regra de IA no enunciado da avaliação (cláusula, só numa actividade sumativa), a forma da actividade (padrão) e os materiais. Cada passo diz porque pergunta, com dicas e respostas de exemplo. Se começar com «Adaptar uma actividade que já faço», cola o texto de uma actividade sua e revê cada passo que o modelo preencheu.',
+          modelo: 'Só quando o pede: propõe versões mais precisas do objectivo e explica porque serve cada padrão proposto. Os padrões propostos são escolhidos pelo código, a partir das suas respostas. Ao adaptar uma actividade, propõe respostas para os primeiros cinco passos a partir do seu texto.',
         },
         {
           id: 'plano',
@@ -61,10 +73,13 @@
 
     glossario: {
       titulo: 'Glossário',
+      // The line with comum, the common-words title of the step or field in the interview.
+      rotuloComum: function (comum) { return 'Na entrevista: «' + comum + '».'; },
       termos: [
         {
           id: 'regime',
           termo: 'Regime de IA',
+          comum: 'O que os estudantes podem fazer com IA',
           texto: 'O que os estudantes podem fazer com IA durante a actividade. Segue o semáforo da Universidade do Porto, com três valores. No regime amarelo, as condições dizem quando, para quê e com que registo os estudantes usam a IA.',
           valores: [
             { id: 'permitido', rotulo: 'verde: permitido' },
@@ -79,6 +94,7 @@
         {
           id: 'papel',
           termo: 'Papel da IA',
+          comum: 'O que a IA faz nesta actividade',
           texto: 'O que a IA faz na actividade. O que os estudantes podem fazer com ela é o regime, uma escolha separada. As seis fichas de formação têm exemplos dos três papéis com IA.',
           valores: [
             { id: 'nenhum', rotulo: 'Nenhum: a actividade não usa IA' },
@@ -94,6 +110,7 @@
         {
           id: 'padrao',
           termo: 'Padrão de actividade',
+          comum: 'A forma da actividade',
           texto: 'Um mecanismo de aula já usado, com duração típica, formato de grupo e armadilhas conhecidas. O catálogo tem doze padrões, seis com IA e seis sem IA. A Eunomia propõe dois ou três que servem o papel da IA e o tempo que indicou.',
           ligacao: {
             rotulo: 'Fichas de actividade: como escolher',
@@ -103,6 +120,7 @@
         {
           id: 'competencia_protegida',
           termo: 'Competência protegida',
+          comum: 'O que o estudante tem de fazer sem ajuda',
           texto: 'A parte do objectivo que o estudante tem de fazer sem ajuda, nem da IA nem dos colegas. A actividade e a avaliação são desenhadas para a preservar, como pede o pilar Ser sem IA do Quadro.',
           ligacao: {
             rotulo: 'Princípios orientadores: os três pilares',
@@ -112,6 +130,7 @@
         {
           id: 'clausula_themis',
           termo: 'Cláusula Themis',
+          comum: 'A regra de IA no enunciado da avaliação',
           texto: 'O texto que o enunciado de uma actividade sumativa traz para dizer como a IA pode ser usada no trabalho avaliado. A Eunomia gera-o com as regras da Themis, a partir do tipo de trabalho e da política, e junta os avisos da política.',
           ligacao: {
             rotulo: 'Anexo B. Modelo de cláusula',
@@ -165,8 +184,13 @@
         },
         {
           id: 'quem_ve',
-          pergunta: 'Quem vê os meus rascunhos?',
-          resposta: 'O autor e o responsável da Eunomia, Tiago Jacinto, que pode abrir um rascunho para dar apoio. Os outros docentes não os vêem. Tiago Jacinto vê também as opiniões que deixar em «Foi útil?» e as actividades que submeter para revisão. Os registos do servidor não guardam o texto dos rascunhos.',
+          pergunta: 'O que vê o Tiago Jacinto?',
+          resposta: O_QUE_VE + ' Os outros docentes não vêem os seus rascunhos, e os registos do servidor não guardam o texto dos rascunhos.',
+        },
+        {
+          id: 'adaptar',
+          pergunta: 'Posso partir de uma actividade que já faço?',
+          resposta: 'Sim. Na página inicial, use «Adaptar uma actividade que já faço» e cole o enunciado ou a descrição da actividade. O modelo lê o texto e propõe respostas para os primeiros cinco passos da entrevista: o contexto, o objectivo, a evidência, o que a IA faz e o que os estudantes podem fazer com IA. Tem instruções para usar só o que o texto diz, por isso alguns passos podem ficar por responder. Depois, reveja cada passo: as decisões são suas, e o plano fica por aprovar. O texto vai para a IAedu, por isso não pode ter dados de doentes nem de estudantes. Fica guardado inteiro nos materiais do rascunho; o modelo lê os primeiros 20 000 caracteres.',
         },
         {
           id: 'word_moodle',

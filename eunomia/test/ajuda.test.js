@@ -224,5 +224,24 @@ test('the invitation copy is in European Portuguese with the Quadro spelling and
   assert.doesNotMatch(text, /\batividade|\bobjetivo|\balunos?\b|\bpacientes?\b|\bcorreção/i);
   assert.doesNotMatch(text, /[☀-➿\u{1F000}-\u{1FAFF}️]/u);
   assert.match(text, /45 minutos/);
+  assert.match(text, /A primeira actividade leva cerca de 45 minutos/);
   assert.match(text, /dados de doentes/);
+});
+
+test('the help page shows the Themis line with its link, the common-words title of five glossary terms and the two new questions', async (t) => {
+  const a = await boot(t, { hash: '#/ajuda' });
+  await a.page('ajuda');
+  const themis = a.$('#ajuda-antes #ajuda-themis');
+  assert.ok(themis, 'Themis line in Antes de começar');
+  assert.ok(themis.textContent.includes(A.antes.themis.texto));
+  const link = themis.querySelector('a');
+  assert.equal(link.getAttribute('href'), '../themis/');
+  assert.equal(link.textContent, A.antes.themis.link);
+  for (const term of A.glossario.termos.filter((x) => x.comum)) {
+    const dd = a.$(`#ajuda-termo-${term.id}`).nextElementSibling;
+    assert.equal(dd.querySelector('.eu-glossario-comum').textContent, A.glossario.rotuloComum(term.comum));
+  }
+  assert.equal(a.$$('.eu-glossario-comum').length, 5);
+  for (const id of ['quem_ve', 'adaptar']) assert.ok(a.$(`#ajuda-pergunta-${id}`), id);
+  assert.equal(a.$('#ajuda-pergunta-quem_ve').textContent, 'O que vê o Tiago Jacinto?');
 });

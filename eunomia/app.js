@@ -548,7 +548,7 @@
       }));
   }
 
-  // "Erros comuns": the short items of interview.json erros_comuns for this step.
+  // "Dicas": the short items of interview.json erros_comuns for this step, written as advice.
   function commonErrors(step) {
     var items = Array.isArray(step.erros_comuns) ? step.erros_comuns : [];
     if (items.length === 0) return null;
@@ -809,6 +809,7 @@
       return [
         el('dt', { id: 'ajuda-termo-' + term.id, text: term.termo }),
         el('dd', null,
+          term.comum ? el('p', { class: 'eu-glossario-comum', text: A.glossario.rotuloComum(term.comum) }) : null,
           el('p', { text: term.texto }),
           term.valores ? el('ul', null, term.valores.map(function (v) { return el('li', { text: v.rotulo }); })) : null,
           el('p', null, externalLink(term.ligacao.rotulo, term.ligacao.url))),
@@ -823,7 +824,8 @@
       el('h2', { class: 'step-title', text: A.titulo }),
       openBack(),
       section('oQueE', paragraphs(A.oQueE.paragrafos)),
-      section('antes', paragraphs(A.antes.paragrafos)),
+      section('antes', [el('p', { id: 'ajuda-themis' }, A.antes.themis.texto, ' ', link(A.antes.themis.link, A.antes.themis.url))]
+        .concat(paragraphs(A.antes.paragrafos))),
       section('etapas', stages),
       section('glossario', glossary),
       section('perguntas', faq),

@@ -260,7 +260,7 @@ test('7: a step that became due after approval blocks the export with 409 naming
   const r = await app.call('GET', `${url}/exportar?formato=qmd`, { cookie: ana.cookie });
   assert.equal(r.status, 409);
   assert.equal(r.json.motivo, 'passo');
-  assert.match(r.json.erro, /Cláusula para a avaliação/);
+  assert.ok(r.json.erro.includes('A regra de IA no enunciado da avaliação (cláusula)'), r.json.erro);
 });
 
 // ---------------------------------------------------------------- 8. dependencies

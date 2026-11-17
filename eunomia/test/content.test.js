@@ -100,3 +100,113 @@ test('the help has no emoji and uses the Quadro spelling', () => {
   assert.doesNotMatch(src, /[☀-➿\u{1F000}-\u{1FAFF}️]/u);
   assert.doesNotMatch(src, /\batividade|\bobjetivo|\balunos?\b|\bpacientes?\b|\bdireto\b|\bcorreção/i);
 });
+
+// ---------------------------------------------------------------- 0.3: plain labels, tips, help for colleagues
+
+const STEP = (id) => INTERVIEW.passos.find((p) => p.id === id);
+
+test('the step titles and the protected-skill label say what is asked, with the Quadro term in parentheses (spec 4)', () => {
+  assert.equal(STEP('papel_ia').titulo, 'O que a IA faz nesta actividade (papel da IA)');
+  assert.equal(STEP('regime').titulo, 'O que os estudantes podem fazer com IA (regime de IA)');
+  assert.equal(STEP('regime_themis').titulo, 'A regra de IA no enunciado da avaliação (cláusula)');
+  assert.equal(STEP('padrao').titulo, 'A forma da actividade (padrão)');
+  assert.equal(field('objectivo', 'competencia_protegida').rotulo, 'O que o estudante tem de fazer sem ajuda (competência protegida)');
+  // The papel and regime options keep their labels; a help line in common words explains each field.
+  for (const [s, c] of [['papel_ia', 'papel'], ['regime', 'regime']]) {
+    const h = field(s, c).ajuda;
+    assert.ok(typeof h === 'string' && h !== '', `${s}.${c}: ajuda`);
+    assert.equal(h.split(/[.!?](\s|$)/).filter((x) => x && x.trim()).length, 1, `${s}.${c}: one sentence`);
+  }
+});
+
+test('the tips are advice: "Dicas", 2 to 4 per step, no compreender, none starts with Não or an infinitive (spec 7)', () => {
+  assert.equal(S.passo.errosComuns, 'Dicas');
+  for (const step of INTERVIEW.passos) {
+    assert.ok(step.erros_comuns.length >= 2 && step.erros_comuns.length <= 4, step.id);
+    for (const item of step.erros_comuns) {
+      assert.doesNotMatch(item, /compreender/i, `${step.id}: ${item}`);
+      assert.doesNotMatch(item, /^Não /, `${step.id}: ${item}`);
+      assert.doesNotMatch(item, /^Usar compreender/, `${step.id}: ${item}`);
+      // The old items started with an infinitive (Pôr, Contar, Escolher...): the error, not the advice.
+      const first = item.split(/[\s,:]/)[0];
+      assert.doesNotMatch(first, /^\p{L}+(ar|er|ir|ôr)$/u, `${step.id}: ${item}`);
+    }
+  }
+});
+
+test('the objective help keeps one example and no verb rule; the verb rule is one friendly sentence (spec 7)', () => {
+  const h = field('objectivo', 'texto').ajuda;
+  assert.doesNotMatch(h, /compreender|saber|conhecer/i);
+  assert.equal((h.match(/por exemplo/gi) || []).length, 1, h);
+  assert.equal(S.passo.verboFalta, 'Sem um verbo que se observe.');
+  assert.doesNotMatch(S.passo.verboOk('identificar'), /observável/);
+});
+
+test('the help says the status of the tool, that no AI is a valid result, the Themis route and what IAedu is (spec 2, 4, 9)', () => {
+  const oQueE = A.oQueE.paragrafos.join(' ');
+  assert.ok(oQueE.includes(S.app.estado), 'status sentence');
+  assert.match(oQueE, /sem IA[^.]*resultado válido|resultado válido[^.]*sem IA/i);
+  const antes = A.antes.paragrafos.join(' ');
+  assert.ok(antes.includes('o serviço de IA da FCT/FCCN para o ensino superior; não precisa de conta: a Eunomia usa a chave da FMUP'), 'IAedu explained');
+  // The Themis line: first mention explained, with the link.
+  assert.match(A.antes.themis.texto, /Themis, a outra ferramenta do FMUP · IA, que escreve a regra de IA para o enunciado de um trabalho/);
+  assert.match(A.antes.themis.texto, /5 minutos/);
+  assert.equal(A.antes.themis.url, '../themis/');
+  assert.ok(A.antes.themis.link);
+  // The interview stage mentions the adapt start and the tips.
+  const entrevista = A.etapas.lista.find((e) => e.id === 'entrevista').docente;
+  assert.ok(entrevista.includes(S.inicio.adaptar), 'adapt start');
+  assert.doesNotMatch(entrevista, /erros comuns/i);
+  assert.match(entrevista, /dicas/i);
+});
+
+test('the help has one entry on what Tiago sees, with the exact text, and no claim that he can open a draft before it is submitted (spec 8)', () => {
+  const q = (id) => A.perguntas.lista.find((x) => x.id === id);
+  assert.equal(q('quem_ve').pergunta, 'O que vê o Tiago Jacinto?');
+  assert.ok(q('quem_ve').resposta.includes(S.app.oQueVe), 'what-Tiago-sees text, verbatim');
+  // One entry only: no second question about who sees the drafts.
+  const about = A.perguntas.lista.filter((x) => /quem vê|o que vê o Tiago/i.test(x.pergunta));
+  assert.deepEqual(about.map((x) => x.id), ['quem_ve']);
+  // Nothing in the help or the interface says that Tiago (or the person in charge) opens or reads a
+  // draft for support: the server shows him a draft only after it is submitted.
+  const all = [];
+  const walk = (v) => {
+    if (typeof v === 'string') all.push(v);
+    else if (Array.isArray(v)) v.forEach(walk);
+    else if (v && typeof v === 'object') Object.values(v).forEach(walk);
+  };
+  walk(A);
+  walk(S);
+  for (const s of all) {
+    assert.doesNotMatch(s, /dar apoio/i, s);
+    assert.doesNotMatch(s, /pode(m)? (abrir|ler|ver|consultar) (um|o|os|qualquer|o seu|os seus) rascunhos?/i, s);
+  }
+});
+
+test('the help has the FAQ entry on starting from an activity the teacher already runs (spec 6)', () => {
+  const q = A.perguntas.lista.find((x) => x.id === 'adaptar');
+  assert.ok(q, 'adaptar');
+  assert.equal(q.pergunta, 'Posso partir de uma actividade que já faço?');
+  assert.ok(q.resposta.includes(S.inicio.adaptar), 'the button name');
+  assert.match(q.resposta, /propõe/);
+  assert.match(q.resposta, /cada passo/);
+  assert.match(q.resposta, /IAedu/);
+  assert.match(q.resposta, /materiais/);
+  assert.match(q.resposta, /20 000 caracteres/);
+});
+
+test('the glossary adds the common-words title next to the Quadro term (spec 4)', () => {
+  const where = {
+    papel: STEP('papel_ia').titulo,
+    regime: STEP('regime').titulo,
+    padrao: STEP('padrao').titulo,
+    competencia_protegida: field('objectivo', 'competencia_protegida').rotulo,
+    clausula_themis: STEP('regime_themis').titulo,
+  };
+  for (const [id, title] of Object.entries(where)) {
+    const t = term(id);
+    assert.ok(t.comum, `${id}: comum`);
+    assert.ok(title.startsWith(t.comum + ' ('), `${id}: ${t.comum} / ${title}`);
+  }
+  assert.equal(A.glossario.rotuloComum('X'), 'Na entrevista: «X».');
+});
