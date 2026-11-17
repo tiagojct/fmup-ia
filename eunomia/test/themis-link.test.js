@@ -174,7 +174,7 @@ function completeApi(over = {}) {
   return api;
 }
 
-test('the preview has the Abrir no Themis link to ../themis/#s=', async (t) => {
+test('the preview has the Abrir na Themis link to ../themis/#s=', async (t) => {
   const api = completeApi();
   const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/previsao` });
   await a.page('previsao');
@@ -186,8 +186,13 @@ test('the preview has the Abrir no Themis link to ../themis/#s=', async (t) => {
   assert.match(link.getAttribute('href'), /^\.\.\/themis\/#s=/);
   assert.equal(link.getAttribute('target'), '_blank');
   assert.match(link.getAttribute('rel'), /noopener/);
-  assert.match(link.textContent, /Abrir no Themis/);
+  assert.match(link.textContent, /Abrir na Themis/);
   assert.match(a.text(), /Themis/);
+  // The repo writes "a Themis": the box has no masculine article.
+  assert.match(a.$('#themis-titulo').textContent, /na Themis/);
+  assert.match(a.$('#abrir-themis-nota').textContent, /^A Themis abre /);
+  assert.match(a.$('#abrir-themis-nota').textContent, /na Themis antes de usar/);
+  assert.doesNotMatch(link.textContent + a.$('#themis-titulo').textContent + a.$('#abrir-themis-nota').textContent, /\b(?:no|o|do|ao) Themis/i);
   // The state in the link is the one of this draft: an undergraduate, formative, permitted activity.
   const state = JSON.parse(Buffer.from(link.getAttribute('href').split('#s=')[1], 'base64url').toString('utf8'));
   assert.deepEqual([state.role, state.level, state.courseType, state.policy], ['teacher', 'undergraduate', 'uc_undergrad', 'without_restrictions']);
@@ -195,7 +200,7 @@ test('the preview has the Abrir no Themis link to ../themis/#s=', async (t) => {
   assert.equal(api.calls.filter((c) => /themis/i.test(c.path)).length, 0);
 });
 
-test('the Abrir no Themis link follows the regime step: with the step unanswered there is no link', async (t) => {
+test('the Abrir na Themis link follows the regime step: with the step unanswered there is no link', async (t) => {
   const answers = copy(ANSWERS);
   delete answers.regime;
   const a = await boot(t, { api: completeApi({ respostas: answers }), hash: `#/rascunho/${DRAFT_ID}/previsao` });
@@ -204,7 +209,7 @@ test('the Abrir no Themis link follows the regime step: with the step unanswered
   assert.equal(a.$('#abrir-themis'), null);
 });
 
-test('the Abrir no Themis link is also there while sections are still to accept', async (t) => {
+test('the Abrir na Themis link is also there while sections are still to accept', async (t) => {
   const api = new FakeApi({ user: TEACHER, draft: approvedDraft() });
   const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/previsao` });
   await a.page('previsao');

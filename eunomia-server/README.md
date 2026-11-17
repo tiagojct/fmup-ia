@@ -90,7 +90,7 @@ sections, the references, the final check):
 
 Draft estados: `rascunho`, `submetida`, `devolvida`, `aprovada`, `rejeitada`, `substituida`. A draft
 is editable in `rascunho` and `devolvida` only. The help pages, the worked examples, the step
-guidance and the link "Abrir no Themis" are in the front end. They have no route and make no model
+guidance and the link "Abrir na Themis" are in the front end. They have no route and make no model
 call.
 
 ## Image

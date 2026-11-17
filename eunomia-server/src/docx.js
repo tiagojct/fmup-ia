@@ -46,7 +46,7 @@ const TABLE_WIDTH = 9000; // twips; A4 with margins of 2.5 cm leaves 9072
 const ORDERED = 'numeros';
 const HEADINGS = [HeadingLevel.HEADING_1, HeadingLevel.HEADING_2, HeadingLevel.HEADING_3, HeadingLevel.HEADING_4, HeadingLevel.HEADING_5];
 const REAL_LINK = /^(?:https?:\/\/|mailto:)/i;
-const NOT_XML = /[￾￿]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]/g;
+const NOT_XML = /[\ufffe\uffff]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]/g;
 const ENTITIES = { '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '"', '&#39;': "'" };
 
 const clean = (s) => stripControl(s ?? '').replace(NOT_XML, '').replace(/\t/g, '    ');

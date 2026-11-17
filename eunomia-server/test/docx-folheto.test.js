@@ -117,7 +117,7 @@ test('renderDocx strips control characters, removes Markdown escapes and keeps s
   f.meta.formato = 'Pares | grupos';
   f.meta.titulo = 'Debate\u0001 sobre o fim de vida';
   f.meta.subtitulo = 'Sub\u0008título';
-  f.correccao.texto = 'Fim￾ do\uD800 texto￿.';
+  f.correccao.texto = 'Fim\ufffe do\uD800 texto\uffff.';
   const xml = await documentXml(f);
   assert.ok(xml.includes('ab contacto@med.up.pt &amp; &lt;x&gt; | c'), xml.slice(xml.indexOf('contacto') - 40, xml.indexOf('contacto') + 80));
   assert.ok(xml.includes('Pares | grupos'));
@@ -127,7 +127,7 @@ test('renderDocx strips control characters, removes Markdown escapes and keeps s
   assert.doesNotMatch(xml, /\\@/);
   assert.doesNotMatch(xml, /\\\|/);
   // No character that XML 1.0 forbids, and no lone surrogate.
-  assert.doesNotMatch(xml, /[\u0000-\u0008\u000B\u000C\u000E-\u001F￾￿]/);
+  assert.doesNotMatch(xml, /[\u0000-\u0008\u000B\u000C\u000E-\u001F\ufffe\uffff]/);
   assert.doesNotMatch(xml, /[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]/);
   assert.doesNotMatch(xml, /<x>/);
 });
