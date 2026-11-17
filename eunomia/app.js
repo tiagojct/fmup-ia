@@ -1225,6 +1225,7 @@
       var text = input.value.length > ADAPT_MODEL_READS ? S.adaptar.notaLonga(ADAPT_MODEL_READS) : '';
       if (longNote.textContent !== text) longNote.textContent = text;
     });
+    dropConfirmOnEdit(input, slot);
     var submit = el('button', { type: 'submit', id: 'propor-respostas', class: 'btn-primary', text: S.adaptar.botao });
     var form = el('form', { id: 'adaptar-form', novalidate: true },
       field.row,
@@ -1232,17 +1233,30 @@
       slot,
       el('div', { class: 'nav-row' }, link(S.rascunho.inicio, '#/inicio', { class: 'btn-ghost' }), el('span', { class: 'spacer' }), submit));
 
-    // confirmed: the teacher ticked that the text has no personal data (after a 422).
+    // confirmed: the teacher ticked that the text has no personal data (after a 422). One request
+    // at a time: while the confirmed request runs, Propor respostas is disabled too, so the two
+    // buttons cannot make two drafts.
+    var inflight = false;
     function send(btn, texto, confirmed) {
+      if (inflight) return;
+      inflight = true;
+      var other = btn === submit ? null : submit;
+      if (other) other.disabled = true;
+      var done = function () {
+        inflight = false;
+        if (other) other.disabled = false;
+      };
       clearSlot(slot);
       var body = { texto: texto };
       if (confirmed) body.confirmo_sem_dados_pessoais = true;
       busy(btn, function () {
         return API.request('POST', '/rascunhos/adaptar', body);
       }, { model: true, label: S.adaptar.aProcessar }).then(function (view) {
+        done();
         if (!ctx.alive()) return;
         go(stepHref(view.rascunho.id, steps()[0].id));
       }).catch(function (err) {
+        done();
         if (!ctx.alive()) return;
         if (isPersonalData(err)) {
           personalDataBox(slot, err, function (again) { send(again, texto, true); });
@@ -1272,6 +1286,10 @@
     return loadDraft(id).then(function (view) {
       if (!ctx.alive()) return;
       var d = view.rascunho;
+      // An adapted draft: the first proposed step not yet reviewed comes first.
+      var propostos = Array.isArray(view.propostos) ? view.propostos : [];
+      var proposed = applicableSteps(d.respostas).filter(function (p) { return propostos.indexOf(p.id) !== -1; })[0];
+      if (proposed) return redirect(stepHref(id, proposed.id));
       var next = view.proximo_passo;
       if (next) return redirect(stepHref(id, next));
       var open = applicableSections(d.respostas).filter(function (s) { return !(d.seccoes[s] && d.seccoes[s].estado === 'aceite'); });
@@ -1310,7 +1328,8 @@
       el('p', { class: 'step-progress', id: progressId, text: S.passo.progresso(index + 1, list.length, minutesToPlan(list, index)) }),
       el('progress', { max: list.length, value: index + 1, 'aria-label': S.passo.progressoRotulo, 'aria-describedby': progressId })));
     content.appendChild(el('h2', { class: 'step-title', text: step.titulo }));
-    append(content, adaptNotes(view, step));
+    var notes = el('div', { class: 'eu-adaptar-notas' }, adaptNotes(view, step));
+    content.appendChild(notes);
     append(content, porqueBox(step, d.respostas));
     var guidance = [exampleDisclosure(step), commonErrors(step)].filter(Boolean);
     if (guidance.length) content.appendChild(el('div', { class: 'eu-orientacao' }, guidance));
@@ -1331,6 +1350,7 @@
       if (step.id === 'objectivo' && campo.id === 'texto') form.appendChild(outcomeHelper(d, f.input, slot));
     });
     bindConditions(form, fields);
+    dropConfirmOnEdit(form, slot);
 
     var save = isEditable(d) ? el('button', { type: 'submit', id: 'guardar-passo', class: 'btn-primary', text: S.passo.guardar }) : null;
     var prev = index > 0 ? link(S.passo.anterior, stepHref(d.id, list[index - 1].id), { class: 'btn-ghost' }) : null;
@@ -1369,6 +1389,8 @@
         if (!ctx.alive()) return;
         d = next.rascunho;
         view = next;
+        clear(notes);
+        append(notes, adaptNotes(view, step));
         avisos = avisos.concat(next.avisos || []);
         var nextHref = followingStep(d, step.id);
         if (avisos.length === 0) return go(nextHref);
@@ -1394,7 +1416,12 @@
     var propostos = Array.isArray(view.propostos) ? view.propostos : [];
     var out = [];
     if (propostos.length > 0) {
-      out.push(el('p', { class: 'review-note', id: 'nota-adaptar', text: S.adaptar.notaPreenchido(propostos.length) }));
+      var listed = applicableSteps(d.respostas).filter(function (p) { return propostos.indexOf(p.id) !== -1; });
+      out.push(el('div', { class: 'review-note' },
+        el('p', { id: 'nota-adaptar', text: S.adaptar.notaPreenchido(propostos.length) }),
+        el('ul', { class: 'eu-ligacoes', id: 'passos-propostos', 'aria-labelledby': 'nota-adaptar' }, listed.map(function (p) {
+          return el('li', null, link(p.titulo, stepHref(d.id, p.id), p.id === step.id ? { 'aria-current': 'step' } : null));
+        }))));
     } else if (d.modo === 'refinar' && Object.keys(d.respostas).every(function (k) { return k === 'materiais'; })) {
       out.push(el('p', { class: 'review-note', id: 'nota-adaptar', text: S.adaptar.notaVazio }));
     }
@@ -1404,6 +1431,16 @@
 
   function isPersonalData(err) {
     return err instanceof API.ApiError && err.status === 422 && err.motivo === 'dados_pessoais';
+  }
+
+  // The confirmation of personalDataBox resends the text that the check flagged. When the teacher
+  // changes the text (an input event in node, outside slot), the box goes: the new text must pass
+  // the check again, and the confirmation cannot send the old one.
+  function dropConfirmOnEdit(node, slot) {
+    on(node, 'input', function (e) {
+      if (slot.contains(e.target)) return;
+      if (slot.querySelector('#confirmo-dados')) clearSlot(slot);
+    });
   }
 
   // The findings of the personal-data check, with the confirmation that sends the request again
@@ -1593,7 +1630,8 @@
     content.appendChild(el('section', { class: 'eu-seccao', 'aria-labelledby': 'alterar-titulo' },
       el('h3', { id: 'alterar-titulo', text: S.plano.alterar }),
       el('ul', { class: 'eu-ligacoes' }, applicableSteps(d.respostas).filter(function (p) { return p.id !== 'plano'; }).map(function (p) {
-        return el('li', null, link(p.titulo, stepHref(d.id, p.id)));
+        var proposed = Array.isArray(view.propostos) && view.propostos.indexOf(p.id) !== -1;
+        return el('li', null, link(p.titulo, stepHref(d.id, p.id)), proposed ? [' ', el('span', { class: 'eu-etiqueta', text: S.adaptar.marca })] : null);
       }))));
 
     content.appendChild(el('p', { class: d.plano_aprovado ? 'review-note' : 'eu-nota', text: d.plano_aprovado ? S.plano.aprovado : S.plano.porAprovar }));
@@ -1779,6 +1817,7 @@
 
       var comment = el('textarea', { id: 'comentario', rows: 3, maxlength: 2000, 'aria-describedby': 'comentario-ajuda' });
       var ask = button(S.seccao.pedirVersao, { id: 'pedir-versao', class: 'btn-primary' }, function () { generate(ask, comment.value.trim()); });
+      dropConfirmOnEdit(comment, slot);
       append(commentPanel, [
         el('div', { class: 'field-row' },
           el('label', { for: 'comentario', text: S.seccao.comentario }),

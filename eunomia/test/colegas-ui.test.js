@@ -7,7 +7,7 @@ const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const { ROOT, DRAFT_ID, TEACHER, ANSWERS, makeDraft, json, FakeApi, boot, lastCall } = require('./harness.js');
+const { ROOT, DRAFT_ID, TEACHER, ANSWERS, makeDraft, approvedDraft, json, FakeApi, boot, lastCall } = require('./harness.js');
 
 function load(file, name) {
   const w = {};
@@ -360,4 +360,158 @@ test('the invitation: problem, two routes with the Themis URL, status, link and 
     at(app + '#/ajuda'), at(app + '#/exemplos'), at('dados de doentes'), at('tiagojacinto@med.up.pt')];
   assert.deepEqual(order, [...order].sort((x, y) => x - y), 'the order of spec section 1');
   assert.doesNotMatch(text, /\batividade|\bobjetivo|\balunos?\b|\bcorreção/i);
+});
+
+// ---------------------------------------------------------------- final review (final-fixes.md)
+
+const INTERVIEW = JSON.parse(fs.readFileSync(path.join(ROOT, 'interview.json'), 'utf8'));
+const stepTitle = (id) => INTERVIEW.passos.find((p) => p.id === id).titulo;
+const refinar = (propostos, respostas = { contexto: ANSWERS.contexto, objectivo: ANSWERS.objectivo, materiais: { texto: TEXTO } }) =>
+  makeDraft({ modo: 'refinar', rev: 1, respostas, propostos });
+
+test('final review I2: on Adaptar, a change to the text after a 422 removes the confirmation; the new text must pass the check again', async (t) => {
+  const api = new FakeApi({ user: TEACHER });
+  api.on('POST', /^\/rascunhos\/adaptar$/, (call) => (/NIF/.test(call.body.texto) && call.body.confirmo_sem_dados_pessoais !== true ? json(422, PERSONAL) : api.route(call)));
+  const a = await openAdapt(t, api);
+  const ta = a.$('#main textarea');
+  a.set('#' + ta.id, TEXTO + ' NIF 123456789.');
+  a.$('#propor-respostas').click();
+  await a.waitFor(() => a.$('#confirmo-dados'), 'confirmation');
+  a.set('#' + ta.id, TEXTO); // the teacher removes the flagged data
+  assert.equal(a.$('#confirmo-dados'), null, 'the confirmation of the old text is gone');
+  assert.equal(a.$('#guardar-confirmado'), null);
+  a.$('#propor-respostas').click();
+  await a.waitFor(() => a.w.location.hash === `#/rascunho/${NEW_ID}/passo/contexto`, 'first step');
+  const calls = adaptCalls(api);
+  assert.equal(calls.length, 2);
+  assert.deepEqual(calls[1].body, { texto: TEXTO }, 'the current text, without the confirmation');
+});
+
+test('final review I2: on the materials step, a change to the text after a 422 removes the confirmation', async (t) => {
+  const d = makeDraft({ respostas: { ...ANSWERS } });
+  delete d.respostas.materiais;
+  delete d.respostas.plano;
+  const api = new FakeApi({ user: TEACHER, draft: d });
+  api.on('PUT', /\/respostas\/materiais$/, (call) => (/123456789/.test(call.body.valor.texto) && call.body.confirmo_sem_dados_pessoais !== true ? json(422, PERSONAL) : api.route(call)));
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/passo/materiais` });
+  await a.page('passo');
+  a.set('#campo-texto', 'Contribuinte 123456789.');
+  a.$('#guardar-passo').click();
+  await a.waitFor(() => a.$('#confirmo-dados'), 'confirmation');
+  // Ticking the box is not a change to the text: the confirmation stays.
+  a.set('#confirmo-dados', true);
+  assert.ok(a.$('#confirmo-dados'), 'the box stays when it is ticked');
+  a.set('#campo-texto', 'Caso clínico sem identificação.');
+  assert.equal(a.$('#confirmo-dados'), null, 'the confirmation of the old text is gone');
+  a.$('#guardar-passo').click();
+  await a.waitFor(() => api.calls.filter((c) => c.method === 'PUT').length === 2, 'second PUT');
+  const body = lastCall(api, 'PUT', /\/respostas\/materiais$/).body;
+  assert.equal(body.valor.texto, 'Caso clínico sem identificação.');
+  assert.equal(body.confirmo_sem_dados_pessoais, undefined);
+});
+
+test('final review I2: on a section, a change to the comment after a 422 removes the confirmation', async (t) => {
+  const api = new FakeApi({ user: TEACHER, draft: approvedDraft() });
+  api.on('POST', /\/seccoes\/objectivo\/gerar$/, (call) => (/123456789/.test(call.body.comentario || '') && call.body.confirmo_sem_dados_pessoais !== true ? json(422, PERSONAL) : api.route(call)));
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/seccao/objectivo` });
+  await a.page('seccao');
+  a.$('#nova-versao').click();
+  a.set('#comentario', 'Como no caso do NIF 123456789.');
+  a.$('#pedir-versao').click();
+  await a.waitFor(() => a.$('#confirmo-dados'), 'confirmation');
+  a.set('#comentario', 'Mais curto.');
+  assert.equal(a.$('#confirmo-dados'), null, 'the confirmation of the old comment is gone');
+});
+
+test('final review M5: while the confirmed request of Adaptar runs, Propor respostas is disabled and makes no second draft', async (t) => {
+  const api = new FakeApi({ user: TEACHER });
+  let release;
+  const held = new Promise((r) => { release = r; });
+  api.on('POST', /^\/rascunhos\/adaptar$/, async (call) => {
+    if (call.body.confirmo_sem_dados_pessoais !== true) return json(422, PERSONAL);
+    await held;
+    return api.route(call);
+  });
+  const a = await openAdapt(t, api);
+  a.set('#' + a.$('#main textarea').id, TEXTO + ' NIF 123456789.');
+  a.$('#propor-respostas').click();
+  await a.waitFor(() => a.$('#confirmo-dados'), 'confirmation');
+  a.set('#confirmo-dados', true);
+  a.$('#guardar-confirmado').click();
+  await a.waitFor(() => adaptCalls(api).length === 2, 'the confirmed request');
+  assert.equal(a.$('#propor-respostas').disabled, true, 'Propor respostas is disabled');
+  a.$('#adaptar-form').dispatchEvent(new a.w.Event('submit', { cancelable: true }));
+  await pause(30);
+  assert.equal(adaptCalls(api).length, 2, 'no third request');
+  release();
+  await a.waitFor(() => a.w.location.hash === `#/rascunho/${NEW_ID}/passo/contexto`, 'first step');
+  assert.equal(adaptCalls(api).length, 2);
+});
+
+test('final review M5: after a failed confirmed request, Propor respostas works again', async (t) => {
+  const api = new FakeApi({ user: TEACHER });
+  api.on('POST', /^\/rascunhos\/adaptar$/, (call) => (call.body.confirmo_sem_dados_pessoais !== true ? json(422, PERSONAL) : json(409, { erro: 'Tem 100 rascunhos.', motivo: 'limite' })));
+  const a = await openAdapt(t, api);
+  a.set('#' + a.$('#main textarea').id, TEXTO + ' NIF 123456789.');
+  a.$('#propor-respostas').click();
+  await a.waitFor(() => a.$('#confirmo-dados'), 'confirmation');
+  a.set('#confirmo-dados', true);
+  a.$('#guardar-confirmado').click();
+  await a.waitFor(() => a.$('.eu-erro') && /100 rascunhos/.test(a.$('.eu-erro').textContent), 'limit error');
+  assert.equal(a.$('#propor-respostas').disabled, false);
+});
+
+test('final review I4: reopening an adapted draft goes to the first proposed step, not to the first step with no answer', async (t) => {
+  const api = new FakeApi({ user: TEACHER, draft: refinar(['objectivo', 'contexto']) });
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}` });
+  await a.waitFor(() => a.w.location.hash === `#/rascunho/${DRAFT_ID}/passo/contexto`, 'the first proposed step in interview order');
+  await a.page('passo');
+});
+
+test('final review I4: with nothing proposed, reopening goes to the next step as before', async (t) => {
+  const api = new FakeApi({ user: TEACHER, draft: refinar([]) });
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}` });
+  await a.waitFor(() => a.w.location.hash === `#/rascunho/${DRAFT_ID}/passo/evidencia`, 'next step');
+});
+
+test('final review I4: the Falta rever note lists the proposed steps as links, the current one marked', async (t) => {
+  const api = new FakeApi({ user: TEACHER, draft: refinar(['contexto', 'objectivo']) });
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/passo/objectivo` });
+  await a.page('passo');
+  assert.equal(a.$('#nota-adaptar').textContent, S.adaptar.notaPreenchido(2));
+  const list = a.$('#passos-propostos');
+  assert.ok(list, 'the list of the proposed steps');
+  assert.equal(list.getAttribute('aria-labelledby'), 'nota-adaptar');
+  const links = [...list.querySelectorAll('a')];
+  assert.deepEqual(links.map((l) => l.textContent), [stepTitle('contexto'), stepTitle('objectivo')]);
+  assert.deepEqual(links.map((l) => l.getAttribute('href')), [`#/rascunho/${DRAFT_ID}/passo/contexto`, `#/rascunho/${DRAFT_ID}/passo/objectivo`]);
+  assert.equal(links[1].getAttribute('aria-current'), 'step');
+  assert.equal(links[0].hasAttribute('aria-current'), false);
+});
+
+test('final review I4: the plan page marks each proposed step in the list of steps to change', async (t) => {
+  const respostas = { ...ANSWERS };
+  delete respostas.plano;
+  const api = new FakeApi({ user: TEACHER, draft: refinar(['objectivo', 'regime'], respostas) });
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/plano` });
+  await a.page('plano');
+  const item = (id) => a.$(`section[aria-labelledby="alterar-titulo"] a[href="#/rascunho/${DRAFT_ID}/passo/${id}"]`).closest("li");
+  for (const id of ['objectivo', 'regime']) assert.equal(item(id).querySelector('.eu-etiqueta').textContent, S.adaptar.marca, id);
+  for (const id of ['contexto', 'evidencia', 'papel_ia', 'padrao']) assert.equal(item(id).querySelector('.eu-etiqueta'), null, id);
+});
+
+test('final review M1: a save that returns avisos refreshes the mark and the note from the new propostos', async (t) => {
+  const api = new FakeApi({ user: TEACHER, draft: refinar(['contexto', 'objectivo']) });
+  api.on('PUT', /\/respostas\/contexto$/, async (call) => {
+    const view = await (await api.route(call)).json();
+    return json(200, { ...view, avisos: ['Um aviso do servidor.'] });
+  });
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/passo/contexto` });
+  await a.page('passo');
+  assert.ok(a.$('#marca-proposto'));
+  a.$('#guardar-passo').click();
+  await a.waitFor(() => a.$('#continuar-passo'), 'the avisos');
+  assert.equal(a.$('#marca-proposto'), null, 'the mark is gone');
+  assert.equal(a.$('#nota-adaptar').textContent, S.adaptar.notaPreenchido(1));
+  assert.deepEqual([...a.$('#passos-propostos').querySelectorAll('a')].map((l) => l.textContent), [stepTitle('objectivo')]);
 });
