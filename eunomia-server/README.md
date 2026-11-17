@@ -61,15 +61,17 @@ Every route has one of three access levels:
 
 - `public`: no session.
 - `user`: a valid session. A teacher reads and writes own drafts only (another teacher's draft is 404).
-  An admin reads the draft of another author only once it is submitted, approved or returned (otherwise 404).
+  An admin reads the draft of another author only once it is in estado `submetida`, `aprovada` or `devolvida` (otherwise 404).
   An admin changes the draft of another author only through the review routes (403 on the other draft routes).
 - `admin`: the session of an admin code. Any other session gets 403.
 
 Every write sends `Content-Type: application/json` or the header `X-Eunomia: 1`. Every write on a
 draft sends the `rev` it read: another `rev` gives 409 with `motivo: "rev"`. Every 409 has a `motivo`.
 An error is JSON: `{ "erro": "...", "motivo": "...", "erros": [...] }` (`motivo` and `erros` only when
-they apply). The routes that call the model are `objectivo/sugerir`, `padroes/explicar` and
-`seccoes/:sec/gerar`. Only they use the own-key headers.
+they apply). The routes that call the model are `rascunhos/adaptar`, `objectivo/sugerir`, `padroes/explicar` and
+`seccoes/:sec/gerar`. Only they use the own-key headers. The client retries a status-0 failure once on
+`objectivo/sugerir`, `padroes/explicar` and `seccoes/:sec/gerar` only. `rascunhos/adaptar` creates a
+draft, so it is never retried.
 
 Routes of versions 0.2 and 0.3 (the other routes are as in 0.1: the session, the codes, the interview,
 the sections, the references, the final check):
