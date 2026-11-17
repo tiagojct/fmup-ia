@@ -339,6 +339,22 @@ test('proposeAnswers lists the five steps with every field id and option id from
   assert.ok(long.includes('[...]'));
 });
 
+test('final review I3: the example answer in proposeAnswers is valid: each step in it passes applyAnswer', () => {
+  const p = prompts.proposeAnswers(ACTIVIDADE);
+  const line = p.split('\n').find((l) => l.startsWith('Forma da resposta: '));
+  assert.ok(line, 'the example line');
+  const example = JSON.parse(line.slice('Forma da resposta: '.length));
+  const steps = Object.keys(example.respostas);
+  assert.ok(steps.length > 0);
+  let d = drafts.createDraft({ id: 'u1', nome: 'Ana' }, 'refinar', new Date(T).toISOString());
+  for (const passo of drafts.ADAPT_STEPS.filter((id) => steps.includes(id))) {
+    const r = drafts.applyAnswer(d, passo, example.respostas[passo]);
+    assert.deepEqual(r.errors, [], `${passo} in the example is complete and valid`);
+    d = r.draft;
+  }
+  for (const passo of steps) assert.ok(drafts.ADAPT_STEPS.includes(passo), `${passo} is a step the prompt asks for`);
+});
+
 test('adaptar: valid contexto and papel_ia make a refinar draft with the text in materials and propostos', async (t) => {
   const { app, ana, calls } = await adaptSetup(t, json({ respostas: { contexto: CONTEXTO, papel_ia: { papel: 'nenhum' } } }));
   const r = await adapt(app, ana, { texto: ACTIVIDADE });
@@ -462,6 +478,14 @@ test('adaptar: personal data is 422 dados_pessoais before the model; confirmo ma
   assert.equal(calls.n, 1);
 });
 
+test('final review M3: POST /rascunhos with another modo names the Adaptar route', async (t) => {
+  const { app, ana } = await adaptSetup(t);
+  const r = await app.call('POST', '/rascunhos', { cookie: ana.cookie, body: { modo: 'refinar' } });
+  assert.equal(r.status, 400);
+  assert.equal(r.json.erro, 'Modo desconhecido. Para partir de uma actividade que já faz, use «Adaptar uma actividade que já faço» (POST /rascunhos/adaptar).');
+  assert.doesNotMatch(r.json.erro, /modo refinar/);
+});
+
 test('adaptar: texto is required, at most 60000 characters, without control characters or emoji', async (t) => {
   const { app, ana, calls } = await adaptSetup(t);
   for (const body of [{}, { texto: '' }, { texto: '   ' }, { texto: 5 }, { texto: ['a'] }]) {
@@ -471,7 +495,7 @@ test('adaptar: texto is required, at most 60000 characters, without control char
   }
   const long = await adapt(app, ana, { texto: 'a'.repeat(60001) });
   assert.equal(long.status, 400);
-  assert.match(long.json.erro, /60000/);
+  assert.equal(long.json.erro, 'O texto da actividade tem no máximo 60 000 caracteres.', 'final review M4: the pt-PT number format');
   assert.equal((await adapt(app, ana, { texto: `${ACTIVIDADE}\u0000` })).status, 400);
   assert.equal((await adapt(app, ana, { texto: `${ACTIVIDADE} \u{1F600}` })).status, 422);
   assert.equal(calls.n, 0);

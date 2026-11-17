@@ -231,7 +231,7 @@ function proposeAnswers(texto) {
       'Um número é um inteiro sem unidades (45, não "45 min"). Uma escolha é um dos ids dados, escrito como está.',
       'Um passo só vale com todos os campos obrigatórios. Se o texto não os diz todos, omita o passo inteiro.',
     ].join('\n'),
-    'Forma da resposta: {"respostas": {"contexto": {"uc": "...", "estudantes": 30, "duracao_min": 90}, "papel_ia": {"papel": "nenhum"}}}',
+    'Forma da resposta: {"respostas": {"papel_ia": {"papel": "nenhum"}, "regime": {"regime": "proibido"}}}',
     RULES,
   );
 }

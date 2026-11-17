@@ -55,6 +55,8 @@ const SUBMITTED = 'Uma actividade submetida para revisão não pode ser apagada.
 const NO_ACTIVITY = 'Cole o texto da actividade.';
 // The longest pasted activity: the maximum of the materials step.
 const MAX_ACTIVITY = 60000;
+// A number in the pt-PT format of the copy: 60000 as "60 000" (a plain space, as in generate.js).
+const thousands = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 // The time budget of one request that calls the model, retry included: below the 100 s after which
 // Cloudflare drops the request.
 const MODEL_BUDGET_MS = 90000;
@@ -245,7 +247,7 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
 
   route('POST', '/rascunhos', (req, res, ctx) => {
     const modo = ctx.body.modo === undefined ? 'criar' : ctx.body.modo;
-    if (modo !== 'criar') throw new HttpError(400, 'Modo desconhecido. Para melhorar uma actividade existente, use o modo refinar.');
+    if (modo !== 'criar') throw new HttpError(400, 'Modo desconhecido. Para partir de uma actividade que já faz, use «Adaptar uma actividade que já faço» (POST /rascunhos/adaptar).');
     const exemplo = ctx.body.exemplo;
     if (exemplo !== undefined && !findExample(exemplo)) throw new HttpError(400, NO_EXAMPLE);
     checkRoom(ctx.user);
@@ -264,7 +266,7 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
   route('POST', '/rascunhos/adaptar', async (req, res, ctx) => {
     const texto = ctx.body.texto;
     if (typeof texto !== 'string' || texto.trim() === '') throw new HttpError(400, NO_ACTIVITY);
-    if (texto.length > MAX_ACTIVITY) throw new HttpError(400, `O texto da actividade tem no máximo ${MAX_ACTIVITY} caracteres.`);
+    if (texto.length > MAX_ACTIVITY) throw new HttpError(400, `O texto da actividade tem no máximo ${thousands(MAX_ACTIVITY)} caracteres.`);
     checkText(texto);
     personalDataGate(ctx, [texto]);
     checkRoom(ctx.user);
