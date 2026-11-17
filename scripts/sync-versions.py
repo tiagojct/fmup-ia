@@ -36,6 +36,8 @@ p=ROOT/'eunomia/index.html';t=re.sub(r'(?<=")(?!\.\./themis/)([^"?]+)\?v=[\d.]+'
 t,count=re.subn(r'\.\./themis/style\.css\?v=[\d.]+',f"../themis/style.css?v={v['themis.versao']}",t)
 if count!=1:raise ValueError(f'eunomia/index.html: expected one Themis stylesheet link, found {count}')
 update('eunomia/index.html',t)
+# The server package carries the same version as the front end.
+replace('eunomia-server/package.json',r'"version": "[^"]*"',f'"version": "{v["eunomia.versao"]}"')
 d=json.loads((ROOT/'themis/policy.json').read_text());d.update(version=v['themis.regras'],framework_version=framework,framework_short_pt=f'Quadro FMUP {version}',framework_short_en=f'FMUP Framework {version}',revised=date)
 update('themis/policy.json',json.dumps(d,ensure_ascii=False,indent=2)+'\n')
 replace('CITATION.cff',r'(?m)^version: .+$',f'version: "{version.removeprefix("v")}.0"')
