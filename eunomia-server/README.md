@@ -61,8 +61,8 @@ Every route has one of three access levels:
 
 - `public`: no session.
 - `user`: a valid session. A teacher reads and writes own drafts only (another teacher's draft is 404).
-  An admin reads any draft. An admin changes the draft of another author only through the review
-  routes (403 on the other draft routes).
+  An admin reads the draft of another author only once it is submitted, approved or returned (otherwise 404).
+  An admin changes the draft of another author only through the review routes (403 on the other draft routes).
 - `admin`: the session of an admin code. Any other session gets 403.
 
 Every write sends `Content-Type: application/json` or the header `X-Eunomia: 1`. Every write on a
@@ -71,13 +71,14 @@ An error is JSON: `{ "erro": "...", "motivo": "...", "erros": [...] }` (`motivo`
 they apply). The routes that call the model are `objectivo/sugerir`, `padroes/explicar` and
 `seccoes/:sec/gerar`. Only they use the own-key headers.
 
-Routes of version 0.2 (the other routes are as in 0.1: the session, the codes, the interview, the
-sections, the references, the final check):
+Routes of versions 0.2 and 0.3 (the other routes are as in 0.1: the session, the codes, the interview,
+the sections, the references, the final check):
 
 | Route | Access | Rule |
 |---|---|---|
 | `GET /exemplos/:n` | public | The reference ficha of worked example `n` (1 to 7). The invitation email links to it. |
 | `POST /rascunhos` | user | Body `{ "modo": "criar" }`. With `"exemplo": n` the draft starts with the answers of that example, and the plan is not approved. A teacher has 100 drafts at most. |
+| `POST /rascunhos/adaptar` | user | Body `{ "texto", "confirmo_sem_dados_pessoais"? }`. Makes a `refinar` draft from an activity the teacher already runs: `texto` goes to the materials. The model proposes answers for `contexto`, `objectivo`, `evidencia`, `papel_ia` and `regime`. The server keeps only the steps that pass validation (a step with any error, a control character or an emoji is dropped whole), and their ids go to `propostos`. Personal data gives 422 `dados_pessoais` before the model call, unless `confirmo_sem_dados_pessoais` is `true`. The response is 201 with the draft and `propostos`. `PUT /rascunhos/:id/respostas/:passo` removes the step from `propostos`. |
 | `POST /rascunhos/:id/duplicar` | user, author only | Copies the draft in any state. The source does not change, so no `rev`. A title gets the prefix "Cópia de". |
 | `DELETE /rascunhos/:id` | user, author only | Body `{ "rev": n }`. Moves the file to `apagados/`. A draft in estado `submetida` gives 409 `bloqueado`. |
 | `POST /rascunhos/:id/seccoes/:sec/opiniao` | user, author only | Body `{ "rev", "util": true or false, "comentario"? }`. The comment has 500 characters at most and goes through the personal-data check. Only on text that the model wrote, and only in an editable draft. |
