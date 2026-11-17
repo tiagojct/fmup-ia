@@ -6,6 +6,8 @@
   'use strict';
 
   var plural = function (n, um, varios) { return n === 1 ? um : varios; };
+  // The data rule of the materials step and of Adaptar: the same text in both places.
+  var AVISO_DADOS = 'Sem dados de doentes nem de estudantes. O texto vai para a IAedu: use só casos fictícios e materiais sem dados pessoais.';
 
   window.EUNOMIA_PT = {
     app: {
@@ -84,6 +86,7 @@
       ola: function (nome) { return 'Olá, ' + nome + '.'; },
       intro: 'Cada rascunho guarda-se depois de cada passo. Pode parar e continuar mais tarde.',
       novo: 'Nova actividade',
+      adaptar: 'Adaptar uma actividade que já faço',
       aCriar: 'A criar...',
       meus: 'Os meus rascunhos',
       nenhum: 'Ainda não tem rascunhos. Comece uma nova actividade.',
@@ -113,6 +116,21 @@
       aRever: function (n) { return n + ' ' + plural(n, 'actividade à espera de revisão', 'actividades à espera de revisão'); },
       revisao: 'Fila de revisão',
       uso: 'Uso da Eunomia',
+    },
+
+    adaptar: {
+      pagina: 'Adaptar uma actividade',
+      titulo: 'Adaptar uma actividade que já faço',
+      intro: 'Cole o texto de uma actividade que já usa nas aulas. A Eunomia lê-o e propõe respostas para os primeiros passos da entrevista. Depois, reveja cada passo: as decisões são suas. O texto fica guardado como materiais da actividade.',
+      campo: 'Cole o enunciado ou a descrição da actividade',
+      aviso: AVISO_DADOS,
+      botao: 'Propor respostas',
+      aProcessar: 'A ler o texto...',
+      notaLonga: function (n) { return 'O modelo lê só os primeiros ' + n.toLocaleString('pt-PT') + ' caracteres. O texto completo fica guardado como materiais da actividade.'; },
+      erro: 'O pedido pode ter chegado ao servidor. Antes de tentar de novo, veja em «Os meus rascunhos» se a actividade já foi criada.',
+      notaPreenchido: function (n) { return 'A Eunomia preencheu ' + n + ' ' + plural(n, 'passo', 'passos') + ' a partir do seu texto. Reveja cada um: as decisões são suas.'; },
+      notaVazio: 'A Eunomia não conseguiu propor respostas a partir do seu texto. A entrevista começa vazia; o texto ficou guardado nos materiais.',
+      marca: 'Proposto a partir do seu texto',
     },
 
     exemplos: {
@@ -182,7 +200,7 @@
       anterior: 'Passo anterior',
       avisosTitulo: 'A resposta foi guardada, com estes avisos:',
       continuar: 'Continuar para o passo seguinte',
-      materiaisAviso: 'Sem dados de doentes nem de estudantes. O texto vai para a IAedu: use só casos fictícios e materiais sem dados pessoais.',
+      materiaisAviso: AVISO_DADOS,
       materiaisCortado: function (max) { return 'O texto era maior do que o limite e foi cortado nos primeiros ' + max.toLocaleString('pt-PT') + ' caracteres.'; },
       sugerir: 'Sugerir versões mais claras',
       sugerirAjuda: 'O modelo propõe até duas versões com um verbo observável. A escolha é sua.',

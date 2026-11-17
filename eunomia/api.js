@@ -5,11 +5,14 @@
  *   request(method, path, body?)  JSON in and out. Resolves with the data of a 2xx answer.
  *                                 Rejects with an ApiError { status, erro, motivo, erros, data }.
  *                                 status 0 means the server could not be reached.
- *   retry = { delay: 1500 }       A model request (MODEL_ROUTE) that fails with status 0 is sent
- *                                 once more after retry.delay ms; the error of that second attempt
- *                                 has retried: true. The first request may have reached the server
- *                                 (only the answer was lost): then the second gets a 409 with motivo
- *                                 rev, and the caller reloads the draft. Other routes never retry.
+ *   retry = { delay: 1500 }       A model request in RETRY_ROUTE (sugerir, explicar, gerar) that
+ *                                 fails with status 0 is sent once more after retry.delay ms; the
+ *                                 error of that second attempt has retried: true. The first request
+ *                                 may have reached the server (only the answer was lost): then the
+ *                                 second gets a 409 with motivo rev, and the caller reloads the draft.
+ *                                 Other routes never retry, POST /rascunhos/adaptar included: it
+ *                                 creates a draft, so a retry could create a second one. The own-key
+ *                                 headers go to every model route (MODEL_ROUTE), adaptar included.
  *   download(path)                A file: resolves with { blob, filename, avisos }.
  *   setUser(id)                   The user of the session (from /me or the login), or null.
  *   setOwnKey({ key, agent, channel }, remember)  The own IAedu key of the user.
@@ -83,7 +86,10 @@
   ApiError.prototype.constructor = ApiError;
 
   // The routes that call the model: the only ones that get the own-key headers.
-  var MODEL_ROUTE = /^\/rascunhos\/[^/?]+\/(?:objectivo\/sugerir|padroes\/explicar|seccoes\/[^/?]+\/gerar)(?:\?|$)/;
+  var MODEL_ROUTE = /^\/rascunhos\/(?:adaptar|[^/?]+\/(?:objectivo\/sugerir|padroes\/explicar|seccoes\/[^/?]+\/gerar))(?:\?|$)/;
+  // The model routes that are sent again after a status 0. Not adaptar: it creates a draft, and a
+  // first request that reached the server would leave a second draft.
+  var RETRY_ROUTE = /^\/rascunhos\/[^/?]+\/(?:objectivo\/sugerir|padroes\/explicar|seccoes\/[^/?]+\/gerar)(?:\?|$)/;
 
   // X-Eunomia: 1 on every request: the server refuses a POST, PUT or DELETE that has neither this
   // header nor the JSON content type (a form from another site can send neither). The own key goes
@@ -129,7 +135,7 @@
 
   function request(method, path, body) {
     var first = once(method, path, body);
-    if (!MODEL_ROUTE.test(path)) return first;
+    if (!RETRY_ROUTE.test(path)) return first;
     return first.catch(function (err) {
       if (!(err instanceof ApiError) || err.status !== 0) throw err;
       return new Promise(function (resolve) { setTimeout(resolve, retryDelay()); })

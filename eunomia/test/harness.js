@@ -2,7 +2,8 @@
 // server (FakeApi) behind a mocked fetch, and the fixtures that the test files share.
 // boot(t, { api, hash, storage, stored, local }) loads the page (local: localStorage items to set
 // before the scripts run); lastCall(api, method, re) finds a request. api.static(name, obj) serves
-// obj in place of a static file; each call records its time (at).
+// obj in place of a static file; each call records its time (at). api.adaptar: the answers that
+// POST /rascunhos/adaptar proposes ({ passo: valor }); every GET of a draft has propostos.
 // The pilot routes mimic eunomia-server/src/review-routes.js: opiniao, submeter, GET /revisao (autor
 // as the display name), aprovar, devolver (revisao.revisor as the display name) and GET /uso.
 'use strict';
@@ -122,7 +123,10 @@ class FakeApi {
   }
 
   view(d, extra = {}) {
-    return { rascunho: d, proximo_passo: nextStep(d), plano: [{ rotulo: 'Unidade curricular', valor: (d.respostas.contexto || {}).uc || '' }], ...extra };
+    return {
+      rascunho: d, proximo_passo: nextStep(d), plano: [{ rotulo: 'Unidade curricular', valor: (d.respostas.contexto || {}).uc || '' }],
+      propostos: Array.isArray(d.propostos) ? d.propostos : [], ...extra,
+    };
   }
 
   save(d) {
@@ -197,6 +201,16 @@ class FakeApi {
         respostas = JSON.parse(JSON.stringify(e.respostas));
       }
       const d = makeDraft({ id: 'f0f0f0f0f0f0', rev: 1, respostas });
+      this.drafts.set(d.id, d);
+      return json(201, this.view(d));
+    }
+    // An activity the teacher already runs (draft-routes.js): a refinar draft with the text in
+    // materials and the steps in this.adaptar (default: contexto and objectivo of ANSWERS) proposed.
+    if (method === 'POST' && p === '/rascunhos/adaptar') {
+      if (typeof body.texto !== 'string' || body.texto.trim() === '') return json(400, { erro: 'Cole o texto da actividade.' });
+      const proposed = this.adaptar || { contexto: ANSWERS.contexto, objectivo: ANSWERS.objectivo };
+      const respostas = { ...JSON.parse(JSON.stringify(proposed)), materiais: { texto: body.texto } };
+      const d = makeDraft({ id: 'adadadadadad', modo: 'refinar', rev: 1, respostas, propostos: Object.keys(proposed) });
       this.drafts.set(d.id, d);
       return json(201, this.view(d));
     }
@@ -297,6 +311,7 @@ class FakeApi {
       const bad = write();
       if (bad) return bad;
       d.respostas = { ...d.respostas, [m[1]]: body.valor };
+      if (Array.isArray(d.propostos)) d.propostos = d.propostos.filter((x) => x !== m[1]);
       return json(200, this.view(this.save(d), { avisos: [] }));
     }
     if (method === 'POST' && rest === '/plano/aprovar') {

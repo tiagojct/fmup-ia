@@ -6,7 +6,7 @@
  * interview (steps, fields, help, "porque" boxes) is data in interview.json. This file has no UI
  * copy and stays ASCII only.
  *
- * Hash routes (see ROUTES): #/entrar, #/ajuda, #/exemplos, #/exemplos/:n, #/inicio,
+ * Hash routes (see ROUTES): #/entrar, #/ajuda, #/exemplos, #/exemplos/:n, #/inicio, #/adaptar,
  * #/rascunho/:id, #/rascunho/:id/passo/:passo, #/rascunho/:id/plano, #/rascunho/:id/seccao/:sec,
  * #/rascunho/:id/referencias, #/rascunho/:id/previsao, #/definicoes, and for the admin #/codigos,
  * #/revisao, #/revisao/:id and #/uso.
@@ -19,6 +19,12 @@
  * the preview of a complete draft, the review queue of the admin and the usage page. A draft that is
  * not editable (submetida, aprovada, ...) is shown read only: no save or model buttons. A devolvida
  * draft shows the comment of the review at the top of every draft page.
+ *
+ * Adaptar (#/adaptar, spec 0.3, 6): the teacher pastes an activity; POST /rascunhos/adaptar makes a
+ * refinar draft with the text in materials and the answers the model proposed (propostos). The
+ * interview then shows how many steps were filled, or that none could be, and marks each proposed
+ * step until it is saved. That request is never retried (api.js): after a status 0 or a 5xx the
+ * error says to look in the list of drafts first.
  *
  * A model request that fails with status 0 is sent once more by api.js. When that retry of gerar
  * gets a 409 with motivo rev, the first request did reach the server: the draft is reloaded and the
@@ -43,6 +49,8 @@
   var AI_ONLY_SECTIONS = ['prompt_base', 'plano_b'];
   var EDITABLE = ['rascunho', 'devolvida'];
   var LONG_TEXT_COUNTER = 5000; // a texto_longo field with a larger max shows a counter and is cut on save
+  var ADAPT_MAX = 60000; // POST /rascunhos/adaptar: the longest text (server: MAX_ACTIVITY)
+  var ADAPT_MODEL_READS = 20000; // the part of it that the model reads (server: prompts MAX_MATERIALS)
 
   // The fields of each section for the editor. Labels come from S.seccao.campos.
   var SECTION_FORMS = {
@@ -283,6 +291,7 @@
     { re: /^#\/exemplos$/, page: 'exemplos', title: function () { return S.exemplos.pagina; }, render: pageExamples, public: true, open: true },
     { re: /^#\/exemplos\/([1-7])$/, page: 'exemplo', title: function () { return S.exemplos.paginaExemplo; }, render: pageExample, public: true, open: true },
     { re: /^#\/inicio$/, page: 'inicio', title: function () { return S.inicio.pagina; }, render: pageHome },
+    { re: /^#\/adaptar$/, page: 'adaptar', title: function () { return S.adaptar.pagina; }, render: pageAdapt },
     { re: new RegExp('^#/rascunho/' + ID + '$'), page: 'rascunho', title: function () { return S.comum.aCarregar; }, render: pageResume },
     { re: new RegExp('^#/rascunho/' + ID + '/passo/([a-z_]+)$'), page: 'passo', title: function () { return S.rascunho.entrevista; }, render: pageStep },
     { re: new RegExp('^#/rascunho/' + ID + '/plano$'), page: 'plano', title: function () { return S.plano.pagina; }, render: pagePlan },
@@ -1171,12 +1180,70 @@
       el('p', { class: 'step-help', text: S.inicio.intro }),
       el('p', { id: 'modo-chave', class: 'eu-nota' },
         API.ownKey() ? S.inicio.modoProprio : S.inicio.modoPartilhado, ' ', link(S.inicio.mudarModo, '#/definicoes')),
-      el('div', { class: 'nav-row' }, newBtn),
+      el('div', { class: 'nav-row' }, newBtn, ' ', link(S.inicio.adaptar, '#/adaptar', { id: 'adaptar-actividade', class: 'btn-secondary' })),
       slot,
       el('section', { class: 'eu-seccao', 'aria-labelledby': 'meus-titulo' }, el('h3', { id: 'meus-titulo', text: S.inicio.meus }), list),
       el('section', { class: 'eu-seccao', 'aria-labelledby': 'ferramentas-titulo' }, el('h3', { id: 'ferramentas-titulo', text: S.inicio.ferramentas }), tools)));
 
     return Promise.all([load(), loadQueue()]);
+  }
+
+  // ---------------------------------------------------------------- page: adapt an activity
+
+  // The teacher pastes an activity they already run; the model proposes answers for the first steps.
+  // A text longer than the part the model reads gets a note before it is sent. A 422 dados_pessoais
+  // uses the confirmation of the materials step. No retry (api.js): when the request may have
+  // reached the server (status 0, 5xx), the error says to look in the list of drafts first.
+  function pageAdapt(ctx) {
+    var slot = errorSlot();
+    var field = makeField({ id: 'adaptar', tipo: 'texto_longo', max: ADAPT_MAX, rotulo: S.adaptar.campo, obrigatorio: true });
+    var input = field.input;
+    var longNote = el('p', { class: 'eu-nota', id: 'adaptar-nota-longa' });
+    input.setAttribute('aria-describedby', [input.getAttribute('aria-describedby'), longNote.id].filter(Boolean).join(' '));
+    on(input, 'input', function () {
+      var text = input.value.length > ADAPT_MODEL_READS ? S.adaptar.notaLonga(ADAPT_MODEL_READS) : '';
+      if (longNote.textContent !== text) longNote.textContent = text;
+    });
+    var submit = el('button', { type: 'submit', id: 'propor-respostas', class: 'btn-primary', text: S.adaptar.botao });
+    var form = el('form', { id: 'adaptar-form', novalidate: true },
+      field.row,
+      el('div', { 'aria-live': 'polite' }, longNote),
+      slot,
+      el('div', { class: 'nav-row' }, link(S.rascunho.inicio, '#/inicio', { class: 'btn-ghost' }), el('span', { class: 'spacer' }), submit));
+
+    // confirmed: the teacher ticked that the text has no personal data (after a 422).
+    function send(btn, texto, confirmed) {
+      clearSlot(slot);
+      var body = { texto: texto };
+      if (confirmed) body.confirmo_sem_dados_pessoais = true;
+      busy(btn, function () {
+        return API.request('POST', '/rascunhos/adaptar', body);
+      }, { model: true, label: S.adaptar.aProcessar }).then(function (view) {
+        if (!ctx.alive()) return;
+        go(stepHref(view.rascunho.id, steps()[0].id));
+      }).catch(function (err) {
+        if (!ctx.alive()) return;
+        if (isPersonalData(err)) {
+          personalDataBox(slot, err, function (again) { send(again, texto, true); });
+          return;
+        }
+        report(slot, err);
+        var box = slot.querySelector('.eu-erro');
+        if (box && err instanceof API.ApiError && (err.status === 0 || err.status >= 500)) {
+          box.appendChild(el('p', null, S.adaptar.erro, ' ', link(S.rascunho.inicio, '#/inicio')));
+        }
+      });
+    }
+    on(form, 'submit', function (e) {
+      e.preventDefault();
+      send(submit, input.value, false);
+    });
+
+    main.appendChild(el('div', { class: 'screen' },
+      el('h2', { class: 'step-title', text: S.adaptar.titulo }),
+      el('p', { class: 'step-help', text: S.adaptar.intro }),
+      el('p', { class: 'eu-aviso-dados', role: 'note', text: S.adaptar.aviso }),
+      form));
   }
 
   // #/rascunho/:id goes to the place where the teacher stopped.
@@ -1222,6 +1289,7 @@
       el('p', { class: 'step-progress', id: progressId, text: S.passo.progresso(index + 1, list.length, minutesToPlan(list, index)) }),
       el('progress', { max: list.length, value: index + 1, 'aria-label': S.passo.progressoRotulo, 'aria-describedby': progressId })));
     content.appendChild(el('h2', { class: 'step-title', text: step.titulo }));
+    append(content, adaptNotes(view, step));
     append(content, porqueBox(step, d.respostas));
     var guidance = [exampleDisclosure(step), commonErrors(step)].filter(Boolean);
     if (guidance.length) content.appendChild(el('div', { class: 'eu-orientacao' }, guidance));
@@ -1296,6 +1364,21 @@
         report(slot, err, { write: true });
       });
     }
+  }
+
+  // A draft made by Adaptar: how many steps the model filled (or that it filled none, while no step
+  // but materiais has an answer), and the mark of a proposed step that the teacher has not saved.
+  function adaptNotes(view, step) {
+    var d = view.rascunho;
+    var propostos = Array.isArray(view.propostos) ? view.propostos : [];
+    var out = [];
+    if (propostos.length > 0) {
+      out.push(el('p', { class: 'review-note', id: 'nota-adaptar', text: S.adaptar.notaPreenchido(propostos.length) }));
+    } else if (d.modo === 'refinar' && Object.keys(d.respostas).every(function (k) { return k === 'materiais'; })) {
+      out.push(el('p', { class: 'review-note', id: 'nota-adaptar', text: S.adaptar.notaVazio }));
+    }
+    if (propostos.indexOf(step.id) !== -1) out.push(el('p', null, el('span', { class: 'eu-etiqueta', id: 'marca-proposto', text: S.adaptar.marca })));
+    return out;
   }
 
   function isPersonalData(err) {
