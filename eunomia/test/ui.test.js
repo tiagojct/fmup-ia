@@ -787,7 +787,14 @@ test('every string of i18n-pt.js is used by app.js', () => {
     for (const [key, value] of Object.entries(entries)) {
       const name = `${group}.${key}`;
       if (dynamic.has(name) || computed.has(name)) continue;
-      if (typeof value === 'object') { unused.push(`${name} (unexpected map)`); continue; }
+      // A nested map of copy (inicio.cartaRegra): each of its strings is named in app.js.
+      if (value && typeof value === 'object') {
+        for (const [sub, leaf] of Object.entries(value)) {
+          if (typeof leaf !== 'string') unused.push(`${name}.${sub} (unexpected map)`);
+          else if (!app.includes(`S.${name}.${sub}`)) unused.push(`${name}.${sub}`);
+        }
+        continue;
+      }
       if (!app.includes(`S.${name}`)) unused.push(name);
     }
   }
@@ -1087,7 +1094,8 @@ test('8: the data notice names the opinions and the submitted drafts and who see
   new Function('window', fs.readFileSync(path.join(ROOT, 'i18n-pt.js'), 'utf8'))(w);
   const S = w.EUNOMIA_PT;
   assert.match(S.entrar.avisoServidor, /Tiago Jacinto/);
-  assert.match(S.entrar.avisoServidor, /responsável pela Eunomia/);
+  // 0.3 (spec section 8): the last sentence is the what-Tiago-sees text of S.app.oQueVe.
+  assert.ok(S.entrar.avisoServidor.endsWith(S.app.oQueVe));
   assert.match(S.entrar.avisoServidor, /«Foi útil\?»/);
   assert.match(S.entrar.avisoServidor, /submeter para revisão/);
   assert.doesNotMatch(S.referencias.intro, /revisão/);

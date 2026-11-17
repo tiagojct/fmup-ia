@@ -825,6 +825,43 @@ textarea.eu-mono,
   margin-bottom: 0.6rem;
 }
 
+.eu-primeira-vez p.eu-o-que-ve {
+  font-weight: 400;
+  margin: 0 0 0.6rem;
+}
+
+/* ---------- Home: the two entry routes (one column; two side by side from 720px) ---------- */
+
+.eu-entradas {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  margin: 1.25rem 0 0.5rem;
+}
+
+@media (min-width: 720px) {
+  .eu-entradas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.eu-entradas > .eu-entrada {
+  margin: 0;
+  border-top: 4px solid var(--c-fmup-yellow);
+}
+
+.eu-entrada .nav-row {
+  margin: 0 0 0.6rem;
+}
+
+/* ---------- Footer: the status of the tool ---------- */
+
+.eu-rodape-estado {
+  max-width: 46rem;
+  margin: 0.6rem auto 0;
+  line-height: 1.45;
+}
+
 .eu-convite {
   margin: 0 0 1.5rem;
 }

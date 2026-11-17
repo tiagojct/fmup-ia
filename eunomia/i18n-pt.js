@@ -8,6 +8,10 @@
   var plural = function (n, um, varios) { return n === 1 ? um : varios; };
   // The data rule of the materials step and of Adaptar: the same text in both places.
   var AVISO_DADOS = 'Sem dados de doentes nem de estudantes. O texto vai para a IAedu: use só casos fictícios e materiais sem dados pessoais.';
+  // The status of the tool (login page, footer, help, invitation) and what Tiago sees (login data
+  // notice, first-visit box, help): the same text in every place.
+  var ESTADO = 'A Eunomia é uma ferramenta desenvolvida por Tiago Jacinto (MEDCIDS) como proposta, para testar, melhorar e construir com colegas. Não é uma ferramenta oficial da FMUP. O uso é voluntário.';
+  var O_QUE_VE = 'Tiago Jacinto vê o seu nome, quantos rascunhos tem e em que estado, quantos pedidos faz ao modelo e as opiniões que deixar em «Foi útil?». A Eunomia só lhe mostra o texto de uma actividade depois de a submeter para revisão. A revisão é opcional e não é uma avaliação do seu trabalho.';
 
   window.EUNOMIA_PT = {
     app: {
@@ -26,6 +30,8 @@
       terminarSessao: 'Terminar sessão',
       ajuda: 'Ajuda',
       sessaoDe: function (nome) { return 'Sessão de ' + nome; },
+      estado: ESTADO,
+      oQueVe: O_QUE_VE,
     },
 
     comum: {
@@ -72,11 +78,13 @@
       aEntrar: 'A entrar...',
       semCodigo: 'Escreva o código de acesso.',
       ajuda: 'Antes de entrar, pode ler a ajuda: o que a Eunomia faz, quanto tempo leva e que dados usa.',
+      themis: 'Só precisa da regra de IA para um trabalho avaliado? A Themis, a outra ferramenta do FMUP · IA, prepara-a em cerca de 5 minutos, sem código e sem guardar nada.',
+      themisLink: 'Abrir a Themis',
       avisoTitulo: 'Que dados usa a Eunomia',
       avisoIaeduTitulo: 'O que vai para a IAedu',
       avisoIaedu: 'Para escrever e rever texto, a Eunomia envia ao serviço IAedu, da FCT/FCCN, as suas respostas à entrevista, os materiais que colar e o texto das secções. Não escreva dados de doentes nem de estudantes: todos os casos devem ser fictícios.',
       avisoServidorTitulo: 'O que o servidor da Eunomia guarda',
-      avisoServidor: 'O seu nome e uma impressão digital (hash) do código de acesso, nunca o código. Os seus rascunhos. O número de pedidos ao modelo em cada dia. Os registos do servidor nunca guardam o texto dos rascunhos. Se usar a sua própria chave IAedu, o servidor não a guarda. Tiago Jacinto, responsável pela Eunomia, vê as opiniões que deixar em «Foi útil?» e as actividades que submeter para revisão.',
+      avisoServidor: 'O seu nome e uma impressão digital (hash) do código de acesso, nunca o código. Os seus rascunhos. O número de pedidos ao modelo em cada dia. Os registos do servidor nunca guardam o texto dos rascunhos. Se usar a sua própria chave IAedu, o servidor não a guarda. ' + O_QUE_VE,
       avisoPrazoTitulo: 'Durante quanto tempo',
       avisoPrazo: 'Os rascunhos que ninguém abra durante 12 meses são apagados. O responsável pela Eunomia pode alterar este prazo. A sessão dura 12 horas.',
     },
@@ -87,6 +95,16 @@
       intro: 'Cada rascunho guarda-se depois de cada passo. Pode parar e continuar mais tarde.',
       novo: 'Nova actividade',
       adaptar: 'Adaptar uma actividade que já faço',
+      cartaRegra: {
+        titulo: 'Preparar a regra de IA para um trabalho avaliado',
+        texto: 'Cerca de 5 minutos, na Themis, a outra ferramenta do FMUP · IA. Não guarda nada.',
+        link: 'Abrir a Themis',
+      },
+      cartaActividade: {
+        titulo: 'Desenhar ou adaptar uma actividade',
+        texto: 'Cerca de 45 minutos, passo a passo, até à ficha da actividade. Uma actividade sem IA também é um resultado válido.',
+        exemplo: 'Começar a partir de um exemplo',
+      },
       aCriar: 'A criar...',
       meus: 'Os meus rascunhos',
       nenhum: 'Ainda não tem rascunhos. Comece uma nova actividade.',
@@ -519,20 +537,25 @@
       copiado: 'Código copiado.',
       naoCopiado: 'Não foi possível copiar. Seleccione o código e copie-o.',
       conviteTitulo: 'Texto do convite',
+      // The invitation (spec section 1): the problem, the two routes, the status, the link and the
+      // code, the data rule, the contact. Under 200 words.
       convite: function (c) {
         return [
           'Olá, ' + c.nome + '.',
           '',
-          'Já pode usar a Eunomia, a ferramenta do FMUP · IA que ajuda a desenhar uma actividade de ensino com IA, passo a passo, e escreve a ficha da actividade.',
+          'Os seus estudantes usam IA nos trabalhos? O FMUP · IA tem duas ferramentas que podem ajudar.',
           '',
-          'Endereço: ' + c.app,
-          'Código de acesso: ' + c.codigo,
+          'Se precisa só da regra de IA para um trabalho avaliado, a Themis prepara-a em cerca de 5 minutos. Não precisa de código e não guarda nada: ' + c.themis,
           '',
-          'O código é pessoal: não o partilhe. A primeira actividade leva cerca de 45 minutos. Pode parar a meio, porque o rascunho fica guardado.',
+          'Se quer desenhar uma actividade de ensino, ou adaptar uma que já faz, a Eunomia ajuda passo a passo e escreve a ficha da actividade. A primeira leva cerca de 45 minutos e pode parar a meio, porque o rascunho fica guardado. Uma actividade sem IA também é um resultado válido.',
           '',
-          'Antes de começar, pode ler a ajuda ou ver uma actividade de exemplo. As duas páginas abrem sem o código.',
+          ESTADO,
+          '',
+          'Eunomia: ' + c.app,
+          'Código de acesso: ' + c.codigo + ' (é pessoal: não o partilhe)',
           'Ajuda: ' + c.ajuda,
           'Actividades de exemplo: ' + c.exemplos,
+          'A ajuda e os exemplos abrem sem o código.',
           '',
           'Não escreva dados de doentes nem de estudantes: os casos têm de ser fictícios.',
           '',

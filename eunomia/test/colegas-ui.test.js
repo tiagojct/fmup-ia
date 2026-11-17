@@ -232,3 +232,130 @@ test('a criar draft shows neither note nor mark', async (t) => {
   assert.equal(a.$('#nota-adaptar'), null);
   assert.equal(a.$('#marca-proposto'), null);
 });
+
+// ---------------------------------------------------------------- Task 6: entry routes, status, what Tiago sees
+
+const ESTADO = 'A Eunomia é uma ferramenta desenvolvida por Tiago Jacinto (MEDCIDS) como proposta, para testar, melhorar e construir com colegas. Não é uma ferramenta oficial da FMUP. O uso é voluntário.';
+const O_QUE_VE = 'Tiago Jacinto vê o seu nome, quantos rascunhos tem e em que estado, quantos pedidos faz ao modelo e as opiniões que deixar em «Foi útil?». A Eunomia só lhe mostra o texto de uma actividade depois de a submeter para revisão. A revisão é opcional e não é uma avaliação do seu trabalho.';
+const A = load('ajuda-pt.js', 'EUNOMIA_AJUDA');
+const words = (s) => s.split(/\s+/).filter(Boolean).length;
+
+test('the copy of the entry routes: status, what Tiago sees, the two cards, the Themis line', () => {
+  assert.equal(S.app.estado, ESTADO);
+  assert.equal(S.app.oQueVe, O_QUE_VE);
+  assert.equal(S.inicio.cartaRegra.titulo, 'Preparar a regra de IA para um trabalho avaliado');
+  assert.equal(S.inicio.cartaRegra.texto, 'Cerca de 5 minutos, na Themis, a outra ferramenta do FMUP · IA. Não guarda nada.');
+  assert.ok(typeof S.inicio.cartaRegra.link === 'string' && /Themis/.test(S.inicio.cartaRegra.link));
+  assert.equal(S.inicio.cartaActividade.titulo, 'Desenhar ou adaptar uma actividade');
+  assert.match(S.inicio.cartaActividade.texto, /sem IA/, 'an activity without AI is a valid result');
+  assert.equal(S.inicio.cartaActividade.exemplo, 'Começar a partir de um exemplo');
+  assert.ok(typeof S.entrar.themis === 'string' && /Themis/.test(S.entrar.themis));
+  // The login data notice: its last sentence is now the what-Tiago-sees text.
+  assert.ok(S.entrar.avisoServidor.endsWith(' ' + O_QUE_VE), 'avisoServidor ends with S.app.oQueVe');
+  assert.doesNotMatch(S.entrar.avisoServidor, /as actividades que submeter para revisão/);
+  for (const s of [S.app.estado, S.inicio.cartaActividade.texto, S.entrar.themis]) {
+    assert.doesNotMatch(s, /\batividade|\bobjetivo|\balunos?\b|\bcorreção/i);
+    assert.doesNotMatch(s, /endossad|aprovad|oficial do Quadro/i, 'no claim about the Quadro or any endorsement');
+  }
+});
+
+test('home: two cards with h3 headings above Os meus rascunhos; the regra card links to ../themis/; the actividade card has the buttons and the examples', async (t) => {
+  const a = await boot(t, { api: new FakeApi({ user: TEACHER }), hash: '#/inicio' });
+  await a.page('inicio');
+  const box = a.$('#entradas');
+  assert.ok(box, 'the two entry routes');
+  const cards = [...box.querySelectorAll(':scope > section')];
+  assert.equal(cards.length, 2);
+  const title = (card) => a.$('#' + card.getAttribute('aria-labelledby'));
+  assert.equal(title(cards[0]).tagName, 'H3');
+  assert.equal(title(cards[0]).textContent, S.inicio.cartaRegra.titulo);
+  assert.equal(title(cards[1]).tagName, 'H3');
+  assert.equal(title(cards[1]).textContent, S.inicio.cartaActividade.titulo);
+  // Regra: the line and the link to the Themis.
+  assert.ok(cards[0].textContent.includes(S.inicio.cartaRegra.texto));
+  const themis = cards[0].querySelector('a[href="../themis/"]');
+  assert.ok(themis, 'link to ../themis/');
+  assert.equal(themis.textContent, S.inicio.cartaRegra.link);
+  // Actividade: the sentence on sem IA, the two buttons (Task 5 ids) and the examples link.
+  assert.ok(cards[1].textContent.includes(S.inicio.cartaActividade.texto));
+  assert.ok(cards[1].contains(a.$('#novo-rascunho')), 'Nova actividade in the card');
+  assert.ok(cards[1].contains(a.$('#adaptar-actividade')), 'Adaptar in the card');
+  const ex = cards[1].querySelector('a[href="#/exemplos"]');
+  assert.ok(ex, 'link to the examples');
+  assert.equal(ex.textContent, S.inicio.cartaActividade.exemplo);
+  // Keyboard: every control in the cards is a link with an href or a button, with a name.
+  for (const c of box.querySelectorAll('a, button')) {
+    assert.ok(c.tagName === 'BUTTON' || c.hasAttribute('href'), c.outerHTML);
+    assert.ok(c.textContent.trim() !== '', 'a visible name');
+  }
+  // Above Os meus rascunhos; headings in order: the h2 of the page, then h3 only.
+  const meus = a.$('#meus-titulo');
+  assert.ok(box.compareDocumentPosition(meus) & a.w.Node.DOCUMENT_POSITION_FOLLOWING, 'cards before Os meus rascunhos');
+  const levels = a.$$('#main h1, #main h2, #main h3, #main h4, #main h5, #main h6').map((h) => h.tagName);
+  assert.equal(levels[0], 'H2');
+  assert.deepEqual([...new Set(levels.slice(1))], ['H3']);
+});
+
+test('the cards stack at narrow width: one column by default, two only in a min-width media query', () => {
+  // jsdom does no layout: check the rules of style.css instead.
+  const css = fs.readFileSync(path.join(ROOT, 'style.css'), 'utf8');
+  const base = /(^|\n)\.eu-entradas\s*\{([^}]*)\}/.exec(css);
+  assert.ok(base, 'a top-level .eu-entradas rule');
+  assert.match(base[2], /display:\s*grid/);
+  assert.match(base[2], /grid-template-columns:\s*minmax\(0,\s*1fr\);/);
+  const media = /@media \(min-width: (\d+)px\)\s*\{\s*\.eu-entradas\s*\{([^}]*)\}/.exec(css);
+  assert.ok(media, 'the two columns sit in a min-width media query');
+  assert.ok(Number(media[1]) > 400, 'still one column at 400 px');
+  assert.match(media[2], /grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
+  assert.doesNotMatch(css, /\.eu-entrada[^s{]*\{[^}]*\b(min-)?width:\s*\d/, 'no fixed card width');
+});
+
+test('login page: the status sentence, the Themis line with its link, and what Tiago sees in the data notice', async (t) => {
+  const a = await boot(t);
+  await a.page('entrar');
+  assert.equal(a.$('#entrar-estado').textContent, S.app.estado);
+  const line = a.$('#entrar-themis');
+  assert.ok(line.textContent.includes(S.entrar.themis));
+  assert.ok(line.querySelector('a[href="../themis/"]'), 'the Themis link');
+  const notice = a.$('#aviso-dados').textContent;
+  assert.ok(notice.includes(S.app.oQueVe));
+  assert.doesNotMatch(notice, /as actividades que submeter para revisão/);
+});
+
+test('the first-visit box says what Tiago sees', async (t) => {
+  const a = await boot(t, { api: new FakeApi({ user: TEACHER }), hash: '#/inicio' });
+  await a.page('inicio');
+  assert.ok(a.$('#primeira-vez').textContent.includes(S.app.oQueVe));
+});
+
+test('the footer shows the status sentence in an element of its own', async (t) => {
+  const a = await boot(t);
+  await a.page('entrar');
+  const node = a.$('footer.site-footer #rodape-estado');
+  assert.ok(node, 'status element in the footer');
+  assert.equal(node.textContent, S.app.estado);
+});
+
+test('the invitation: problem, two routes with the Themis URL, status, link and code, data rule, contact; sem IA; under 200 words', async (t) => {
+  const api = new FakeApi({ user: { id: 'u9', nome: 'Tiago Jacinto', perfil: 'admin' } });
+  const a = await boot(t, { api, hash: '#/codigos' });
+  await a.page('codigos');
+  a.set('#novo-nome', 'Rui Costa');
+  a.$('#criar-codigo').click();
+  await a.waitFor(() => a.$('#convite-texto'), 'invitation');
+  const text = a.$('#convite-texto').value;
+  const app = 'https://example.test/fmup-ia/eunomia/';
+  const themis = 'https://example.test/fmup-ia/themis/';
+  assert.equal(text, S.codigos.convite({ nome: 'Rui Costa', codigo: 'QWER-TYUI-OPAS', app, ajuda: app + '#/ajuda', exemplos: app + '#/exemplos', themis, contacto: A.contacto }));
+  assert.match(text, /sem IA/);
+  assert.ok(words(text) < 200, `${words(text)} words`);
+  const at = (s) => {
+    const i = text.indexOf(s);
+    assert.ok(i >= 0, s);
+    return i;
+  };
+  const order = [at('Os seus estudantes usam IA nos trabalhos?'), at(themis), at('45 minutos'), at(S.app.estado), at(app + '\n'), at('QWER-TYUI-OPAS'),
+    at(app + '#/ajuda'), at(app + '#/exemplos'), at('dados de doentes'), at('tiagojacinto@med.up.pt')];
+  assert.deepEqual(order, [...order].sort((x, y) => x - y), 'the order of spec section 1');
+  assert.doesNotMatch(text, /\batividade|\bobjetivo|\balunos?\b|\bcorreção/i);
+});

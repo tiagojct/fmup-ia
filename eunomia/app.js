@@ -387,6 +387,7 @@
     text('footer-name', S.app.rodape);
     text('footer-link-quadro', S.app.quadro);
     text('footer-link-themis', S.app.themis);
+    text('rodape-estado', S.app.estado);
     text('logout-btn', S.app.terminarSessao);
     text('help-link', S.app.ajuda);
     var nav = document.getElementById('back-bar');
@@ -771,7 +772,9 @@
       flash ? el('p', { class: 'review-note', text: flash }) : null,
       el('p', { class: 'step-help', text: S.entrar.intro }),
       el('p', { class: 'eu-entrar-ajuda' }, link(S.entrar.ajuda, '#/ajuda')),
+      el('p', { id: 'entrar-themis', class: 'eu-nota' }, S.entrar.themis, ' ', link(S.entrar.themisLink, '../themis/')),
       form,
+      el('p', { id: 'entrar-estado', class: 'eu-nota', text: S.app.estado }),
       notice));
     if (flash) announce(flash);
   }
@@ -1058,7 +1061,8 @@
       el('p', { text: S.inicio.primeiraVez }),
       el('ul', { class: 'eu-ligacoes' },
         el('li', null, link(S.inicio.verExemplo, '#/exemplos')),
-        el('li', null, link(S.inicio.lerAjuda, '#/ajuda'))));
+        el('li', null, link(S.inicio.lerAjuda, '#/ajuda'))),
+      el('p', { class: 'eu-o-que-ve', text: S.app.oQueVe }));
     box.appendChild(button(S.inicio.fechar, { id: 'fechar-primeira-vez', class: 'btn-ghost' }, function () {
       closeWelcome(user);
       if (box.parentNode) box.parentNode.removeChild(box);
@@ -1173,6 +1177,21 @@
         report(slot, err);
       });
     };
+    // The two entry routes (spec section 2): the AI rule of a graded assignment in the Themis, or an
+    // activity here (new, adapted or from an example). Cards side by side, stacked when narrow.
+    var entryRoutes = function (newButton) {
+      var card = function (id, titulo, texto, body) {
+        return el('section', { id: id, class: 'eu-cartao eu-entrada', 'aria-labelledby': id + '-titulo' },
+          el('h3', { id: id + '-titulo', text: titulo }), el('p', { text: texto }), body);
+      };
+      return el('div', { id: 'entradas', class: 'eu-entradas' },
+        card('entrada-regra', S.inicio.cartaRegra.titulo, S.inicio.cartaRegra.texto,
+          el('p', null, link(S.inicio.cartaRegra.link, '../themis/', { id: 'abrir-themis-regra' }))),
+        card('entrada-actividade', S.inicio.cartaActividade.titulo, S.inicio.cartaActividade.texto, [
+          el('div', { class: 'nav-row' }, newButton, ' ', link(S.inicio.adaptar, '#/adaptar', { id: 'adaptar-actividade', class: 'btn-secondary' })),
+          el('p', null, link(S.inicio.cartaActividade.exemplo, '#/exemplos', { id: 'comecar-exemplo-inicio' })),
+        ]));
+    };
     main.appendChild(el('div', { class: 'screen' },
       el('h2', { class: 'step-title', text: S.inicio.ola(user.nome) }),
       welcomeBox(user),
@@ -1180,7 +1199,7 @@
       el('p', { class: 'step-help', text: S.inicio.intro }),
       el('p', { id: 'modo-chave', class: 'eu-nota' },
         API.ownKey() ? S.inicio.modoProprio : S.inicio.modoPartilhado, ' ', link(S.inicio.mudarModo, '#/definicoes')),
-      el('div', { class: 'nav-row' }, newBtn, ' ', link(S.inicio.adaptar, '#/adaptar', { id: 'adaptar-actividade', class: 'btn-secondary' })),
+      entryRoutes(newBtn),
       slot,
       el('section', { class: 'eu-seccao', 'aria-labelledby': 'meus-titulo' }, el('h3', { id: 'meus-titulo', text: S.inicio.meus }), list),
       el('section', { class: 'eu-seccao', 'aria-labelledby': 'ferramentas-titulo' }, el('h3', { id: 'ferramentas-titulo', text: S.inicio.ferramentas }), tools)));
@@ -2528,7 +2547,8 @@
     // Like the code, it is only in this view.
     var invitation = function (nome, code) {
       var app = window.location.origin + window.location.pathname;
-      var text = S.codigos.convite({ nome: nome, codigo: code, app: app, ajuda: app + '#/ajuda', exemplos: app + '#/exemplos', contacto: A.contacto });
+      var themis = new URL('../themis/', app).href; // the Themis sits next to the Eunomia (../themis/)
+      var text = S.codigos.convite({ nome: nome, codigo: code, app: app, ajuda: app + '#/ajuda', exemplos: app + '#/exemplos', themis: themis, contacto: A.contacto });
       var area = el('textarea', { id: 'convite-texto', class: 'eu-convite-texto', readonly: true, rows: 14, 'aria-labelledby': 'convite-titulo', spellcheck: 'false' });
       area.value = text;
       var copy = button(S.codigos.copiarConvite, { id: 'copiar-convite', class: 'btn-ghost' }, function () {

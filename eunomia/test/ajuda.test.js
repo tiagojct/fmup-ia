@@ -193,9 +193,10 @@ test('after a new code, the invitation text has the code, the app, help and exam
   assert.equal(area.tagName, 'TEXTAREA');
   assert.ok(area.readOnly);
   const app = 'https://example.test/fmup-ia/eunomia/';
-  const expected = S.codigos.convite({ nome: 'Rui Costa', codigo: 'QWER-TYUI-OPAS', app, ajuda: app + '#/ajuda', exemplos: app + '#/exemplos', contacto: A.contacto });
+  const themis = 'https://example.test/fmup-ia/themis/';
+  const expected = S.codigos.convite({ nome: 'Rui Costa', codigo: 'QWER-TYUI-OPAS', app, ajuda: app + '#/ajuda', exemplos: app + '#/exemplos', themis, contacto: A.contacto });
   assert.equal(area.value, expected);
-  for (const part of ['Rui Costa', 'QWER-TYUI-OPAS', app, app + '#/ajuda', app + '#/exemplos', 'tiagojacinto@med.up.pt', 'Tiago Jacinto']) {
+  for (const part of ['Rui Costa', 'QWER-TYUI-OPAS', app, app + '#/ajuda', app + '#/exemplos', themis, 'tiagojacinto@med.up.pt', 'Tiago Jacinto']) {
     assert.ok(area.value.includes(part), part);
   }
   assert.doesNotMatch(area.value, /\batividade|\bobjetivo|\balunos?\b/);
@@ -219,7 +220,7 @@ test('after a new code, the invitation text has the code, the app, help and exam
 });
 
 test('the invitation copy is in European Portuguese with the Quadro spelling and no emoji', () => {
-  const text = S.codigos.convite({ nome: 'X', codigo: 'C', app: 'A', ajuda: 'B', exemplos: 'E', contacto: A.contacto });
+  const text = S.codigos.convite({ nome: 'X', codigo: 'C', app: 'A', ajuda: 'B', exemplos: 'E', themis: 'T', contacto: A.contacto });
   assert.doesNotMatch(text, /\batividade|\bobjetivo|\balunos?\b|\bpacientes?\b|\bcorreção/i);
   assert.doesNotMatch(text, /[☀-➿\u{1F000}-\u{1FAFF}️]/u);
   assert.match(text, /45 minutos/);
