@@ -83,6 +83,33 @@ test('state of a summative activity takes policy, assignment and assignmentOther
     { v: 3, lang: 'pt', role: 'teacher', level: null, courseType: 'x', policy: null, assignment: [], assignmentOther: '' });
 });
 
+test('state ignores a stale regime_themis: a formative activity takes the policy of the regime and no assignment', () => {
+  // The server keeps regime_themis when evidencia changes from sumativa to formativa.
+  const r = copy(CPD);
+  r.evidencia.avaliacao = 'formativa';
+  r.regime_themis.policy = 'not_permitted';
+  assert.deepEqual(THEMIS.state(r), {
+    v: 3, lang: 'pt', role: 'teacher', level: null, courseType: 'cpd',
+    policy: 'with_disclosure', assignment: [], assignmentOther: '',
+  });
+  // No evidencia at all is not summative either.
+  delete r.evidencia;
+  assert.deepEqual([THEMIS.state(r).policy, THEMIS.state(r).assignment, THEMIS.state(r).assignmentOther], ['with_disclosure', [], '']);
+  // The link carries the same: the decoded state has no leftover.
+  const fromLink = JSON.parse(Buffer.from(THEMIS.href(r).split('#s=')[1], 'base64url').toString('utf8'));
+  assert.deepEqual([fromLink.policy, fromLink.assignment, fromLink.assignmentOther], ['with_disclosure', [], '']);
+});
+
+test('state keeps assignmentOther only when other is in assignment', () => {
+  const r = copy(CPD);
+  r.regime_themis.assignment = ['essay'];
+  assert.deepEqual([THEMIS.state(r).assignment, THEMIS.state(r).assignmentOther], [['essay'], '']);
+  r.regime_themis.assignment = [];
+  assert.equal(THEMIS.state(r).assignmentOther, '');
+  r.regime_themis.assignment = ['essay', 'other'];
+  assert.equal(THEMIS.state(r).assignmentOther, 'Podcast clínico: gravação e transcrição');
+});
+
 test('href is ../themis/#s= and the base64url of the UTF-8 JSON, with no padding', () => {
   const h = THEMIS.href(CPD);
   assert.match(h, /^\.\.\/themis\/#s=[A-Za-z0-9_-]+$/);

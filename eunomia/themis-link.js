@@ -9,8 +9,10 @@
  * }
  *
  * A field with no safe mapping is null (or [] and ''): Themis leaves it empty and the teacher
- * chooses. Nothing here calls the server or the model. This file has no UI copy and stays ASCII
- * only. It also exports the same object with module.exports, for the tests.
+ * chooses. regime_themis counts only when the activity is summative (evidencia.avaliacao), and
+ * assignmentOther only when 'other' is in assignment. Nothing here calls the server or the model.
+ * This file has no UI copy and stays ASCII only. It also exports the same object with
+ * module.exports, for the tests.
  */
 (function () {
   'use strict';
@@ -36,11 +38,16 @@
     var r = isObject(respostas) ? respostas : {};
     var contexto = isObject(r.contexto) ? r.contexto : {};
     var regime = isObject(r.regime) ? r.regime : {};
-    var themis = isObject(r.regime_themis) ? r.regime_themis : {};
+    // regime_themis is current only for a summative activity. The server keeps the answer when the
+    // activity changes to formativa, so a stale one must not reach the link.
+    var summative = isObject(r.evidencia) && r.evidencia.avaliacao === 'sumativa';
+    var themis = summative && isObject(r.regime_themis) ? r.regime_themis : {};
     var policy = POLICIES.indexOf(themis.policy) !== -1 ? themis.policy : pick(POLICY, regime.regime);
     var assignment = Array.isArray(themis.assignment)
       ? themis.assignment.filter(function (v, i, all) { return typeof v === 'string' && all.indexOf(v) === i; })
       : [];
+    // The free text belongs to "other": without it in the list, the text is a leftover.
+    var other = assignment.indexOf('other') !== -1 && typeof themis.assignmentOther === 'string' ? themis.assignmentOther : '';
     return {
       v: HASH_V,
       lang: 'pt',
@@ -49,7 +56,7 @@
       courseType: typeof contexto.nivel === 'string' && contexto.nivel !== '' ? contexto.nivel : null,
       policy: policy,
       assignment: assignment,
-      assignmentOther: typeof themis.assignmentOther === 'string' ? themis.assignmentOther : '',
+      assignmentOther: other,
     };
   }
 
