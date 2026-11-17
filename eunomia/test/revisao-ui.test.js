@@ -280,3 +280,21 @@ test('a teacher on #/revisao or #/uso goes to #/inicio', async (t) => {
     assert.equal(api.calls.filter((c) => /revisao|uso/.test(c.path)).length, 0, hash);
   }
 });
+
+test('menores 3: Devolver with personal data: an edit to the comment drops the confirmation; the new comment is posted without the flag', async (t) => {
+  const api = new FakeApi({ user: ADMIN });
+  api.drafts.set('aaaaaaaaaaa2', submitted('aaaaaaaaaaa2', 'Debate', '2026-11-14T09:00:00.000Z'));
+  api.on('POST', /\/devolver$/, (call) => (/123456789/.test(call.body.comentario) && call.body.confirmo_sem_dados_pessoais !== true ? json(422, PERSONAL) : api.route(call)));
+  const a = await boot(t, { api, hash: '#/revisao/aaaaaaaaaaa2' });
+  await a.page('revisao-item');
+  a.set('#devolver-comentario', 'Retire o NIF 123456789.');
+  a.$('#devolver').click();
+  await a.waitFor(() => a.$('#confirmo-dados'), 'confirmation');
+  a.set('#devolver-comentario', 'Retire o número de contribuinte.');
+  assert.equal(a.$('#confirmo-dados'), null, 'the confirmation of the old comment is gone');
+  a.$('#devolver').click();
+  await a.waitFor(() => api.calls.filter((c) => /\/devolver$/.test(c.path)).length === 2, 'second post');
+  const last = lastCall(api, 'POST', /\/devolver$/).body;
+  assert.equal(last.comentario, 'Retire o número de contribuinte.');
+  assert.equal(last.confirmo_sem_dados_pessoais, undefined);
+});

@@ -35,7 +35,7 @@
       paragrafos: [
         'Precisa do código de acesso que recebeu por email. A sessão dura 12 horas; depois, entre de novo com o mesmo código.',
         'Reserve cerca de 45 minutos para a primeira actividade: perto de 25 para a entrevista e o plano, o resto para rever as secções e descarregar a ficha. Pode parar a meio, porque o rascunho fica guardado.',
-        'Não escreva dados de doentes nem de estudantes em nenhum campo. As respostas, os materiais e o texto das secções vão para a IAedu, o serviço de IA da FCT/FCCN para o ensino superior; não precisa de conta: a Eunomia usa a chave da FMUP. Por isso, os casos têm de ser fictícios. Quando um texto parece ter dados pessoais, a Eunomia mostra o que encontrou e pede confirmação antes de o guardar.',
+        'Não escreva dados de doentes nem de estudantes em nenhum campo. As respostas, os materiais e o texto das secções vão para a IAedu, o serviço de IA da FCT/FCCN para o ensino superior. Por isso, os casos têm de ser fictícios. Não precisa de conta: a Eunomia usa a chave da FMUP. Quando um texto parece ter dados pessoais, a Eunomia mostra o que encontrou e pede confirmação antes de o guardar.',
       ],
     },
 

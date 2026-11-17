@@ -130,8 +130,12 @@ test('1: a 300 KB section text is refused by PUT with a Portuguese length messag
   assert.ok(r.json.erros.some((e) => /papeis\.estudante|estudante/.test(e) && /20000|20 000/.test(e)), JSON.stringify(r.json.erros));
 });
 
-test('1: adversarial 300 KB texts forced into a stored draft export to HTML in under 1 s each', () => {
-  // A child process: a catastrophic regex would block this runner.
+test('1: adversarial 300 KB texts forced into a stored draft export to HTML in under 5 s each', () => {
+  // A child process: a catastrophic regex would block this runner. The bounded patterns of
+  // export.js are linear, but each position can scan up to 500 characters: " __x" at 300 KB took
+  // up to 1.5 s on a loaded machine. A section holds at most 20 000 characters, so a real export
+  // takes milliseconds. The unbounded patterns this test guards against took minutes; 5 s still
+  // catches them.
   const script = `
     const drafts = require('./src/drafts.js');
     const { assembleFicha } = require('./src/assemble.js');
@@ -166,7 +170,7 @@ test('1: adversarial 300 KB texts forced into a stored draft export to HTML in u
   assert.equal(r.status, 0, r.stderr);
   for (const pair of r.stdout.split(' ')) {
     const [name, ms] = pair.split('=');
-    assert.ok(Number(ms) < 1000, `${name}: ${ms} ms`);
+    assert.ok(Number(ms) < 5000, `${name}: ${ms} ms`);
   }
 });
 

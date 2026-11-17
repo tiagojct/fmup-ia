@@ -147,7 +147,8 @@ test('the help says the status of the tool, that no AI is a valid result, the Th
   assert.ok(oQueE.includes(S.app.estado), 'status sentence');
   assert.match(oQueE, /sem IA[^.]*resultado válido|resultado válido[^.]*sem IA/i);
   const antes = A.antes.paragrafos.join(' ');
-  assert.ok(antes.includes('o serviço de IA da FCT/FCCN para o ensino superior; não precisa de conta: a Eunomia usa a chave da FMUP'), 'IAedu explained');
+  assert.ok(antes.includes('o serviço de IA da FCT/FCCN para o ensino superior. Por isso, os casos têm de ser fictícios. Não precisa de conta: a Eunomia usa a chave da FMUP.'), 'IAedu explained');
+  assert.doesNotMatch(antes, /superior; não precisa/, 'no semicolon before a colon in the same sentence');
   // The Themis line: first mention explained, with the link.
   assert.match(A.antes.themis.texto, /Themis, a outra ferramenta do FMUP · IA, que escreve a regra de IA para o enunciado de um trabalho/);
   assert.match(A.antes.themis.texto, /5 minutos/);

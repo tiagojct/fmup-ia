@@ -1225,7 +1225,7 @@
       var text = input.value.length > ADAPT_MODEL_READS ? S.adaptar.notaLonga(ADAPT_MODEL_READS) : '';
       if (longNote.textContent !== text) longNote.textContent = text;
     });
-    dropConfirmOnEdit(input, slot);
+    var guard = dropConfirmOnEdit(input, slot);
     var submit = el('button', { type: 'submit', id: 'propor-respostas', class: 'btn-primary', text: S.adaptar.botao });
     var form = el('form', { id: 'adaptar-form', novalidate: true },
       field.row,
@@ -1247,6 +1247,7 @@
         if (other) other.disabled = false;
       };
       clearSlot(slot);
+      var mark = guard.mark();
       var body = { texto: texto };
       if (confirmed) body.confirmo_sem_dados_pessoais = true;
       busy(btn, function () {
@@ -1259,7 +1260,7 @@
         done();
         if (!ctx.alive()) return;
         if (isPersonalData(err)) {
-          personalDataBox(slot, err, function (again) { send(again, texto, true); });
+          personalDataBox(slot, err, function (again) { send(again, texto, true); }, guard.stale(mark));
           return;
         }
         report(slot, err);
@@ -1288,7 +1289,8 @@
       var d = view.rascunho;
       // An adapted draft: the first proposed step not yet reviewed comes first.
       var propostos = Array.isArray(view.propostos) ? view.propostos : [];
-      var proposed = applicableSteps(d.respostas).filter(function (p) { return propostos.indexOf(p.id) !== -1; })[0];
+      // A submitted draft is read-only: its proposed steps can no longer be reviewed.
+      var proposed = isEditable(d) && applicableSteps(d.respostas).filter(function (p) { return propostos.indexOf(p.id) !== -1; })[0];
       if (proposed) return redirect(stepHref(id, proposed.id));
       var next = view.proximo_passo;
       if (next) return redirect(stepHref(id, next));
@@ -1350,7 +1352,7 @@
       if (step.id === 'objectivo' && campo.id === 'texto') form.appendChild(outcomeHelper(d, f.input, slot));
     });
     bindConditions(form, fields);
-    dropConfirmOnEdit(form, slot);
+    var guard = dropConfirmOnEdit(form, slot);
 
     var save = isEditable(d) ? el('button', { type: 'submit', id: 'guardar-passo', class: 'btn-primary', text: S.passo.guardar }) : null;
     var prev = index > 0 ? link(S.passo.anterior, stepHref(d.id, list[index - 1].id), { class: 'btn-ghost' }) : null;
@@ -1381,6 +1383,7 @@
     // confirmed: the teacher ticked that the text has no personal data (a 422 with motivo
     // dados_pessoais asks for it).
     function sendAnswer(btn, valor, avisos, confirmed) {
+      var mark = guard.mark();
       var body = { rev: d.rev, valor: valor };
       if (confirmed) body.confirmo_sem_dados_pessoais = true;
       busy(btn, function () {
@@ -1401,7 +1404,7 @@
         after.querySelector('a').focus();
       }).catch(function (err) {
         if (isPersonalData(err)) {
-          personalDataBox(slot, err, function (again) { sendAnswer(again, valor, avisos, true); });
+          personalDataBox(slot, err, function (again) { sendAnswer(again, valor, avisos, true); }, guard.stale(mark));
           return;
         }
         report(slot, err, { write: true });
@@ -1435,18 +1438,37 @@
 
   // The confirmation of personalDataBox resends the text that the check flagged. When the teacher
   // changes the text (an input event in node, outside slot), the box goes: the new text must pass
-  // the check again, and the confirmation cannot send the old one.
+  // the check again, and the confirmation cannot send the old one. An edit made while the request
+  // is in flight has no box to remove yet: the returned guard counts the edits, so that the caller
+  // takes mark() when it sends and gives personalDataBox stale(mark) when the 422 comes back.
   function dropConfirmOnEdit(node, slot) {
+    var edits = 0;
     on(node, 'input', function (e) {
       if (slot.contains(e.target)) return;
+      edits++;
       if (slot.querySelector('#confirmo-dados')) clearSlot(slot);
     });
+    return {
+      mark: function () { return edits; },
+      stale: function (mark) { return edits !== mark; },
+    };
   }
 
   // The findings of the personal-data check, with the confirmation that sends the request again
-  // (an answer, the outcome text for sugerir, or the comment of a new version).
-  function personalDataBox(slot, err, resend) {
+  // (an answer, the outcome text for sugerir, or the comment of a new version). stale: the text
+  // changed after it was sent, so the findings show without the confirmation, and the teacher sends
+  // the new text again.
+  function personalDataBox(slot, err, resend, stale) {
     var found = err.data && Array.isArray(err.data.achados) ? err.data.achados.filter(function (x) { return typeof x === 'string'; }) : [];
+    if (stale) {
+      report(slot, err);
+      var shown = slot.querySelector('.eu-erro');
+      if (shown) {
+        if (found.length) shown.appendChild(el('ul', null, found.map(function (f) { return el('li', { text: f }); })));
+        shown.appendChild(el('p', { id: 'dados-texto-mudou', text: S.dadosPessoais.mudou }));
+      }
+      return;
+    }
     var check = el('input', { type: 'checkbox', id: 'confirmo-dados' });
     var again = button(S.dadosPessoais.continuar, { id: 'guardar-confirmado', class: 'btn-primary', disabled: true }, function () {
       if (check.checked) resend(again);
@@ -1475,6 +1497,7 @@
 
   // The outcome step: the model proposes sharper versions; the teacher picks one or keeps theirs.
   function outcomeHelper(d, textarea, slot) {
+    var guard = dropConfirmOnEdit(textarea, slot);
     var results = el('div', { class: 'eu-sugestoes', 'aria-live': 'polite' });
     var btn = button(S.passo.sugerir, { id: 'sugerir-objectivo', 'aria-describedby': 'sugerir-ajuda' }, function () {
       ask(btn, textarea.value, false);
@@ -1483,6 +1506,7 @@
     function ask(trigger, texto, personal) {
       clearSlot(slot);
       clear(results);
+      var mark = guard.mark();
       var body = { texto: texto };
       if (personal) body.confirmo_sem_dados_pessoais = true;
       busy(trigger, function () {
@@ -1508,7 +1532,7 @@
         });
         announce(S.comum.respostaModelo);
       }).catch(function (err) {
-        if (isPersonalData(err)) return personalDataBox(slot, err, function (again) { ask(again, texto, true); });
+        if (isPersonalData(err)) return personalDataBox(slot, err, function (again) { ask(again, texto, true); }, guard.stale(mark));
         report(slot, err);
       });
     }
@@ -1716,6 +1740,8 @@
       if (!focus) focusTitle();
     };
     // personal: the teacher confirmed that the comment has no personal data (after a 422).
+    // commentGuard: the edit guard of the comment field, set below when the page has one.
+    var commentGuard = null;
     var generate = function (btn, comentario, personal) {
       clearSlot(slot);
       // Text the teacher accepted or wrote is replaced only after a confirmation (it stays as the
@@ -1728,6 +1754,7 @@
         return;
       }
       delete btn.dataset.confirmado;
+      var mark = commentGuard ? commentGuard.mark() : 0;
       var body = { rev: d.rev };
       if (comentario) body.comentario = comentario;
       if (personal) body.confirmo_sem_dados_pessoais = true;
@@ -1737,7 +1764,7 @@
         announce(S.comum.respostaModelo);
         redraw(next, 'seccao-texto');
       }).catch(function (err) {
-        if (isPersonalData(err)) return personalDataBox(slot, err, function (again) { generate(again, comentario, true); });
+        if (isPersonalData(err)) return personalDataBox(slot, err, function (again) { generate(again, comentario, true); }, commentGuard ? commentGuard.stale(mark) : false);
         // The first request reached the server and only its answer was lost (status 0); the retry
         // then found the draft changed. The new text is in the draft: load it, no error box.
         if (err instanceof API.ApiError && err.retried && err.status === 409 && err.motivo === 'rev') {
@@ -1817,7 +1844,7 @@
 
       var comment = el('textarea', { id: 'comentario', rows: 3, maxlength: 2000, 'aria-describedby': 'comentario-ajuda' });
       var ask = button(S.seccao.pedirVersao, { id: 'pedir-versao', class: 'btn-primary' }, function () { generate(ask, comment.value.trim()); });
-      dropConfirmOnEdit(comment, slot);
+      commentGuard = dropConfirmOnEdit(comment, slot);
       append(commentPanel, [
         el('div', { class: 'field-row' },
           el('label', { for: 'comentario', text: S.seccao.comentario }),
@@ -1865,15 +1892,18 @@
       var no = button(S.seccao.utilNao, { id: 'util-nao', 'aria-pressed': String(choice === false) }, function () { pick(false); });
       var comment = el('textarea', { id: 'opiniao-comentario', rows: 2, maxlength: 500, 'aria-describedby': 'opiniao-ajuda' });
       if (given && typeof given.comentario === 'string') comment.value = given.comentario;
-      // personal: the teacher confirmed that the comment has no personal data (after a 422).
-      var post = function (btn, personal) {
+      var guard = dropConfirmOnEdit(comment, slot);
+      // personal: the teacher confirmed that the comment has no personal data (after a 422). The
+      // confirmation resends the comment that the check flagged (sent), never the current text.
+      var post = function (btn, personal, sent) {
         clearSlot(slot);
         if (choice === null) {
           report(slot, new API.ApiError(400, { erro: S.seccao.escolherUtil }));
           return;
         }
+        var mark = guard.mark();
         var body = { rev: d.rev, util: choice };
-        var c = comment.value.trim();
+        var c = typeof sent === 'string' ? sent : comment.value.trim();
         if (c) body.comentario = c;
         if (personal) body.confirmo_sem_dados_pessoais = true;
         busy(btn, function () {
@@ -1882,7 +1912,7 @@
           announce(S.seccao.opiniaoGuardada);
           redraw(next, 'opiniao-dada');
         }).catch(function (err) {
-          if (isPersonalData(err)) return personalDataBox(slot, err, function (again) { post(again, true); });
+          if (isPersonalData(err)) return personalDataBox(slot, err, function (again) { post(again, true, c); }, guard.stale(mark));
           report(slot, err, { write: true });
         });
       };
@@ -2708,10 +2738,13 @@
         el('p', { class: 'eu-ajuda', id: 'devolver-ajuda', text: S.revisao.comentarioAjuda }),
         comment),
       el('div', { class: 'nav-row' }, giveBack));
-    // personal: the admin confirmed that the comment has no personal data (after a 422).
-    var send = function (btn, personal) {
+    var guard = dropConfirmOnEdit(comment, slot);
+    // personal: the admin confirmed that the comment has no personal data (after a 422). The
+    // confirmation resends the comment that the check flagged (sent), never the current text.
+    var send = function (btn, personal, sent) {
       clearSlot(slot);
-      var text = comment.value.trim();
+      var mark = guard.mark();
+      var text = typeof sent === 'string' ? sent : comment.value.trim();
       if (text === '') {
         report(slot, new API.ApiError(400, { erro: S.revisao.semComentario }));
         return;
@@ -2722,7 +2755,7 @@
         return API.request('POST', '/revisao/' + d.id + '/devolver', body);
       }, { label: S.revisao.aDevolver }).then(function () { decided(S.revisao.devolvidaOk(titulo)); })
         .catch(function (err) {
-          if (isPersonalData(err)) return personalDataBox(slot, err, function (again) { send(again, true); });
+          if (isPersonalData(err)) return personalDataBox(slot, err, function (again) { send(again, true, text); }, guard.stale(mark));
           report(slot, err, { write: true });
         });
     };

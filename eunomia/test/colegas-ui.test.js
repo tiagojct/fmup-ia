@@ -515,3 +515,89 @@ test('final review M1: a save that returns avisos refreshes the mark and the not
   assert.equal(a.$('#nota-adaptar').textContent, S.adaptar.notaPreenchido(1));
   assert.deepEqual([...a.$('#passos-propostos').querySelectorAll('a')].map((l) => l.textContent), [stepTitle('objectivo')]);
 });
+
+// ---------------------------------------------------------------- minor fixes after 0.3
+
+test('menores 1: reopening a submitted draft that still has proposed steps does not open a locked step', async (t) => {
+  const api = new FakeApi({ user: TEACHER, draft: approvedDraft({ estado: 'submetida', propostos: ['contexto'] }) });
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}` });
+  await a.waitFor(() => a.w.location.hash !== `#/rascunho/${DRAFT_ID}`, 'redirect');
+  assert.notEqual(a.w.location.hash, `#/rascunho/${DRAFT_ID}/passo/contexto`);
+  assert.doesNotMatch(a.w.location.hash, /\/passo\//);
+});
+
+test('menores 2: on Adaptar, a change to the text while the request is in flight drops the confirmation of the 422', async (t) => {
+  const api = new FakeApi({ user: TEACHER });
+  let release;
+  const held = new Promise((r) => { release = r; });
+  api.on('POST', /^\/rascunhos\/adaptar$/, async (call) => {
+    if (call.body.confirmo_sem_dados_pessoais === true) return api.route(call);
+    await held;
+    return json(422, PERSONAL);
+  });
+  const a = await openAdapt(t, api);
+  const id = '#' + a.$('#main textarea').id;
+  a.set(id, TEXTO + ' NIF 123456789.');
+  a.$('#propor-respostas').click();
+  await a.waitFor(() => adaptCalls(api).length === 1, 'the first request');
+  a.set(id, TEXTO); // edited while the request runs
+  release();
+  await a.waitFor(() => a.$('#dados-texto-mudou'), 'the note that the text changed');
+  assert.equal(a.$('#confirmo-dados'), null, 'no confirmation for the old text');
+  assert.equal(a.$('#guardar-confirmado'), null);
+  assert.match(a.$('.eu-erro').textContent, /NIF/, 'the findings still show');
+  assert.equal(a.$('#dados-texto-mudou').textContent, S.dadosPessoais.mudou);
+  assert.equal(adaptCalls(api).length, 1);
+});
+
+test('menores 2: with no edit in flight, the 422 still shows the confirmation', async (t) => {
+  const api = new FakeApi({ user: TEACHER });
+  api.on('POST', /^\/rascunhos\/adaptar$/, (call) => (call.body.confirmo_sem_dados_pessoais === true ? api.route(call) : json(422, PERSONAL)));
+  const a = await openAdapt(t, api);
+  a.set('#' + a.$('#main textarea').id, TEXTO + ' NIF 123456789.');
+  a.$('#propor-respostas').click();
+  await a.waitFor(() => a.$('#confirmo-dados'), 'confirmation');
+  assert.equal(a.$('#dados-texto-mudou'), null);
+});
+
+test('menores 2: on a step, a change to the answer while the PUT is in flight drops the confirmation', async (t) => {
+  const d = makeDraft({ respostas: { ...ANSWERS } });
+  delete d.respostas.materiais;
+  delete d.respostas.plano;
+  const api = new FakeApi({ user: TEACHER, draft: d });
+  let release;
+  const held = new Promise((r) => { release = r; });
+  api.on('PUT', /\/respostas\/materiais$/, async (call) => {
+    if (call.body.confirmo_sem_dados_pessoais === true) return api.route(call);
+    await held;
+    return json(422, PERSONAL);
+  });
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/passo/materiais` });
+  await a.page('passo');
+  a.set('#campo-texto', 'Contribuinte 123456789.');
+  a.$('#guardar-passo').click();
+  await a.waitFor(() => api.calls.some((c) => c.method === 'PUT'), 'the PUT');
+  a.set('#campo-texto', 'Caso clínico sem identificação.');
+  release();
+  await a.waitFor(() => a.$('#dados-texto-mudou'), 'the note that the text changed');
+  assert.equal(a.$('#confirmo-dados'), null);
+});
+
+test('menores 3: Foi útil? resends the comment that the check flagged, and an edit drops the confirmation', async (t) => {
+  const api = new FakeApi({ user: TEACHER, draft: approvedDraft() });
+  api.on('POST', /\/opiniao$/, (call) => (/123456789/.test(call.body.comentario || '') && call.body.confirmo_sem_dados_pessoais !== true ? json(422, PERSONAL) : api.route(call)));
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/seccao/objectivo` });
+  await a.page('seccao');
+  a.$('#util-sim').click();
+  a.set('#opiniao-comentario', 'O doente com NIF 123456789 é fictício.');
+  a.$('#enviar-opiniao').click();
+  await a.waitFor(() => a.$('#confirmo-dados'), 'confirmation');
+  a.set('#opiniao-comentario', 'Útil.');
+  assert.equal(a.$('#confirmo-dados'), null, 'the confirmation of the old comment is gone');
+  a.$('#enviar-opiniao').click();
+  await a.waitFor(() => a.$('#opiniao-dada'), 'saved');
+  const calls = api.calls.filter((c) => /\/opiniao$/.test(c.path));
+  assert.equal(calls.length, 2);
+  assert.equal(calls[1].body.comentario, 'Útil.');
+  assert.equal(calls[1].body.confirmo_sem_dados_pessoais, undefined);
+});

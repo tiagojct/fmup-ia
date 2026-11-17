@@ -254,6 +254,7 @@
       nota: 'Retire estes dados e guarde de novo. Se forem dados fictícios ou não forem dados pessoais, confirme.',
       confirmo: 'Confirmo que o texto não contém dados pessoais de doentes ou estudantes',
       continuar: 'Continuar com esta confirmação',
+      mudou: 'O texto mudou depois de o enviar. Retire os dados pessoais, se ainda lá estiverem, e envie de novo.',
     },
 
     painel: {
