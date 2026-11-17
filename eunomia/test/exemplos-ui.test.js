@@ -23,13 +23,15 @@ const clickLink = (a, el) => el.dispatchEvent(new a.w.MouseEvent('click', { bubb
 
 // ---------------------------------------------------------------- the list
 
-test('#/exemplos without a session lists six examples with title, area, papel and duration', async (t) => {
+test('#/exemplos without a session lists seven examples with title, area, papel and duration', async (t) => {
   const a = await boot(t, { hash: '#/exemplos' });
   await a.page('exemplos');
   assert.equal(a.w.location.hash, '#/exemplos');
   assert.equal(a.$('#main h2').textContent, S.exemplos.titulo);
+  assert.equal(a.$('#main .step-help').textContent, S.exemplos.intro);
+  assert.match(S.exemplos.intro, /^Sete actividades/);
   const items = a.$$('#lista-exemplos > li');
-  assert.equal(items.length, 6);
+  assert.equal(items.length, 7);
   EXEMPLOS.exemplos.forEach((e, n) => {
     const item = items[n];
     const title = item.querySelector(`a[href="#/exemplos/${e.n}"]`);
@@ -45,6 +47,9 @@ test('#/exemplos without a session lists six examples with title, area, papel an
   assert.match(items[4].textContent, /40 minutos/);
   assert.doesNotMatch(items[4].textContent, /40 a 40/);
   assert.match(items[5].textContent, /30 minutos/);
+  // Example 7 is the activity without AI, in the basic sciences.
+  assert.ok(items[6].textContent.includes(optionLabel('contexto', 'area', 'ciencias_basicas')));
+  assert.ok(items[6].textContent.includes(optionLabel('papel_ia', 'papel', 'nenhum')));
   // With a session it shows too, and the home page links to it.
   const b = await boot(t, { api: new FakeApi({ user: TEACHER }), hash: '#/inicio' });
   await b.page('inicio');
@@ -136,8 +141,24 @@ test('a failed GET of the reference ficha shows the error and keeps the answers'
 });
 
 test('an unknown example number goes to the list or the home page', async (t) => {
-  const a = await boot(t, { hash: '#/exemplos/7' });
+  const a = await boot(t, { hash: '#/exemplos/8' });
   await a.page('entrar');
+});
+
+test('#/exemplos/7 shows the answers, the nota on the invented context and the ficha without a prompt', async (t) => {
+  const api = new FakeApi();
+  const a = await boot(t, { api, hash: '#/exemplos/7' });
+  await a.page('exemplo');
+  const e = EXEMPLOS.exemplos.find((x) => x.n === 7);
+  assert.equal(a.$('#main h2').textContent, e.titulo);
+  assert.ok(a.$('#exemplo-passo-contexto .eu-nota').textContent.includes(e.nota.contexto));
+  assert.ok(a.$('#exemplo-passo-regime_themis'), 'the Themis step is shown');
+  await a.waitFor(() => a.$('#exemplo-ficha .ficha-meta'), 'meta table');
+  const h4 = a.$$('#exemplo-ficha h4').map((h) => h.textContent);
+  assert.ok(!h4.includes('Prompt base'));
+  assert.ok(h4.includes('Armadilhas conhecidas'));
+  assert.equal(api.calls.find((c) => MODEL_ROUTE.test(c.path)), undefined);
+  assert.ok(lastCall(api, 'GET', /^\/exemplos\/7$/));
 });
 
 // ---------------------------------------------------------------- start from an example

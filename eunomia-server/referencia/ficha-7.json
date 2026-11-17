@@ -1,0 +1,82 @@
+{
+  "meta": {
+    "titulo": "Grupos de peritos no membro superior",
+    "subtitulo": "Identificação de estruturas anatómicas e explicação a colegas",
+    "competencia": "Anatomia topográfica do membro superior, explicação a colegas",
+    "formato": "Quatro grupos de peritos de seis estudantes, depois seis grupos mistos de quatro",
+    "duracao": {
+      "min": 90,
+      "max": 90,
+      "texto": "90 minutos"
+    },
+    "ano": "Mestrado Integrado em Medicina, 1.º ano",
+    "areas": "Ciências básicas (anatomia, fisiologia, bioquímica, histologia)",
+    "ferramenta": "Nenhuma"
+  },
+  "objectivo": {
+    "texto": "No fim da actividade, o estudante identifica em modelos anatómicos e em imagens as estruturas ósseas, musculares, nervosas e vasculares do membro superior que a aula trabalha, e descreve as relações entre elas numa região indicada pelo docente.",
+    "competencia_protegida": "A competência protegida é a identificação das estruturas e a descrição das suas relações, sem ajuda. Cada estudante estuda uma parte como perito, mas no relatório final identifica sozinho as estruturas das quatro partes, incluindo as que aprendeu com os colegas."
+  },
+  "formato": {
+    "blocos": [
+      {
+        "minutos": 10,
+        "texto": "Enquadramento e distribuição. O docente divide o membro superior em quatro partes e forma quatro grupos de peritos, um por parte."
+      },
+      {
+        "minutos": 25,
+        "texto": "Grupos de peritos. Cada grupo estuda a sua parte nos modelos anatómicos e no atlas, e prepara a lista das estruturas que vai mostrar e a ordem em que as mostra."
+      },
+      {
+        "minutos": 30,
+        "texto": "Grupos mistos, com um perito de cada parte. Cada perito mostra as suas estruturas no modelo, em cerca de sete minutos, e os colegas apontam cada uma antes de passar à parte seguinte."
+      },
+      {
+        "minutos": 20,
+        "texto": "Relatório individual, sem consulta e sem IA: identificação de estruturas numeradas em imagens novas e descrição das relações numa região indicada pelo docente."
+      },
+      {
+        "minutos": 5,
+        "texto": "Fecho. O docente indica as estruturas que mais grupos confundiram, sem corrigir os relatórios em aula."
+      }
+    ],
+    "texto": "Com mais de 24 estudantes, o docente forma dois conjuntos de grupos com as mesmas quatro partes. Se faltar um estudante, um grupo misto fica sem perito de uma parte: o docente junta esse grupo a outro antes de começar."
+  },
+  "papeis": {
+    "estudante": "Como perito, estuda a sua parte com o grupo e prepara-se para a explicar sem ler apontamentos. No grupo misto, mostra as estruturas da sua parte no modelo e pede aos colegas que as apontem. No relatório, trabalha sozinho, sem apontamentos e sem ferramentas de IA.",
+    "docente": "Prepara antes da aula os modelos, as imagens, a lista das estruturas de cada parte e as imagens novas do relatório. Durante os grupos de peritos, circula e confirma que cada grupo cobre a sua lista. Durante os grupos mistos, regista que peritos explicam sem ler e que estruturas são confundidas."
+  },
+  "correccao": {
+    "texto": "O relatório é classificado com uma grelha de dois critérios: as estruturas das quatro partes identificadas correctamente nas imagens, e a descrição das relações na região indicada. A grelha separa as quatro partes, para mostrar se um estudante só domina a parte que estudou como perito.\n\nNo início da aula seguinte, o docente devolve os relatórios e revê em plenário as estruturas mais trocadas. O registo dos grupos mistos não entra na classificação: serve para ajustar as listas das partes na edição seguinte."
+  },
+  "armadilhas": [
+    {
+      "lead": "Um perito mal preparado.",
+      "texto": "O grupo misto fica sem essa parte. No fim dos grupos de peritos, o docente confirma que cada perito consegue mostrar a sua lista no modelo."
+    },
+    {
+      "lead": "Leitura de apontamentos.",
+      "texto": "Nos grupos mistos, o perito lê a lista em vez de mostrar as estruturas. A regra de apontar cada estrutura no modelo antes de a nomear reduz o problema."
+    },
+    {
+      "lead": "Partes desiguais.",
+      "texto": "Se uma parte tem muito mais estruturas do que as outras, o seu perito não acaba no tempo do grupo misto. O docente equilibra as listas antes da aula."
+    },
+    {
+      "lead": "Uso de IA fora da regra.",
+      "texto": "Um estudante pode fotografar o modelo e pedir a uma ferramenta de IA o nome das estruturas. O regime proíbe esse uso nesta actividade, e o relatório escrito na aula, sem consulta, é a parte que o verifica."
+    }
+  ],
+  "referencias": [
+    {
+      "id": "uporto2026orientacoes",
+      "texto": "Universidade do Porto, Grupo IA no domínio educativo. *Inteligência artificial generativa no domínio educativo: Orientações para uso e adoção responsável*. Porto: Unidade de Inovação Educativa da Universidade do Porto; 2026. Disponível em <https://www.up.pt/portal/documents/2333/01_Orientacoes_Adocao_Responsavel.pdf>.",
+      "origem": "curada"
+    }
+  ],
+  "meta_eunomia": {
+    "autor": "Tiago Jacinto",
+    "versao": 1,
+    "estado": "aprovada"
+  }
+}

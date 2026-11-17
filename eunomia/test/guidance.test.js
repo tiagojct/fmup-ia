@@ -66,9 +66,10 @@ test('Ver exemplo is a details element with the answers and titles of the exampl
   const name = PATTERNS.find((p) => p.id === first.respostas.padrao.padrao).nome;
   assert.ok(a.$('details.eu-exemplo').textContent.includes(name));
 
-  // regime_themis: example 5 in the data; with an empty list, no disclosure at all.
+  // regime_themis: examples 5 and 7 in the data; with an empty list, no disclosure at all.
   await a.go(`#/rascunho/${DRAFT_ID}/passo/regime_themis`, 'passo');
-  assert.deepEqual([...a.$$('details.eu-exemplo h4')].map((h) => h.textContent), [EXEMPLOS.exemplos.find((e) => e.n === 5).titulo]);
+  assert.deepEqual(EXEMPLOS.por_passo.regime_themis, [5, 7]);
+  assert.deepEqual([...a.$$('details.eu-exemplo h4')].map((h) => h.textContent), [5, 7].map((n) => EXEMPLOS.exemplos.find((e) => e.n === n).titulo));
   const api2 = new FakeApi({ user: TEACHER, draft: makeDraft({ respostas: { evidencia: { descricao: 'x', avaliacao: 'sumativa' } } }) });
   api2.static('exemplos.json', { ...EXEMPLOS, por_passo: { ...EXEMPLOS.por_passo, regime_themis: [] } });
   const b = await boot(t, { api: api2, hash: `#/rascunho/${DRAFT_ID}/passo/regime_themis` });

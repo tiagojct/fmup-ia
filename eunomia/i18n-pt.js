@@ -119,7 +119,7 @@
       pagina: 'Actividades de exemplo',
       paginaExemplo: 'Actividade de exemplo',
       titulo: 'Actividades de exemplo',
-      intro: 'Seis actividades, uma por cada ficha de formação do FMUP · IA. Cada uma mostra as respostas da entrevista que levam à ficha, porque foram escolhidas e a ficha que resulta. Leva cerca de 5 minutos.',
+      intro: 'Sete actividades de exemplo: seis seguem as fichas de formação do FMUP · IA, e a sétima, uma actividade sem IA, foi escrita para a Eunomia, com dados inventados. Cada uma mostra as respostas da entrevista que levam à ficha, porque foram escolhidas e a ficha que resulta. Leva cerca de 5 minutos.',
       introExemplo: 'As respostas da entrevista que levam a esta ficha, passo a passo, e a ficha que resulta. Nada nesta página usa o modelo.',
       todos: 'Todas as actividades de exemplo',
       area: 'Área',

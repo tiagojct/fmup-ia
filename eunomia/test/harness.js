@@ -189,7 +189,7 @@ class FakeApi {
       return json(200, { rascunhos: [...this.drafts.values()].map((d) => ({ id: d.id, titulo: titulo(d), modo: d.modo, estado: d.estado, rev: d.rev, actualizado: d.actualizado, proximo_passo: nextStep(d) })) });
     }
     if (method === 'POST' && p === '/rascunhos') {
-      // { modo: 'criar' } or { modo: 'criar', exemplo: 1..6 } (the answers of the example, plan not approved).
+      // { modo: 'criar' } or { modo: 'criar', exemplo: 1..7 } (the answers of the example, plan not approved).
       let respostas = {};
       if (body.exemplo !== undefined) {
         const e = EXEMPLOS.exemplos.find((x) => Number.isInteger(body.exemplo) && x.n === body.exemplo);

@@ -7,7 +7,7 @@
 // draft cannot overwrite each other. Only the author writes a draft. An admin reads the draft of
 // another author only after the author has submitted it (see readable).
 //
-// Lifecycle (spec D3, D4): POST /rascunhos makes an empty draft, or with { exemplo: 1..6 } a draft
+// Lifecycle (spec D3, D4): POST /rascunhos makes an empty draft, or with { exemplo: 1..7 } a draft
 // with the answers of that example (plan not approved). POST /rascunhos/:id/duplicar copies the
 // author's own draft in any state; the source is not changed, so it needs no rev. DELETE
 // /rascunhos/:id with rev moves the draft to apagados/ (kept DELETED_DAYS days); a submitted draft

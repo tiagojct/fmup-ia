@@ -281,7 +281,7 @@
     { re: /^#\/entrar$/, page: 'entrar', title: function () { return S.entrar.pagina; }, render: pageLogin, public: true },
     { re: /^#\/ajuda$/, page: 'ajuda', title: function () { return A.pagina; }, render: pageHelp, public: true, open: true },
     { re: /^#\/exemplos$/, page: 'exemplos', title: function () { return S.exemplos.pagina; }, render: pageExamples, public: true, open: true },
-    { re: /^#\/exemplos\/([1-6])$/, page: 'exemplo', title: function () { return S.exemplos.paginaExemplo; }, render: pageExample, public: true, open: true },
+    { re: /^#\/exemplos\/([1-7])$/, page: 'exemplo', title: function () { return S.exemplos.paginaExemplo; }, render: pageExample, public: true, open: true },
     { re: /^#\/inicio$/, page: 'inicio', title: function () { return S.inicio.pagina; }, render: pageHome },
     { re: new RegExp('^#/rascunho/' + ID + '$'), page: 'rascunho', title: function () { return S.comum.aCarregar; }, render: pageResume },
     { re: new RegExp('^#/rascunho/' + ID + '/passo/([a-z_]+)$'), page: 'passo', title: function () { return S.rascunho.entrevista; }, render: pageStep },

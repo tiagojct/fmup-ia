@@ -47,10 +47,10 @@ test('POST /rascunhos with exemplo 1 makes a draft with the example answers and 
   assert.ok(app.store.read(`rascunhos/${ana.user.id}/${r.json.rascunho.id}.json`, null));
 });
 
-test('exemplo 0, 7, "1" and 1.5 are 400 Exemplo desconhecido.', async (t) => {
+test('exemplo 0, 8, "1" and 1.5 are 400 Exemplo desconhecido.', async (t) => {
   const app = await startApp(t);
   const ana = await app.person('Ana Docente');
-  for (const exemplo of [0, 7, '1', 1.5, null]) {
+  for (const exemplo of [0, 8, '1', 1.5, null]) {
     const r = await app.call('POST', '/rascunhos', { cookie: ana.cookie, body: { modo: 'criar', exemplo } });
     assert.equal(r.status, 400, String(exemplo));
     assert.equal(r.json.erro, 'Exemplo desconhecido.');

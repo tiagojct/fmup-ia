@@ -14,7 +14,7 @@
       paragrafos: [
         'A Eunomia ajuda a desenhar uma actividade de ensino com IA, ou uma actividade que deixa a IA de fora por decisão sua. Faz as perguntas que um colega com experiência faria, propõe padrões de actividade já usados e escreve a ficha da actividade no formato das seis fichas de formação do FMUP · IA.',
         'As decisões são suas. O modelo de linguagem escreve o texto das secções a partir do plano que aprovar. O regime de IA, as referências e a declaração de uso vêm do código, nunca do modelo.',
-        'Se nunca usou a Eunomia, veja primeiro uma actividade de exemplo: mostra, passo a passo, as respostas que levam a uma das seis fichas e porque foram escolhidas.',
+        'Se nunca usou a Eunomia, veja primeiro uma actividade de exemplo: mostra, passo a passo, as respostas que levam a uma ficha e porque foram escolhidas. Há sete exemplos: seis seguem as fichas de formação e um mostra uma actividade sem IA.',
       ],
     },
 
@@ -196,7 +196,7 @@
         {
           id: 'duplicar',
           pergunta: 'Posso reutilizar uma actividade que já fiz?',
-          resposta: 'Sim. Na página inicial, use Duplicar ao lado do rascunho: a cópia tem as mesmas respostas e as secções aceites, com «Cópia de» antes do título. Também pode começar a partir de uma das seis actividades de exemplo. Cada docente pode ter até 100 rascunhos.',
+          resposta: 'Sim. Na página inicial, use Duplicar ao lado do rascunho: a cópia tem as mesmas respostas e as secções aceites, com «Cópia de» antes do título. Também pode começar a partir de uma das sete actividades de exemplo. Cada docente pode ter até 100 rascunhos.',
         },
       ],
     },

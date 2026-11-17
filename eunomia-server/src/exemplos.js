@@ -1,10 +1,12 @@
 'use strict';
 
-// The worked examples (eunomia/exemplos.json, spec B): for each of the six reference fichas, the
-// interview answers that lead to it, with one line on why each answer. The same file feeds the
-// tutorial, "Ver exemplo" on each step and "Começar a partir deste exemplo". No model call.
+// The worked examples (eunomia/exemplos.json, spec B): for each of the seven reference fichas, the
+// interview answers that lead to it, with one line on why each answer. Examples 1 to 6 follow the
+// six training fichas; example 7 (an activity without AI) is written for Eunomia and is fictitious.
+// The same file feeds the tutorial, "Ver exemplo" on each step and "Começar a partir deste
+// exemplo". No model call.
 //
-// Exemplo = { n: 1..6, titulo, respostas: { [passo]: valor }, porque: { [passo]: string },
+// Exemplo = { n: 1..7, titulo, respostas: { [passo]: valor }, porque: { [passo]: string },
 //             nota?: { [passo]: string } }
 //   nota marks an answer that the ficha does not state.
 
@@ -15,9 +17,11 @@ const drafts = require('./drafts.js');
 
 const EXEMPLOS = JSON.parse(fs.readFileSync(repoPath('eunomia', 'exemplos.json'), 'utf8'));
 
-// The example with this number, or null. Only an integer from 1 to 6: "1" or 1.5 is null.
+const MAX_EXAMPLE = 7;
+
+// The example with this number, or null. Only an integer from 1 to 7: "1" or 1.5 is null.
 function findExample(n) {
-  if (!Number.isInteger(n) || n < 1 || n > 6) return null;
+  if (!Number.isInteger(n) || n < 1 || n > MAX_EXAMPLE) return null;
   return EXEMPLOS.exemplos.find((e) => e.n === n) || null;
 }
 

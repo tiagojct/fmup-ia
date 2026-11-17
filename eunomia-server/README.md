@@ -76,7 +76,7 @@ sections, the references, the final check):
 
 | Route | Access | Rule |
 |---|---|---|
-| `GET /exemplos/:n` | public | The reference ficha of worked example `n` (1 to 6). The invitation email links to it. |
+| `GET /exemplos/:n` | public | The reference ficha of worked example `n` (1 to 7). The invitation email links to it. |
 | `POST /rascunhos` | user | Body `{ "modo": "criar" }`. With `"exemplo": n` the draft starts with the answers of that example, and the plan is not approved. A teacher has 100 drafts at most. |
 | `POST /rascunhos/:id/duplicar` | user, author only | Copies the draft in any state. The source does not change, so no `rev`. A title gets the prefix "Cópia de". |
 | `DELETE /rascunhos/:id` | user, author only | Body `{ "rev": n }`. Moves the file to `apagados/`. A draft in estado `submetida` gives 409 `bloqueado`. |
