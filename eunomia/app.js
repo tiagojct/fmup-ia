@@ -554,12 +554,11 @@
     var c = r.contexto || {};
     var padrao = r.padrao ? state.patterns.filter(function (p) { return p.id === r.padrao.padrao; })[0] : null;
     var papel = r.papel_ia ? r.papel_ia.papel : undefined;
-    var area = c.area ? optionText(stepById('contexto').campos.filter(function (x) { return x.id === 'area'; })[0], c.area) : undefined;
     var meta = {
       competencia: r.objectivo && r.objectivo.competencia,
       formato: (r.padrao && r.padrao.formato_grupo) || (padrao && padrao.formato_grupo),
       ano: c.programa,
-      areas: area,
+      areas: areaText(c),
       ferramenta: papel === undefined ? undefined : papel === 'nenhum' ? S.painel.ferramentaNenhuma : (r.papel_ia.ferramenta || S.painel.ferramentaIaedu),
     };
     if (typeof c.duracao_min === 'number') meta.duracao = { texto: duracaoTexto(c) };
@@ -826,6 +825,16 @@
     return o ? o.rotulo : String(id);
   }
 
+  // The area of a context answer as the teacher reads it: the option text, or for "outra" the text of
+  // area_outra (server: drafts.areaLabel). Undefined when there is no area.
+  function areaText(c) {
+    var a = c && c.area;
+    if (!a) return undefined;
+    if (a === 'outra' && typeof c.area_outra === 'string' && c.area_outra.trim() !== '') return c.area_outra.trim();
+    var campo = stepById('contexto').campos.filter(function (x) { return x.id === 'area'; })[0];
+    return optionText(campo, a);
+  }
+
   function patternName(id) {
     var p = state.patterns.filter(function (x) { return x.id === id; })[0];
     return p ? p.nome : String(id);
@@ -889,7 +898,6 @@
   }
 
   function pageExamples() {
-    var area = stepById('contexto').campos.filter(function (c) { return c.id === 'area'; })[0];
     var papel = stepById('papel_ia').campos.filter(function (c) { return c.id === 'papel'; })[0];
     main.appendChild(el('div', { class: 'screen' },
       el('h2', { class: 'step-title', text: S.exemplos.titulo }),
@@ -901,7 +909,7 @@
         return el('li', null,
           el('p', { class: 'eu-rascunho-titulo' }, link(e.titulo, '#/exemplos/' + e.n)),
           el('dl', { class: 'eu-exemplo-meta' },
-            el('dt', { text: S.exemplos.area }), el('dd', { text: c.area ? optionText(area, c.area) : '' }),
+            el('dt', { text: S.exemplos.area }), el('dd', { text: areaText(c) || '' }),
             el('dt', { text: S.exemplos.papel }), el('dd', { text: r.papel_ia ? optionText(papel, r.papel_ia.papel) : '' }),
             el('dt', { text: S.exemplos.duracao }), el('dd', { text: duracaoTexto(c) })));
       })),

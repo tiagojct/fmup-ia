@@ -13,12 +13,6 @@ const REFERENCES = JSON.parse(fs.readFileSync(repoPath('eunomia', 'references.js
 
 const isObject = (x) => x !== null && typeof x === 'object' && !Array.isArray(x);
 
-function optionLabel(stepId, campoId, value) {
-  const campo = drafts.STEPS.get(stepId).campos.find((c) => c.id === campoId);
-  const opt = Array.isArray(campo.opcoes) ? campo.opcoes.find((o) => o.id === value) : null;
-  return opt ? opt.rotulo : value;
-}
-
 // The .ficha-meta table, from the answers. Fields with no answer are left out.
 function buildMeta(draft) {
   const r = draft.respostas || {};
@@ -32,7 +26,7 @@ function buildMeta(draft) {
     competencia: r.objectivo && r.objectivo.competencia,
     formato: (r.padrao && r.padrao.formato_grupo) || (padrao && padrao.formato_grupo),
     ano: c.programa,
-    areas: c.area ? optionLabel('contexto', 'area', c.area) : undefined,
+    areas: drafts.areaLabel(c),
     ferramenta: papel === undefined ? undefined : papel === 'nenhum' ? 'Nenhuma' : (r.papel_ia.ferramenta || 'IAedu'),
   };
   if (Number.isInteger(c.duracao_min)) {

@@ -105,6 +105,27 @@ test('assembleFicha builds a ficha that passes the new profile', () => {
   );
 });
 
+test('the ficha meta Áreas shows the text of area_outra for outra, and the label for the new areas', () => {
+  const build = (area, extra = {}) => {
+    const respostas = respostasCompletas();
+    respostas.contexto = { ...respostas.contexto, area, ...extra };
+    let d = drafts.createDraft({ id: 'a1b2c3d4', name: 'Ana Docente' }, 'criar');
+    for (const [step, value] of Object.entries(respostas)) {
+      const r = drafts.applyAnswer(d, step, value);
+      assert.deepEqual(r.errors, [], step);
+      d = r.draft;
+    }
+    return d;
+  };
+  const outra = buildMeta(build('outra', { area_outra: 'Farmacologia' }));
+  assert.equal(outra.areas, 'Farmacologia');
+  assert.notEqual(outra.areas, 'Outra');
+  assert.equal(buildMeta(build('cirurgia')).areas, 'Cirurgia e especialidades cirúrgicas');
+  assert.equal(buildMeta(build('ciencias_basicas')).areas, 'Ciências básicas (anatomia, fisiologia, bioquímica, histologia)');
+  const row = renderMd(assembleFicha(build('outra', { area_outra: 'Farmacologia' })));
+  assert.match(row, /\| \*\*Áreas\*\* \| Farmacologia \|/);
+});
+
 test('the meta of an activity without AI names no tool, and its ficha has no prompt or plano B', () => {
   const respostas = respostasCompletas();
   respostas.papel_ia = { papel: 'nenhum' };

@@ -53,6 +53,22 @@ test('#/exemplos without a session lists six examples with title, area, papel an
   assert.equal(b.w.location.hash, '#/exemplos');
 });
 
+test('#/exemplos shows the text of area_outra for an example in the area Outra, and the label of a new area', async (t) => {
+  const api = new FakeApi();
+  const [e1, e2, ...rest] = EXEMPLOS.exemplos;
+  const withArea = (e, area, extra = {}) => ({ ...e, respostas: { ...e.respostas, contexto: { ...e.respostas.contexto, area, ...extra } } });
+  api.static('exemplos.json', { ...EXEMPLOS, exemplos: [withArea(e1, 'outra', { area_outra: 'Farmacologia' }), withArea(e2, 'saude_publica'), ...rest] });
+  const a = await boot(t, { api, hash: '#/exemplos' });
+  await a.page('exemplos');
+  const items = a.$$('#lista-exemplos > li');
+  const area = (item) => {
+    const dts = [...item.querySelectorAll('dt')];
+    return dts.find((dt) => dt.textContent === S.exemplos.area).nextElementSibling.textContent;
+  };
+  assert.equal(area(items[0]), 'Farmacologia');
+  assert.equal(area(items[1]), 'Saúde pública e epidemiologia');
+});
+
 // ---------------------------------------------------------------- one example
 
 test('#/exemplos/1 shows each question, the answers as labels, the porque line and the reference ficha sections', async (t) => {

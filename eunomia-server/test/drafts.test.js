@@ -10,6 +10,8 @@ const {
   INTERVIEW,
   createDraft,
   applyAnswer,
+  areaLabel,
+  planSummary,
   nextStep,
   approvePlan,
   markStale,
@@ -68,9 +70,10 @@ test('every step has minutos and two to four erros_comuns', () => {
   }
 });
 
-test('contexto has the seven areas and the Themis course types', () => {
+test('contexto has the twelve areas, area_outra and the Themis course types', () => {
   const contexto = INTERVIEW.passos.find((p) => p.id === 'contexto');
   const area = contexto.campos.find((c) => c.id === 'area');
+  // The seven current ones first, then the five of 0.3 (spec 3).
   assert.deepEqual(area.opcoes.map((o) => o.id), [
     'cuidados_primarios',
     'bioetica',
@@ -79,7 +82,25 @@ test('contexto has the seven areas and the Themis course types', () => {
     'saude_digital',
     'ia',
     'ats',
+    'ciencias_basicas',
+    'medicina',
+    'cirurgia',
+    'saude_publica',
+    'outra',
   ]);
+  assert.deepEqual(area.opcoes.slice(7).map((o) => o.rotulo), [
+    'Ciências básicas (anatomia, fisiologia, bioquímica, histologia)',
+    'Medicina e especialidades médicas',
+    'Cirurgia e especialidades cirúrgicas',
+    'Saúde pública e epidemiologia',
+    'Outra',
+  ]);
+  const outra = contexto.campos.find((c) => c.id === 'area_outra');
+  assert.equal(contexto.campos.indexOf(outra), contexto.campos.indexOf(area) + 1, 'area_outra follows area');
+  assert.equal(outra.rotulo, 'Qual é a área?');
+  assert.equal(outra.tipo, 'texto');
+  assert.equal(outra.max, 100);
+  assert.deepEqual(outra.obrigatorio_se, { campo: 'area', igual: 'outra' });
   const nivel = contexto.campos.find((c) => c.id === 'nivel');
   assert.deepEqual(nivel.opcoes.map((o) => o.id), ['uc_undergrad', 'uc_master', 'uc_phd', 'cpd', 'other']);
 });
@@ -137,6 +158,42 @@ test('nextStep asks regime_themis for a summative activity', () => {
   assert.equal(nextStep(d), 'regime_themis');
   d = applyAnswer(d, 'regime_themis', { policy: 'not_permitted', assignment: ['case_discussion'] }).draft;
   assert.equal(nextStep(d), 'padrao');
+});
+
+test('area outra needs the text of area_outra; areaLabel gives the label or that text', () => {
+  const d = createDraft(USER, 'criar');
+  const ctx = respostasCompletas().contexto;
+
+  // outra with no text, with blank text: an error that names the field.
+  assert.match(applyAnswer(d, 'contexto', { ...ctx, area: 'outra' }).errors.join(' '), /Qual é a área\?/);
+  assert.match(applyAnswer(d, 'contexto', { ...ctx, area: 'outra', area_outra: '   ' }).errors.join(' '), /Qual é a área\?/);
+  // Too long: the maximum is 100.
+  assert.match(applyAnswer(d, 'contexto', { ...ctx, area: 'outra', area_outra: 'x'.repeat(101) }).errors.join(' '), /máximo é 100/);
+  // The other areas do not need it.
+  assert.deepEqual(applyAnswer(d, 'contexto', { ...ctx, area: 'cirurgia' }).errors, []);
+
+  const ok = applyAnswer(d, 'contexto', { ...ctx, area: 'outra', area_outra: ' Farmacologia ' });
+  assert.deepEqual(ok.errors, []);
+  assert.equal(ok.draft.respostas.contexto.area_outra, 'Farmacologia');
+  assert.equal(areaLabel(ok.draft.respostas.contexto), 'Farmacologia');
+
+  assert.equal(areaLabel({ ...ctx, area: 'ciencias_basicas' }), 'Ciências básicas (anatomia, fisiologia, bioquímica, histologia)');
+  assert.equal(areaLabel({ ...ctx, area: 'bioetica' }), 'Bioética');
+  // A text left over from another area is not shown.
+  assert.equal(areaLabel({ ...ctx, area: 'bioetica', area_outra: 'Farmacologia' }), 'Bioética');
+  // outra with no text (an old or hand-made answer) falls back to the option label; no area gives nothing.
+  assert.equal(areaLabel({ area: 'outra' }), 'Outra');
+  assert.equal(areaLabel({}), undefined);
+  assert.equal(areaLabel(undefined), undefined);
+});
+
+test('the plan summary shows the text of area_outra on the Área line', () => {
+  const ctx = respostasCompletas().contexto;
+  let d = createDraft(USER, 'criar');
+  d = applyAnswer(d, 'contexto', { ...ctx, area: 'outra', area_outra: 'Farmacologia' }).draft;
+  assert.deepEqual(planSummary(d).find((l) => l.rotulo === 'Área'), { rotulo: 'Área', valor: 'Farmacologia' });
+  d = applyAnswer(d, 'contexto', { ...ctx, area: 'saude_publica' }).draft;
+  assert.deepEqual(planSummary(d).find((l) => l.rotulo === 'Área'), { rotulo: 'Área', valor: 'Saúde pública e epidemiologia' });
 });
 
 test('applyAnswer checks required fields, options, numbers and conditional fields', () => {

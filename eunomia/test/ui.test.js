@@ -114,6 +114,50 @@ test('saving a step sends the answers with the rev and moves to the next step', 
   assert.deepEqual(put.body.valor, { uc: 'Introdução à Medicina', programa: 'MIM, 1.º ano', area: 'bioetica', nivel: 'uc_master', estudantes: 40, modalidade: 'em_aula', duracao_min: 45 });
 });
 
+test('the area_outra field of the context step appears only for the area Outra and is sent with it', async (t) => {
+  const fill = (a) => {
+    a.set('#campo-uc', 'Farmacologia Clínica');
+    a.set('#campo-programa', 'MIM, 3.º ano');
+    a.set('input[name="nivel"][value="uc_undergrad"]', true);
+    a.set('#campo-estudantes', '40');
+    a.set('input[name="modalidade"][value="em_aula"]', true);
+    a.set('#campo-duracao_min', '45');
+  };
+  const api = new FakeApi({ user: TEACHER, draft: makeDraft() });
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/passo/contexto` });
+  await a.page('passo');
+  const row = () => a.$('#campo-area_outra').closest('.field-row');
+  assert.equal(a.$$('input[name="area"]').length, 12);
+  assert.ok(a.$('label[for="campo-area_outra"]').textContent.startsWith('Qual é a área?'));
+  assert.equal(row().hidden, true, 'hidden before an area is chosen');
+  a.set('input[name="area"][value="bioetica"]', true);
+  assert.equal(row().hidden, true, 'hidden for a listed area');
+  a.set('input[name="area"][value="outra"]', true);
+  assert.equal(row().hidden, false, 'shown for Outra');
+  assert.equal(a.$('#campo-area_outra').getAttribute('maxlength'), '100');
+  a.set('#campo-area_outra', 'Farmacologia');
+  fill(a);
+  a.$('#guardar-passo').click();
+  await a.waitFor(() => a.w.location.hash.endsWith('/passo/objectivo'), 'next step');
+  const put = lastCall(api, 'PUT', /\/respostas\/contexto$/);
+  assert.equal(put.body.valor.area, 'outra');
+  assert.equal(put.body.valor.area_outra, 'Farmacologia');
+
+  // Back to a listed area: the hidden text is not sent.
+  const api2 = new FakeApi({ user: TEACHER, draft: makeDraft() });
+  const b = await boot(t, { api: api2, hash: `#/rascunho/${DRAFT_ID}/passo/contexto` });
+  await b.page('passo');
+  b.set('input[name="area"][value="outra"]', true);
+  b.set('#campo-area_outra', 'Farmacologia');
+  b.set('input[name="area"][value="medicina"]', true);
+  fill(b);
+  b.$('#guardar-passo').click();
+  await b.waitFor(() => b.w.location.hash.endsWith('/passo/objectivo'), 'next step');
+  const put2 = lastCall(api2, 'PUT', /\/respostas\/contexto$/);
+  assert.equal(put2.body.valor.area, 'medicina');
+  assert.equal(put2.body.valor.area_outra, undefined);
+});
+
 test('a step error from the server shows the list of errors', async (t) => {
   const api = new FakeApi({ user: TEACHER, draft: makeDraft() });
   api.on('PUT', /\/respostas\/contexto$/, () => json(400, { erro: 'A resposta tem erros.', erros: ['Falta o campo "Unidade curricular".'] }));

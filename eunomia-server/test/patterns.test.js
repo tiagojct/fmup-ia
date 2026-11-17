@@ -98,6 +98,21 @@ test('filterPatterns ranks the patterns that name the area first', () => {
   assert.equal(ats[0].id, 'apreciacao_checklist');
 });
 
+test('the areas of 0.3 are in no pattern list, so filterPatterns scores them like an unknown area', () => {
+  const ids = (area) => filterPatterns(answers({ area }), CATALOGUE).map((p) => p.id);
+  // No pattern names these areas, so each one scores as an area that no pattern lists.
+  for (const p of CATALOGUE) {
+    for (const area of ['ciencias_basicas', 'medicina', 'cirurgia', 'saude_publica', 'outra']) {
+      assert.ok(!p.areas.includes(area), `${p.id} names ${area}`);
+    }
+  }
+  for (const area of ['ciencias_basicas', 'medicina', 'cirurgia', 'saude_publica', 'outra']) {
+    const list = ids(area);
+    assert.ok(list.length >= 2 && list.length <= 3, area);
+    assert.deepEqual(list, ids('nao_existe'), area);
+  }
+});
+
 test('filterPatterns without answers returns at most 3 and does not throw', () => {
   assert.ok(filterPatterns({}, CATALOGUE).length <= 3);
 });

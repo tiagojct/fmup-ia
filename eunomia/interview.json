@@ -45,8 +45,21 @@
             { "id": "informatica", "rotulo": "Informática médica e da saúde" },
             { "id": "saude_digital", "rotulo": "Saúde digital" },
             { "id": "ia", "rotulo": "Inteligência artificial" },
-            { "id": "ats", "rotulo": "Avaliação de tecnologias da saúde" }
+            { "id": "ats", "rotulo": "Avaliação de tecnologias da saúde" },
+            { "id": "ciencias_basicas", "rotulo": "Ciências básicas (anatomia, fisiologia, bioquímica, histologia)" },
+            { "id": "medicina", "rotulo": "Medicina e especialidades médicas" },
+            { "id": "cirurgia", "rotulo": "Cirurgia e especialidades cirúrgicas" },
+            { "id": "saude_publica", "rotulo": "Saúde pública e epidemiologia" },
+            { "id": "outra", "rotulo": "Outra" }
           ]
+        },
+        {
+          "id": "area_outra",
+          "rotulo": "Qual é a área?",
+          "tipo": "texto",
+          "obrigatorio": false,
+          "obrigatorio_se": { "campo": "area", "igual": "outra" },
+          "max": 100
         },
         {
           "id": "nivel",

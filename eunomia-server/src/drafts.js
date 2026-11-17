@@ -299,6 +299,18 @@ function markStale(draft, changedSteps) {
   return out;
 }
 
+// The area as the teacher reads it: the option label, or for "outra" the text of area_outra. A text
+// left in area_outra by another area is ignored. An "outra" with no text gives the option label.
+// Undefined when there is no area.
+function areaLabel(contexto) {
+  const c = isObject(contexto) ? contexto : {};
+  if (!c.area) return undefined;
+  if (c.area === 'outra' && typeof c.area_outra === 'string' && c.area_outra.trim() !== '') return c.area_outra.trim();
+  const campo = STEPS.get('contexto').campos.find((x) => x.id === 'area');
+  const opt = options(campo).find((o) => o.id === c.area);
+  return opt ? opt.rotulo : String(c.area);
+}
+
 // One line per decision, for the plan page and for the model prompts.
 function planSummary(draft) {
   const r = draft.respostas || {};
@@ -314,7 +326,7 @@ function planSummary(draft) {
   const c = r.contexto || {};
   add('Unidade curricular', c.uc);
   add('Ciclo de estudos e ano', c.programa);
-  if (c.area) add('Área', label('contexto', 'area', c.area));
+  if (c.area) add('Área', areaLabel(c));
   if (c.nivel) add('Tipo de oferta formativa', label('contexto', 'nivel', c.nivel));
   add('Número de estudantes', c.estudantes);
   if (c.modalidade) add('Onde decorre', label('contexto', 'modalidade', c.modalidade));
@@ -516,6 +528,7 @@ module.exports = {
   createDraft,
   duplicateDraft,
   applyAnswer,
+  areaLabel,
   nextStep,
   missingSteps,
   approvePlan,

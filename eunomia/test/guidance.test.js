@@ -152,6 +152,25 @@ test('the side panel is not on the section, references and preview pages', async
   assert.equal(a.$('aside.eu-painel-ficha'), null);
 });
 
+test('the side panel shows the text of area_outra for the area Outra, and the label of a new area', async (t) => {
+  const row = (a) => Object.fromEntries([...a.$$('aside.eu-painel-ficha table.ficha-meta tr')].map((tr) => [tr.querySelector('th').textContent, tr.querySelector('td').textContent]));
+  const open = async (area, extra = {}) => {
+    const respostas = { ...ANSWERS, contexto: { ...ANSWERS.contexto, area, ...extra } };
+    const a = await boot(t, { api: new FakeApi({ user: TEACHER, draft: makeDraft({ respostas }) }), hash: `#/rascunho/${DRAFT_ID}/passo/contexto` });
+    await a.page('passo');
+    return a;
+  };
+  const outra = await open('outra', { area_outra: 'Farmacologia' });
+  assert.equal(row(outra)[S.meta.areas], 'Farmacologia');
+
+  const cirurgia = await open('cirurgia');
+  assert.equal(row(cirurgia)[S.meta.areas], 'Cirurgia e especialidades cirúrgicas');
+
+  // A text left over from another area is not shown.
+  const velho = await open('bioetica', { area_outra: 'Farmacologia' });
+  assert.equal(row(velho)[S.meta.areas], 'Bioética');
+});
+
 // ---------------------------------------------------------------- the retry on status 0
 
 test('a model request that fails with status 0 is sent once more after the delay; a PUT of an answer is not', async (t) => {
