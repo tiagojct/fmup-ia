@@ -187,6 +187,21 @@ test('area outra needs the text of area_outra; areaLabel gives the label or that
   assert.equal(areaLabel(undefined), undefined);
 });
 
+test('applyAnswer drops area_outra when the area is not outra, also a text the field would refuse', () => {
+  const d = createDraft(USER, 'criar');
+  const ctx = respostasCompletas().contexto;
+  for (const stale of ['Farmacologia', 'x'.repeat(101), 5]) {
+    const r = applyAnswer(d, 'contexto', { ...ctx, area: 'cirurgia', area_outra: stale });
+    assert.deepEqual(r.errors, [], String(stale));
+    assert.equal(Object.hasOwn(r.draft.respostas.contexto, 'area_outra'), false);
+    assert.equal(r.draft.respostas.contexto.area, 'cirurgia');
+  }
+  // A change from outra to another area drops the old text.
+  let e = applyAnswer(d, 'contexto', { ...ctx, area: 'outra', area_outra: 'Farmacologia' }).draft;
+  e = applyAnswer(e, 'contexto', { ...e.respostas.contexto, area: 'bioetica' }).draft;
+  assert.equal(e.respostas.contexto.area_outra, undefined);
+});
+
 test('the plan summary shows the text of area_outra on the Área line', () => {
   const ctx = respostasCompletas().contexto;
   let d = createDraft(USER, 'criar');

@@ -11,8 +11,10 @@
 // with the answers of that example (plan not approved). POST /rascunhos/:id/duplicar copies the
 // author's own draft in any state; the source is not changed, so it needs no rev. DELETE
 // /rascunhos/:id with rev moves the draft to apagados/ (kept DELETED_DAYS days); a submitted draft
-// cannot be deleted. The three ways to make a draft share the cap of MAX_DRAFTS. GET /exemplos/:n is
-// public: the reference ficha of example n, for the walk-through.
+// cannot be deleted. POST /rascunhos/adaptar with { texto } makes a refinar draft from an activity
+// the teacher already runs (spec 0.3, 6): the text goes to materials, and the model proposes the
+// answers of the first steps (propostos). The four ways to make a draft share the cap of MAX_DRAFTS.
+// GET /exemplos/:n is public: the reference ficha of example n, for the walk-through.
 //
 // registerDraftRoutes returns the helpers that other route modules use: { readable, writable, save,
 // view, modelSection, personalDataGate, checkText, optionalText, readyFicha, now }.
@@ -50,9 +52,14 @@ const NOT_FOUND = 'Rascunho não encontrado.';
 const ADMIN_READS = ['submetida', 'aprovada', 'devolvida'];
 const NO_EXAMPLE = 'Exemplo desconhecido.';
 const SUBMITTED = 'Uma actividade submetida para revisão não pode ser apagada.';
+const NO_ACTIVITY = 'Cole o texto da actividade.';
+// The longest pasted activity: the maximum of the materials step.
+const MAX_ACTIVITY = 60000;
 // The time budget of one request that calls the model, retry included: below the 100 s after which
 // Cloudflare drops the request.
 const MODEL_BUDGET_MS = 90000;
+
+const isPlainObject = (x) => x !== null && typeof x === 'object' && !Array.isArray(x);
 
 // Every 409 says why, so that the front end offers "Recarregar" only for a stale rev:
 // rev (another window changed the draft), bloqueado (submitted), plano (plan not approved),
@@ -85,6 +92,7 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
     rascunho: d,
     proximo_passo: drafts.nextStep(d),
     plano: drafts.planSummary(d),
+    propostos: Array.isArray(d.propostos) ? d.propostos : [],
     ...extra,
   });
 
@@ -172,10 +180,12 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
     }
   }
 
-  async function askOnce(ctx, message) {
-    return withModel(ctx, async (creds, count, deadline) => {
+  // One model call. lenient: true turns a reply that is not a JSON object into {} (POST
+  // /rascunhos/adaptar makes the draft anyway); every other error, a service error included, stays.
+  async function askOnce(ctx, message, { lenient = false } = {}) {
+    const reply = await withModel(ctx, async (creds, count, deadline) => {
       count();
-      const reply = await config.iaedu.send({
+      return config.iaedu.send({
         key: creds.key,
         agentId: creds.agentId,
         channelId: creds.channelId,
@@ -183,8 +193,15 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
         message,
         deadline,
       });
-      return { data: parseJsonReply(reply.text), modelo: reply.model || null };
     });
+    let data;
+    try {
+      data = parseJsonReply(reply.text);
+    } catch (e) {
+      if (!lenient || !(e instanceof IaeduError && e.code === 'formato')) throw e;
+      data = {};
+    }
+    return { data, modelo: reply.model || null };
   }
 
   // Lint avisos for model text that is shown to the teacher but does not go into the ficha.
@@ -212,6 +229,12 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
     if (emojis.length > 0) throw new HttpError(422, NO_EMOJI, {}, { erros: [...new Set(emojis)] });
   }
 
+  // Model text for an answer: true when it has no control character and no emoji (the rules of
+  // checkText, without the error).
+  function cleanText(data) {
+    return !hasControl(data) && strings(data).every((t) => lintEmoji(t).length === 0);
+  }
+
   function optionalText(value, max, name) {
     if (value === undefined || value === null || value === '') return undefined;
     if (typeof value !== 'string') throw new HttpError(400, `O campo ${name} tem de ser texto.`);
@@ -227,6 +250,38 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
     if (exemplo !== undefined && !findExample(exemplo)) throw new HttpError(400, NO_EXAMPLE);
     checkRoom(ctx.user);
     const d = exemplo === undefined ? drafts.createDraft(ctx.user, 'criar', now()) : draftFromExample(ctx.user, exemplo, now());
+    store.write(`rascunhos/${ctx.user.id}/${d.id}.json`, d);
+    sendJson(res, 201, view(d));
+  });
+
+  // An activity the teacher already runs (spec 0.3, 6). The checks come before the model call, so a
+  // refused request costs no call and writes nothing. The model proposes answers for ADAPT_STEPS;
+  // each step goes through applyAnswer as a teacher's answer would, and a step with any error, or
+  // with a control character or an emoji, is dropped whole. A model answer that is empty or not JSON
+  // still gives the draft, with the text in materials and propostos []. No retry on the client: a
+  // second request would make a second draft. Registered before the /rascunhos/:id routes; there is
+  // no POST /rascunhos/:id, and an id is 12 hex digits (drafts.DRAFT_ID), so "adaptar" is never one.
+  route('POST', '/rascunhos/adaptar', async (req, res, ctx) => {
+    const texto = ctx.body.texto;
+    if (typeof texto !== 'string' || texto.trim() === '') throw new HttpError(400, NO_ACTIVITY);
+    if (texto.length > MAX_ACTIVITY) throw new HttpError(400, `O texto da actividade tem no máximo ${MAX_ACTIVITY} caracteres.`);
+    checkText(texto);
+    personalDataGate(ctx, [texto]);
+    checkRoom(ctx.user);
+    const { data } = await askOnce(ctx, prompts.proposeAnswers(texto), { lenient: true });
+
+    const m = drafts.applyAnswer(drafts.createDraft(ctx.user, 'refinar', now()), 'materiais', { texto });
+    if (m.errors.length > 0) throw new HttpError(400, 'O texto da actividade tem erros.', {}, { erros: m.errors });
+    let d = m.draft;
+    const proposed = isPlainObject(data.respostas) ? data.respostas : {};
+    for (const passo of drafts.ADAPT_STEPS) {
+      const value = proposed[passo];
+      if (!isPlainObject(value) || !cleanText(value)) continue;
+      const r = drafts.applyAnswer(d, passo, value);
+      if (r.errors.length > 0) continue;
+      d = r.draft;
+      d.propostos.push(passo);
+    }
     store.write(`rascunhos/${ctx.user.id}/${d.id}.json`, d);
     sendJson(res, 201, view(d));
   });
@@ -299,6 +354,8 @@ function registerDraftRoutes(route, config, { HttpError, sendJson, requireCreds 
       ctx,
       strings(r.draft.respostas[ctx.params.passo]).filter((t) => ctx.params.passo === 'materiais' || t.length > PERSONAL_DATA_MIN),
     );
+    // The teacher has saved the step: it is no longer only a proposal of the model.
+    if (Array.isArray(r.draft.propostos)) r.draft.propostos = r.draft.propostos.filter((p) => p !== ctx.params.passo);
     return view(save(r.draft), { avisos: r.avisos });
   });
 

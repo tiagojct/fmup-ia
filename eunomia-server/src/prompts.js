@@ -5,7 +5,7 @@
 // user_context, so everything goes in the message. Each request carries all it needs: no step
 // relies on the thread history.
 
-const { planSummary } = require('./drafts.js');
+const { planSummary, STEPS, ADAPT_STEPS } = require('./drafts.js');
 const { findPattern } = require('./patterns.js');
 
 const RULES = [
@@ -196,6 +196,46 @@ function mapExisting(texto) {
   );
 }
 
+// One field of the interview as a line of the proposeAnswers prompt: id, type, limits, whether it is
+// required, label, and the option ids with their labels. All read from interview.json.
+function fieldLine(campo) {
+  const parts = [];
+  if (campo.tipo === 'numero') parts.push(`número inteiro de ${campo.min} a ${campo.max}`);
+  else if (campo.tipo === 'escolha') parts.push('escolha: um dos ids');
+  else if (campo.tipo === 'escolha_multipla') parts.push('lista de ids');
+  else parts.push(campo.max ? `texto, no máximo ${campo.max} caracteres` : 'texto');
+  if (campo.obrigatorio) parts.push('obrigatório');
+  else if (campo.obrigatorio_se && campo.obrigatorio_se.igual !== undefined) {
+    parts.push(`obrigatório se ${campo.obrigatorio_se.campo} = ${campo.obrigatorio_se.igual}`);
+  } else parts.push('opcional');
+  const opcoes = Array.isArray(campo.opcoes) ? campo.opcoes.map((o) => `${o.id} (${o.rotulo})`).join('; ') : '';
+  return `  - ${campo.id} [${parts.join(', ')}]: ${campo.rotulo}${opcoes ? `. Ids: ${opcoes}` : ''}`;
+}
+
+// Adapt mode (POST /rascunhos/adaptar): an activity the teacher already runs, read for the answers
+// of the first interview steps. The steps, fields and option ids come from interview.json. The code
+// checks every proposed step with applyAnswer and drops a step with any error.
+function proposeAnswers(texto) {
+  const text = typeof texto === 'string' ? texto.trim() : '';
+  const cut = text.length > MAX_MATERIALS ? `${text.slice(0, MAX_MATERIALS)}\n[...]` : text;
+  const steps = ADAPT_STEPS.map((id) => STEPS.get(id))
+    .map((s) => [`${s.id} (${s.titulo}):`, ...s.campos.map(fieldLine)].join('\n'))
+    .join('\n');
+  return join(
+    'Tarefa: ler a descrição de uma actividade de ensino que um docente da FMUP já faz e propor as respostas aos primeiros passos da entrevista da Eunomia. O docente revê cada resposta.',
+    block('Actividade do docente', cut),
+    codeBlock('Passos e campos (use estes ids)', steps),
+    [
+      'Copie só o que o texto diz. Deixe de fora os campos e os passos que o texto não diz. Não invente nada: nem números, nem durações, nem objectivos.',
+      'Não copie dados pessoais de doentes ou de estudantes (nomes, números de utente, datas de nascimento).',
+      'Um número é um inteiro sem unidades (45, não "45 min"). Uma escolha é um dos ids dados, escrito como está.',
+      'Um passo só vale com todos os campos obrigatórios. Se o texto não os diz todos, omita o passo inteiro.',
+    ].join('\n'),
+    'Forma da resposta: {"respostas": {"contexto": {"uc": "...", "estudantes": 30, "duracao_min": 90}, "papel_ia": {"papel": "nenhum"}}}',
+    RULES,
+  );
+}
+
 function reviewAlignment(ficha) {
   const f = { ...(ficha || {}) };
   for (const k of ['regime_ia', 'referencias', 'declaracao', 'meta_eunomia', 'derived_from', 'runtime']) delete f[k];
@@ -208,4 +248,15 @@ function reviewAlignment(ficha) {
   );
 }
 
-module.exports = { RULES, SECTIONS, MAX_MATERIALS, planText, sharpenOutcome, explainPatterns, writeSection, mapExisting, reviewAlignment };
+module.exports = {
+  RULES,
+  SECTIONS,
+  MAX_MATERIALS,
+  planText,
+  sharpenOutcome,
+  explainPatterns,
+  writeSection,
+  mapExisting,
+  proposeAnswers,
+  reviewAlignment,
+};

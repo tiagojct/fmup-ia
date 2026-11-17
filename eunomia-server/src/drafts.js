@@ -6,7 +6,10 @@
 //
 // Draft = { id, autor: { id, nome }, modo, rev, estado, versao, criado, actualizado, aberto,
 //           respostas: { [passo]: valor }, plano_aprovado, seccoes: { [id]: Seccao },
-//           referencias: [], threads: { [id]: threadId } }
+//           referencias: [], threads: { [id]: threadId }, propostos?: [passo] }
+// propostos: in a refinar draft (POST /rascunhos/adaptar), the steps whose answers the model proposed
+// from the teacher's text and the teacher has not saved yet. A draft from POST /rascunhos has no
+// propostos; a copy has an empty one. Saving a step (PUT respostas) removes it from the list.
 // Seccao = { dados?, estado: 'vazia' | 'gerada' | 'aceite' | 'a-actualizar', avisos: [], modelo,
 //            origem?: 'modelo' | 'docente', opiniao?: Opiniao, anterior?: Seccao without anterior }
 //   anterior is the text a "Nova versão" replaced; POST .../repor swaps it back.
@@ -58,6 +61,12 @@ const DELETED_DAYS = 30;
 // The longest title of the plan step: a copy's "Cópia de " prefix is cut to it.
 const TITLE_MAX = 150;
 
+// The interview steps for which POST /rascunhos/adaptar asks the model to propose answers, in the
+// interview order.
+const ADAPT_STEPS = INTERVIEW.passos
+  .map((p) => p.id)
+  .filter((id) => ['contexto', 'objectivo', 'evidencia', 'papel_ia', 'regime'].includes(id));
+
 class DraftError extends Error {
   constructor(message, erros = []) {
     super(message);
@@ -91,14 +100,17 @@ function createDraft(user, modo = 'criar', now = Date.now()) {
     seccoes: {},
     referencias: [],
     threads: {},
+    ...(modo === 'refinar' ? { propostos: [] } : {}),
   };
 }
 
 // A new draft of user with the answers, the references and the accepted sections of source (spec
 // D3b). The plan stays approved when it was. The accepted sections lose their previous version and
 // opinion; the others start empty. No threads, no review, no submission. The title gets "Cópia de ".
+// The copy is a criar draft with an empty propostos: no step of it shows the "proposed" mark.
 function duplicateDraft(source, user, now = Date.now()) {
   const copy = createDraft(user, 'criar', now);
+  copy.propostos = [];
   copy.respostas = clone(source.respostas || {});
   copy.referencias = clone(source.referencias || []);
   copy.plano_aprovado = source.plano_aprovado === true;
@@ -231,6 +243,9 @@ function applyAnswer(draft, stepId, value) {
 
   const clean = {};
   for (const campo of step.campos) {
+    // area_outra counts only for the area outra. A text left by another area (an old form, a model
+    // proposal) is dropped, not refused.
+    if (stepId === 'contexto' && campo.id === 'area_outra' && value.area !== 'outra') continue;
     const r = checkField(campo, value[campo.id]);
     errors.push(...r.errors);
     if (r.value !== undefined) clean[campo.id] = r.value;
@@ -408,7 +423,11 @@ function checkOutcomeVerb(text) {
 
 const draftFile = (userId, id) => `rascunhos/${userId}/${id}.json`;
 
-// The draft for this user: the user's own, or (for an admin) any. Null when there is none.
+// The draft file for this id: the user's own, or for an admin the draft of any author, in any state.
+// Null when there is none. This function does not apply the admin read rule. Routes must call
+// readable() in draft-routes.js, which does (an admin reads another author's draft only once it is
+// submitted), and not this function. (A route may use it only to read again a draft that readable()
+// has already let through, as the gerar route does after the model call.)
 function findDraft(store, user, id) {
   if (!DRAFT_ID.test(String(id))) return null;
   const own = store.read(draftFile(user.id, id), null);
@@ -524,6 +543,7 @@ module.exports = {
   SECTION_DEPENDS,
   DRAFT_ID,
   DELETED_DAYS,
+  ADAPT_STEPS,
   DraftError,
   createDraft,
   duplicateDraft,

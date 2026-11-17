@@ -269,3 +269,310 @@ test('GET /uso still lists the counts of the drafts of a teacher, whatever their
   // The usage page has the counts and never a title or a text of a draft.
   assert.equal(JSON.stringify(r.json).includes('Debate sobre o fim de vida'), false);
 });
+
+// ---------------------------------------------------------------- adapt an activity (Task 4)
+
+const prompts = require('../src/prompts.js');
+const { IaeduError } = require('../src/iaedu.js');
+
+const ACTIVIDADE =
+  'Aula prática de Anatomia I, 1.º ano do Mestrado Integrado em Medicina. Trinta estudantes em grupos identificam estruturas do membro superior em peças e discutem os casos no fim. Noventa minutos, sem IA.';
+
+const CONTEXTO = {
+  uc: 'Anatomia I',
+  programa: 'Mestrado Integrado em Medicina, 1.º ano',
+  area: 'ciencias_basicas',
+  nivel: 'uc_undergrad',
+  estudantes: 30,
+  modalidade: 'em_aula',
+  duracao_min: 90,
+};
+const OBJECTIVO = {
+  texto: 'No fim da actividade, o estudante identifica as estruturas do membro superior numa peça anatómica.',
+  competencia_protegida: 'A competência protegida é o reconhecimento das estruturas sem ajuda.',
+  competencia: 'Reconhecimento anatómico',
+};
+
+// An app whose model answers with `reply` (a string, or a function that returns one or throws). The
+// log lines are kept, so that a test can read them.
+async function adaptSetup(t, reply = '{}') {
+  const calls = { n: 0, messages: [] };
+  const lines = [];
+  const iaedu = {
+    send: async ({ message }) => {
+      calls.n += 1;
+      calls.messages.push(message);
+      return { text: typeof reply === 'function' ? reply() : reply, model: MODEL };
+    },
+  };
+  const logStream = { write: (s) => lines.push(...String(s).split('\n').filter(Boolean)) && true };
+  const app = await startApp(t, { now: () => T, iaedu, env: SHARED, logStream });
+  const ana = await app.person('Ana Docente');
+  return { app, ana, calls, lines };
+}
+
+const adapt = (app, who, body) => app.call('POST', '/rascunhos/adaptar', { cookie: who.cookie, body });
+const ownDrafts = (app, who) => app.store.list(`rascunhos/${who.id}`).filter((n) => n.endsWith('.json'));
+const json = (x) => JSON.stringify(x);
+
+test('proposeAnswers lists the five steps with every field id and option id from interview.json', () => {
+  const p = prompts.proposeAnswers(ACTIVIDADE);
+  for (const id of ['contexto', 'objectivo', 'evidencia', 'papel_ia', 'regime']) {
+    const step = drafts.STEPS.get(id);
+    assert.ok(p.includes(id), id);
+    for (const campo of step.campos) {
+      assert.ok(p.includes(campo.id), `${id}.${campo.id}`);
+      for (const o of Array.isArray(campo.opcoes) ? campo.opcoes : []) assert.ok(p.includes(o.id), `${id}.${campo.id}=${o.id}`);
+    }
+  }
+  // The other steps are not asked for.
+  for (const other of ['regime_themis', 'assignment', 'padrao', 'advogado_diabo', 'materiais', 'titulo']) assert.ok(!p.includes(other), other);
+  assert.match(p, /\{"respostas": \{/);
+  assert.match(p, /Não invente/);
+  assert.match(p, /dados pessoais/);
+  // The teacher's text is data between markers, and the rules close the prompt.
+  assert.ok(p.includes(`<<<DADOS_DOCENTE\n${ACTIVIDADE}\nDADOS_DOCENTE>>>`));
+  assert.ok(p.endsWith(prompts.RULES));
+  // Long text is cut as for the materials.
+  const long = prompts.proposeAnswers(`${'a'.repeat(prompts.MAX_MATERIALS)}FIM-DO-TEXTO`);
+  assert.ok(!long.includes('FIM-DO-TEXTO'));
+  assert.ok(long.includes('[...]'));
+});
+
+test('adaptar: valid contexto and papel_ia make a refinar draft with the text in materials and propostos', async (t) => {
+  const { app, ana, calls } = await adaptSetup(t, json({ respostas: { contexto: CONTEXTO, papel_ia: { papel: 'nenhum' } } }));
+  const r = await adapt(app, ana, { texto: ACTIVIDADE });
+  assert.equal(r.status, 201);
+  assert.equal(calls.n, 1);
+  assert.ok(calls.messages[0].includes(ACTIVIDADE));
+  const d = r.json.rascunho;
+  assert.equal(d.modo, 'refinar');
+  assert.equal(d.estado, 'rascunho');
+  assert.equal(d.plano_aprovado, false);
+  assert.deepEqual(r.json.propostos, ['contexto', 'papel_ia']);
+  assert.deepEqual(d.propostos, ['contexto', 'papel_ia']);
+  assert.equal(d.respostas.materiais.texto, ACTIVIDADE);
+  assert.deepEqual(d.respostas.contexto, CONTEXTO);
+  assert.deepEqual(d.respostas.papel_ia, { papel: 'nenhum' });
+  assert.equal(r.json.proximo_passo, 'objectivo');
+  // Stored, and the view of the stored draft carries propostos.
+  assert.deepEqual(ownDrafts(app, ana), [`${d.id}.json`]);
+  const back = await get(app, ana, `/rascunhos/${d.id}`);
+  assert.deepEqual(back.json.propostos, ['contexto', 'papel_ia']);
+  // The route is POST /rascunhos/adaptar, never a draft id: GET of that path is the 404 of a draft.
+  assert.equal((await get(app, ana, '/rascunhos/adaptar')).status, 404);
+});
+
+test('adaptar: a step with one invalid field is dropped whole, the other steps are kept', async (t) => {
+  const reply = json({
+    respostas: {
+      contexto: { ...CONTEXTO, duracao_min: '45 min' },
+      objectivo: OBJECTIVO,
+      evidencia: { descricao: 'Identificação oral das estruturas.', avaliacao: 'continua' },
+      papel_ia: { papel: 'assistente' },
+      regime: { regime: 'proibido' },
+    },
+  });
+  const { app, ana } = await adaptSetup(t, reply);
+  const r = await adapt(app, ana, { texto: ACTIVIDADE });
+  assert.equal(r.status, 201);
+  assert.deepEqual(r.json.propostos, ['objectivo', 'regime']);
+  const d = r.json.rascunho;
+  for (const gone of ['contexto', 'evidencia', 'papel_ia']) assert.equal(d.respostas[gone], undefined, gone);
+  assert.equal(d.respostas.objectivo.texto, OBJECTIVO.texto);
+  assert.deepEqual(d.respostas.regime, { regime: 'proibido' });
+});
+
+test('adaptar: steps that are not objects, unknown steps, emoji or control characters are dropped', async (t) => {
+  const reply = json({
+    respostas: {
+      contexto: [CONTEXTO],
+      objectivo: { ...OBJECTIVO, texto: `${OBJECTIVO.texto} \u{1F600}` },
+      evidencia: { descricao: 'Texto\u0007', avaliacao: 'formativa' },
+      papel_ia: 'nenhum',
+      regime: { regime: 'proibido' },
+      padrao: { padrao: 'advogado_diabo' },
+      plano: { titulo: 'T', subtitulo: 'S' },
+    },
+  });
+  const { app, ana } = await adaptSetup(t, reply);
+  const r = await adapt(app, ana, { texto: ACTIVIDADE });
+  assert.equal(r.status, 201);
+  assert.deepEqual(r.json.propostos, ['regime']);
+  assert.deepEqual(Object.keys(r.json.rascunho.respostas).sort(), ['materiais', 'regime']);
+});
+
+test('adaptar: area_outra from the model is dropped when the area is not outra; outra keeps it', async (t) => {
+  const { app, ana } = await adaptSetup(t, json({ respostas: { contexto: { ...CONTEXTO, area_outra: 'Farmacologia' } } }));
+  const r = await adapt(app, ana, { texto: ACTIVIDADE });
+  assert.deepEqual(r.json.propostos, ['contexto']);
+  assert.deepEqual(r.json.rascunho.respostas.contexto, CONTEXTO);
+});
+
+test('adaptar: non-JSON, {} or a respostas that is not an object still make the draft with propostos []', async (t) => {
+  for (const reply of ['não sei', '{}', '[]', json({ respostas: [] }), json({ respostas: 'nada' }), '```json\n{"respostas": {}}\n```']) {
+    const { app, ana, calls } = await adaptSetup(t, reply);
+    const r = await adapt(app, ana, { texto: ACTIVIDADE });
+    assert.equal(r.status, 201, reply);
+    assert.equal(calls.n, 1);
+    assert.deepEqual(r.json.propostos, [], reply);
+    assert.equal(r.json.rascunho.modo, 'refinar');
+    assert.deepEqual(Object.keys(r.json.rascunho.respostas), ['materiais']);
+    assert.equal(r.json.rascunho.respostas.materiais.texto, ACTIVIDADE);
+    assert.equal(r.json.proximo_passo, 'contexto');
+    assert.equal(ownDrafts(app, ana).length, 1);
+  }
+});
+
+test('adaptar: a model error keeps its status and makes no draft', async (t) => {
+  for (const [code, status] of [['limite', 429], ['servico', 502], ['tempo', 504]]) {
+    const { app, ana } = await adaptSetup(t, () => {
+      throw new IaeduError(code);
+    });
+    const r = await adapt(app, ana, { texto: ACTIVIDADE });
+    assert.equal(r.status, status, code);
+    assert.equal(r.json.motivo, code);
+    assert.deepEqual(ownDrafts(app, ana), []);
+  }
+  // A wrong own key is 401 motivo auth, as on the other model routes.
+  const { app, ana } = await adaptSetup(t, () => {
+    throw new IaeduError('auth');
+  });
+  const own = { 'x-iaedu-key': 'sk-own', 'x-iaedu-agent': 'a', 'x-iaedu-channel': 'c' };
+  const r = await app.call('POST', '/rascunhos/adaptar', { cookie: ana.cookie, body: { texto: ACTIVIDADE }, headers: own });
+  assert.equal(r.status, 401);
+  assert.equal(r.json.motivo, 'auth');
+  assert.deepEqual(ownDrafts(app, ana), []);
+});
+
+test('adaptar: personal data is 422 dados_pessoais before the model; confirmo makes the draft', async (t) => {
+  const { app, ana, calls } = await adaptSetup(t);
+  const texto = `${ACTIVIDADE} Caso: Utente SNS 123456789.`;
+  const r = await adapt(app, ana, { texto });
+  assert.equal(r.status, 422);
+  assert.equal(r.json.motivo, 'dados_pessoais');
+  assert.ok(r.json.achados.length > 0);
+  assert.equal(calls.n, 0);
+  assert.deepEqual(ownDrafts(app, ana), []);
+  // Only exactly true confirms.
+  assert.equal((await adapt(app, ana, { texto, confirmo_sem_dados_pessoais: 'sim' })).status, 422);
+  const ok = await adapt(app, ana, { texto, confirmo_sem_dados_pessoais: true });
+  assert.equal(ok.status, 201);
+  assert.equal(ok.json.rascunho.respostas.materiais.texto, texto);
+  assert.equal(calls.n, 1);
+});
+
+test('adaptar: texto is required, at most 60000 characters, without control characters or emoji', async (t) => {
+  const { app, ana, calls } = await adaptSetup(t);
+  for (const body of [{}, { texto: '' }, { texto: '   ' }, { texto: 5 }, { texto: ['a'] }]) {
+    const r = await adapt(app, ana, body);
+    assert.equal(r.status, 400, json(body));
+    assert.equal(r.json.erro, 'Cole o texto da actividade.');
+  }
+  const long = await adapt(app, ana, { texto: 'a'.repeat(60001) });
+  assert.equal(long.status, 400);
+  assert.match(long.json.erro, /60000/);
+  assert.equal((await adapt(app, ana, { texto: `${ACTIVIDADE}\u0000` })).status, 400);
+  assert.equal((await adapt(app, ana, { texto: `${ACTIVIDADE} \u{1F600}` })).status, 422);
+  assert.equal(calls.n, 0);
+  assert.deepEqual(ownDrafts(app, ana), []);
+  // 60000 is allowed.
+  const max = await adapt(app, ana, { texto: 'a'.repeat(60000) });
+  assert.equal(max.status, 201);
+  assert.equal(max.json.rascunho.respostas.materiais.texto.length, 60000);
+});
+
+test('adaptar: the 101st draft is 409 limite and the model is not called', async (t) => {
+  const { app, ana, calls } = await adaptSetup(t);
+  for (let i = 0; i < 100; i++) {
+    const d = drafts.createDraft(ana.user, 'criar', T);
+    app.store.write(fileOf(ana, d), d);
+  }
+  const r = await adapt(app, ana, { texto: ACTIVIDADE });
+  assert.equal(r.status, 409);
+  assert.equal(r.json.motivo, 'limite');
+  assert.equal(calls.n, 0);
+  assert.equal(ownDrafts(app, ana).length, 100);
+});
+
+test('adaptar: saving a proposed step removes it from propostos; other steps stay', async (t) => {
+  const { app, ana } = await adaptSetup(t, json({ respostas: { contexto: CONTEXTO, papel_ia: { papel: 'nenhum' } } }));
+  const made = (await adapt(app, ana, { texto: ACTIVIDADE })).json.rascunho;
+  const r = await app.call('PUT', `/rascunhos/${made.id}/respostas/contexto`, {
+    cookie: ana.cookie,
+    body: { rev: made.rev, valor: { ...CONTEXTO, estudantes: 32 } },
+  });
+  assert.equal(r.status, 200);
+  assert.deepEqual(r.json.propostos, ['papel_ia']);
+  assert.deepEqual(r.json.rascunho.propostos, ['papel_ia']);
+  // A step that was not proposed leaves the list as it is.
+  const o = await app.call('PUT', `/rascunhos/${made.id}/respostas/objectivo`, {
+    cookie: ana.cookie,
+    body: { rev: r.json.rascunho.rev, valor: OBJECTIVO },
+  });
+  assert.deepEqual(o.json.propostos, ['papel_ia']);
+  // A refused answer does not change it either.
+  const bad = await app.call('PUT', `/rascunhos/${made.id}/respostas/papel_ia`, {
+    cookie: ana.cookie,
+    body: { rev: o.json.rascunho.rev, valor: { papel: 'assistente' } },
+  });
+  assert.equal(bad.status, 400);
+  assert.deepEqual((await get(app, ana, `/rascunhos/${made.id}`)).json.propostos, ['papel_ia']);
+});
+
+test('adaptar: a request without X-Eunomia and without the JSON type is refused, as other POSTs', async (t) => {
+  const { app, ana, calls } = await adaptSetup(t);
+  const bare = await app.call('POST', '/rascunhos/adaptar', { cookie: ana.cookie, csrf: false });
+  assert.equal(bare.status, 403);
+  const form = await app.call('POST', '/rascunhos/adaptar', {
+    cookie: ana.cookie,
+    csrf: false,
+    raw: `texto=${encodeURIComponent(ACTIVIDADE)}`,
+    headers: { 'content-type': 'application/x-www-form-urlencoded' },
+  });
+  assert.equal(form.status, 415);
+  // Without a session: 401.
+  assert.equal((await app.call('POST', '/rascunhos/adaptar', { body: { texto: ACTIVIDADE } })).status, 401);
+  assert.equal(calls.n, 0);
+  assert.deepEqual(ownDrafts(app, ana), []);
+});
+
+test('adaptar: the log line has method, path, status and ms, and never the text', async (t) => {
+  const { app, ana, lines } = await adaptSetup(t, json({ respostas: { contexto: CONTEXTO } }));
+  const texto = `${ACTIVIDADE} Frase-unica-para-o-registo.`;
+  assert.equal((await adapt(app, ana, { texto })).status, 201);
+  assert.equal((await adapt(app, ana, { texto: `${texto} \u{1F600}` })).status, 422);
+  await new Promise((resolve) => setTimeout(resolve, 20)); // 'finish' can come after the reply
+  const entries = lines.map((l) => JSON.parse(l)).filter((e) => e.path && e.path.endsWith('/rascunhos/adaptar'));
+  assert.equal(entries.length, 2);
+  for (const e of entries) assert.deepEqual(Object.keys(e).sort(), ['method', 'ms', 'path', 'status']);
+  assert.deepEqual(entries.map((e) => e.status), [201, 422]);
+  const all = lines.join('\n');
+  for (const secret of ['Frase-unica-para-o-registo', 'Anatomia', 'sk-usr-shared']) assert.ok(!all.includes(secret), secret);
+});
+
+test('a refinar draft works as a criar draft: list, plan, export, final check and duplicate', async (t) => {
+  const { app, ana } = await setup(t);
+  const d = put(app, ana, { modo: 'refinar', propostos: ['contexto'] });
+  const list = await get(app, ana, '/rascunhos');
+  assert.equal(list.json.rascunhos.find((x) => x.id === d.id).modo, 'refinar');
+  assert.equal((await get(app, ana, `/rascunhos/${d.id}/exportar?formato=md`)).status, 200);
+  const check = await get(app, ana, `/rascunhos/${d.id}/verificacao-final`);
+  assert.equal(check.status, 200);
+  assert.deepEqual(check.json.passos_em_falta, []);
+  // The copy is a criar draft with an empty propostos.
+  const copy = await app.call('POST', `/rascunhos/${d.id}/duplicar`, { cookie: ana.cookie });
+  assert.equal(copy.status, 201);
+  assert.equal(copy.json.rascunho.modo, 'criar');
+  assert.deepEqual(copy.json.rascunho.propostos, []);
+  assert.deepEqual(copy.json.propostos, []);
+});
+
+test('createDraft refinar starts with propostos []; a criar draft has none and its view gives []', async (t) => {
+  assert.deepEqual(drafts.createDraft({ id: 'u1', name: 'A' }, 'refinar', T).propostos, []);
+  assert.equal(drafts.createDraft({ id: 'u1', name: 'A' }, 'criar', T).propostos, undefined);
+  const { app, ana } = await setup(t);
+  const r = await app.call('POST', '/rascunhos', { cookie: ana.cookie, body: {} });
+  assert.equal(r.status, 201);
+  assert.deepEqual(r.json.propostos, []);
+});
