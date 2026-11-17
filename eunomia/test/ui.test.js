@@ -516,7 +516,7 @@ test('a remembered key is loaded at start', async (t) => {
   const api = new FakeApi({ user: TEACHER, draft: approvedDraft() });
   const a = await boot(t, { api, hash: '#/inicio', stored: { key: 'sk-guardada', agent: 'a', channel: 'c', user: 'u1' } });
   await a.page('inicio');
-  assert.match(a.$('#modo-chave').textContent, /a sua chave IAedu/);
+  assert.match(a.$('#modo-chave').textContent, /com a sua chave\./);
   assert.equal((await modelCall(a, api)).headers.get('x-iaedu-key'), 'sk-guardada');
 });
 

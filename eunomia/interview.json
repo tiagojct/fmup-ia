@@ -120,11 +120,11 @@
       "titulo": "Objectivo de aprendizagem",
       "minutos": 5,
       "erros_comuns": [
-        "Escreva o objectivo do lado do estudante: o que ele faz no fim da actividade.",
-        "No campo do que o estudante tem de fazer sem ajuda, ponha só a parte que ele faz sozinho. O resto do que a actividade treina cabe no objectivo.",
-        "Fique com um objectivo por actividade: numa aula, há tempo para treinar um."
+        "Escreva o objectivo do ponto de vista do estudante: o que ele faz no fim da actividade.",
+        "Em «O que o estudante tem de fazer sem ajuda», ponha só a parte que ele faz sozinho. O resto do que a actividade treina cabe no objectivo.",
+        "Defina um só objectivo por actividade. Numa aula, há tempo para treinar um."
       ],
-      "porque": "Um verbo observável diz o que o estudante faz no fim, e é isso que a actividade treina e a avaliação verifica. A competência protegida é a parte que o estudante tem de fazer sem ajuda, como pede o pilar Ser sem IA do Quadro.",
+      "porque": "Um verbo que se observa diz o que o estudante faz no fim, e é isso que a actividade treina e a avaliação verifica. A competência protegida é a parte que o estudante tem de fazer sem ajuda, como pede o pilar Ser sem IA do Quadro.",
       "ligacao": {
         "rotulo": "Princípios orientadores: os três pilares",
         "url": "https://tiagojacinto.eu/fmup-ia/quadro/02-principios.html#tres-pilares"
@@ -213,7 +213,7 @@
         "Aqui, indique o que a IA faz na actividade. O que os estudantes podem fazer com ela escolhe-se no passo seguinte.",
         "Se os estudantes só lêem e avaliam um texto que a IA gerou antes da aula, escolha «Objecto de crítica».",
         "Se a actividade não usa IA, escolha «Nenhum». É um resultado tão válido como os outros.",
-        "Na ferramenta, deixe a IAedu, o serviço de IA da FCT/FCCN para o ensino superior, ou indique outra que a Universidade do Porto tenha aprovado."
+        "No campo Ferramenta, deixe a IAedu, o serviço de IA da FCT/FCCN para o ensino superior, ou indique outra que a Universidade do Porto tenha aprovado."
       ],
       "porque": "O papel da IA muda o desenho da actividade e as armadilhas a prever. As seis fichas de formação mostram um exemplo de cada papel.",
       "ligacao": {
@@ -240,7 +240,7 @@
           "tipo": "texto",
           "obrigatorio": false,
           "max": 150,
-          "ajuda": "Por omissão, IAedu. Indique outra só se a Universidade do Porto a tiver aprovado."
+          "ajuda": "Por omissão, a IAedu, o serviço de IA da FCT/FCCN para o ensino superior. Indique outra só se a Universidade do Porto a tiver aprovado."
         }
       ]
     },
@@ -292,7 +292,7 @@
         "Se marcar «Outro», escreva qual é o tipo de trabalho."
       ],
       "condicao": { "passo": "evidencia", "campo": "avaliacao", "igual": "sumativa" },
-      "porque": "Uma actividade sumativa precisa de uma regra de IA no enunciado, a cláusula. A Eunomia gera-a com as regras da Themis (a outra ferramenta do FMUP · IA, que escreve a regra de IA para o enunciado de um trabalho), a partir do tipo de trabalho e da política que escolher, e junta os avisos da política.",
+      "porque": "Uma actividade sumativa precisa de uma regra de IA no enunciado: a cláusula. A Eunomia escreve-a com as regras da Themis, a outra ferramenta do FMUP · IA, e junta os avisos da política que escolher.",
       "ligacao": {
         "rotulo": "Themis",
         "url": "https://tiagojacinto.eu/fmup-ia/themis/"

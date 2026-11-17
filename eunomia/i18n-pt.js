@@ -7,7 +7,7 @@
 
   var plural = function (n, um, varios) { return n === 1 ? um : varios; };
   // The data rule of the materials step and of Adaptar: the same text in both places.
-  var AVISO_DADOS = 'Sem dados de doentes nem de estudantes. O texto vai para a IAedu, o serviço de IA da FCT/FCCN para o ensino superior; não precisa de conta: a Eunomia usa a chave da FMUP. Use só casos fictícios e materiais sem dados pessoais.';
+  var AVISO_DADOS = 'Sem dados de doentes nem de estudantes. O texto vai para a IAedu, o serviço de IA da FCT/FCCN para o ensino superior. Não precisa de conta: a Eunomia usa a chave da FMUP. Use só casos fictícios e materiais sem dados pessoais.';
   // The status of the tool (login page, footer, help, invitation) and what Tiago sees (login data
   // notice, first-visit box, help): the same text in every place.
   var ESTADO = 'A Eunomia é uma ferramenta desenvolvida por Tiago Jacinto (MEDCIDS) como proposta, para testar, melhorar e construir com colegas. Não é uma ferramenta oficial da FMUP. O uso é voluntário.';
@@ -82,7 +82,7 @@
       themisLink: 'Abrir a Themis',
       avisoTitulo: 'Que dados usa a Eunomia',
       avisoIaeduTitulo: 'O que vai para a IAedu',
-      avisoIaedu: 'Para escrever e rever texto, a Eunomia usa a IAedu, o serviço de IA da FCT/FCCN para o ensino superior; não precisa de conta: a Eunomia usa a chave da FMUP. A IAedu recebe as suas respostas à entrevista, os materiais que colar e o texto das secções. Não escreva dados de doentes nem de estudantes: todos os casos devem ser fictícios.',
+      avisoIaedu: 'Para escrever e rever texto, a Eunomia usa a IAedu, o serviço de IA da FCT/FCCN para o ensino superior. Não precisa de conta: a Eunomia usa a chave da FMUP. A IAedu recebe as suas respostas à entrevista, os materiais que colar e o texto das secções. Não escreva dados de doentes nem de estudantes: todos os casos devem ser fictícios.',
       avisoServidorTitulo: 'O que o servidor da Eunomia guarda',
       avisoServidor: 'O seu nome e uma impressão digital (hash) do código de acesso, nunca o código. Os seus rascunhos. O número de pedidos ao modelo em cada dia. Os registos do servidor nunca guardam o texto dos rascunhos. Se usar a sua própria chave IAedu, o servidor não a guarda. ' + O_QUE_VE,
       avisoPrazoTitulo: 'Durante quanto tempo',
@@ -115,8 +115,8 @@
       ferramentas: 'Outras páginas',
       definicoes: 'Definições do modelo (chave IAedu)',
       codigos: 'Códigos de acesso',
-      modoPartilhado: 'Modelo: chave partilhada da FMUP.',
-      modoProprio: 'Modelo: a sua chave IAedu.',
+      modoPartilhado: 'Modelo: IAedu, o serviço de IA da FCT/FCCN para o ensino superior, com a chave partilhada da FMUP.',
+      modoProprio: 'Modelo: IAedu, o serviço de IA da FCT/FCCN para o ensino superior, com a sua chave.',
       mudarModo: 'Mudar nas definições',
       primeiraVez: 'Primeira vez? Veja uma actividade de exemplo (5 min) ou leia a ajuda.',
       verExemplo: 'Ver uma actividade de exemplo',
@@ -222,7 +222,7 @@
       materiaisAviso: AVISO_DADOS,
       materiaisCortado: function (max) { return 'O texto era maior do que o limite e foi cortado nos primeiros ' + max.toLocaleString('pt-PT') + ' caracteres.'; },
       sugerir: 'Sugerir versões mais claras',
-      sugerirAjuda: 'O modelo propõe até duas versões com um verbo observável. A escolha é sua.',
+      sugerirAjuda: 'O modelo propõe até duas versões com um verbo que se observa. A escolha é sua.',
       sugestoesTitulo: 'Versões propostas pelo modelo',
       semSugestoes: 'O modelo não propôs versões. Pode manter o seu texto.',
       usar: 'Usar esta versão',
@@ -487,7 +487,7 @@
     definicoes: {
       pagina: 'Definições',
       titulo: 'Definições do modelo',
-      intro: 'Por omissão, a Eunomia usa a chave IAedu partilhada da FMUP, com um limite diário de pedidos. Pode usar a sua própria chave IAedu: o pedido vai com ela e o servidor não a guarda.',
+      intro: 'Por omissão, a Eunomia usa a IAedu, o serviço de IA da FCT/FCCN para o ensino superior, com a chave partilhada da FMUP e um limite diário de pedidos. Pode usar a sua própria chave IAedu: o pedido vai com ela e o servidor não a guarda.',
       modoPartilhado: 'Está a usar a chave partilhada da FMUP.',
       modoProprio: 'Está a usar a sua chave IAedu.',
       modoProprioGuardado: 'Está a usar a sua chave IAedu, guardada neste computador.',

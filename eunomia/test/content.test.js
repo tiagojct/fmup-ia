@@ -218,3 +218,47 @@ test('the login notice and the adapt page explain IAedu at its first mention (sp
     assert.match(s, /a Eunomia usa a chave da FMUP/, name);
   }
 });
+
+// ---------------------------------------------------------------- final review (final-fixes.md)
+
+const IAEDU = 'IAedu, o serviço de IA da FCT/FCCN para o ensino superior';
+const EXEMPLOS = JSON.parse(fs.readFileSync(path.join(ROOT, 'exemplos.json'), 'utf8'));
+
+test('final review M2: IAedu is explained at its first mention on the home page, the settings page and the papel_ia tool help', () => {
+  // Home: the model line comes before the link "Definições do modelo (chave IAedu)".
+  assert.ok(S.inicio.modoPartilhado.includes(IAEDU), S.inicio.modoPartilhado);
+  assert.ok(S.inicio.modoProprio.includes(IAEDU), S.inicio.modoProprio);
+  // Settings: the intro comes before the mode line and the fields.
+  assert.ok(S.definicoes.intro.includes(IAEDU), S.definicoes.intro);
+  assert.ok(S.definicoes.intro.indexOf(IAEDU) <= S.definicoes.intro.indexOf('IAedu'), 'the first IAedu of the intro is the explained one');
+  assert.equal(field('papel_ia', 'ferramenta').ajuda, 'Por omissão, a IAedu, o serviço de IA da FCT/FCCN para o ensino superior. Indique outra só se a Universidade do Porto a tiver aprovado.');
+});
+
+test('final review M6: one term on the objective step: "verbo que se observa", never "observável"', () => {
+  assert.doesNotMatch(S.passo.sugerirAjuda, /observáve/);
+  assert.match(S.passo.sugerirAjuda, /verbo que se observa/);
+  const step = INTERVIEW.passos.find((p) => p.id === 'objectivo');
+  assert.doesNotMatch(step.porque, /observáve/);
+  for (const e of EXEMPLOS.exemplos) {
+    const p = (e.porque || {}).objectivo || '';
+    assert.doesNotMatch(p, /(verbos?|acç(ão|ões)) observáve/, `exemplo ${e.n}`);
+  }
+});
+
+test('final review M7: the polished copy of the objectivo and papel_ia tips, the stage text and the IAedu notices', () => {
+  const tips = (id) => INTERVIEW.passos.find((p) => p.id === id).erros_comuns;
+  assert.equal(tips('objectivo')[0], 'Escreva o objectivo do ponto de vista do estudante: o que ele faz no fim da actividade.');
+  assert.ok(tips('objectivo')[1].startsWith('Em «O que o estudante tem de fazer sem ajuda», ponha só a parte que ele faz sozinho.'));
+  assert.ok(tips('objectivo')[2].startsWith('Defina um só objectivo por actividade.'));
+  assert.ok(tips('papel_ia').some((t) => t.startsWith('No campo Ferramenta, ')));
+  assert.ok(!tips('papel_ia').some((t) => t.startsWith('Na ferramenta')));
+  // Shorter sentences: the regime_themis porque and the interview stage of the help.
+  const longest = (s) => Math.max(...s.split(/[.!?](?:\s|$)/).map((x) => x.trim().split(/\s+/).length));
+  assert.ok(longest(INTERVIEW.passos.find((p) => p.id === 'regime_themis').porque) <= 25);
+  assert.ok(longest(A.etapas.lista.find((e) => e.id === 'entrevista').docente) <= 30);
+  // The IAedu notices: no semicolon before "não precisa de conta".
+  for (const s of [S.entrar.avisoIaedu, S.adaptar.aviso]) {
+    assert.ok(s.includes(`${IAEDU}. Não precisa de conta: a Eunomia usa a chave da FMUP.`), s);
+    assert.doesNotMatch(s, /superior; não precisa/);
+  }
+});

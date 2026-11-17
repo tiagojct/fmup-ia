@@ -47,7 +47,7 @@
         {
           id: 'entrevista',
           titulo: 'Entrevista',
-          docente: 'Responde, passo a passo, sobre o contexto, o objectivo, a evidência, o que a IA faz (papel da IA), o que os estudantes podem fazer com IA (regime de IA), a regra de IA no enunciado da avaliação (cláusula, só numa actividade sumativa), a forma da actividade (padrão) e os materiais. Cada passo diz porque pergunta, com dicas e respostas de exemplo. Se começar com «Adaptar uma actividade que já faço», cola o texto de uma actividade sua e revê cada passo que o modelo preencheu.',
+          docente: 'Responde, passo a passo, sobre o contexto, o objectivo e a evidência da actividade. Diz também o que a IA faz (papel da IA) e o que os estudantes podem fazer com IA (regime de IA). Numa actividade sumativa, responde ainda sobre a regra de IA no enunciado da avaliação (cláusula). Os últimos passos são a forma da actividade (padrão) e os materiais. Cada passo diz porque pergunta, com dicas e respostas de exemplo. Se começar com «Adaptar uma actividade que já faço», cola o texto de uma actividade sua. Depois, revê cada passo que o modelo preencheu.',
           modelo: 'Só quando o pede: propõe versões mais precisas do objectivo e explica porque serve cada padrão proposto. Os padrões propostos são escolhidos pelo código, a partir das suas respostas. Ao adaptar uma actividade, propõe respostas para os primeiros cinco passos a partir do seu texto.',
         },
         {

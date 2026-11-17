@@ -47,7 +47,7 @@
       },
       "porque": {
         "contexto": "A duração vem da ficha (30 a 45 minutos, consoante haja troca de papéis) e a área de cuidados primários põe este padrão no topo das propostas.",
-        "objectivo": "Conduzir é um verbo observável, e a competência protegida separa a recolha de informação, que se treina, do diagnóstico, que não é o fim.",
+        "objectivo": "Conduzir é um verbo que se observa, e a competência protegida separa a recolha de informação, que se treina, do diagnóstico, que não é o fim.",
         "evidencia": "A grelha do observador mostra a estrutura da entrevista, que é o que o objectivo pede, e a actividade é formativa, como a ficha diz.",
         "papel_ia": "A IA faz de doente, uma contraparte que o estudante tem de entrevistar.",
         "regime": "Os estudantes usam a IA só na conversa preparada, porque uma segunda ferramenta daria a hipótese sem a entrevista.",
@@ -101,7 +101,7 @@
       },
       "porque": {
         "contexto": "A ficha indica 30 a 40 minutos, e numa unidade curricular de IA em saúde a leitura crítica de texto gerado faz parte do programa.",
-        "objectivo": "Identificar, classificar e justificar são verbos observáveis, e a competência protegida é a que a fluência do modelo torna difícil.",
+        "objectivo": "Identificar, classificar e justificar são verbos que se observam, e a competência protegida é a que a fluência do modelo torna difícil.",
         "evidencia": "A rubrica com uma fonte por erro mostra a justificação e não só a contagem, que a ficha desaconselha avaliar.",
         "papel_ia": "Os estudantes avaliam um texto que a IA escreveu, por isso a IA é objecto de crítica e não ferramenta.",
         "regime": "Os estudantes não usam IA na actividade, porque procurar os erros com a ferramenta anularia o exercício.",
@@ -157,7 +157,7 @@
       },
       "porque": {
         "contexto": "A ficha indica 50 a 60 minutos, e a pergunta de exame sobre espirometria do prompt da ficha cabe numa unidade curricular clínica.",
-        "objectivo": "Enunciar e aplicar critérios são acções observáveis, e a competência protegida é dizer o que distingue uma boa resposta.",
+        "objectivo": "Enunciar e aplicar critérios são acções que se observam, e a competência protegida é dizer o que distingue uma boa resposta.",
         "evidencia": "A rubrica e a justificação das classificações são obra dos estudantes, ao contrário das respostas geradas, que a ficha manda não avaliar.",
         "papel_ia": "Os estudantes geram respostas com a IA, mas o trabalho é corrigi-las, por isso o papel é objecto de crítica.",
         "regime": "A condição fixa a ordem da ficha: a rubrica é construída antes de qualquer texto ser gerado.",
@@ -216,7 +216,7 @@
       },
       "porque": {
         "contexto": "A ficha indica 40 a 50 minutos, e a área de bioética põe o advogado do diabo no topo das propostas.",
-        "objectivo": "Sustentar, antecipar e responder são verbos observáveis, e a competência protegida é a argumentação, que a IA ataca mas não faz.",
+        "objectivo": "Sustentar, antecipar e responder são verbos que se observam, e a competência protegida é a argumentação, que a IA ataca mas não faz.",
         "evidencia": "A classificação justificada de cada contra-argumento mostra a argumentação, e a posição tomada não a mostra.",
         "papel_ia": "A IA ataca a posição do grupo, por isso é uma contraparte, como o doente simulado da primeira ficha.",
         "regime": "A condição obriga a tomar posição antes de consultar a ferramenta, a ordem que a ficha diz não ser negociável.",
@@ -281,7 +281,7 @@
       },
       "porque": {
         "contexto": "A ficha indica 40 minutos, e a sua variante de ciência de dados serve uma unidade curricular de análise de dados.",
-        "objectivo": "Comparar e identificar são verbos observáveis, e a competência protegida é o hábito de tentar primeiro e consultar depois.",
+        "objectivo": "Comparar e identificar são verbos que se observam, e a competência protegida é o hábito de tentar primeiro e consultar depois.",
         "evidencia": "A ficha manda avaliar a nota de comparação e não a resolução inicial, que pode estar errada sem prejuízo.",
         "papel_ia": "O estudante usa a IA na tarefa, depois de resolver sozinho, por isso o papel é ferramenta.",
         "regime": "A condição é a sequência da ficha, sem a qual a comparação não existe.",
@@ -349,7 +349,7 @@
       },
       "nota": {
         "contexto": "A ficha não tem duração em minutos, porque o uso é contínuo ao longo do semestre. Os 30 minutos marcam uma sessão de estudo, só porque o campo é obrigatório. A ficha sugere uma unidade curricular de ciências básicas, e a lista de áreas não tem essa área: o exemplo usa a da licenciatura.",
-        "objectivo": "O objectivo da ficha usa esclarecer, que não está na lista de verbos observáveis, e a Eunomia avisaria. O exemplo acrescenta verificar, tirado do papel do estudante.",
+        "objectivo": "O objectivo da ficha usa esclarecer, que não está na lista de verbos que se observam, e a Eunomia avisaria. O exemplo acrescenta verificar, tirado do papel do estudante.",
         "regime": "A ficha não diz o regime. A condição descreve o uso que ela prevê."
       }
     },
@@ -403,7 +403,7 @@
       },
       "porque": {
         "contexto": "Uma aula prática de 90 minutos e uma turma de 24 estudantes dão quatro grupos de peritos de seis e seis grupos mistos de quatro.",
-        "objectivo": "Identificar e descrever são verbos observáveis, e a competência protegida é a identificação feita por cada estudante sem a ajuda do perito.",
+        "objectivo": "Identificar e descrever são verbos que se observam, e a competência protegida é a identificação feita por cada estudante sem a ajuda do perito.",
         "evidencia": "O relatório individual com imagens novas mostra se cada estudante aprendeu também as regiões que não estudou como perito.",
         "papel_ia": "O objectivo é reconhecer estruturas e explicá-las a colegas, e nenhuma fase precisa de IA para isso.",
         "regime": "Uma ferramenta de IA podia identificar as estruturas pelo estudante, que é a competência que o relatório verifica.",
