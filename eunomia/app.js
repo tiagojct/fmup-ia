@@ -2158,22 +2158,33 @@
         content.appendChild(exportBox(id, slot));
         if (!steps.length && !(v.erros || []).length && isEditable(d)) content.appendChild(submitBox(ctx, d, slot));
         if (themis) content.appendChild(themis);
-        var frameBox = el('section', { class: 'eu-seccao', 'aria-labelledby': 'previsao-ficha-titulo' },
-          el('h3', { id: 'previsao-ficha-titulo', text: S.previsao.fichaTitulo }),
-          el('p', { text: S.comum.aCarregar }));
-        content.appendChild(frameBox);
-        return API.text('/rascunhos/' + id + '/exportar?formato=html').then(function (html) {
-          if (!ctx.alive()) return;
-          frameBox.removeChild(frameBox.querySelector('p'));
-          // sandbox with no tokens: no scripts, no forms, no navigation of this page.
-          frameBox.appendChild(el('iframe', { id: 'previsao-ficha', class: 'eu-previsao', title: S.previsao.fichaTitulo, sandbox: '', srcdoc: html }));
-        }, function (err) {
-          if (!ctx.alive()) return;
-          frameBox.removeChild(frameBox.querySelector('p'));
-          report(slot, err);
-        });
+        var frame = fichaFrame(ctx, id, slot);
+        content.appendChild(frame.node);
+        return frame.load();
       });
     });
+  }
+
+  // The ficha of a draft as the HTML export, in a sandboxed frame: the preview page and the review
+  // page of the admin. Returns { node, load }: add node to the page, then call load(), which fetches
+  // the export and replaces the loading line with the frame (an error goes to slot).
+  function fichaFrame(ctx, id, slot) {
+    var node = el('section', { class: 'eu-seccao', 'aria-labelledby': 'previsao-ficha-titulo' },
+      el('h3', { id: 'previsao-ficha-titulo', text: S.previsao.fichaTitulo }),
+      el('p', { text: S.comum.aCarregar }));
+    var load = function () {
+      return API.text('/rascunhos/' + id + '/exportar?formato=html').then(function (html) {
+        if (!ctx.alive()) return;
+        node.removeChild(node.querySelector('p'));
+        // sandbox with no tokens: no scripts, no forms, no navigation of this page.
+        node.appendChild(el('iframe', { id: 'previsao-ficha', class: 'eu-previsao', title: S.previsao.fichaTitulo, sandbox: '', srcdoc: html }));
+      }, function (err) {
+        if (!ctx.alive()) return;
+        node.removeChild(node.querySelector('p'));
+        report(slot, err);
+      });
+    };
+    return { node: node, load: load };
   }
 
   // Submeter para revisao (spec D10): only for a complete, valid, editable draft. After it the draft
@@ -2513,25 +2524,14 @@
       var titulo = draftTitle(d);
       var slot = errorSlot();
       var waiting = d.estado === 'submetida';
-      var frameBox = el('section', { class: 'eu-seccao', 'aria-labelledby': 'previsao-ficha-titulo' },
-        el('h3', { id: 'previsao-ficha-titulo', text: S.previsao.fichaTitulo }),
-        el('p', { text: S.comum.aCarregar }));
+      var frame = fichaFrame(ctx, id, slot);
       main.appendChild(el('div', { class: 'screen' },
         el('h2', { class: 'step-title', text: titulo }),
         el('p', { class: 'eu-ajuda-voltar' }, link(S.revisao.voltar, '#/revisao')),
         el('p', { class: 'eu-rascunho-meta', text: S.revisao.meta(d.autor && d.autor.nome ? d.autor.nome : '', S.comum.data(d.submetida)) }),
         waiting ? decisionBox(ctx, d, titulo, slot) : el('p', { class: 'review-note', text: S.revisao.naoEspera }),
-        frameBox));
-      return API.text('/rascunhos/' + id + '/exportar?formato=html').then(function (html) {
-        if (!ctx.alive()) return;
-        frameBox.removeChild(frameBox.querySelector('p'));
-        // sandbox with no tokens: no scripts, no forms, no navigation of this page.
-        frameBox.appendChild(el('iframe', { id: 'previsao-ficha', class: 'eu-previsao', title: S.previsao.fichaTitulo, sandbox: '', srcdoc: html }));
-      }, function (err) {
-        if (!ctx.alive()) return;
-        frameBox.removeChild(frameBox.querySelector('p'));
-        report(slot, err);
-      });
+        frame.node));
+      return frame.load();
     });
   }
 
