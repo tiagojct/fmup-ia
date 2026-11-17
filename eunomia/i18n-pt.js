@@ -128,7 +128,8 @@
       aProcessar: 'A ler o texto...',
       notaLonga: function (n) { return 'O modelo lê só os primeiros ' + n.toLocaleString('pt-PT') + ' caracteres. O texto completo fica guardado como materiais da actividade.'; },
       erro: 'O pedido pode ter chegado ao servidor. Antes de tentar de novo, veja em «Os meus rascunhos» se a actividade já foi criada.',
-      notaPreenchido: function (n) { return 'A Eunomia preencheu ' + n + ' ' + plural(n, 'passo', 'passos') + ' a partir do seu texto. Reveja cada um: as decisões são suas.'; },
+      // n: the proposed steps not yet saved (propostos), so the number goes down as the teacher reviews.
+      notaPreenchido: function (n) { return 'A Eunomia propôs respostas a partir do seu texto. Falta rever ' + n + ' ' + plural(n, 'passo', 'passos') + ': as decisões são suas.'; },
       notaVazio: 'A Eunomia não conseguiu propor respostas a partir do seu texto. A entrevista começa vazia; o texto ficou guardado nos materiais.',
       marca: 'Proposto a partir do seu texto',
     },

@@ -38,8 +38,9 @@ test('the copy of Adaptar: the keys of the brief, the spec texts, the Quadro spe
   assert.equal(S.adaptar.marca, 'Proposto a partir do seu texto');
   assert.equal(S.adaptar.aviso, S.passo.materiaisAviso, 'the same data rule as the materials step');
   assert.match(S.adaptar.erro, /«Os meus rascunhos»/);
-  assert.equal(S.adaptar.notaPreenchido(2), 'A Eunomia preencheu 2 passos a partir do seu texto. Reveja cada um: as decisões são suas.');
-  assert.equal(S.adaptar.notaPreenchido(1), 'A Eunomia preencheu 1 passo a partir do seu texto. Reveja cada um: as decisões são suas.');
+  // The count is the steps still to review, so the copy reads right as it goes down.
+  assert.equal(S.adaptar.notaPreenchido(2), 'A Eunomia propôs respostas a partir do seu texto. Falta rever 2 passos: as decisões são suas.');
+  assert.equal(S.adaptar.notaPreenchido(1), 'A Eunomia propôs respostas a partir do seu texto. Falta rever 1 passo: as decisões são suas.');
   assert.match(S.adaptar.notaLonga(20000), /20.000 caracteres/);
   assert.match(S.adaptar.notaLonga(20000), /materiais/);
 });
