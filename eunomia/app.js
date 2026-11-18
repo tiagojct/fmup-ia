@@ -87,6 +87,7 @@
     returnTo: null,
     token: 0,
     shown: '', // the hash of the page on screen
+    pos: 0, // its place in the session history (markHistory)
   };
 
   // ---------------------------------------------------------------- unsaved edits
@@ -97,10 +98,27 @@
   // The writes that save what the fields of a page hold. Other POSTs (sugerir, explicar, aceitar,
   // repor) leave the fields as they are, so the edits stay unsaved.
   var SAVES = /\/(opiniao|devolver|gerar|adaptar|aprovar|submeter)$/;
-  var edits = { count: 0, saved: 0 };
+  // saving: for each save in flight, the edit count when it started.
+  var edits = { count: 0, saved: 0, saving: [] };
 
   function unsaved() {
     return edits.count > edits.saved;
+  }
+
+  // An edit that is not typing in a field: an item added to or removed from a list.
+  function noteEdit() {
+    edits.count += 1;
+  }
+
+  // The page drew its fields again from the server copy: what they held is gone, so there is
+  // nothing left to lose.
+  function dropEdits() {
+    edits.saved = edits.count;
+  }
+
+  // True when a save in flight started after the last edit: it carries all the edits.
+  function savingAll() {
+    return edits.saving.some(function (n) { return n >= edits.count; });
   }
 
   function markEdit(e) {
@@ -111,10 +129,12 @@
   }
 
   // True when the page may go: no unsaved edits, or the user chose to leave them.
+  // A save in flight that carries all the edits lets the page go without a question; if it fails
+  // after the page went, the status line says so.
   function leaveOk() {
-    if (!unsaved()) return true;
+    if (!unsaved() || savingAll()) return true;
     if (!window.confirm(S.app.sairSemGuardar)) return false;
-    edits.saved = edits.count;
+    dropEdits();
     return true;
   }
 
@@ -122,17 +142,51 @@
   // before it started; an edit made while it ran stays unsaved.
   function apiRequest(method, path, body) {
     var before = edits.count;
+    var save = method === 'PUT' || (method === 'POST' && SAVES.test(path));
+    if (!save) return API.request(method, path, body);
+    var token = state.token;
+    edits.saving.push(before);
+    var done = function () { edits.saving.splice(edits.saving.indexOf(before), 1); };
     return API.request(method, path, body).then(function (res) {
-      if (method === 'PUT' || (method === 'POST' && SAVES.test(path))) edits.saved = Math.max(edits.saved, before);
+      done();
+      edits.saved = Math.max(edits.saved, before);
       return res;
+    }, function (err) {
+      done();
+      if (token !== state.token) announce(S.app.gravacaoFalhou, true);
+      throw err;
     });
   }
 
+  // The place of the current entry in the session history. Each entry the app shows gets its place
+  // in history.state; a new entry is the last one, so its place is history.length - 1.
+  function historyPos() {
+    var s = window.history.state;
+    return s && typeof s.euPos === 'number' ? s.euPos : null;
+  }
+
+  function markHistory() {
+    var pos = historyPos();
+    if (pos === null) {
+      pos = window.history.length - 1;
+      window.history.replaceState({ euPos: pos }, '', window.location.hash);
+    }
+    state.pos = pos;
+  }
+
   // A change of hash from a link, the back button or the address bar. With unsaved edits the user
-  // confirms; a refusal puts back the hash of the page on screen and draws nothing.
+  // confirms. A refusal moves back to the entry of the page on screen and draws nothing: a link or
+  // the address bar made a new entry (back one); back and forward moved by a known number of places.
   function onHashChange() {
-    if (window.location.hash !== state.shown && !leaveOk()) {
-      window.history.replaceState(null, '', state.shown);
+    if (window.location.hash === state.shown) {
+      markHistory();
+      return;
+    }
+    if (!leaveOk()) {
+      var pos = historyPos();
+      var by = pos === null ? -1 : state.pos - pos;
+      if (by !== 0) window.history.go(by);
+      else window.history.replaceState(window.history.state, '', state.shown);
       return;
     }
     route();
@@ -356,7 +410,7 @@
   ];
 
   function redirect(hash) {
-    window.history.replaceState(null, '', hash);
+    window.history.replaceState(window.history.state, '', hash);
     route();
   }
 
@@ -393,6 +447,7 @@
     });
 
     state.shown = hash;
+    markHistory();
     edits.saved = edits.count;
     state.token += 1;
     var token = state.token;
@@ -1817,6 +1872,7 @@
     var redraw = function (next, focus) {
       if (!ctx.alive()) return;
       view = next;
+      dropEdits();
       drawSection(ctx, next, sec, focus);
       if (!focus) focusTitle();
     };
@@ -2182,6 +2238,7 @@
             button(S.seccao.remover, { class: 'btn-ghost eu-remover', 'aria-label': S.seccao.removerItem(label) }, function () {
               current = read();
               current.splice(n, 1);
+              noteEdit();
               draw();
               var add = box.parentNode && box.parentNode.querySelector('.eu-adicionar');
               if (add) add.focus();
@@ -2193,6 +2250,7 @@
       var add = button(C[f.addLabel], { class: 'btn-ghost eu-adicionar' }, function () {
         current = read();
         current.push({});
+        noteEdit();
         draw();
         var inputs = box.querySelectorAll('.eu-item:last-child input, .eu-item:last-child textarea');
         if (inputs[0]) inputs[0].focus();
@@ -2291,6 +2349,7 @@
         return el('li', null, el('span', { text: t }), ' ',
           button(S.referencias.remover, { class: 'btn-ghost', 'aria-label': S.referencias.removerRef(n + 1) }, function () {
             own.splice(n, 1);
+            noteEdit();
             drawOwn();
             newRef.focus();
           }));
@@ -2305,6 +2364,7 @@
         return;
       }
       own.push(t);
+      noteEdit();
       newRef.value = '';
       drawOwn();
       newRef.focus();
@@ -2943,6 +3003,16 @@
       });
       on(main, 'input', markEdit);
       on(main, 'change', markEdit);
+      // The fold of the stages follows the width of the window, as draftLayout set it.
+      if (typeof window.matchMedia === 'function') {
+        var wideQuery = window.matchMedia('(min-width: 960px)');
+        var refold = function (e) {
+          var fold = main.querySelector('.eu-etapas-dobra');
+          if (fold) fold.open = e.matches;
+        };
+        if (wideQuery.addEventListener) wideQuery.addEventListener('change', refold);
+        else if (wideQuery.addListener) wideQuery.addListener(refold);
+      }
       route();
     }).catch(function (err) {
       clear(main);

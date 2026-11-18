@@ -30,6 +30,7 @@
       terminarSessao: 'Terminar sessão',
       ajuda: 'Ajuda',
       sairSemGuardar: 'Esta página tem alterações que não foram guardadas. Sair sem guardar?',
+      gravacaoFalhou: 'Não foi possível guardar as alterações da página anterior. Volte a essa página e guarde de novo.',
       sessaoDe: function (nome) { return 'Sessão de ' + nome; },
       estado: ESTADO,
       oQueVe: O_QUE_VE,

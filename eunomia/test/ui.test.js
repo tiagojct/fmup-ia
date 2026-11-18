@@ -1232,3 +1232,107 @@ test('the logout button asks with unsaved edits; a refusal keeps the session', a
   assert.equal(lastCall(api, 'POST', /\/logout$/), undefined);
   assert.equal(a.$('#main').dataset.pagina, 'passo');
 });
+
+test('the back button with unsaved edits: a refusal returns to the page and adds no history entry', async (t) => {
+  const api = new FakeApi({ user: TEACHER, draft: makeDraft() });
+  const a = await boot(t, { api, hash: '#/inicio' });
+  await a.page('inicio');
+  await a.go(`#/rascunho/${DRAFT_ID}/passo/contexto`, 'passo');
+  const length = a.w.history.length;
+  a.set('#campo-uc', 'Farmacologia Clínica');
+  api.confirmAnswer = false;
+  a.w.history.back();
+  await a.waitFor(() => api.confirms.length === 1, 'the question');
+  await a.waitFor(() => a.w.location.hash.endsWith('/passo/contexto'), 'back on the step');
+  await new Promise((r) => setTimeout(r, 30));
+  assert.equal(api.confirms.length, 1, 'the return does not ask again');
+  assert.equal(a.$('#main').dataset.pagina, 'passo');
+  assert.equal(a.$('#campo-uc').value, 'Farmacologia Clínica');
+  assert.equal(a.w.history.length, length, 'no new entry');
+
+  api.confirmAnswer = true;
+  a.w.history.back();
+  await a.page('inicio');
+  assert.equal(api.confirms.length, 2);
+});
+
+test('removing a reference of the teacher, or an item of a list, counts as an edit', async (t) => {
+  const d = approvedDraft();
+  d.referencias = [{ texto: 'Autor A. Um artigo. 2025.', origem: 'docente' }];
+  const api = new FakeApi({ user: TEACHER, draft: d });
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/referencias` });
+  await a.page('referencias');
+  a.$('#refs-docente button').click();
+  assert.doesNotMatch(a.$('#refs-docente').textContent, /Um artigo/);
+  api.confirmAnswer = false;
+  a.w.location.hash = '#/inicio';
+  await a.waitFor(() => api.confirms.length === 1, 'the question after a removal');
+
+  const d2 = approvedDraft();
+  d2.seccoes.armadilhas = { dados: [{ lead: 'Saída de papel', texto: 'A IA sai do papel.' }, { lead: 'Fluência', texto: 'Fala demais.' }], estado: 'gerada', avisos: [], modelo: 'gpt-4o' };
+  const api2 = new FakeApi({ user: TEACHER, draft: d2 });
+  const b = await boot(t, { api: api2, hash: `#/rascunho/${DRAFT_ID}/seccao/armadilhas` });
+  await b.page('seccao');
+  b.$('#editar').click();
+  b.$('#editar-form .eu-remover').click();
+  assert.equal(b.$$('#editar-form .eu-item').length, 1);
+  api2.confirmAnswer = false;
+  b.w.location.hash = '#/inicio';
+  await b.waitFor(() => api2.confirms.length === 1, 'the question after an item removal');
+});
+
+test('accepting a section drops the text typed in the edit panel: leaving then does not ask', async (t) => {
+  const api = new FakeApi({ user: TEACHER, draft: approvedDraft() });
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/seccao/objectivo` });
+  await a.page('seccao');
+  a.$('#editar').click();
+  const field = a.$('#editar-form textarea, #editar-form input');
+  field.value = 'Texto que não foi guardado.';
+  field.dispatchEvent(new a.w.Event('input', { bubbles: true }));
+  a.$('#aceitar').click();
+  await a.waitFor(() => /aceite/i.test(a.$('.eu-estado').textContent), 'state aceite');
+  await a.go('#/inicio', 'inicio');
+  assert.equal(api.confirms.length, 0);
+});
+
+test('a save in flight carries the edits: leaving does not ask, and a failure after it shows in the status line', async (t) => {
+  const api = new FakeApi({ user: TEACHER, draft: makeDraft() });
+  let release;
+  api.on('PUT', /\/respostas\/contexto$/, () => new Promise((r) => { release = () => r(json(500, { erro: 'Falha.' })); }));
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/passo/contexto` });
+  await a.page('passo');
+  a.set('#campo-uc', 'Farmacologia Clínica');
+  a.$('#guardar-passo').click();
+  await a.waitFor(() => release, 'the save starts');
+  await a.go('#/inicio', 'inicio');
+  assert.equal(api.confirms.length, 0);
+  release();
+  await a.waitFor(() => /Não foi possível guardar/.test(a.$('#estado-pedido').textContent), 'the failure notice');
+  assert.equal(a.$('#main').dataset.pagina, 'inicio');
+});
+
+test('an edit after the save started still asks', async (t) => {
+  const api = new FakeApi({ user: TEACHER, draft: makeDraft() });
+  api.on('PUT', /\/respostas\/contexto$/, () => new Promise(() => {}));
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/passo/contexto` });
+  await a.page('passo');
+  a.set('#campo-uc', 'Farmacologia Clínica');
+  a.$('#guardar-passo').click();
+  await a.waitFor(() => lastCall(api, 'PUT', /\/respostas\/contexto$/), 'the save starts');
+  a.set('#campo-uc', 'Farmacologia Clínica II');
+  api.confirmAnswer = false;
+  a.w.location.hash = '#/inicio';
+  await a.waitFor(() => api.confirms.length === 1, 'the question');
+});
+
+test('the fold of the stages follows the width of the window', async (t) => {
+  const api = new FakeApi({ user: TEACHER, draft: makeDraft() });
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/passo/contexto`, wide: false });
+  await a.page('passo');
+  const fold = a.$('.eu-etapas-dobra');
+  assert.equal(fold.open, false, 'narrow: folded');
+  a.resize(true);
+  assert.equal(fold.open, true, 'wide: open');
+  a.resize(false);
+  assert.equal(fold.open, false, 'narrow again: folded');
+});

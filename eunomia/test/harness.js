@@ -358,7 +358,7 @@ class FakeApi {
 
 // ---------------------------------------------------------------- the harness
 
-async function boot(t, { api = new FakeApi(), hash = '', storage = 'ok', stored = null, local = {} } = {}) {
+async function boot(t, { api = new FakeApi(), hash = '', storage = 'ok', stored = null, local = {}, wide = null } = {}) {
   const errors = [];
   const vc = new VirtualConsole();
   vc.on('jsdomError', (e) => errors.push(e.message));
@@ -392,6 +392,19 @@ async function boot(t, { api = new FakeApi(), hash = '', storage = 'ok', stored 
   api.confirms = [];
   w.confirm = (msg) => { api.confirms.push(msg); return api.confirmAnswer !== false; };
   w.scrollTo = () => {};
+  // window.matchMedia (jsdom has none): with wide true or false, the query (min-width: 960px)
+  // answers it, and a.resize(wide) changes the answer and tells the listeners.
+  const media = { matches: !!wide, listeners: [] };
+  if (wide !== null) {
+    w.matchMedia = () => ({
+      get matches() { return media.matches; },
+      addEventListener: (type, fn) => { if (type === 'change') media.listeners.push(fn); },
+    });
+  }
+  const resize = (isWide) => {
+    media.matches = isWide;
+    media.listeners.forEach((fn) => fn({ matches: isWide }));
+  };
   const downloads = [];
   w.URL.createObjectURL = () => 'blob:https://example.test/1';
   w.URL.revokeObjectURL = () => {};
@@ -429,7 +442,7 @@ async function boot(t, { api = new FakeApi(), hash = '', storage = 'ok', stored 
     }
   };
   const text = () => $('#main').textContent;
-  return { w, $, $$, api, page, go, set, text, waitFor, clickTargets, downloads };
+  return { w, $, $$, api, page, go, set, text, waitFor, clickTargets, downloads, resize };
 }
 
 const lastCall = (api, method, re) => [...api.calls].reverse().find((c) => c.method === method && re.test(c.path));
