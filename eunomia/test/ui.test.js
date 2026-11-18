@@ -29,6 +29,24 @@ test('the login page shows the data notice of spec 6.12', async (t) => {
   assert.match(s, /Se usar a sua própria chave IAedu, o servidor não a guarda\./);
 });
 
+test('the brand and the header link lead back to the drafts; the header link shows only with a session', async (t) => {
+  const out = await boot(t);
+  await out.page('entrar');
+  assert.equal(out.$('#brand-link').getAttribute('href'), '#/inicio');
+  assert.equal(out.$('#home-link').hidden, true);
+
+  const api = new FakeApi({ user: TEACHER, draft: makeDraft({ respostas: { contexto: ANSWERS.contexto } }) });
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/passo/objectivo` });
+  await a.page('passo');
+  const home = a.$('#home-link');
+  assert.equal(home.hidden, false);
+  assert.equal(home.getAttribute('href'), '#/inicio');
+  assert.equal(home.textContent, 'Os meus rascunhos');
+  assert.equal(home.getAttribute('aria-current'), null);
+  await a.go('#/inicio', 'inicio');
+  assert.equal(home.getAttribute('aria-current'), 'page');
+});
+
 test('without a session the app shows the login form; a valid code moves to #/inicio with the name', async (t) => {
   const a = await boot(t, { hash: '#/inicio' });
   await a.page('entrar');

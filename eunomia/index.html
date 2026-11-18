@@ -9,7 +9,7 @@
   <title>Eunomia, FMUP · IA</title>
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
   <link rel="stylesheet" href="../themis/style.css?v=1.3.2">
-  <link rel="stylesheet" href="style.css?v=0.3.1">
+  <link rel="stylesheet" href="style.css?v=0.3.2">
 </head>
 <body>
   <noscript>
@@ -26,7 +26,7 @@
   </nav>
 
   <header class="site-header" role="banner">
-    <span class="brand">
+    <a href="#/inicio" class="brand" id="brand-link">
       <span class="brand-mark" aria-hidden="true">
         <span class="brand-fmup">FM<br>UP</span>
       </span>
@@ -34,8 +34,9 @@
         <span class="brand-short" id="brand-short"></span>
         <span class="brand-full" id="brand-full"></span>
       </span>
-    </span>
+    </a>
     <div class="header-actions">
+      <a href="#/inicio" id="home-link" class="btn-ghost" hidden></a>
       <a href="#/ajuda" id="help-link" class="btn-ghost"></a>
       <span class="eu-utilizador" id="user-name" hidden></span>
       <button type="button" class="btn-ghost" id="logout-btn" hidden></button>
@@ -59,10 +60,10 @@
 
   <div class="eu-anuncio" id="estado-pedido" role="status" aria-live="polite" tabindex="-1"></div>
 
-  <script src="i18n-pt.js?v=0.3.1"></script>
-  <script src="ajuda-pt.js?v=0.3.1"></script>
-  <script src="api.js?v=0.3.1"></script>
-  <script src="themis-link.js?v=0.3.1"></script>
-  <script src="app.js?v=0.3.1"></script>
+  <script src="i18n-pt.js?v=0.3.2"></script>
+  <script src="ajuda-pt.js?v=0.3.2"></script>
+  <script src="api.js?v=0.3.2"></script>
+  <script src="themis-link.js?v=0.3.2"></script>
+  <script src="app.js?v=0.3.2"></script>
 </body>
 </html>

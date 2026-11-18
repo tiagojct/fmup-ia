@@ -334,11 +334,12 @@
     }
     if (found.public && !found.open && state.user) return redirect('#/inicio');
     if (found.admin && state.user.perfil !== 'admin') return redirect('#/inicio');
-    var help = document.getElementById('help-link');
-    if (help) {
-      if (found.page === 'ajuda') help.setAttribute('aria-current', 'page');
-      else help.removeAttribute('aria-current');
-    }
+    [['help-link', 'ajuda'], ['home-link', 'inicio']].forEach(function (pair) {
+      var node = document.getElementById(pair[0]);
+      if (!node) return;
+      if (found.page === pair[1]) node.setAttribute('aria-current', 'page');
+      else node.removeAttribute('aria-current');
+    });
 
     state.token += 1;
     var token = state.token;
@@ -390,6 +391,7 @@
     text('rodape-estado', S.app.estado);
     text('logout-btn', S.app.terminarSessao);
     text('help-link', S.app.ajuda);
+    text('home-link', S.rascunho.inicio);
     var nav = document.getElementById('back-bar');
     if (nav) nav.setAttribute('aria-label', S.app.navSitio);
     var skip = document.getElementById('skip-link');
@@ -411,6 +413,7 @@
     name.textContent = user ? S.app.sessaoDe(user.nome) : '';
     name.hidden = !user;
     out.hidden = !user;
+    document.getElementById('home-link').hidden = !user;
   }
 
   function logout() {

@@ -7,7 +7,7 @@
 /* ---------- Shell ---------- */
 
 main {
-  max-width: 1100px;
+  max-width: 1320px;
 }
 
 main > .screen:not(.eu-rascunho) {
@@ -44,10 +44,6 @@ main > .screen.eu-estreito {
 
 .eu-saltar:focus {
   top: 0.5rem;
-}
-
-.brand {
-  cursor: default;
 }
 
 .header-actions {
@@ -294,7 +290,7 @@ textarea.eu-mono,
 
 @media (min-width: 960px) {
   .eu-rascunho {
-    grid-template-columns: 15rem minmax(0, 1fr);
+    grid-template-columns: 14rem minmax(0, 1fr);
     gap: 2.25rem;
     align-items: start;
   }
@@ -307,7 +303,7 @@ textarea.eu-mono,
 
 .eu-conteudo {
   min-width: 0;
-  max-width: 760px;
+  max-width: 52rem;
 }
 
 .eu-etapas {
@@ -735,11 +731,17 @@ textarea.eu-mono,
 
 /* ---------- Help page, first-visit box, invitation ---------- */
 
-.header-actions #help-link {
+.header-actions #help-link,
+.header-actions #home-link {
   text-decoration: none;
 }
 
-.header-actions #help-link[aria-current="page"] {
+.header-actions #home-link[hidden] {
+  display: none;
+}
+
+.header-actions #help-link[aria-current="page"],
+.header-actions #home-link[aria-current="page"] {
   background: var(--c-fmup-yellow);
   border-color: var(--c-text);
 }
@@ -908,7 +910,7 @@ textarea.eu-mono,
 .eu-exemplo-meta,
 .eu-respostas {
   display: grid;
-  grid-template-columns: minmax(8rem, max-content) 1fr;
+  grid-template-columns: minmax(8rem, 14rem) minmax(0, 1fr);
   gap: 0.2rem 1rem;
   margin: 0.3rem 0 0;
   font-size: 0.9rem;
@@ -1020,6 +1022,16 @@ textarea.eu-mono,
   margin-bottom: 0.5rem;
 }
 
+/* The worked example beside a step: the column is narrow, so each label goes above its answer. */
+.eu-exemplo .eu-respostas {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+}
+
+.eu-exemplo .eu-respostas dd {
+  margin-bottom: 0.6rem;
+}
+
 .eu-exemplo-item h4 {
   font-size: 0.95rem;
   margin: 0.8rem 0 0.3rem;
@@ -1086,7 +1098,7 @@ textarea.eu-mono,
 
 @media (min-width: 1200px) {
   .eu-rascunho.com-painel {
-    grid-template-columns: 13rem minmax(0, 1fr) 16rem;
+    grid-template-columns: 14rem minmax(0, 1fr) 18rem;
     gap: 1.75rem;
   }
 
