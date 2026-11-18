@@ -827,6 +827,45 @@ textarea.eu-mono,
   font-size: 0.92rem;
 }
 
+.eu-ajuda-indice {
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 0.6rem 0.9rem 0.7rem;
+  margin: 1rem 0 0;
+  font-size: 0.92rem;
+}
+
+.eu-ajuda-indice-titulo {
+  margin: 0 0 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+}
+
+.eu-ajuda-indice ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1.2rem;
+}
+
+.eu-ajuda-seccao h3:focus {
+  outline: none;
+}
+
+.eu-ajuda-seccao h3:focus-visible {
+  outline: 3px solid var(--c-text);
+  outline-offset: 4px;
+}
+
+.eu-ajuda-seccao {
+  scroll-margin-top: 1rem;
+}
+
 .eu-ajuda-seccao p {
   line-height: 1.55;
 }
@@ -982,7 +1021,9 @@ textarea.eu-mono,
 .eu-exemplo-meta,
 .eu-respostas {
   display: grid;
-  grid-template-columns: minmax(8rem, 14rem) minmax(0, 1fr);
+  /* The label column fits its longest label, from 8rem up to 14rem: a long label wraps and does
+     not squeeze the answer. */
+  grid-template-columns: fit-content(14rem) minmax(0, 1fr);
   gap: 0.2rem 1rem;
   margin: 0.3rem 0 0;
   font-size: 0.9rem;
@@ -991,6 +1032,7 @@ textarea.eu-mono,
 .eu-exemplo-meta dt,
 .eu-respostas dt {
   color: var(--c-text-muted);
+  min-width: 8rem;
 }
 
 .eu-exemplo-meta dd,

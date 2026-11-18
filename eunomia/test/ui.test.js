@@ -1182,3 +1182,53 @@ test('B: personal data in the comment of a new version asks for the confirmation
   assert.equal(calls[1].body.confirmo_sem_dados_pessoais, true);
   assert.equal(calls[1].body.comentario, 'Use o contribuinte 123456789.');
 });
+
+// ---------------------------------------------------------------- unsaved edits
+
+test('leaving a step with unsaved text asks first; a refusal keeps the page and the text', async (t) => {
+  const api = new FakeApi({ user: TEACHER, draft: makeDraft() });
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/passo/contexto` });
+  await a.page('passo');
+  a.set('#campo-uc', 'Farmacologia Clínica');
+  api.confirmAnswer = false;
+  a.w.location.hash = '#/inicio';
+  await a.waitFor(() => api.confirms.length === 1, 'the question');
+  await new Promise((r) => setTimeout(r, 30));
+  assert.match(api.confirms[0], /não foram guardadas/);
+  assert.equal(a.w.location.hash, `#/rascunho/${DRAFT_ID}/passo/contexto`);
+  assert.equal(a.$('#main').dataset.pagina, 'passo');
+  assert.equal(a.$('#campo-uc').value, 'Farmacologia Clínica');
+
+  api.confirmAnswer = true;
+  await a.go('#/inicio', 'inicio');
+  assert.equal(api.confirms.length, 2);
+  // The edits went with the page: the next move does not ask.
+  await a.go('#/ajuda', 'ajuda');
+  assert.equal(api.confirms.length, 2);
+});
+
+test('a page with no edits, and a step after its save, leave without a question', async (t) => {
+  const api = new FakeApi({ user: TEACHER, draft: makeDraft({ respostas: { contexto: ANSWERS.contexto } }) });
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/passo/objectivo` });
+  await a.page('passo');
+  await a.go(`#/rascunho/${DRAFT_ID}/passo/contexto`, 'passo');
+  assert.equal(api.confirms.length, 0, 'no edits');
+  a.set('#campo-uc', 'Farmacologia Clínica');
+  a.$('#guardar-passo').click();
+  await a.waitFor(() => a.w.location.hash.endsWith('/passo/objectivo'), 'next step');
+  await a.page('passo');
+  assert.equal(api.confirms.length, 0, 'saved');
+});
+
+test('the logout button asks with unsaved edits; a refusal keeps the session', async (t) => {
+  const api = new FakeApi({ user: TEACHER, draft: makeDraft() });
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/passo/contexto` });
+  await a.page('passo');
+  a.set('#campo-uc', 'Farmacologia Clínica');
+  api.confirmAnswer = false;
+  a.$('#logout-btn').click();
+  await new Promise((r) => setTimeout(r, 30));
+  assert.equal(api.confirms.length, 1);
+  assert.equal(lastCall(api, 'POST', /\/logout$/), undefined);
+  assert.equal(a.$('#main').dataset.pagina, 'passo');
+});

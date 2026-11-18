@@ -29,6 +29,7 @@
       themis: 'Themis',
       terminarSessao: 'Terminar sessão',
       ajuda: 'Ajuda',
+      sairSemGuardar: 'Esta página tem alterações que não foram guardadas. Sair sem guardar?',
       sessaoDe: function (nome) { return 'Sessão de ' + nome; },
       estado: ESTADO,
       oQueVe: O_QUE_VE,

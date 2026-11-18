@@ -86,7 +86,57 @@
     notice: null,
     returnTo: null,
     token: 0,
+    shown: '', // the hash of the page on screen
   };
+
+  // ---------------------------------------------------------------- unsaved edits
+
+  // The pages whose fields hold work that a save sends to the server. An edit there counts until a
+  // save that started after it succeeds, or until the next page is drawn.
+  var GUARDED = ['passo', 'plano', 'seccao', 'referencias', 'adaptar', 'revisao-item'];
+  // The writes that save what the fields of a page hold. Other POSTs (sugerir, explicar, aceitar,
+  // repor) leave the fields as they are, so the edits stay unsaved.
+  var SAVES = /\/(opiniao|devolver|gerar|adaptar|aprovar|submeter)$/;
+  var edits = { count: 0, saved: 0 };
+
+  function unsaved() {
+    return edits.count > edits.saved;
+  }
+
+  function markEdit(e) {
+    var t = e.target;
+    if (!t || !/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName) || t.readOnly) return;
+    if (GUARDED.indexOf(main.dataset.pagina) === -1) return;
+    edits.count += 1;
+  }
+
+  // True when the page may go: no unsaved edits, or the user chose to leave them.
+  function leaveOk() {
+    if (!unsaved()) return true;
+    if (!window.confirm(S.app.sairSemGuardar)) return false;
+    edits.saved = edits.count;
+    return true;
+  }
+
+  // Every request of the app goes through here. A save that succeeds marks as saved the edits made
+  // before it started; an edit made while it ran stays unsaved.
+  function apiRequest(method, path, body) {
+    var before = edits.count;
+    return API.request(method, path, body).then(function (res) {
+      if (method === 'PUT' || (method === 'POST' && SAVES.test(path))) edits.saved = Math.max(edits.saved, before);
+      return res;
+    });
+  }
+
+  // A change of hash from a link, the back button or the address bar. With unsaved edits the user
+  // confirms; a refusal puts back the hash of the page on screen and draws nothing.
+  function onHashChange() {
+    if (window.location.hash !== state.shown && !leaveOk()) {
+      window.history.replaceState(null, '', state.shown);
+      return;
+    }
+    route();
+  }
 
   // ---------------------------------------------------------------- DOM helpers
 
@@ -342,6 +392,8 @@
       else node.removeAttribute('aria-current');
     });
 
+    state.shown = hash;
+    edits.saved = edits.count;
     state.token += 1;
     var token = state.token;
     var ctx = { alive: function () { return token === state.token; } };
@@ -418,9 +470,10 @@
   }
 
   function logout() {
+    if (!leaveOk()) return;
     var btn = document.getElementById('logout-btn');
     busy(btn, function () {
-      return API.request('POST', '/logout').catch(function () { return null; });
+      return apiRequest('POST', '/logout').catch(function () { return null; });
     }, { label: S.app.terminarSessao }).then(function () {
       state.returnTo = null;
       setUser(null);
@@ -464,7 +517,7 @@
   }
 
   function loadDraft(id) {
-    return API.request('GET', '/rascunhos/' + id);
+    return apiRequest('GET', '/rascunhos/' + id);
   }
 
   function isEditable(d) {
@@ -762,7 +815,7 @@
         report(slot, new API.ApiError(400, { erro: S.entrar.semCodigo }), { login: true });
         return;
       }
-      busy(submit, function () { return API.request('POST', '/login', { codigo: codigo }); }, { label: S.entrar.aEntrar })
+      busy(submit, function () { return apiRequest('POST', '/login', { codigo: codigo }); }, { label: S.entrar.aEntrar })
         .then(function (user) {
           input.value = '';
           setUser(user);
@@ -832,9 +885,25 @@
     }));
     var c = A.contacto;
     var contact = el('p', null, c.nome + ', ' + c.unidade + ', ', link(c.email, 'mailto:' + c.email), '.');
+    // The list of sections. The hash holds the route, so a link scrolls to its section and moves
+    // the focus to the heading, without a change of hash.
+    var keys = ['oQueE', 'antes', 'etapas', 'glossario', 'perguntas', 'contacto'];
+    var toc = el('nav', { class: 'eu-ajuda-indice', 'aria-labelledby': 'ajuda-indice-titulo' },
+      el('p', { id: 'ajuda-indice-titulo', class: 'eu-ajuda-indice-titulo', text: A.indice }),
+      el('ul', null, keys.map(function (key) {
+        return el('li', null, on(el('a', { href: '#ajuda-' + key, text: A[key].titulo }), 'click', function (e) {
+          e.preventDefault();
+          var heading = document.getElementById('ajuda-' + key + '-titulo');
+          if (!heading) return;
+          heading.setAttribute('tabindex', '-1');
+          heading.focus();
+          if (heading.scrollIntoView) heading.scrollIntoView({ block: 'start' });
+        }));
+      })));
     main.appendChild(el('div', { class: 'screen eu-ajuda-pagina' },
       el('h2', { class: 'step-title', text: A.titulo }),
       openBack(),
+      toc,
       section('oQueE', paragraphs(A.oQueE.paragrafos)),
       section('antes', [el('p', { id: 'ajuda-themis' }, A.antes.themis.texto, ' ', link(A.antes.themis.link, A.antes.themis.url))]
         .concat(paragraphs(A.antes.paragrafos))),
@@ -953,7 +1022,7 @@
     if (state.user) {
       start = button(S.exemplos.comecar, { id: 'comecar-exemplo', class: 'btn-primary', 'aria-describedby': 'comecar-nota' }, function () {
         clearSlot(slot);
-        busy(start, function () { return API.request('POST', '/rascunhos', { modo: 'criar', exemplo: n }); }, { label: S.inicio.aCriar })
+        busy(start, function () { return apiRequest('POST', '/rascunhos', { modo: 'criar', exemplo: n }); }, { label: S.inicio.aCriar })
           .then(function (view) { go(stepHref(view.rascunho.id, 'contexto')); })
           .catch(function (err) { report(slot, err); });
       });
@@ -996,7 +1065,7 @@
       stepsBox,
       fichaBox));
 
-    return API.request('GET', '/exemplos/' + n).then(function (data) {
+    return apiRequest('GET', '/exemplos/' + n).then(function (data) {
       if (!ctx.alive()) return;
       clear(fichaBody);
       fichaBody.appendChild(fichaView((data && data.ficha) || {}));
@@ -1090,7 +1159,7 @@
     var slot = errorSlot();
     var list = el('div', { id: 'lista-rascunhos', 'aria-live': 'polite' }, el('p', { text: S.comum.aCarregar }));
     var load = function () {
-      return API.request('GET', '/rascunhos').then(function (data) {
+      return apiRequest('GET', '/rascunhos').then(function (data) {
         if (!ctx.alive()) return;
         drawList((data && data.rascunhos) || []);
       }, function (err) {
@@ -1127,7 +1196,7 @@
         clear(box);
         var dup = button(S.inicio.duplicar, { class: 'btn-ghost duplicar', 'aria-label': S.inicio.duplicarDe(titulo) }, function () {
           clearSlot(slot);
-          busy(dup, function () { return API.request('POST', '/rascunhos/' + r.id + '/duplicar'); }, { label: S.inicio.aDuplicar })
+          busy(dup, function () { return apiRequest('POST', '/rascunhos/' + r.id + '/duplicar'); }, { label: S.inicio.aDuplicar })
             .then(function (view) { go('#/rascunho/' + view.rascunho.id); })
             .catch(function (err) { report(slot, err); });
         });
@@ -1138,7 +1207,7 @@
           var noteId = nextId('apagar-nota');
           var confirm = button(S.inicio.apagar, { class: 'btn-primary confirmar-apagar', 'aria-describedby': noteId }, function () {
             clearSlot(slot);
-            busy(confirm, function () { return API.request('DELETE', '/rascunhos/' + r.id, { rev: r.rev }); }, { label: S.inicio.aApagar })
+            busy(confirm, function () { return apiRequest('DELETE', '/rascunhos/' + r.id, { rev: r.rev }); }, { label: S.inicio.aApagar })
               .then(function () { return load(); })
               .then(function () {
                 if (!ctx.alive()) return;
@@ -1167,7 +1236,7 @@
 
     var newBtn = button(S.inicio.novo, { id: 'novo-rascunho', class: 'btn-primary' }, function () {
       clearSlot(slot);
-      busy(newBtn, function () { return API.request('POST', '/rascunhos', { modo: 'criar' }); }, { label: S.inicio.aCriar })
+      busy(newBtn, function () { return apiRequest('POST', '/rascunhos', { modo: 'criar' }); }, { label: S.inicio.aCriar })
         .then(function (view) { go(stepHref(view.rascunho.id, steps()[0].id)); })
         .catch(function (err) { report(slot, err); });
     });
@@ -1182,7 +1251,7 @@
     var queue = admin ? el('p', { class: 'eu-a-rever', 'aria-live': 'polite' }) : null;
     var loadQueue = function () {
       if (!admin) return null;
-      return API.request('GET', '/revisao').then(function (data) {
+      return apiRequest('GET', '/revisao').then(function (data) {
         if (!ctx.alive()) return;
         var n = ((data && data.revisao) || []).length;
         queue.appendChild(link(S.inicio.aRever(n), '#/revisao', { id: 'a-rever' }));
@@ -1263,7 +1332,7 @@
       var body = { texto: texto };
       if (confirmed) body.confirmo_sem_dados_pessoais = true;
       busy(btn, function () {
-        return API.request('POST', '/rascunhos/adaptar', body);
+        return apiRequest('POST', '/rascunhos/adaptar', body);
       }, { model: true, label: S.adaptar.aProcessar }).then(function (view) {
         done();
         if (!ctx.alive()) return;
@@ -1317,7 +1386,7 @@
     if (stepId === 'plano') return redirect('#/rascunho/' + id + '/plano');
     var step = stepById(stepId);
     var extra = stepId === 'padrao'
-      ? Promise.all([API.request('GET', '/padroes?rascunho=' + id), API.request('GET', '/padroes')])
+      ? Promise.all([apiRequest('GET', '/padroes?rascunho=' + id), apiRequest('GET', '/padroes')])
       : Promise.resolve(null);
     return Promise.all([loadDraft(id), extra]).then(function (r) {
       if (!ctx.alive()) return;
@@ -1399,7 +1468,7 @@
       var body = { rev: d.rev, valor: valor };
       if (confirmed) body.confirmo_sem_dados_pessoais = true;
       busy(btn, function () {
-        return API.request('PUT', '/rascunhos/' + d.id + '/respostas/' + step.id, body);
+        return apiRequest('PUT', '/rascunhos/' + d.id + '/respostas/' + step.id, body);
       }).then(function (next) {
         if (!ctx.alive()) return;
         d = next.rascunho;
@@ -1522,7 +1591,7 @@
       var body = { texto: texto };
       if (personal) body.confirmo_sem_dados_pessoais = true;
       busy(trigger, function () {
-        return API.request('POST', '/rascunhos/' + d.id + '/objectivo/sugerir', body);
+        return apiRequest('POST', '/rascunhos/' + d.id + '/objectivo/sugerir', body);
       }, { model: true }).then(function (data) {
         var list = (data && data.sugestoes) || [];
         if (list.length === 0) {
@@ -1584,7 +1653,7 @@
       explain = button(S.passo.explicar, { id: 'explicar-padroes' }, function () {
         clearSlot(slot);
         busy(explain, function () {
-          return API.request('POST', '/rascunhos/' + d.id + '/padroes/explicar', {});
+          return apiRequest('POST', '/rascunhos/' + d.id + '/padroes/explicar', {});
         }, { model: true }).then(function (data) {
           ((data && data.padroes) || []).forEach(function (p) {
             // Compare the ids in a loop: an id from the server never becomes part of a selector.
@@ -1687,7 +1756,7 @@
     content.appendChild(form);
 
     var savePlan = function () {
-      return API.request('PUT', '/rascunhos/' + d.id + '/respostas/plano', { rev: d.rev, valor: collect(fields) });
+      return apiRequest('PUT', '/rascunhos/' + d.id + '/respostas/plano', { rev: d.rev, valor: collect(fields) });
     };
     if (saveOnly) on(saveOnly, 'click', function () {
       clearSlot(slot);
@@ -1706,7 +1775,7 @@
       busy(approve, function () {
         return savePlan().then(function (saved) {
           d = saved.rascunho;
-          return API.request('POST', '/rascunhos/' + d.id + '/plano/aprovar', { rev: d.rev });
+          return apiRequest('POST', '/rascunhos/' + d.id + '/plano/aprovar', { rev: d.rev });
         });
       }, { label: S.plano.aAprovar }).then(function (next) {
         if (!ctx.alive()) return;
@@ -1771,7 +1840,7 @@
       if (comentario) body.comentario = comentario;
       if (personal) body.confirmo_sem_dados_pessoais = true;
       busy(btn, function () {
-        return API.request('POST', '/rascunhos/' + d.id + '/seccoes/' + sec + '/gerar', body);
+        return apiRequest('POST', '/rascunhos/' + d.id + '/seccoes/' + sec + '/gerar', body);
       }, { model: true }).then(function (next) {
         announce(S.comum.respostaModelo);
         redraw(next, 'seccao-texto');
@@ -1820,7 +1889,7 @@
       var accept = s.estado === 'aceite' ? null : button(S.seccao.aceitar, { id: 'aceitar', class: 'btn-primary' }, function () {
         clearSlot(slot);
         busy(accept, function () {
-          return API.request('POST', '/rascunhos/' + d.id + '/seccoes/' + sec + '/aceitar', { rev: d.rev });
+          return apiRequest('POST', '/rascunhos/' + d.id + '/seccoes/' + sec + '/aceitar', { rev: d.rev });
         }).then(function (next) {
           announce(S.seccao.aceite);
           redraw(next);
@@ -1842,7 +1911,7 @@
       var restore = !s.anterior ? null : button(S.seccao.repor, { id: 'repor' }, function () {
         clearSlot(slot);
         busy(restore, function () {
-          return API.request('POST', '/rascunhos/' + d.id + '/seccoes/' + sec + '/repor', { rev: d.rev });
+          return apiRequest('POST', '/rascunhos/' + d.id + '/seccoes/' + sec + '/repor', { rev: d.rev });
         }).then(function (next) {
           announce(S.seccao.reposta);
           redraw(next, 'seccao-texto');
@@ -1919,7 +1988,7 @@
         if (c) body.comentario = c;
         if (personal) body.confirmo_sem_dados_pessoais = true;
         busy(btn, function () {
-          return API.request('POST', '/rascunhos/' + d.id + '/seccoes/' + sec + '/opiniao', body);
+          return apiRequest('POST', '/rascunhos/' + d.id + '/seccoes/' + sec + '/opiniao', body);
         }).then(function (next) {
           announce(S.seccao.opiniaoGuardada);
           redraw(next, 'opiniao-dada');
@@ -2174,7 +2243,7 @@
       e.preventDefault();
       clearSlot(slot);
       busy(save, function () {
-        return API.request('PUT', '/rascunhos/' + d.id + '/seccoes/' + sec, { rev: d.rev, dados: collectData() });
+        return apiRequest('PUT', '/rascunhos/' + d.id + '/seccoes/' + sec, { rev: d.rev, dados: collectData() });
       }).then(function (next) {
         announce(S.comum.guardado);
         redraw(next, 'seccao-texto');
@@ -2270,7 +2339,7 @@
         .map(function (i) { return { id: i.value }; });
       var list = ids.concat(own.map(function (t) { return { texto: t }; }));
       busy(save, function () {
-        return API.request('PUT', '/rascunhos/' + d.id + '/referencias', { rev: d.rev, referencias: list });
+        return apiRequest('PUT', '/rascunhos/' + d.id + '/referencias', { rev: d.rev, referencias: list });
       }).then(function (next) {
         if (!ctx.alive()) return;
         drawReferences(ctx, next, true);
@@ -2302,7 +2371,7 @@
         if (themis) content.appendChild(themis);
         return;
       }
-      return API.request('GET', '/rascunhos/' + id + '/verificacao-final').then(function (v) {
+      return apiRequest('GET', '/rascunhos/' + id + '/verificacao-final').then(function (v) {
         if (!ctx.alive()) return;
         var missing = v.seccoes_em_falta || [];
         var steps = v.passos_em_falta || [];
@@ -2386,7 +2455,7 @@
     var btn = button(S.previsao.submeter, { id: 'submeter', class: 'btn-primary', 'aria-describedby': 'submeter-nota' }, function () {
       clearSlot(slot);
       busy(btn, function () {
-        return API.request('POST', '/rascunhos/' + d.id + '/submeter', { rev: d.rev });
+        return apiRequest('POST', '/rascunhos/' + d.id + '/submeter', { rev: d.rev });
       }, { label: S.previsao.aSubmeter }).then(function () {
         if (!ctx.alive()) return;
         route();
@@ -2516,7 +2585,7 @@
       el('div', { class: 'nav-row' }, create));
 
     var load = function () {
-      return API.request('GET', '/codigos').then(function (data) {
+      return apiRequest('GET', '/codigos').then(function (data) {
         if (!ctx.alive()) return;
         drawTable((data && data.codigos) || []);
       }, function (err) {
@@ -2546,7 +2615,7 @@
               clear(actions);
               var confirm = button(S.codigos.confirmar, { class: 'btn-primary confirmar-revogar', 'aria-label': S.codigos.confirmarDe(c.nome) }, function () {
                 clearSlot(slot);
-                busy(confirm, function () { return API.request('DELETE', '/codigos/' + encodeURIComponent(c.id)); })
+                busy(confirm, function () { return apiRequest('DELETE', '/codigos/' + encodeURIComponent(c.id)); })
                   .then(function () { return load(); })
                   .then(function () {
                     // The row was redrawn: the focus goes to the status line that confirms it.
@@ -2586,7 +2655,7 @@
         report(slot, new API.ApiError(400, { erro: S.codigos.semNome }));
         return;
       }
-      busy(create, function () { return API.request('POST', '/codigos', { nome: nome, admin: admin.checked }); }, { label: S.codigos.aCriar })
+      busy(create, function () { return apiRequest('POST', '/codigos', { nome: nome, admin: admin.checked }); }, { label: S.codigos.aCriar })
         .then(function (data) {
           if (!ctx.alive()) return;
           name.value = '';
@@ -2688,7 +2757,7 @@
       el('p', { class: 'step-help', text: S.revisao.intro }),
       slot,
       list));
-    return API.request('GET', '/revisao').then(function (data) {
+    return apiRequest('GET', '/revisao').then(function (data) {
       if (!ctx.alive()) return;
       var rows = (data && data.revisao) || [];
       clear(list);
@@ -2738,7 +2807,7 @@
     var approve = button(S.revisao.aprovar, { id: 'aprovar', class: 'btn-primary', 'aria-describedby': 'aprovar-nota' }, function () {
       clearSlot(slot);
       busy(approve, function () {
-        return API.request('POST', '/revisao/' + d.id + '/aprovar', { rev: d.rev });
+        return apiRequest('POST', '/revisao/' + d.id + '/aprovar', { rev: d.rev });
       }, { label: S.revisao.aAprovar }).then(function () { decided(S.revisao.aprovadaOk(titulo)); })
         .catch(function (err) { report(slot, err, { write: true }); });
     });
@@ -2764,7 +2833,7 @@
       var body = { rev: d.rev, comentario: text };
       if (personal) body.confirmo_sem_dados_pessoais = true;
       busy(btn, function () {
-        return API.request('POST', '/revisao/' + d.id + '/devolver', body);
+        return apiRequest('POST', '/revisao/' + d.id + '/devolver', body);
       }, { label: S.revisao.aDevolver }).then(function () { decided(S.revisao.devolvidaOk(titulo)); })
         .catch(function (err) {
           if (isPersonalData(err)) return personalDataBox(slot, err, function (again) { send(again, true, text); }, guard.stale(mark));
@@ -2803,7 +2872,7 @@
     };
     var num = function (v) { return typeof v === 'number' ? String(v) : ''; };
     var order = Object.keys(S.estados);
-    return API.request('GET', '/uso').then(function (data) {
+    return apiRequest('GET', '/uso').then(function (data) {
       if (!ctx.alive()) return;
       data = data || {};
       clear(users);
@@ -2856,7 +2925,7 @@
 
   function start() {
     setStaticText();
-    var me = API.request('GET', '/me').catch(function (err) {
+    var me = apiRequest('GET', '/me').catch(function (err) {
       if (err.status === 401) return null;
       throw err;
     });
@@ -2866,7 +2935,14 @@
       setUser(r[2]);
       state.exemplos = r[3];
       state.patterns = (r[4] && r[4].padroes) || [];
-      window.addEventListener('hashchange', route);
+      window.addEventListener('hashchange', onHashChange);
+      window.addEventListener('beforeunload', function (e) {
+        if (!unsaved()) return;
+        e.preventDefault();
+        e.returnValue = '';
+      });
+      on(main, 'input', markEdit);
+      on(main, 'change', markEdit);
       route();
     }).catch(function (err) {
       clear(main);

@@ -13,6 +13,7 @@
   window.EUNOMIA_AJUDA = {
     pagina: 'Ajuda',
     titulo: 'Ajuda da Eunomia',
+    indice: 'Nesta página',
 
     oQueE: {
       titulo: 'O que é a Eunomia',

@@ -388,6 +388,9 @@ async function boot(t, { api = new FakeApi(), hash = '', storage = 'ok', stored 
     for (const [k, v] of Object.entries(local)) w.localStorage.setItem(k, v);
   }
   w.fetch = (url, init) => api.fetch(url, init);
+  // window.confirm: the answer is api.confirmAnswer (default true); each question goes to api.confirms.
+  api.confirms = [];
+  w.confirm = (msg) => { api.confirms.push(msg); return api.confirmAnswer !== false; };
   w.scrollTo = () => {};
   const downloads = [];
   w.URL.createObjectURL = () => 'blob:https://example.test/1';

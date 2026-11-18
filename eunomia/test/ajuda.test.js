@@ -245,3 +245,16 @@ test('the help page shows the Themis line with its link, the common-words title 
   for (const id of ['quem_ve', 'adaptar']) assert.ok(a.$(`#ajuda-pergunta-${id}`), id);
   assert.equal(a.$('#ajuda-pergunta-quem_ve').textContent, 'O que vê o Tiago Jacinto?');
 });
+
+test('the help page lists its sections; a link moves the focus to the heading and keeps the hash', async (t) => {
+  const a = await boot(t, { api: new FakeApi({ user: TEACHER }), hash: '#/ajuda' });
+  await a.page('ajuda');
+  const links = a.$$('.eu-ajuda-indice a');
+  assert.equal(links.length, 6);
+  const etapas = links.find((l) => l.getAttribute('href') === '#ajuda-etapas');
+  assert.ok(etapas, 'link to the stages');
+  // The harness replaces HTMLAnchorElement.click (downloads): send the event itself.
+  etapas.dispatchEvent(new a.w.MouseEvent('click', { bubbles: true, cancelable: true }));
+  assert.equal(a.w.document.activeElement.id, 'ajuda-etapas-titulo');
+  assert.equal(a.w.location.hash, '#/ajuda');
+});
