@@ -334,6 +334,7 @@
     }
     if (found.public && !found.open && state.user) return redirect('#/inicio');
     if (found.admin && state.user.perfil !== 'admin') return redirect('#/inicio');
+    document.body.setAttribute('data-pagina', found.page);
     [['help-link', 'ajuda'], ['home-link', 'inicio']].forEach(function (pair) {
       var node = document.getElementById(pair[0]);
       if (!node) return;
@@ -505,9 +506,17 @@
     items.push(el('li', null, current(where.refs, link(S.rascunho.referencias, base + '/referencias'))));
     items.push(el('li', null, current(where.previsao, link(S.rascunho.previsao, base + '/previsao'))));
 
+    // The list of stages folds on narrow screens, where it comes above the content; it opens on
+    // wide screens, where it is a column beside it. No matchMedia (jsdom): open.
+    var wide = typeof window.matchMedia !== 'function' || window.matchMedia('(min-width: 960px)').matches;
+    var stages = el('details', { class: 'eu-etapas-dobra' },
+      el('summary', { text: S.rascunho.nav }),
+      el('ol', { class: 'eu-etapas-raiz' }, items));
+    stages.open = wide;
     var nav = el('nav', { class: 'eu-etapas', 'aria-label': S.rascunho.nav },
       el('p', { class: 'eu-etapas-voltar' }, link(S.rascunho.inicio, '#/inicio')),
-      el('ol', { class: 'eu-etapas-raiz' }, items));
+      el('p', { class: 'eu-etapas-titulo', text: draftTitle(d) }),
+      stages);
     var content = el('div', { class: 'eu-conteudo' });
     var comentario = d.revisao && typeof d.revisao.comentario === 'string' ? d.revisao.comentario : '';
     if (d.estado === 'devolvida' && comentario) {
@@ -2194,7 +2203,7 @@
     content.appendChild(el('h2', { class: 'step-title', text: S.referencias.titulo }));
     content.appendChild(el('p', { class: 'step-help', text: S.referencias.intro }));
 
-    var curated = el('fieldset', { class: 'field-row eu-fieldset' },
+    var curated = el('fieldset', { class: 'field-row eu-fieldset eu-refs-curadas' },
       el('legend', { text: S.referencias.curadas }),
       el('div', { class: 'field-group' }, state.refs.map(function (r) {
         return el('label', { class: 'option' },

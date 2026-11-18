@@ -47,6 +47,28 @@ test('the brand and the header link lead back to the drafts; the header link sho
   assert.equal(home.getAttribute('aria-current'), 'page');
 });
 
+test('a draft page names the draft in the list of stages, and the list folds in a details element', async (t) => {
+  const api = new FakeApi({ user: TEACHER, draft: makeDraft({ respostas: { contexto: ANSWERS.contexto } }) });
+  const a = await boot(t, { api, hash: `#/rascunho/${DRAFT_ID}/passo/objectivo` });
+  await a.page('passo');
+  assert.equal(a.$('.eu-etapas .eu-etapas-titulo').textContent, ANSWERS.contexto.uc);
+  const fold = a.$('.eu-etapas details.eu-etapas-dobra');
+  assert.ok(fold, 'details');
+  assert.equal(fold.open, true, 'open without matchMedia');
+  assert.ok(fold.querySelector('a[aria-current="page"]'), 'the current step is inside');
+  assert.ok(a.$('.eu-etapas > .eu-etapas-voltar a[href="#/inicio"]'), 'the way back stays outside the fold');
+});
+
+test('the body names the page, so the header title shows on the home page only', async (t) => {
+  const api = new FakeApi({ user: TEACHER, draft: makeDraft() });
+  const a = await boot(t, { api, hash: '#/inicio' });
+  await a.page('inicio');
+  assert.equal(a.w.document.body.dataset.pagina, 'inicio');
+  await a.go(`#/rascunho/${DRAFT_ID}/passo/contexto`, 'passo');
+  assert.equal(a.w.document.body.dataset.pagina, 'passo');
+  assert.equal(a.$('#app-title').textContent, 'Eunomia', 'the h1 stays in the page');
+});
+
 test('without a session the app shows the login form; a valid code moves to #/inicio with the name', async (t) => {
   const a = await boot(t, { hash: '#/inicio' });
   await a.page('entrar');

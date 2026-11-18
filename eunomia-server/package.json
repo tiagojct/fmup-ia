@@ -1,6 +1,6 @@
 {
   "name": "eunomia-server",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "private": true,
   "description": "Servidor do Eunomia, o assistente de desenho de actividades FMUP · IA.",
   "type": "commonjs",
