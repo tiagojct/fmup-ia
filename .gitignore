@@ -39,3 +39,6 @@ __pycache__/
 
 # Cópias de segurança da revisão (working-draft)
 .working-draft/
+
+# Configuração e cache do plugin Impeccable
+.impeccable/
